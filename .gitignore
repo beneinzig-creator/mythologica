@@ -13,3 +13,4 @@ art/compare.html
 art/compare/
 .env.local
 .env*.local
+.vercel
