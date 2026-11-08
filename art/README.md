@@ -48,8 +48,9 @@ python3 art/generate.py --all           # makes every card that has no picture y
   stop with Ctrl+C at any time and run it again later.
 - To redo one card: edit its line in `subjects.json`, run `python3 art/build_manifest.py`, then
   `python3 art/generate.py --ids cerb --force`.
-- Cost: images are billed by output size and quality. A high-quality 1536×1024 image costs roughly
-  $0.20 (check your usage page at platform.openai.com). `--quality medium` costs about a quarter of that.
+- Cost (Nov 2026, GPT Image 2.5, 1536×1024): about $0.04 per image at `high` (the default), $0.01 at
+  `--quality medium`, $0.005 at `low`, plus well under 1¢ for the prompt text. So 1,000 images at `high`
+  cost about $41. Check your real spend on the usage page at platform.openai.com.
 - Model: the default is `gpt-image-2.5-sunburst`, which OpenAI recommends for new integrations.
   `python3 art/generate.py --list-models` shows what your key can use. To try another model:
   `python3 art/generate.py --test --force --model gpt-image-2.6-sunburst`.
