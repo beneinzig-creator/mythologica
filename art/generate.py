@@ -48,7 +48,7 @@ def get_key():
             if line.startswith('export '):
                 line = line[7:]
             if line.startswith('OPENAI_API_KEY='):
-                key = line.split('=', 1)[1].strip().strip('"\'')
+                key = line.split('=', 1)[1].strip().strip('"\'\u201c\u201d\u2018\u2019 ')
     if not key:
         sys.exit('OPENAI_API_KEY is not set. In Terminal run:  export OPENAI_API_KEY="sk-..."\n'
                  '(or see art/README.md for a permanent setup). Never paste the key into chat.')
