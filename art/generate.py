@@ -14,7 +14,8 @@ small .json note next to it with the model and prompt that made it, and
 art/review.html is rebuilt so you can look at the results.
 
 The API key is read ONLY from the OPENAI_API_KEY environment variable (or a
-gitignored .env file at the repo root with one line OPENAI_API_KEY=...).
+gitignored .env file at the repo root (made by art/set_key.py), or .env.local
+made by `vercel env pull`).
 It is never printed or written anywhere by this script.
 Python 3 standard library only: nothing to install.
 """
@@ -41,8 +42,11 @@ def est(model, quality):
 
 def get_key():
     key = os.environ.get('OPENAI_API_KEY', '').strip()
-    env = os.path.join(ROOT, '.env')
-    if not key and os.path.exists(env):
+    # .env (from set_key.py) or .env.local (from `vercel env pull`), at the repo root.
+    for name in ('.env', '.env.local'):
+        env = os.path.join(ROOT, name)
+        if key or not os.path.exists(env):
+            continue
         for line in open(env, encoding='utf-8'):
             line = line.strip()
             if line.startswith('export '):

@@ -11,3 +11,5 @@ __pycache__/
 art/review.html
 art/compare.html
 art/compare/
+.env.local
+.env*.local
