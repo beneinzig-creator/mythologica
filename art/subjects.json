@@ -1,0 +1,10 @@
+{
+  "_note": "Optional hand-written scene for a card, keyed by card id. build_manifest.py uses it in place of the automatic subject line. Cards not listed here get a subject built from their name, lore line, type and keywords.",
+  "ody": {
+    "spear": "A young Ithacan spearman in a simple bronze helmet and linen cuirass, braced behind a round bronze aspis shield, spear levelled, rocky island shore and a dark sea behind him at dusk.",
+    "cerb": "Cerberus, the colossal three-headed hound of Hades, black-furred with glowing ember eyes, snarling at the gates of the underworld, green-black mist and the river Styx behind.",
+    "zeus": "A white marble altar of Zeus on a mountain-top at night, offering smoke rising from it, a crackling bolt of lightning striking down onto the altar from a storm-black sky.",
+    "gale": "A wine-dark sea storm: a huge curling wave and howling wind sweeping a lone bronze-armoured warrior off a rocky ledge back into the night, moonlight on the spray.",
+    "leon": "Leonidas, King of Sparta, in a red cloak and crested bronze Corinthian helmet, standing defiant behind a large bronze shield with a lambda, a narrow mountain pass and smoke behind him in sunset light."
+  }
+}
