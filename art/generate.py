@@ -6,6 +6,7 @@
     python3 art/generate.py --all             # every card in the manifest
     python3 art/generate.py --all --dry-run   # show what would run, spend nothing
     python3 art/generate.py --list-models     # image models your key can use
+    python3 art/generate.py --compare         # same 3 cards at low / medium / high, side by side
 
 Existing images are skipped (use --force to redo one). Each image also gets a
 small .json note next to it with the model and prompt that made it, and
@@ -25,6 +26,16 @@ API = 'https://api.openai.com/v1'
 # "sunburst" = higher quality, "flare" = faster. Try --model gpt-image-2.6-sunburst too.
 DEFAULT_MODEL = 'gpt-image-2.5-sunburst'
 TEST_BATCH = ['spear', 'cerb', 'zeus', 'gale', 'leon']  # soldier, beast, item, spell, legend
+COMPARE_IDS = ['spear', 'cerb', 'zeus']
+QUALITIES = ['low', 'medium', 'high']
+# Approximate $ per 1536x1024 image (Nov 2026, from measured output tokens x $30/M). Estimates only.
+COST = {'gpt-image-2.5': {'low': 0.005, 'medium': 0.010, 'high': 0.041, 'xhigh': 0.074},
+        'gpt-image-2.6': {'low': 0.020, 'medium': 0.034, 'high': 0.041, 'xhigh': 0.074}}
+
+
+def est(model, quality):
+    fam = next((v for k, v in COST.items() if model.startswith(k)), None)
+    return fam.get(quality) if fam else None
 
 
 def get_key():
@@ -96,6 +107,26 @@ figure{{margin:0;background:#12242e;padding:12px;border-radius:8px}}.big{{width:
     open(os.path.join(ART, 'review.html'), 'w', encoding='utf-8').write(page)
 
 
+def write_compare(cards, ids):
+    rows = []
+    for cid in ids:
+        cells = []
+        for q in QUALITIES:
+            p = os.path.join(ART, 'compare', f'{cid}_{q}.webp')
+            if os.path.exists(p):
+                cells.append(f'<figure><img src="compare/{cid}_{q}.webp" alt=""><figcaption>{q}</figcaption></figure>')
+            else:
+                cells.append(f'<figure class=none><figcaption>{q}: not made</figcaption></figure>')
+        rows.append(f'<h2>{html.escape(cards[cid]["name"])} <code>{cid}</code></h2><div class=row>{"".join(cells)}</div>')
+    page = f'''<!doctype html><meta charset=utf-8><title>Quality comparison</title>
+<style>body{{background:#0b1820;color:#efe6cf;font:14px system-ui;margin:24px}}code{{color:#e0b04a}}
+.row{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}}figure{{margin:0}}img{{width:100%;border-radius:4px;display:block}}
+figcaption{{text-align:center;padding:6px;color:#c9bfa6;font-size:16px}}.none{{background:#12242e;min-height:120px;display:grid;place-items:center}}</style>
+<h1>Low vs medium vs high</h1><p>Same prompt, same model, three quality settings. Click an image and zoom in to see detail.</p>
+{''.join(rows)}'''
+    open(os.path.join(ART, 'compare.html'), 'w', encoding='utf-8').write(page)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     g = ap.add_mutually_exclusive_group()
@@ -103,6 +134,9 @@ def main():
     g.add_argument('--ids', help='comma-separated card ids')
     g.add_argument('--all', action='store_true', help='every card in the manifest')
     g.add_argument('--list-models', action='store_true', help='list image models your key can use')
+    g.add_argument('--compare', nargs='?', const=','.join(COMPARE_IDS), metavar='IDS',
+                   help='make these cards (default ' + ','.join(COMPARE_IDS) + ') at low, medium and high '
+                        'into art/compare/ and build art/compare.html')
     ap.add_argument('--hero', default='ody')
     ap.add_argument('--model', default=os.environ.get('MYTHO_IMAGE_MODEL', DEFAULT_MODEL))
     ap.add_argument('--quality', default='high', help='low, medium, high (default), auto')
@@ -118,7 +152,9 @@ def main():
         return
 
     cards = load_cards(a.hero)
-    if a.test:
+    if a.compare:
+        ids = [i.strip() for i in a.compare.split(',') if i.strip()]
+    elif a.test:
         ids = TEST_BATCH
     elif a.ids:
         ids = [i.strip() for i in a.ids.split(',') if i.strip()]
@@ -131,26 +167,33 @@ def main():
     if bad:
         sys.exit('Not in the manifest: ' + ', '.join(bad))
 
-    todo = [i for i in ids if a.force or not os.path.exists(os.path.join(ROOT, cards[i]['output']))]
-    print(f'{len(ids)} cards selected, {len(ids) - len(todo)} already have art, {len(todo)} to generate '
-          f'with {a.model} ({a.quality}, {a.size}).')
+    # Jobs are (card id, output path, quality).
+    if a.compare:
+        jobs = [(i, os.path.join(ART, 'compare', f'{i}_{q}.webp'), q) for i in ids for q in QUALITIES]
+    else:
+        jobs = [(i, os.path.join(ROOT, cards[i]['output']), a.quality) for i in ids]
+    todo = [j for j in jobs if a.force or not os.path.exists(j[1])]
+    costs = [est(a.model, q) for _, _, q in todo]
+    cost = f', about ${sum(costs):.2f}' if todo and None not in costs else ''
+    print(f'{len(jobs)} images selected, {len(jobs) - len(todo)} already exist, {len(todo)} to generate '
+          f'with {a.model} ({"low/medium/high" if a.compare else a.quality}, {a.size}){cost}.')
+    finish = (lambda: write_compare(cards, ids)) if a.compare else (lambda: write_review(cards))
     if a.dry_run:
-        for i in todo:
-            print(f'  {i:10} -> {cards[i]["output"]}')
+        for i, out, q in todo:
+            print(f'  {i:10} {q:7} -> {os.path.relpath(out, ROOT)}')
         return
     if not todo:
-        write_review(cards)
+        finish()
         return
     key = get_key()
 
     failed = []
-    for n, cid in enumerate(todo, 1):
+    for n, (cid, out, quality) in enumerate(todo, 1):
         c = cards[cid]
-        out = os.path.join(ROOT, c['output'])
         os.makedirs(os.path.dirname(out), exist_ok=True)
-        print(f'[{n}/{len(todo)}] {cid} ({c["name"]}) ...', end=' ', flush=True)
+        print(f'[{n}/{len(todo)}] {cid} ({c["name"]}, {quality}) ...', end=' ', flush=True)
         t = time.time()
-        body = {'model': a.model, 'prompt': c['prompt'], 'size': a.size, 'quality': a.quality,
+        body = {'model': a.model, 'prompt': c['prompt'], 'size': a.size, 'quality': quality,
                 'n': 1, 'output_format': 'webp', 'output_compression': 85}
         for attempt in range(3):
             try:
@@ -174,23 +217,23 @@ def main():
                 break
         if not r or not r.get('data'):
             print('FAILED  ' + err)
-            failed.append(cid)
+            failed.append(f'{cid}/{quality}' if a.compare else cid)
             if err.startswith(('HTTP 401', 'HTTP 403', 'HTTP 404')):
                 print('Stopping: this error will repeat for every card. See art/README.md, "If something goes wrong".')
                 break
             continue
         with open(out, 'wb') as f:
             f.write(base64.b64decode(r['data'][0]['b64_json']))
-        meta = {'id': cid, 'model': a.model, 'quality': a.quality, 'size': a.size,
+        meta = {'id': cid, 'model': a.model, 'quality': quality, 'size': a.size,
                 'created': time.strftime('%Y-%m-%d %H:%M:%S'), 'prompt': c['prompt'],
                 'revised_prompt': r['data'][0].get('revised_prompt'), 'usage': r.get('usage')}
         with open(os.path.splitext(out)[0] + '.json', 'w', encoding='utf-8') as f:
             json.dump(meta, f, ensure_ascii=False, indent=2)
         print(f'ok ({time.time() - t:.0f}s)')
 
-    write_review(cards)
+    finish()
     print(f'\nDone. {len(todo) - len(failed)} made, {len(failed)} failed{": " + ", ".join(failed) if failed else ""}.')
-    print('Open the review page:  open art/review.html')
+    print('Open the results:  open art/' + ('compare.html' if a.compare else 'review.html'))
 
 
 if __name__ == '__main__':

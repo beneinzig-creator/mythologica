@@ -37,6 +37,16 @@ python3 art/generate.py --test          # the 5-card style test: spear, cerb, ze
 open art/review.html                     # look at the results
 ```
 
+To see what the quality setting changes (3 cards × low/medium/high, about $0.17):
+
+```bash
+python3 art/generate.py --compare
+open art/compare.html
+```
+
+Every run prints an estimated cost before it starts. Add `--dry-run` to see only the estimate.
+Choose the quality per run with `--quality low|medium|high`.
+
 When you're happy with the style:
 
 ```bash
