@@ -1,0 +1,9 @@
+.wn{position:absolute;width:54px;height:54px;padding:0;border:0;background:none;font-family:inherit;color:#3b2a14;cursor:default}
+.wn .mi{width:54px;height:54px;border-radius:50%;border:2.5px solid #5a3d16;background:radial-gradient(circle at 35% 30%,#f6ead0,#d8bd82);display:flex;align-items:center;justify-content:center;font-size:27px;line-height:1;box-shadow:0 2px 5px #0006}
+.wn.loc .mi{border-radius:12px;border-color:#2f5a3a;background:radial-gradient(circle at 35% 30%,#eef3d8,#b9c98a)}
+.wn.fin .mi{opacity:.4;color:#a1321f;font-weight:900}.wn:disabled{opacity:.62}
+.wn.go{cursor:pointer}.wn.go .mi{border-color:#a1321f;animation:wpulse 1.8s ease-in-out infinite}.wn.walk{cursor:pointer}.wn.walk .mi{border-color:#8b5a24}.wn.go:hover .mi,.wn.walk:hover .mi{transform:scale(1.12)}
+.wn.cur .mi{box-shadow:0 0 0 4px #2b6cb0aa,0 0 18px #2b6cb0}.wn em{position:absolute;right:-12px;top:-14px;font-style:normal;font-size:22px;filter:drop-shadow(0 1px 2px #000a)}
+@keyframes wpulse{50%{box-shadow:0 0 0 6px #a1321f44,0 0 22px #e0563a}}
+.wn .tipx{display:none;position:absolute;left:50%;bottom:62px;transform:translateX(-50%);width:200px;padding:7px 9px;background:#2b1d0acc;color:#f3e6c1;font-size:12.5px;line-height:1.3;text-align:left;border-radius:8px;z-index:30;pointer-events:none;box-shadow:0 4px 12px #0008}
+.wn .tipx.dn{bottom:auto;top:62px}.wn:hover{z-index:40}.wn:hover .tipx{display:block}

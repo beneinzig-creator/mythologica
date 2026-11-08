@@ -1,0 +1,5 @@
+_b3("let mx=kw(a,'v')?1:th(b)-b.dmg;if(b2){","let mx=kw(a,'v')?1:th(b)-b.dmg;if(b2){mx=kw(a,'v')?2:mx+th(b2)-b2.dmg;")
+_b3("mx=Math.max(mx,kw(a,'v')?1:th(b2)-b2.dmg)}","}")
+_b3("function startReward(){G.web.nodes[G.pos].cleared=1;","function startReward(){{const cn=G.web.nodes[G.pos];cn.cleared=1;G.web.nodes.forEach(n=>{if(n.t=='fight'&&n.o==cn.o&&!n.cleared){n.cleared=1;n.neutral=1}})}")
+_b3("if(n.t=='fight')return n.cleared?`<b>${o.n}</b><br>Defeated.`","if(n.neutral)return`<b>Neutral space</b><br>${o.n} has already been defeated, so nothing is left here.`;if(n.t=='fight')return n.cleared?`<b>${o.n}</b><br>Defeated.`")
+_b3("<span class=\"mi\">${n.t=='fight'&&n.cleared?'✖':ic}</span>","<span class=\"mi\">${n.neutral?'·':n.t=='fight'&&n.cleared?'✖':ic}</span>")

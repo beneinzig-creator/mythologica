@@ -1,0 +1,4 @@
+# ===== v68: telemetry switched off (no database); copy-to-clipboard only =====
+_b3("async function sendRec(kind,obj){try{if(!window.claude||!claude.use)return 0;","const TELEM=false;\nasync function sendRec(kind,obj){try{if(!TELEM||!window.claude||!claude.use)return 0;")
+_b3("const note='<div class=\"dsub\" style=\"max-width:420px;text-align:center;opacity:.7;font-size:12px;margin:6px 0\">Run results (deck, fights, outcome) are shared with the developer when a run ends.</div>';","const note=TELEM?'<div class=\"dsub\" style=\"max-width:420px;text-align:center;opacity:.7;font-size:12px;margin:6px 0\">Run results (deck, fights, outcome) are shared with the developer when a run ends.</div>':'';")
+_b3("<div>It could not be sent automatically, so it was copied to your clipboard. Please paste it to Ben.</div>","<div>Your feedback was copied to your clipboard. Please paste it to Ben.</div>")

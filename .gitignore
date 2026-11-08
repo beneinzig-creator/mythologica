@@ -1,1 +1,6 @@
 .DS_Store
+tooling/g.js
+tooling/m_test.html
+tooling/rs_*.txt
+tooling/rs_*.done
+__pycache__/

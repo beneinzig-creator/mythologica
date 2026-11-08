@@ -1,0 +1,299 @@
+<title>Odysseus: Act I Playtest</title>
+<style>
+:root{color-scheme:dark;--b1:#0b1820;--b2:#1d4452;--ink:#efe6cf;--gold:#e0b04a;--bt:#1a1409;--gl:#e0b04a55;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%}#app{height:100%;display:grid;grid-template-rows:auto 1fr auto 1fr 172px;position:relative}body{margin:0;background:repeating-linear-gradient(90deg,#ffffff07 0 1px,transparent 1px 130px),radial-gradient(ellipse at 50% 115%,var(--b2),var(--b1) 72%);color:var(--ink);font:14px/1.35 'Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;overflow:hidden;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center;padding:8px 14px}
+.eh{position:relative;min-width:210px;font-size:16px}.eh b{letter-spacing:.06em;margin-right:12px}
+.hp{color:var(--gold);font-weight:700;cursor:pointer}.eh u{position:absolute;left:0;bottom:-5px;height:3px;background:var(--gold);box-shadow:0 0 8px var(--gl);transition:width .4s}
+.cn{font-size:12px;opacity:.7}
+.fld{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-content:center;padding:18px 12px 10px}
+.mid{text-align:center;padding:5px 14px;background:linear-gradient(90deg,transparent,#0000003a,transparent);font-size:14px}
+.mid small{display:block;opacity:.65;font-size:11px}
+.hand{display:flex;justify-content:center;align-items:flex-end;padding:0 120px 8px 90px;z-index:5;position:relative}
+.hand{pointer-events:none}.hand .cd{margin:0 -7px;pointer-events:auto}.hand:has(.cd:hover){z-index:70}
+.me{position:absolute;left:12px;bottom:12px;z-index:6;display:flex;flex-direction:column;align-items:center;gap:6px}
+.orb{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:20px;font-weight:700;color:var(--bt);background:radial-gradient(circle at 35% 30%,#fff8,var(--gold) 45%,#7a4d10);box-shadow:0 0 18px var(--gl)}
+.ctl{position:absolute;right:12px;bottom:14px;z-index:6;display:flex;flex-direction:column;gap:6px}
+.b{font:inherit;font-weight:700;color:var(--bt);background:linear-gradient(var(--gold),#a8741f);border:0;padding:8px 14px;border-radius:18px;cursor:pointer;box-shadow:0 0 10px var(--gl)}
+.cd{width:104px;height:146px;border:3px solid #0c0a07;background:var(--f);border-radius:8px;padding:3px;display:flex;flex-direction:column;font-size:9px;color:#1b1710;cursor:pointer;position:relative;flex:none;box-shadow:0 3px 10px #0008;transition:transform .3s,scale .12s,translate .12s}
+.cd:hover{scale:1.3;translate:0 -8px;z-index:40!important}.hand .cd:hover{translate:0 -40px}
+.nm,.ty,.tx{background:#f3ead0cc;border:1px solid #0007;padding:0 3px}
+.nm{display:flex;justify-content:space-between;gap:2px;font-weight:700;line-height:1.3}.nm i{font-style:normal;background:#1b1710;color:#f3ead0;border-radius:9px;padding:0 4px}
+.ar{position:relative;flex:1;display:grid;place-items:center;font-size:30px;background:linear-gradient(#0000002e,#0000000f);border:1px solid #0009;margin:2px 0;min-height:0}
+.ty{font-style:italic}.tx{background:#f5edd6;min-height:28px;font-size:8px;line-height:1.1;margin-top:2px;padding:2px 3px}
+.pt{position:absolute;right:2px;bottom:2px;background:#f5edd6;border:1px solid #000;padding:0 4px;font-weight:700;font-size:11px;border-radius:2px}
+.sb,.ob{position:absolute;font-size:11px;font-weight:700;border-radius:10px;padding:2px 8px;border:2px solid #f3ead0;color:#fff;z-index:2;white-space:nowrap;box-shadow:0 2px 6px #000a}.sb{top:-14px;left:50%;transform:translateX(-50%);background:#b5391f}.sb.d{background:#2f6fb3}.ob{bottom:-10px;left:-6px;background:#1b1710}.fxp{display:none;position:absolute;left:calc(100% + 10px);top:0;width:156px;background:#14100a;color:#f3ead0;border:1px solid var(--gold);border-radius:6px;padding:6px 8px;font-size:10px;line-height:1.3;z-index:50;pointer-events:none;box-shadow:0 4px 14px #000a;text-align:left}.cd:hover .fxp{display:block}.fxp p{margin:0 0 4px}.fxp p:last-child{margin:0}
+.tap{opacity:.55;filter:grayscale(.6)}.sel{outline:3px solid #e8b923}.bsel{outline:3px solid #e8b923}.atk{outline:3px solid #d9482b}.tgt{outline:3px dashed #ff5a3c}.sb.lk{background:#555}.ov{position:fixed;inset:0;background:#000b;display:grid;place-items:center;z-index:100}.ovb{display:flex;flex-direction:column;align-items:center;gap:24px;color:#efe6cf}.ovt{font-size:20px;letter-spacing:.06em}.big{padding:56px 0}.big .cd{scale:2}.big .cd:hover{scale:2;translate:0 0}.big .fxp{display:none!important}.fxp.up{left:50%;top:auto;bottom:calc(100% + 12px);transform:translateX(-50%)}.lys{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1 1 300px;min-width:0}.fe .lys{flex-direction:column-reverse}.ly{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.fp .ly+.ly{margin-top:-98px}.fe .ly+.ly{margin-bottom:-98px}.itc{display:flex;flex-wrap:nowrap;gap:0;justify-content:flex-end;flex:0 0 auto}.itc .cd+.cd{margin-left:-38px}.itc:empty{display:none}.fp .itc{align-self:flex-end}.fe .itc{align-self:flex-start}@media(max-width:560px){.itc .cd+.cd{margin-left:-46px}.fp .ly+.ly{margin-top:-74px}.fe .ly+.ly{margin-bottom:-74px}}.bk{outline:3px solid #3b8ad9}.df{box-shadow:0 0 0 3px #4d8fd8,0 3px 10px #0008}.dim{opacity:.55}
+.cb{width:56px;height:78px;border:3px solid #0c0a07;border-radius:7px;background:radial-gradient(circle,#8a3d1a,#4a1c0c 75%);position:relative;flex:none;box-shadow:0 3px 8px #0008;display:grid;place-items:center;color:var(--gold);font-size:22px;margin:0 -3px}
+.cb::before{content:'';position:absolute;inset:4px;border:2px solid var(--gold);border-radius:3px;opacity:.8}
+.cb::after{content:'\03A9';position:relative;font-weight:700}
+.eHand{display:flex;justify-content:center;padding-top:2px}.eHand .cb{width:54px;height:76px;margin:0 -4px}
+.decks{position:absolute;left:14px;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;gap:10px}
+.gy{background:#17120e;box-shadow:inset 0 0 14px #000,0 3px 8px #0008}.gy::before{border-style:dashed;border-color:#9a8f7a;opacity:.55}.gy::after{content:none}.gy .gyc{font-size:30px;position:relative;filter:grayscale(.5)}.gy .gyn{position:absolute;bottom:4px;right:7px;font:700 11px Georgia;color:#efe6cf;z-index:1}.gy.empty{opacity:.45}
+.pile{width:66px;height:92px;font-size:28px;margin:0;box-shadow:2px 2px 0 #3a1a0c,4px 4px 0 #2a1208,6px 6px 0 #1b0b05,0 8px 14px #000a}
+.pile.mine{cursor:pointer}.pile.mine:hover{filter:brightness(1.15)}.pile.empty{opacity:.3;box-shadow:none}
+.tip{display:none;position:absolute;left:calc(100% + 16px);top:50%;transform:translateY(-50%);background:#14100a;color:#f3ead0;border:1px solid var(--gold);border-radius:6px;padding:6px 10px;font:12px/1.3 Georgia,serif;white-space:nowrap;z-index:60;pointer-events:none;box-shadow:0 4px 14px #000a}
+.pile:hover .tip{display:block}
+.lib{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;max-width:min(940px,92vw);max-height:58vh;overflow:auto;padding:34px 24px}.lib .fxp{display:none!important}.lib .cd:hover{scale:1.15}
+@media(max-width:560px){.pile{width:56px;height:78px;font-size:24px}.eHand .cb{width:40px;height:56px;font-size:16px}}
+.dft{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:46px;padding:0 120px}.dhd{text-align:center;position:absolute;top:22px;left:0;right:0}.dsub{font-size:13px;opacity:.75;margin-top:4px}
+.dlibw{position:absolute;left:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:12px}.dlibw small{opacity:.7;letter-spacing:.08em}.dlib{width:84px;height:118px}.dlib .gyn{position:absolute;bottom:6px;font:700 13px Georgia;color:#efe6cf;z-index:1;background:#000a;border-radius:8px;padding:0 6px}
+.dlib.bump{animation:bump .45s}@keyframes bump{40%{transform:scale(1.18);filter:brightness(1.4)}}
+.dcards{display:flex;gap:96px;margin-top:40px;min-height:230px;align-items:center}.dw{cursor:pointer}.dw .cd{scale:1.6}.dw .cd:hover{scale:1.75;translate:0 -6px}.dw .fxp.up{width:170px}
+@media(max-width:700px){.dft{padding:0 10px}.dlibw{left:6px;top:auto;bottom:10px;transform:none;flex-direction:row}.dcards{gap:38px}.dw .cd{scale:1.2}.dw .cd:hover{scale:1.3}}
+.rr{position:absolute;right:6px;top:21px;font-size:7px;font-weight:700;letter-spacing:.05em;text-decoration:none;text-transform:uppercase;padding:0 4px;border-radius:7px;background:#1b1710;z-index:1;pointer-events:none}.rC{color:#cfc8b6}.rU{color:#9fcdf2}.rR{color:#f4c542}.so{pointer-events:none}
+.ar>.ob{bottom:2px;right:3px;left:auto;font-size:10px;padding:0 6px;border-width:1px;box-shadow:0 1px 4px #000a}.tx.c{padding-right:31px}.tx.m{font-size:7px}.tx.s{font-size:6.3px}
+.kc{display:flex;flex-direction:column;align-items:center;gap:8px}.ko{display:flex;flex-direction:column;gap:4px;align-items:center}
+@media(max-width:560px){.cd{width:80px;height:114px;font-size:8px}.ar{font-size:22px}.tx{font-size:7px}.hand{padding:0 96px 6px 66px}.orb{width:46px;height:46px;font-size:16px}}
+@media(min-width:561px){.eh,.me,.decks,.ctl{zoom:var(--zu,1.4)}.fld,.hand,.eHand,.mid{zoom:var(--zc,1.25)}.ovb{zoom:1.25}#app{grid-template-rows:auto 1fr auto 1fr auto}.hand{padding:0 130px 8px 130px}.decks{top:44%}.decks .pile{width:56px;height:78px}}
+.rmv{background:#000c}.rmv .ovb,.cfm .ovb{zoom:var(--zr,1)}.rmw{cursor:pointer}.rmw .cd:hover{scale:1.15}.yn{display:flex;gap:28px}.yn .b{min-width:110px;font-size:18px}
+.pn{font-size:15px;letter-spacing:.08em;color:var(--gold)}
+</style>
+<div id="app"></div>
+<script>
+const D={
+spear:['Ithacan Spearman',1,'C',1,3,'p','','🔱','W',1],sailor:['Sailor of the Fleet',1,'C',2,2,'r','','⛵','U',1],myrm:['Myrmidon Raider',2,'C',2,3,'r','','🗡️','W',2],
+herm:[`Hermes' Messenger`,2,'C',1,2,'f','When it enters, draw a card.','🕊️','U',1],hopl:['Argive Hoplite',3,'C',3,4,'p','','🛡️','W',2],owl:[`Athena's Owl`,2,'C',1,3,'f','','🦉','U',2],tela:['Telamonian Guard',4,'C',3,5,'p','','🏛️','W',3],
+spearc:['Spear Cast',2,'I',0,0,'','3 damage to target creature.','🏹','R'],gale:['Wine-Dark Gale',2,'I',0,0,'',`Return target creature to its owner's hand.`,'🌊','U'],aegis:['Aegis Blessing',2,'I',0,0,'','Target creature gets +2/+2 until end of turn.','✨','W'],
+salve:[`Asclepius' Salve`,1,'I',0,0,'','Restore 4 health to target creature.','🌿','W'],feast:['Hearth Feast',2,'S',0,0,'','Gain 4 life. Restore 2 health to each of your creatures.','🍖','W'],
+altar:['Votive Altar',2,'A',0,0,'','Each time you sacrifice a creature, gain 1 extra mana.','🔥','A'],horse:['Trojan Horse',3,'A',0,0,'','Two turns from now: make two 2/3 Soldiers, then sacrifice this.','🐴','A'],bow:['Bow of Odysseus',3,'A',0,0,'','Tap: 1 damage to any target.','🏹','A'],
+nymph:['Sea Nymph',2,'C',2,4,'','','💦','U',1],reef:['Reef Guardian',3,'C',2,5,'p','','🐚','U',2],undertow:['Undertow',2,'S',0,0,'','Tap target army member.','⚓','U'],cscout:['Cyclops Scout',2,'C',3,3,'r','','🔨','R',1],goat:['Altar Goat',1,'C',0,2,'','Meant to be offered.','🐐','W',2],sold:['Greek Soldier',0,'C',2,3,'','Token.','⚔️','W',1],
+isl:['Drowsy Islander',1,'C',2,3,'','','😴','G',1],lot:['Lotus-Eater',2,'C',3,3,'r','','🌸','G',2],honey:['Honeyed Offering',2,'S',0,0,'',`Tap target creature; it doesn't untap next turn.`,'🍯','G'],
+priest:['Poppy Priest',3,'C',1,4,'','When it enters, tap target creature.','🌺','G',2],breeze:['Island Breeze',2,'I',0,0,'','Gain 3 life.','🍃','G'],titan:['Drowsy Titan',4,'C',3,5,'r','Skips its next untap after attacking.','🗿','G',3],
+scout:['Siren Scout',1,'C',2,4,'f','','🧜','U',1],song:['Song-Caller',2,'C',3,4,'f','','🎶','U',1],melody:['Enthralling Melody',2,'S',0,0,'','Target creature must attack next turn.','🎵','U'],
+shoal:['Jagged Shoal',2,'E',0,0,'','Non-flying attackers deal 1 damage to their controller.','🪨','B'],lure:['Lure of the Deep',3,'S',0,0,'','Target creature gets -2/-2.','🌀','B'],
+tide:['Mending Tide',2,'I',0,0,'','Restore 3 health to target creature.','💧','U'],siren:['Siren of Anthemoessa',3,'C',3,4,'f','','🧜‍♀️','U',2],
+sheep:['Flock Sheep',1,'C',1,3,'','When it dies, its controller gains 2 life.','🐑','G',2],cave:['Cave Dweller',3,'C',3,4,'p','','🦴','R',2],mouth:['Cave Mouth',2,'E',0,0,'',`Creatures with power 2 or less can't attack.`,'🕳️','R'],
+hurl:['Boulder Hurl',3,'S',0,0,'','4 damage to target creature.','☄️','R'],brute:['Cyclops Brute',3,'C',3,5,'r','','👹','R',3],poly:['Polyphemus',5,'C',5,8,'r','Attacks each turn if able.','👁️','R',3],
+milk:[`Ewe's Milk`,2,'I',0,0,'','Gain 4 life. Restore 1 health to each of your creatures.','🥛','G'],
+camp:['Camp Follower',0,'C',1,1,'','Costs nothing. Meant to be offered.','🧺','W',1],
+argus:['Faithful Argus',1,'C',1,2,'','When it dies or is offered, draw a card.','🐕','W',1],
+pythia:['Pythia of Delphi',2,'C',0,3,'','When offered, gain 2 extra mana.','🔮','U',1],
+slinger:['Cretan Slinger',2,'C',2,2,'',`When it enters, deal 1 damage to target opponent's army member.`,'🎯','R',1],
+healer:['Physician Machaon',2,'C',1,3,'','When it enters, restore 3 health to your most wounded army member.','⚕️','W',1],
+spartan:['Spartan Phalangite',2,'C',2,3,'p','','🪖','W',1],
+telem:['Telemachus',2,'C',1,2,'','Each time you offer another army member, he gets +1/+1 permanently.','🧑','W',1],
+bull:['Cretan Bull',3,'C',4,3,'r','','🐂','R',2],
+cass:['Cassandra',3,'C',2,4,'',`When it dies, deal 3 damage to target opponent's army member.`,'📜','U',2],
+nestor:['Nestor the Wise',3,'C',2,4,'',`When it enters, tap target opponent's army member.`,'🧓','U',2],
+pegasus:['Pegasus',3,'C',2,4,'f','','🐎','U',2],
+ajax:['Ajax the Great',4,'C',2,8,'p','','🏺','W',3],
+achil:['Achilles',4,'C',4,4,'r','','🦶','W',3],
+eagle:['Eagle of Zeus',4,'C',3,3,'f','','🦅','U',3],
+hold:['Hold the Line',1,'I',0,0,'','Target army member switches to defense form.','🛑','W'],
+mist:['Thick Mist',1,'I',0,0,'','Tap target army member.','🌫️','U'],
+rally:['Rallying Cry',2,'I',0,0,'','Your army members get +1/+1 until end of turn.','📯','W'],
+rampart:['Rampart of Troy',1,'E',0,0,'','Your army members in defense form get +1 health.','🏰','W'],
+zeus:['Altar of Zeus',2,'A',0,0,'','Each time you offer an army member, draw a card.','⚡','A']};
+const CO={W:'#e4dbb8',U:'#7fa4c6',B:'#7b726c',R:'#c8725c',G:'#80a46c',A:'#a9a395'},TY={C:'Creature',I:'Quick spell',S:'Spell',E:'Modifier',A:'Item'};
+const LORE={spear:'Human soldier',sailor:'Human sailor',myrm:'Human warrior',herm:'Divine messenger',hopl:'Human shield-bearer',owl:'Sacred bird',tela:'Human champion',sold:'Human soldier',goat:'Sacrificial beast',cscout:'Cyclops herder',nymph:'Sea nymph',reef:'Reef giant',isl:'Dazed islander',lot:'Plant monster',priest:'Poppy cultist',titan:'Sleeping giant',scout:'Sea spirit',song:'Siren singer',siren:'Winged siren',sheep:'Sacrificial beast',cave:'Cave beast',brute:'Cyclops warrior',poly:'Cyclops giant',camp:'Human camp-follower',argus:'Faithful hound',pythia:'Human oracle',slinger:'Human slinger',healer:'Human healer',spartan:'Human soldier',telem:'Human prince',bull:'Divine beast',cass:'Human prophetess',nestor:'Human elder',pegasus:'Winged horse',ajax:'Human champion',achil:'Demigod hero',eagle:'Divine bird'};
+const TXT={spearc:'Deal 3 damage to target army member.',gale:`Return target army member to its owner's hand.`,aegis:'Target army member gets +2/+2 until end of turn.',salve:'Restore 4 health to target army member.',feast:'Gain 3 life. Restore 1 health to each of your army members.',altar:'Each time you sacrifice an army member, gain 1 extra mana.',honey:`Tap target opponent's army member; it doesn't untap next turn.`,priest:`When it enters, tap target opponent's army member.`,melody:`Target opponent's army member switches to attack form and must attack next turn.`,undertow:`Tap target opponent's army member.`,lure:`Target opponent's army member gets -2/-2.`,tide:'Restore 3 health to target army member.',mouth:`Opponent's army members with power 2 or less can't attack.`,hurl:`Deal 4 damage to target opponent's army member.`,milk:'Gain 4 life. Restore 1 health to each of your army members.'};
+const SELF={poly:'Brutish: attacks every turn if able.',sheep:'Offering lamb: its controller gains 2 life when it dies.',titan:'Drowsy: skips its next untap after attacking.'};
+const cl2=(v,b)=>v>b?'#1a7a2a':v<b?'#a1201a':'inherit';
+const sg=n=>(n>=0?'+':'')+n;
+const TYX={C:['Army member','stays on the battlefield; can attack and block, and its damage stays until healed.'],I:['Quick spell','a one-time effect, then it is gone. Can be cast on your turn or during combat.'],S:['Spell','a one-time effect, then it is gone. Can only be cast on your own turn, outside combat.'],E:['Modifier','stays on the battlefield and changes the rules while it is there.'],A:['Item','stays on the battlefield and keeps working. Some items are tapped to use.']};
+function atkLines(c,t){const L=[],cu=G.cmb;if(!isC(c)||(t!='p'&&t!='e'))return L;
+const mineSide=t=='p',O=mineSide?G.e:G.p,AS=cu?(cu.side=='p'?G.p:G.e):null;
+const sel=mineSide&&!cu&&G.sel&&G.sel.includes(c.u),atk=cu&&cu.atk.includes(c.u);
+if(sel||atk){const tid=atk?(cu.tg&&cu.tg[c.u]):(G.tg&&G.tg[c.u]),T=tid&&O.bf.find(x=>x.u==tid);
+L.push('<b>Attack target</b>: '+(T?(mineSide?'enemy ':'your ')+D[T.id][0]+' (tapped). Deals 1 less damage to an army member':(mineSide?G.e.nm+"'s life total":'your life total'))+'.');
+if(atk){const bu=cu.blk&&cu.blk[c.u],B=bu&&O.bf.find(x=>x.u==bu);if(B)L.push('Blocked by '+D[B.id][0]+'.')}}
+if(cu){for(const a in cu.blk)if(cu.blk[a]==c.u){const A=AS.bf.find(x=>x.u==a);if(A)L.push('Blocking '+D[A.id][0]+'.')}
+for(const a in (cu.tg||{}))if(cu.tg[a]==c.u){const A=AS.bf.find(x=>x.u==a);if(A)L.push('Being attacked by '+D[A.id][0]+'.')}}
+return L}
+const fxp=(c,t)=>{if(t=='k')return'';const d=D[c.id],x=TYX[d[2]],L=['<b>'+x[0]+'</b>: '+x[1]];L.push(...atkLines(c,t));
+if(isC(c)){L.push('Offering it gives '+sv(c)+' mana.');if(has(c,'f'))L.push('Flying: only flying army members can block it.');
+if(c.def)L.push('Defense form: +2 health and cannot attack.'+(has(c,'p')?' Phalanx: +2 power.':''));if(ramp(c))L.push('Rampart of Troy: +1 more health in defense form.');else if(has(c,'r'))L.push('Attack form: +1 power from its own raider ability.');
+if(SELF[c.id])L.push(SELF[c.id]);if(c.sick&&t!='h'&&t!='d'&&t!='v'&&t!='k')L.push('Fatigue: cannot attack yet.');
+if(c.tap)L.push(c.frz?'Frozen: tapped and skips its next untap.':'Tapped: cannot attack or block until it untaps. Opposing army members can target it.');
+if(c.ta||c.td)L.push('Until end of turn: '+sg(c.ta)+'/'+sg(c.td)+'.');if(c.pa||c.pd)L.push('Permanent spell effect: '+sg(c.pa)+'/'+sg(c.pd)+'.');
+if(c.dmg)L.push('Wounded: '+c.dmg+' damage. Only healing cards restore it.');if(c.forced)L.push('Enthralled: must attack next turn.');
+const r=c.rec;if(r&&(r.a||r.d||r.c||r.s||r.fl))L.push('Prestige: '+[r.a&&'+'+r.a+' power',r.d&&'+'+r.d+' health',r.c&&'costs '+r.c+' less',r.s&&'+'+r.s+' offering value',r.fl&&'flying'].filter(Boolean).join(', ')+'.')}
+else{L.push(TXT[c.id]||d[6]);if(c.id=='horse')L.push('Opens in '+(2-c.t)+' turn(s).')}
+return`<div class="fxp${t=='h'||t=='d'?' up':''}">${L.map(y=>`<p>${y}</p>`).join('')}</div>`};
+const STAPLES='spear sailor goat myrm herm'.split(' '),POOL='hopl owl tela salve spearc gale feast altar horse bow aegis camp argus pythia slinger healer spartan telem bull cass nestor pegasus ajax achil eagle hold mist rally rampart zeus'.split(' '),ROUNDS=10;
+const RARN={C:'Common',U:'Uncommon',R:'Rare'},RW={C:6,U:3,R:1},RW2={C:3,U:4,R:3},RAR={};
+'spear sailor goat myrm herm hopl owl salve gale feast aegis camp argus healer spartan hold mist rampart cass'.split(' ').forEach(x=>RAR[x]='C');
+'bull pegasus spearc slinger tela ajax nestor telem pythia rally'.split(' ').forEach(x=>RAR[x]='U');
+'achil eagle bow zeus horse altar'.split(' ').forEach(x=>RAR[x]='R');
+const ids=s=>s.split(',').flatMap(t=>{const[a,b]=t.split(':');return Array(+b||1).fill(a)});
+const EN=[{n:'The Lotus-Eaters',l:16,d:ids('isl:4,lot:4,honey:2,breeze:2,priest,titan:2')},{n:'The Sirens',l:24,d:ids('scout:2,song:2,siren,nymph,reef:2,melody:2,lure:2,undertow:2,tide')},{n:'Polyphemus',l:20,d:ids('sheep:5,mouth,milk:2,cscout:3,cave,hurl,brute,poly')}];
+const KO=[['+1 power',r=>r.a++],['+2 health',r=>r.d+=2],['Costs 1 less',r=>r.c++],['+1 sacrifice value',r=>r.s++],['Gains flying',r=>r.fl=1]];
+const NT={spearc:1,gale:1,aegis:1,salve:1,hold:1,mist:1};
+let G,U=0;
+function ramp(c){return c.def&&[G.p,G.e].some(s=>s&&s.bf.includes(c)&&s.bf.some(x=>x.id=='rampart'))}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const mk=(id,r)=>{const d=D[id];return{id,u:++U,rec:r,a:d[3]+(r?r.a:0),d:d[4]+(r?r.d:0),f:d[5]+(r&&r.fl&&!d[5].includes('f')?'f':''),dmg:0,tap:0,sick:1,frz:0,pa:0,pd:0,ta:0,td:0,forced:0,t:0,def:0,att:0,sw:0}};
+const side=(d,life)=>({life,max:life,hand:[],deck:sh(d.map(x=>mk(x))),bf:[],gy:[],mana:0});
+const has=(c,x)=>c.f.includes(x),pw=c=>Math.max(0,c.a+c.pa+c.ta),th=c=>c.d+c.pd+c.td+(c.def?2+(ramp(c)?1:0):0),isC=c=>D[c.id][2]=='C',cr=s=>s.bf.filter(isC);
+const pwr=c=>pw(c)+(has(c,'r')&&!c.def?1:0)+(has(c,'p')&&c.def?2:0);
+const cost=c=>{const b=D[c.id][1];return b&&c.rec?Math.max(1,b-c.rec.c):b},sv=c=>D[c.id][9]+(c.rec?c.rec.s:0);
+const best=a=>a.slice().sort((x,y)=>pw(y)-pw(x))[0];
+const heal=(c,n)=>c.dmg=Math.max(0,c.dmg-n);
+const bury=(s,c)=>{if(c.id!='sold'){c.dmg=0;c.tap=0;c.def=0;c.ta=c.td=0;s.gy.push(c)}};
+const log=m=>{G.log.push(m);if(G.log.length>3)G.log.shift()};
+const draw=(s,n)=>{while(n--&&s.deck.length)s.hand.push(s.deck.pop())};
+const shoal=()=>[...G.p.bf,...G.e.bf].some(c=>c.id=='shoal');
+const canAtk=c=>!c.tap&&!c.sick&&!c.def&&isC(c)&&!(G.e.bf.some(x=>x.id=='mouth')&&pw(c)<=2);
+const clean=()=>[G.p,G.e].forEach(s=>s.bf.forEach(c=>{c.ta=c.td=0}));
+const idle=()=>{const p=G.p;return!p.hand.some(c=>cost(c)<=p.mana)&&!p.bf.some(c=>c.id=='bow'&&!c.tap)};
+const bounce=t=>{for(const s of[G.p,G.e]){const k=s.bf.indexOf(t);if(k>=0){s.bf.splice(k,1);s.hand.push(mk(t.id,t.rec))}}};
+const FX={spearc:(s,o,t)=>t.dmg+=3,gale:(s,o,t)=>bounce(t),aegis:(s,o,t)=>{t.ta+=2;t.td+=2},salve:(s,o,t)=>heal(t,4),feast:s=>{s.life+=3;cr(s).forEach(c=>heal(c,1))},
+honey:(s,o,t)=>{t.tap=1;t.frz=1},undertow:(s,o,t)=>{t.tap=1},breeze:s=>s.life+=3,melody:(s,o,t)=>{t.forced=1;if(t.def){t.def=0;t.dmg=Math.min(t.dmg,th(t)-1)}},lure:(s,o,t)=>{t.pa-=2;t.pd-=2},hurl:(s,o,t)=>t.dmg+=4,tide:(s,o,t)=>heal(t,3),milk:s=>{s.life+=4;cr(s).forEach(c=>heal(c,1))},hold:(s,o,t)=>{t.def=1;t.forced=0;t.sw=1;G.sel=G.sel.filter(x=>x!=t.u)},mist:(s,o,t)=>{t.tap=1},rally:s=>cr(s).forEach(c=>{c.ta++;c.td++})};
+const ETB={herm:s=>draw(s,1),priest:(s,o)=>{const b=best(cr(o).filter(c=>!c.tap));if(b)b.tap=1},nestor:(s,o)=>{const b=best(cr(o).filter(c=>!c.tap));if(b)b.tap=1},
+slinger:(s,o)=>{const E=cr(o),k=E.filter(x=>th(x)-x.dmg<=1),t=best(k.length?k:E);if(t)t.dmg++},
+healer:s=>{const w=cr(s).slice().sort((a,b)=>b.dmg-a.dmg)[0];if(w&&w.dmg>0)heal(w,3)}};
+const PEND={slinger:{nt:0,fn:t=>t.dmg++,m:"Cretan Slinger: click an opponent's army member to deal 1 damage to it."},nestor:{nt:1,fn:t=>{t.tap=1},m:"Nestor: click an untapped opponent's army member to tap it."}};
+const DIE={argus:s=>draw(s,1),cass:(s,o)=>{const E=cr(o),k=E.filter(x=>th(x)-x.dmg<=3).sort((a,b)=>(pw(b)+th(b))-(pw(a)+th(a)))[0],t=k||best(E);if(t)t.dmg+=3}};
+function offer(s,c){const g=sv(c)+(s.bf.some(x=>x.id=='altar')?1:0);s.bf.splice(s.bf.indexOf(c),1);s.mana+=g;bury(s,c);log((s==G.p?'You offer ':G.e.nm+' offers ')+D[c.id][0]+' (+'+g+' mana).');
+if(c.id=='argus')draw(s,1);if(c.id=='pythia'){s.mana+=2;log('Pythia grants 2 extra mana.')}if(s.bf.some(x=>x.id=='zeus'))draw(s,1);cr(s).filter(x=>x.id=='telem').forEach(x=>{x.pa++;x.pd++})}
+function stance(s,c){if(s==G.p&&G.atkd)return'Stances lock once you attack this turn.';if(s==G.p&&c.forced)return'Enthralled: it must attack this turn.';if(c.sw)return'Already shifted this turn.';if(!c.def&&c.att)return'It attacked this turn.';c.def=c.def?0:1;c.sw=1;if(!c.def)c.dmg=Math.min(c.dmg,th(c)-1);G.sel=G.sel.filter(x=>x!=c.u);return''}
+function sweep(){for(let again=1;again;){again=0;for(const s of[G.p,G.e])for(const c of s.bf.slice())if(isC(c)&&s.bf.includes(c)&&(th(c)<=0||c.dmg>=th(c))){s.bf.splice(s.bf.indexOf(c),1);bury(s,c);log(D[c.id][0]+' dies.');if(c.id=='sheep')s.life+=2;if(DIE[c.id])DIE[c.id](s,s==G.p?G.e:G.p);again=1}}}
+function chk(){if(G.e.life<=0){G.e.bf=[];if(G.fi==2){G.phase='victory';G.msg='Ithaca awaits. You cleared Act I!'}else{G.phase='kleos';G.msg='Victory! Surviving army members earn prestige: choose an upgrade for each.';
+G.kl=cr(G.p).filter(c=>c.rec).map(c=>({c,o:sh([0,1,2,3,4].filter(i=>(i!=2||cost(c)>1)&&(i!=4||!has(c,'f')))).slice(0,2),d:0}))}return 1}
+if(G.p.life<=0){G.phase='lost';G.msg='Odysseus has fallen.';return 1}return 0}
+function newRun(){U=0;G={fi:0,log:[],sel:[],tg:{},p:side([],20),phase:'draft',dr:{mode:'start',rounds:ROUNDS,n:0,picks:[],off:[],busy:0,pause:0}};dealDraft();render()}
+function dealDraft(){const off=[];while(off.length<3){const rest=POOL.filter(x=>!off.includes(x)),W=G.dr.mode=='reward'?RW2:RW,tot=rest.reduce((n,x)=>n+W[RAR[x]],0);let r=Math.random()*tot,id=rest[rest.length-1];for(const x of rest){r-=W[RAR[x]];if(r<0){id=x;break}}off.push(id)}
+G.dr.off=off.map(id=>mk(id))}
+function pickDraft(j){const dr=G.dr;dr.picks.push(dr.off[j].id);dr.n++;dr.off=[];if(dr.n>=dr.rounds)finishDraft();else dealDraft()}
+function finishDraft(){const dr=G.dr,nr=id=>({id,a:0,d:0,c:0,s:0,k:0,fl:0});G.lib=0;if(dr.mode=='reward'){dr.picks.forEach(id=>G.p.recs.push(nr(id)));G.phase='remove';G.rm=-1;return render()}G.p.recs=[...STAPLES,...dr.picks].map(nr);fight()}
+function startReward(){G.dr={mode:'reward',rounds:2,n:0,picks:[],off:[],busy:0,pause:0};G.phase='draft';G.lib=0;dealDraft();render()}
+function animPick(j){const dr=G.dr;if(dr.busy||!dr.off[j])return;dr.busy=1;const ws=[...document.querySelectorAll('.dw')],w=ws[j],lb=document.querySelector('.dlib');
+if(!w||!lb){dr.busy=0;pickDraft(j);return render()}
+const a=w.getBoundingClientRect(),b=lb.getBoundingClientRect(),dx=b.left+b.width/2-(a.left+a.width/2),dy=b.top+b.height/2-(a.top+a.height/2);
+ws.forEach((x,i)=>{if(i!=j)x.animate([{opacity:1},{opacity:0}],{duration:350,fill:'forwards'})});
+w.style.zIndex=90;w.style.pointerEvents='none';w.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+dx+'px,'+dy+'px) scale(.42)',opacity:.9}],{duration:1000,easing:'cubic-bezier(.45,0,.75,.55)',fill:'forwards'});
+const g=G;setTimeout(()=>{if(g!=G)return;dr.picks.push(dr.off[j].id);dr.n++;dr.off=[];dr.pause=1;render();
+setTimeout(()=>{if(g!=G)return;dr.busy=0;dr.pause=0;if(dr.n>=dr.rounds)finishDraft();else{dealDraft();render()}},1000)},1000)}
+function renderDraft(){const dr=G.dr,rw=dr.mode=='reward',have=rw?[...G.p.recs.map(r=>mk(r.id,r)),...dr.picks.map(id=>mk(id))]:[...STAPLES,...dr.picks].map(id=>mk(id));try{const R=document.documentElement.style;R.setProperty('--b1','#0b1820');R.setProperty('--b2','#1d4452')}catch(e){}
+const lib=G.lib?`<div class="ov"><div class="ovb"><div class="ovt">Your library so far: ${have.length} card${have.length==1?'':'s'}, sorted by cost</div><div class="lib">${have.sort((a,b)=>D[a.id][1]-D[b.id][1]||D[a.id][0].localeCompare(D[b.id][0])).map(c=>card(c,'v:'+c.u)).join('')}</div><button class="b" data-b="okl">OK</button></div></div>`:'';
+const done=dr.n>=dr.rounds;
+document.getElementById('app').innerHTML=`<div class="dft"><div class="dhd"><div class="ovt">${rw?'Spoils of victory':'Draft your army'}</div><div class="dsub">${done?(rw?'Spoils chosen.':'Your army is assembled.'):'Choose 1 of 3 cards for your library ('+(rw?'uncommons and rares are more likely after a victory':'cards can repeat; rarer cards appear less often')+') · Pick '+(dr.n+1)+' of '+dr.rounds}</div>${rw?'<div class="dsub">After this you will remove one card from your library.</div>':'<div class="dsub">Staples already in your library: '+STAPLES.map(x=>D[x][0]).join(', ')+'</div>'}</div>
+<div class="dlibw"><div class="cb pile mine dlib${dr.pause?' bump':''}" data-z="lib"><span class="gyn">${rw?have.length:have.length+'/'+(STAPLES.length+dr.rounds)}</span><div class="tip">Your library: ${have.length} card${have.length==1?'':'s'}. Click to view.</div></div><small>Library</small></div>
+<div class="dcards"${G.lib?' style="visibility:hidden"':''}>${dr.off.map((c,j)=>`<div class="dw" data-d="${j}">${card(c,'d:'+j)}</div>`).join('')}</div></div>${lib}`}
+function fight(){const f=EN[G.fi],p=G.p;G.e=side(f.d,f.l);G.e.nm=f.n;p.deck=sh(p.recs.map(r=>mk(r.id,r)));p.gy=[];p.hand=[];p.bf=[];draw(p,4);draw(G.e,4);G.turn=0;G.cmb=0;G.sel=[];G.mode=0;G.blk=0;G.lib=0;G.pend=0;G.endstep=0;log('Fight '+(G.fi+1)+' of 3: '+f.n);startP()}
+function startP(){const p=G.p;G.turn++;p.mana=2;G.endstep=0;
+for(const c of p.bf.slice()){if(c.frz)c.frz--;else c.tap=0;c.sick=0;c.att=0;c.sw=0;if(c.id=='horse'&&++c.t>=2){p.bf.splice(p.bf.indexOf(c),1);bury(p,c);const room=Math.max(0,5-cr(p).length);for(let i=0;i<Math.min(2,room);i++)p.bf.push(mk('sold'));log(room<2?'The Trojan Horse opens, but the army is full ('+room+' Soldier'+(room==1?'':'s')+').':'The Trojan Horse opens: two Soldiers!')}}
+draw(p,1);G.atkd=0;G.tg={};G.cur=0;G.phase='main';G.mode=0;G.blk=0;G.sel=p.bf.filter(c=>c.forced&&canAtk(c)).map(c=>c.u);G.msg='Your turn. Mana refills to 2; offer army members (💀) for more.';render()}
+function cast(c,t){const p=G.p,d=D[c.id];p.mana-=cost(c);p.hand=p.hand.filter(x=>x!==c);log('You cast '+d[0]+'.');
+if('CEA'.includes(d[2])){c.sick=1;p.bf.push(c);if(PEND[c.id]){if(cr(G.e).some(x=>!(PEND[c.id].nt&&x.tap))){G.pend=c.id;G.msg=PEND[c.id].m}}else ETB[c.id]&&ETB[c.id](p,G.e)}else{FX[c.id](p,G.e,t);bury(p,c)}sweep();chk();render()}
+function aiBlock(at){const e=G.e,used=new Set(),tg=G.cmb.tg||{},tot=at.filter(a=>!tg[a.u]).reduce((n,a)=>n+pwr(a),0);
+for(const a of at.slice().sort((x,y)=>pwr(y,1)-pwr(x,1))){const ps=cr(e).filter(b=>!b.tap&&!used.has(b.u)&&(!has(a,'f')||has(b,'f'))).sort((x,y)=>cost(x)-cost(y)),ah=th(a)-a.dmg;
+let b=ps.find(b=>pwr(b,0)>=ah&&th(b)-b.dmg>pwr(a,1));
+if(!b&&ps.length&&(e.life<=12||Math.random()<.5))b=ps.find(b=>pwr(b,0)>=ah);
+if(!b&&pwr(a,1)>=3)b=ps.find(x=>pw(x)==0);
+if(!b&&tot>=e.life&&!tg[a.u])b=ps[0];if(!b&&tg[a.u]){const T=e.bf.find(x=>x.u==tg[a.u]);if(T&&th(T)-T.dmg<=cdmg(a))b=ps[0]}
+if(b){used.add(b.u);G.cmb.blk[a.u]=b.u}}}
+function resolve(){const c=G.cmb,A=c.side=='p'?G.p:G.e,N=c.side=='p'?G.e:G.p;
+for(const u of c.atk){const a=A.bf.find(x=>x.u==u);if(!a)continue;const bu=c.blk[u],b=bu&&N.bf.find(x=>x.u==bu);if(b){b.dmg+=pwr(a,1);a.dmg+=pwr(b,0)}else{const T=c.tg&&c.tg[u]&&N.bf.find(x=>x.u==c.tg[u]);if(T)T.dmg+=cdmg(a);else N.life-=pwr(a,1)}}
+sweep();G.cmb=0;G.blk=0;G.sel=[];if(chk())return render();if(c.side=='p'){G.phase='main';G.msg='Combat resolved.';if(idle()){G.msg='Nothing left to do. Ending your turn…';const g=G;setTimeout(()=>{if(g==G&&G.phase=='main')bt('end')},1800)}render()}else endE()}
+async function aiEnd(){const e=G.e,g=G,dm=cr(e).filter(c=>c.td>0&&c.dmg>=th(c)-c.td);if(!dm.length)return;
+const alt=e.bf.some(x=>x.id=='altar')?1:0;for(const c of dm){if(!e.bf.includes(c))continue;const gain=sv(c)+alt,pl=e.hand.filter(x=>'CEA'.includes(D[x.id][2])&&cost(x)>e.mana&&cost(x)<=e.mana+gain&&(D[x.id][2]!='C'||cr(e).length-1<5)).sort((a,b)=>cost(b)-cost(a))[0];
+if(!pl)continue;offer(e,c);await wait(1200);if(g!=G)return;e.mana-=cost(pl);e.hand=e.hand.filter(x=>x!==pl);log(e.nm+' plays '+D[pl.id][0]+' in its end step.');if(D[pl.id][2]!='C'){if(!await reveal(pl))return}pl.sick=1;e.bf.push(pl);ETB[pl.id]&&ETB[pl.id](e,G.p);render();await wait(1200);if(g!=G)return}}
+async function endE(){const g=G;await aiEnd();if(g!=G)return;clean();sweep();if(chk())return render();startP()}
+function playable(c,m,fl){const e=G.e,p=G.p;if(cost(c)>m)return 0;if(!fl&&D[c.id][2]=='C'&&cr(e).length>=5)return 0;const mm=cr(p),hurt=cr(e).some(x=>x.dmg>0);
+switch(c.id){case'honey':case'melody':case'undertow':return mm.some(x=>!x.tap);case'breeze':return e.life<=e.max-3;case'milk':return e.life<=e.max-4||hurt;case'tide':return hurt;case'shoal':case'mouth':return!e.bf.some(x=>x.id==c.id);case'lure':return mm.some(x=>th(x)<=2);case'hurl':return mm.some(x=>th(x)-x.dmg<=4)}return 1}
+async function enemyTurn(){const e=G.e,p=G.p,g=G;G.phase='enemy';e.mana=2;G.sel=[];G.mode=0;
+for(const c of e.bf){if(c.frz)c.frz--;else c.tap=0;c.sick=0;c.att=0;c.sw=0}draw(e,1);G.msg=e.nm+' takes its turn…';
+const pause=async()=>{render();await wait(3000);return g==G};if(!await pause())return;
+let ns=0;for(let i=0;i<14;i++){const pl=e.hand.filter(c=>playable(c,e.mana)).sort((a,b)=>cost(b)-cost(a))[0];
+{let s=0;if(ns<2)for(const c of e.hand.filter(c=>playable(c,99,1)&&cost(c)>e.mana&&(!pl||cost(c)>=3)).sort((a,b)=>cost(b)-cost(a))){
+const alt=e.bf.some(x=>x.id=='altar')?1:0,need=cost(c)-e.mana,val=x=>pw(x)+th(x)-x.dmg,S=[];let gn=0;for(const x of cr(e).sort((a,b)=>val(a)-val(b))){if(gn>=need)break;S.push(x);gn+=sv(x)+alt}
+const ok=gn>=need&&S.length<=2&&ns<2&&(S.every(x=>th(x)-x.dmg<=1)||((D[c.id][2]=='C'?D[c.id][3]+D[c.id][4]+(ETB[c.id]?3:0):8)>=S.reduce((n,x)=>n+val(x),0)+4));
+if(ok){S.forEach(x=>{offer(e,x);ns++});s=1;break}}
+if(s){if(!await pause())return;continue}if(!pl)break}
+const d=D[pl.id],m=cr(p);e.mana-=cost(pl);e.hand=e.hand.filter(x=>x!==pl);log(e.nm+' plays '+d[0]+'.');if(d[2]!='C'){if(!await reveal(pl))return}
+if('CEA'.includes(d[2])){pl.sick=1;e.bf.push(pl);ETB[pl.id]&&ETB[pl.id](e,p)}
+else{const mine=cr(e).slice().sort((x,y)=>y.dmg-x.dmg)[0];const t=pl.id=='melody'?(best(m.filter(x=>!x.tap&&x.def))||best(m.filter(x=>!x.tap))):pl.id=='lure'?best(m.filter(x=>th(x)<=2)):pl.id=='hurl'?best(m.filter(x=>th(x)-x.dmg<=4)):pl.id=='tide'?mine:best(m.filter(x=>!x.tap));FX[pl.id](e,p,t);bury(e,pl)}
+sweep();if(chk())return render();if(!await pause())return}
+const myA=Math.max(0,...cr(p).filter(x=>!x.def).map(x=>pwr(x,1)));
+const lethal=att=>{let pool=cr(p).filter(b=>!b.tap),dmg=0;const fl=att.filter(a=>has(a,'f')).sort((x,y)=>pwr(y)-pwr(x)),gr=att.filter(a=>!has(a,'f')).sort((x,y)=>pwr(y)-pwr(x));
+for(const a of fl){const i=pool.findIndex(b=>has(b,'f'));if(i>=0)pool.splice(i,1);else dmg+=pwr(a)}
+pool.sort((x,y)=>has(x,'f')-has(y,'f'));for(const a of gr){if(pool.length)pool.shift();else dmg+=pwr(a)}return dmg>=p.life};
+const LETHAL=lethal(cr(e).filter(c=>!c.tap&&!c.sick&&pw(c)>0));
+const FUT=!LETHAL&&(()=>{const ps=cr(p).map(x=>pw(x)+(has(x,'r')?1:0)).sort((a,b)=>b-a);return ps.slice(cr(e).length).reduce((n,x)=>n+x,0)>=e.life})();
+for(const c of cr(e)){const want=(LETHAL||FUT)&&pw(c)>0?0:c.id=='poly'?0:pw(c)==0?1:th(c)-c.dmg<=1?1:(e.life<=6&&myA>0&&th(c)-c.dmg<=myA)?1:0;
+if(!!c.def!=!!want&&!c.sw&&!(want&&c.att)){stance(e,c);log(e.nm+' sets '+D[c.id][0]+' to '+(c.def?'defense.':'attack.'));if(!await pause())return}}
+const mine=cr(p).filter(c=>!c.tap),ev=x=>pw(x)+th(x)-x.dmg;
+const ready=cr(e).filter(c=>!c.tap&&!c.sick&&!c.def&&pw(c)>0),idle=cr(e).filter(c=>!c.tap&&(c.sick||c.def||pw(c)==0)).length;
+const myAtk=cr(p).filter(x=>!x.def).map(x=>pwr(x)).sort((a,b)=>b-a),thr=h=>myAtk.slice(h).reduce((n,x)=>n+x,0);
+const allIn=LETHAL||FUT||ready.reduce((n,a)=>n+pwr(a),0)>=p.life||thr(ready.length+idle)>=e.life;
+let keep=0;while(keep<ready.length+idle&&thr(keep)>=e.life)keep++;
+const doomed=a=>ev(a)>=8&&a.id!='poly'&&e.life>10&&mine.some(m=>(!has(a,'f')||has(m,'f'))&&pwr(m)>=th(a)-a.dmg&&th(m)-m.dmg>pwr(a));
+let at=allIn?ready:ready.filter(a=>!doomed(a));
+if(!allIn&&keep>idle){const pp=at.filter(c=>c.id=='poly'),rs=at.filter(c=>c.id!='poly').sort((a,b)=>(th(b)-b.dmg)-(th(a)-a.dmg));at=[...pp,...rs.slice(keep-idle)]}
+if(!at.length){log(e.nm+' holds position.');return endE()}
+at.forEach(c=>{c.tap=1;c.att=1;if(c.id=='titan')c.frz=1;if(!has(c,'f')&&shoal())e.life--});
+const tg={},free=at.slice().sort((x,y)=>cdmg(y)-cdmg(x));if(!FUT&&at.reduce((n,a)=>n+pwr(a),0)<p.life)for(const r of cr(p).filter(c=>c.tap&&pw(c)+th(c)-c.dmg>=7).sort((x,y)=>(y.a+y.d)-(x.a+x.d))){const h=th(r)-r.dmg,use=[];let s=0;for(const a of free){if(s>=h)break;if(cdmg(a)>0&&(!has(r,'f')||has(a,'f'))){use.push(a);s+=cdmg(a)}}if(s>=h)use.forEach(a=>{tg[a.u]=r.u;free.splice(free.indexOf(a),1)})}G.cmb={side:'e',atk:at.map(c=>c.u),blk:{},tg};G.phase='blockP';G.blk=0;G.msg='They attack! Click your army member, then the attacker to block. Quick spells and offerings work now. A dashed red outline marks a targeted army member.';chk();render()}
+function hd(z){if(['enemy','kleos','lost','victory','draft','remove','nextf'].includes(G.phase))return;const[k,u]=z.split(':'),p=G.p,e=G.e,M=G.mode,sf=s=>s.bf.find(c=>c.u==u);
+if(G.pend){const T=k=='e'?sf(e):0,P=PEND[G.pend];if(!T||!isC(T)||(P.nt&&T.tap))return msg(P.m);P.fn(T);G.pend=0;G.msg='Your turn.';sweep();chk();return render()}
+if(M&&M.tgt){const t=k=='e'?sf(e):k=='p'?sf(p):(k=='ef'||k=='pf')?k:0;G.mode=0;if(!t||(M.tgt==1&&typeof t=='string')){G.msg='Cancelled.';return render()}
+if(M.c)return cast(M.c,t);M.b.tap=1;if(t=='ef')e.life--;else if(t=='pf')p.life--;else t.dmg++;log('The Bow strikes.');sweep();chk();return render()}
+if(k=='s'||k=='o'){const c=sf(p);if(!c||!isC(c))return;
+if(k=='s'){if(G.phase!='main')return msg('Shift stances on your own turn.');const r=stance(p,c);return msg(r||(c.def?'Holding in defense.':'Back to attack.'))}
+if(!['main','blockP','dmgP'].includes(G.phase))return;offer(p,c);G.sel=G.sel.filter(x=>x!=c.u);if(G.blk==c.u)G.blk=0;sweep();chk();return render()}
+if(k=='h'){const c=p.hand.find(x=>x.u==u),d=D[c.id];if(cost(c)>p.mana)return msg('Not enough mana. Offer an army member (💀) for more.');if(d[2]=='C'&&cr(p).length>=5)return msg('Your army is full (5 army members). Offer one first.');
+if(!(G.phase=='main'||(d[2]=='I'&&['blockP','dmgP'].includes(G.phase))))return msg('Only quick spells can be cast now.');
+if(NT[c.id]){G.mode={tgt:1,c};return msg('Choose a target army member.')}return cast(c)}
+if(k=='p'){const c=sf(p);if(c.id=='bow'){if(c.tap)return msg('The Bow is tapped.');G.mode={tgt:2,b:c};return msg('Bow: choose an army member or a player.')}
+if(!isC(c))return;
+if(G.phase=='main'){if(!canAtk(c))return msg(c.sick?'Fatigue: it just arrived.':c.tap?'Tapped.':c.def?'Army members in defense form cannot attack. Shift stance first.':'Cave Mouth stops army members with power 2 or less.');if(c.forced)return msg('Forced to attack.');if(G.sel.includes(c.u)){G.sel=G.sel.filter(x=>x!=c.u);delete G.tg[c.u];G.cur=G.sel[G.sel.length-1]}else{G.sel=[...G.sel,c.u];G.cur=c.u}return render()}
+if(G.phase=='blockP'){if(c.tap)return msg('Tapped.');G.blk=c.u;return msg('Now click the attacker to block.')}}
+if(k=='ef'&&G.phase=='main'){const a=G.cur&&G.sel.includes(G.cur)?G.cur:G.sel[G.sel.length-1];if(a)delete G.tg[a];return msg('Attackers hit the player unless you pick a tapped army member.')}
+if(k=='e'&&G.phase=='main'){const T=sf(e),a=G.cur&&G.sel.includes(G.cur)?G.cur:G.sel[G.sel.length-1];if(!T||!isC(T)||!T.tap)return msg('Only tapped army members can be targeted.');if(!a)return msg('Select an attacker first.');const A=p.bf.find(x=>x.u==a);if(has(T,'f')&&!has(A,'f'))return msg('Only a flying army member can attack a flying target.');if(G.tg[a]==T.u){delete G.tg[a];return msg('That attacker will hit the player instead.')}G.tg[a]=T.u;G.cur=a;return msg(D[A.id][0]+' will attack '+D[T.id][0]+' for '+cdmg(A)+' damage'+(pwr(A)>1?' (one less than its power of '+pwr(A)+', because it is hitting an army member).':' (attacks on army members deal 1 less damage, minimum 1).'))}
+if(k=='e'&&G.phase=='blockP'&&G.blk){const a=sf(e),b=p.bf.find(x=>x.u==G.blk);if(!a||!b||!G.cmb.atk.includes(a.u))return;if(has(a,'f')&&!has(b,'f'))return msg('Only flyers can block a flyer.');
+for(const q in G.cmb.blk)if(G.cmb.blk[q]==b.u)delete G.cmb.blk[q];G.cmb.blk[a.u]=b.u;G.blk=0;msg(D[b.id][0]+' blocks '+D[a.id][0]+'.')}}
+function bt(b){const p=G.p;if(b=='okl'){G.lib=0;G.gv=0;return render()}if(b=='ok'){const r=G.rv;G.rv=0;r&&r.res(1);return render()}if(G.phase=='enemy')return;if(G.pend&&b!='new')return msg(PEND[G.pend].m);
+if(b=='new')return newRun();
+if(b=='next')return startReward();
+if(b=='fight'){G.fi++;p.life=Math.min(p.max,p.life+2);return fight()}
+if(b=='rmyes'){if(G.rm>=0)p.recs.splice(G.rm,1);G.rm=-1;G.phase='nextf';return render()}
+if(b=='rmno'){G.rm=-1;return render()}
+if(b=='cancel'){G.mode=0;return msg('Cancelled.')}
+if(b=='res')return resolve();
+if(b=='end'){const dm=cr(p).filter(c=>c.td>0&&c.dmg>=th(c)-c.td);if(dm.length&&!G.endstep){G.endstep=1;return msg('End step: '+dm.map(c=>D[c.id][0]).join(', ')+' will die when the +2/+2 fades. Offer it now for mana, or end your turn again.')}G.endstep=0;clean();sweep();if(chk())return render();G.sel=[];return enemyTurn()}
+if(b=='atkall'){if(G.atkd)return msg('You already attacked this turn.');const all=cr(p).filter(canAtk);if(!all.length)return msg('Nothing can attack right now.');G.sel=all.map(c=>c.u);return bt('atk')}
+if(b=='atk'){if(G.atkd)return msg('You already attacked this turn.');const at=G.sel.map(u=>p.bf.find(c=>c.u==u)).filter(c=>c&&canAtk(c));if(!at.length)return msg('Select attackers first.');
+G.atkd=1;at.forEach(c=>{c.tap=1;c.att=1;if(!has(c,'f')&&shoal())p.life--});p.bf.forEach(c=>c.forced=0);const tg={};for(const a of at)if(G.tg[a.u]&&G.e.bf.find(x=>x.u==G.tg[a.u]&&x.tap&&(!has(x,'f')||has(a,'f'))))tg[a.u]=G.tg[a.u];G.cmb={side:'p',atk:at.map(c=>c.u),blk:{},tg};aiBlock(at);G.phase='dmgP';G.msg='Blocks are set. Cast quick spells or offer army members, then resolve.';chk();render()}}
+const msg=m=>{G.msg=m;render()};
+const reveal=c=>new Promise(res=>{G.rv={c,res};render()});
+const cdmg=a=>pwr(a)>0?Math.max(1,pwr(a)-1):0;
+function fld(s,t){const cu=G.cmb,bk=cu?Object.values(cu.blk):[],L=[[],[],[],[]],it=[];
+const cs=[];for(const c of s.bf){if(!isC(c)){it.push(c);continue}cs.push([c,bk.includes(c.u)||(cu&&cu.atk.includes(c.u))||G.sel.includes(c.u)?0:c.tap?3:c.def?2:1])}
+const ly=`<div class="ly">${cs.map(([c,k])=>card(c,t+':'+c.u,9-2*k,(t=='p'?k:-k)*28)).join('')}</div>`;
+return`<div class="lys">${ly}</div><div class="itc">${it.map(c=>card(c,t+':'+c.u,2)).join('')}</div>`}
+function align(){const c=G.cmb;if(!c)return;const sd=c.side=='p'?['p','e']:['e','p'];
+for(const a in c.blk){const A=document.querySelector(`.cd[data-z="${sd[0]}:${a}"]`),B=document.querySelector(`.cd[data-z="${sd[1]}:${c.blk[a]}"]`);
+if(A&&B){const ra=A.getBoundingClientRect(),rb=B.getBoundingClientRect();B.style.left=(ra.left+ra.width/2-rb.left-rb.width/2)+'px'}}}
+function card(c,z,zi,yo){const d=D[c.id],t=z[0],cl=[],cu=G.cmb,live=['main','blockP','dmgP'].includes(G.phase);
+if(t=='e')cl.push('es');if(Object.values(cu?cu.tg||{}:G.tg||{}).includes(c.u))cl.push('tgt');if(c.tap&&t!='h')cl.push('tap');if(c.def)cl.push('df');if(G.sel.includes(c.u))cl.push('sel');if(G.blk==c.u)cl.push('bsel');
+if(cu&&cu.atk.includes(c.u))cl.push('atk');if(cu&&Object.values(cu.blk).includes(c.u))cl.push('bk');if(t=='h'&&cost(c)>G.p.mana)cl.push('dim');
+const k=c.rec&&c.rec.k?'★'.repeat(c.rec.k):'',cc=cost(c),tx=(TXT[c.id]||d[6])+(has(c,'r')?' +1 power while in attack form.':'')+(has(c,'p')?' +2 power while in defense form.':'');
+const rr=RAR[c.id]?`<s class="rr r${RAR[c.id]}">${RARN[RAR[c.id]]}</s>`:'',so=!isC(c)?'':(t=='p'&&live?`<b class="ob" data-z="o:${c.u}" title="Offer for ${sv(c)} mana">💀${sv(c)}</b>`:(t=='d'||t=='v'||t=='h'||t=='e'||t=='k')?`<b class="ob so">💀${sv(c)}</b>`:'');
+const bs=t=='p'&&isC(c)&&live?`<b class="sb${c.def?' d':''}${G.atkd?' lk':''}" data-z="s:${c.u}">⇄ ${c.def?'🛡️':'⚔️'} ${c.def?'Defense form':'Attack form'}</b>`:'';
+return`<div class="cd ${cl.join(' ')}" style="--f:${CO[d[8]]};z-index:${zi||1};top:${yo||0}px" data-z="${z}">${bs}${rr}${fxp(c,t)}<div class="nm"><b>${d[0]}${k}</b>${cc||(d[2]!='E'&&d[1]===0)?`<i${cc<d[1]?' style="color:#7be08a"':''}>${cc}</i>`:''}</div><div class="ar">${d[7]}${so}</div><div class="ty">${LORE[c.id]||TY[d[2]]}${has(c,'f')?' · Flying':''}${c.def?' · Defense form':''}</div><div class="tx${d[2]=='C'?' c':''}${tx.length>105?' s':tx.length>62?' m':''}">${tx}</div>${d[2]=='C'?`<div class="pt"><span style="color:${cl2(pwr(c),c.a)}">${pwr(c)}</span>/<span style="color:${cl2(th(c)-c.dmg,c.d)}">${th(c)-c.dmg}</span></div>`:''}</div>`}
+function gyPile(s,z,t){const n=s.gy.length,top=s.gy[n-1];return`<div class="cb pile gy mine${n?'':' empty'}" data-z="${z}">${n?`<span class="gyc">${D[top.id][7]}</span><span class="gyn">${n}</span>`:''}<div class="tip">${t}: ${n} card${n==1?'':'s'}${n?'. Click to view.':''}</div></div>`}
+function renderRemove(){const L=G.p.recs.map((r,i)=>({i,c:mk(r.id,r)})).sort((a,b)=>cost(a.c)-cost(b.c)||D[a.c.id][0].localeCompare(D[b.c.id][0])),X=G.rm>=0&&G.p.recs[G.rm]?mk(G.p.recs[G.rm].id,G.p.recs[G.rm]):0;
+document.getElementById('app').innerHTML=`<div class="ov rmv"><div class="ovb"><div class="ovt">Remove one card from your library</div><div class="lib">${L.map(x=>`<div class="rmw" data-rm="${x.i}">${card(x.c,'v:'+x.i)}</div>`).join('')}</div><div class="dsub">${L.length} cards in your library. Click a card to remove it.</div></div></div>${X?`<div class="ov cfm" style="z-index:110"><div class="ovb"><div class="ovt">Remove ${D[X.id][0]}?</div><div class="big">${card(X,'v:0')}</div><div class="ovt">Are you sure?</div><div class="yn"><button class="b" data-b="rmyes">Yes</button><button class="b" data-b="rmno">No</button></div></div></div>`:''}`}
+function renderNextf(){const n=EN[G.fi+1];document.getElementById('app').innerHTML=`<div class="dft"><div class="ovt" style="font-size:30px">Next fight, ${n.n}</div><div class="dsub">Odysseus recovers 2 life first.</div><button class="b" data-b="fight">Fight</button></div>`}
+function render(){const p=G.p,e=G.e,ph=G.phase;if(ph=='draft')return renderDraft();if(ph=='remove')return renderRemove();if(ph=='nextf')return renderNextf();let b='';requestAnimationFrame(align);
+if(ph=='main')b=`${G.atkd?'':`<button class="b" data-b="atk">Attack${G.sel.length?' ('+G.sel.length+')':''}</button>`}${!G.atkd&&cr(p).some(canAtk)?'<button class="b" data-b="atkall">Attack with all</button>':''}<button class="b" data-b="end">End turn</button>`;
+if(ph=='blockP'||ph=='dmgP')b='<button class="b" data-b="res">Resolve combat</button>';
+if(ph=='kleos')b='<button class="b" data-b="next">Continue: draft 2 cards</button>';
+if(ph=='lost'||ph=='victory')b='<button class="b" data-b="new">New run</button>';
+if(G.mode&&G.mode.tgt)b+='<button class="b" data-b="cancel">Cancel</button>';
+const gv=G.gv?`<div class="ov"><div class="ovb"><div class="ovt">${G.gv=='p'?'Your':e.nm+"'s"} graveyard: ${(G.gv=='p'?p:e).gy.length} card${(G.gv=='p'?p:e).gy.length==1?'':'s'}, most recent first</div><div class="lib">${(G.gv=='p'?p:e).gy.slice().reverse().map(c=>card(c,'v:'+c.u)).join('')||'<p>Nothing here yet.</p>'}</div><button class="b" data-b="okl">OK</button></div></div>`:'';
+const lib=G.lib?`<div class="ov"><div class="ovb"><div class="ovt">Your library: ${p.deck.length} card${p.deck.length==1?'':'s'}, sorted by cost (not draw order)</div><div class="lib">${p.deck.slice().sort((a,b)=>cost(a)-cost(b)||D[a.id][0].localeCompare(D[b.id][0])).map(c=>card(c,'v:'+c.u)).join('')||'<p>Your library is empty.</p>'}</div><button class="b" data-b="okl">OK</button></div></div>`:'';
+const mine=ph=='kleos'?(G.kl.map((x,i)=>`<div class="kc">${card(x.c,'k:'+i)}<div class="ko">${x.d?`<em>${KO[x.o[x.d-1]][0]} ✓</em>`:x.o.map((o,j)=>`<button class="b" data-k="${i}:${j}">${KO[o][0]}</button>`).join('')}</div></div>`).join('')||'<p>No survivors earned glory.</p>'):fld(p,'p');
+try{const BG=[['#0b1a14','#2f5a3a'],['#07131f','#1f5a78'],['#1a0b07','#6b2a14']][G.fi]||['#0b1820','#1d4452'],R=document.documentElement.style;R.setProperty('--b1',BG[0]);R.setProperty('--b2',BG[1])}catch(e){}
+document.getElementById('app').innerHTML=`<div class="top"><div class="eh"><b>${G.fi+1}. ${e.nm}</b><span class="hp" data-z="ef">❤ ${e.life}</span><span class="cn" style="margin-left:10px">Army ${cr(e).length}/5</span><u style="width:${Math.max(0,e.life/e.max*100)}%"></u></div><div class="eHand">${e.hand.map(()=>'<div class="cb"></div>').join('')}</div><div style="min-width:210px"></div></div><div class="fld fe">${fld(e,'e')}</div><div class="mid">${G.msg||''}<small>${G.log.join(' · ')}</small></div><div class="fld fp">${mine}</div><div class="hand">${p.hand.map(c=>card(c,'h:'+c.u)).join('')}</div><div class="me"><b class="pn">Odysseus</b><div class="orb" title="Mana">◆${p.mana}</div><span class="hp" data-z="pf">❤ ${p.life}</span><span class="cn">Army ${cr(p).length}/5</span></div><div class="decks">${gyPile(e,'gye','Enemy graveyard')}<div class="cb pile${e.deck.length?'':' empty'}"><div class="tip">Enemy library: ${e.deck.length} card${e.deck.length==1?'':'s'}</div></div><div class="cb pile mine${p.deck.length?'':' empty'}" data-z="lib"><div class="tip">Your library: ${p.deck.length} card${p.deck.length==1?'':'s'}. Click to view.</div></div>${gyPile(p,'gyp','Your graveyard')}</div><div class="ctl">${b}</div>${lib}${gv}${G.rv?`<div class="ov"><div class="ovb"><div class="ovt">${e.nm} plays</div><div class="big">${card(G.rv.c,'v:0')}</div><button class="b" data-b="ok">OK</button></div></div>`:''}`}
+document.onclick=ev=>{const rm=ev.target.closest('[data-rm]');if(rm&&G.phase=='remove'&&G.rm<0){G.rm=+rm.dataset.rm;return render()}
+const dd=ev.target.closest('[data-d]');if(dd&&G.phase=='draft'&&!ev.target.closest('.ov'))return animPick(+dd.dataset.d);
+const k=ev.target.closest('[data-k]');if(k){const[i,j]=k.dataset.k.split(':'),x=G.kl[i];if(x&&!x.d){KO[x.o[j]][1](x.c.rec);x.c.rec.k++;x.d=+j+1;render()}return}
+const x=ev.target.closest('[data-b]');if(x)return bt(x.dataset.b);const z=ev.target.closest('[data-z]');if(z&&z.dataset.z=='lib'){G.lib=1;return render()}if(z&&(z.dataset.z=='gyp'||z.dataset.z=='gye')){G.gv=z.dataset.z=='gyp'?'p':'e';return render()}if(z)hd(z.dataset.z)};
+function fit(){try{const f=Math.max(.65,Math.min(1,innerHeight/900,innerWidth/1300)),R=document.documentElement.style;R.setProperty('--zc',(1.25*f).toFixed(3));R.setProperty('--zu',(1.4*f).toFixed(3));R.setProperty('--zr',f.toFixed(3))}catch(e){}}
+fit();try{addEventListener('resize',fit)}catch(e){}
+newRun();
+</script>

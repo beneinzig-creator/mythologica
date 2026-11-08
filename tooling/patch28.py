@@ -1,0 +1,13 @@
+# ===== v61: run menu, Charon buff =====
+_b3("D.charon=['Charon the Ferryman',4,'C',2,4,'o','When offered, gain 2 extra mana and draw a card.','⛵','B',2]","D.charon=['Charon the Ferryman',3,'C',3,4,'o','When offered, gain 2 extra mana and draw a card.','⛵','B',3]")
+_b3("function render(){render0();fitHand();applyFlash()}","function render(){render0();fitHand();applyFlash();try{menuVis()}catch(e){}}")
+_b3("fit();try{addEventListener('resize',fit)}catch(e){}","""function menuInit(){if(document.getElementById('mnub'))return;const css=document.createElement('style');css.textContent='#mnub{position:fixed;top:calc(6px + env(safe-area-inset-top,0px));right:max(6px,env(safe-area-inset-right,0px));z-index:300;width:36px;height:36px;border-radius:50%;border:1px solid #e0b04a88;background:#0b1820d9;color:#efe6cf;font-size:19px;line-height:1;cursor:pointer;display:none}#mnub:hover{background:#1d4452}#mnuo{position:fixed;inset:0;z-index:310;background:#000b;display:none;place-items:center}#mnuo.on{display:grid}#mnuo .box{background:#0b1820;border:2px solid #d8b45a;border-radius:14px;padding:22px 26px;display:flex;flex-direction:column;gap:12px;align-items:center;color:#efe6cf;max-width:min(340px,86vw);text-align:center;font:15px/1.4 Georgia,serif}#mnuo .t{font-size:20px;letter-spacing:.06em}#mnuo .b{width:100%}#mnuo .b.g{background:#555;color:#efe6cf;box-shadow:none}@media(max-width:560px){#app .top{padding-right:50px}}';document.head.appendChild(css);
+const b=document.createElement('button');b.id='mnub';b.title='Menu';b.setAttribute('aria-label','Menu');b.textContent='☰';document.body.appendChild(b);
+const o=document.createElement('div');o.id='mnuo';document.body.appendChild(o);
+const show=(h)=>{o.innerHTML='<div class="box">'+h+'</div>';o.classList.add('on')},hide=()=>o.classList.remove('on');
+b.addEventListener('click',()=>show('<div class="t">Menu</div><button class="b" id="mnu_end">End run</button><button class="b g" id="mnu_close">Close</button>'));
+o.addEventListener('click',e=>{const id=e.target.id;if(id=='mnuo'||id=='mnu_close'||id=='mnu_no')hide();else if(id=='mnu_end')show('<div class="t">End this run?</div><div>Your progress will be lost and you will return to the home screen.</div><button class="b" id="mnu_yes">Yes, end the run</button><button class="b g" id="mnu_no">Keep playing</button>');else if(id=='mnu_yes'){hide();showChars()}})}
+function menuVis(){menuInit();document.getElementById('mnub').style.display=(G&&G.phase&&G.phase!='char')?'block':'none'}
+fit();try{addEventListener('resize',fit)}catch(e){}""")
+
+_b3("D.ram=['Siege Ram Crew',3,'C',3,3,'rx','','🐏','R',2]","D.ram=['Siege Ram Crew',3,'C',4,4,'rx','','🐏','R',2]")
