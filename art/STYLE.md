@@ -5,22 +5,38 @@ This is the one shared look for every card picture. `build_manifest.py` writes i
 
 ## The look in one line
 
-**Hand-painted fantasy card illustration in the spirit of mid-1990s trading-card art: oil and gouache on
-board, visible brushwork, dramatic low light, dark and earthy, one clear subject. Retro, but clean and
-readable at thumbnail size.**
+**Hand-made fantasy card illustration in the spirit of early-to-mid 1990s trading-card art: gouache,
+watercolour and pen-and-ink, dark with bold accent colours, one clear subject that fills the frame, and
+every scene taken from the real myth.**
+
+## Reference cards (from Ben, Nov 2026)
+
+These four 1990s cards set the target. We describe what we like about them in words; we never send them
+to the image API or copy them.
+
+| Card | What to take from it |
+| --- | --- |
+| Ihsan's Shade (1995) | Near-black figure filling the frame, glowing eyes, blood-orange sky behind, menace through silhouette alone |
+| Kaysa (1996) | Watercolour and fine ink: pale washes, flowing hair and cloak, an airy misty background, elegant figure |
+| Earthbind (1993) | Bold black ink outlines with flat, decorative colour, almost stained glass |
+| Scaled Wurm (1999) | Bold, saturated, slightly whimsical colour (violet, orange, ivory) and a speckled starry background |
+
+Common thread: traditional media with visible texture, stylised rather than realistic, strong shapes,
+and the matte, slightly faded look of a printed 1990s card.
 
 ## Pillars
 
-1. **Traditional paint, not digital gloss.** Visible brush strokes, slightly soft edges, painted
-   texture. No airbrushed 3D render, no photo-realism, no anime, no neon, no lens flares, no glossy
-   "concept art" sheen.
-2. **Dark palette.** Deep shadows that fall off to near-black at the edges (so the art sits well on the
-   game's dark table). Earth tones: umber, ochre, olive, bronze, oxblood, deep sea-teal. One warm light
-   source picks out the subject (torch, sunset, divine glow).
+1. **Traditional media, not digital gloss.** Gouache, acrylic, watercolour and pen-and-ink, with visible
+   strokes and paper texture. Stylised is good: inked outlines and flat patterned colour are welcome. No 3D
+   render, no photo-realism, no anime, no glossy modern "concept art" sheen.
+2. **Dark, with bold accents.** Near-black shadows (so the art sits well on the game's dark table), lit by
+   a few saturated accents: ember orange, deep violet, sea teal, blood red.
 3. **One subject, one silhouette.** Cards are shown about 90 px wide. Each picture needs a single,
    instantly readable focal shape, centred, with simple background masses behind it. No crowded scenes
    and no tiny detail that only reads at full size.
-4. **Mythic Greek setting (Odysseus).** Bronze Age Aegean: bronze armour, crested helmets, round aspis
+4. **True to the myth.** Each card shows its figure or moment as the ancient stories tell it (Homer,
+   Hesiod, the tragedians): Argus recognising Odysseus, Charon on the Styx, the bag of winds of Aeolus.
+   The scenes are in `subjects.json`. Setting for Odysseus: the Bronze Age Aegean: bronze armour, crested helmets, round aspis
    shields, linen chitons, wine-dark sea, white limestone, temples, cypress, smoke and fire. Keep it
    grounded and grim rather than toy-like.
 5. **No text, no frame.** The game draws the card frame, the name and the numbers. The image must have no
@@ -31,8 +47,8 @@ readable at thumbnail size.**
 
 - **Aspect:** generate at **1536×1024 (3:2 landscape)**. In-game the art box is roughly 3:2 and the image
   is shown with `object-fit: cover`, so a little of the left and right edges may be cropped.
-- **Safe area:** keep the subject inside the **central 60%** horizontally and the **middle 70%**
-  vertically. Heads and weapons must not touch the edges.
+- **Fill the frame:** the subject may be cropped by the edges (like Ihsan's Shade), but its face or
+  focal point stays near the centre, because the left and right edges may be cropped in-game.
 - **Corners:** keep the **bottom-left and bottom-right corners dark and simple**. The 💀 sacrifice badge
   and other icons sit on the art.
 - **Camera:** eye level or slightly low (heroic) for people and beasts; a close still-life for items;
@@ -61,15 +77,10 @@ Each card's frame colour (`D[id][8]`) adds a small accent to the palette. The ba
   casting it or who it hits.
 - **Item / Modifier:** a still-life or place. The object or site, centred, lit like a relic.
 
-## Prompt style block (copied into every prompt)
+## Prompt style block
 
-> Fantasy trading-card illustration in the style of mid-1990s hand-painted card art: traditional oil and
-> gouache on illustration board, visible brushwork, painterly texture, slightly muted earthy colours.
-> Dark, moody palette with deep shadows falling to near-black at the edges, a single warm key light on
-> the subject. One clear focal subject, centred, strong readable silhouette, simple background.
-> Landscape 3:2 composition; keep the subject in the central area with dark, uncluttered bottom corners.
-> No text, no letters, no border, no card frame, no logo, no watermark. Not photorealistic, not 3D
-> render, not anime.
+The exact wording sent with every prompt is the `STYLE` string in `build_manifest.py`. It is kept in one
+place so the guide and the prompts can't drift apart.
 
 ## Reviewing a batch
 

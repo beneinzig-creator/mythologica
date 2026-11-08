@@ -21,8 +21,9 @@ HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong'}
 TYPE = {'C': 'Army member', 'I': 'Quick spell', 'S': 'Spell', 'E': 'Modifier', 'A': 'Item'}
 RARITY = {'C': 'Common', 'U': 'Uncommon', 'R': 'Rare', 'L': 'Legendary'}
 SETTING = {
-    'ody': 'Bronze Age Greek myth, the Odyssey: bronze armour, crested helmets, round aspis shields, '
-           'linen chitons, the wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire',
+    'ody': 'Greek myth as told in Homer, Hesiod and the Greek tragedies, depicted faithfully to those '
+           'stories: bronze armour, crested helmets, round aspis shields, linen chitons, black ships, the '
+           'wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire',
     'odin': 'Viking Age Norse myth: iron mail, round wooden shields, furs, runestones, longhalls, '
             'ravens, wolves, fjords, snow and northern sky',
     'wukong': 'Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, '
@@ -48,13 +49,16 @@ POSE = {
 }
 
 STYLE = (
-    'Fantasy trading-card illustration in the style of mid-1990s hand-painted card art: traditional oil '
-    'and gouache on illustration board, visible brushwork, painterly texture, slightly muted earthy colours. '
-    'Dark, moody palette with deep shadows falling to near-black at the edges, a single warm key light on '
-    'the subject. One clear focal subject, centred, strong readable silhouette, simple background. '
-    'Landscape 3:2 composition; keep the subject in the central area with dark, uncluttered bottom corners. '
-    'No text, no letters, no border, no card frame, no logo, no watermark. Not photorealistic, not 3D '
-    'render, not anime.'
+    'Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional '
+    'media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper '
+    'texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little '
+    'stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat '
+    'patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember '
+    'orange, deep violet, sea teal, blood red) where they matter. The subject fills the frame and may be '
+    'cropped by the edges, with its face or focal point near the centre, against a simple atmospheric '
+    'background. Landscape 3:2 composition with dark, uncluttered bottom corners. No text, no letters, no '
+    'border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not '
+    'modern digital concept art, not anime.'
 )
 
 STUB = r'''

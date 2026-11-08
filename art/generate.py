@@ -4,6 +4,7 @@
     python3 art/generate.py --test            # the 5-card style test batch
     python3 art/generate.py --ids ajax,achil  # just these cards
     python3 art/generate.py --all             # every card in the manifest
+    python3 art/generate.py --rarity Rare,Legendary   # just the best cards
     python3 art/generate.py --all --dry-run   # show what would run, spend nothing
     python3 art/generate.py --list-models     # image models your key can use
     python3 art/generate.py --compare         # same 3 cards at low / medium / high, side by side
@@ -133,6 +134,7 @@ def main():
     g.add_argument('--test', action='store_true', help='the 5-card test batch: ' + ', '.join(TEST_BATCH))
     g.add_argument('--ids', help='comma-separated card ids')
     g.add_argument('--all', action='store_true', help='every card in the manifest')
+    g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
     g.add_argument('--list-models', action='store_true', help='list image models your key can use')
     g.add_argument('--compare', nargs='?', const=','.join(COMPARE_IDS), metavar='IDS',
                    help='make these cards (default ' + ','.join(COMPARE_IDS) + ') at low, medium and high '
@@ -160,6 +162,11 @@ def main():
         ids = [i.strip() for i in a.ids.split(',') if i.strip()]
     elif a.all:
         ids = list(cards)
+    elif a.rarity:
+        want = {r.strip().lower() for r in a.rarity.split(',') if r.strip()}
+        ids = [i for i, c in cards.items() if c['rarity'].lower() in want]
+        if not ids:
+            sys.exit('No cards with rarity ' + a.rarity + '. Use Staple, Common, Uncommon, Rare or Legendary.')
     else:
         ap.print_help()
         return

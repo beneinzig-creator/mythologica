@@ -47,12 +47,15 @@ open art/compare.html
 Every run prints an estimated cost before it starts. Add `--dry-run` to see only the estimate.
 Choose the quality per run with `--quality low|medium|high`.
 
-When you're happy with the style:
+When you're happy with the style, make the best cards at high quality first, then everything else
+cheaper. Cards that already have a picture are skipped, so the second command fills in only the rest:
 
 ```bash
-python3 art/generate.py --all --dry-run # shows what would be made, costs nothing
-python3 art/generate.py --all           # makes every card that has no picture yet
+python3 art/generate.py --rarity Rare,Legendary          # 22 cards, high quality, about $0.90
+python3 art/generate.py --all --quality medium           # the other 58, about $0.60
 ```
+
+Add `--dry-run` to either command to see the list and the cost without making anything.
 
 - Each picture takes about 20 to 60 seconds. Cards that already have a picture are skipped, so you can
   stop with Ctrl+C at any time and run it again later.
