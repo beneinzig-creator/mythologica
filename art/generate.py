@@ -42,8 +42,8 @@ def est(model, quality):
 
 def get_key():
     key = os.environ.get('OPENAI_API_KEY', '').strip()
-    # .env (from set_key.py) or .env.local (from `vercel env pull`), at the repo root.
-    for name in ('.env', '.env.local'):
+    # .env.local (from `vercel env pull`, preferred) or .env (from set_key.py), at the repo root.
+    for name in ('.env.local', '.env'):
         env = os.path.join(ROOT, name)
         if key or not os.path.exists(env):
             continue
