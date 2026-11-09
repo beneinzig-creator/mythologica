@@ -1,0 +1,22 @@
+{
+  "id": "s_otg",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-09 14:52:03",
+  "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast, ancient sacrificial altar carved into a sea cliff high above the narrow strait of Scylla and Charybdis at night: four great bronze fire-bowls burning at the altar's corners along the left and right edges; a monumental stone stair rising from the lower corners; the dark strait far below with a faint whirlpool and a looming cliff; a heavy, starless sky lit from below by the fires.\nColour: near-black blue-black to deep teal (#060c14 to #1d3a48) with four bright flame-gold accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 400,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 400
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1772
+  }
+}
