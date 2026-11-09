@@ -140,6 +140,7 @@ def main():
     g.add_argument('--ids', help='comma-separated card ids')
     g.add_argument('--all', action='store_true', help='every card in the manifest')
     g.add_argument('--frames', action='store_true', help='the blank card frame templates, one per rarity')
+    g.add_argument('--icons', nargs='?', const='', metavar='IDS', help='game icons that replace emoji (all, or a comma list)')
     g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
     g.add_argument('--list-models', action='store_true', help='list image models your key can use')
     g.add_argument('--compare', nargs='?', const=','.join(COMPARE_IDS), metavar='IDS',
@@ -160,13 +161,15 @@ def main():
         return
 
     cards = load_cards(a.hero)
-    if a.frames:
+    if a.frames or a.icons is not None:
+        section = 'frames' if a.frames else 'icons'
         m = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))
-        cards = m['heroes'][a.hero].get('frames') or {}
+        cards = m['heroes'][a.hero].get(section) or {}
         if not cards:
-            sys.exit(f'No frames for {a.hero} yet. Each hero gets frames in the style of their own mythology; '
-                     'add them to FRAMES in build_manifest.py.')
-        ids = list(cards)
+            sys.exit(f'No {section} for {a.hero} yet. Each hero gets {section} in the style of their own '
+                     f'mythology; add them in build_manifest.py.')
+        ids = [i.strip() for i in (a.icons or '').split(',') if i.strip()] or list(cards)
+        a.frames = True  # same handling from here on: own size/format, no review page
     elif a.compare:
         ids = [i.strip() for i in a.compare.split(',') if i.strip()]
     elif a.test:
@@ -197,7 +200,7 @@ def main():
     costs = [est(a.model, q) for _, _, q in todo]
     cost = f', about ${sum(costs):.2f}' if todo and None not in costs else ''
     print(f'{len(jobs)} images selected, {len(jobs) - len(todo)} already exist, {len(todo)} to generate '
-          f'with {a.model} ({"low/medium/high" if a.compare else a.quality}, {"1024x1536" if a.frames else a.size}){cost}.')
+          f'with {a.model} ({"low/medium/high" if a.compare else a.quality}, {sizes[todo[0][0]] if todo else a.size}){cost}.')
     finish = (lambda: write_compare(cards, ids)) if a.compare else (lambda: None) if a.frames else (lambda: write_review(cards))
     if a.dry_run:
         for i, out, q in todo:
@@ -215,7 +218,11 @@ def main():
         print(f'[{n}/{len(todo)}] {cid} ({c["name"]}, {quality}) ...', end=' ', flush=True)
         t = time.time()
         body = {'model': a.model, 'prompt': c['prompt'], 'size': sizes.get(cid, a.size), 'quality': quality,
-                'n': 1, 'output_format': 'webp', 'output_compression': 85}
+                'n': 1, 'output_format': c.get('format', 'webp')}
+        if body['output_format'] in ('webp', 'jpeg'):
+            body['output_compression'] = 85
+        if c.get('background'):
+            body['background'] = c['background']
         for attempt in range(3):
             try:
                 r = call(key, '/images/generations', body)
