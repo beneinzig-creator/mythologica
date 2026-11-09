@@ -1,0 +1,22 @@
+{
+  "id": "med_lotus",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-08 22:00:00",
+  "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Lotus-Eaters: a drooping lotus flower with sleepy, half-closed petals.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 100,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 100
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1856
+  }
+}

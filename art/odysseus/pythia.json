@@ -1,0 +1,22 @@
+{
+  "id": "pythia",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "1536x1024",
+  "created": "2026-11-09 08:55:23",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember orange, deep violet, sea teal, deep crimson) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nSetting: Greek myth as told in Homer, Hesiod and the Greek tragedies, depicted faithfully to those stories: bronze armour, crested helmets, round aspis shields, linen chitons, black ships, the wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire.\n\nSubject: The Pythia, the oracle of Delphi, seated on a bronze tripod in the dark inner temple, entranced, holding a laurel sprig as vapours rise around her.\n\nComposition: a close-up of the Pythia's face wreathed in vapour, eyes rolled up in trance. Light and colour: smoky amber haze. Presence: an ordinary, humble presence at a modest scale. The subject fills most of the picture; keep the background minimal.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 376,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 376
+    },
+    "output_tokens": 343,
+    "output_tokens_details": {
+      "image_tokens": 343,
+      "text_tokens": 0
+    },
+    "total_tokens": 719
+  }
+}

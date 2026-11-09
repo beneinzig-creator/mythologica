@@ -1,0 +1,26 @@
+{
+  "from": "legendary.webp",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "prompt": "Remove the small empty plaque in the bottom-right corner of this card frame. Continue the parchment text box, its border and the outer frame exactly as they look elsewhere on the card, so the text box is a clean rectangle with an ordinary border and corner at the bottom right. Keep the same worn, rustic texture. Change nothing else; leave the black art window solid black.",
+  "mask_box": [
+    764,
+    1352,
+    986,
+    1463
+  ],
+  "created": "2026-11-08 16:16:15",
+  "usage": {
+    "input_tokens": 1627,
+    "input_tokens_details": {
+      "image_tokens": 1536,
+      "text_tokens": 91
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 2999
+  }
+}
