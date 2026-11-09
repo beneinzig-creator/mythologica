@@ -33,6 +33,37 @@ def shrink(src, dst, width, fmt='jpeg', quality='78'):
     return True
 
 
+def crop_mark(src, dst, size):
+    """Archetype marks: trim the empty margin (square box around the ink) so the mark fills the type line."""
+    if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
+        return 0
+    import struct, tempfile
+    with tempfile.TemporaryDirectory() as t:
+        bmp = os.path.join(t, 's.bmp')
+        subprocess.run(['sips', '-s', 'format', 'bmp', '-Z', '256', src, '--out', bmp], check=True, capture_output=True)
+        b = open(bmp, 'rb').read()
+    off, = struct.unpack_from('<I', b, 10)
+    w, h = struct.unpack_from('<ii', b, 18)
+    bpp, = struct.unpack_from('<H', b, 28)
+    step, row, flip, h = bpp // 8, (w * (bpp // 8) + 3) & ~3, h > 0, abs(h)
+    px = lambda x, y: b[off + (h - 1 - y if flip else y) * row + x * step: off + (h - 1 - y if flip else y) * row + x * step + 3]
+    bg = px(0, 0)
+    ink = [(x, y) for y in range(h) for x in range(w) if sum(abs(p - q) for p, q in zip(px(x, y), bg)) > 60]
+    x0, x1 = min(p[0] for p in ink), max(p[0] for p in ink)
+    y0, y1 = min(p[1] for p in ink), max(p[1] for p in ink)
+    side = int(max(x1 - x0, y1 - y0) * 1.06) + 2
+    cx, cy = (x0 + x1) // 2, (y0 + y1) // 2
+    src_w = int(subprocess.run(['sips', '-g', 'pixelWidth', src], capture_output=True, text=True).stdout.split()[-1])
+    k = src_w / w
+    side_s = min(src_w, int(side * k))
+    ox = max(0, min(src_w - side_s, int(cx * k - side_s / 2)))
+    oy = max(0, min(src_w - side_s, int(cy * k - side_s / 2)))
+    subprocess.run(['sips', '--cropToHeightWidth', str(side_s), str(side_s), '--cropOffset', str(oy), str(ox), src, '--out', dst],
+                   check=True, capture_output=True)
+    subprocess.run(['sips', '-Z', str(size), dst], check=True, capture_output=True)
+    return 1
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--hero', default='ody')
@@ -62,8 +93,25 @@ def main():
     # every painted icon for this hero (interface, map, opponent medallions)
     idir = os.path.join(ART, 'icons', folder)
     for fn in sorted(os.listdir(idir)) if os.path.isdir(idir) else []:
-        if fn.endswith('.png'):
-            made += shrink(os.path.join(idir, fn), os.path.join(GAME, 'icons', fn), 128 if fn.startswith('med_') else 96, fmt='png')
+        if not fn.endswith('.png'):
+            continue
+        src = os.path.join(idir, fn)
+        if fn == 'ui_button.png':
+            # crop the plate out of its transparent surround, then keep it crisp for border-image slicing
+            dst = os.path.join(GAME, 'icons', 'ui_button.png')
+            if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
+                subprocess.run(['sips', '--cropToHeightWidth', '222', '1514', '--cropOffset', '391', '11', src,
+                                '--out', dst], check=True, capture_output=True)
+                subprocess.run(['sips', '--resampleWidth', '760', dst], check=True, capture_output=True)
+                made += 1
+        elif fn.startswith('ui_'):
+            made += shrink(src, os.path.join(GAME, 'icons', fn[:-4] + '.jpg'), 1600, quality='76')
+        elif fn.startswith('arch_'):
+            made += crop_mark(src, os.path.join(GAME, 'icons', fn), 128)
+        elif fn.startswith('sigil_'):
+            made += shrink(src, os.path.join(GAME, 'back', fn), 256, fmt='png')
+        else:
+            made += shrink(src, os.path.join(GAME, 'icons', fn), 128 if fn.startswith('med_') else 96, fmt='png')
     # card back (game-wide) and the sigil on it
     bdir = os.path.join(ART, 'back')
     if os.path.exists(os.path.join(bdir, 'back.webp')):

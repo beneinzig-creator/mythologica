@@ -44,7 +44,7 @@ _b3('.dft{position:absolute;inset:0;display:flex;', ''.join(_css) + '.dft{positi
 
 _JS51 = (
     "(function(){try{const N=['0','1','2','3','4','5','6','7','8','9','slash'];let ok=0,bad=0;"
-    "const SEL='.cd.af .nm i,.cd.af>.pt,.cd.af .ob';"
+    "const SEL='.cd.af .nm i,.cd.af>.pt,.cd.af .ob,.orb';"
     "function dgz(root){if(ok<N.length||bad||!root||!root.querySelectorAll)return;"
     "const els=[...(root.matches&&root.matches(SEL)?[root]:[]),...root.querySelectorAll(SEL)];"
     "for(const el of els){const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),L=[];while(w.nextNode())L.push(w.currentNode);"

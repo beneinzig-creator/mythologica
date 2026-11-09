@@ -1,0 +1,22 @@
+{
+  "id": "ui_altar",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-09 14:51:00",
+  "prompt": "A quiet stone altar in a ruined Greek sanctuary at dusk, a thin column of offering smoke rising past broken columns, olive trees and a few votive cups. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte, dark around the edges. No text, no people.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 73,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 73
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1445
+  }
+}

@@ -3889,6 +3889,142 @@
           "format": "png",
           "background": "transparent"
         },
+        "arch_P": {
+          "name": "P archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Phalanx: a round hoplite shield seen face-on with a spear standing behind it.",
+          "output": "art/icons/odysseus/arch_P.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_R": {
+          "name": "R archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Raiders: the head of a charging horse with a flowing mane.",
+          "output": "art/icons/odysseus/arch_R.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_O": {
+          "name": "O archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Offerings: a shallow libation bowl on a short stand with a flame rising from it.",
+          "output": "art/icons/odysseus/arch_O.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_Z": {
+          "name": "Z archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Slumber (the Lotus-Eaters): a lotus flower with drooping petals.",
+          "output": "art/icons/odysseus/arch_Z.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_S": {
+          "name": "S archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Song (the Sirens): a lyre.",
+          "output": "art/icons/odysseus/arch_S.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_K": {
+          "name": "K archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Cyclops: a single staring eye.",
+          "output": "art/icons/odysseus/arch_K.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_F": {
+          "name": "F archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Fleet (the Phaeacians): the curved prow of a swift ship.",
+          "output": "art/icons/odysseus/arch_F.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_M": {
+          "name": "M archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Marauders (the Cicones): a Thracian battle axe.",
+          "output": "art/icons/odysseus/arch_M.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_E": {
+          "name": "E archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Shades: a wisp of smoke in the shape of a mournful face.",
+          "output": "art/icons/odysseus/arch_E.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "sigil_ody": {
+          "name": "sigil_ody",
+          "prompt": "A single emblem for the back of every card in Odysseus's deck: a Greek black ship in side profile as painted on ancient Greek pottery, black-figure style: a long low hull with a curved prow and a painted eye, one mast with a square sail, a row of oars, stylised waves beneath. Rendered in worn gold leaf and bronze, rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No text, no letters, no circle behind it.",
+          "output": "art/icons/odysseus/sigil_ody.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "ui_map": {
+          "name": "ui_map",
+          "prompt": "An antique sea chart of the Aegean and the wanderings of Odysseus, painted on aged, stained and creased parchment: faint coastlines and islands, a compass rose, small sea monsters and ships drawn in faded ink at the margins, wind heads in the corners; muted sepia, umber and faded sea-green. The centre is mostly open sea with very few marks so game icons can sit on top. Rustic 1990s hand-painted style. No text, no letters, no labels.",
+          "output": "art/icons/odysseus/ui_map.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_victory": {
+          "name": "ui_victory",
+          "prompt": "Odysseus home at last: he stands on the shore of Ithaca at dawn beside his beached black ship, seen from behind, looking up at his palace on the hill where a single lamp burns in a window; golden morning light over a calm sea. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. No text.",
+          "output": "art/icons/odysseus/ui_victory.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_defeat": {
+          "name": "ui_defeat",
+          "prompt": "Shipwreck: the broken black ship of Odysseus sinking among towering dark waves at night, its mast snapped, a lone figure clinging to a floating spar, lightning in the storm clouds. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte, dark. No text.",
+          "output": "art/icons/odysseus/ui_defeat.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_camp": {
+          "name": "ui_camp",
+          "prompt": "A small campfire of driftwood burning on a pebble beach at night, a beached black Greek ship and sleeping sailors in the darkness behind, sparks rising to the stars. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte, dark around the edges, calm. No text.",
+          "output": "art/icons/odysseus/ui_camp.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_craft": {
+          "name": "ui_craft",
+          "prompt": "The forge of Hephaestus inside a volcano: a great anvil with a hammer resting on it, glowing embers and molten light, tools hanging on the rock walls. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte, dark around the edges. No text, no people.",
+          "output": "art/icons/odysseus/ui_craft.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_altar": {
+          "name": "ui_altar",
+          "prompt": "A quiet stone altar in a ruined Greek sanctuary at dusk, a thin column of offering smoke rising past broken columns, olive trees and a few votive cups. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte, dark around the edges. No text, no people.",
+          "output": "art/icons/odysseus/ui_altar.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_button": {
+          "name": "ui_button",
+          "prompt": "One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the width of the image: weathered dark bronze with a raised engraved border line, small rivets at both ends, worn edges and green-brown patina; the centre is plain and flat for a label. Rustic 1990s hand-painted style. Fully transparent background around the plate. No text, no letters.",
+          "output": "art/icons/odysseus/ui_button.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "med_lotus": {
           "name": "lotus medallion",
           "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Lotus-Eaters: a drooping lotus flower with sleepy, half-closed petals.",

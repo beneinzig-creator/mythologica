@@ -236,6 +236,63 @@ SIGILS = {
     'sunmoon': 'A sun and a crescent moon joined into a single disc, one half gold and one half silver.',
 }
 
+# Archetype marks, printed on the card's type line like a set symbol in worn ink. The game blends them
+# with the parchment (multiply), so each card's own wear and texture shows through the ink.
+STAMP_BASE = (
+    'A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour '
+    'ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a '
+    'fully transparent background. No text, no letters, no border, no circle behind it.'
+)
+STAMPS = {'ody': {
+    'P': 'Phalanx: a round hoplite shield seen face-on with a spear standing behind it.',
+    'R': 'Raiders: the head of a charging horse with a flowing mane.',
+    'O': 'Offerings: a shallow libation bowl on a short stand with a flame rising from it.',
+    'Z': 'Slumber (the Lotus-Eaters): a lotus flower with drooping petals.',
+    'S': 'Song (the Sirens): a lyre.',
+    'K': 'Cyclops: a single staring eye.',
+    'F': 'Fleet (the Phaeacians): the curved prow of a swift ship.',
+    'M': 'Marauders (the Cicones): a Thracian battle axe.',
+    'E': 'Shades: a wisp of smoke in the shape of a mournful face.',
+}}
+# Hero-specific card-back sigil and interface paintings (map, victory, defeat, button plate).
+HERO_UI = {'ody': {
+    'sigil_ody': ('1024x1024', 'transparent',
+        'A single emblem for the back of every card in Odysseus\'s deck: a Greek black ship in side profile as painted '
+        'on ancient Greek pottery, black-figure style: a long low hull with a curved prow and a painted eye, one mast '
+        'with a square sail, a row of oars, stylised waves beneath. Rendered in worn gold leaf and bronze, rustic 1990s '
+        'hand-painted style, symmetrical and centred on a fully transparent background. No text, no letters, no circle behind it.'),
+    'ui_map': ('1536x1024', 'opaque',
+        'An antique sea chart of the Aegean and the wanderings of Odysseus, painted on aged, stained and creased '
+        'parchment: faint coastlines and islands, a compass rose, small sea monsters and ships drawn in faded ink at the '
+        'margins, wind heads in the corners; muted sepia, umber and faded sea-green. The centre is mostly open sea with '
+        'very few marks so game icons can sit on top. Rustic 1990s hand-painted style. No text, no letters, no labels.'),
+    'ui_victory': ('1536x1024', 'opaque',
+        'Odysseus home at last: he stands on the shore of Ithaca at dawn beside his beached black ship, seen from '
+        'behind, looking up at his palace on the hill where a single lamp burns in a window; golden morning light over '
+        'a calm sea. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. No text.'),
+    'ui_defeat': ('1536x1024', 'opaque',
+        'Shipwreck: the broken black ship of Odysseus sinking among towering dark waves at night, its mast snapped, '
+        'a lone figure clinging to a floating spar, lightning in the storm clouds. Fantasy trading-card painting in the '
+        'style of 1990s card art: gouache and ink, rustic, matte, dark. No text.'),
+    'ui_camp': ('1536x1024', 'opaque',
+        'A small campfire of driftwood burning on a pebble beach at night, a beached black Greek ship and sleeping '
+        'sailors in the darkness behind, sparks rising to the stars. Fantasy trading-card painting in the style of 1990s '
+        'card art: gouache and ink, rustic, matte, dark around the edges, calm. No text.'),
+    'ui_craft': ('1536x1024', 'opaque',
+        'The forge of Hephaestus inside a volcano: a great anvil with a hammer resting on it, glowing embers and molten '
+        'light, tools hanging on the rock walls. Fantasy trading-card painting in the style of 1990s card art: gouache '
+        'and ink, rustic, matte, dark around the edges. No text, no people.'),
+    'ui_altar': ('1536x1024', 'opaque',
+        'A quiet stone altar in a ruined Greek sanctuary at dusk, a thin column of offering smoke rising past broken '
+        'columns, olive trees and a few votive cups. Fantasy trading-card painting in the style of 1990s card art: '
+        'gouache and ink, rustic, matte, dark around the edges. No text, no people.'),
+    'ui_button': ('1536x1024', 'transparent',
+        'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
+        'width of the image: weathered dark bronze with a raised engraved border line, small rivets at both ends, worn '
+        'edges and green-brown patina; the centre is plain and flat for a label. Rustic 1990s hand-painted style. '
+        'Fully transparent background around the plate. No text, no letters.'),
+}}
+
 STUB = r'''
 var __h={get:function(t,k){if(k===Symbol.toPrimitive)return function(){return 0};if(k==='length')return 0;return __p},
  apply:function(){return __p},construct:function(){return __p},set:function(){return true}};
@@ -400,6 +457,13 @@ def main():
                  'output': f'art/icons/{folder}/{k}.png', 'size': '1024x1024', 'format': 'png',
                  'background': 'transparent'}
              for k, t in ICONS.get(a.hero, {}).items()}
+    for k, t in STAMPS.get(a.hero, {}).items():
+        icons[f'arch_{k}'] = {'name': f'{k} archetype mark', 'prompt': f'{STAMP_BASE}\n\nSubject: {t}',
+                              'output': f'art/icons/{folder}/arch_{k}.png', 'size': '1024x1024', 'format': 'png',
+                              'background': 'transparent'}
+    for k, (size, bg, prompt) in HERO_UI.get(a.hero, {}).items():
+        icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/{folder}/{k}.png', 'size': size,
+                    'format': 'png', 'background': bg}
     for k, t in MEDALS.get(a.hero, {}).items():
         icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{MEDAL_BASE}\n\nSubject: {t}',
                              'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',
