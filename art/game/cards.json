@@ -1,0 +1,460 @@
+{
+"boxes": {
+"c": {
+"art": [
+8.79,
+11.26,
+82.42,
+44.08
+],
+"cost": [
+83.79,
+4.04,
+10.74,
+6.9
+],
+"name": [
+6.84,
+5.08,
+76.95,
+5.01
+],
+"pt": [
+77.34,
+89.06,
+17.58,
+5.66
+],
+"text": [
+8.4,
+62.63,
+83.4,
+29.82
+],
+"type": [
+7.62,
+56.51,
+84.96,
+5.01
+]
+},
+"cs": {
+"art": [
+8.79,
+11.33,
+82.42,
+44.01
+],
+"cost": [
+83.79,
+4.04,
+10.74,
+6.9
+],
+"name": [
+6.84,
+5.08,
+76.95,
+5.01
+],
+"text": [
+8.4,
+62.63,
+83.4,
+29.82
+],
+"type": [
+7.62,
+56.51,
+84.96,
+5.01
+]
+},
+"l": {
+"art": [
+7.52,
+11.91,
+85.25,
+42.58
+],
+"cost": [
+83.2,
+4.88,
+11.04,
+7.36
+],
+"name": [
+7.62,
+5.73,
+75.59,
+5.01
+],
+"pt": [
+76.37,
+89.19,
+18.16,
+4.88
+],
+"text": [
+6.84,
+61.72,
+86.43,
+30.6
+],
+"type": [
+6.05,
+55.47,
+88.48,
+5.4
+]
+},
+"ls": {
+"art": [
+7.52,
+11.91,
+85.25,
+42.51
+],
+"cost": [
+83.2,
+4.88,
+11.04,
+7.36
+],
+"name": [
+7.62,
+5.73,
+75.59,
+5.01
+],
+"text": [
+6.84,
+61.72,
+86.43,
+30.6
+],
+"type": [
+6.05,
+55.47,
+88.48,
+5.4
+]
+},
+"r": {
+"art": [
+9.47,
+15.1,
+80.96,
+40.17
+],
+"cost": [
+81.25,
+3.39,
+11.04,
+7.81
+],
+"name": [
+8.59,
+5.08,
+72.46,
+4.82
+],
+"pt": [
+74.61,
+87.89,
+18.95,
+5.73
+],
+"text": [
+8.79,
+62.63,
+82.52,
+28.39
+],
+"type": [
+6.64,
+57.03,
+86.91,
+4.56
+]
+},
+"rs": {
+"art": [
+9.47,
+15.17,
+81.05,
+40.1
+],
+"cost": [
+81.25,
+3.39,
+11.04,
+7.81
+],
+"name": [
+8.59,
+5.08,
+72.46,
+4.82
+],
+"text": [
+8.79,
+62.63,
+82.52,
+28.39
+],
+"type": [
+6.64,
+57.03,
+86.91,
+4.56
+]
+},
+"u": {
+"art": [
+7.32,
+10.87,
+85.35,
+44.53
+],
+"cost": [
+83.79,
+3.78,
+8.98,
+6.64
+],
+"name": [
+7.32,
+4.04,
+76.66,
+5.86
+],
+"pt": [
+77.15,
+88.67,
+15.62,
+5.73
+],
+"text": [
+7.32,
+62.5,
+85.25,
+29.17
+],
+"type": [
+7.03,
+56.51,
+85.55,
+5.01
+]
+},
+"us": {
+"art": [
+7.32,
+10.81,
+85.35,
+44.6
+],
+"cost": [
+83.79,
+3.78,
+8.98,
+6.64
+],
+"name": [
+7.32,
+4.04,
+76.66,
+5.86
+],
+"text": [
+7.32,
+62.5,
+85.25,
+29.17
+],
+"type": [
+7.03,
+56.51,
+85.55,
+5.01
+]
+}
+},
+"cards": {
+"achil": "r",
+"aegis": "cs",
+"agam": "r",
+"ajax": "r",
+"alcinous": "c",
+"altar": "rs",
+"ares": "rs",
+"argus": "c",
+"augur": "c",
+"banner": "us",
+"bastion": "us",
+"blackship": "ls",
+"bow": "rs",
+"brasidas": "r",
+"breeze": "cs",
+"brute": "c",
+"bull": "u",
+"burn": "cs",
+"camp": "c",
+"canto": "ls",
+"capt": "u",
+"cass": "u",
+"cave": "c",
+"cbow": "c",
+"cdraft": "us",
+"cdro": "r",
+"ceel": "r",
+"censer": "cs",
+"cerb": "r",
+"charon": "u",
+"chary": "r",
+"chief": "c",
+"circe": "u",
+"clev": "r",
+"clion": "u",
+"club": "cs",
+"cmaid": "u",
+"corsair": "c",
+"cow": "u",
+"cscout": "c",
+"cspa": "r",
+"cup": "ls",
+"curse": "rs",
+"cwand": "us",
+"cwolf": "u",
+"dio2": "u",
+"dirge": "cs",
+"doct": "cs",
+"dream": "cs",
+"drill": "cs",
+"drums": "cs",
+"eagle": "u",
+"eel": "c",
+"elder": "c",
+"eury": "r",
+"fog": "cs",
+"fury": "cs",
+"gale": "us",
+"games": "rs",
+"garden": "cs",
+"gate": "u",
+"gift": "cs",
+"hades": "l",
+"hammer": "cs",
+"harrier": "c",
+"hchar": "r",
+"hdead": "ls",
+"heads": "ls",
+"hearth": "cs",
+"hecat": "cs",
+"hector": "r",
+"helios": "u",
+"herm": "c",
+"hgua": "r",
+"hitr": "ls",
+"hmil": "r",
+"honey": "rs",
+"hopl": "c",
+"horde": "ls",
+"hspr": "r",
+"hurl": "cs",
+"iph": "l",
+"iris": "c",
+"isl": "c",
+"javel": "cs",
+"karma": "ls",
+"lamp": "u",
+"lbow": "c",
+"leon": "l",
+"lhz": "ls",
+"libation": "cs",
+"lot": "c",
+"lure": "cs",
+"lyre": "cs",
+"medic": "c",
+"melody": "cs",
+"mino": "u",
+"mourner": "c",
+"mouth": "ls",
+"mpill": "c",
+"mraid": "c",
+"mskirm": "c",
+"muse": "us",
+"nausi": "c",
+"navig": "c",
+"neith": "u",
+"nike": "u",
+"nshade": "cs",
+"oarsman": "c",
+"ossuary": "us",
+"owl": "c",
+"ox": "c",
+"pegasus": "u",
+"peltast": "c",
+"pent": "l",
+"phguard": "c",
+"pikeman": "u",
+"pit": "cs",
+"plunder": "us",
+"poly": "c",
+"priam": "r",
+"priest": "c",
+"pyre": "us",
+"pythia": "c",
+"rally": "cs",
+"ram": "u",
+"rampart": "cs",
+"reaper": "c",
+"reaver": "u",
+"requiem": "rs",
+"sack": "us",
+"sacril": "ls",
+"sailor": "c",
+"sails": "cs",
+"salve": "cs",
+"sapper": "c",
+"scorch": "us",
+"scout": "c",
+"scyl": "r",
+"sent": "c",
+"sh1": "r",
+"sh2": "r",
+"sh3": "r",
+"sh4": "r",
+"shade1": "c",
+"sheep": "c",
+"shield": "rs",
+"shoal": "cs",
+"sip": "cs",
+"siren": "c",
+"skies": "cs",
+"song": "c",
+"spear": "c",
+"spearc": "cs",
+"sphinx": "u",
+"spoils": "cs",
+"tbull": "c",
+"telem": "u",
+"testudo": "us",
+"thanat": "r",
+"thermo": "ls",
+"thess": "c",
+"thunder": "rs",
+"tide": "cs",
+"titan": "c",
+"trident": "cs",
+"undertow": "rs",
+"veteran": "u",
+"wall": "us",
+"walls": "ls",
+"warden": "c",
+"whirl": "ls",
+"zerk": "u",
+"zeus": "rs"
+}
+}

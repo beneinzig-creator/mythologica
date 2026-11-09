@@ -1,6 +1,8 @@
-# Proposal: showing card art in the game
+# Showing card art in the game
 
-Not implemented yet. The game is built by the patch pipeline in `tooling/`, and that pipeline is being
+**Done** in `tooling/patch45.py` (hero select) and `tooling/patch46.py` (cards). The proposal below is kept for reference.
+
+Originally not implemented. The game is built by the patch pipeline in `tooling/`, and that pipeline is being
 reworked in a separate session. Once it settles, this should go in as one small patch (or a direct edit,
 if `index.html` becomes the source of truth).
 

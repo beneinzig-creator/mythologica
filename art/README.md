@@ -81,3 +81,18 @@ Add `--dry-run` to either command to see the list and the cost without making an
 
 Run `python3 art/build_manifest.py` again after cards are added or renamed. Existing pictures are kept,
 and only cards without a picture get generated.
+
+## Getting new art into the game
+
+The game shows card art for every card listed in `art/game/cards.json`. Cards without art keep the
+old look with the emoji. After making or redoing art, run these from the repo folder:
+
+```bash
+python3 art/make_game_assets.py               # small game copies + cards.json
+cd tooling && python3 build.py n1.html        # rebuild the game (patch46 reads cards.json)
+```
+
+Then put the new `tooling/n1.html` into `index.html`. It's the same file, wrapped in the page header,
+so `git diff index.html` should only show your change. `patch45.py` draws the hero-select portraits and
+`patch46.py` draws the frames, art, text boxes and the Offering skull on cards. Both fall back to the
+emoji if an image is missing.
