@@ -1,0 +1,22 @@
+{
+  "id": "shades",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-08 22:28:20",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the edge of the underworld where Odysseus called up the dead in Homer's Odyssey: a grey, barren shore of the river of the dead under a sunless sky; withered black poplars and willows along the left edge; a shallow trench with dark blood and a ram's carcass at the lower left; pale, faceless ghostly shades drifting as faint wisps along the right edge; the misty mouth of a great cave in the far distance.\nColour: near-black blue-black to dusky violet (#0b0b14 to #3a2a52) with sickly pale ghost-white and a dark blood-red accent.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 413,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 413
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1785
+  }
+}

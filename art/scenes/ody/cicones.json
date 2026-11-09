@@ -1,0 +1,22 @@
+{
+  "id": "cicones",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-08 22:29:25",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the sack of Ismarus, city of the Cicones, from Homer's Odyssey, by night: burning thatched houses and a broken palisade along the left edge; plundered amphorae, overturned carts and scattered shields at the lower corners; Cicone war-chariots and horsemen as dark silhouettes charging along the ridge at the far right; heavy smoke and flying sparks rising into a red night sky.\nColour: near-black maroon to blood red (#200808 to #8a2a1a) with flame-orange accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 390,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 390
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1762
+  }
+}
