@@ -3,20 +3,20 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "medium",
   "size": "1536x1024",
-  "created": "2026-11-08 16:25:50",
-  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember orange, deep violet, sea teal, blood red) where they matter. The subject fills the frame and may be cropped by the edges, with its face or focal point near the centre, against a simple atmospheric background. Landscape 3:2 composition with dark, uncluttered bottom corners. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nSetting: Greek myth as told in Homer, Hesiod and the Greek tragedies, depicted faithfully to those stories: bronze armour, crested helmets, round aspis shields, linen chitons, black ships, the wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire.\nColour accent: bone, ash and underworld green-black with ember accents.\n\nSubject: Argus, Odysseus's old hound, lying worn and neglected by the palace gate on Ithaca, lifting his head and wagging his tail as he recognises his master, returned after twenty years disguised as a beggar.",
+  "created": "2026-11-09 08:55:08",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember orange, deep violet, sea teal, deep crimson) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nSetting: Greek myth as told in Homer, Hesiod and the Greek tragedies, depicted faithfully to those stories: bronze armour, crested helmets, round aspis shields, linen chitons, black ships, the wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire.\n\nSubject: Argus, Odysseus's old hound, lying worn and neglected by the palace gate on Ithaca, lifting his head and wagging his tail as he recognises his master, returned after twenty years disguised as a beggar.\n\nComposition: at ground level, close on the old dog's grey muzzle and eyes as he lifts his head toward his master. Light and colour: warm dusk. Presence: an ordinary, humble presence at a modest scale. The subject fills most of the picture; keep the background minimal.",
   "revised_prompt": null,
   "usage": {
-    "input_tokens": 344,
+    "input_tokens": 386,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 344
+      "text_tokens": 386
     },
     "output_tokens": 343,
     "output_tokens_details": {
       "image_tokens": 343,
       "text_tokens": 0
     },
-    "total_tokens": 687
+    "total_tokens": 729
   }
 }

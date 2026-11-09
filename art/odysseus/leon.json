@@ -3,20 +3,19 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "high",
   "size": "1536x1024",
-  "created": "2026-11-08 15:53:49",
-  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember orange, deep violet, sea teal, blood red) where they matter. The subject fills the frame and may be cropped by the edges, with its face or focal point near the centre, against a simple atmospheric background. Landscape 3:2 composition with dark, uncluttered bottom corners. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nSetting: Greek myth as told in Homer, Hesiod and the Greek tragedies, depicted faithfully to those stories: bronze armour, crested helmets, round aspis shields, linen chitons, black ships, the wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire.\nColour accent: warm gold daylight, white marble and bronze accents.\n\nSubject: Leonidas, King of Sparta, a bearded warrior-king in a red cloak and a crested bronze helmet, holding a large round bronze shield, standing calm and proud in the narrow mountain pass of Thermopylae, warm sunset light on the cliffs behind him.",
-  "revised_prompt": null,
+  "created": "2026-11-09 08:48:52",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember orange, deep violet, sea teal, deep crimson) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nSetting: Greek myth as told in Homer, Hesiod and the Greek tragedies, depicted faithfully to those stories: bronze armour, crested helmets, round aspis shields, linen chitons, black ships, the wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire.\n\nSubject: Leonidas, King of Sparta, a bearded king in a red cloak and a crested bronze helmet, holding a large round bronze shield, standing calm and proud in a narrow mountain pass at sunset.\n\nComposition: a dignified heroic portrait seen from a very low angle, Leonidas standing tall against an enormous sky, his red cloak streaming in the wind. Light and colour: deep crimson sunset with golden rim light. Presence: larger than life, monumental and iconic. The subject fills most of the picture; keep the background minimal.",
   "usage": {
-    "input_tokens": 348,
+    "input_tokens": 388,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 348
+      "text_tokens": 388
     },
     "output_tokens": 1372,
     "output_tokens_details": {
       "image_tokens": 1372,
       "text_tokens": 0
     },
-    "total_tokens": 1720
+    "total_tokens": 1760
   }
 }

@@ -1,0 +1,308 @@
+{
+ "_note": "Hand-written camera direction for cards that must stand apart from others in their group. Keys: composition (shot and angle), palette (light and colour). Anything not set comes from the planner in composition.py.",
+ "leon": {
+  "composition": "a dignified heroic portrait seen from a very low angle, Leonidas standing tall against an enormous sky, his red cloak streaming in the wind",
+  "palette": "deep crimson sunset with golden rim light",
+  "power": "larger than life, monumental and iconic"
+ },
+ "hopl": {
+  "composition": "seen from behind and slightly above: the back of an ordinary soldier standing in a long line of identical round shields, the plain stretching ahead",
+  "palette": "dusty bronze and brown"
+ },
+ "spear": {
+  "composition": "a tight close-up of the spearman's face under a plain bronze helmet, eyes narrowed, the spear's leaf-shaped tip sharp in the foreground",
+  "palette": "icy dawn blue"
+ },
+ "capt": {
+  "composition": "a waist-up side profile of the captain with his mouth open shouting an order, sword pointing out of the frame",
+  "palette": "warm torchlight orange in darkness"
+ },
+ "sent": {
+  "composition": "a silhouette of the sentinel seen from below against a starry sky, standing on top of the earth wall beside his tall shield",
+  "palette": "deep night blue with a single watch-fire glow"
+ },
+ "gate": {
+  "composition": "at eye level, the guard framed in the black gateway, the two carved lionesses above lit by torchlight from below",
+  "palette": "warm torchlight on grey stone"
+ },
+ "ajax": {
+  "composition": "from a low angle, Ajax filling the frame behind his enormous tower shield, only his eyes and helmet crest showing above its rim",
+  "palette": "stormy grey-green"
+ },
+ "peltast": {
+  "composition": "a full figure caught side-on in mid-leap as he hurls a javelin, dust kicking up",
+  "palette": "harsh noon white and ochre"
+ },
+ "veteran": {
+  "composition": "an extreme close-up of an old soldier's scarred, grey-bearded face",
+  "palette": "soft late-afternoon gold"
+ },
+ "pikeman": {
+  "composition": "head-on at eye level, the long pike's point aimed straight at the viewer, the guard behind it",
+  "palette": "deep sea teal"
+ },
+ "medic": {
+  "composition": "a close-up of the surgeon's hands binding a wounded leg, his face in lamplight behind",
+  "palette": "smoky amber haze"
+ },
+ "brasidas": {
+  "composition": "a three-quarter figure from slightly below, a column of marching men behind him",
+  "palette": "cold moonlight silver-blue"
+ },
+ "owl": {
+  "composition": "an extreme close-up of the owl's face, its huge golden eyes filling the frame",
+  "palette": "cold moonlight silver-blue"
+ },
+ "iris": {
+  "composition": "a full figure seen from below, gliding diagonally down a rainbow toward the viewer",
+  "palette": "prismatic rainbow colours against storm grey"
+ },
+ "achil": {
+  "composition": "at a dramatic tilted angle, Achilles caught in a great leap, his divine armour blazing, spear held high above his head",
+  "palette": "fiery sunset orange"
+ },
+ "pent": {
+  "composition": "from a very low angle, Penthesilea on a rearing horse monumental above us, double axe raised",
+  "palette": "storm light with a flash of lightning"
+ },
+ "agam": {
+  "composition": "Agamemnon seated on a high throne seen from below, sceptre across his knees, looking down at the viewer",
+  "palette": "royal purple and gold"
+ },
+ "zerk": {
+  "composition": "an extreme close-up of the berserker's screaming face, bloodshot eyes",
+  "palette": "firelight red and black"
+ },
+ "dio2": {
+  "composition": "over the shoulder from behind Diomedes as he drives his spear at the towering war god ahead of him",
+  "palette": "smoky battlefield orange"
+ },
+ "thess": {
+  "composition": "a side view of a horse at full gallop filling the frame, the rider low over its neck",
+  "palette": "dusty gold"
+ },
+ "corsair": {
+  "composition": "from a low angle on the sand, the raider leaping out of his boat toward the viewer, spray flying",
+  "palette": "icy dawn blue"
+ },
+ "harrier": {
+  "composition": "from the ship's prow, the raider looking back over his shoulder as he blows a horn, boats racing behind",
+  "palette": "grey dawn mist"
+ },
+ "reaver": {
+  "composition": "a close-up of hands dipping arrowheads into a clay pot of poison, the face hidden in shadow",
+  "palette": "sickly green in darkness"
+ },
+ "ram": {
+  "composition": "a close-up of the bronze ram's head striking the gate, splinters flying",
+  "palette": "firelight red and black"
+ },
+ "helios": {
+  "composition": "Helios driving his blazing chariot straight at the viewer, the horses' fiery heads filling the frame",
+  "palette": "white-gold glare"
+ },
+ "nike": {
+  "composition": "from below, Nike swooping down toward the viewer, her wings spread across the whole frame",
+  "palette": "dawn rose and pale gold"
+ },
+ "eury": {
+  "composition": "a head-and-shoulders portrait of Eurylochus at eye level, wary, gripping his sword in a dark forest",
+  "palette": "forest green and black"
+ },
+ "cerb": {
+  "composition": "the three heads fill the entire frame, lunging at the viewer with jaws open",
+  "palette": "underworld green and black with ember-red eyes"
+ },
+ "hades": {
+  "composition": "Hades enthroned, seen from a very low angle, a colossal dark figure with crown and two-pronged staff, pale shades tiny at his feet",
+  "palette": "underworld green and black with cold light"
+ },
+ "iph": {
+  "composition": "a close-up of Iphigenia's calm face under a white veil, the glowing eyes of a deer behind her",
+  "palette": "soft divine white light"
+ },
+ "thanat": {
+  "composition": "from below, Thanatos with great dark wings spread across the frame, his face serene",
+  "palette": "twilight violet"
+ },
+ "mino": {
+  "composition": "the Minotaur's horned head filling the frame, nostrils flaring",
+  "palette": "torchlight from one side in deep shadow"
+ },
+ "charon": {
+  "composition": "a close-up of Charon's gaunt face and his bony outstretched hand holding a coin toward the viewer",
+  "palette": "cold blue-green"
+ },
+ "argus": {
+  "composition": "at ground level, close on the old dog's grey muzzle and eyes as he lifts his head toward his master",
+  "palette": "warm dusk"
+ },
+ "sphinx": {
+  "composition": "a close-up of the Sphinx's face with a knowing smile, her wings framing it",
+  "palette": "sandy gold"
+ },
+ "eagle": {
+  "composition": "the eagle diving straight at the viewer, talons and thunderbolt first",
+  "palette": "storm sky with lightning"
+ },
+ "tbull": {
+  "composition": "the white bull surging out of the waves toward the viewer, water streaming off its shoulders",
+  "palette": "deep sea teal"
+ },
+ "cass": {
+  "composition": "a close-up of Cassandra's anguished face, eyes wide, the wooden horse a dark silhouette behind her",
+  "palette": "red glow of a burning city"
+ },
+ "telem": {
+  "composition": "seen from behind, Telemachus at the prow looking out to the horizon, the sail filling the top of the frame",
+  "palette": "bright morning blue"
+ },
+ "pythia": {
+  "composition": "a close-up of the Pythia's face wreathed in vapour, eyes rolled up in trance",
+  "palette": "smoky amber haze"
+ },
+ "herm": {
+  "composition": "Hermes in flight seen from below, his winged sandals large in the foreground",
+  "palette": "bright sky blue and white"
+ },
+ "siren": {
+  "composition": "a close-up of the Siren's face and her great spread wings, mouth open in song",
+  "palette": "dawn rose and pale gold"
+ },
+ "song": {
+  "composition": "a side profile of a Siren perched high on a ship's mast, singing, silver ripples of sound in the air, the ship's deck far below",
+  "palette": "cold moonlight silver-blue"
+ },
+ "scout": {
+  "composition": "seen from behind, a small Siren crouched on a crag in the foreground, watching a tiny ship far below",
+  "palette": "grey sea mist"
+ },
+ "eel": {
+  "composition": "the eel's open jaws filling the frame, lunging at the viewer",
+  "palette": "murky green"
+ },
+ "poly": {
+  "composition": "an extreme close-up of the Cyclops' single huge eye and snarling face filling the frame",
+  "palette": "firelight from below"
+ },
+ "brute": {
+  "composition": "a full figure from a low angle, the brute swinging his club down toward the viewer",
+  "palette": "harsh noon white and ochre"
+ },
+ "elder": {
+  "composition": "a side profile of the old Cyclops, his single eye half-closed, long beard",
+  "palette": "soft grey dusk"
+ },
+ "cscout": {
+  "composition": "seen from behind, the herder standing on a hilltop above his flocks",
+  "palette": "green hills under a pale sky"
+ },
+ "cave": {
+  "composition": "two glowing eyes in the dark mouth of a cave, the beast's shape barely visible",
+  "palette": "near-black with amber eyes"
+ },
+ "scyl": {
+  "composition": "Scylla's six heads fill the entire frame, lunging at the viewer with jaws open; almost no background",
+  "palette": "sea-cave darkness with cold green light"
+ },
+ "sh1": {
+  "composition": "a single serpentine head striking straight at the viewer, close on the jaws",
+  "palette": "grey sea foam"
+ },
+ "sh2": {
+  "composition": "a head in side profile gnashing its teeth, foam flying",
+  "palette": "deep sea teal"
+ },
+ "sh3": {
+  "composition": "a head baying upward like a hound, seen from below",
+  "palette": "twilight violet"
+ },
+ "sh4": {
+  "composition": "a green, venomous head coiled tight, close on its dripping fangs",
+  "palette": "sickly green"
+ },
+ "heads": {
+  "composition": "from the ship's deck far below, the six long necks rising out of the cliff cave into the mist",
+  "palette": "stormy grey-green"
+ },
+ "chary": {
+  "composition": "the whirlpool seen from directly above, a spiral of dark water filling the entire frame",
+  "palette": "deep black-blue with white foam"
+ },
+ "whirl": {
+  "composition": "at water level, a curling wall of water at the whirlpool's rim towering over the viewer",
+  "palette": "stormy grey-green"
+ },
+ "clev": {
+  "composition": "the leviathan's huge eye and scaled flank filling the frame as it breaches",
+  "palette": "deep sea teal"
+ },
+ "ceel": {
+  "composition": "the eel's long body curving in an S across the whole frame",
+  "palette": "murky green"
+ },
+ "hector": {
+  "composition": "a full figure from a very low angle, Hector monumental in gleaming armour, his tall horse-hair crest against the sky, spear held high",
+  "palette": "golden evening light on bronze"
+ },
+ "priam": {
+  "composition": "a close-up of old King Priam's lined face beneath his crown",
+  "palette": "soft twilight violet"
+ },
+ "circe": {
+  "composition": "a close-up of Circe's face as she looks up from her loom, golden eyes, wand raised",
+  "palette": "warm golden hall light"
+ },
+ "cwolf": {
+  "composition": "a close-up of the wolf's head, tongue out, fawning",
+  "palette": "forest green"
+ },
+ "clion": {
+  "composition": "the lion lying tame, seen at eye level from the ground, its huge face filling the frame",
+  "palette": "dappled forest gold"
+ },
+ "bull": {
+  "composition": "a head-on close-up of the bull's massive horned head with the sun disc between its horns",
+  "palette": "blazing noon"
+ },
+ "cow": {
+  "composition": "a side view of a sacred cow grazing, gilded horns",
+  "palette": "soft meadow gold"
+ },
+ "lamp": {
+  "composition": "seen from behind, Lampetia walking among the herd with a shepherd's crook",
+  "palette": "deep crimson sunset"
+ },
+ "neith": {
+  "composition": "a close-up of Phaethusa's radiant face",
+  "palette": "dawn rose and pale gold"
+ },
+ "sacril": {
+  "composition": "Helios' furious face filling the blazing sun disc, glaring down",
+  "palette": "white-gold glare"
+ },
+ "shade1": {
+  "composition": "a single pale ghostly face emerging from darkness, close up",
+  "palette": "grey mist"
+ },
+ "mourner": {
+  "composition": "seen from behind, a veiled ghost holding a withered rose",
+  "palette": "cold blue-grey"
+ },
+ "warden": {
+  "composition": "from a low angle, an armoured warden barring a gate with his spear",
+  "palette": "underworld green and black"
+ },
+ "lot": {
+  "kind": "person"
+ },
+ "isl": {
+  "kind": "person"
+ },
+ "priest": {
+  "kind": "person"
+ },
+ "lbow": {
+  "kind": "person"
+ }
+}

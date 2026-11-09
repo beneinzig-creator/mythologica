@@ -45,7 +45,7 @@ _JS48 = (
     "(function(){try{let tm=0,sx=0,sy=0,shown=false;const ov=document.createElement('div');ov.id='insp';document.body.appendChild(ov);"
     "const find=t=>{const cd=t&&t.closest&&t.closest('.fld .cd,.hand .cd');if(!cd||typeof G=='undefined'||!G)return null;const u=+((cd.getAttribute('data-z')||'').split(':')[1]);"
     "if(!u)return null;const all=[...(G.p?[...G.p.bf,...G.p.hand]:[]),...(G.e?G.e.bf:[])];return all.find(c=>c.u===u)||null};"
-    "const show=c=>{ov.style.setProperty('--iz',Math.max(2,Math.min(4.5,.82*innerHeight/146,.8*innerWidth/104)).toFixed(2));ov.innerHTML=card(c,'v:'+c.u);ov.classList.add('on');shown=true};"
+    "const show=c=>{const my=(typeof MYTH!='undefined'&&MYTH[c.id])||'';ov.style.setProperty('--iz',Math.max(2,Math.min(4.5,(my?.66:.82)*innerHeight/146,.8*innerWidth/104)).toFixed(2));ov.innerHTML=card(c,'v:'+c.u)+(my?'<div class=\"myth\">'+my+'</div>':'');ov.classList.add('on');shown=true};"
     "const hide=()=>{clearTimeout(tm);tm=0;if(shown){ov.classList.remove('on');ov.innerHTML=''}};"
     "addEventListener('pointerdown',e=>{if(e.button>0)return;const c=find(e.target);if(!c)return;sx=e.clientX;sy=e.clientY;shown=false;clearTimeout(tm);tm=setTimeout(()=>show(c),380)},true);"
     "addEventListener('pointermove',e=>{if(!shown&&tm&&Math.hypot(e.clientX-sx,e.clientY-sy)>10){clearTimeout(tm);tm=0}},true);"
