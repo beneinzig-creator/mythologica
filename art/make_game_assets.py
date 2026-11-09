@@ -130,8 +130,10 @@ def main():
 
     # Fight backgrounds (all heroes that have any): art/game/scenes/<id>.jpg, plus
     # art/game/scenes.json {opponent name: {id, bg?}}, which patch49 reads at build time.
+    # Screen backgrounds (entries with a 'screen' key): art/game/screens.json {realm hero: {screen: id}},
+    # which patch53 reads.
     sj = os.path.join(ART, 'scenes.json')
-    scene_map = {}
+    scene_map, screen_map = {}, {}
     if os.path.exists(sj):
         for hero, items in json.load(open(sj, encoding='utf-8')).items():
             if hero.startswith('_'):
@@ -140,11 +142,18 @@ def main():
                 src = os.path.join(ART, 'scenes', hero, f'{sid}.webp')
                 if os.path.exists(src):
                     made += shrink(src, os.path.join(GAME, 'scenes', f'{sid}.jpg'), 1536, quality='72')
-                    scene_map[s['name']] = {'id': sid, **({'bg': s['bg']} if s.get('bg') else {})}
+                    if s.get('screen'):
+                        screen_map.setdefault(hero, {})[s['screen']] = sid
+                    else:
+                        scene_map[s['name']] = {'id': sid, **({'bg': s['bg']} if s.get('bg') else {})}
         with open(os.path.join(GAME, 'scenes.json'), 'w', encoding='utf-8') as f:
             json.dump(scene_map, f, indent=0, sort_keys=True, ensure_ascii=False)
             f.write('\n')
-        print(f'{len(scene_map)} fight backgrounds. Wrote art/game/scenes.json.')
+        with open(os.path.join(GAME, 'screens.json'), 'w', encoding='utf-8') as f:
+            json.dump(screen_map, f, indent=0, sort_keys=True, ensure_ascii=False)
+            f.write('\n')
+        print(f'{len(scene_map)} fight backgrounds, {sum(map(len, screen_map.values()))} screen backgrounds. '
+              f'Wrote art/game/scenes.json and screens.json.')
 
     # layout.json uses the frame names; give the game the same boxes keyed by frame code.
     layout = json.load(open(os.path.join(fr, 'layout.json')))

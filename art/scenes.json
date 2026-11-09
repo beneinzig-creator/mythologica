@@ -1,5 +1,5 @@
 {
-  "_note": "Fight backgrounds, one per opponent. Key = scene id (art/scenes/<hero>/<id>.webp). 'setting' is the myth-true place; 'palette' follows the opponent's bg colours in the game (bosses have none in the game yet, so theirs are chosen here). build_manifest.py combines these with SCENE_BASE into the 'scenes' section of manifest.json. Optional 'bg': [dark, light] gradient colours for opponents that have none in the game (the bosses); the game uses them on that fight's screen.",
+  "_note": "Fight backgrounds, one per opponent. Key = scene id (art/scenes/<hero>/<id>.webp). 'setting' is the myth-true place; 'palette' follows the opponent's bg colours in the game (bosses have none in the game yet, so theirs are chosen here). build_manifest.py combines these with SCENE_BASE into the 'scenes' section of manifest.json. Optional 'bg': [dark, light] gradient colours for opponents that have none in the game (the bosses); the game uses them on that fight's screen. Entries with a 'screen' key are backgrounds for non-fight screens (draft_start, draft_reward, otg, bossp) instead of an opponent. Campfire, crafting table, altar, map, victory and defeat backgrounds are the UI art in art/game/icons/ui_*.jpg (patch52).",
   "ody": {
     "lotus": {
       "name": "The Lotus-Eaters",
@@ -67,6 +67,30 @@
         "#06121a",
         "#1d4a5a"
       ]
+    },
+    "s_draft_start": {
+      "name": "Draft (start of run)",
+      "screen": "draft_start",
+      "setting": "the harbour of Ithaca at grey dawn, as Odysseus gathers his men to sail for Troy: black Greek ships drawn up on the shingle along the left edge with their masts and furled sails; amphorae, bronze shields, spears and coiled ropes piled on the beach at the lower corners; the rocky hills of Ithaca and a small white shrine on a headland at the far right; a calm grey sea and a pale sky",
+      "palette": "near-black slate blue to grey sea teal (#0b1820 to #1d4452) with pale dawn gold and bronze accents"
+    },
+    "s_draft_reward": {
+      "name": "Draft (spoils after a fight)",
+      "screen": "draft_reward",
+      "setting": "a Greek war camp on a beach at dusk after a victory, from the Odyssey: the spoils of battle laid out on cloaks along the left and right edges, bronze tripods, cauldrons, helmets, shields and a few gold cups; a beached black ship and its oars at the far left; a small fire and the tents of the crew at the far right; a low red-gold sun over a dark sea",
+      "palette": "near-black brown to dull bronze (#160f08 to #6e4a22) with warm gold and ember accents"
+    },
+    "s_otg": {
+      "name": "Altar to the One True God",
+      "screen": "otg",
+      "setting": "a vast, ancient sacrificial altar carved into a sea cliff high above the narrow strait of Scylla and Charybdis at night: four great bronze fire-bowls burning at the altar's corners along the left and right edges; a monumental stone stair rising from the lower corners; the dark strait far below with a faint whirlpool and a looming cliff; a heavy, starless sky lit from below by the fires",
+      "palette": "near-black blue-black to deep teal (#060c14 to #1d3a48) with four bright flame-gold accents"
+    },
+    "s_bossp": {
+      "name": "Boss pick",
+      "screen": "bossp",
+      "setting": "the mouth of the strait of Scylla and Charybdis from Homer's Odyssey, seen from the sea in a gathering storm: on the left a towering cliff with a high dark cave; on the right a low rock with a gnarled fig tree above a churning whirlpool; the narrow passage of black water between them; lightning far off in heavy clouds; a small Greek ship's prow at the very bottom edge",
+      "palette": "near-black storm grey to cold sea teal (#080e14 to #2a4652) with white foam and a faint lightning-white accent"
     }
   }
 }

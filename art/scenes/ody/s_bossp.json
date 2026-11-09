@@ -1,0 +1,22 @@
+{
+  "id": "s_bossp",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-09 14:52:36",
+  "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the mouth of the strait of Scylla and Charybdis from Homer's Odyssey, seen from the sea in a gathering storm: on the left a towering cliff with a high dark cave; on the right a low rock with a gnarled fig tree above a churning whirlpool; the narrow passage of black water between them; lightning far off in heavy clouds; a small Greek ship's prow at the very bottom edge.\nColour: near-black storm grey to cold sea teal (#080e14 to #2a4652) with white foam and a faint lightning-white accent.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 402,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 402
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1774
+  }
+}
