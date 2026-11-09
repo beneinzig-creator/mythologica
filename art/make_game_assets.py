@@ -11,7 +11,7 @@ Writes (all loaded by the game by relative path):
 Then rebuild the game:  cd tooling && python3 build.py n1.html   (patch46 reads cards.json)
 Python standard library + macOS sips only. Only files that are missing or older than their source are redone.
 """
-import argparse, json, os, subprocess
+import tempfile, argparse, json, os, subprocess
 
 ART = os.path.dirname(os.path.abspath(__file__))
 GAME = os.path.join(ART, 'game')
@@ -112,6 +112,21 @@ def main():
             made += shrink(src, os.path.join(GAME, 'back', fn), 256, fmt='png')
         else:
             made += shrink(src, os.path.join(GAME, 'icons', fn), 128 if fn.startswith('med_') else 96, fmt='png')
+    # home screen portraits and background
+    hdir = os.path.join(ART, 'home')
+    # the round frame shows the head, so each portrait is cut to a square around the face (on the 1024 source)
+    face_crop = {'ody': (1, 1, 620), 'odin': (190, 40, 640), 'wukong': (300, 1, 620)}  # sips treats an offset of 0 as 'centre'
+    for k, (x0, y0, side) in face_crop.items():
+        src, dst = os.path.join(hdir, k + '.webp'), os.path.join(GAME, 'home', k + '.jpg')
+        if os.path.exists(src) and (not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src)):
+            with tempfile.TemporaryDirectory() as t:  # sips only honours --cropOffset on a file in its own format
+                png = os.path.join(t, k + '.png')
+                subprocess.run(['sips', '-s', 'format', 'png', src, '--out', png], check=True, capture_output=True)
+                subprocess.run(['sips', '--cropToHeightWidth', str(side), str(side), '--cropOffset', str(y0), str(x0), png],
+                               check=True, capture_output=True)
+                subprocess.run(['sips', '-Z', '320', '-s', 'format', 'jpeg', '-s', 'formatOptions', '82', png, '--out', dst],
+                               check=True, capture_output=True)
+            made += 1
     # card back (game-wide) and the sigil on it
     bdir = os.path.join(ART, 'back')
     if os.path.exists(os.path.join(bdir, 'back.webp')):
