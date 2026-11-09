@@ -21,12 +21,12 @@ _b3("function renderDraft(){", "const RLMC={ody:['#07141d','#1c4760'],odin:['#0b
 _b3('<div class="dft"><div class="dhd">', '<div class="dft drf rl-${G.ch||\'ody\'}"><div class="dhd">')
 
 # --- styles ------------------------------------------------------------------------------------
-NOISE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E"
-         "%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E"
+NOISE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E"
+         "%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E"
          "%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E"
          "%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")")
 VEIN = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='v'%3E"
-        "%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .018' numOctaves='4' seed='7' stitchTiles='stitch'/%3E"
+        "%3CfeTurbulence type='fractalNoise' baseFrequency='.005 .015' numOctaves='4' seed='7' stitchTiles='stitch'/%3E"
         "%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.6 .9'/%3E%3C/filter%3E"
         "%3Crect width='100%25' height='100%25' filter='url(%23v)'/%3E%3C/svg%3E\")")
 # Greek key (meander) unit, carved: dark groove + light lip
@@ -42,7 +42,8 @@ INC = "text-shadow:0 -1px 0 #000c,0 1px 0 #ffffff24"   # incised text
 
 ICSS = (
 # stone background everywhere (replaces table stripes)
-"body{background:radial-gradient(ellipse at 50% 50%,#0000 50%,#000a 100%)," + NOISE + "," + VEIN + ",radial-gradient(ellipse at 50% 110%,var(--b2),var(--b1) 75%);background-color:var(--b1)}"
+"body{background:radial-gradient(ellipse at 50% 50%,#0000 50%,#000a 100%)," + NOISE + "," + VEIN + ",radial-gradient(ellipse at 50% 110%,var(--b2),var(--b1) 75%);background-color:var(--b1);"
+"background-size:100% 100%,200px 200px,cover,100% 100%;background-repeat:no-repeat,repeat,no-repeat,no-repeat;background-attachment:fixed}"
 ".ovt{" + INC + "}.dsub{" + INC + "}"
 # hero select tiles as carved stone tablets
 ".htile{background:linear-gradient(#ffffff0a,#0000 40%)," + NOISE + ",#00000059;border:1px solid #ffffff14;"
