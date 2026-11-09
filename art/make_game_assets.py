@@ -81,7 +81,7 @@ def main():
         print(f'Card-back sigil: {pick}')
 
     # Fight backgrounds (all heroes that have any): art/game/scenes/<id>.jpg, plus
-    # art/game/scenes.json {opponent name: scene id}, which patch49 reads at build time.
+    # art/game/scenes.json {opponent name: {id, bg?}}, which patch49 reads at build time.
     sj = os.path.join(ART, 'scenes.json')
     scene_map = {}
     if os.path.exists(sj):
@@ -92,7 +92,7 @@ def main():
                 src = os.path.join(ART, 'scenes', hero, f'{sid}.webp')
                 if os.path.exists(src):
                     made += shrink(src, os.path.join(GAME, 'scenes', f'{sid}.jpg'), 1536, quality='72')
-                    scene_map[s['name']] = sid
+                    scene_map[s['name']] = {'id': sid, **({'bg': s['bg']} if s.get('bg') else {})}
         with open(os.path.join(GAME, 'scenes.json'), 'w', encoding='utf-8') as f:
             json.dump(scene_map, f, indent=0, sort_keys=True, ensure_ascii=False)
             f.write('\n')
