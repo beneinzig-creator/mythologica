@@ -3,20 +3,20 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "high",
   "size": "1024x1024",
-  "created": "2026-11-08 16:13:23",
-  "prompt": "A hero portrait for a card game's character-select screen, painted in the style of early-to-mid 1990s trading-card art: traditional gouache and ink, visible brushwork, matte and slightly worn like an old printed card, rustic rather than glossy. Head and shoulders, nearly facing the viewer, strong readable silhouette, centred, with the background fading to near-black at the edges so it sits on a dark screen. No text, no letters, no border, no frame, no logo.\n\nSubject: Sun Wukong, the Monkey King of Journey to the West: a monkey warrior with golden fur and fierce golden eyes, the golden fillet around his head, a phoenix-feather cap, golden chain armour and his red-and-gold staff, standing on a swirling cloud, misty Chinese mountains behind, with the feel of classical Chinese ink painting.",
+  "created": "2026-11-09 15:20:41",
+  "prompt": "A hero portrait for a card game's character-select screen, made by hand like a 1993 fantasy trading-card or game-book illustration, the same look as the game's cards: confident black pen-and-ink outlines around every shape, ink hatching in the shadows, filled with flat, slightly blotchy gouache and watercolour washes, visible brush marks and the rough off-white paper grain showing through, colours a little faded and misregistered like an old printed card. A limited palette of 4 or 5 colours, dark overall. Stylised and graphic with bold simple shapes, not realistic: no smooth skin rendering, no soft glow, no rim light, no sunset glare, no depth of field, no oil-painting polish, no 3D, not modern digital concept art, not a heroic movie poster. Not head-on and not looking at the viewer: the figure is seen from an angle, caught in a moment of their story. Head and upper body fill the square and may be cropped by the edges; the background is simple and dark and falls to near-black at the edges so it sits on a dark screen. No text, no letters, no border, no frame, no logo.\n\nSubject: Sun Wukong, the Monkey King of Journey to the West, seen from above and behind at a steep angle, crouched on a curling cloud and turning his head back toward the viewer with a sly grin, his red-and-gold staff balanced across his shoulders, golden fur, the golden fillet on his brow and a phoenix-feather cap. Misty ink-wash mountain peaks far below. Colours of red, dull gold and ink black, with the brush rhythm of classical Chinese ink painting mixed into the pen-and-ink style.",
   "revised_prompt": null,
   "usage": {
-    "input_tokens": 179,
+    "input_tokens": 360,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 179
+      "text_tokens": 360
     },
     "output_tokens": 1756,
     "output_tokens_details": {
       "image_tokens": 1756,
       "text_tokens": 0
     },
-    "total_tokens": 1935
+    "total_tokens": 2116
   }
 }
