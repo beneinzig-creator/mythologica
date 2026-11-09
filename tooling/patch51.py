@@ -66,3 +66,16 @@ _b3(_NM_OLD, _NM_NEW)
 _b3('.dft{position:absolute;inset:0;display:flex;',
     '.cd.af .nm b.nl{font-size:.72em;letter-spacing:-.01em}.cd.af .nm b.nx{font-size:.62em;letter-spacing:-.02em}'
     '.dft{position:absolute;inset:0;display:flex;')
+
+
+# The Offering badge as a coin (Ben): a round silver-grey coin with a raised rim, the skull embossed
+# faintly into its face, and the number struck on top in the woodcut numerals.
+_b3('.dft{position:absolute;inset:0;display:flex;',
+    '.cd.af .ar>.ob{width:2.4em;height:2.4em;padding:0!important;border-radius:50%;display:flex;align-items:center;justify-content:center;'
+    'background:radial-gradient(circle at 36% 30%,#f2f0ea,#c4beb1 40%,#958e80 72%,#6e675b);color:#1d1810;'
+    'border:1px solid #39342b;box-shadow:inset 0 0 0 2px #aaa497,inset 0 0 0 3px #5a5449,inset 0 -2px 4px #0006,0 1px 3px #000b}'
+    '.cd.af .ar>.ob::before{content:"";position:absolute;inset:16%;border-radius:50%;background:url(art/game/icons/offering.png) center/contain no-repeat;'
+    'opacity:.55;filter:grayscale(1) contrast(1.4) brightness(.9);pointer-events:none}'
+    '.cd.af .ar>.ob .obi{display:none}'
+    '.cd.af .ar>.ob .dg{position:relative;height:1.25em}'
+    '.dft{position:absolute;inset:0;display:flex;')
