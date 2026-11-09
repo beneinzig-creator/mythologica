@@ -6,3 +6,5 @@ tooling/rs_*.done
 __pycache__/
 .vercel
 .env*
+tooling/bal/bank_*.jsonl
+tooling/bal/*.part

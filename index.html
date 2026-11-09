@@ -225,7 +225,7 @@ if(c.def)L.push('Defense form: +2 health and cannot attack.'+(has(c,'p')?' Phala
 for(const k of c.f)if(KWL[k])L.push(KWL[k]+(k=='z'&&c.rs?' (already used)':''));if(has(c,'w')&&!c.f.includes('w'))L.push(KWL.w+' (from The Black Ship)');if(SELF[c.id])L.push(SELF[c.id]);if(c.sick&&t!='h'&&t!='d'&&t!='v'&&t!='k')L.push('Fatigue: cannot attack yet.');
 if(c.tap)L.push(c.frz?'Frozen: tapped and skips its next untap.':'Tapped: cannot attack or block until it untaps. Opposing army members can target it.');
 if(c.ta||c.td)L.push('Until end of turn: '+sg(c.ta)+'/'+sg(c.td)+'.');if(c.pa||c.pd)L.push('Permanent spell effect: '+sg(c.pa)+'/'+sg(c.pd)+'.');
-if(c.qy)L.push('<b>Quarry</b>: the Wild Hunt is hunting this army member. Hunt riders deal 3 extra damage to it.');if(c.dmg)L.push('Wounded: '+c.dmg+' damage. Only healing cards restore it.');if(c.forced)L.push('Enthralled: must attack next turn.');
+if(c.qy)L.push('<b>Quarry</b>: the Wild Hunt is hunting this army member. Hunt riders deal 2 extra damage to it.');if(c.dmg)L.push('Wounded: '+c.dmg+' damage. Only healing cards restore it.');if(c.forced)L.push('Enthralled: must attack next turn.');
 const pr=prest(c);if(pr)L.push(pr)}
 else{L.push((TXT[c.id]||d[6])+(c.dis&&!WDIS.includes(c.id)?' Disintegrate.':'')+(c.disc&&c.dis?' (Costs '+c.disc+' less.)':''));{const pr=prest(c);if(pr)L.push(pr)}if(c.id=='horse')L.push('Opens in '+(2-c.t)+' turn(s).')}
 if(c.dis&&isC(c))L.push('Disintegrate.');GL(c,L);return`<div class="fxp${t=='h'||t=='d'?' up':''}">${L.map(y=>`<p>${y}</p>`).join('')}</div>`};
@@ -1113,7 +1113,7 @@ const HUNT=['hhnd','hrdr','hwld','hmst'];
 let QK=[];
 const duelOn=()=>!!(G&&G.e&&G.e.bf&&G.e.bf.some(x=>x.id=='holm'));
 const AM=()=>duelOn()?2:5;
-const qB=(t,src)=>(t&&t.qy&&src&&HUNT.includes(src.id))?3:0;
+const qB=(t,src)=>(t&&t.qy&&src&&HUNT.includes(src.id))?2:0;
 const RWORD=()=>((G&&G.ch)||'ody')=='odin'?'the Nine Worlds':((G&&G.ch)==='wukong'?'the Western Heaven':'the strait');
 const RWC=()=>RWORD().replace(/^t/,'T');
 const SAGA=()=>((G&&G.ch)||'ody')=='odin'?'The saga of Ragnarok':((G&&G.ch)==='wukong'?'The Journey to the West':'The Odyssey');
@@ -1131,7 +1131,7 @@ hwld:['Wild Huntsman',2,'C',3,3,'','','🏇','N',1],
 hmst:['Huntmaster of the Gandreid',3,'C',4,4,'fh','','🌩️','N',2],
 hhrn:['Horn of the Hunt',1,'S',0,0,'',"Tap target army member; it doesn't untap next turn.",'📯','N'],
 hhbt:["Hunter's Spear",2,'S',0,0,'','Deal 3 damage to target army member (more in later fights).','🏹','N'],
-hunt:['The Wild Hunt',0,'E',0,0,'w','Ward. At the start of its turn, the Hunt marks your strongest army member as the Quarry. Hunt riders deal 3 extra damage to the Quarry. A rider that kills the Quarry gets +1/+1 for the rest of the fight, and the Hunt draws a card.','🌩️','N'],
+hunt:['The Wild Hunt',0,'E',0,0,'w','Ward. At the start of its turn, the Hunt marks your strongest army member as the Quarry. Hunt riders deal 2 extra damage to the Quarry. A rider that kills the Quarry gets +1/+1 for the rest of the fight, and the Hunt draws a card.','🌩️','N'],
 htrl:['Rock-Troll',2,'C',3,3,'','','🪨','A',1],
 hgrt:['Gravel-Giant',3,'C',4,4,'','','🪨','A',2],
 hrung:['Hrungnir, the Stone-Hearted',4,'C',5,6,'z','Stone shield: takes 2 less combat damage from army members that do not fly.','🗿','A',3],
@@ -1208,7 +1208,7 @@ set('odin',5,'lrav:2,imp:3,skinw:2,lokis,lsnare,lcurse,lgale:2,lokib:2','ltax');
 
 /* ===== v82: elite fights ===== */
 Object.assign(D,{
-cup:['Circe\'s Cup',1,'E',0,0,'w','Ward. At the start of her turn, if you have no Swine, your strongest untapped army member that costs 3 or more (not a token) is turned into a Swine (1/1), and each Fawning Wolf and Mountain Lion she controls gets +1/+1 for the rest of the fight. When the Swine dies, is offered or leaves play, the original returns to your hand and costs 1 less to play.','🍷','G'],
+cup:['Circe\'s Cup',1,'E',0,0,'w','Ward. At the start of her turn, if you have no Swine, your strongest untapped army member that costs 3 or more (not a token) is turned into a Swine (1/1). When the Swine dies, is offered or leaves play, the original returns to your hand and costs 1 less to play.','🍷','G'],
 swine:['Swine',0,'C',1,1,'','Turned by Circe\'s cup. When it dies or leaves play, the original army member returns to your hand and costs 1 less to play.','🐖','G',1],
 cwolf:['Fawning Wolf',2,'C',3,2,'r','','🐺','G',1],
 clion:['Mountain Lion of Aeaea',3,'C',4,4,'r','','🦁','G',2],
@@ -1257,7 +1257,7 @@ function sacrilege(s){const t=sacTrump(s);if(!t)return;t.k=(t.k||0)+1;log('Sacri
 Object.assign(DEATH,{cow:{p:2,fn:s=>sacrilege(s)},bull:{p:2,fn:s=>sacrilege(s)}});
 function atoneHook(s,c){if(s!==G.p||!isC(c)||!G.e||!G.e.bf)return;const t=sacTrump(G.e);if(t&&(t.k||0)>0){t.k--;log('Your offering atones: the Sun God\'s tally falls to '+t.k+'.')}}
 /* --- Circe --- */
-function circeStart(){const e=G.e,p=G.p;if(!e||!e.bf.some(x=>x.id=='cup')||p.bf.some(x=>x.id=='swine'))return;const L=tg(p).filter(c=>!c.tap&&D[c.id][1]>=3&&!TOKE.includes(c.id)).sort((a,b)=>ev(b)-ev(a));const t=L[0];if(!t)return;const sw=mk('swine');sw.orig=t;sw.sick=t.sick;sw.tap=0;sw.def=t.def;p.bf[p.bf.indexOf(t)]=sw;log('Circe\'s cup turns '+D[t.id][0]+' into a Swine!');cr(e).filter(c=>c.id=='cwolf'||c.id=='clion').forEach(c=>{c.pa++;c.pd++});sweep()}
+function circeStart(){const e=G.e,p=G.p;if(!e||!e.bf.some(x=>x.id=='cup')||p.bf.some(x=>x.id=='swine'))return;const L=tg(p).filter(c=>!c.tap&&D[c.id][1]>=3&&!TOKE.includes(c.id)).sort((a,b)=>ev(b)-ev(a));const t=L[0];if(!t)return;const sw=mk('swine');sw.orig=t;sw.sick=t.sick;sw.tap=0;sw.def=t.def;p.bf[p.bf.indexOf(t)]=sw;log('Circe\'s cup turns '+D[t.id][0]+' into a Swine!');sweep()}
 function swineBack(s,c){if(!c.orig)return;const o=c.orig;c.orig=0;Object.assign(o,{tap:0,dmg:0,def:0,att:0,sw:0,sick:1,frz:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,forced:0,disc:1});s.hand.push(o);log(D[o.id][0]+' is restored and returns to '+(s===G.p?'your':'its')+' hand.')}
 /* --- Norns --- */
 function foretell(){const e=G.e;if(!e||!e.bf.some(x=>x.id=='fate')||e.fore||!e.hand.length)return;const L=e.hand.filter(c=>D[c.id][1]>=2&&(D[c.id][2]!='C'||cr(e).length<AM())).sort((a,b)=>D[b.id][1]-D[a.id][1]);const c=L[0];if(!c)return;e.hand=e.hand.filter(x=>x!==c);e.fore=c;const ph=mk('foretold');ph.fc=c;e.bf.push(ph);log('The Norns foretell '+D[c.id][0]+': it will be played free at the start of their next turn.');return c}
@@ -1400,7 +1400,7 @@ function fxRun(p,c,t){
  FX[c.id](p,G.e,t);
  if(p.mir&&c.id!='wmirror'){p.mir=0;log('Mirror Hair: it is cast again!');FX[c.id](p,G.e,t)}}
 function wkBar(){const p=G.p;if(!p||G.ch!='wukong')return'';return`<span class="cn" title="Momentum rises each time you play a card of a different type (Strike, Trick, Leap) than the card before it. It resets every turn.">⛓ Momentum ${p.mo||0} · ${p.cp||0} played${p.lt?' · last: '+WTN[p.lt]:''}</span>`}
-function dcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(D[c.id][2]!='C')return 0;if(!G.p.hand.includes(c))return 0;return(G.p.ep===G.turn||!G.e.bf.some(x=>x.id=='decree'))?0:1}
+function dcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(D[c.id][2]!='C')return 0;if(!G.p.hand.includes(c))return 0;return(G.p.ep===G.turn||D[c.id][1]>2||!G.e.bf.some(x=>x.id=='decree'))?0:1}
 function webHook(c){if(!c||c.side!='p'||!G.e.bf.some(x=>x.id=='cweb'))return;const L=c.atk.map(u=>G.p.bf.find(x=>x.u==u)).filter(Boolean);if(!L.length)return;const a=L.sort((x,y)=>pwr(y)-pwr(x))[0];a.tap=1;a.frz=1;log('The Cobweb binds '+D[a.id][0]+': it will not untap next turn.')}
 function sFire(c){if(!c||c.side!='e'||!G.e.bf.some(x=>x.id=='sfire'))return;const seen=new Set();for(const u of c.atk){for(const bu of[c.blk[u],c.bx&&c.bx[u]]){if(!bu||seen.has(bu))continue;seen.add(bu);const b=G.p.bf.find(x=>x.u==bu);if(b){b.dmg++;log('True Samadhi Fire scorches '+D[b.id][0]+' for 1.')}}}}
 /* effects */
@@ -1457,7 +1457,7 @@ Object.assign(DEATH,{wclone:{p:2,fn:s=>{wkShuffle(s,'whair',1);log('The Clone va
 Object.assign(D,{
 cweb:['Cobweb',1,'E',0,0,'w','Ward. The first army member that attacks each turn does not untap next turn.','🕸️','G'],
 gourd:['Gourd of Names',1,'E',0,0,'w','Ward. The first spell you cast each turn that targets one of their army members is swallowed: it does nothing.','🏺','A'],
-decree:['Heavenly Decree',0,'E',0,0,'w','Ward. The first army member you play each turn costs 1 more.','📜','W'],
+decree:['Heavenly Decree',0,'E',0,0,'w','Ward. The first army member that costs 2 or less you play each turn costs 1 more.','📜','W'],
 sfire:['True Samadhi Fire',1,'E',0,0,'w','Ward. Army members that block their army members take 1 damage first.','🔥','R'],
 spd1:['Cave Spiderling',1,'C',2,1,'f','','🕷️','G',1],
 spd2:['Silk-Spinner',2,'C',2,3,'w','','🕸️','G',1],
@@ -1841,7 +1841,7 @@ Object.assign(D,{
 mtrump:['The Second Self',1,'E',0,0,'w','Ward. The first army member you play each turn is mimicked: a copy joins their army if there is room, and vanishes for good when it dies.','👥','E'],
 bfury:['Fury of the Bull',1,'E',0,0,'w','Ward. At the start of their turn, each of their army members gets +1/+0 until end of turn.','🐃','R'],
 palm:['The Five-Finger Mountain',1,'E',0,0,'w','Ward. Each card you play after the third in a turn costs 2 more.','🏔️','E'],
-ifan:['The Banana-Leaf Fan',1,'E',0,0,'w','Ward. At the start of their turn, the most expensive army member you control that costs 2 or more is blown back to your hand.','🪭','U'],
+ifan:['The Banana-Leaf Fan',1,'E',0,0,'w','Ward. At the start of their turn, the most expensive army member you control that costs 3 or more is blown back to your hand.','🪭','U'],
 mmon:['Shadow Monkey',1,'C',1,2,'','','👥','E',1],
 mape:['Mimic Ape',2,'C',3,2,'q','','🦧','E',1],
 mear:['Listening Ear',3,'C',2,5,'','When it enters, draw a card.','👂','E',2],
@@ -1877,7 +1877,7 @@ CHARS.wukong.el.push(ELITES.length-1);
 function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;return (G.p.cp||0)>=3&&G.p.hand.includes(c)&&G.e.bf.some(x=>x.id=='palm')?2:0}
 function bossStart(){const e=G.e,p=G.p;if(!e||!e.bf||!p)return;
  if(e.bf.some(x=>x.id=='bfury')){cr(e).forEach(c=>{c.ta=(c.ta||0)+1});if(cr(e).length)log("The Bull Demon King's fury surges: their army members get +1/+0 until end of turn.")}
- if(e.bf.some(x=>x.id=='ifan')){const L=cr(p).filter(x=>D[x.id][1]>=2).sort((a,b)=>D[b.id][1]-D[a.id][1]||pwr(b)-pwr(a));if(L.length){log('The Iron Fan gusts: '+D[L[0].id][0]+' is blown back to your hand.');bounce(L[0])}}}
+ if(e.bf.some(x=>x.id=='ifan')){const L=cr(p).filter(x=>D[x.id][1]>=3).sort((a,b)=>D[b.id][1]-D[a.id][1]||pwr(b)-pwr(a));if(L.length){log('The Iron Fan gusts: '+D[L[0].id][0]+' is blown back to your hand.');bounce(L[0])}}}
 {const op=wkPlay;wkPlay=function(p,c){op(p,c);const e=G.e;if(p===G.p&&D[c.id][2]=='C'&&e&&e.bf&&e.bf.some(x=>x.id=='mtrump')&&e.mcT!==G.turn){e.mcT=G.turn;if(cr(e).length<AM()){const n=mk(c.id);n.dis=1;enter(e,n);n.sick=1;log('The Six-Eared Macaque mimics '+D[c.id][0]+'.')}}}}
 /* ===== deck balance at the common health ===== */
 CHARS.odin.en[0].d=ids('pup:2,wolf:3,hati,skoll,fenr');
@@ -2122,6 +2122,52 @@ if(typeof window!=='undefined'&&typeof document!=='undefined'&&typeof gsap!=='un
  {const _f=fight;fight=function(){const out=_f.apply(this,arguments);try{if(GSOK()&&(G.boss||G.elt))gsap.delayedCall(.1,fxIntro)}catch(e){}return out}}
  {const _rs=resolve;resolve=function(){if(!GSOK()||!G.cmb)return _rs.apply(this,arguments);if(FXS.lunging)return;const a=arguments,self=this;fxLunge(()=>{const lp=G.p.life;_rs.apply(self,a);try{if(G.p.life<lp)SFX.play('hurt')}catch(e){}})}}
 }
+
+/* ===== v103 balance pass ===== */
+CHARS.ody.en[3].d=ids('shade1:5,mourner:5,warden:3,libation,pit');
+CHARS.ody.en[5].d=ids('mraid:3,mskirm:2,mpill:2,chief,drums,burn:2,javel,cbow:2');
+CHARS.odin.en[0].d=ids('pup:6,wolf:5,hati,skoll,fenr');
+CHARS.odin.en[2].d=ids('dmin:2,dsmith:4,dxbow:4,brokk,golem,anvl,dshld,drpn,dbolt');
+CHARS.odin.en[1].d=ids('ithrl:6,rimew:5,hgnt:2,icesp:2');
+CHARS.odin.en[4].d=ids('draug:5,wight:3,hgrd:4,nidh,hgrasp:2');
+CHARS.odin.en[5].d=ids('lrav:2,imp:5,skinw:2,lokis,lsnare,lcurse,lgale:2,lokib:2');
+CHARS.wukong.en[1].d=ids('hsol:5,hcap:4,hsil:3,hgol,hrope:2,hbot');
+CHARS.wukong.en[2].d=ids('hsd:3,hhd:3,hgn:2,hnz:2,hpg:2,hbot');
+CHARS.wukong.en[3].d=ids('rimp:5,rgrd:5,rspr:2,rboy,rflm:2');
+CHARS.wukong.en[4].d=ids('bsk:5,bghl:4,bhag:4,bsp,hrope:4');
+{const E=n=>ELITES.find(x=>x.n.startsWith(n));
+E('Circe').d=ids('cwolf:3,clion:2,cmaid:4,circe,cwand:2,cdraft:2');
+E('Cattle').d=ids('cow:5,bull:2,lamp:2,neith:3,helios,scorch:2');
+E('The Norns').d=ids('urd,verd:2,skuld,nspin:6,nwarr:3,ndoom');
+E('Fáfnir').d=ids('fafn,fgrd:5,fworm:4,regin:2,dbrth,fspit:2');
+E('Erlang').d=ids('eplum:5,ehnd:4,eerl:2,esw:2,hnet');
+E('Princess Iron Fan').d=ids('iwnd:4,imaid:5,iguard:3,iprin,hnet');}
+{const B=n=>BOSS.find(x=>x.n.startsWith(n));
+B('Hector').d=ids('hmil:4,hspr:4,hgua:2,hchar,hector,priam,gift,tide');
+B('Scylla').d=ids('sh1:4,sh2:4,sh3:2,sh4:2,scyl,curse,javel');
+B('Charybdis').d=ids('cdro:5,cspa:5,ceel:3,clev:3,chary,undertow:2,honey,tide');
+B('Jörmungandr').d=ids('jsnk:5,jcrw:4,jorm,jbck:2,jgrp:2,jspt');
+B('The Wild Hunt').d=ids('hhnd:4,hrdr:4,hwld:2,hmst,hhrn:2,hhbt');
+B('Hrungnir').d=ids('hrung,hmokk,htrl:5,hgrt:3,hwhet,hmead');
+B('The Six-Eared').d=ids('mmon:5,mape:4,mear:2,mac6,mecho:2');
+B('The Bull Demon').d=ids('bgrd:5,bcap:5,bhrn:3,bdk,rflm:2');
+B("The Buddha").d=ids('pdis:5,pfin:5,pgrd:4,plm,cocn:2,hbot:2');}
+
+/* life */
+CHARS.ody.en[1].l=16;CHARS.ody.en[2].l=14;CHARS.ody.en[3].l=9;CHARS.ody.en[5].l=14;CHARS.odin.en[0].l=10;CHARS.odin.en[1].l=11;CHARS.odin.en[4].l=12;CHARS.odin.en[5].l=14;CHARS.wukong.en[1].l=14;CHARS.wukong.en[2].l=11;CHARS.wukong.en[3].l=13;CHARS.wukong.en[4].l=17;CHARS.wukong.en[5].l=16;CHARS.ody.en[4].l=14;CHARS.ody.en[5].l=13;CHARS.odin.en[0].l=9;CHARS.odin.en[5].l=15;
+
+/* visible enemy ramp: one shared table for every hero (Act I fights 1-4), no hidden per-hero or per-enemy corrections */
+SCL[0]=[-4,0,0];SCL[1]=[-2,0,0];SCL[2]=[1,0,0];SCL[3]=[3,0,0];
+CFA.ody={};CFA.odin={};CFA.wukong={};CFAE.ody={};CFAE.odin={};CFAE.wukong={};
+/* elite and boss life */
+{const E=n=>ELITES.find(x=>x.n.startsWith(n)),B=n=>BOSS.find(x=>x.n.startsWith(n));
+E('Circe').l=13;E('Cattle').l=16;E('The Norns').l=10;E('Fáfnir').l=22;E('Erlang').l=17;E('Princess Iron Fan').l=18;
+B('Hector').l=15;B('Scylla').l=17;B('Charybdis').l=23;B('Jörmungandr').l=14;B('The Wild Hunt').l=14;B('The Wild Hunt').sc=[0,-1,0];B('Hrungnir').l=24;B('The Six-Eared').l=12;B('The Bull Demon').l=27;B("The Buddha").l=33;
+B('The Wild Hunt').d=ids('hhnd:3,hrdr:3,hwld:2,hmst,hhrn:2,hhbt');}
+/* base life per enemy, fitted to the visible ramp (fight 1 ~33%, fights 2-4 ~28%) */
+CHARS.odin.en[0].l=8;CHARS.odin.en[1].l=11;CHARS.odin.en[2].l=16;CHARS.odin.en[3].l=14;CHARS.odin.en[4].l=13;CHARS.odin.en[5].l=14;CHARS.ody.en[0].l=16;CHARS.ody.en[1].l=19;CHARS.ody.en[2].l=15;CHARS.ody.en[3].l=10;CHARS.ody.en[4].l=16;CHARS.ody.en[5].l=13;CHARS.wukong.en[0].l=14;CHARS.wukong.en[1].l=16;CHARS.wukong.en[3].l=12;CHARS.wukong.en[4].l=18;CHARS.wukong.en[5].l=15;
+/* Heavenly Host: steadier deck (the Decree now only taxes army members that cost 2 or less) */
+CHARS.wukong.en[2].d=ids('hsd:3,hhd:2,hgn,hnz,hpg:3,hbot:2');CHARS.wukong.en[2].l=11;
 
 fit();try{addEventListener('resize',fit)}catch(e){}
 showChars();

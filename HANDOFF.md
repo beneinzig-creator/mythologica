@@ -1085,6 +1085,24 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 - The AI deliberately does **not** account for the player's possible quick spells when checking lethal (Ben's rule), but it does consider whether it can block.
 - The enemy AI aims to deal as much damage to the player as possible (Spire-style), not to preserve itself. It takes lethal first and protects itself only when that makes sense.
 
+### 8.1 Balance pass v103 (2026-11-09) — supersedes the numbers above
+
+**What changed** (all in `tooling/patch_bal.py`, data in `tooling/bal/decks.js` + `tooling/bal/tune_vis.js`):
+- **Enemy decks no longer run dry.** Thin decks grew to 13–20 cards with more copies of their own commons (Shades 8→15, Fenrir 8→14, Jotnar 9→15, Horn Kings 11→16, every boss and elite a few cards). Enemy deck-outs fell from up to 96% of fights to at most ~30%.
+- **One visible enemy ramp for every hero.** Act I regular and elite enemies get −4 / −2 / +1 / +3 life in fights 1–4 and no power bonus. The per-hero hidden tables (`CFA`, `CFAE`) are now empty, so the map's "Next opponent" line is accurate. Hero differences live in each enemy's base life (Act I enemies are only fought by their own hero).
+- **Per-enemy base life** fitted to the ramp (fight 1 ≈ 33%, fights 2–4 ≈ 28%). Elite and boss life retuned.
+- **Rule tweaks:** Wild Hunt riders +2 (was +3) to the Quarry, and the Hunt's riders −1 power (`sc`). The Iron Fan only bounces army members costing 3+ (was 2+). The Heavenly Decree only taxes army members costing 2 or less (was any). Circe's Cup no longer gives her Wolves and Lions +1/+1 each time.
+- **Fight 1 vs the Heavenly Host** is easy (~48%) on purpose: its later fights were the problem, and those are three-quarters of the meetings.
+
+**Results** (real runs, 1,600 per hero, `bal/results/03_final_full_runs.txt`): fights 1–4 then boss — Odysseus 31/31/27/26/22, Odin 35/28/28/25/20, Wukong 37/32/25/25/26. Every regular enemy is 27–32% in real runs. Elites 25–30%. Bosses 19–30% (Bull Demon King and Buddha's Palm ~30%, worth a nudge).
+
+**Known:** Wukong's deck grows more slowly mid-run than the other heroes', so his fight 1 is easier (~37%) to keep fights 2–4 fair. A visible hero-side boost would fix that properly. Shades, Hel's Legion, Hrungnir and the Norns still stall in 10–20% of fights: the enemy sits in a full defensive wall when low on life. Fixing that needs a rule (an anti-stall clock), not numbers.
+
+**Tools** (in `tooling/`):
+- `simx.js`: `sim.js` plus deck-out and per-enemy stats, JSON output, `CONTALL` (keep going after losses so every run reaches the boss), `BANKOUT` / `BANK`+`BANKFILE` (record and replay real mid-run and boss-arrival decks).
+- `matrix.py html N reg,breg,elite,boss,curve`: parallel matrix. `breg`, `elite` and `boss` replay banked decks at the right fight number. Note that `OPP=100+i` and `200+i` take *global* `ELITES` / `BOSS` indices.
+- `runs.py`: real full runs with per-enemy results. `lifesweep.py`: life sweeps. `fit.py`: fits per-enemy base life to fight-1 and mid-run targets. `bankgen.sh`: regenerates the deck banks (`bal/bank_*.jsonl`, git-ignored).
+
 ---
 
 ## 9. Code architecture
