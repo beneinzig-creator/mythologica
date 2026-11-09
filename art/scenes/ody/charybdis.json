@@ -1,0 +1,22 @@
+{
+  "id": "charybdis",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-08 22:32:30",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the whirlpool of Charybdis from Homer's Odyssey: a low rock with a great gnarled fig tree at the far right, its roots gripping the stone; the edges of a vast spiralling whirlpool sweeping around the bottom and the left, with broken timbers, oars and a mast swirling in it; spray and mist rising; a dark sky with the faint arc of the strait's cliffs in the distance.\nColour: near-black deep blue to dark sea green (#06121a to #1d4a5a) with white spray and pale teal accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 397,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 397
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1769
+  }
+}

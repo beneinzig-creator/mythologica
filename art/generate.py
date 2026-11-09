@@ -143,6 +143,7 @@ def main():
     g.add_argument('--opponents', action='store_true', help="the hero's opponent cards and trumps")
     g.add_argument('--back', action='store_true', help='the card back and its sigil options')
     g.add_argument('--home', action='store_true', help='home screen: hero portraits and background')
+    g.add_argument('--scenes', nargs='?', const='', metavar='IDS', help='fight backgrounds, one per opponent (all, or a comma list)')
     g.add_argument('--icons', nargs='?', const='', metavar='IDS', help='game icons that replace emoji (all, or a comma list)')
     g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
     g.add_argument('--list-models', action='store_true', help='list image models your key can use')
@@ -167,14 +168,14 @@ def main():
     if a.opponents:
         cards = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero].get('opponents') or {}
         ids = list(cards)
-    elif a.frames or a.icons is not None or a.home or a.back:
-        section = 'frames' if a.frames else 'home' if a.home else 'back' if a.back else 'icons'
+    elif a.frames or a.icons is not None or a.scenes is not None or a.home or a.back:
+        section = 'frames' if a.frames else 'home' if a.home else 'back' if a.back else 'scenes' if a.scenes is not None else 'icons'
         m = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))
-        cards = (m.get(section) if section in ('home', 'back') else m['heroes'][a.hero].get(section)) or {}
+        cards = (m.get(section) if section in ('home', 'back', 'scenes') else m['heroes'][a.hero].get(section)) or {}
         if not cards:
             sys.exit(f'No {section} for {a.hero} yet. Each hero gets {section} in the style of their own '
                      f'mythology; add them in build_manifest.py.')
-        ids = [i.strip() for i in (a.icons or '').split(',') if i.strip()] or list(cards)
+        ids = [i.strip() for i in (a.icons or a.scenes or '').split(',') if i.strip()] or list(cards)
         a.frames = True  # same handling from here on: own size/format, no review page
     elif a.compare:
         ids = [i.strip() for i in a.compare.split(',') if i.strip()]
