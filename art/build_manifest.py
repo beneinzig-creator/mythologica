@@ -153,6 +153,10 @@ ICONS = {'ody': {
     'craft': 'Crafting table: the hammer and anvil of Hephaestus with a glowing ember.',
     'altar': 'Altar: a small stone altar with a thin column of offering smoke.',
     'greataltar': 'The great altar: the trident of Poseidon standing upright, faintly glowing.',
+    'coin': 'The Offering coin: a single antique silver Greek drachma seen perfectly straight-on, filling the frame, '
+            'worn and tarnished with a raised rim, small nicks and scratches, dark grime in the recesses and soft '
+            'rubbed highlights, its face mostly smooth with a faint, low-relief skull wreathed in laurel struck in the '
+            'centre. Matte, painted like the weathered frames of an old trading card; no shine, no text, no letters, no numbers.',
     'offering': 'The icon for the Offering (sacrifice) value on a Greek-mythology card: a weathered, '
                 'bone-white human skull seen from the front, aged and slightly cracked like an ancient relic, '
                 'with a thin sprig of laurel leaves tucked behind it. Solid and opaque, no glow, no smoke.',

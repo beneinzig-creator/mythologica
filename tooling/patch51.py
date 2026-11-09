@@ -79,3 +79,14 @@ _b3('.dft{position:absolute;inset:0;display:flex;',
     '.cd.af .ar>.ob .obi{display:none}'
     '.cd.af .ar>.ob .dg{position:relative;height:1.25em}'
     '.dft{position:absolute;inset:0;display:flex;')
+
+
+# The coin is a painted, worn silver drachma (art/game/icons/coin.png, same weathered style as the
+# frames) and smaller than the cost medallion: 14.5% of the art window is ~12% of the card width,
+# against the medallion's ~14%. The number sits on it with a faint light halo so it reads over the relief.
+_b3('.dft{position:absolute;inset:0;display:flex;',
+    '.cd.af .ar>.ob{width:14.5%;height:auto;aspect-ratio:1;padding:0!important;border:0;border-radius:50%;'
+    'background:url(art/game/icons/coin.png) center/contain no-repeat;box-shadow:none;filter:drop-shadow(0 1px 2px #000c)}'
+    '.cd.af .ar>.ob::before{display:none}'
+    '.cd.af .ar>.ob .dg{height:56%;filter:drop-shadow(0 0 .6px #f3efe4) drop-shadow(0 0 .6px #f3efe4) drop-shadow(0 0 1px #f3efe4cc)}'
+    '.dft{position:absolute;inset:0;display:flex;')
