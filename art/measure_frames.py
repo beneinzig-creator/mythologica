@@ -98,6 +98,17 @@ def main():
             boxes.update({k: pct(v, w, h) for k, v in MANUAL[hero][r].items()})
             out[r] = boxes
             print(f'{r:10} art window {art} of {w}x{h}')
+            # Variant for spells/items/modifiers: same layout, no power/health plaque.
+            sp = os.path.join(FR, f'{r}_spell.webp')
+            if os.path.exists(sp):
+                bmp2 = os.path.join(tmp, f'{r}_spell.bmp')
+                subprocess.run(['sips', '-s', 'format', 'bmp', sp, '--out', bmp2], check=True, capture_output=True)
+                w2, h2, get2 = read_bmp(bmp2)
+                art2 = find_black(w2, h2, get2)
+                b2 = {k: v for k, v in boxes.items() if k != 'pt'}
+                b2['art'] = pct(art2, w2, h2)
+                out[f'{r}_spell'] = b2
+                print(f'{r + "_spell":10} art window {art2}')
     with open(os.path.join(FR, 'layout.json'), 'w') as f:
         json.dump(out, f, indent=1)
         f.write('\n')

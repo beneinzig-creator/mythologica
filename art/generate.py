@@ -140,6 +140,7 @@ def main():
     g.add_argument('--ids', help='comma-separated card ids')
     g.add_argument('--all', action='store_true', help='every card in the manifest')
     g.add_argument('--frames', action='store_true', help='the blank card frame templates, one per rarity')
+    g.add_argument('--home', action='store_true', help='home screen: hero portraits and background')
     g.add_argument('--icons', nargs='?', const='', metavar='IDS', help='game icons that replace emoji (all, or a comma list)')
     g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
     g.add_argument('--list-models', action='store_true', help='list image models your key can use')
@@ -161,10 +162,10 @@ def main():
         return
 
     cards = load_cards(a.hero)
-    if a.frames or a.icons is not None:
-        section = 'frames' if a.frames else 'icons'
+    if a.frames or a.icons is not None or a.home:
+        section = 'frames' if a.frames else 'home' if a.home else 'icons'
         m = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))
-        cards = m['heroes'][a.hero].get(section) or {}
+        cards = (m.get('home') if a.home else m['heroes'][a.hero].get(section)) or {}
         if not cards:
             sys.exit(f'No {section} for {a.hero} yet. Each hero gets {section} in the style of their own '
                      f'mythology; add them in build_manifest.py.')

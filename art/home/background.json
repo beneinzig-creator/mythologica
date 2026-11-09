@@ -1,0 +1,22 @@
+{
+  "id": "background",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-08 16:13:52",
+  "prompt": "A wide, very dark, atmospheric background painting for the title screen of a mythology card game: a vast night sea under stars, with faint distant silhouettes along the horizon from three mythologies: a Greek temple on a cliff at the left, a Norse longhall beneath the great world tree in the middle distance, Chinese mountain peaks and a pagoda among clouds at the right. Low contrast and dark overall, most of the detail near the edges and bottom, the centre calm and empty so a title and buttons can sit on top. Rustic 1990s hand-painted style, gouache, matte. No text, no letters, no people in the foreground.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 139,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 139
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1511
+  }
+}
