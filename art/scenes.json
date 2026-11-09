@@ -1,5 +1,5 @@
 {
-  "_note": "Fight backgrounds, one per opponent. Key = scene id (art/scenes/<hero>/<id>.webp). 'setting' is the myth-true place; 'palette' follows the opponent's bg colours in the game (bosses have none in the game yet, so theirs are chosen here). build_manifest.py combines these with SCENE_BASE into the 'scenes' section of manifest.json.",
+  "_note": "Fight backgrounds, one per opponent. Key = scene id (art/scenes/<hero>/<id>.webp). 'setting' is the myth-true place; 'palette' follows the opponent's bg colours in the game (bosses have none in the game yet, so theirs are chosen here). build_manifest.py combines these with SCENE_BASE into the 'scenes' section of manifest.json. Optional 'bg': [dark, light] gradient colours for opponents that have none in the game (the bosses); the game uses them on that fight's screen.",
   "ody": {
     "lotus": {
       "name": "The Lotus-Eaters",
@@ -44,17 +44,29 @@
     "hector": {
       "name": "Hector, Tamer of Horses",
       "setting": "before the walls of Troy in Homer's Iliad: the towering stone walls and the great Scaean Gate of Ilium along the right edge, with bronze-shielded Trojan spearmen ranked as a dark line along the battlements; the dusty plain of Troy with broken chariots, spears and fallen shields at the lower corners; Greek ships and tents far off by the sea at the left; a smoky bronze dusk sky",
-      "palette": "near-black umber to dull bronze (#1a1208 to #8a5a24) with burnished gold accents"
+      "palette": "near-black umber to dull bronze (#1a1208 to #8a5a24) with burnished gold accents",
+      "bg": [
+        "#1a1208",
+        "#8a5a24"
+      ]
     },
     "scylla": {
       "name": "Scylla",
       "setting": "the strait of Scylla from Homer's Odyssey: a sheer, towering cliff along the left edge with a dark cave mouth high up, from which long serpentine necks with snapping dog-like heads coil down; wet rocks and churning foam at the cliff's foot; the narrow strait running away into storm cloud at the right; a small Greek ship far off; a cold, grey, windy sky",
-      "palette": "near-black blue-grey to cold sea green (#08141a to #2f5560) with bone-white foam and a few dark red accents"
+      "palette": "near-black blue-grey to cold sea green (#08141a to #2f5560) with bone-white foam and a few dark red accents",
+      "bg": [
+        "#08141a",
+        "#2f5560"
+      ]
     },
     "charybdis": {
       "name": "Charybdis",
       "setting": "the whirlpool of Charybdis from Homer's Odyssey: a low rock with a great gnarled fig tree at the far right, its roots gripping the stone; the edges of a vast spiralling whirlpool sweeping around the bottom and the left, with broken timbers, oars and a mast swirling in it; spray and mist rising; a dark sky with the faint arc of the strait's cliffs in the distance",
-      "palette": "near-black deep blue to dark sea green (#06121a to #1d4a5a) with white spray and pale teal accents"
+      "palette": "near-black deep blue to dark sea green (#06121a to #1d4a5a) with white spray and pale teal accents",
+      "bg": [
+        "#06121a",
+        "#1d4a5a"
+      ]
     }
   }
 }
