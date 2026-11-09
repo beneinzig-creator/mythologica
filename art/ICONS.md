@@ -45,7 +45,7 @@ Inventory of `tooling/n1.html` (Nov 2026): 225 different emoji, used 627 times. 
 | 💰 | Gold (hoard trump) | status line | a small heap of silver drachmas |
 | 🌀 | Whirlpool countdown (Charybdis) | status line in that fight | a churning whirlpool seen from above |
 
-Not in scope: ⛓ Momentum (Wukong only). 🎁 "A Gift from the One True God" (an Act 2 bonus; decide its style with Act 2).
+Not in scope: ⛓ Momentum (Wukong only). 🎁 "A Gift from the One True God" (a one-off bonus message; where it appears is still to check).
 
 ## C. Map icons (7)
 
