@@ -8,6 +8,7 @@
     python3 art/generate.py --all --dry-run   # show what would run, spend nothing
     python3 art/generate.py --list-models     # image models your key can use
     python3 art/generate.py --compare         # same 3 cards at low / medium / high, side by side
+    python3 art/generate.py --frames          # the blank card frames, one per rarity
 
 Existing images are skipped (use --force to redo one). Each image also gets a
 small .json note next to it with the model and prompt that made it, and
@@ -138,6 +139,7 @@ def main():
     g.add_argument('--test', action='store_true', help='the 5-card test batch: ' + ', '.join(TEST_BATCH))
     g.add_argument('--ids', help='comma-separated card ids')
     g.add_argument('--all', action='store_true', help='every card in the manifest')
+    g.add_argument('--frames', action='store_true', help='the blank card frame templates, one per rarity')
     g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
     g.add_argument('--list-models', action='store_true', help='list image models your key can use')
     g.add_argument('--compare', nargs='?', const=','.join(COMPARE_IDS), metavar='IDS',
@@ -158,7 +160,14 @@ def main():
         return
 
     cards = load_cards(a.hero)
-    if a.compare:
+    if a.frames:
+        m = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))
+        cards = m['heroes'][a.hero].get('frames') or {}
+        if not cards:
+            sys.exit(f'No frames for {a.hero} yet. Each hero gets frames in the style of their own mythology; '
+                     'add them to FRAMES in build_manifest.py.')
+        ids = list(cards)
+    elif a.compare:
         ids = [i.strip() for i in a.compare.split(',') if i.strip()]
     elif a.test:
         ids = TEST_BATCH
@@ -183,12 +192,13 @@ def main():
         jobs = [(i, os.path.join(ART, 'compare', f'{i}_{q}.webp'), q) for i in ids for q in QUALITIES]
     else:
         jobs = [(i, os.path.join(ROOT, cards[i]['output']), a.quality) for i in ids]
+    sizes = {i: cards[i].get('size', a.size) for i in ids}
     todo = [j for j in jobs if a.force or not os.path.exists(j[1])]
     costs = [est(a.model, q) for _, _, q in todo]
     cost = f', about ${sum(costs):.2f}' if todo and None not in costs else ''
     print(f'{len(jobs)} images selected, {len(jobs) - len(todo)} already exist, {len(todo)} to generate '
-          f'with {a.model} ({"low/medium/high" if a.compare else a.quality}, {a.size}){cost}.')
-    finish = (lambda: write_compare(cards, ids)) if a.compare else (lambda: write_review(cards))
+          f'with {a.model} ({"low/medium/high" if a.compare else a.quality}, {"1024x1536" if a.frames else a.size}){cost}.')
+    finish = (lambda: write_compare(cards, ids)) if a.compare else (lambda: None) if a.frames else (lambda: write_review(cards))
     if a.dry_run:
         for i, out, q in todo:
             print(f'  {i:10} {q:7} -> {os.path.relpath(out, ROOT)}')
@@ -204,7 +214,7 @@ def main():
         os.makedirs(os.path.dirname(out), exist_ok=True)
         print(f'[{n}/{len(todo)}] {cid} ({c["name"]}, {quality}) ...', end=' ', flush=True)
         t = time.time()
-        body = {'model': a.model, 'prompt': c['prompt'], 'size': a.size, 'quality': quality,
+        body = {'model': a.model, 'prompt': c['prompt'], 'size': sizes.get(cid, a.size), 'quality': quality,
                 'n': 1, 'output_format': 'webp', 'output_compression': 85}
         for attempt in range(3):
             try:
@@ -235,7 +245,7 @@ def main():
             continue
         with open(out, 'wb') as f:
             f.write(base64.b64decode(r['data'][0]['b64_json']))
-        meta = {'id': cid, 'model': a.model, 'quality': quality, 'size': a.size,
+        meta = {'id': cid, 'model': a.model, 'quality': quality, 'size': sizes.get(cid, a.size),
                 'created': time.strftime('%Y-%m-%d %H:%M:%S'), 'prompt': c['prompt'],
                 'revised_prompt': r['data'][0].get('revised_prompt'), 'usage': r.get('usage')}
         with open(os.path.splitext(out)[0] + '.json', 'w', encoding='utf-8') as f:
@@ -244,7 +254,8 @@ def main():
 
     finish()
     print(f'\nDone. {len(todo) - len(failed)} made, {len(failed)} failed{": " + ", ".join(failed) if failed else ""}.')
-    print('Open the results:  open art/' + ('compare.html' if a.compare else 'review.html'))
+    if not a.frames:
+        print('Open the results:  open art/' + ('compare.html' if a.compare else 'review.html'))
 
 
 if __name__ == '__main__':
