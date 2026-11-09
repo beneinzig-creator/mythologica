@@ -1,0 +1,22 @@
+{
+  "id": "ui_button",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-09 14:49:00",
+  "prompt": "One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the width of the image: weathered dark bronze with a raised engraved border line, small rivets at both ends, worn edges and green-brown patina; the centre is plain and flat for a label. Rustic 1990s hand-painted style. Fully transparent background around the plate. No text, no letters.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 91,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 91
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1463
+  }
+}

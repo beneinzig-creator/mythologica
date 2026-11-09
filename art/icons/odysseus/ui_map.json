@@ -1,0 +1,22 @@
+{
+  "id": "ui_map",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-09 14:47:36",
+  "prompt": "An antique sea chart of the Aegean and the wanderings of Odysseus, painted on aged, stained and creased parchment: faint coastlines and islands, a compass rose, small sea monsters and ships drawn in faded ink at the margins, wind heads in the corners; muted sepia, umber and faded sea-green. The centre is mostly open sea with very few marks so game icons can sit on top. Rustic 1990s hand-painted style. No text, no letters, no labels.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 111,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 111
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1483
+  }
+}

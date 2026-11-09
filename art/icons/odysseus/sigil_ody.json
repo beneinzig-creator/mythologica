@@ -1,0 +1,22 @@
+{
+  "id": "sigil_ody",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-09 14:47:02",
+  "prompt": "A single emblem for the back of every card in Odysseus's deck: a Greek black ship in side profile as painted on ancient Greek pottery, black-figure style: a long low hull with a curved prow and a painted eye, one mast with a square sail, a row of oars, stylised waves beneath. Rendered in worn gold leaf and bronze, rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No text, no letters, no circle behind it.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 111,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 111
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1867
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "arch_M",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-09 14:50:08",
+  "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Marauders (the Cicones): a Thracian battle axe.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 88,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 88
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1844
+  }
+}

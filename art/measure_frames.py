@@ -71,6 +71,25 @@ def find_black(w, h, get, thr=14):
     return x0, y0, x1 + 1, y1 + 1
 
 
+def find_circle(w, h, get, box, thr=135):
+    """Flood-fill the light parchment inside the cost medallion from the middle of its box.
+    Returns (cx, cy, diameter) in pixels of the painted circle's inner fill."""
+    x0, y0, x1, y1 = box
+    mx, my = (x1 - x0) // 3, (y1 - y0) // 3
+    lim = (max(0, x0 - mx), max(0, y0 - my), min(w, x1 + mx), min(h, y1 + my))
+    lum = lambda x, y: sum(get(x, y)) / 3
+    sx, sy = (x0 + x1) // 2, (y0 + y1) // 2
+    seen, stack = set(), [(sx, sy)]
+    while stack:
+        x, y = stack.pop()
+        if (x, y) in seen or not (lim[0] <= x < lim[2] and lim[1] <= y < lim[3]) or lum(x, y) < thr:
+            continue
+        seen.add((x, y))
+        stack += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+    xs, ys = [p[0] for p in seen], [p[1] for p in seen]
+    return (min(xs) + max(xs) + 1) / 2, (min(ys) + max(ys) + 1) / 2, ((max(xs) - min(xs) + 1) + (max(ys) - min(ys) + 1)) / 2
+
+
 def pct(box, w, h):
     x0, y0, x1, y1 = box
     return [round(100 * x0 / w, 2), round(100 * y0 / h, 2), round(100 * (x1 - x0) / w, 2), round(100 * (y1 - y0) / h, 2)]
@@ -95,6 +114,9 @@ def main():
             w, h, get = read_bmp(bmp)
             art = find_black(w, h, get)
             boxes = {'art': pct(art, w, h)}
+            cx, cy, d = find_circle(w, h, get, MANUAL[hero][r]['cost'])
+            boxes['costc'] = [round(100 * cx / w, 2), round(100 * cy / h, 2), round(100 * d / w, 2)]
+            print(f'{r:10} cost circle centre ({cx:.0f},{cy:.0f}) diameter {d:.0f}px')
             boxes.update({k: pct(v, w, h) for k, v in MANUAL[hero][r].items()})
             out[r] = boxes
             print(f'{r:10} art window {art} of {w}x{h}')
@@ -106,6 +128,8 @@ def main():
                 w2, h2, get2 = read_bmp(bmp2)
                 art2 = find_black(w2, h2, get2)
                 b2 = {k: v for k, v in boxes.items() if k != 'pt'}
+                cx2, cy2, d2 = find_circle(w2, h2, get2, MANUAL[hero][r]['cost'])
+                b2['costc'] = [round(100 * cx2 / w2, 2), round(100 * cy2 / h2, 2), round(100 * d2 / w2, 2)]
                 b2['art'] = pct(art2, w2, h2)
                 out[f'{r}_spell'] = b2
                 print(f'{r + "_spell":10} art window {art2}')

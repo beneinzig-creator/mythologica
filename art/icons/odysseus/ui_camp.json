@@ -1,0 +1,22 @@
+{
+  "id": "ui_camp",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-09 14:49:56",
+  "prompt": "A small campfire of driftwood burning on a pebble beach at night, a beached black Greek ship and sleeping sailors in the darkness behind, sparks rising to the stars. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte, dark around the edges, calm. No text.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 76,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 76
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1448
+  }
+}
