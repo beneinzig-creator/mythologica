@@ -80,6 +80,7 @@ exec(open(S+'patch47.py',encoding='utf-8').read())
 exec(open(S+'patch48.py',encoding='utf-8').read())
 exec(open(S+'patch49.py',encoding='utf-8').read())
 exec(open(S+'patch50.py',encoding='utf-8').read())
+exec(open(S+'patch51.py',encoding='utf-8').read())
 head=head.replace('.pn{font-size:15px','.hub{display:flex;flex-direction:column;gap:12px;align-items:stretch;min-width:280px}.hub .b{font-size:17px}.b[disabled]{opacity:.4;cursor:default;box-shadow:none}.pn{font-size:15px')
 out=head+'\n'+A+'\n'+mid+'\n'+B+'\n'+tail
 out=out.replace("'Draft your army'","'Draft your deck'")
