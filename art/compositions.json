@@ -94,8 +94,8 @@
   "palette": "sickly green in darkness"
  },
  "ram": {
-  "composition": "a close-up of the bronze ram's head striking the gate, splinters flying",
-  "palette": "firelight red and black"
+  "composition": "seen from the side at night, the crew straining at the ram under a wooden roof",
+  "palette": "cold night blue"
  },
  "helios": {
   "composition": "Helios driving his blazing chariot straight at the viewer, the horses' fiery heads filling the frame",
@@ -210,16 +210,16 @@
   "palette": "grey sea foam"
  },
  "sh2": {
-  "composition": "a head in side profile gnashing its teeth, foam flying",
-  "palette": "deep sea teal"
+  "composition": "a head in side profile with its jaws shut tight, glaring eye in sharp focus, white sea spray bursting behind it",
+  "palette": "white spray and slate grey"
  },
  "sh3": {
-  "composition": "a head baying upward like a hound, seen from below",
-  "palette": "twilight violet"
+  "composition": "the head seen in silhouette against a huge moon, its long neck arched, howling upward",
+  "palette": "moonlit silver-blue"
  },
  "sh4": {
-  "composition": "a green, venomous head coiled tight, close on its dripping fangs",
-  "palette": "sickly green"
+  "composition": "the green head coiled around a ship's broken mast, venom dripping onto the deck",
+  "palette": "sickly green fog"
  },
  "heads": {
   "composition": "from the ship's deck far below, the six long necks rising out of the cliff cave into the mist",
@@ -270,8 +270,8 @@
   "palette": "soft meadow gold"
  },
  "lamp": {
-  "composition": "seen from behind, Lampetia walking among the herd with a shepherd's crook",
-  "palette": "deep crimson sunset"
+  "composition": "seen from behind, her back to the viewer: Lampetia walking among the herd towards a huge setting sun, in silhouette",
+  "palette": "deep crimson sunset silhouettes"
  },
  "neith": {
   "composition": "a close-up of Phaethusa's radiant face",
@@ -304,5 +304,57 @@
  },
  "lbow": {
   "kind": "person"
+ },
+ "drill": {
+  "composition": "seen from directly above: rows of soldiers drilling in a square formation on pale sand, long morning shadows",
+  "palette": "cool morning blue-grey and pale sand"
+ },
+ "rally": {
+  "composition": "a close-up of a herald's face as he blows a great conch-shell horn, cheeks full, hair whipped by the wind",
+  "palette": "cold grey storm light"
+ },
+ "spoils": {
+  "composition": "a close-up of a heap of golden cups, coins and a bronze tripod with no people in the picture",
+  "palette": "deep blue night with gold glints"
+ },
+ "plunder": {
+  "composition": "silhouettes of two raiders carrying a golden tripod out between a temple's columns into the night",
+  "palette": "cold moonlit blue with one warm glow from inside"
+ },
+ "aegis": {
+  "composition": "the goatskin aegis with the Gorgon's face filling the frame, held out by Athena's hand",
+  "palette": "bright marble white and gold daylight"
+ },
+ "banner": {
+  "composition": "a crimson banner seen from below, snapping against a huge pale dawn sky, no fire",
+  "palette": "pale dawn sky blue"
+ },
+ "dirge": {
+  "composition": "a lone bronze bell on a sea rock in the foreground, a Siren's silhouette small on a cliff far behind",
+  "palette": "ghostly grey-green fog"
+ },
+ "cmaid": {
+  "composition": "seen from behind, the handmaid walking through a sunlit garden carrying a silver bowl",
+  "palette": "fresh garden green and white"
+ },
+ "cwand": {
+  "composition": "a close-up of the golden wand's glowing tip touching a startled pig's snout; no human face in the picture",
+  "palette": "violet enchantment glow"
+ },
+ "hmil": {
+  "composition": "seen from the side at dawn, an ordinary townsman in a simple cap, no helmet, on the city wall holding a spear and a small shield",
+  "palette": "pale dawn blue and grey stone"
+ },
+ "hgua": {
+  "composition": "a full figure from a low angle, a huge armoured guard filling a dark gateway, his tall shield covering most of him",
+  "palette": "cold blue-grey"
+ },
+ "cbow": {
+  "composition": "seen from behind on a hilltop, the slinger whirling his sling above his head against a pale sky",
+  "palette": "pale morning sky and green hills"
+ },
+ "mskirm": {
+  "composition": "a full figure seen from the side leaping over a low stone wall, sword drawn, hills behind",
+  "palette": "bright midday light on green hills"
  }
 }
