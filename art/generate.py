@@ -141,6 +141,7 @@ def main():
     g.add_argument('--all', action='store_true', help='every card in the manifest')
     g.add_argument('--frames', action='store_true', help='the blank card frame templates, one per rarity')
     g.add_argument('--opponents', action='store_true', help="the hero's opponent cards and trumps")
+    g.add_argument('--back', action='store_true', help='the card back and its sigil options')
     g.add_argument('--home', action='store_true', help='home screen: hero portraits and background')
     g.add_argument('--icons', nargs='?', const='', metavar='IDS', help='game icons that replace emoji (all, or a comma list)')
     g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
@@ -166,10 +167,10 @@ def main():
     if a.opponents:
         cards = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero].get('opponents') or {}
         ids = list(cards)
-    elif a.frames or a.icons is not None or a.home:
-        section = 'frames' if a.frames else 'home' if a.home else 'icons'
+    elif a.frames or a.icons is not None or a.home or a.back:
+        section = 'frames' if a.frames else 'home' if a.home else 'back' if a.back else 'icons'
         m = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))
-        cards = (m.get('home') if a.home else m['heroes'][a.hero].get(section)) or {}
+        cards = (m.get(section) if section in ('home', 'back') else m['heroes'][a.hero].get(section)) or {}
         if not cards:
             sys.exit(f'No {section} for {a.hero} yet. Each hero gets {section} in the style of their own '
                      f'mythology; add them in build_manifest.py.')

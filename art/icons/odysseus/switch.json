@@ -1,0 +1,22 @@
+{
+  "id": "switch",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-08 21:51:42",
+  "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Switch stance: two curved bronze arrows chasing each other in a circle, one tipped red and one tipped blue.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 115,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 115
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1871
+  }
+}

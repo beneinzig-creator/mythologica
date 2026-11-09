@@ -2121,10 +2121,282 @@
         }
       },
       "icons": {
+        "life": {
+          "name": "Life icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Life: a heart of deep red enamel set in a worn bronze rim.",
+          "output": "art/icons/odysseus/life.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "mana": {
+          "name": "Mana icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Mana: a single glowing drop of golden ichor, the blood of the gods, with a soft inner light.",
+          "output": "art/icons/odysseus/mana.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "action": {
+          "name": "Action icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Action points: a small bronze thunderbolt of Zeus, a jagged zig-zag with a few sparks.",
+          "output": "art/icons/odysseus/action.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "victory": {
+          "name": "Victory icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Victory points: a green-and-gold laurel wreath closed into a ring.",
+          "output": "art/icons/odysseus/victory.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "attack": {
+          "name": "Attack icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Attack form: two crossed bronze Greek short swords (xiphos) with leather-wrapped grips.",
+          "output": "art/icons/odysseus/attack.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "defense": {
+          "name": "Defense icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Defense form: a round bronze Greek aspis shield with a raised rim and a simple painted emblem.",
+          "output": "art/icons/odysseus/defense.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "switch": {
+          "name": "Switch icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Switch stance: two curved bronze arrows chasing each other in a circle, one tipped red and one tipped blue.",
+          "output": "art/icons/odysseus/switch.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "upgrade": {
+          "name": "Upgrade icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Upgrade level: a single small golden laurel leaf, glinting.",
+          "output": "art/icons/odysseus/upgrade.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "target": {
+          "name": "Target icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Choose a target: a bronze arrowhead pointing straight down, with a faint red glow.",
+          "output": "art/icons/odysseus/target.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "cleared": {
+          "name": "Cleared icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Fight won: a broken Greek spear, snapped in two, the halves crossed.",
+          "output": "art/icons/odysseus/cleared.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "chosen": {
+          "name": "Chosen icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Chosen: a tick mark painted in gold leaf with one confident brush stroke.",
+          "output": "art/icons/odysseus/chosen.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "menu": {
+          "name": "Menu icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Menu: three short horizontal bronze bars stacked neatly, like ridges on an old bronze plaque.",
+          "output": "art/icons/odysseus/menu.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "sacrilege": {
+          "name": "Sacrilege icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: The sun god's anger: the blazing sun disc of Helios with fierce rays.",
+          "output": "art/icons/odysseus/sacrilege.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "foretold": {
+          "name": "Foretold icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Foretold: the bronze three-legged tripod of the Delphic oracle with a thin wisp of vapour.",
+          "output": "art/icons/odysseus/foretold.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "gold": {
+          "name": "Gold icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Gold: a small heap of silver drachma coins stamped with owls.",
+          "output": "art/icons/odysseus/gold.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "whirlpool": {
+          "name": "Whirlpool icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Whirlpool: a churning dark-blue whirlpool seen from above, spiralling inward.",
+          "output": "art/icons/odysseus/whirlpool.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "gift": {
+          "name": "Gift icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Gift: a small wooden chest bound in bronze, its lid slightly open with warm golden light inside.",
+          "output": "art/icons/odysseus/gift.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "start": {
+          "name": "Start icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Starting point and emblem of Odysseus: a bronze anchor wrapped with rope.",
+          "output": "art/icons/odysseus/start.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "here": {
+          "name": "Here icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: You are here: a small black Greek ship with a square sail and a painted eye on the prow, seen from the side.",
+          "output": "art/icons/odysseus/here.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "camp": {
+          "name": "Camp icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Campfire: a small driftwood fire burning on beach stones.",
+          "output": "art/icons/odysseus/camp.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "craft": {
+          "name": "Craft icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Crafting table: the hammer and anvil of Hephaestus with a glowing ember.",
+          "output": "art/icons/odysseus/craft.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "altar": {
+          "name": "Altar icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Altar: a small stone altar with a thin column of offering smoke.",
+          "output": "art/icons/odysseus/altar.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "greataltar": {
+          "name": "Greataltar icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: The great altar: the trident of Poseidon standing upright, faintly glowing.",
+          "output": "art/icons/odysseus/greataltar.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "offering": {
           "name": "Offering icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: The icon for the Offering (sacrifice) value on a Greek-mythology card: a weathered, bone-white human skull seen from the front, aged and slightly cracked like an ancient relic, with a thin sprig of laurel leaves tucked behind it. Solid and opaque, no glow, no smoke.",
           "output": "art/icons/odysseus/offering.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_lotus": {
+          "name": "lotus medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Lotus-Eaters: a drooping lotus flower with sleepy, half-closed petals.",
+          "output": "art/icons/odysseus/med_lotus.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_sirens": {
+          "name": "sirens medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Sirens: a Siren as the Greeks painted her, a woman's head on a bird's body, singing.",
+          "output": "art/icons/odysseus/med_sirens.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_poly": {
+          "name": "poly medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Polyphemus: the single great glaring eye of the Cyclops in a craggy face.",
+          "output": "art/icons/odysseus/med_poly.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_shades": {
+          "name": "shades medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Shades of Hades: a pale, mournful ghostly face fading into grey mist.",
+          "output": "art/icons/odysseus/med_shades.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_phaeacians": {
+          "name": "phaeacians medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Phaeacians: a swift Phaeacian ship with oars out on a calm sea.",
+          "output": "art/icons/odysseus/med_phaeacians.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_cicones": {
+          "name": "cicones medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Cicones: a Thracian battle axe with a painted round shield behind it.",
+          "output": "art/icons/odysseus/med_cicones.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_circe": {
+          "name": "circe medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Circe: a pig beside a golden cup.",
+          "output": "art/icons/odysseus/med_circe.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_cattle": {
+          "name": "cattle medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Cattle of the Sun: a sacred white cow with a golden sun disc between her horns.",
+          "output": "art/icons/odysseus/med_cattle.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_hector": {
+          "name": "hector medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Hector: a Trojan helmet with a tall horse-hair crest.",
+          "output": "art/icons/odysseus/med_hector.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_scylla": {
+          "name": "scylla medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Scylla: snarling dog-like heads on long necks rising from a sea cave.",
+          "output": "art/icons/odysseus/med_scylla.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_charybdis": {
+          "name": "charybdis medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Charybdis: the open maw of a whirlpool, dark water spiralling down.",
+          "output": "art/icons/odysseus/med_charybdis.png",
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
@@ -2157,6 +2429,62 @@
       "prompt": "A wide, very dark, atmospheric background painting for the title screen of a mythology card game: a vast night sea under stars, with faint distant silhouettes along the horizon from three mythologies: a Greek temple on a cliff at the left, a Norse longhall beneath the great world tree in the middle distance, Chinese mountain peaks and a pagoda among clouds at the right. Low contrast and dark overall, most of the detail near the edges and bottom, the centre calm and empty so a title and buttons can sit on top. Rustic 1990s hand-painted style, gouache, matte. No text, no letters, no people in the foreground.",
       "output": "art/home/background.webp",
       "size": "1536x1024"
+    }
+  },
+  "back": {
+    "back": {
+      "name": "Card back",
+      "prompt": "The back of a trading card for Mythologica, a card game of world mythologies, seen perfectly flat and straight-on, filling the whole image: a sleek, minimal design. A deep, dark sea-blue field with a subtle worn texture, one thin bronze border inset from the edge with small, simple corner ornaments, and a plain, slightly darker circular medallion in the centre, left empty for an emblem. Elegant and restrained, with lots of empty space; not busy, no patterns filling the field. Hand-painted matte finish, lightly worn like an old card. No text, no letters, no numbers, no logo.",
+      "output": "art/back/back.webp",
+      "size": "1024x1536"
+    },
+    "sigil_ouroboros": {
+      "name": "ouroboros sigil",
+      "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: An ouroboros: a serpent biting its own tail, forming a ring around a small flame.",
+      "output": "art/back/sigil_ouroboros.png",
+      "size": "1024x1024",
+      "format": "png",
+      "background": "transparent"
+    },
+    "sigil_eye": {
+      "name": "eye sigil",
+      "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: A single watchful eye, like the painted eye on a Greek ship's prow, within a ring of short rays.",
+      "output": "art/back/sigil_eye.png",
+      "size": "1024x1024",
+      "format": "png",
+      "background": "transparent"
+    },
+    "sigil_labyrinth": {
+      "name": "labyrinth sigil",
+      "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: A circular Cretan labyrinth.",
+      "output": "art/back/sigil_labyrinth.png",
+      "size": "1024x1024",
+      "format": "png",
+      "background": "transparent"
+    },
+    "sigil_tree": {
+      "name": "tree sigil",
+      "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: A world tree whose roots and branches curve round to meet in a circle.",
+      "output": "art/back/sigil_tree.png",
+      "size": "1024x1024",
+      "format": "png",
+      "background": "transparent"
+    },
+    "sigil_threads": {
+      "name": "threads sigil",
+      "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: Three threads of fate, those of the Greek Moirai and the Norse Norns, woven into one interlaced knot.",
+      "output": "art/back/sigil_threads.png",
+      "size": "1024x1024",
+      "format": "png",
+      "background": "transparent"
+    },
+    "sigil_sunmoon": {
+      "name": "sunmoon sigil",
+      "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: A sun and a crescent moon joined into a single disc, one half gold and one half silver.",
+      "output": "art/back/sigil_sunmoon.png",
+      "size": "1024x1024",
+      "format": "png",
+      "background": "transparent"
     }
   }
 }

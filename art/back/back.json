@@ -1,0 +1,22 @@
+{
+  "id": "back",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1536",
+  "created": "2026-11-08 22:08:34",
+  "prompt": "The back of a trading card for Mythologica, a card game of world mythologies, seen perfectly flat and straight-on, filling the whole image: a sleek, minimal design. A deep, dark sea-blue field with a subtle worn texture, one thin bronze border inset from the edge with small, simple corner ornaments, and a plain, slightly darker circular medallion in the centre, left empty for an emblem. Elegant and restrained, with lots of empty space; not busy, no patterns filling the field. Hand-painted matte finish, lightly worn like an old card. No text, no letters, no numbers, no logo.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 133,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 133
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1505
+  }
+}

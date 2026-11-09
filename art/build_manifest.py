@@ -111,6 +111,31 @@ ICON_BASE = (
     'numbers, no border, no badge or circle behind it, no drop shadow.'
 )
 ICONS = {'ody': {
+    # interface
+    'life': 'Life: a heart of deep red enamel set in a worn bronze rim.',
+    'mana': 'Mana: a single glowing drop of golden ichor, the blood of the gods, with a soft inner light.',
+    'action': 'Action points: a small bronze thunderbolt of Zeus, a jagged zig-zag with a few sparks.',
+    'victory': 'Victory points: a green-and-gold laurel wreath closed into a ring.',
+    'attack': 'Attack form: two crossed bronze Greek short swords (xiphos) with leather-wrapped grips.',
+    'defense': 'Defense form: a round bronze Greek aspis shield with a raised rim and a simple painted emblem.',
+    'switch': 'Switch stance: two curved bronze arrows chasing each other in a circle, one tipped red and one tipped blue.',
+    'upgrade': 'Upgrade level: a single small golden laurel leaf, glinting.',
+    'target': 'Choose a target: a bronze arrowhead pointing straight down, with a faint red glow.',
+    'cleared': 'Fight won: a broken Greek spear, snapped in two, the halves crossed.',
+    'chosen': 'Chosen: a tick mark painted in gold leaf with one confident brush stroke.',
+    'menu': 'Menu: three short horizontal bronze bars stacked neatly, like ridges on an old bronze plaque.',
+    'sacrilege': 'The sun god\'s anger: the blazing sun disc of Helios with fierce rays.',
+    'foretold': 'Foretold: the bronze three-legged tripod of the Delphic oracle with a thin wisp of vapour.',
+    'gold': 'Gold: a small heap of silver drachma coins stamped with owls.',
+    'whirlpool': 'Whirlpool: a churning dark-blue whirlpool seen from above, spiralling inward.',
+    'gift': 'Gift: a small wooden chest bound in bronze, its lid slightly open with warm golden light inside.',
+    # map
+    'start': 'Starting point and emblem of Odysseus: a bronze anchor wrapped with rope.',
+    'here': 'You are here: a small black Greek ship with a square sail and a painted eye on the prow, seen from the side.',
+    'camp': 'Campfire: a small driftwood fire burning on beach stones.',
+    'craft': 'Crafting table: the hammer and anvil of Hephaestus with a glowing ember.',
+    'altar': 'Altar: a small stone altar with a thin column of offering smoke.',
+    'greataltar': 'The great altar: the trident of Poseidon standing upright, faintly glowing.',
     'offering': 'The icon for the Offering (sacrifice) value on a Greek-mythology card: a weathered, '
                 'bone-white human skull seen from the front, aged and slightly cracked like an ancient relic, '
                 'with a thin sprig of laurel leaves tucked behind it. Solid and opaque, no glow, no smoke.',
@@ -146,6 +171,49 @@ HOME_BG = (
     'detail near the edges and bottom, the centre calm and empty so a title and buttons can sit on top. '
     'Rustic 1990s hand-painted style, gouache, matte. No text, no letters, no people in the foreground.'
 )
+
+# Opponent medallions: round portraits shown on map nodes, tips and the fight screen.
+MEDAL_BASE = (
+    'A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek '
+    'vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent '
+    'background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 '
+    'pixels. No text, no letters.'
+)
+MEDALS = {'ody': {
+    'lotus': 'The Lotus-Eaters: a drooping lotus flower with sleepy, half-closed petals.',
+    'sirens': 'The Sirens: a Siren as the Greeks painted her, a woman\'s head on a bird\'s body, singing.',
+    'poly': 'Polyphemus: the single great glaring eye of the Cyclops in a craggy face.',
+    'shades': 'The Shades of Hades: a pale, mournful ghostly face fading into grey mist.',
+    'phaeacians': 'The Phaeacians: a swift Phaeacian ship with oars out on a calm sea.',
+    'cicones': 'The Cicones: a Thracian battle axe with a painted round shield behind it.',
+    'circe': 'Circe: a pig beside a golden cup.',
+    'cattle': 'The Cattle of the Sun: a sacred white cow with a golden sun disc between her horns.',
+    'hector': 'Hector: a Trojan helmet with a tall horse-hair crest.',
+    'scylla': 'Scylla: snarling dog-like heads on long necks rising from a sea cave.',
+    'charybdis': 'Charybdis: the open maw of a whirlpool, dark water spiralling down.',
+}}
+# Game-wide card back and its sigil options (the sigil is a separate layer so Ben can pick one).
+BACK = (
+    'The back of a trading card for Mythologica, a card game of world mythologies, seen perfectly flat and '
+    'straight-on, filling the whole image: a sleek, minimal design. A deep, dark sea-blue field with a subtle '
+    'worn texture, one thin bronze border inset from the edge with small, simple corner ornaments, and a plain, '
+    'slightly darker circular medallion in the centre, left empty for an emblem. Elegant and restrained, with '
+    'lots of empty space; not busy, no patterns filling the field. Hand-painted matte finish, lightly worn like '
+    'an old card. No text, no letters, no numbers, no logo.'
+)
+SIGIL_BASE = (
+    'A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in '
+    'gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold '
+    'simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.'
+)
+SIGILS = {
+    'ouroboros': 'An ouroboros: a serpent biting its own tail, forming a ring around a small flame.',
+    'eye': 'A single watchful eye, like the painted eye on a Greek ship\'s prow, within a ring of short rays.',
+    'labyrinth': 'A circular Cretan labyrinth.',
+    'tree': 'A world tree whose roots and branches curve round to meet in a circle.',
+    'threads': 'Three threads of fate, those of the Greek Moirai and the Norse Norns, woven into one interlaced knot.',
+    'sunmoon': 'A sun and a crescent moon joined into a single disc, one half gold and one half silver.',
+}
 
 STUB = r'''
 var __h={get:function(t,k){if(k===Symbol.toPrimitive)return function(){return 0};if(k==='length')return 0;return __p},
@@ -295,7 +363,17 @@ def main():
                  'output': f'art/icons/{folder}/{k}.png', 'size': '1024x1024', 'format': 'png',
                  'background': 'transparent'}
              for k, t in ICONS.get(a.hero, {}).items()}
+    for k, t in MEDALS.get(a.hero, {}).items():
+        icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{MEDAL_BASE}\n\nSubject: {t}',
+                             'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',
+                             'background': 'transparent'}
     old.setdefault('heroes', {})[a.hero] = {'name': ch['n'], 'cards': cards, 'opponents': opponents, 'frames': frames, 'icons': icons}
+    back = {'back': {'name': 'Card back', 'prompt': BACK, 'output': 'art/back/back.webp', 'size': '1024x1536'}}
+    for k, t in SIGILS.items():
+        back[f'sigil_{k}'] = {'name': f'{k} sigil', 'prompt': f'{SIGIL_BASE}\n\nSubject: {t}',
+                              'output': f'art/back/sigil_{k}.png', 'size': '1024x1024', 'format': 'png',
+                              'background': 'transparent'}
+    old['back'] = back
     home = {f'portrait_{k}': {'name': f'{k} portrait', 'prompt': f'{PORTRAIT_BASE}\n\nSubject: {t}',
                               'output': f'art/home/{k}.webp', 'size': '1024x1024'} for k, t in HOME.items()}
     home['background'] = {'name': 'Home background', 'prompt': HOME_BG, 'output': 'art/home/background.webp',

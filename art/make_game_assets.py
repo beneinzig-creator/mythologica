@@ -36,6 +36,8 @@ def shrink(src, dst, width, fmt='jpeg', quality='78'):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--hero', default='ody')
+    ap.add_argument('--sigil', default=None, help='which card-back sigil the game uses (e.g. ouroboros); '
+                    'remembered in art/game/back/sigil.txt')
     a = ap.parse_args()
     folder = HERO_DIR.get(a.hero, a.hero)
     hero = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero]
@@ -57,9 +59,26 @@ def main():
             src = os.path.join(fr, f'{name}{tag}.webp')
             if os.path.exists(src):
                 made += shrink(src, os.path.join(GAME, 'frames', f'{code}{suffix}.jpg'), 640, quality='82')
-    icon = os.path.join(ART, 'icons', folder, 'offering.png')
-    if os.path.exists(icon):
-        made += shrink(icon, os.path.join(GAME, 'icons', 'offering.png'), 96, fmt='png')
+    # every painted icon for this hero (interface, map, opponent medallions)
+    idir = os.path.join(ART, 'icons', folder)
+    for fn in sorted(os.listdir(idir)) if os.path.isdir(idir) else []:
+        if fn.endswith('.png'):
+            made += shrink(os.path.join(idir, fn), os.path.join(GAME, 'icons', fn), 128 if fn.startswith('med_') else 96, fmt='png')
+    # card back (game-wide) and the sigil on it
+    bdir = os.path.join(ART, 'back')
+    if os.path.exists(os.path.join(bdir, 'back.webp')):
+        made += shrink(os.path.join(bdir, 'back.webp'), os.path.join(GAME, 'back', 'back.jpg'), 400, quality='80')
+    pick_file = os.path.join(GAME, 'back', 'sigil.txt')
+    pick = a.sigil or (open(pick_file).read().strip() if os.path.exists(pick_file) else 'ouroboros')
+    for fn in sorted(os.listdir(bdir)) if os.path.isdir(bdir) else []:
+        if fn.startswith('sigil_') and fn.endswith('.png'):
+            made += shrink(os.path.join(bdir, fn), os.path.join(GAME, 'back', fn), 256, fmt='png')
+    chosen = os.path.join(GAME, 'back', f'sigil_{pick}.png')
+    if os.path.exists(chosen):
+        import shutil
+        shutil.copyfile(chosen, os.path.join(GAME, 'back', 'sigil.png'))
+        open(pick_file, 'w').write(pick + '\n')
+        print(f'Card-back sigil: {pick}')
 
     # layout.json uses the frame names; give the game the same boxes keyed by frame code.
     layout = json.load(open(os.path.join(fr, 'layout.json')))

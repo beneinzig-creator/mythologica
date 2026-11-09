@@ -1,0 +1,22 @@
+{
+  "id": "sigil_sunmoon",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-08 21:48:29",
+  "prompt": "A single emblem for the back of every card in Mythologica, a card game of world mythologies: painted in gold leaf and bronze on a fully transparent background, rustic 1990s hand-painted style, worn, bold simple silhouette, symmetrical and centred. No text, no letters, no numbers, no circle or badge behind it.\n\nSubject: A sun and a crescent moon joined into a single disc, one half gold and one half silver.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 97,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 97
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1853
+  }
+}

@@ -11,12 +11,16 @@ _ARTF = _AJ['cards']
 
 _b3('function card(c,z,zi,yo){',
     'const ARTF=' + _json.dumps(_ARTF, separators=(',', ':')) + ';'
-    'const OBI=`<img class="obi" src="art/game/icons/offering.png" alt="" draggable="false" onerror="this.replaceWith(\'💀\')">`;'
+    'const OBI=`<img class="obi" src="art/game/icons/offering.png" alt="" draggable="false" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.split(\'?\')[0]+\'?r=1\'}else this.replaceWith(\'💀\')">`;'
     'function card(c,z,zi,yo){')
 _b3("return`<div class=\"cd ${cl.join(' ')}\"",
     "return`<div class=\"cd ${cl.join(' ')}${ARTF[c.id]?' af af-'+ARTF[c.id]:''}\"")
+# The art is a background layer over the emoji (not an <img> that removes itself on error), so a
+# failed or interrupted load only shows the emoji until the next redraw, which retries by itself.
+# (Ben saw every card fall back to emoji at once after a stance switch: a redraw re-requests all
+# pictures together, and with onerror="this.remove()" a single hiccup removed them for good.)
 _b3('<div class="ar">${d[7]}${so}</div>',
-    '<div class="ar">${d[7]}${ARTF[c.id]?`<img class="aimg" src="art/game/cards/${c.id}.jpg" alt="" draggable="false" onerror="this.remove()">`:\'\'}${so}</div>')
+    '<div class="ar"${ARTF[c.id]?` style="--art:url(art/game/cards/${c.id}.jpg)"`:\'\'}>${d[7]}${so}</div>')
 _b3('title="Offer for ${sv(c)} mana">💀${sv(c)}</b>', 'title="Offer for ${sv(c)} mana">${ARTF[c.id]?OBI:\'💀\'}${sv(c)}</b>')
 _b3('<b class="ob so">💀${sv(c)}</b>', '<b class="ob so">${ARTF[c.id]?OBI:\'💀\'}${sv(c)}</b>')
 
@@ -34,7 +38,8 @@ _css = [
     '.cd.af .nm b{display:flex;align-items:center;padding:0 .45em;font-size:.82em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
     '.cd.af .nm i{display:flex;align-items:center;justify-content:center;padding:0;color:#1b1710;font-size:1.05em;line-height:1}',
     '.cd.af>.ar{overflow:hidden;background:#000;display:grid;place-items:center}',
-    '.cd.af>.ar>.aimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;pointer-events:none;-webkit-user-drag:none}',
+    '.cd.af>.ar::before{content:"";position:absolute;inset:0;z-index:0;background:var(--art) 50% 40%/cover no-repeat;pointer-events:none}',
+    '.cd.af>.ar>.ob{z-index:2}',
     '.cd.af>.ty{display:flex;align-items:center;padding:0 .55em;font-size:.72em;white-space:nowrap;overflow:hidden}',
     '.cd.af>.tx{padding:.45em .65em;overflow:hidden}',
     '.cd.af>.tx.c{padding-right:.65em}',
@@ -50,6 +55,11 @@ _css = [
     '@media(hover:hover) and (min-width:561px){html:not(.ph) .fld .cd:hover{scale:1.45;z-index:60}'
     'html:not(.ph) .fld.fe .cd:hover{transform-origin:50% 0}html:not(.ph) .fld.fp .cd:hover{transform-origin:50% 100%}'
     'html:not(.ph) .hand .cd:hover{scale:1.2;transform-origin:50% 100%}}',
+    # Opponent cards lean toward the player: the table is tilted away (rotateX(20deg) on .board), which
+    # makes the far side's card tops look smallest. Tilting each enemy card back around its bottom edge
+    # brings its top closer, so it reads like a card held up facing you. The player's cards stay flat on the table.
+    '.fld.fe .cd:not(.tap){transform:perspective(var(--etp,620px)) rotateX(var(--eta,-30deg));transform-origin:50% 100%}',
+    '@media(hover:hover){.fld.fe .cd:hover{transform:none}}',
 ]
 _kids = {'art': '.ar', 'name': '.nm b', 'cost': '.nm i', 'type': '.ty', 'text': '.tx', 'pt': '.pt'}
 for code, boxes in _AJ['boxes'].items():
