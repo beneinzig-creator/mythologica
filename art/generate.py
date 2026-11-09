@@ -98,7 +98,7 @@ def write_review(cards):
 <div class=row><div class=mini><div class=nm>{html.escape(c['name'])}</div><div class=ar>
 <span class=emo>{c['emoji']}</span><img src="{html.escape(rel)}" alt="" onerror="this.remove()"></div>
 <div class=ty>{html.escape(c['lore'] or c['type'])}</div></div>
-<figcaption><b>{html.escape(c['name'])}</b> <code>{cid}</code><br>{html.escape(c['rarity'])} · {html.escape(c['archetype'])} · was {c['emoji']}</figcaption></div></figure>''')
+<figcaption><b>{html.escape(c['name'])}</b> <code>{cid}</code><br>{html.escape(c.get('rarity') or c.get('opponent', ''))} · {html.escape(c.get('archetype') or c.get('frame', ''))} · was {c['emoji']}</figcaption></div></figure>''')
     page = f'''<!doctype html><meta charset=utf-8><title>Card art review</title>
 <style>body{{background:#0b1820;color:#efe6cf;font:14px system-ui;margin:24px}}h1{{font-weight:600}}
 main{{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}}
@@ -140,6 +140,7 @@ def main():
     g.add_argument('--ids', help='comma-separated card ids')
     g.add_argument('--all', action='store_true', help='every card in the manifest')
     g.add_argument('--frames', action='store_true', help='the blank card frame templates, one per rarity')
+    g.add_argument('--opponents', action='store_true', help="the hero's opponent cards and trumps")
     g.add_argument('--home', action='store_true', help='home screen: hero portraits and background')
     g.add_argument('--icons', nargs='?', const='', metavar='IDS', help='game icons that replace emoji (all, or a comma list)')
     g.add_argument('--rarity', help='cards of these rarities, e.g. Rare,Legendary (also Staple, Common, Uncommon)')
@@ -162,7 +163,10 @@ def main():
         return
 
     cards = load_cards(a.hero)
-    if a.frames or a.icons is not None or a.home:
+    if a.opponents:
+        cards = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero].get('opponents') or {}
+        ids = list(cards)
+    elif a.frames or a.icons is not None or a.home:
         section = 'frames' if a.frames else 'home' if a.home else 'icons'
         m = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))
         cards = (m.get('home') if a.home else m['heroes'][a.hero].get(section)) or {}

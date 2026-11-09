@@ -158,7 +158,10 @@ var window=__p,document=__p,localStorage=__p,sessionStorage=__p,navigator=__p,lo
 '''
 DUMP = r'''
 ;JSON.stringify({D:D,LORE:LORE,TXT:TXT,TAG:TAG,RAR:RAR,ARCH:ARCH,
- CHARS:Object.fromEntries(Object.keys(CHARS).map(function(k){return [k,{n:CHARS[k].n,staples:CHARS[k].staples,pool:CHARS[k].pool}]}))})
+ CHARS:Object.fromEntries(Object.keys(CHARS).map(function(k){var c=CHARS[k];
+  function g(o){return o?{n:o.n,d:o.d,t:o.mt||o.trump}:null}
+  function pick(list,idx){return (idx||[]).map(function(i){return g(typeof i=='number'?list[i]:i)})}
+  return [k,{n:c.n,staples:c.staples,pool:c.pool,en:(c.en||[]).map(g),el:pick(ELITES,c.el),bo:pick(BOSS,c.bo)}]}))})
 '''
 
 
@@ -253,6 +256,30 @@ def main():
             'output': f'art/{folder}/{cid}.webp',
         }
 
+    # Opponent cards: every card in this hero's enemy, elite and boss decks, plus their trumps.
+    # They share the hero's frames: regular enemies Common, elites Uncommon, bosses Rare, trumps Legendary.
+    opponents = {}
+    for grp, tier in (('en', 'common'), ('el', 'uncommon'), ('bo', 'rare')):
+        for o in ch.get(grp) or []:
+            if not o:
+                continue
+            deck = list(dict.fromkeys(o['d'] if isinstance(o['d'], list) else []))
+            trump = o.get('t') if isinstance(o.get('t'), str) else None
+            for cid in deck + ([trump] if trump else []):
+                if cid in cards or cid in opponents or cid not in g['D']:
+                    continue
+                d = g['D'][cid]
+                lore = g['LORE'].get(cid) or ''
+                subject = subjects.get(cid) or auto_subject(cid, d, lore, g['TXT'].get(cid) or d[6])
+                opponents[cid] = {
+                    'name': d[0], 'lore': lore, 'type': TYPE.get(d[2], d[2]), 'opponent': o['n'],
+                    'frame': 'legendary' if cid == trump else tier, 'colour': d[8], 'emoji': d[7],
+                    'subject_source': 'subjects.json' if cid in subjects else 'auto',
+                    'prompt': (f'{STYLE}\n\nSetting: {SETTING.get(a.hero, "")}.\n'
+                               f'Colour accent: {ACCENT.get(d[8], "")}.\n\nSubject: {subject}'),
+                    'output': f'art/{folder}/{cid}.webp',
+                }
+
     out = os.path.join(ART, 'manifest.json')
     old = {}
     if os.path.exists(out):
@@ -268,7 +295,7 @@ def main():
                  'output': f'art/icons/{folder}/{k}.png', 'size': '1024x1024', 'format': 'png',
                  'background': 'transparent'}
              for k, t in ICONS.get(a.hero, {}).items()}
-    old.setdefault('heroes', {})[a.hero] = {'name': ch['n'], 'cards': cards, 'frames': frames, 'icons': icons}
+    old.setdefault('heroes', {})[a.hero] = {'name': ch['n'], 'cards': cards, 'opponents': opponents, 'frames': frames, 'icons': icons}
     home = {f'portrait_{k}': {'name': f'{k} portrait', 'prompt': f'{PORTRAIT_BASE}\n\nSubject: {t}',
                               'output': f'art/home/{k}.webp', 'size': '1024x1024'} for k, t in HOME.items()}
     home['background'] = {'name': 'Home background', 'prompt': HOME_BG, 'output': 'art/home/background.webp',
@@ -281,6 +308,8 @@ def main():
         f.write('\n')
     hand = sum(1 for c in cards.values() if c['subject_source'] != 'auto')
     print(f'Wrote {len(cards)} {ch["n"]} cards to art/manifest.json ({hand} with hand-written subjects).')
+    ohand = sum(1 for c in opponents.values() if c['subject_source'] != 'auto')
+    print(f'Wrote {len(opponents)} opponent cards ({ohand} with hand-written subjects).')
 
 
 if __name__ == '__main__':
