@@ -13,6 +13,7 @@ Open `index.html` in a browser. The whole game is a single self-contained HTML/J
 | `index.html` | The game: card data, enemies, map, combat, AI and UI |
 | `docs/balance/odysseus-tiers.html` | Simulated win-rate tiers for Odysseus's cards (Phalanx, Raiders, Offerings) |
 | `docs/balance/odin-tiers.html` | Simulated win-rate tiers for Odin's cards (Berserkers, Valhalla, Runes) |
+| `docs/ui/ui-board.html` | UI inspiration board: galleries to browse and games to study for each screen and mechanic |
 | `HANDOFF.md` | Full design and developer handoff: rules, every card, enemies, balance, architecture and roadmap |
 | `tooling/` | The patch pipeline that builds the game, plus unit tests, Playwright scripts and the balance simulator |
 

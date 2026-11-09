@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mythologica UI Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark game-table board. Sources first, then the game's own screens mapped to games worth studying, then mechanic-by-mechanic references. Three realm accents (Greek bronze, Norse frost, Chinese vermilion) mark sections the way the game tints each realm. Single deliberate dark look, matching the game's permanent dark mode. */
+:root {
+  color-scheme: dark;
+  --bg: #13151b;
+  --surface: #1b1e27;
+  --surface-2: #232733;
+  --line: #2f3442;
+  --fg: #e9e6dd;
+  --muted: #a3a6b2;
+  --greek: #d5a24e;
+  --norse: #8fc3dd;
+  --china: #e36b4f;
+  --font-display: "Marcellus", "Trajan Pro", Georgia, serif;
+  --font-body: "Alegreya Sans", "Gill Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--norse); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+/* header */
+header { display: flex; flex-direction: column; gap: 16px; max-width: 68ch; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.eyebrow span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.eyebrow .g::before { background: var(--greek); }
+.eyebrow .n::before { background: var(--norse); }
+.eyebrow .c::before { background: var(--china); }
+h1 { font-size: clamp(36px, 6vw, 58px); line-height: 1.05; letter-spacing: .01em; }
+.lede { color: var(--muted); font-size: 19px; }
+
+/* section heads */
+section { display: flex; flex-direction: column; gap: 24px; }
+.sec-head { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 20px; }
+.sec-head h2 { font-size: 30px; }
+.sec-head p { color: var(--muted); max-width: 68ch; }
+.sec-head .tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.s-greek .tag { color: var(--greek); }
+.s-norse .tag { color: var(--norse); }
+.s-china .tag { color: var(--china); }
+
+/* source groups */
+.groups { display: flex; flex-direction: column; gap: 32px; }
+.group h3 { font-size: 15px; font-family: var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 12px; }
+.src {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0;
+}
+.src .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.src a.name { font-family: var(--font-display); font-size: 21px; text-decoration: none; }
+.src a.name:hover { text-decoration: underline; text-underline-offset: 4px; }
+.src .host { font-family: var(--font-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.src .why { font-size: 16px; }
+.src .try { font-size: 15px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; }
+.src .try b { color: var(--fg); font-weight: 500; }
+.src.star { border-color: color-mix(in srgb, var(--greek) 55%, var(--line)); }
+.star-pill { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--bg); background: var(--greek); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+
+/* screens table */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font: 500 14px var(--font-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+  padding: 6px 14px; border-radius: 99px; cursor: pointer;
+}
+.chip:hover { background: var(--surface-2); }
+.chip[aria-pressed="true"] { background: var(--norse); color: var(--bg); border-color: var(--norse); }
+.chip:focus-visible { outline: 2px solid var(--norse); outline-offset: 2px; }
+.screens { display: flex; flex-direction: column; gap: 12px; }
+.screen {
+  display: grid; grid-template-columns: 220px 1fr; gap: 20px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px;
+}
+.screen .label { display: flex; flex-direction: column; gap: 4px; }
+.screen .label h3 { font-size: 22px; }
+.screen .label p { color: var(--muted); font-size: 15px; }
+.refs { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ref { display: grid; grid-template-columns: 170px 1fr; gap: 12px; align-items: baseline; }
+.ref .game { font-weight: 700; }
+.ref .look { color: var(--fg); }
+@media (max-width: 720px) {
+  .screen { grid-template-columns: 1fr; gap: 12px; }
+  .ref { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* mechanics */
+.mech { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.m { background: var(--surface); border-left: 3px solid var(--china); border-radius: 0 10px 10px 0; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.m h3 { font-size: 20px; }
+.m .rule { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.m p.see { font-size: 16px; }
+
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="g">The strait</span><span class="n">The Nine Worlds</span><span class="c">The Western Heaven</span></div>
+    <h1>Mythologica UI Board</h1>
+    <p class="lede">Where to find game UI inspiration, and which games to study for each screen and mechanic in Mythologica: the combat board, card frames, the map, the draft and the realm-tinted backgrounds.</p>
+  </header>
+
+  <section class="s-greek">
+    <div class="sec-head">
+      <span class="tag">Sources</span>
+      <h2>Where to look</h2>
+      <p>Start with Game UI Database. Use the portfolio sites for concept-level polish, and the talks for the reasons behind the designs.</p>
+    </div>
+    <div class="groups">
+      <div class="group">
+        <h3>Screenshot databases</h3>
+        <div class="grid">
+          <article class="src star">
+            <div class="top"><a class="name" href="https://www.gameuidatabase.com" target="_blank" rel="noopener">Game UI Database</a><span class="star-pill">Start here</span></div>
+            <p class="why">The largest archive of real shipped game screens. Filter by screen type, genre, colour and typeface.</p>
+            <p class="try"><b>Try:</b> filter to card games and roguelites, then the screen types for map, rewards, deck and combat HUD.</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://interfaceingame.com" target="_blank" rel="noopener">Interface In Game</a><span class="host">interfaceingame.com</span></div>
+            <p class="why">A curated gallery that includes video clips, so you can see transitions, hover states and motion as well as still frames.</p>
+            <p class="try"><b>Try:</b> look at how card play and reward screens animate in and out.</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://www.hudsandguis.com" target="_blank" rel="noopener">HUDS+GUIS</a><span class="host">hudsandguis.com</span></div>
+            <p class="why">A design blog of standout HUD and interface work, including film UI. It leans toward art direction and profiles the designers.</p>
+            <p class="try"><b>Try:</b> browse for ornament and framing ideas rather than layouts.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Portfolios and community</h3>
+        <div class="grid">
+          <article class="src">
+            <div class="top"><a class="name" href="https://www.artstation.com" target="_blank" rel="noopener">ArtStation</a><span class="host">artstation.com</span></div>
+            <p class="why">Professional concept and UI art, often from studio artists. Strong for card frames, icons and fantasy ornament.</p>
+            <p class="try"><b>Search:</b> "card game UI", "card frame", "fantasy UI kit", "rune icons".</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://www.behance.net" target="_blank" rel="noopener">Behance</a><span class="host">behance.net</span></div>
+            <p class="why">Full case studies that show wireframes, iterations and final screens, not just the polished result.</p>
+            <p class="try"><b>Search:</b> "game UI", "card game UX", "roguelike UI".</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://dribbble.com/tags/game_ui" target="_blank" rel="noopener">Dribbble</a><span class="host">dribbble.com</span></div>
+            <p class="why">Fast to scan and very polished. Many shots are concepts that were never shipped, so check that they would hold up in play.</p>
+            <p class="try"><b>Tags:</b> game_ui, game_hud, card_game.</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://www.reddit.com/r/GameUI/" target="_blank" rel="noopener">r/GameUI</a><span class="host">reddit.com</span></div>
+            <p class="why">Shared finds, critique threads and work in progress. A good place to post a Mythologica screen for feedback.</p>
+            <p class="try"><b>Try:</b> search the subreddit for "deckbuilder" and "card".</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a><span class="host">pinterest.com</span></div>
+            <p class="why">The quickest way to collect images from all of the above into one board per realm.</p>
+            <p class="try"><b>Try:</b> one board each for Greek, Norse and Chinese styling.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Type and colour</h3>
+        <div class="grid">
+          <article class="src">
+            <div class="top"><a class="name" href="https://fontsinuse.com" target="_blank" rel="noopener">Fonts In Use</a><span class="host">fontsinuse.com</span></div>
+            <p class="why">An archive of typefaces identified in real work, including video games. Useful when you want to know what a game's title or card font is.</p>
+            <p class="try"><b>Try:</b> browse the video game category for display faces.</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a><span class="host">fonts.google.com</span></div>
+            <p class="why">Free faces that can load inside a single-file game. Good candidates for inscription-style card titles.</p>
+            <p class="try"><b>Try:</b> Cinzel, Marcellus, Cormorant, Uncial Antiqua, Ma Shan Zheng.</p>
+          </article>
+          <article class="src">
+            <div class="top"><a class="name" href="https://lospec.com/palette-list" target="_blank" rel="noopener">Lospec palettes</a><span class="host">lospec.com</span></div>
+            <p class="why">A large library of tight, game-tested colour palettes. Handy for picking a set of colours per realm and per opponent background.</p>
+            <p class="try"><b>Try:</b> search "bronze", "ice", "lacquer".</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Talks and reading</h3>
+        <div class="grid">
+          <article class="src">
+            <div class="top"><a class="name" href="https://gdcvault.com" target="_blank" rel="noopener">GDC Vault</a><span class="host">gdcvault.com</span></div>
+            <p class="why">Talks from UI and UX leads at studios, many of them free. They explain why a layout works, which a screenshot cannot.</p>
+            <p class="try"><b>Search:</b> "UI", "UX", "card game", "Hades", "Slay the Spire".</p>
+          </article>
+          <article class="src">
+            <div class="top"><span class="name" style="font-family:var(--font-display);font-size:21px">The Gamer's Brain</span><span class="host">book</span></div>
+            <p class="why">Celia Hodent's book on how players perceive, learn and remember. It is the usability side of game UI.</p>
+            <p class="try"><b>Useful for:</b> teaching offering, tapping and trumps without a long tutorial.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s-norse">
+    <div class="sec-head">
+      <span class="tag">By screen</span>
+      <h2>Games to study for each screen</h2>
+      <p>Each Mythologica screen, with the games that solve the same problem well and what to look at in each. Open the game on Game UI Database to see its screens.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter screens">
+      <button class="chip" id="f-all" aria-pressed="true" data-f="all">All screens</button>
+      <button class="chip" id="f-fight" aria-pressed="false" data-f="fight">In a fight</button>
+      <button class="chip" id="f-run" aria-pressed="false" data-f="run">Between fights</button>
+    </div>
+    <div class="screens" id="screens"></div>
+  </section>
+
+  <section class="s-china">
+    <div class="sec-head">
+      <span class="tag">By mechanic</span>
+      <h2>Mechanics that need clear UI</h2>
+      <p>The rules that make Mythologica different from a standard deck-builder, and which games already show a similar state well.</p>
+    </div>
+    <div class="mech" id="mech"></div>
+  </section>
+
+  <footer>Built for the Mythologica design work. The game references describe each game's published UI; check the current versions, since UIs change between patches.</footer>
+</div>
+
+<script>
+const SCREENS = [
+  { k: "fight", name: "Combat board", note: "Two armies, attack and defense form, tapped units, persistent damage.",
+    refs: [
+      ["Legends of Runeterra", "How the attack and block phases are laid out, and how blockers are paired with attackers."],
+      ["Magic: The Gathering Arena", "Tapped cards, the phase bar and the prompt that pauses for responses."],
+      ["Inscryption", "A small board that stays readable, and an atmosphere that comes from the table rather than the HUD."],
+      ["Hearthstone", "Damage shown on a unit's health number, and how a full board stays legible."]
+    ]},
+  { k: "fight", name: "Card frame", note: "Five card types, rarities, mana cost and stats, with emoji art for now.",
+    refs: [
+      ["Gwent", "Faction-specific frames and how rarity shows on the border."],
+      ["Marvel Snap", "Very few elements per card, so cost and power read at a glance."],
+      ["Slay the Spire", "Card type shown by frame shape, and upgraded text shown in a different colour."],
+      ["Balatro", "Strong type on cards and satisfying hover and play feedback."]
+    ]},
+  { k: "fight", name: "Hand and quick-spell window", note: "Playing quick spells during combat and on the enemy's turn.",
+    refs: [
+      ["Magic: The Gathering Arena", "The pass and respond controls, and the timer when the opponent acts."],
+      ["Legends of Runeterra", "Which spells are playable mid-combat, and how the board dims while you choose."]
+    ]},
+  { k: "run", name: "Run map", note: "A branching path of fights, elites, locations and a boss.",
+    refs: [
+      ["Slay the Spire", "Node icons, the path you have taken and the boss at the top."],
+      ["Monster Train", "Showing a choice of routes with clear rewards on each branch."],
+      ["Hades", "Door rewards that show what is next before you choose."]
+    ]},
+  { k: "run", name: "Draft and card rewards", note: "Picking cards for your deck after a fight.",
+    refs: [
+      ["Slay the Spire", "Three cards and a skip option, with very little else on screen."],
+      ["Hades", "Boon choices coloured by god, with the god's portrait on each. This is the closest match to a realm-coloured choice."],
+      ["Monster Train", "Showing which clan a card belongs to during the pick."]
+    ]},
+  { k: "run", name: "Hero select and hub", note: "Choosing Odysseus, Odin or Wukong.",
+    refs: [
+      ["Age of Mythology: Retold", "Choosing a pantheon and a major god, with each culture's own styling."],
+      ["Hades", "A hub that is part of the world rather than a menu."],
+      ["Smite", "Pantheon icons and colours across many mythologies."]
+    ]},
+  { k: "fight", name: "Boss intro and trump card", note: "Five sentences of flavour text that hint at the boss's plan, and a permanent rule-bending trump.",
+    refs: [
+      ["Inscryption", "Boss introductions that change the board and explain new rules in the world itself."],
+      ["Slay the Spire", "Boss relics and how a persistent rule is pinned on screen."],
+      ["Hades", "Boss name cards that appear on entry."]
+    ]},
+  { k: "run", name: "Deck view", note: "Looking through your deck and graveyard.",
+    refs: [
+      ["Slay the Spire", "The grid deck view and the sort options."],
+      ["Marvel Snap", "Collection filters and card sizing on small screens."]
+    ]}
+];
+const MECH = [
+  { name: "Offering", rule: "Sacrifice your own army members for mana.", see: "Inscryption makes sacrifice for blood cost the core of play, with a clear selection step and feedback when a card is sacrificed. Hearthstone's Warlock cards show sacrifice feedback in a faster game." },
+  { name: "Tapped units", rule: "Attacking taps; tapped units can be attacked directly.", see: "Magic: The Gathering Arena rotates tapped cards. A rotated card reads instantly as unavailable, and it is worth considering for a board that has room." },
+  { name: "Attack and defense form", rule: "Army members switch between two forms.", see: "Yu-Gi-Oh! Master Duel shows attack and defense position by card orientation. Legends of Runeterra moves attackers into a separate lane during combat." },
+  { name: "Persistent damage", rule: "Damage stays on a creature between turns.", see: "Hearthstone shows damaged health in red against the base value. That pattern carries straight over to damage that persists." },
+  { name: "Trumps", rule: "Each enemy has a signature rule-bending card.", see: "Slay the Spire pins relics and powers along the top of the screen. Monster Train shows boss abilities on a panel you can always read." },
+  { name: "Realm-tinted backgrounds", rule: "The background colour follows the current opponent.", see: "Hades colours each boon by its god, so you can tell the source before you read anything. Use the same idea to tie colour to realm across the map, draft and fight." }
+];
+
+const screensEl = document.getElementById("screens");
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function renderScreens(f) {
+  screensEl.innerHTML = SCREENS.filter(s => f === "all" || s.k === f).map(s => `
+    <article class="screen">
+      <div class="label"><h3>${esc(s.name)}</h3><p>${esc(s.note)}</p></div>
+      <div class="refs">${s.refs.map(([g, l]) => `<div class="ref"><span class="game">${esc(g)}</span><span class="look">${esc(l)}</span></div>`).join("")}</div>
+    </article>`).join("");
+}
+document.getElementById("mech").innerHTML = MECH.map(m => `
+  <article class="m"><h3>${esc(m.name)}</h3><span class="rule">${esc(m.rule)}</span><p class="see">${esc(m.see)}</p></article>`).join("");
+
+let saved = "all";
+try { saved = localStorage.getItem("screenFilter") || "all"; } catch (e) {}
+const chips = document.querySelectorAll(".chip");
+function setFilter(f) {
+  chips.forEach(c => c.setAttribute("aria-pressed", String(c.dataset.f === f)));
+  renderScreens(f);
+  try { localStorage.setItem("screenFilter", f); } catch (e) {}
+}
+chips.forEach(c => c.addEventListener("click", () => setFilter(c.dataset.f)));
+setFilter(["all", "fight", "run"].includes(saved) ? saved : "all");
+</script>
+</body>
+</html>
