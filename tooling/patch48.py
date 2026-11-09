@@ -62,12 +62,12 @@ _b3("""<div class="board"><div class="fld fe">${fld(e,'e')}</div><div class="mid
     """<div class="board"><div class="fld fe">${fld(e,'e')}</div><div class="mgap"></div><div class="fld fp">${mine}</div></div><div class="mid">${G.msg||''}<small>${G.log.join(' · ')}</small></div>""")
 _b3('.dft{position:absolute;inset:0;display:flex;',
     '.mgap{height:10px}'
-    '#app>.mid{position:absolute;top:calc(8px + env(safe-area-inset-top,0px));right:calc(54px + env(safe-area-inset-right,0px));z-index:20;'
+    '#app>.mid{position:absolute;top:calc(8px + env(safe-area-inset-top,0px));right:calc(98px + env(safe-area-inset-right,0px));z-index:20;'
     'width:min(300px,26vw);text-align:right;padding:6px 10px;border-right:2px solid #c9a24c;background:linear-gradient(270deg,#0b1820e6,#0b182000);'
     'font-size:12px;line-height:1.35;zoom:1}'
     '#app>.mid::before,#app>.mid::after{display:none}'
     '#app>.mid small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px;font-size:10.5px;opacity:.7}'
-    'html.ph #app>.mid{width:min(240px,34vw);font-size:10px;right:calc(46px + env(safe-area-inset-right,0px))}'
+    'html.ph #app>.mid{width:min(240px,34vw);font-size:10px;right:calc(88px + env(safe-area-inset-right,0px))}'
     '.dft{position:absolute;inset:0;display:flex;')
 
 # Card pop-up next to the hovered (or held) card, on the side that covers the fewest other cards
