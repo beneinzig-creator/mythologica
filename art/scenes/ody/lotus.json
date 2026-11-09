@@ -1,0 +1,22 @@
+{
+  "id": "lotus",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-08 22:27:13",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the island of the Lotus-Eaters from Homer's Odyssey at dusk: a drowsy shore of low dunes and tall lotus plants with heavy pale blossoms and honey-coloured fruit, along the left and right edges; a few sleeping sailors slumped among the plants at the far left; a beached Greek ship with its oars abandoned at the far right; thin hazy smoke of poppy incense drifting low; a still, glassy sea and a faint low moon on the horizon.\nColour: deep greens from near-black to moss (#0b1a14 to #2f5a3a) with pale cream blossoms and a few honey-gold accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 412,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 412
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1784
+  }
+}

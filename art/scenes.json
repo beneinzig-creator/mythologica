@@ -1,0 +1,60 @@
+{
+  "_note": "Fight backgrounds, one per opponent. Key = scene id (art/scenes/<hero>/<id>.webp). 'setting' is the myth-true place; 'palette' follows the opponent's bg colours in the game (bosses have none in the game yet, so theirs are chosen here). build_manifest.py combines these with SCENE_BASE into the 'scenes' section of manifest.json.",
+  "ody": {
+    "lotus": {
+      "name": "The Lotus-Eaters",
+      "setting": "the island of the Lotus-Eaters from Homer's Odyssey at dusk: a drowsy shore of low dunes and tall lotus plants with heavy pale blossoms and honey-coloured fruit, along the left and right edges; a few sleeping sailors slumped among the plants at the far left; a beached Greek ship with its oars abandoned at the far right; thin hazy smoke of poppy incense drifting low; a still, glassy sea and a faint low moon on the horizon",
+      "palette": "deep greens from near-black to moss (#0b1a14 to #2f5a3a) with pale cream blossoms and a few honey-gold accents"
+    },
+    "sirens": {
+      "name": "The Sirens",
+      "setting": "the island of the Sirens from Homer's Odyssey: jagged dark sea-rocks rising at the left and right edges, the meadow above them strewn with bleached bones and skulls; winged siren shapes perched as silhouettes on the high rocks at the far right; foaming surf breaking on the rocks; a Greek ship with a bound figure at its mast, tiny and far off on the horizon at the left; a deep night sea under a cold starry sky",
+      "palette": "near-black navy to deep sea teal (#07131f to #1f5a78) with bone-white and pale silver accents"
+    },
+    "polyphemus": {
+      "name": "Polyphemus",
+      "setting": "inside the cave of the Cyclops Polyphemus on his island, as told in Homer's Odyssey: a huge rough rock cavern; a low hearth fire of embers at the lower left; wicker cheese racks, milk pails and a great olive-wood staff along the left wall; sheep and rams as dark shapes in pens along the right edge; a colossal boulder half-blocking the cave mouth at the right, with a sliver of moonlit sea beyond",
+      "palette": "near-black browns and deep rust (#1a0b07 to #6b2a14) with ember-orange accents"
+    },
+    "shades": {
+      "name": "The Shades of Hades",
+      "setting": "the edge of the underworld where Odysseus called up the dead in Homer's Odyssey: a grey, barren shore of the river of the dead under a sunless sky; withered black poplars and willows along the left edge; a shallow trench with dark blood and a ram's carcass at the lower left; pale, faceless ghostly shades drifting as faint wisps along the right edge; the misty mouth of a great cave in the far distance",
+      "palette": "near-black blue-black to dusky violet (#0b0b14 to #3a2a52) with sickly pale ghost-white and a dark blood-red accent"
+    },
+    "phaeacians": {
+      "name": "The Phaeacians",
+      "setting": "the harbour of Scheria, island of the Phaeacians, from Homer's Odyssey, at twilight: the curved prows of sleek dark Phaeacian ships moored along the left edge; white stone quays, a temple of Poseidon and the bronze-walled palace of King Alcinous on the hill at the far right; orchards and a vineyard on the slopes; calm water reflecting a few torch flames",
+      "palette": "deep slate blue to sea-grey teal (#0f1c28 to #4d7a8a) with warm torch-gold and white-stone accents"
+    },
+    "cicones": {
+      "name": "The Cicones",
+      "setting": "the sack of Ismarus, city of the Cicones, from Homer's Odyssey, by night: burning thatched houses and a broken palisade along the left edge; plundered amphorae, overturned carts and scattered shields at the lower corners; Cicone war-chariots and horsemen as dark silhouettes charging along the ridge at the far right; heavy smoke and flying sparks rising into a red night sky",
+      "palette": "near-black maroon to blood red (#200808 to #8a2a1a) with flame-orange accents"
+    },
+    "circe": {
+      "name": "Circe, Witch of Aeaea",
+      "setting": "the island of Aeaea from Homer's Odyssey: the stone hall of the witch Circe in a dark forest clearing; tall oaks along the left and right edges; her great loom and a bronze mixing bowl with a steaming potion at the far left; tame wolves and mountain lions lying as dark shapes along the right edge, and a few pigs in a sty at the lower right; smoke rising from her hearth; violet dusk sky through the trees",
+      "palette": "near-black plum to deep violet (#160d1c to #7a4a8a) with a few glowing magenta and pale gold accents"
+    },
+    "cattle": {
+      "name": "Cattle of the Sun",
+      "setting": "the island of Thrinacia from Homer's Odyssey: golden meadows by the sea where the sacred cattle of the sun god Helios graze; great broad-horned cattle as dark shapes along the left and right edges; a stone altar with smoke at the lower left; Odysseus's beached ship at the far right; a huge low blazing sun on the horizon throwing long shadows",
+      "palette": "near-black brown to burning gold (#241606 to #d19a2a) with hot sun-orange accents"
+    },
+    "hector": {
+      "name": "Hector, Tamer of Horses",
+      "setting": "before the walls of Troy in Homer's Iliad: the towering stone walls and the great Scaean Gate of Ilium along the right edge, with bronze-shielded Trojan spearmen ranked as a dark line along the battlements; the dusty plain of Troy with broken chariots, spears and fallen shields at the lower corners; Greek ships and tents far off by the sea at the left; a smoky bronze dusk sky",
+      "palette": "near-black umber to dull bronze (#1a1208 to #8a5a24) with burnished gold accents"
+    },
+    "scylla": {
+      "name": "Scylla",
+      "setting": "the strait of Scylla from Homer's Odyssey: a sheer, towering cliff along the left edge with a dark cave mouth high up, from which long serpentine necks with snapping dog-like heads coil down; wet rocks and churning foam at the cliff's foot; the narrow strait running away into storm cloud at the right; a small Greek ship far off; a cold, grey, windy sky",
+      "palette": "near-black blue-grey to cold sea green (#08141a to #2f5560) with bone-white foam and a few dark red accents"
+    },
+    "charybdis": {
+      "name": "Charybdis",
+      "setting": "the whirlpool of Charybdis from Homer's Odyssey: a low rock with a great gnarled fig tree at the far right, its roots gripping the stone; the edges of a vast spiralling whirlpool sweeping around the bottom and the left, with broken timbers, oars and a mast swirling in it; spray and mist rising; a dark sky with the faint arc of the strait's cliffs in the distance",
+      "palette": "near-black deep blue to dark sea green (#06121a to #1d4a5a) with white spray and pale teal accents"
+    }
+  }
+}
