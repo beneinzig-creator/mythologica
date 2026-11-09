@@ -1,13 +1,47 @@
 {
-"Cattle of the Sun": "cattle",
-"Charybdis": "charybdis",
-"Circe, Witch of Aeaea": "circe",
-"Hector, Tamer of Horses": "hector",
-"Polyphemus": "polyphemus",
-"Scylla": "scylla",
-"The Cicones": "cicones",
-"The Lotus-Eaters": "lotus",
-"The Phaeacians": "phaeacians",
-"The Shades of Hades": "shades",
-"The Sirens": "sirens"
+"Cattle of the Sun": {
+"id": "cattle"
+},
+"Charybdis": {
+"bg": [
+"#06121a",
+"#1d4a5a"
+],
+"id": "charybdis"
+},
+"Circe, Witch of Aeaea": {
+"id": "circe"
+},
+"Hector, Tamer of Horses": {
+"bg": [
+"#1a1208",
+"#8a5a24"
+],
+"id": "hector"
+},
+"Polyphemus": {
+"id": "polyphemus"
+},
+"Scylla": {
+"bg": [
+"#08141a",
+"#2f5560"
+],
+"id": "scylla"
+},
+"The Cicones": {
+"id": "cicones"
+},
+"The Lotus-Eaters": {
+"id": "lotus"
+},
+"The Phaeacians": {
+"id": "phaeacians"
+},
+"The Shades of Hades": {
+"id": "shades"
+},
+"The Sirens": {
+"id": "sirens"
+}
 }
