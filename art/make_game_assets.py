@@ -106,8 +106,17 @@ def main():
             boxes[code] = layout[name]
         if f'{name}_spell' in layout:
             boxes[code + 's'] = layout[f'{name}_spell']
+    # myth captions for the inspect view: the scene each picture was painted from, one sentence
+    subj = json.load(open(os.path.join(ART, 'subjects.json'), encoding='utf-8')).get(a.hero, {})
+    def caption(t):
+        t = t.strip()
+        if len(t) > 230:
+            cut = t.rfind(',', 0, 230)
+            t = t[:cut if cut > 120 else 230].rstrip(' ,;') + '.'
+        return t
+    myth = {cid: caption(subj[cid]) for cid in table if cid in subj}
     with open(os.path.join(GAME, 'cards.json'), 'w', encoding='utf-8') as f:
-        json.dump({'cards': table, 'boxes': boxes}, f, indent=0, sort_keys=True)
+        json.dump({'cards': table, 'boxes': boxes, 'myth': myth}, f, indent=0, sort_keys=True)
         f.write('\n')
     print(f'{len(table)} cards with art, {made} files (re)made. Wrote art/game/cards.json.')
 

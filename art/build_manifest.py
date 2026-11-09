@@ -54,9 +54,9 @@ STYLE = (
     'texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little '
     'stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat '
     'patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours (ember '
-    'orange, deep violet, sea teal, blood red) where they matter. The subject fills the frame and may be '
-    'cropped by the edges, with its face or focal point near the centre, against a simple atmospheric '
-    'background. Landscape 3:2 composition with dark, uncluttered bottom corners. No text, no letters, no '
+    'orange, deep violet, sea teal, deep crimson) where they matter. Frame the subject tightly: it fills most of '
+    'the picture and may be cropped by the edges, with its face or focal point near the centre; keep the '
+    'background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no '
     'border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not '
     'modern digital concept art, not anime.'
 )
@@ -364,6 +364,22 @@ def main():
                                f'Colour accent: {ACCENT.get(d[8], "")}.\n\nSubject: {subject}'),
                     'output': f'art/{folder}/{cid}.webp',
                 }
+
+    # Composition plan: a distinct shot, angle, light and power level per card within each group,
+    # so cards don't look alike at a glance (see composition.py and compositions.json).
+    import composition
+    groups = {}
+    for cid, c in cards.items():
+        groups.setdefault('hero:' + c['archetype'], []).append((cid, c['type'], c['lore'], c['name'], c['rarity']))
+    for cid, c in opponents.items():
+        groups.setdefault('opp:' + c['opponent'], []).append((cid, c['type'], c['lore'], c['name'], c['frame']))
+    plans = composition.plan(groups)
+    for table in (cards, opponents):
+        for cid, c in table.items():
+            subject = c['prompt'].split('Subject: ', 1)[1].split('\n\nComposition:', 1)[0]
+            c['composition'] = plans[cid]
+            c['prompt'] = (f'{STYLE}\n\nSetting: {SETTING.get(a.hero, "")}.\n\nSubject: {subject}\n\n'
+                           + composition.describe(plans[cid]))
 
     out = os.path.join(ART, 'manifest.json')
     old = {}

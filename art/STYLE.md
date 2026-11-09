@@ -87,3 +87,25 @@ place so the guide and the prompts can't drift apart.
 Open `art/review.html` after a run. Check each picture at small size (how it looks in a hand), not
 only at full size. If a card misses, change its line in `art/subjects.json`, delete the image, and run
 the generator again for just that card.
+
+## Every card must look different (Ben, Nov 2026)
+
+At a glance, no two cards in a group (an archetype, or one opponent's deck) should be confusable, and a
+card's power should show in its picture. This is built into how prompts are made:
+
+- **Composition planner** (`art/composition.py`): each card gets its own camera shot (face close-up,
+  head and shoulders, full figure, creature lunging at the viewer, the moment of impact...), angle (low,
+  eye level, above, side profile, from behind, tilted) and light/colour key. Within a group no shot+angle
+  repeats, and colour keys don't repeat until the list runs out.
+- **Power shows in the framing:** Commons are humble and at eye level; Rares imposing with rim light;
+  Legendaries monumental, seen from a very low angle with divine light.
+- **Tight framing:** the subject fills most of the picture; monsters especially get little background.
+- **Hand direction** (`art/compositions.json`) for named and easily confused cards wins over the planner,
+  e.g. the Hoplite seen from behind in the shield line vs Leonidas monumental from below vs the Spearman's
+  face close-up.
+- **Check after generating:** `python3 art/check_similarity.py` flags pairs in a group whose palettes are
+  near-identical, or whose layout and colours are both close. The first set had 175 such pairs.
+
+Safety-filter notes: the image model sometimes blocks heroic violence ("spear thrust at the viewer",
+"blood-red", "towering over the viewer"). Calm, dignified wording ("spear held high", "deep crimson",
+"monumental") gets the same picture through.

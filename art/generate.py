@@ -183,6 +183,9 @@ def main():
         ids = TEST_BATCH
     elif a.ids:
         ids = [i.strip() for i in a.ids.split(',') if i.strip()]
+        # --ids can name the hero's cards or opponent cards
+        opp = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero].get('opponents') or {}
+        cards = {**opp, **cards}
     elif a.all:
         ids = list(cards)
     elif a.rarity:
