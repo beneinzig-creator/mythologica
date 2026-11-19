@@ -108,6 +108,27 @@ FRAMES = {'ody': {
                  'still rustic and understated.',
 }}
 
+# Odin (Norse). The shared FRAME_BASE / MEDAL_BASE text names Greek myth; for other heroes it is swapped
+# (see HERO_MYTH / MEDAL_LOOK), so Odysseus's prompts stay exactly as they were.
+NORSE_LOOK = ('Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or '
+              'stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with '
+              'sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.')
+FRAMES['odin'] = {
+    'common': 'Common rarity: a plain frame of dark weathered pine boards bound with black iron straps and nail heads, '
+              'a simple thin carved rope-twist border, modest and unornamented. ' + NORSE_LOOK,
+    'uncommon': 'Uncommon rarity: a frame of dark iron and worn silver with a fine border of interlaced knotwork '
+                '(Borre-style ring chain) and small silver rivets at the corners. ' + NORSE_LOOK,
+    'rare': 'Rare rarity: a frame of gilded bronze over dark oak with a border of gripping-beast knotwork in the '
+            'Urnes style, small garnet cloisonne studs at the corners and a carved interlaced beast above the art '
+            'window. ' + NORSE_LOOK,
+    'legendary': 'Legendary rarity: an aged, hand-tooled frame of dull antique gold over dark tarnished iron, worn at '
+                 'the edges, a restrained border of Mammen-style interlace and a single small carved raven head at the '
+                 'top centre, like a weathered grave-goods relic in a museum case; richer than the other rarities but '
+                 'still rustic and understated. ' + NORSE_LOOK,
+}
+HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas'}
+MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone'}
+
 # How played each rarity looks: cheaper cards have been shuffled more.
 CONDITION = {
     'common': 'Heavily played condition: whitened, rounded and slightly dog-eared corners, frayed edges, a '
@@ -303,6 +324,71 @@ HERO_UI = {'ody': {
         'Fully transparent background around the plate. No text, no letters.'),
 }}
 
+# ---- Odin (Norse): icons, opponent medallions, archetype marks, card-back emblem and button plate ----
+ICONS['odin'] = {k: v + ' Norse, Viking Age style.' for k, v in {
+    'life': 'Life: a heart carved from dark red amber set in a ring of hammered iron.',
+    'mana': 'Mana: a single drop of the glowing mead of poetry, pale gold, falling from a carved drinking horn tip.',
+    'action': 'Action points: a small iron hammer of Thor (Mjolnir pendant) with a crackle of white lightning.',
+    'victory': 'Victory points: a valknut, three interlocked triangles, carved in grey stone.',
+    'attack': 'Attack form: two crossed Viking swords with simple brass-inlaid hilts.',
+    'defense': 'Defense form: a round wooden Viking shield, painted with a simple divided pattern, iron boss in the centre.',
+    'switch': 'Switch stance: two curved iron arrows chasing each other in a circle, one tipped red and one tipped blue.',
+    'upgrade': 'Upgrade level: a single carved rune stave (the rune Tiwaz, an upward arrow) inlaid with gold.',
+    'target': 'Choose a target: an iron spearhead pointing straight down, with a faint red glow.',
+    'cleared': 'Fight won: a broken Viking spear, snapped in two, the halves crossed.',
+    'chosen': 'Chosen: a tick mark carved and painted in tarnished gold, one confident stroke.',
+    'menu': 'Menu: three short horizontal iron bars stacked neatly, like ridges on an old iron plate.',
+    'foretold': 'Foretold: three spindles of the Norns with a single glowing thread running between them.',
+    'gold': 'Gold: a small heap of hacksilver and twisted gold arm-rings.',
+    'gift': 'Gift: a small wooden chest bound in black iron, its lid slightly open with pale cold light inside.',
+    'blood': 'Blood price: a single drop of dark red blood falling onto a carved rune stone.',
+    'start': 'Starting point and emblem of Odin: two black ravens, Huginn and Muninn, perched back to back.',
+    'here': 'You are here: a small Viking longship with a striped square sail and a dragon prow, seen from the side.',
+    'camp': 'Campfire: a small fire burning in a ring of stones on snowy ground.',
+    'craft': 'Crafting table: a dwarven hammer resting on an iron anvil with a glowing ember.',
+    'altar': 'Altar: a small standing runestone with a bowl of offering smoke before it.',
+    'greataltar': 'The great altar: the spear Gungnir standing upright, faintly glowing with cold blue light.',
+    'coin': 'The Offering coin: a single worn Viking silver coin seen perfectly straight-on, filling the frame, tarnished '
+            'with a raised rim, small nicks and grime in the recesses, a faint low-relief skull struck in the centre '
+            'ringed with tiny runes. Matte, painted like the weathered frames of an old trading card; no shine, no text, '
+            'no letters, no numbers.',
+    'offering': 'The icon for the Offering (sacrifice) value on a Norse-mythology card: a weathered, bone-white human '
+                'skull seen from the front, aged and slightly cracked, with a sprig of yew tucked behind it. Solid and '
+                'opaque, no glow, no smoke.',
+}.items()}
+MEDALS['odin'] = {
+    'fenrir': "Fenrir's Brood: a snarling wolf's head with bared fangs.",
+    'jotnar': 'The Jotnar: the bearded face of a frost giant crusted with ice.',
+    'forge': 'The Dwarven Forge: a dwarf smith\'s hammer crossed with tongs over an anvil.',
+    'muspelheim': 'Muspelheim: a flaming sword rising from fire.',
+    'hel': "Hel's Legion: the goddess Hel's face, one half pale and living, the other half dark and dead.",
+    'loki': "Loki's Court: a sly grinning trickster's mask with a serpent coiled around it.",
+    'norns': 'The Norns: three hooded women spinning one thread.',
+    'fafnir': 'Fafnir: a coiled serpent-dragon on a heap of gold rings.',
+    'jormungandr': 'Jormungandr: a great sea serpent biting its own tail.',
+    'wildhunt': 'The Wild Hunt: a ghostly rider on a galloping horse among storm clouds.',
+    'hrungnir': 'Hrungnir: a giant\'s head of grey stone with a three-cornered stone heart.',
+}
+STAMPS['odin'] = {
+    'B': 'Berserkers: the head of a snarling bear.',
+    'V': 'Valhalla: the gabled front of a great Viking hall whose roof is thatched with round shields.',
+    'H': 'Runes: a single carved rune stave, the rune Ansuz.',
+}
+HERO_UI['odin'] = {
+    'sigil_odin': ('1024x1024', 'transparent',
+        'A single emblem for the back of every card in Odin\'s deck: the spear Gungnir standing perfectly upright through '
+        'the centre, its long leaf-shaped iron blade at the top, the shaft carved with knotwork, inside a circular ring '
+        'of carved Elder Futhark runes, as if cut into a stone or a silver disc. Rendered in worn gold leaf and dark iron, '
+        'rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters of the '
+        'Latin alphabet, no words, no circle or badge behind the ring.'),
+    'ui_button': ('1536x1024', 'transparent',
+        'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
+        'width of the image: a dark weathered oak board bound with black hammered-iron strap ends and round iron rivets '
+        'at both ends, a thin carved knotwork line along the edges, worn and scratched; the centre is plain and flat for '
+        'a label. Norse, Viking Age style, rustic 1990s hand-painted. Fully transparent background around the plate. '
+        'No text, no letters.'),
+}
+
 STUB = r'''
 var __h={get:function(t,k){if(k===Symbol.toPrimitive)return function(){return 0};if(k==='length')return 0;return __p},
  apply:function(){return __p},construct:function(){return __p},set:function(){return true}};
@@ -459,7 +545,9 @@ def main():
             old = json.load(open(out, encoding='utf-8'))
         except ValueError:
             pass
-    frames = {r: {'name': f'{r.title()} frame', 'prompt': f'{FRAME_BASE}\n\n{t}\n{CONDITION[r]} {WEAR_NOTE}',
+    fbase = FRAME_BASE.replace('the Odyssey and Greek myth', HERO_MYTH.get(a.hero, 'the Odyssey and Greek myth'))
+    mbase = MEDAL_BASE.replace('an old bronze coin or a roundel from a Greek vase', MEDAL_LOOK[a.hero]) if a.hero in MEDAL_LOOK else MEDAL_BASE
+    frames = {r: {'name': f'{r.title()} frame', 'prompt': f'{fbase}\n\n{t}\n{CONDITION[r]} {WEAR_NOTE}',
                   'output': f'art/frames/{folder}/{r}.webp', 'size': '1024x1536'}
               for r, t in FRAMES.get(a.hero, {}).items()}
     old.pop('frames', None)
@@ -475,7 +563,7 @@ def main():
         icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/{folder}/{k}.png', 'size': size,
                     'format': 'png', 'background': bg}
     for k, t in MEDALS.get(a.hero, {}).items():
-        icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{MEDAL_BASE}\n\nSubject: {t}',
+        icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
                              'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',
                              'background': 'transparent'}
     old.setdefault('heroes', {})[a.hero] = {'name': ch['n'], 'cards': cards, 'opponents': opponents, 'frames': frames, 'icons': icons}
