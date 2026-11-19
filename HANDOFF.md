@@ -1250,6 +1250,21 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
   - Keep emoji as a fallback.
   - Image generators considered: Midjourney, Flux, Ideogram.
 
+### 10.1 Tutorial and run tips (v106)
+
+**How to play** (button on the hero select screen; files `tooling/tutorial.js` and `tooling/patch_tut.py`; test `ut50.js`). Five Odysseus lessons:
+1. **Army and battle:** mana, playing cards, fatigue, attacking, blocking, persistent damage, tapping, forms, quick spells.
+2. **Offerings to the gods:** 💀 values, offering for mana, death and offering triggers.
+3. **Phalanx, the wall:** defense form, Sentinels, blocking with Testudo, and the attack/defense rhythm.
+4. **Raiders, strike fast:** Charge, Ruthless, Berserker, attacking tapped units, the Banner, finishers.
+5. **The journey:** slides on drafting, the map, places, Prestige, the guardian and Act II, then a run with tips on.
+
+Lessons 1–4 use a fixed deck and draw order against a fixed enemy (an entry pushed onto `EN`). A coach panel shows one step at a time; steps advance on *Next* or when their condition is met, highlight the relevant element, and can block *End turn*. Lesson fights end in their own `tutend` phase, never `kleos`/`lost`, so they never touch the saved run.
+
+**Run tips:** the first time a player reaches the draft, the map, each place type, their first fight, Prestige, the guardian pick and Act II, a tip appears. Seen tips are stored in localStorage (`myth_tips_seen`). Tips can be switched off from the coach panel or the How to play screen (`myth_tips`).
+
+**To extend to another hero:** add lesson objects to `TUT` (deck, enemy deck, steps) and a hero selector to the lesson menu.
+
 ---
 
 ## 11. Decisions log (final ruling ← what it replaced)
