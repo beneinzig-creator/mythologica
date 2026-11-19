@@ -73,7 +73,7 @@ var KOS=[3.2,3,3.4,1.5,3.6,2.5,3.3];for(let i=7;i<20;i++)KOS.push(3.1);
 function koBest(c,opts){return opts.slice().sort((a,b)=>(KOS[b]+(b==2&&cost(c)>=3?.6:0))-(KOS[a]+(a==2&&cost(c)>=3?.6:0)))[0]}
 function botKleos(){for(const x of G.kl){const o=koBest(x.c,x.o),j=x.o.indexOf(o);KO[o][1](x.c.rec);x.c.rec.k++;x.d=j+1}bt('next')}
 
-var RATE={dint:7,raidr:6,myrsh:7,closer:6,bodvar:8,vinit:6,freyja:8,othala:7,bragi:8,horse:7,wall:6,shield:7,drill:5,ares:7,spoils:5,ossuary:6,requiem:8,dream:0,garden:0,dirge:0,forge:0,thess:6,zerk:7,boar:7,diom:7,agam:7,nike:8,iris:6,helios:7,athena:6,pyrep:6,ox:5,sent:5,gate:7,hydra:6,sinon:5,tires:5,sapper:7,pyre:6,doct:5,banner:7,skies:6,net:6,hearth:5,hammer:4,plunder:5,hecat:5,fury:5,testudo:5,thunder:8,labyr:3,spear:5,sailor:5,goat:4,myrm:5,herm:5,camp:6,argus:7,pythia:5,slinger:7,healer:6,spartan:6,telem:5,bull:8,cass:7,nestor:6,pegasus:7,ajax:6,achil:9,eagle:8,hopl:7,owl:5,tela:6,spearc:8,salve:4,gale:4,feast:5,altar:7,horse:6,bow:8,aegis:4,hold:3,mist:6,rally:5,rampart:4,zeus:6};
+var RATE={sunch:7,dint:7,raidr:6,myrsh:7,closer:6,bodvar:8,vinit:6,freyja:8,othala:7,bragi:8,horse:7,wall:6,shield:7,drill:5,ares:7,spoils:5,ossuary:6,requiem:8,dream:0,garden:0,dirge:0,forge:0,thess:6,zerk:7,boar:7,diom:7,agam:7,nike:8,iris:6,helios:7,athena:6,pyrep:6,ox:5,sent:5,gate:7,hydra:6,sinon:5,tires:5,sapper:7,pyre:6,doct:5,banner:7,skies:6,net:6,hearth:5,hammer:4,plunder:5,hecat:5,fury:5,testudo:5,thunder:8,labyr:3,spear:5,sailor:5,goat:4,myrm:5,herm:5,camp:6,argus:7,pythia:5,slinger:7,healer:6,spartan:6,telem:5,bull:8,cass:7,nestor:6,pegasus:7,ajax:6,achil:9,eagle:8,hopl:7,owl:5,tela:6,spearc:8,salve:4,gale:4,feast:5,altar:7,horse:6,bow:8,aegis:4,hold:3,mist:6,rally:5,rampart:4,zeus:6};
 var DMODE=(typeof process!=='undefined'&&process.env&&process.env.DMODE)||'rated';
 function botDraft(){if(typeof FORCED!=='undefined'&&FORCED&&FORCED.length){while(G.phase==='draft'&&FORCED.length){const id=FORCED.shift();G.dr.off=[{id}];pickDraft(0)}return}
 while(G.phase==='draft'){const dr=G.dr,off=dr.off,crN=(dr.mode==='reward'?G.p.recs.map(r=>r.id):STAPLES).concat(dr.picks).filter(id=>D[id][2]==='C').length,left=dr.rounds-dr.n,needC=Math.max(0,(G.ch==='wukong'?3:6)-crN);
@@ -290,6 +290,6 @@ function botThoth(){const p=G.p;if(G.phase!=='main')return false;
   if(want.length||!room){hd('spk:'+rens[0].u);return true}}
  return false}
 Object.assign(RATE,{tscr:5,tsun:7,tscar:5,tpen:4,dsk:4,dbal:4,dcut:5,dpart:6,dembal:5,dheart:5,dwrap:5,dnomad:5,dreun:6,dsever:7,dshade:5,dcart:4,dtwof:5,dweigh:6,dkhep:6,
- dakh:7,dsplit:7,dren:6,dsoul:6,dduat:5,dmum:7,dosir:8,dammit:8,dbook:6,iink:5,iscribe:5,ichisel:4,iword:5,iguard:5,iwas:5,ireed:5,itut:5,isac:6,iliv:6,ierase:7,ishen:4,idjed:5,
+ dakh:7,dsplit:7,dren:6,dsoul:6,dduat:5,dmum:7,dosir:8,dammit:8,dbook:6,iink:5,iscribe:5,ichisel:4,iword:5,iglyph:5,iwas:5,ireed:5,itut:5,isac:6,iliv:6,ierase:7,ishen:4,idjed:5,
  ikhem:5,iunwr:4,iseshat:7,ihekau:7,ieye:7,iobel:6,ianx:7,inarm:6,ithoth:7,iweret:8,iname:8,yibis:5,yread:5,yclerk:5,ywatch:5,ywarn:4,ybab:6,yledger:4,yprep:5,ypre:5,yrecall:5,
  ysage:6,ystar:5,yfore:6,ycopy:5,ytrap:5,yhall:6,ycount:6,ykhon:7,yvizier:6,yechoes:6,yjudge:7,ysenet:8,ytruth:7,yall:8,gscroll:3,gfeather:5,gpriest:6,gnile:5,gcanop:5,gweigh:6});

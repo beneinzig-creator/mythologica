@@ -4,7 +4,7 @@
 THOTH_POOL = {
  'D': {'C': 'dsk dbal dcut dpart dembal dheart dwrap dnomad', 'U': 'dreun dsever dshade dcart dtwof dweigh dkhep',
        'R': 'dakh dsplit dren dsoul dduat dmum', 'L': 'dosir dammit dbook'},
- 'I': {'C': 'iink iscribe ichisel iword iguard iwas tpen itut', 'U': 'isac iliv ierase ishen idjed ikhem iunwr',
+ 'I': {'C': 'iink iscribe ichisel iword iglyph iwas tpen itut', 'U': 'isac iliv ierase ishen idjed ikhem iunwr',
        'R': 'iseshat ihekau ieye iobel ianx inarm', 'L': 'ithoth iweret iname'},
  'Y': {'C': 'yibis yread yclerk ywatch ywarn ybab yledger yprep', 'U': 'ypre yrecall ysage ystar yfore ycopy ytrap',
        'R': 'yhall ycount ykhon yvizier yechoes yjudge', 'L': 'ysenet ytruth yall'},

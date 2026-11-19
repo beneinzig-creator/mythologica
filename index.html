@@ -2249,7 +2249,7 @@ iink:['Ink of Seshat',1,'S',0,0,'','Inscribe +1/+1 and Ruthless onto target army
 iscribe:['Apprentice Scribe',2,'C',1,3,'','When it enters, Inscribe +1/+1 onto target army member you control.','📝','U',1],
 ichisel:['Chisel',1,'I',0,0,'','Target opposing army member loses all its keywords.','⛏️','U'],
 iword:['Amulet of Words',1,'A',0,0,'','Amulet (equip ◆1). Glyphs you Inscribe onto the bearer are written on this amulet instead, so they move with it. It comes with Charge written on it.','📿','A'],
-iguard:['Glyph-Warded Guard',2,'C',1,4,'w','Ward.','🛡️','U',1],
+iglyph:['Glyph-Warded Guard',2,'C',1,4,'w','Ward.','🛡️','U',1],
 iwas:['Was-Sceptre',1,'A',0,0,'','Amulet (equip ◆1). +1/+0, and +1/+0 more for each glyph on the bearer.','🔱','A'],
 ireed:['Reed Brush',1,'I',0,0,'','Inscribe Charge onto target army member you control. Draw a card.','🖌️','U'],
 itut:['Tutor of Scribes',1,'C',1,2,'','When it enters, draw a card if any of your army members has a glyph.','📚','U',1],
@@ -2304,7 +2304,7 @@ gweigh:['The Weighing of the Heart',4,'S',0,0,'','Destroy each army member whose
 });
 Object.assign(LORE,{tmedj:'Temple guard',tscr:'Temple scribe',tsun:'Ritual of parting',tscar:'Amulet',tpen:'Scribe\'s tool',dsk:'Keeper of bodies',dbal:'Keeper of spirits',dcut:'Ritual',dpart:'Ritual',dembal:'Embalmer',dheart:'Amulet',dwrap:'Amulet',dnomad:'Wandering spirit',
  dreun:'The Field of Reeds',dsever:'Ritual',dshade:'The shadow-soul',dcart:'Amulet',dtwof:'Amulet',dweigh:'Judge of the dead',dkhep:'The scarab of dawn',dakh:'The glorified soul',dsplit:'Ritual',dren:'True names',dsoul:'Soul-gatherer',dduat:'The underworld',dmum:'The ancient dead',
- dosir:'Lord of the dead',dammit:'The devourer',dbook:'Book of the underworld',iink:'Ritual',iscribe:'Temple scribe',ichisel:'Erasure',iword:'Amulet',iguard:'Temple guard',iwas:'Amulet',ireed:'Scribe\'s tool',itut:'Teacher',isac:'Sacred writing',iliv:'Living scroll',ierase:'Erasure',ishen:'Amulet',
+ dosir:'Lord of the dead',dammit:'The devourer',dbook:'Book of the underworld',iink:'Ritual',iscribe:'Temple scribe',ichisel:'Erasure',iword:'Amulet',iglyph:'Temple guard',iwas:'Amulet',ireed:'Scribe\'s tool',itut:'Teacher',isac:'Sacred writing',iliv:'Living scroll',ierase:'Erasure',ishen:'Amulet',
  idjed:'Amulet',ikhem:'Keeper of texts',iunwr:'Erasure',iseshat:'Goddess of writing',ihekau:'Words of power',ieye:'Amulet',iobel:'Monument',ianx:'Amulet',inarm:'Royal palette',ithoth:'The forbidden book',iweret:'Goddess of magic',iname:'Erasure',
  yibis:'Sacred ibis',yread:'Augury',yclerk:'Archivist',ywatch:'Gatekeeper',ywarn:'Foresight',ybab:'Sacred baboon',yledger:'Record',yprep:'Foresight',ypre:'Foresight',yrecall:'Record',ysage:'Sage',ystar:'Astronomer',yfore:'Foresight',ycopy:'Record',ytrap:'Foresight',yhall:'Archive',
  ycount:'Foresight',ykhon:'God of the moon',yvizier:'Royal vizier',yechoes:'Record',yjudge:'Judge',ysenet:'The moon\'s wager',ytruth:'The record of truth',yall:'The scribe who sees all',gscroll:'Spell',gfeather:'Amulet',gpriest:'Priest',gnile:'Blessing',gcanop:'Funerary jars',gweigh:'Judgement'});
@@ -2463,7 +2463,7 @@ CHARS.thoth.bo=[b0,b0+1,b0+2]}
 A2INTRO.thoth='Act II: you cross into the Two Lands of Egypt. Tomb robbers, scorpions, the jackals of Anubis and the serpent Apophis wait along the Nile.';
 RLMC.thoth=['#140f06','#6a4f1c'];
 
-{const P={"D": {"C": "dsk dbal dcut dpart dembal dheart dwrap dnomad", "U": "dreun dsever dshade dcart dtwof dweigh dkhep", "R": "dakh dsplit dren dsoul dduat dmum", "L": "dosir dammit dbook"}, "I": {"C": "iink iscribe ichisel iword iguard iwas tpen itut", "U": "isac iliv ierase ishen idjed ikhem iunwr", "R": "iseshat ihekau ieye iobel ianx inarm", "L": "ithoth iweret iname"}, "Y": {"C": "yibis yread yclerk ywatch ywarn ybab yledger yprep", "U": "ypre yrecall ysage ystar yfore ycopy ytrap", "R": "yhall ycount ykhon yvizier yechoes yjudge", "L": "ysenet ytruth yall"}, "-": {"C": "gscroll gfeather", "U": "gpriest gnile gcanop", "L": "karma dint gweigh"}};const pool=[];for(const a in P)for(const r in P[a])P[a][r].split(' ').filter(Boolean).forEach(x=>{RAR[x]=r;if(a=='-')delete TAG[x];else TAG[x]=a;pool.push(x)});CHARS.thoth.pool=pool;
+{const P={"D": {"C": "dsk dbal dcut dpart dembal dheart dwrap dnomad", "U": "dreun dsever dshade dcart dtwof dweigh dkhep", "R": "dakh dsplit dren dsoul dduat dmum", "L": "dosir dammit dbook"}, "I": {"C": "iink iscribe ichisel iword iglyph iwas tpen itut", "U": "isac iliv ierase ishen idjed ikhem iunwr", "R": "iseshat ihekau ieye iobel ianx inarm", "L": "ithoth iweret iname"}, "Y": {"C": "yibis yread yclerk ywatch ywarn ybab yledger yprep", "U": "ypre yrecall ysage ystar yfore ycopy ytrap", "R": "yhall ycount ykhon yvizier yechoes yjudge", "L": "ysenet ytruth yall"}, "-": {"C": "gscroll gfeather", "U": "gpriest gnile gcanop", "L": "karma dint gweigh"}};const pool=[];for(const a in P)for(const r in P[a])P[a][r].split(' ').filter(Boolean).forEach(x=>{RAR[x]=r;if(a=='-')delete TAG[x];else TAG[x]=a;pool.push(x)});CHARS.thoth.pool=pool;
  RAR.tscr=RAR.tsun=RAR.tscar=RAR.tmedj='C';}
 
 /* ===== v104: shared pool layout (3 archetypes x 24 + 8 generics; 26/24/18/12) ===== */
@@ -2530,7 +2530,7 @@ SCL[0]=[-4,0,0];SCL[1]=[-2,0,0];SCL[2]=[1,0,0];SCL[3]=[3,0,0];
 CFA.ody={};CFA.odin={};CFA.wukong={};CFAE.ody={};CFAE.odin={};CFAE.wukong={};
 /* elite and boss life */
 {const E=n=>ELITES.find(x=>x.n.startsWith(n)),B=n=>BOSS.find(x=>x.n.startsWith(n));
-E('Circe').l=13;E('Cattle').l=16;E('The Norns').l=10;E('Fáfnir').l=22;E('Erlang').l=17;E('Princess Iron Fan').l=16;
+E('Circe').l=13;E('Cattle').l=16;E('The Norns').l=10;E('Fáfnir').l=22;E('Erlang').l=17;E('Princess Iron Fan').l=18;
 B('Hector').l=15;B('Scylla').l=16;B('Charybdis').l=25;B('Jörmungandr').l=14;B('The Wild Hunt').l=14;B('The Wild Hunt').sc=[0,-1,0];B('Hrungnir').l=22;B('The Six-Eared').l=12;B('The Bull Demon').l=27;B("The Buddha").l=33;
 B('The Wild Hunt').d=ids('hhnd:3,hrdr:3,hwld:2,hmst,hhrn:2,hhbt');}
 /* base life per enemy, fitted to the visible ramp (fight 1 ~33%, fights 2-4 ~28%) */
@@ -2690,6 +2690,14 @@ function tutBt(b){
  if(b=='tjrun'){lsSet(TIPK,'1');lsSet(TIPSEEN,'[]');setChar('ody');newRun();return true}
  return false}
 {const _R=render;render=function(){_R.apply(this,arguments);try{tutTick()}catch(e){}try{coachPost()}catch(e){}}}
+
+
+/* ===== v107: rename player cards that shared a name with a hero or an enemy ===== */
+{const R={odn:['Herald of the Allfather','Messenger of Odin'],wking:['Avatar of the Great Sage','Aspect of the Monkey King'],norn:['Weaving of Wyrd','The weave of fate'],
+ wsix:['Shapeshifter Ape','Mimic'],wfan:['Mountain-Felling Gale','Great typhoon'],wnez:['Lotus-Born Champion','Reborn warrior'],dammit:['Devouring Jaws','Ritual'],dsplit:['Scattering of the Pieces','Ritual']};
+ for(const id in R){if(!D[id])continue;D[id][0]=R[id][0];if(LORE)LORE[id]=R[id][1]}
+ D.sunch=D.helios.slice();D.sunch[0]='Chariot of the Sun';LORE.sunch='Fiery chariot';RAR.sunch=RAR.helios;TAG.sunch=TAG.helios;
+ const P=CHARS.ody.pool,i=P.indexOf('helios');if(i>=0)P[i]='sunch'}
 
 fit();try{addEventListener('resize',fit)}catch(e){}
 showChars();

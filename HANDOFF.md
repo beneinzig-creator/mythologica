@@ -586,6 +586,8 @@ Generic (1):
 
 Every hero's draft pool is exactly **80 cards**: three archetypes of **24** (8 Common / 7 Uncommon / 6 Rare / 3 Legendary) plus **8 generics** (2 C / 3 U / 3 L) = **26 / 24 / 18 / 12**. Staples (4) sit outside the pool. The three generic Legendaries are **Divine Karma** and **Divine Intervention** (universal, in every pool: *the first time you would drop to 0 life this fight, your life becomes 5 instead*) plus one hero Legendary (Odysseus: the Trojan Horse; Odin: Odin the Allfather; Wukong: Equal to Heaven; Thoth: the Weighing of the Heart). The layout is asserted in `tooling/patch_pool.py` and `patch_thoth.py`. New for the layout: Ithacan Raider, Myrmidon Shield-Bearer and Close Ranks (Odysseus); Bödvar Bjarki, Valhalla Initiate, Freyja, Othala and Bragi (Odin). Cut: Iris, Funeral Pyre and Peach Banquet. Test: `ut48.js`.
 
+**Naming rule (v107):** no player card shares its name with a playable hero or an enemy. The enemy keeps the name and the player card is renamed (same effect, in `tooling/patch_names.py`): Odin, the Allfather → Herald of the Allfather; Sun Wukong, the Great Sage → Avatar of the Great Sage; The Norns (spell) → Weaving of Wyrd; Six-Eared Macaque → Shapeshifter Ape; Banana-Leaf Fan → Mountain-Felling Gale; Nezha, the Lotus Prince → Lotus-Born Champion; Helios, the Sun (Odysseus's pool) → Chariot of the Sun (new id `sunch`; the Cattle of the Sun keep Helios); Ammit's Jaws → Devouring Jaws; Dismemberment → Scattering of the Pieces. The card ids are unchanged except `sunch`. Thoth's Glyph-Warded Guard uses id `iglyph` (it had overwritten Wukong's Palm-Leaf Guard, `iguard`, in Princess Iron Fan's deck).
+
 ## 6. Enemies
 
 **How enemies work:**

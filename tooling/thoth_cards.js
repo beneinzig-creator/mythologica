@@ -37,7 +37,7 @@ iink:['Ink of Seshat',1,'S',0,0,'','Inscribe +1/+1 and Ruthless onto target army
 iscribe:['Apprentice Scribe',2,'C',1,3,'','When it enters, Inscribe +1/+1 onto target army member you control.','📝','U',1],
 ichisel:['Chisel',1,'I',0,0,'','Target opposing army member loses all its keywords.','⛏️','U'],
 iword:['Amulet of Words',1,'A',0,0,'','Amulet (equip ◆1). Glyphs you Inscribe onto the bearer are written on this amulet instead, so they move with it. It comes with Charge written on it.','📿','A'],
-iguard:['Glyph-Warded Guard',2,'C',1,4,'w','Ward.','🛡️','U',1],
+iglyph:['Glyph-Warded Guard',2,'C',1,4,'w','Ward.','🛡️','U',1],
 iwas:['Was-Sceptre',1,'A',0,0,'','Amulet (equip ◆1). +1/+0, and +1/+0 more for each glyph on the bearer.','🔱','A'],
 ireed:['Reed Brush',1,'I',0,0,'','Inscribe Charge onto target army member you control. Draw a card.','🖌️','U'],
 itut:['Tutor of Scribes',1,'C',1,2,'','When it enters, draw a card if any of your army members has a glyph.','📚','U',1],
@@ -92,7 +92,7 @@ gweigh:['The Weighing of the Heart',4,'S',0,0,'','Destroy each army member whose
 });
 Object.assign(LORE,{tmedj:'Temple guard',tscr:'Temple scribe',tsun:'Ritual of parting',tscar:'Amulet',tpen:'Scribe\'s tool',dsk:'Keeper of bodies',dbal:'Keeper of spirits',dcut:'Ritual',dpart:'Ritual',dembal:'Embalmer',dheart:'Amulet',dwrap:'Amulet',dnomad:'Wandering spirit',
  dreun:'The Field of Reeds',dsever:'Ritual',dshade:'The shadow-soul',dcart:'Amulet',dtwof:'Amulet',dweigh:'Judge of the dead',dkhep:'The scarab of dawn',dakh:'The glorified soul',dsplit:'Ritual',dren:'True names',dsoul:'Soul-gatherer',dduat:'The underworld',dmum:'The ancient dead',
- dosir:'Lord of the dead',dammit:'The devourer',dbook:'Book of the underworld',iink:'Ritual',iscribe:'Temple scribe',ichisel:'Erasure',iword:'Amulet',iguard:'Temple guard',iwas:'Amulet',ireed:'Scribe\'s tool',itut:'Teacher',isac:'Sacred writing',iliv:'Living scroll',ierase:'Erasure',ishen:'Amulet',
+ dosir:'Lord of the dead',dammit:'The devourer',dbook:'Book of the underworld',iink:'Ritual',iscribe:'Temple scribe',ichisel:'Erasure',iword:'Amulet',iglyph:'Temple guard',iwas:'Amulet',ireed:'Scribe\'s tool',itut:'Teacher',isac:'Sacred writing',iliv:'Living scroll',ierase:'Erasure',ishen:'Amulet',
  idjed:'Amulet',ikhem:'Keeper of texts',iunwr:'Erasure',iseshat:'Goddess of writing',ihekau:'Words of power',ieye:'Amulet',iobel:'Monument',ianx:'Amulet',inarm:'Royal palette',ithoth:'The forbidden book',iweret:'Goddess of magic',iname:'Erasure',
  yibis:'Sacred ibis',yread:'Augury',yclerk:'Archivist',ywatch:'Gatekeeper',ywarn:'Foresight',ybab:'Sacred baboon',yledger:'Record',yprep:'Foresight',ypre:'Foresight',yrecall:'Record',ysage:'Sage',ystar:'Astronomer',yfore:'Foresight',ycopy:'Record',ytrap:'Foresight',yhall:'Archive',
  ycount:'Foresight',ykhon:'God of the moon',yvizier:'Royal vizier',yechoes:'Record',yjudge:'Judge',ysenet:'The moon\'s wager',ytruth:'The record of truth',yall:'The scribe who sees all',gscroll:'Spell',gfeather:'Amulet',gpriest:'Priest',gnile:'Blessing',gcanop:'Funerary jars',gweigh:'Judgement'});

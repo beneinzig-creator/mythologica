@@ -3,7 +3,7 @@ SCL[0]=[-4,0,0];SCL[1]=[-2,0,0];SCL[2]=[1,0,0];SCL[3]=[3,0,0];
 CFA.ody={};CFA.odin={};CFA.wukong={};CFAE.ody={};CFAE.odin={};CFAE.wukong={};
 /* elite and boss life */
 {const E=n=>ELITES.find(x=>x.n.startsWith(n)),B=n=>BOSS.find(x=>x.n.startsWith(n));
-E('Circe').l=13;E('Cattle').l=16;E('The Norns').l=10;E('Fáfnir').l=22;E('Erlang').l=17;E('Princess Iron Fan').l=16;
+E('Circe').l=13;E('Cattle').l=16;E('The Norns').l=10;E('Fáfnir').l=22;E('Erlang').l=17;E('Princess Iron Fan').l=18;
 B('Hector').l=15;B('Scylla').l=16;B('Charybdis').l=25;B('Jörmungandr').l=14;B('The Wild Hunt').l=14;B('The Wild Hunt').sc=[0,-1,0];B('Hrungnir').l=22;B('The Six-Eared').l=12;B('The Bull Demon').l=27;B("The Buddha").l=33;
 B('The Wild Hunt').d=ids('hhnd:3,hrdr:3,hwld:2,hmst,hhrn:2,hhbt');}
 /* base life per enemy, fitted to the visible ramp (fight 1 ~33%, fights 2-4 ~28%) */
