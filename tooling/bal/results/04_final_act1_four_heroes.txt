@@ -1,0 +1,49 @@
+== ody  by fight: f1 29% (n1600)  f2 28% (n1600)  f3 24% (n1600)  f4 24% (n1600)  f5 19% (n542)
+   R:Polyphemus                             n  946 win  26.4  avgFight 2.55
+   R:The Cicones                            n  894 win  28.3  avgFight 2.44
+   R:The Lotus-Eaters                       n  917 win  24.9  avgFight 2.52
+   R:The Phaeacians                         n  897 win  28.5  avgFight 2.51
+   R:The Shades of Hades                    n  938 win  24.6  avgFight 2.43
+   R:The Sirens                             n  931 win  27.1  avgFight 2.51
+   B:Charybdis                              n  184 win  20.1  avgFight 5.00
+   B:Hector, Tamer of Horses                n  165 win  17.0  avgFight 5.00
+   B:Scylla                                 n  193 win  20.7  avgFight 5.00
+   E:Cattle of the Sun                      n  427 win  23.2  avgFight 2.60
+   E:Circe, Witch of Aeaea                  n  450 win  25.8  avgFight 2.49
+== odin  by fight: f1 35% (n1600)  f2 31% (n1600)  f3 28% (n1600)  f4 25% (n1600)  f5 23% (n551)
+   R:Fenrir's Brood                         n  935 win  29.5  avgFight 2.47
+   R:Hel's Legion                           n  926 win  32.1  avgFight 2.49
+   R:Loki's Court                           n  874 win  32.8  avgFight 2.46
+   R:Muspelheim                             n  892 win  27.4  avgFight 2.44
+   R:The Dwarven Forge                      n  921 win  26.7  avgFight 2.51
+   R:The Jotnar                             n  925 win  28.3  avgFight 2.54
+   B:Hrungnir, the Stone-Hearted            n  176 win  28.4  avgFight 5.00
+   B:Jörmungandr, the World Serpent         n  196 win  17.3  avgFight 5.00
+   B:The Wild Hunt                          n  179 win  25.1  avgFight 5.00
+   E:Fáfnir, the Hoard-Dragon               n  470 win  29.6  avgFight 2.59
+   E:The Norns                              n  457 win  28.4  avgFight 2.58
+== wukong  by fight: f1 36% (n1600)  f2 30% (n1600)  f3 26% (n1600)  f4 28% (n1600)  f5 26% (n575)
+   R:Red Boy                                n  954 win  31.6  avgFight 2.49
+   R:The Gold and Silver Horn Kings         n  925 win  31.1  avgFight 2.50
+   R:The Heavenly Host                      n  883 win  31.4  avgFight 2.51
+   R:The Spider Cave                        n  893 win  31.9  avgFight 2.53
+   R:The White Bone Spirit                  n  940 win  30.6  avgFight 2.51
+   R:The Yellow Wind Ridge                  n  910 win  25.3  avgFight 2.51
+   B:The Buddha's Palm                      n  187 win  27.3  avgFight 5.00
+   B:The Bull Demon King                    n  207 win  26.1  avgFight 5.00
+   B:The Six-Eared Macaque                  n  181 win  23.2  avgFight 5.00
+   E:Erlang Shen, the Three-Eyed            n  459 win  28.3  avgFight 2.45
+   E:Princess Iron Fan                      n  436 win  24.8  avgFight 2.47
+== thoth  by fight: f1 29% (n1600)  f2 32% (n1600)  f3 31% (n1600)  f4 30% (n1600)  f5 25% (n625)
+   R:Servants of the Tomb                   n  922 win  33.1  avgFight 2.50
+   R:The Crocodiles of Sobek                n  933 win  25.4  avgFight 2.47
+   R:The Jackals of Anubis                  n  853 win  27.5  avgFight 2.45
+   R:The Priests of Heka                    n  970 win  29.0  avgFight 2.52
+   R:The Scorpions of Serket                n  909 win  39.6  avgFight 2.42
+   R:The Tomb Robbers                       n  915 win  29.0  avgFight 2.48
+   B:Apophis, the Serpent of Chaos          n  196 win  30.6  avgFight 5.00
+   B:Sekhmet, the Eye of Ra                 n  194 win  27.3  avgFight 5.00
+   B:Set, Lord of the Red Desert            n  235 win  18.7  avgFight 5.00
+   E:Ammit, the Devourer                    n  435 win  28.7  avgFight 2.66
+   E:The Great Sphinx                       n  463 win  28.9  avgFight 2.68
+done

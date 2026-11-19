@@ -563,6 +563,31 @@ Generic (1):
 
 ---
 
+### 5.5 Thoth (`thoth`), Egyptian, home realm "the Two Lands" (v105)
+
+**Fantasy.** The scribe of the gods. He takes things apart and rewrites them. Archetypes: **Sundered** (D), **Scribes** (I), **Recorder** (Y).
+
+**Mechanics** (engine in `tooling/thoth.js`, cards in `tooling/thoth_cards.js`, wiring in `tooling/patch_thoth.py`):
+- **Sunder:** an army member leaves play (no death triggers) and splits into its **Ka** (0 power, half its health, can't block) and its **Ba** (half its power, 1 health, Flying). Both stay on the owner's side. If Thoth did it, he takes its **Ren**: a 0-cost card that either *writes* that army member's keywords (and its death ability) plus +1/+1 onto one of yours as glyphs, or is *spoken* (◆+2 badge) for 2 mana. Speaking Ren cards is Thoth's mana engine. Sunder the Soul costs 1, so Sunder plus speak nets +1 mana.
+- **Reunite:** a Ka and Ba of the same original on your side rejoin as the original with +1/+1 (an **Akh**), keeping glyphs from both halves.
+- **Inscribe:** writes one glyph (a keyword or +1/+1) permanently for the fight. At most **3 glyphs** per army member. **Erase** strips an army member's name, keywords and abilities (it becomes a "Nameless" copy with the same stats).
+- **Amulets** are items that attach on cast. When the bearer leaves play, the amulet stays on your side unattached. Click it to re-equip for its **Equip** cost (◆1, or ◆2 for the strongest). The Amulet of Words carries glyphs with it.
+- **Foresee** marks the enemy's next cards or hand (shown under their name). **Record** gives you a fading (Disintegrating) copy when they play a foreseen army member (otherwise draw). **Preempt** makes a foreseen card fail when played.
+- Trumps can't be Sundered or Erased (Ward). Shen Ring protects your own army member.
+
+**Egyptian realm** (all rules work against every hero, because the others meet it in Act II):
+- Regulars: the Tomb Robbers (steal an item, modifier or hand card when they outnumber you), the Scorpions of Serket (1-power army members are Venomous in attack form), Servants of the Tomb (Shabti replace the dead), the Crocodiles of Sobek (Ruthless), the Jackals of Anubis (every death drains you for 1) and the Priests of Heka (curse a hand card: +1 cost).
+- Elites: Ammit, the Devourer (grows with deaths on her side) and the Great Sphinx (play the named card type or lose 2 life).
+- Bosses: Apophis (Erases your strongest army member each turn), Set (Sunders your strongest army member that costs 3+) and Sekhmet (her army grows; her rage burns her).
+
+**Tests:** `ut49.js` covers the engine and realm. **Known:** Thoth is a slower, attrition hero. Fights against his realm run longer (about 10–15 turns), and the Scorpions are the most stall-prone matchup.
+
+### 5.6 Shared pool layout (v104)
+
+Every hero's draft pool is exactly **80 cards**: three archetypes of **24** (8 Common / 7 Uncommon / 6 Rare / 3 Legendary) plus **8 generics** (2 C / 3 U / 3 L) = **26 / 24 / 18 / 12**. Staples (4) sit outside the pool. The three generic Legendaries are **Divine Karma** and **Divine Intervention** (universal, in every pool: *the first time you would drop to 0 life this fight, your life becomes 5 instead*) plus one hero Legendary (Odysseus: the Trojan Horse; Odin: Odin the Allfather; Wukong: Equal to Heaven; Thoth: the Weighing of the Heart). The layout is asserted in `tooling/patch_pool.py` and `patch_thoth.py`. New for the layout: Ithacan Raider, Myrmidon Shield-Bearer and Close Ranks (Odysseus); Bödvar Bjarki, Valhalla Initiate, Freyja, Othala and Bragi (Odin). Cut: Iris, Funeral Pyre and Peach Banquet. Test: `ut48.js`.
+
+**Naming rule (v107):** no player card shares its name with a playable hero or an enemy. The enemy keeps the name and the player card is renamed (same effect, in `tooling/patch_names.py`): Odin, the Allfather → Herald of the Allfather; Sun Wukong, the Great Sage → Avatar of the Great Sage; The Norns (spell) → Weaving of Wyrd; Six-Eared Macaque → Shapeshifter Ape; Banana-Leaf Fan → Mountain-Felling Gale; Nezha, the Lotus Prince → Lotus-Born Champion; Helios, the Sun (Odysseus's pool) → Chariot of the Sun (new id `sunch`; the Cattle of the Sun keep Helios); Ammit's Jaws → Devouring Jaws; Dismemberment → Scattering of the Pieces. The card ids are unchanged except `sunch`. Thoth's Glyph-Warded Guard uses id `iglyph` (it had overwritten Wukong's Palm-Leaf Guard, `iguard`, in Princess Iron Fan's deck).
+
 ## 6. Enemies
 
 **How enemies work:**
@@ -1085,6 +1110,26 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 - The AI deliberately does **not** account for the player's possible quick spells when checking lethal (Ben's rule), but it does consider whether it can block.
 - The enemy AI aims to deal as much damage to the player as possible (Spire-style), not to preserve itself. It takes lethal first and protects itself only when that makes sense.
 
+### 8.1 Balance pass v103 (2026-11-09) — supersedes the numbers above
+
+**What changed** (all in `tooling/patch_bal.py`, data in `tooling/bal/decks.js` + `tooling/bal/tune_vis.js`):
+- **Enemy decks no longer run dry.** Thin decks grew to 13–20 cards with more copies of their own commons (Shades 8→15, Fenrir 8→14, Jotnar 9→15, Horn Kings 11→16, every boss and elite a few cards). Enemy deck-outs fell from up to 96% of fights to at most ~30%.
+- **One visible enemy ramp for every hero.** Act I regular and elite enemies get −4 / −2 / +1 / +3 life in fights 1–4 and no power bonus. The per-hero hidden tables (`CFA`, `CFAE`) are now empty, so the map's "Next opponent" line is accurate. Hero differences live in each enemy's base life (Act I enemies are only fought by their own hero).
+- **Per-enemy base life** fitted to the ramp (fight 1 ≈ 33%, fights 2–4 ≈ 28%). Elite and boss life retuned.
+- **Rule tweaks:** Wild Hunt riders +2 (was +3) to the Quarry, and the Hunt's riders −1 power (`sc`). The Iron Fan only bounces army members costing 3+ (was 2+). The Heavenly Decree only taxes army members costing 2 or less (was any). Circe's Cup no longer gives her Wolves and Lions +1/+1 each time.
+- **Fight 1 vs the Heavenly Host** is easy (~48%) on purpose: its later fights were the problem, and those are three-quarters of the meetings.
+
+**Results** (real runs, 1,600 per hero, `bal/results/03_final_full_runs.txt`): fights 1–4 then boss — Odysseus 31/31/27/26/22, Odin 35/28/28/25/20, Wukong 37/32/25/25/26. Every regular enemy is 27–32% in real runs. Elites 25–30%. Bosses 19–30% (Bull Demon King and Buddha's Palm ~30%, worth a nudge).
+
+**Known:** Wukong's deck grows more slowly mid-run than the other heroes', so his fight 1 is easier (~37%) to keep fights 2–4 fair. A visible hero-side boost would fix that properly. Shades, Hel's Legion, Hrungnir and the Norns still stall in 10–20% of fights: the enemy sits in a full defensive wall when low on life. Fixing that needs a rule (an anti-stall clock), not numbers.
+
+**Act II** uses the same visible ramp plus a per hero:realm life adjustment (`XADJ` in `bal/tune_vis.js`), because each realm's enemies were tuned against their own hero. Target: about 30% in the first Act II fight. Measure with `matrix.py html N a2b` (banked end-of-Act-I decks against every other realm).
+
+**Tools** (in `tooling/`):
+- `simx.js`: `sim.js` plus deck-out and per-enemy stats, JSON output, `CONTALL` (keep going after losses so every run reaches the boss), `BANKOUT` / `BANK`+`BANKFILE` (record and replay real mid-run and boss-arrival decks).
+- `matrix.py html N reg,breg,elite,boss,curve`: parallel matrix. `breg`, `elite` and `boss` replay banked decks at the right fight number. Note that `OPP=100+i` and `200+i` take *global* `ELITES` / `BOSS` indices.
+- `runs.py`: real full runs with per-enemy results. `lifesweep.py`: life sweeps. `fit.py`: fits per-enemy base life to fight-1 and mid-run targets. `bankgen.sh`: regenerates the deck banks (`bal/bank_*.jsonl`, git-ignored).
+
 ---
 
 ## 9. Code architecture
@@ -1206,6 +1251,21 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
   - Replace emoji with AI art. Train a custom style LoRA for consistency, then use a shared style guide plus a per-card prompt manifest, starting with one hero.
   - Keep emoji as a fallback.
   - Image generators considered: Midjourney, Flux, Ideogram.
+
+### 10.1 Tutorial and run tips (v106)
+
+**How to play** (button on the hero select screen; files `tooling/tutorial.js` and `tooling/patch_tut.py`; test `ut50.js`). Five Odysseus lessons:
+1. **Army and battle:** mana, playing cards, fatigue, attacking, blocking, persistent damage, tapping, forms, quick spells.
+2. **Offerings to the gods:** 💀 values, offering for mana, death and offering triggers.
+3. **Phalanx, the wall:** defense form, Sentinels, blocking with Testudo, and the attack/defense rhythm.
+4. **Raiders, strike fast:** Charge, Ruthless, Berserker, attacking tapped units, the Banner, finishers.
+5. **The journey:** slides on drafting, the map, places, Prestige, the guardian and Act II, then a run with tips on.
+
+Lessons 1–4 use a fixed deck and draw order against a fixed enemy (an entry pushed onto `EN`). A coach panel shows one step at a time; steps advance on *Next* or when their condition is met, highlight the relevant element, and can block *End turn*. Lesson fights end in their own `tutend` phase, never `kleos`/`lost`, so they never touch the saved run.
+
+**Run tips:** the first time a player reaches the draft, the map, each place type, their first fight, Prestige, the guardian pick and Act II, a tip appears. Seen tips are stored in localStorage (`myth_tips_seen`). Tips can be switched off from the coach panel or the How to play screen (`myth_tips`).
+
+**To extend to another hero:** add lesson objects to `TUT` (deck, enemy deck, steps) and a hero selector to the lesson menu.
 
 ---
 
