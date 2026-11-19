@@ -462,5 +462,246 @@
  "thegn": {
   "composition": "a full figure kneeling, seen from the side",
   "palette": "deep crimson firelight and black"
+ },
+ "pup": {
+  "palette": "cold moonlight silver-blue"
+ },
+ "wolf": {
+  "palette": "blood red on snow",
+  "composition": "the full body of the wolf in side profile, mid-leap"
+ },
+ "hati": {
+  "palette": "peat-brown dusk under a low red sun"
+ },
+ "skoll": {
+  "palette": "grey winter dawn over snow"
+ },
+ "fenr": {
+  "palette": "cold moonlight silver-blue"
+ },
+ "pgrow": {
+  "palette": "blood red on snow"
+ },
+ "ithrl": {
+  "palette": "glacier blue and white"
+ },
+ "rimew": {
+  "palette": "pale ice blue and bone"
+ },
+ "hgnt": {
+  "palette": "grey winter dawn over snow"
+ },
+ "icesp": {
+  "palette": "glacier blue and white"
+ },
+ "rwall": {
+  "palette": "pale ice blue and bone"
+ },
+ "dmin": {
+  "palette": "molten forge gold and red"
+ },
+ "dsmith": {
+  "palette": "ember orange and soot black"
+ },
+ "dxbow": {
+  "palette": "deep crimson firelight and black"
+ },
+ "brokk": {
+  "palette": "molten forge gold and red"
+ },
+ "golem": {
+  "palette": "ember orange and soot black"
+ },
+ "anvl": {
+  "palette": "deep crimson firelight and black"
+ },
+ "dshld": {
+  "palette": "molten forge gold and red"
+ },
+ "drpn": {
+  "palette": "ember orange and soot black"
+ },
+ "dbolt": {
+  "palette": "deep crimson firelight and black"
+ },
+ "ffire": {
+  "palette": "molten forge gold and red"
+ },
+ "ember": {
+  "palette": "molten forge gold and red"
+ },
+ "fraid": {
+  "palette": "deep crimson firelight and black"
+ },
+ "lava": {
+  "palette": "ember orange and soot black"
+ },
+ "mgnt": {
+  "palette": "molten forge gold and red"
+ },
+ "surtr": {
+  "palette": "deep crimson firelight and black"
+ },
+ "fbolt": {
+  "palette": "ember orange and soot black"
+ },
+ "mspear": {
+  "palette": "molten forge gold and red"
+ },
+ "bland": {
+  "palette": "deep crimson firelight and black"
+ },
+ "draug": {
+  "palette": "smoky amethyst dusk"
+ },
+ "wight": {
+  "palette": "deep pine green and frost"
+ },
+ "hgrd": {
+  "palette": "cold moonlight silver-blue"
+ },
+ "nidh": {
+  "palette": "smoky amethyst dusk"
+ },
+ "hgrasp": {
+  "palette": "deep pine green and frost"
+ },
+ "corp": {
+  "palette": "cold moonlight silver-blue"
+ },
+ "lrav": {
+  "palette": "velvet purple and black, like a seidr spell"
+ },
+ "imp": {
+  "palette": "smoky amethyst dusk"
+ },
+ "skinw": {
+  "palette": "aurora violet and teal"
+ },
+ "lokis": {
+  "palette": "velvet purple and black, like a seidr spell"
+ },
+ "lsnare": {
+  "palette": "smoky amethyst dusk"
+ },
+ "lcurse": {
+  "palette": "aurora violet and teal"
+ },
+ "lgale": {
+  "palette": "velvet purple and black, like a seidr spell"
+ },
+ "lokib": {
+  "palette": "smoky amethyst dusk"
+ },
+ "ltax": {
+  "palette": "aurora violet and teal"
+ },
+ "urd": {
+  "palette": "aurora green over a black sky"
+ },
+ "verd": {
+  "palette": "aurora violet and teal"
+ },
+ "skuld": {
+  "palette": "pale midnight-sun gold"
+ },
+ "nspin": {
+  "palette": "aurora green over a black sky"
+ },
+ "nwarr": {
+  "palette": "aurora violet and teal"
+ },
+ "ndoom": {
+  "palette": "pale midnight-sun gold"
+ },
+ "fate": {
+  "palette": "aurora green over a black sky"
+ },
+ "fafn": {
+  "palette": "pale midnight-sun gold"
+ },
+ "fgrd": {
+  "palette": "molten forge gold and red"
+ },
+ "fworm": {
+  "palette": "deep pine green and frost"
+ },
+ "regin": {
+  "palette": "pale midnight-sun gold"
+ },
+ "dbrth": {
+  "palette": "molten forge gold and red"
+ },
+ "fspit": {
+  "palette": "deep pine green and frost"
+ },
+ "hoard": {
+  "palette": "pale midnight-sun gold"
+ },
+ "jsnk": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "jcrw": {
+  "palette": "misty fjord blue-grey",
+  "composition": "seen from directly above, looking down on the ship and the coiling beast"
+ },
+ "jorm": {
+  "palette": "deep pine green and frost"
+ },
+ "jbck": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "jgrp": {
+  "palette": "misty fjord blue-grey"
+ },
+ "jspt": {
+  "palette": "deep pine green and frost"
+ },
+ "ouro": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "hhnd": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "hrdr": {
+  "palette": "aurora violet and teal"
+ },
+ "hwld": {
+  "palette": "cold moonlight silver-blue"
+ },
+ "hmst": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "hhrn": {
+  "palette": "aurora violet and teal"
+ },
+ "hhbt": {
+  "palette": "cold moonlight silver-blue"
+ },
+ "hunt": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "hrung": {
+  "palette": "peat-brown dusk under a low red sun"
+ },
+ "hmokk": {
+  "palette": "storm-dark slate blue with lightning",
+  "composition": "a full figure seen from a distance, with tiny figures at its feet for scale"
+ },
+ "htrl": {
+  "palette": "grey winter dawn over snow"
+ },
+ "hgrt": {
+  "palette": "peat-brown dusk under a low red sun",
+  "composition": "a full figure striding toward the viewer, seen from slightly above and to one side"
+ },
+ "hwhet": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "hmead": {
+  "palette": "grey winter dawn over snow"
+ },
+ "holm": {
+  "palette": "peat-brown dusk under a low red sun"
  }
 }
