@@ -42,10 +42,12 @@ PALETTES = ['dawn rose and pale gold', 'harsh noon white and ochre', 'deep crims
             'icy dawn blue', 'dusty bronze and brown']
 # Other heroes get light from their own world (the list above is Odysseus's Mediterranean one).
 HERO_PALETTES = {
-    'odin': ['grey winter dawn over snow', 'aurora green over a black sky', 'iron-grey sleet and sea-spray',
-             'firelight in a smoky longhall', 'pale midnight-sun gold', 'storm-dark slate blue with lightning',
-             'frost white and pine black', 'blood red on snow', 'misty fjord blue-grey', 'cold moonlight silver-blue',
-             'peat-brown dusk', 'pale ice blue and bone'],
+    'odin': ['blood red on snow', 'deep crimson firelight and black', 'aurora green over a black sky',
+             'aurora violet and teal', 'velvet purple and black, like a seidr spell', 'smoky amethyst dusk',
+             'ember orange and soot black', 'molten forge gold and red', 'glacier blue and white',
+             'grey winter dawn over snow', 'storm-dark slate blue with lightning', 'pale midnight-sun gold',
+             'deep pine green and frost', 'misty fjord blue-grey', 'cold moonlight silver-blue',
+             'peat-brown dusk under a low red sun'],
 }
 # Legendaries for these heroes cycle through different camera set-ups instead of all being shot from below.
 HERO_LEGEND_SHOTS = {
@@ -94,6 +96,7 @@ def plan(groups, hero='ody'):
     out = {}
     legend_i = 0
     angle_count = {}
+    pal_count = {}
     for group, members in groups.items():
         rng = _rng(group)
         pals = (HERO_PALETTES.get(hero) or PALETTES)[:]
@@ -116,8 +119,12 @@ def plan(groups, hero='ody'):
             shot, angle = free[0]
             angle_count[angle] = angle_count.get(angle, 0) + 1
             used.add((k, (shot, angle)))
-            palette = pals[pi % len(pals)]
-            pi += 1
+            if hero in HERO_LEGEND_SHOTS:  # spread colour keys evenly across the whole hero
+                palette = min(pals, key=lambda c: (pal_count.get(c, 0), pals.index(c)))
+                pal_count[palette] = pal_count.get(palette, 0) + 1
+            else:
+                palette = pals[pi % len(pals)]
+                pi += 1
             p = {'group': group, 'kind': k, 'shot': shot, 'angle': angle, 'palette': palette,
                  'power': HERO_POWER.get(hero, {}).get(rarity) or POWER.get(rarity, '')}
             o = overrides.get(cid)

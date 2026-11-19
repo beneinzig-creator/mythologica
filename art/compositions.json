@@ -394,5 +394,73 @@
  },
  "howl": {
   "palette": "cold moonlight silver-blue"
+ },
+ "blod": {
+  "palette": "blood red on snow"
+ },
+ "bldr": {
+  "palette": "deep crimson firelight and black"
+ },
+ "oath": {
+  "palette": "deep crimson firelight and black"
+ },
+ "rend": {
+  "palette": "blood red on snow"
+ },
+ "gash": {
+  "palette": "blood red on snow"
+ },
+ "rage": {
+  "palette": "deep crimson firelight and black"
+ },
+ "seid": {
+  "palette": "velvet purple and black, like a seidr spell"
+ },
+ "hela": {
+  "palette": "smoky amethyst dusk"
+ },
+ "hrav": {
+  "palette": "velvet purple and black, like a seidr spell"
+ },
+ "mimr": {
+  "palette": "aurora green over a black sky"
+ },
+ "fylg": {
+  "palette": "aurora violet and teal"
+ },
+ "alg": {
+  "palette": "aurora green over a black sky"
+ },
+ "vlnd": {
+  "palette": "molten forge gold and red"
+ },
+ "ofr": {
+  "composition": "a wide shot of the whole pyre on the headland, seen from a distance at eye level",
+  "palette": "ember orange and soot black"
+ },
+ "vfea": {
+  "palette": "ember orange and soot black"
+ },
+ "ghall": {
+  "palette": "pale midnight-sun gold"
+ },
+ "einw": {
+  "palette": "pale midnight-sun gold"
+ },
+ "mead": {
+  "palette": "pale midnight-sun gold"
+ },
+ "hagl": {
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "gald": {
+  "palette": "glacier blue and white"
+ },
+ "eir": {
+  "palette": "deep pine green and frost"
+ },
+ "thegn": {
+  "composition": "a full figure kneeling, seen from the side",
+  "palette": "deep crimson firelight and black"
  }
 }
