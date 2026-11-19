@@ -380,5 +380,19 @@
  "star": {
   "composition": "a close head-and-shoulders portrait in profile, seen slightly from above",
   "palette": "grey winter dawn over snow"
+ },
+ "norn": {
+  "composition": "the three figures waist-up, close together and filling the frame, seen at eye level",
+  "palette": "storm-dark slate blue with glowing gold threads"
+ },
+ "idun": {
+  "palette": "frost white and pine black, with the golden glow of the apples"
+ },
+ "volv": {
+  "composition": "a waist-up portrait, seated, seen from slightly below",
+  "palette": "firelight and smoke in a dark hall"
+ },
+ "howl": {
+  "palette": "cold moonlight silver-blue"
  }
 }
