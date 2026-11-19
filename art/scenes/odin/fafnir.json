@@ -1,0 +1,22 @@
+{
+  "id": "fafnir",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-18 21:26:05",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the lair of the dragon Fafnir on Gnitaheath from the Volsunga saga: a rocky cave mouth heaped with the cursed gold of Andvari, coins, rings, golden armour and a helm of terror; the coiled scaly body of a great wingless serpent-dragon curling around the hoard along the right edge; a cursed golden ring glinting at the lower right; poison mist drifting over a barren heath outside at the far left; Viking swords half-buried in the gold Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black brown to tarnished gold (#1a1405 to #b38a1d) with bright gold and venom-green accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 431,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 431
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1803
+  }
+}
