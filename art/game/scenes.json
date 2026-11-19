@@ -12,12 +12,41 @@
 "Circe, Witch of Aeaea": {
 "id": "circe"
 },
+"Fenrir's Brood": {
+"id": "fenrir"
+},
+"Fáfnir, the Hoard-Dragon": {
+"id": "fafnir"
+},
 "Hector, Tamer of Horses": {
 "bg": [
 "#1a1208",
 "#8a5a24"
 ],
 "id": "hector"
+},
+"Hel's Legion": {
+"id": "hel"
+},
+"Hrungnir, the Stone-Hearted": {
+"bg": [
+"#121418",
+"#5a6068"
+],
+"id": "hrungnir"
+},
+"Jörmungandr, the World Serpent": {
+"bg": [
+"#071412",
+"#2f5a52"
+],
+"id": "jormungandr"
+},
+"Loki's Court": {
+"id": "loki"
+},
+"Muspelheim": {
+"id": "muspelheim"
 },
 "Polyphemus": {
 "id": "polyphemus"
@@ -32,8 +61,17 @@
 "The Cicones": {
 "id": "cicones"
 },
+"The Dwarven Forge": {
+"id": "forge"
+},
+"The Jotnar": {
+"id": "jotnar"
+},
 "The Lotus-Eaters": {
 "id": "lotus"
+},
+"The Norns": {
+"id": "norns"
 },
 "The Phaeacians": {
 "id": "phaeacians"
@@ -43,5 +81,12 @@
 },
 "The Sirens": {
 "id": "sirens"
+},
+"The Wild Hunt": {
+"bg": [
+"#0a0f1a",
+"#3e5470"
+],
+"id": "wildhunt"
 }
 }

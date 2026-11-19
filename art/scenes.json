@@ -92,5 +92,74 @@
       "setting": "the mouth of the strait of Scylla and Charybdis from Homer's Odyssey, seen from the sea in a gathering storm: on the left a towering cliff with a high dark cave; on the right a low rock with a gnarled fig tree above a churning whirlpool; the narrow passage of black water between them; lightning far off in heavy clouds; a small Greek ship's prow at the very bottom edge",
       "palette": "near-black storm grey to cold sea teal (#080e14 to #2a4652) with white foam and a faint lightning-white accent"
     }
+  },
+  "odin": {
+    "jotnar": {
+      "name": "The Jotnar",
+      "setting": "Jotunheim, the land of the frost giants in Norse myth (the Eddas), in endless winter: a frozen fjord between towering black cliffs hung with ice; colossal frost-giant silhouettes, bearded and furred, half-hidden in the blizzard along the far right; the ruined, snow-drifted timber hall of a giant with a carved dragon-head gable at the far left; a Viking longship with a dragon prow frozen into the ice at the lower left; a leaning runestone carved with knotwork and runes at the lower right; drifting snow, a pale aurora in a dark sky. Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black midnight blue to glacial ice blue (#0b1622 to #4f87ad) with white snow and a faint green aurora accent"
+    },
+    "fenrir": {
+      "name": "Fenrir's Brood",
+      "setting": "a dark pine forest of Ironwood (Jarnvid) from Norse myth, where the giantess raises the wolf-children of Fenrir, at night: huge gnarled iron-grey pines and roots along the left and right edges; a pack of great shaggy wolves with glowing eyes prowling in the undergrowth at the far right; a broken Viking shield and spear and gnawed bones in the snow at the lower left; a tall carved wooden post with a wolf's head and knotwork at the far left; a blood-red moon low between the trees Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black brown to rust red (#160c0c to #6a3a30) with a red moon and yellow wolf-eye accents"
+    },
+    "forge": {
+      "name": "The Dwarven Forge",
+      "setting": "the forge-hall of the dwarves deep under the mountains in Norse myth, where Sindri and Brokkr made Mjolnir: a vast rock cavern with a roaring forge and great bellows at the lower left; anvils, hammers, tongs and half-made axes, helmets and rune-inscribed rings on stone benches along the right edge; glowing veins of gold in the rock walls; carved runes and knotwork around a stone archway at the far left; chains and lanterns hanging from the vault Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black umber to dull gold (#1a1309 to #8a6a2a) with forge-orange and gold accents"
+    },
+    "muspelheim": {
+      "name": "Muspelheim",
+      "setting": "Muspelheim, the realm of fire in Norse myth, ruled by the fire giant Surtr with his flaming sword: a landscape of black volcanic rock and rivers of lava; towering fire-giant silhouettes wreathed in flame on the cliffs along the far right; a gigantic burning sword thrust into the rock at the far left; ash and embers raining from a smoky red sky; a charred runestone and scorched Viking shields at the lower corners Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black red-brown to burning orange (#240a05 to #d4642a) with lava-yellow accents"
+    },
+    "hel": {
+      "name": "Hel's Legion",
+      "setting": "Helheim, the cold realm of the dead under the goddess Hel in Norse myth: the gate of Hel's hall Eljudnir, black and frost-rimed, at the far right; the bridge Gjallarbru over the icy river Gjoll fading into mist at the left; pale draugr and the shades of the dead shuffling as grey silhouettes along the right edge; dead birch trees and a heap of old Viking helmets and broken swords at the lower corners; the great hound Garm chained by the gate; a dim sunless sky Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black blue-grey to pale grey-green (#0c1214 to #7f9a9a) with sickly bone-white accents"
+    },
+    "loki": {
+      "name": "Loki's Court",
+      "setting": "the trickster god Loki's hidden mountain house in Norse myth, with doors on all four sides so he could watch every way: a smoky timber hall lit by a low hearth; a knotted fishing net (the net Loki wove) hanging from the rafters at the left; carved wooden masks, a serpent motif and shape-changer emblems (a salmon, a mare, a fly) on the pillars along the right edge; a game board with pieces (hnefatafl) and spilled mead horns at the lower right; four open doorways glowing with violet twilight Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black purple to deep violet (#150c20 to #7a4a9a) with green and firelight accents"
+    },
+    "norns": {
+      "name": "The Norns",
+      "setting": "the Well of Urd at the roots of the world-tree Yggdrasil in Norse myth, where the three Norns weave the fates of gods and men: enormous twisting roots of the ash tree arching along the left and right edges; a still, glowing well at the lower centre-left; three hooded weaver women as silhouettes at a loom of threads on the right; runes carved into the roots; two white swans on the water; a deep blue night sky with stars through the branches Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black navy to twilight blue (#0b1222 to #5c7fb0) with silver-white thread and starlight accents"
+    },
+    "fafnir": {
+      "name": "Fáfnir, the Hoard-Dragon",
+      "setting": "the lair of the dragon Fafnir on Gnitaheath from the Volsunga saga: a rocky cave mouth heaped with the cursed gold of Andvari, coins, rings, golden armour and a helm of terror; the coiled scaly body of a great wingless serpent-dragon curling around the hoard along the right edge; a cursed golden ring glinting at the lower right; poison mist drifting over a barren heath outside at the far left; Viking swords half-buried in the gold Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black brown to tarnished gold (#1a1405 to #b38a1d) with bright gold and venom-green accents"
+    },
+    "jormungandr": {
+      "name": "Jörmungandr, the World Serpent",
+      "setting": "the open sea at the edge of Midgard in Norse myth, where the World Serpent Jormungandr encircles the world biting its own tail: immense scaled coils of the serpent rising out of a dark heaving ocean along the left and right edges; Thor's small fishing boat with an ox-head bait line far off on the horizon; towering waves and sea spray; a stormy grey-green sky; a carved dragon prow of a wrecked longship at the lower corner Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black sea green to deep teal (#071412 to #2f5a52) with white foam and pale serpent-scale accents",
+      "bg": [
+        "#071412",
+        "#2f5a52"
+      ]
+    },
+    "wildhunt": {
+      "name": "The Wild Hunt",
+      "setting": "the Wild Hunt of Norse folklore racing across a winter night sky: a storm of ghostly horsemen, hounds and ravens streaming through the clouds along the top and the right edge, led by a pale rider on an eight-legged horse; a frozen moor below with bare black trees and a lone snowy longhouse at the far left; standing stones and a runestone in the snow at the lower corners; lightning and a cold full moon Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black storm blue to cold grey-blue (#0a0f1a to #3e5470) with white lightning and pale ghost accents",
+      "bg": [
+        "#0a0f1a",
+        "#3e5470"
+      ]
+    },
+    "hrungnir": {
+      "name": "Hrungnir, the Stone-Hearted",
+      "setting": "Grjotunagardar, the border of the giants' lands in Norse myth, where Thor fought the stone giant Hrungnir in a duel (holmgang): a ring of standing stones marking the duelling ground on a bleak upland; a colossal giant with a heart and head of stone looming as a silhouette with a whetstone club at the far right; a clay giant (Mokkurkalfi) crumbling at the far left; shattered rock and a broken hammer-struck boulder at the lower corners; a grey stormy sky Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
+      "palette": "near-black slate to stone grey (#121418 to #5a6068) with a faint storm-blue accent",
+      "bg": [
+        "#121418",
+        "#5a6068"
+      ]
+    }
   }
 }
