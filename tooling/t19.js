@@ -10,9 +10,9 @@ ok('300 webs: 25 nodes, 15/3/3/3, connected, start deg>=2',bad==0);console.log('
 R(`newRun();for(let i=0;i<11;i++)pickDraft(0)`);ok('map after draft',R('G.phase')=='map'&&R('G.act')==2&&R('G.fi')==0);
 // walk to a fight neighbor
 R(`var nb=G.web.nodes[0].adj.map(i=>G.web.nodes[i]);var ft=nb.find(n=>n.t=='fight')||null`);
-if(R('!!ft')){R(`goNode(ft.id)`);ok('fight started',R('G.phase')=='main'&&R('G.e.max')==R('fo(ft.o).l-3'));R(`G.e.life=0;chk()`);ok('kleos',R('G.phase')=='kleos');R(`G.kl=[];bt('next')`);ok('reward: vp1 ap3 cleared',R('G.fi')==1&&R('G.act')==4+(R('ft.el')?1:0)&&(R('G.phase')=='map'||R('G.phase')=='draft')&&R('G.web.nodes[G.pos].cleared')==1);
+if(R('!!ft')){R(`goNode(ft.id)`);ok('fight started',R('G.phase')=='main'&&R('G.e.max')==R('fo(ft.o).l+SCL[0][0]+((CFA[G.ch]||{})[0]||[0])[0]'));R(`G.e.life=0;chk()`);ok('kleos',R('G.phase')=='kleos');R(`G.kl=[];bt('next')`);ok('reward: vp1 ap3 cleared',R('G.fi')==1&&R('G.act')==4+(R('ft.el')?1:0)&&(R('G.phase')=='map'||R('G.phase')=='draft')&&R('G.web.nodes[G.pos].cleared')==1);
  R('G.phase="map";G.dr=0');R(`goNode(0)`);ok('walk back to start',R('G.pos')==0&&R('G.phase')=='map');
- R(`G.fi=2;G.rt[2]=0;G.web.nodes[G.pos].cleared=0;fight()`);ok('scaled enemy life (ody fight-3 adjust)',R('G.e.max')==R('EN[0].l+SCL[2][0]+CFA.ody[2][0]'));}
+ R(`G.fi=2;G.rt[2]=0;G.web.nodes[G.pos].cleared=0;fight()`);ok('scaled enemy life (visible ramp, fight 3)',R('G.e.max')==R('EN[0].l+SCL[2][0]+((CFA.ody||{})[2]||[0])[0]'));}
 // locations
 for(const t of ['camp','craft','altar']){R(`newRun();for(let i=0;i<11;i++)pickDraft(0);G.act=5;var L=G.web.nodes.find(n=>n.t=='${t}');G.pos=L.id;G.phase='loc';render()`);
  if(t=='camp'){R(`G.p.life=5;bt('hheal');bt('hheal');bt('hheal')`);ok('camp heals 6 twice only',R('G.p.life')==17&&R('G.act')==3);}
