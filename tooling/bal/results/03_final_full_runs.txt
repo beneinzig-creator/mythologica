@@ -1,0 +1,45 @@
+== ody  by fight: f1 31% (n1600)  f2 31% (n1600)  f3 27% (n1600)  f4 26% (n1600)  f5 22% (n549)
+   R:Polyphemus                             n  896 win  29.7  avgFight 2.47
+   R:The Cicones                            n  874 win  30.2  avgFight 2.48
+   R:The Lotus-Eaters                       n  917 win  28.2  avgFight 2.48
+   R:The Phaeacians                         n  932 win  31.7  avgFight 2.48
+   R:The Shades of Hades                    n  917 win  27.3  avgFight 2.56
+   R:The Sirens                             n  969 win  27.1  avgFight 2.44
+   B:Charybdis                              n  175 win  21.7  avgFight 5.00
+   B:Hector, Tamer of Horses                n  192 win  18.8  avgFight 5.00
+   B:Scylla                                 n  182 win  24.7  avgFight 5.00
+   E:Cattle of the Sun                      n  427 win  25.5  avgFight 2.59
+   E:Circe, Witch of Aeaea                  n  468 win  26.9  avgFight 2.58
+== odin  by fight: f1 35% (n1600)  f2 28% (n1600)  f3 28% (n1600)  f4 25% (n1600)  f5 20% (n550)
+   R:Fenrir's Brood                         n  903 win  30.3  avgFight 2.44
+   R:Hel's Legion                           n  899 win  28.3  avgFight 2.49
+   R:Loki's Court                           n  948 win  29.7  avgFight 2.55
+   R:Muspelheim                             n  929 win  27.3  avgFight 2.45
+   R:The Dwarven Forge                      n  885 win  29.0  avgFight 2.48
+   R:The Jotnar                             n  944 win  29.0  avgFight 2.51
+   B:Hrungnir, the Stone-Hearted            n  199 win  20.6  avgFight 5.00
+   B:Jörmungandr, the World Serpent         n  174 win  20.7  avgFight 5.00
+   B:The Wild Hunt                          n  177 win  19.2  avgFight 5.00
+   E:Fáfnir, the Hoard-Dragon               n  444 win  29.7  avgFight 2.64
+   E:The Norns                              n  448 win  27.9  avgFight 2.51
+== wukong  by fight: f1 37% (n1600)  f2 32% (n1600)  f3 25% (n1600)  f4 25% (n1600)  f5 26% (n578)
+   R:Red Boy                                n  889 win  30.8  avgFight 2.48
+   R:The Gold and Silver Horn Kings         n  904 win  29.3  avgFight 2.50
+   R:The Heavenly Host                      n  863 win  30.8  avgFight 2.49
+   R:The Spider Cave                        n  958 win  29.1  avgFight 2.44
+   R:The White Bone Spirit                  n  940 win  29.9  avgFight 2.55
+   R:The Yellow Wind Ridge                  n  923 win  28.8  avgFight 2.49
+   B:The Buddha's Palm                      n  196 win  29.6  avgFight 5.00
+   B:The Bull Demon King                    n  189 win  30.2  avgFight 5.00
+   B:The Six-Eared Macaque                  n  193 win  19.2  avgFight 5.00
+   E:Erlang Shen, the Three-Eyed            n  448 win  29.2  avgFight 2.59
+   E:Princess Iron Fan                      n  475 win  28.6  avgFight 2.52
+ut41: ALL OK
+ut42: ok   hit and run bounces unblocked marauder
+ut43: ok   regular reward +2 AP, no draft
+ut44: ALL OK
+ut45: ALL OK
+ut46: ALL OK
+ut47: ALL OK
+t19: ALL OK
+done

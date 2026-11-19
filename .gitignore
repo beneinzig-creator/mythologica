@@ -14,3 +14,5 @@ art/review.html
 art/compare.html
 art/compare/
 art/archive/
+tooling/bal/bank_*.jsonl
+tooling/bal/*.part

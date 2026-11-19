@@ -1,0 +1,37 @@
+matchup           win%  turns stall eDeckOut%  @turn pDeckOut% lifeOnWin
+ody reg0          29.5    7.6     1         3   15.0        11      12.3
+ody reg1          39.0    8.5     1         3   15.0        20      14.2
+ody reg2          28.5    6.9     0         1   13.0         4      12.0
+ody reg3          26.2   16.7    82        96    5.7        38      12.5
+ody reg4          33.2    8.1     4        10   12.0        15      15.7
+ody reg5          34.2   11.0    37        28   10.0        23      12.8
+ody elite0        21.2    9.1     7        31   10.0         4      13.1
+ody elite1        23.2    9.5     4        28   11.0         2      12.0
+ody boss0          4.0    9.9    11        26   10.0         6       8.9
+ody boss1          2.5    8.7     1        24   10.0         2      13.2
+ody boss2          6.2   11.7     0        97    8.5         4       5.3
+ody curve        f1 32% (n400)  f2 25% (n400)  f3 25% (n400)  f4 25% (n400)  stalls 62
+odin reg0         30.5    9.8    24        72    6.0        18       8.4
+odin reg1         31.0   13.4    60        63    7.0        28       7.0
+odin reg2         42.8   10.4    23        14   12.6        24       8.9
+odin reg3         34.5    6.9     0         1   12.0         4       6.1
+odin reg4         24.2   14.9    52        55   10.0        46       8.3
+odin reg5         38.0   10.4    13        43   10.0        26       8.9
+odin elite0        8.5    8.1     7        15   10.0         5       6.3
+odin elite1       30.5    8.7     4        23   11.0         8       7.4
+odin boss0         9.8   11.5    18        41   10.0        17       5.3
+odin boss1        10.5   10.6     9        42   10.0        12       7.6
+odin boss2         1.0    9.9     0        73    8.4         8       4.2
+odin curve       f1 32% (n400)  f2 38% (n400)  f3 28% (n400)  f4 30% (n400)  stalls 89
+wukong reg0       33.0    7.4     0         4   12.0         4       9.6
+wukong reg1       36.8   10.7    16        92    6.4        15      12.1
+wukong reg2       42.0    8.0     1        46    8.0         8      10.3
+wukong reg3       27.3    8.1     2        56    8.0         9      10.6
+wukong reg4       45.2    9.1     5        76    7.0        12      14.2
+wukong reg5       39.0    5.8     0         9    8.1         2       9.3
+wukong elite0     57.5    9.8     1        44   10.0         0      13.0
+wukong elite1     24.0    7.6     0         8   11.0         0      10.9
+wukong boss0      17.8   11.5     6        48   10.0         6      11.3
+wukong boss1      37.0   12.3     0        73   10.0         2      14.8
+wukong boss2      35.8   12.3     0        96    8.5         7      12.4
+wukong curve     f1 36% (n400)  f2 25% (n400)  f3 32% (n400)  f4 21% (n400)  stalls 14
