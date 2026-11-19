@@ -356,5 +356,29 @@
  "mskirm": {
   "composition": "a full figure seen from the side leaping over a low stone wall, sword drawn, hills behind",
   "palette": "bright midday light on green hills"
+ },
+ "brynh": {
+  "composition": "a monumental full figure, seen from a very low angle",
+  "palette": "roaring firelight against a black, snowy mountain night"
+ },
+ "shmd": {
+  "palette": "iron-grey sleet and sea-spray"
+ },
+ "ulf": {
+  "kind": "person",
+  "shot": "a head-and-shoulders portrait",
+  "angle": "from a low angle, lit from below by the fire"
+ },
+ "thor": {
+  "composition": "a heroic waist-up portrait in three-quarter view at eye level, Thor filling the frame",
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "ygg": {
+  "composition": "a wide shot of the whole tree from roots to crown, seen from a distance at eye level, the tree centred and filling the height of the picture",
+  "palette": "pale ice blue and bone, with a faint glow from the well"
+ },
+ "star": {
+  "composition": "a close head-and-shoulders portrait in profile, seen slightly from above",
+  "palette": "grey winter dawn over snow"
  }
 }

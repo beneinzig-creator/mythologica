@@ -29,6 +29,23 @@ SETTING = {
     'wukong': 'Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, '
               'clouds, mountains, celestial palaces',
 }
+# A hero's own look, laid over the shared card style. Same rules as Odysseus (tight framing, one distinct
+# shot per card, rarity in the framing), but a different art experience per mythology.
+HERO_STYLE = {
+    'odin': ('Norse look for this hero: the same 1990s hand-made card art, but colder and harder than the Greek '
+             'cards. Heavier, rougher black ink lines with a carved, woodcut-like quality, as if cut into wood or '
+             'stone; flat areas of colour broken by scratchy hatching. A northern palette of slate blue, iron grey, '
+             'bone white and deep pine green, with sparing accents of blood red and dull, tarnished gold; no warm '
+             'Mediterranean light, no sunsets, no bronze glow. Weather matters: snow, sleet, sea-spray, mist and '
+             'long winter dusk. Where the picture shows objects, give them Viking Age ornament: interlaced beasts '
+             'and knotwork carved on wood, iron and runestones in the Urnes and Mammen styles, and the look of the '
+             'Gotland picture-stones. People are weathered and heavy, in wool, fur, leather and iron; '
+             'no horned helmets, no winged helmets, no fantasy plate armour. '
+             'Focus over scenery: the card\'s subject is the star of the picture and should look as striking and '
+             'powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and '
+             'secondary, and no second large figure or creature competes with the subject unless the card is '
+             'about that creature.'),
+}
 ACCENT = {
     'W': 'warm gold daylight, white marble and bronze accents',
     'U': 'moonlit sea-teal, cool mist and silver accents',
@@ -444,12 +461,13 @@ def main():
         groups.setdefault('hero:' + c['archetype'], []).append((cid, c['type'], c['lore'], c['name'], c['rarity']))
     for cid, c in opponents.items():
         groups.setdefault('opp:' + c['opponent'], []).append((cid, c['type'], c['lore'], c['name'], c['frame']))
-    plans = composition.plan(groups)
+    plans = composition.plan(groups, a.hero)
     for table in (cards, opponents):
         for cid, c in table.items():
             subject = c['prompt'].split('Subject: ', 1)[1].split('\n\nComposition:', 1)[0]
             c['composition'] = plans[cid]
-            c['prompt'] = (f'{STYLE}\n\nSetting: {SETTING.get(a.hero, "")}.\n\nSubject: {subject}\n\n'
+            hs = f'\n\n{HERO_STYLE[a.hero]}' if a.hero in HERO_STYLE else ''
+            c['prompt'] = (f'{STYLE}{hs}\n\nSetting: {SETTING.get(a.hero, "")}.\n\nSubject: {subject}\n\n'
                            + composition.describe(plans[cid]))
 
     out = os.path.join(ART, 'manifest.json')
