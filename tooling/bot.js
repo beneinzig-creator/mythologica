@@ -4,8 +4,11 @@ var _offer=offer;offer=function(s,c){(CNT[G.fi]||(CNT[G.fi]={p:0,e:0}))[s===G.p?
 function val(x){return pw(x)+th(x)-x.dmg}
 function cardVal(c){const d=D[c.id];if(d[2]=='C')return d[3]+d[4];return({horse:8,bow:(G.e.life<=10?14:6),altar:5,spearc:5,feast:4,gale:4,salve:3})[c.id]||4}
 function plan(c){const p=G.p,e=G.e,id=c.id,E=cr(e),M=cr(p);
+ if(id=='dint'||id=='karma'||id=='othala')return p.bf.some(x=>x.id==id)?null:{};
+ if(id=='closer')return M.filter(x=>has(x,'p')&&!x.att).length>=2?{}:null;
  if(G.ch==='odin'){const r=planOdin(c,p,e,E,M);if(r!==undefined)return r}
  if(G.ch==='wukong'){const r=planWk(c,p,e,E,M);if(r!==undefined)return r}
+ if(G.ch==='thoth'){const r=planThoth(c,p,e,E,M);if(r!==undefined)return r}
  if(D[id][2]=='C'){if(id=='sinon'&&M.length<2)return null;if(id=='sapper'&&!G.e.bf.some(x=>!isC(x)&&!has(x,'w'))&&M.length>=3)return null;return(M.length<5||cost(c)>G.p.mana)?{}:null}
  if(id=='altar'||id=='bow'||id=='zeus')return p.bf.some(x=>x.id==id)?null:{};
  if(id=='mist'){const t=E.filter(x=>!x.tap&&!has(x,'w')).sort((a,b)=>val(b)-val(a))[0];return t&&M.some(canAtk)?{t:'e:'+t.u}:null}
@@ -29,13 +32,13 @@ function plan(c){const p=G.p,e=G.e,id=c.id,E=cr(e),M=cr(p);
  if(id=='salve'){const t=M.filter(x=>x.dmg>=2).sort((a,b)=>b.dmg-a.dmg)[0];return t?{t:'p:'+t.u}:null}
  if(id=='feast'){const d=M.reduce((n,x)=>n+Math.min(x.dmg,1),0);return(p.life<=p.max-3||d>=2)?{}:null}
  return null}
-function exec(c,pl){hd('h:'+c.u);if(pl.t)hd(pl.t);if(G.pend=='sinon'){const t=cr(G.p).filter(x=>x!==G.pc).sort((a,b)=>val(a)-val(b))[0];hd('p:'+t.u);return}if(G.pend=='sapper'||G.pend=='vlnd'){const t=G.e.bf.filter(x=>!isC(x)&&!has(x,'w')).sort((a,b)=>(IV[b.id]||5)-(IV[a.id]||5))[0];hd('e:'+t.u);return}if(G.pend){const E=tg(G.e).filter(x=>G.pend=='slinger'||!x.tap),k=E.filter(x=>th(x)-x.dmg<=1),t=(k.length?k:E).sort((a,b)=>val(b)-val(a))[0];if(t)hd('e:'+t.u);else G.pend=0}}
+function exec(c,pl){hd('h:'+c.u);if(pl.t)hd(pl.t);if(G.pend=='sinon'){const t=cr(G.p).filter(x=>x!==G.pc).sort((a,b)=>val(a)-val(b))[0];hd('p:'+t.u);return}if(G.pend=='sapper'||G.pend=='vlnd'){const t=G.e.bf.filter(x=>!isC(x)&&!has(x,'w')).sort((a,b)=>(IV[b.id]||5)-(IV[a.id]||5))[0];hd('e:'+t.u);return}if(G.pend&&PEND[G.pend]&&(PEND[G.pend].who=='p'||G.ch==='thoth')){const P=PEND[G.pend];const L=(P.who=='p'?cr(G.p):tg(G.e)).filter(x=>P.ok(x,G.pc)).sort((a,b)=>val(b)-val(a));if(L[0])hd((P.who=='p'?'p:':'e:')+L[0].u);else G.pend=0;return}if(G.pend){const E=tg(G.e).filter(x=>G.pend=='slinger'||!x.tap),k=E.filter(x=>th(x)-x.dmg<=1),t=(k.length?k:E).sort((a,b)=>val(b)-val(a))[0];if(t)hd('e:'+t.u);else G.pend=0}}
 function sacPlan(c){const p=G.p,alt=p.bf.some(x=>x.id=='altar')?1:0,need=cost(c)-p.mana,S=[];let gn=0;
  for(const x of cr(p).sort((a,b)=>val(a)-val(b))){if(gn>=need)break;S.push(x);gn+=sv(x)+alt}
  const ok=gn>=need&&S.length<=2&&(S.every(x=>th(x)-x.dmg<=1)||cardVal(c)>=S.reduce((n,x)=>n+val(x),0)+4);return ok?S:null}
 function botBow(){const b=G.p.bf.find(x=>x.id=='bow'&&!x.tap);if(!b)return;const E=tg(G.e).filter(x=>th(x)-x.dmg<=1);hd('p:'+b.u);hd(E[0]?'e:'+E[0].u:'ef')}
 function botHades(){const p=G.p;for(let k=0;k<6&&G.hq;k++){if(G.hdisc){const w=p.hand.slice().sort((a,b)=>((RATE[a.id]==null?5:RATE[a.id])+(cost(a)>p.mana+3?-2:0))-((RATE[b.id]==null?5:RATE[b.id])+(cost(b)>p.mana+3?-2:0)))[0];hqd(w.u)}else if(p.hand.length<=5)bt('hqy');else bt('hqn')}}
-function castLoop(){const p=G.p;let ns=0;for(let n=0;n<40&&G.phase==='main';n++){let acted=false;botHades();
+function castLoop(){const p=G.p;let ns=0;for(let n=0;n<40&&G.phase==='main';n++){let acted=false;botHades();if(G.ch==='thoth'&&botThoth())continue;
  const ip=p.bf.find(x=>x.id==='iph');if(ip&&(p.hand.length<=3||p.hand.some(c=>cost(c)>p.mana))){hd('o:'+ip.u);continue}
  if(ns<2){const big=p.hand.filter(c=>cost(c)>p.mana&&plan(c)).sort((a,b)=>cost(b)-cost(a));
   for(const c of big){const S=sacPlan(c);if(S){S.forEach(x=>hd('o:'+x.u));ns+=S.length;acted=true;break}}}
@@ -70,7 +73,7 @@ var KOS=[3.2,3,3.4,1.5,3.6,2.5,3.3];for(let i=7;i<20;i++)KOS.push(3.1);
 function koBest(c,opts){return opts.slice().sort((a,b)=>(KOS[b]+(b==2&&cost(c)>=3?.6:0))-(KOS[a]+(a==2&&cost(c)>=3?.6:0)))[0]}
 function botKleos(){for(const x of G.kl){const o=koBest(x.c,x.o),j=x.o.indexOf(o);KO[o][1](x.c.rec);x.c.rec.k++;x.d=j+1}bt('next')}
 
-var RATE={wall:6,shield:7,drill:5,ares:7,spoils:5,ossuary:6,requiem:8,dream:0,garden:0,dirge:0,forge:0,thess:6,zerk:7,boar:7,diom:7,agam:7,nike:8,iris:6,helios:7,athena:6,pyrep:6,ox:5,sent:5,gate:7,hydra:6,sinon:5,tires:5,sapper:7,pyre:6,doct:5,banner:7,skies:6,net:6,hearth:5,hammer:4,plunder:5,hecat:5,fury:5,testudo:5,thunder:8,labyr:3,spear:5,sailor:5,goat:4,myrm:5,herm:5,camp:6,argus:7,pythia:5,slinger:7,healer:6,spartan:6,telem:5,bull:8,cass:7,nestor:6,pegasus:7,ajax:6,achil:9,eagle:8,hopl:7,owl:5,tela:6,spearc:8,salve:4,gale:4,feast:5,altar:7,horse:6,bow:8,aegis:4,hold:3,mist:6,rally:5,rampart:4,zeus:6};
+var RATE={dint:7,raidr:6,myrsh:7,closer:6,bodvar:8,vinit:6,freyja:8,othala:7,bragi:8,horse:7,wall:6,shield:7,drill:5,ares:7,spoils:5,ossuary:6,requiem:8,dream:0,garden:0,dirge:0,forge:0,thess:6,zerk:7,boar:7,diom:7,agam:7,nike:8,iris:6,helios:7,athena:6,pyrep:6,ox:5,sent:5,gate:7,hydra:6,sinon:5,tires:5,sapper:7,pyre:6,doct:5,banner:7,skies:6,net:6,hearth:5,hammer:4,plunder:5,hecat:5,fury:5,testudo:5,thunder:8,labyr:3,spear:5,sailor:5,goat:4,myrm:5,herm:5,camp:6,argus:7,pythia:5,slinger:7,healer:6,spartan:6,telem:5,bull:8,cass:7,nestor:6,pegasus:7,ajax:6,achil:9,eagle:8,hopl:7,owl:5,tela:6,spearc:8,salve:4,gale:4,feast:5,altar:7,horse:6,bow:8,aegis:4,hold:3,mist:6,rally:5,rampart:4,zeus:6};
 var DMODE=(typeof process!=='undefined'&&process.env&&process.env.DMODE)||'rated';
 function botDraft(){if(typeof FORCED!=='undefined'&&FORCED&&FORCED.length){while(G.phase==='draft'&&FORCED.length){const id=FORCED.shift();G.dr.off=[{id}];pickDraft(0)}return}
 while(G.phase==='draft'){const dr=G.dr,off=dr.off,crN=(dr.mode==='reward'?G.p.recs.map(r=>r.id):STAPLES).concat(dr.picks).filter(id=>D[id][2]==='C').length,left=dr.rounds-dr.n,needC=Math.max(0,(G.ch==='wukong'?3:6)-crN);
@@ -252,3 +255,41 @@ function wkBlockTricks(used){const p=G.p,c=G.cmb;const X=Math.max(1,p.mo||0);
    const bl=p.hand.find(x=>x.id==='wblock'&&cost(x)<=p.mana);if(bl&&pwr(a)<hp+X){exec(bl,{t:'p:'+b.u});continue}
    const st=p.hand.find(x=>x.id==='wstep'&&cost(x)<=p.mana&&val(b)>=3);if(st){exec(st,{t:'p:'+b.u});continue}}
   else if(pwr(b)<th(a)-a.dmg){const bl=p.hand.find(x=>x.id==='wblock'&&cost(x)<=p.mana);if(bl&&pwr(b)+X>=th(a)-a.dmg){exec(bl,{t:'p:'+b.u})}}}}
+/* ===== v105: Thoth planner ===== */
+function thBestOwn(M,need){const L=M.filter(x=>!need||need(x));return L.sort((a,b)=>val(b)-val(a))[0]}
+function thBestFoe(E,need){const L=E.filter(x=>!has(x,'w')&&(!need||need(x)));return L.sort((a,b)=>val(b)-val(a))[0]}
+function planThoth(c,p,e,E,M){const id=c.id,k=D[id][2];if(k==='C')return undefined;
+ const room=x=>roomOf(x)>0,onbf=()=>p.bf.some(x=>x.id==id);
+ if(c.ren){const t=thBestOwn(M,room);return t?{t:'p:'+t.u}:null}
+ if(AMU[id]){const t=thBestOwn(M,x=>!amOf(x).some(a=>a.id==id));return t?{t:'p:'+t.u}:null}
+ switch(id){
+ case'tpen':{const t=thBestOwn(M,x=>room(x)&&!has(x,'f'));return t?{t:'p:'+t.u}:null}
+ case'iink':case'ihekau':case'isac':{const t=thBestOwn(M,room);return t?{t:'p:'+t.u}:null}
+ case'ireed':{const t=thBestOwn(M,x=>room(x)&&x.sick&&!has(x,'h'))||(p.hand.length<=3?thBestOwn(M,room):null);return t?{t:'p:'+t.u}:null}
+ case'gscroll':case'iunwr':return null;
+ case'tsun':case'dammit':case'ierase':case'iname':{const t=thBestFoe(E,x=>val(x)>=4);return t?{t:'e:'+t.u}:null}
+ case'ichisel':{const t=thBestFoe(E,x=>x.f.split('').some(k2=>'fwvdzrxb'.includes(k2)));return t?{t:'e:'+t.u}:null}
+ case'dpart':{const t=thBestFoe(E,x=>D[x.id][1]<=3&&val(x)>=3);return t?{t:'e:'+t.u}:null}
+ case'dcut':{const t=M.filter(x=>!x.part&&val(x)<=5).sort((a,b)=>val(a)-val(b))[0];return t&&M.length<4&&p.hand.length<=5?{t:'p:'+t.u}:null}
+ case'dreun':return M.some(x=>x.part=='ka'&&M.some(y=>y.part=='ba'&&y.src===x.src))?{}:null;
+ case'dsever':return E.some(x=>!has(x,'w')&&D[x.id][1]>=3)?{}:null;
+ case'dsplit':return E.filter(x=>!has(x,'w')&&D[x.id][1]<=2).length>=2?{}:null;
+ case'dkhep':return p.gy.some(x=>isC(x)&&!TOKE.includes(x.id))&&M.length<=3?{}:null;
+ case'dren':return p.gy.filter(x=>isC(x)&&!TOKE.includes(x.id)).length>=2?{}:null;
+ case'inarm':return M.length>=2?{}:null;
+ case'ytrap':{const t=thBestFoe(E,x=>!x.tap);return t&&M.some(canAtk)?{t:'e:'+t.u}:null}
+ case'ycopy':case'yrecall':case'yechoes':return (G.thPlayed||[]).some(x=>D[x]&&D[x][2]=='C'&&!TOKE.includes(x))?{}:null;
+ case'gnile':return p.life<=p.max-4?{}:null;
+ case'gweigh':{const lose=x=>D[x.id][1]>glyphsOn(x)+amOf(x).length;const a=E.filter(lose).reduce((n,x)=>n+val(x),0),b=M.filter(lose).reduce((n,x)=>n+val(x),0);return a>=b+5?{}:null}
+ case'ypre':case'ycount':case'yprep':return fsAll().length||id!='ypre'?{}:null;
+ case'yread':case'yledger':case'yvizier':case'ysenet':return{};
+ default:return (k==='E'||k==='A')?(onbf()?null:{}):null}}
+function botThoth(){const p=G.p;if(G.phase!=='main')return false;
+ for(const a of p.bf.filter(x=>AMU[x.id]&&!x.on)){const q=AMU[a.id].eq;const t=thBestOwn(cr(p),x=>!amOf(x).some(b=>b.id==a.id));if(t&&p.mana>=q&&p.mana-q>=0){hd('p:'+a.u);hd('p:'+t.u);return true}}
+ const rens=p.hand.filter(x=>x.ren);if(rens.length){const want=p.hand.filter(x=>!x.ren&&cost(x)>p.mana&&cost(x)<=p.mana+2*rens.length&&plan(x));const room=cr(p).some(x=>roomOf(x)>0);
+  if(want.length||!room){hd('spk:'+rens[0].u);return true}}
+ return false}
+Object.assign(RATE,{tscr:5,tsun:7,tscar:5,tpen:4,dsk:4,dbal:4,dcut:5,dpart:6,dembal:5,dheart:5,dwrap:5,dnomad:5,dreun:6,dsever:7,dshade:5,dcart:4,dtwof:5,dweigh:6,dkhep:6,
+ dakh:7,dsplit:7,dren:6,dsoul:6,dduat:5,dmum:7,dosir:8,dammit:8,dbook:6,iink:5,iscribe:5,ichisel:4,iword:5,iguard:5,iwas:5,ireed:5,itut:5,isac:6,iliv:6,ierase:7,ishen:4,idjed:5,
+ ikhem:5,iunwr:4,iseshat:7,ihekau:7,ieye:7,iobel:6,ianx:7,inarm:6,ithoth:7,iweret:8,iname:8,yibis:5,yread:5,yclerk:5,ywatch:5,ywarn:4,ybab:6,yledger:4,yprep:5,ypre:5,yrecall:5,
+ ysage:6,ystar:5,yfore:6,ycopy:5,ytrap:5,yhall:6,ycount:6,ykhon:7,yvizier:6,yechoes:6,yjudge:7,ysenet:8,ytruth:7,yall:8,gscroll:3,gfeather:5,gpriest:6,gnile:5,gcanop:5,gweigh:6});

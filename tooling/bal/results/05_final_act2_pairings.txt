@@ -1,0 +1,13 @@
+Act II first fight, banked end-of-Act-I decks, N=300 per enemy
+odin vs ody realm: avg 32.0% (enemies 24-40%)
+odin vs thoth realm: avg 32.8% (enemies 22-45%)
+odin vs wukong realm: avg 32.0% (enemies 11-52%)
+ody vs odin realm: avg 36.9% (enemies 21-53%)
+ody vs thoth realm: avg 30.0% (enemies 25-34%)
+ody vs wukong realm: avg 32.0% (enemies 16-48%)
+thoth vs odin realm: avg 33.3% (enemies 17-50%)
+thoth vs ody realm: avg 33.7% (enemies 17-63%)
+thoth vs wukong realm: avg 32.4% (enemies 14-61%)
+wukong vs odin realm: avg 26.4% (enemies 20-46%)
+wukong vs ody realm: avg 29.9% (enemies 21-49%)
+wukong vs thoth realm: avg 34.6% (enemies 19-57%)

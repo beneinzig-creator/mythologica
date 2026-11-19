@@ -563,6 +563,29 @@ Generic (1):
 
 ---
 
+### 5.5 Thoth (`thoth`), Egyptian, home realm "the Two Lands" (v105)
+
+**Fantasy.** The scribe of the gods. He takes things apart and rewrites them. Archetypes: **Sundered** (D), **Scribes** (I), **Recorder** (Y).
+
+**Mechanics** (engine in `tooling/thoth.js`, cards in `tooling/thoth_cards.js`, wiring in `tooling/patch_thoth.py`):
+- **Sunder:** an army member leaves play (no death triggers) and splits into its **Ka** (0 power, half its health, can't block) and its **Ba** (half its power, 1 health, Flying). Both stay on the owner's side. If Thoth did it, he takes its **Ren**: a 0-cost card that either *writes* that army member's keywords (and its death ability) plus +1/+1 onto one of yours as glyphs, or is *spoken* (◆+2 badge) for 2 mana. Speaking Ren cards is Thoth's mana engine. Sunder the Soul costs 1, so Sunder plus speak nets +1 mana.
+- **Reunite:** a Ka and Ba of the same original on your side rejoin as the original with +1/+1 (an **Akh**), keeping glyphs from both halves.
+- **Inscribe:** writes one glyph (a keyword or +1/+1) permanently for the fight. At most **3 glyphs** per army member. **Erase** strips an army member's name, keywords and abilities (it becomes a "Nameless" copy with the same stats).
+- **Amulets** are items that attach on cast. When the bearer leaves play, the amulet stays on your side unattached. Click it to re-equip for its **Equip** cost (◆1, or ◆2 for the strongest). The Amulet of Words carries glyphs with it.
+- **Foresee** marks the enemy's next cards or hand (shown under their name). **Record** gives you a fading (Disintegrating) copy when they play a foreseen army member (otherwise draw). **Preempt** makes a foreseen card fail when played.
+- Trumps can't be Sundered or Erased (Ward). Shen Ring protects your own army member.
+
+**Egyptian realm** (all rules work against every hero, because the others meet it in Act II):
+- Regulars: the Tomb Robbers (steal an item, modifier or hand card when they outnumber you), the Scorpions of Serket (1-power army members are Venomous in attack form), Servants of the Tomb (Shabti replace the dead), the Crocodiles of Sobek (Ruthless), the Jackals of Anubis (every death drains you for 1) and the Priests of Heka (curse a hand card: +1 cost).
+- Elites: Ammit, the Devourer (grows with deaths on her side) and the Great Sphinx (play the named card type or lose 2 life).
+- Bosses: Apophis (Erases your strongest army member each turn), Set (Sunders your strongest army member that costs 3+) and Sekhmet (her army grows; her rage burns her).
+
+**Tests:** `ut49.js` covers the engine and realm. **Known:** Thoth is a slower, attrition hero. Fights against his realm run longer (about 10–15 turns), and the Scorpions are the most stall-prone matchup.
+
+### 5.6 Shared pool layout (v104)
+
+Every hero's draft pool is exactly **80 cards**: three archetypes of **24** (8 Common / 7 Uncommon / 6 Rare / 3 Legendary) plus **8 generics** (2 C / 3 U / 3 L) = **26 / 24 / 18 / 12**. Staples (4) sit outside the pool. The three generic Legendaries are **Divine Karma** and **Divine Intervention** (universal, in every pool: *the first time you would drop to 0 life this fight, your life becomes 5 instead*) plus one hero Legendary (Odysseus: the Trojan Horse; Odin: Odin the Allfather; Wukong: Equal to Heaven; Thoth: the Weighing of the Heart). The layout is asserted in `tooling/patch_pool.py` and `patch_thoth.py`. New for the layout: Ithacan Raider, Myrmidon Shield-Bearer and Close Ranks (Odysseus); Bödvar Bjarki, Valhalla Initiate, Freyja, Othala and Bragi (Odin). Cut: Iris, Funeral Pyre and Peach Banquet. Test: `ut48.js`.
+
 ## 6. Enemies
 
 **How enemies work:**
@@ -1097,6 +1120,8 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 **Results** (real runs, 1,600 per hero, `bal/results/03_final_full_runs.txt`): fights 1–4 then boss — Odysseus 31/31/27/26/22, Odin 35/28/28/25/20, Wukong 37/32/25/25/26. Every regular enemy is 27–32% in real runs. Elites 25–30%. Bosses 19–30% (Bull Demon King and Buddha's Palm ~30%, worth a nudge).
 
 **Known:** Wukong's deck grows more slowly mid-run than the other heroes', so his fight 1 is easier (~37%) to keep fights 2–4 fair. A visible hero-side boost would fix that properly. Shades, Hel's Legion, Hrungnir and the Norns still stall in 10–20% of fights: the enemy sits in a full defensive wall when low on life. Fixing that needs a rule (an anti-stall clock), not numbers.
+
+**Act II** uses the same visible ramp plus a per hero:realm life adjustment (`XADJ` in `bal/tune_vis.js`), because each realm's enemies were tuned against their own hero. Target: about 30% in the first Act II fight. Measure with `matrix.py html N a2b` (banked end-of-Act-I decks against every other realm).
 
 **Tools** (in `tooling/`):
 - `simx.js`: `sim.js` plus deck-out and per-enemy stats, JSON output, `CONTALL` (keep going after losses so every run reaches the boss), `BANKOUT` / `BANK`+`BANKFILE` (record and replay real mid-run and boss-arrival decks).

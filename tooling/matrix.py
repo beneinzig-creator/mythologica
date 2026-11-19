@@ -13,8 +13,8 @@ import json, os, subprocess, sys, argparse
 from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-HEROES = ['ody', 'odin', 'wukong']
-IDX = {'ody': {'el': [0, 1], 'bo': [0, 1, 2]}, 'odin': {'el': [2, 3], 'bo': [3, 4, 5]}, 'wukong': {'el': [4, 5], 'bo': [6, 7, 8]}}
+HEROES = ['ody', 'odin', 'wukong', 'thoth']
+IDX = {'ody': {'el': [0, 1], 'bo': [0, 1, 2]}, 'odin': {'el': [2, 3], 'bo': [3, 4, 5]}, 'wukong': {'el': [4, 5], 'bo': [6, 7, 8]}, 'thoth': {'el': [6, 7], 'bo': [9, 10, 11]}}
 VET = ("var _fd=finishDraft;finishDraft=function(){_fd();if(!G.vx){G.vx=1;const pl=CHARS[G.ch].pool.slice()"
        ".sort((a,b)=>(RATE[b]||0)-(RATE[a]||0)).slice(0,22);for(let i=0;i<8;i++)G.p.recs.push({id:pl[Math.random()*pl.length|0],a:0,d:0,c:0,s:0,k:0,fl:0})}};")
 
@@ -41,6 +41,10 @@ def jobs(suite, heroes):
             J += [dict(label=f'{h} elite{o}', CHAR=h, OPP=str(100+IDX[h]['el'][o]), bank='mid') for o in range(2)]
         if 'boss' in suite:
             J += [dict(label=f'{h} boss{o}', CHAR=h, OPP=str(200+IDX[h]['bo'][o]), bank='boss') for o in range(3)]
+        if 'a2b' in suite:
+            for r in HEROES:
+                if r != h:
+                    J += [dict(label=f'{h} a2:{r}{o}', CHAR=h, REALM=r, OPP=str(o), bank='boss') for o in range(6)]
         if 'curve' in suite:
             J += [dict(label=f'{h} curve', CHAR=h, CONT='1')]
         if 'act2' in suite:
