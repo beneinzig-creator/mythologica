@@ -145,8 +145,10 @@ FRAMES['odin'] = {
                  'top centre, like a weathered grave-goods relic in a museum case; richer than the other rarities but '
                  'still rustic and understated. ' + NORSE_LOOK,
 }
-HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas'}
-MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone'}
+HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
+             'wukong': 'Journey to the West and classical Chinese myth'}
+MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone',
+              'wukong': 'a carved cinnabar-lacquer or jade roundel from the Ming dynasty'}
 
 # How played each rarity looks: cheaper cards have been shuffled more.
 CONDITION = {
@@ -434,6 +436,100 @@ HERO_UI['odin'] = {
         'at both ends, a thin carved knotwork line along the edges, worn and scratched; the centre is plain and flat for '
         'a label. Norse, Viking Age style, rustic 1990s hand-painted. Fully transparent background around the plate. '
         'No text, no letters.'),
+}
+
+# ---- Sun Wukong (Chinese, Journey to the West) ----
+CHINESE_LOOK = ('Chinese look, Ming dynasty, in the spirit of Journey to the West: rich and colourful, with cinnabar and '
+                'vermilion lacquer, jade green, imperial gold and deep indigo, auspicious ruyi cloud scrolls and Chinese '
+                'fret (huiwen) borders; the brush rhythm of Chinese ink painting in the lines. No Japanese, Greek or Norse '
+                'elements, no Greek key, no knotwork.')
+FRAMES['wukong'] = {
+    'common': 'Common rarity: a plain frame of dark weathered wood with a simple thin Chinese fret (huiwen) border and '
+              'small bronze corner caps, modest and unornamented. ' + CHINESE_LOOK,
+    'uncommon': 'Uncommon rarity: a frame of black lacquer and pale jade with a fine border of curling ruyi clouds and small '
+                'jade discs at the corners. ' + CHINESE_LOOK,
+    # Ben (Nov 2026): the first Legendary became the Rare; the Legendary is a new, grander frame.
+    'rare': 'Rare rarity: an aged, hand-tooled frame of antique gold over dark red lacquer, worn at the edges, a '
+            'restrained cloud-and-fret border and a single small golden peach of immortality with two leaves at the '
+            'top centre, like a treasured relic in a temple; richer than the common and uncommon but still rustic and '
+            'understated. ' + CHINESE_LOOK,
+    'legendary': 'Legendary rarity, the grandest frame of all, fit for the Jade Emperor\'s Celestial Palace: radiant '
+                 'burnished gold and imperial yellow over cinnabar lacquer, set with jade, coral and pearls; a golden '
+                 'dragon and a vermilion phoenix curling up the two sides toward a flaming pearl at the top centre, '
+                 'framed by a glowing golden halo of light; bands of five-coloured auspicious clouds (azure, jade, '
+                 'cinnabar, gold, white) rolling along the top and bottom; a peach of immortality on a lotus at the '
+                 'bottom centre. Warm golden light seems to shine from the frame itself. Rich and celestial, still hand-'
+                 'painted, never glossy or 3D-rendered. ' + CHINESE_LOOK,
+}
+ICONS['wukong'] = {k: v + ' Chinese, Journey to the West style, colourful.' for k, v in {
+    'life': 'Life: a heart carved from red cinnabar lacquer set in a thin gold rim.',
+    'mana': 'Mana: a single glowing drop of golden elixir falling from the mouth of a small calabash gourd.',
+    'action': 'Action points: a small golden somersault cloud with a speed trail.',
+    'victory': 'Victory points: a ripe peach of immortality with two green leaves.',
+    'attack': 'Attack form: the golden-banded iron staff Ruyi Jingu Bang held diagonally, with a flick of motion lines.',
+    'defense': 'Defense form: a round lacquered Chinese shield, red and gold, with a tiger face boss.',
+    'switch': 'Switch stance: two curved golden arrows chasing each other in a circle, one tipped red and one tipped blue.',
+    'upgrade': 'Upgrade level: a single golden lotus petal.',
+    'target': 'Choose a target: a golden arrowhead pointing straight down, with a faint red glow.',
+    'cleared': 'Fight won: a broken Chinese halberd (ji), snapped in two, the halves crossed.',
+    'chosen': 'Chosen: a tick mark painted in gold with one confident Chinese brush stroke.',
+    'menu': 'Menu: three short horizontal jade bars stacked neatly.',
+    'foretold': 'Foretold: a jade tortoise shell with a glowing crack (an oracle shell).',
+    'gold': 'Gold: a small heap of gold ingots (yuanbao) and a string of square-holed coins.',
+    'gift': 'Gift: a small red lacquer box with a gold clasp, its lid slightly open with warm light inside.',
+    'start': 'Starting point and emblem of Sun Wukong: the golden fillet, his golden headband circlet.',
+    'here': 'You are here: a small monkey riding a curling golden cloud, seen from the side.',
+    'camp': 'Campfire: a small fire in a stone ring beside a pilgrim\'s bamboo pack.',
+    'craft': 'Crafting table: the Eight-Trigram Furnace of Laozi, a bronze cauldron with a glowing fire.',
+    'altar': 'Altar: a small bronze incense burner with three sticks of smoking incense.',
+    'greataltar': 'The great altar: a golden Buddhist dharma wheel standing upright, faintly glowing.',
+    'coin': 'The Offering coin: a single worn Chinese bronze cash coin with a square hole, seen perfectly straight-on, '
+            'filling the frame, tarnished with green patina, small nicks and grime, a faint low-relief skull struck beside '
+            'the square hole. Matte, painted like the weathered frames of an old trading card; no shine, no text, no '
+            'characters, no numbers.',
+    'offering': 'The icon for the Offering (sacrifice) value on a Chinese-mythology card: a weathered, bone-white human skull '
+                'seen from the front, aged and slightly cracked, with a sprig of peach blossom tucked behind it. Solid and '
+                'opaque, no glow, no smoke.',
+}.items()}
+MEDALS['wukong'] = {
+    'spider': 'The Spider Cave: a spider in a silver web with peach blossom.',
+    'hornkings': 'The Gold and Silver Horn Kings: a red-gold calabash gourd.',
+    'heavenlyhost': 'The Heavenly Host: a celestial soldier\'s helmet with tall pheasant plumes on a cloud.',
+    'redboy': 'Red Boy: a fire-tipped spear in a ring of flame.',
+    'whitebone': 'The White Bone Spirit: a pale woman\'s face half turned into a skull.',
+    'yellowwind': 'The Yellow Wind Ridge: a swirling yellow whirlwind.',
+    'erlang': 'Erlang Shen: a stern face with a glowing third eye on the forehead.',
+    'ironfan': 'Princess Iron Fan: a great green palm-leaf fan.',
+    'macaque': 'The Six-Eared Macaque: a fierce monkey face with six ears.',
+    'bulldemon': 'The Bull Demon King: a horned bull demon\'s face.',
+    'buddhapalm': 'The Buddha\'s Palm: a giant open golden palm on a cloud.',
+}
+STAMPS['wukong'] = {
+    'C': 'Clones: a single monkey hair curling into the shape of a small monkey.',
+    'W': 'Staff: a staff with golden bands at both ends.',
+    'T': 'Trickster: a mischievous monkey face.',
+    # Marks for Wukong's eight regular opponents. The letters are nearly used up, so these use digits.
+    '1': 'Bone Spirits: a small pale skull with a curling wisp of white smoke.',
+    '2': 'Heaven: a celestial halberd standing on a small cloud.',
+    '3': 'Spiders: a spider hanging on a single silk thread.',
+    '4': 'Gourd: a magic calabash gourd with its stopper popping out.',
+    '5': 'Samadhi Fire: a ring of red and blue flame.',
+    '6': 'Wind: a spiralling yellow whirlwind.',
+    '7': 'Third Eye: a single glowing vertical eye.',
+    '8': 'Fan: a green palm-leaf fan.',
+}
+HERO_UI['wukong'] = {
+    'sigil_wukong': ('1024x1024', 'transparent',
+        'A single emblem for the back of every card in Sun Wukong\'s deck: his somersault cloud (jindou yun), drawn as a '
+        'classic Chinese auspicious cloud scroll curling into a bold, round, balanced shape with spiralling ruyi heads and '
+        'a short trailing tail, as carved on a Ming dynasty lacquer box. Rendered in worn gold leaf with touches of jade '
+        'and cinnabar red, rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. '
+        'No characters, no letters, no words, no circle or badge behind it.'),
+    'ui_button': ('1536x1024', 'transparent',
+        'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
+        'width of the image: a red cinnabar lacquer board with a thin carved gold fret border and small gold cloud-scroll '
+        'caps at both ends, worn and scratched; the centre is plain and flat for a label. Chinese, Ming dynasty style, '
+        'rustic 1990s hand-painted. Fully transparent background around the plate. No text, no characters, no letters.'),
 }
 
 STUB = r'''
