@@ -44,8 +44,8 @@ PALETTES = ['dawn rose and pale gold', 'harsh noon white and ochre', 'deep crims
 HERO_PALETTES = {
     'thoth': ['lapis lazuli blue and gold', 'desert noon ochre and white', 'Nile turquoise and papyrus green', 'night sky indigo full of stars',
               'sunset red-orange over the desert', 'temple lamplight amber in darkness', 'underworld teal and black', 'red granite and black basalt',
-              'faience blue-green and gold', 'pale moonlight silver on sand', 'electrum white-gold', 'carnelian red and cream limestone',
-              'malachite green and black', 'dawn rose over the Nile'],
+              'malachite green and black', 'pale moonlight silver on sand', 'carnelian red and cream limestone', 'dawn rose over the Nile',
+              'black and white with a touch of gold', 'sandstorm yellow haze', 'papyrus reed green and gold sunlight'],
     'wukong': ['cinnabar red and gold', 'deep azurite night with a silver moon', 'jade bamboo green and mist',
                'imperial yellow and red lacquer', 'storm-grey splashed ink and white lightning', 'peach-blossom pink and pale jade',
                'malachite green and gold', 'furnace orange and black smoke', 'violet dusk over dark peaks', 'lotus pink and teal water',
@@ -77,8 +77,15 @@ HERO_LEGEND_SHOTS = {
              ('a full figure', 'seen from behind and to one side, turning back toward the viewer')],
 }
 HERO_POWER = {
-    'thoth': {'Legendary': 'larger than life, monumental and iconic, beneath a radiant winged sun disc of gold; '
-                           'the most dramatic kind of image in the set'},
+    # a list means: Legendaries take these in turn, so the sign of power changes from card to card
+    'thoth': {'Legendary': [
+        'larger than life and epic, beneath a radiant winged sun disc, with magic and divine light swirling around it',
+        'larger than life and epic, a rearing golden cobra of fire rising behind it, sparks and heka magic in the air',
+        'larger than life and epic, against a vast night sky of the sky-goddess Nut full of stars and falling light',
+        'larger than life and epic, standing in a storm of glowing golden glyph-shapes and smoke from temple braziers',
+        'larger than life and epic, with a great sun disc blazing behind its head like a halo and rays fanning out',
+        'larger than life and epic, rows of kneeling attendants and towering statues of the gods framing it'],
+              'Rare': 'an imposing, dramatic presence with plenty happening around it'},
     'wukong': {'Legendary': 'larger than life, monumental and iconic, with a radiant golden halo of light behind it; '
                             'the most dramatic kind of image in the set'},
     'odin': {'Legendary': 'larger than life, monumental and iconic, lit by a cold rim of lightning or aurora; '
@@ -109,6 +116,13 @@ def kind_of(card_type, lore, name):
 
 def _rng(group):
     return random.Random(int(hashlib.md5(group.encode()).hexdigest()[:8], 16))
+
+
+def _power(hero, rarity, cid):
+    p = HERO_POWER.get(hero, {}).get(rarity)
+    if isinstance(p, list):  # spread by card id so the same card always gets the same one
+        return p[int(hashlib.md5(cid.encode()).hexdigest()[:6], 16) % len(p)]
+    return p or POWER.get(rarity, '')
 
 
 def plan(groups, hero='ody'):
@@ -150,7 +164,7 @@ def plan(groups, hero='ody'):
                 palette = pals[pi % len(pals)]
                 pi += 1
             p = {'group': group, 'kind': k, 'shot': shot, 'angle': angle, 'palette': palette,
-                 'power': HERO_POWER.get(hero, {}).get(rarity) or POWER.get(rarity, '')}
+                 'power': _power(hero, rarity, cid)}
             o = ov
             if o:
                 p.update({kk: v for kk, v in o.items() if not kk.startswith('_')})

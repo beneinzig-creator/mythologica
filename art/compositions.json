@@ -1060,5 +1060,52 @@
  "thoth:ybab": {
   "composition": "a full figure on the pylon, seen from below",
   "palette": "dawn rose over the Nile"
+ },
+ "thoth:iweret": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:yall": {
+  "palette": "papyrus reed green and gold sunlight",
+  "composition": "Thoth seated, seen from slightly below, the papyrus rising up behind him",
+  "power": "larger than life and epic, with a great sun disc blazing behind his head like a halo and rays fanning out"
+ },
+ "thoth:ysenet": {
+  "palette": "pale moonlight silver on sand",
+  "composition": "the two players across the board, seen from slightly above"
+ },
+ "thoth:dammit": {
+  "palette": "carnelian red and cream limestone",
+  "composition": "lunging toward the viewer, seen from slightly below",
+  "power": "larger than life and epic, against a vast night sky of the sky-goddess Nut full of stars and falling light"
+ },
+ "thoth:ykhon": {
+  "palette": "night sky indigo full of stars",
+  "composition": "a full figure standing in his moon boat, seen from slightly below"
+ },
+ "thoth:dmum": {
+  "palette": "temple lamplight amber in darkness",
+  "composition": "rising from the sarcophagus, seen from slightly above"
+ },
+ "thoth:ieye": {
+  "palette": "lapis lazuli blue and gold"
+ },
+ "thoth:dduat": {
+  "palette": "underworld teal and black",
+  "composition": "the whole gate seen from the dark river below it"
+ },
+ "thoth:gnile": {
+  "palette": "Nile turquoise and papyrus green"
+ },
+ "thoth:ystar": {
+  "palette": "night sky indigo full of stars"
+ },
+ "thoth:tmedj": {
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:ichisel": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:gcanop": {
+  "palette": "dawn rose over the Nile"
  }
 }
