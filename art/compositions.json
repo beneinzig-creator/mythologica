@@ -760,7 +760,8 @@
   "palette": "violet dusk over dark peaks"
  },
  "wqt": {
-  "palette": "cinnabar red and gold"
+  "palette": "imperial yellow and red lacquer",
+  "composition": "the empty throne centred, seen from the foot of its steps at eye level"
  },
  "wmirm": {
   "palette": "midnight indigo with lantern light"
@@ -779,5 +780,44 @@
  },
  "wsomer": {
   "palette": "celestial gold on deep blue"
+ },
+ "wrout": {
+  "palette": "celestial gold on deep blue",
+  "composition": "a wide view of the fleeing army across the clouds, seen from slightly above"
+ },
+ "wburn": {
+  "palette": "furnace orange and black smoke"
+ },
+ "wledger": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "wpeachc": {
+  "palette": "peach-blossom pink and pale jade"
+ },
+ "worchard": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "wtree": {
+  "palette": "dawn rose over misty peaks",
+  "composition": "the whole tree on its mountain, seen from a distance"
+ },
+ "wdrink": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "wcycle": {
+  "palette": "ink black and white with a touch of cinnabar"
+ },
+ "wunward": {
+  "palette": "jade bamboo green and mist"
+ },
+ "wmillion": {
+  "palette": "autumn persimmon orange and brown",
+  "composition": "seen from high above, looking down on the valley"
+ },
+ "wpierce": {
+  "palette": "furnace orange and black smoke"
+ },
+ "wthou": {
+  "composition": "seen from behind and to one side, on the mountain top"
  }
 }

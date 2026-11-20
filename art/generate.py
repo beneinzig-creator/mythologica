@@ -20,7 +20,7 @@ made by `vercel env pull`).
 It is never printed or written anywhere by this script.
 Python 3 standard library only: nothing to install.
 """
-import argparse, base64, html, json, os, sys, time, urllib.error, urllib.request
+import argparse, base64, html, json, os, sys, time, urllib.error, urllib.request, signal
 
 ART = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(ART)
@@ -65,6 +65,12 @@ def call(key, path, body=None, timeout=300):
                                  data=json.dumps(body).encode() if body else None,
                                  headers={'Authorization': 'Bearer ' + key,
                                           'Content-Type': 'application/json'})
+    # The socket timeout only covers each read, so a response that trickles in can hang forever.
+    # A hard deadline (SIGALRM, main thread) turns that into a TimeoutError, which the caller retries.
+    def _deadline(signum, frame):
+        raise TimeoutError(f'no complete answer within {timeout + 60}s')
+    old_handler = signal.signal(signal.SIGALRM, _deadline)
+    signal.alarm(timeout + 60)
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return json.loads(r.read())
@@ -74,6 +80,9 @@ def call(key, path, body=None, timeout=300):
         except Exception:
             msg = ''
         raise RuntimeError(f'HTTP {e.code}: {msg or e.reason}') from None
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old_handler)
 
 
 def load_cards(hero):
