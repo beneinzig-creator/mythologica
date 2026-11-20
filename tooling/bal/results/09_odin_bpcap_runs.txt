@@ -1,0 +1,13 @@
+== odin  by fight: f1 40% (n1200)  f2 32% (n1200)  f3 29% (n1200)  f4 27% (n1200)  f5 20% (n437)
+   R:Fenrir's Brood                         n  671 win  33.5  avgFight 2.49  turns   6.3  >20  0.1%  >30  0.0%
+   R:Hel's Legion                           n  660 win  33.2  avgFight 2.46  turns   9.5  >20  1.7%  >30  0.0%
+   R:Loki's Court                           n  692 win  30.5  avgFight 2.54  turns   9.4  >20  1.0%  >30  0.0%
+   R:Muspelheim                             n  685 win  28.8  avgFight 2.53  turns   6.7  >20  0.0%  >30  0.0%
+   R:The Dwarven Forge                      n  675 win  32.7  avgFight 2.49  turns   8.4  >20  1.0%  >30  0.0%
+   R:The Jotnar                             n  719 win  30.7  avgFight 2.56  turns   7.2  >20  1.5%  >30  0.0%
+   B:Hrungnir, the Stone-Hearted            n  151 win  20.5  avgFight 5.00  turns  10.8  >20  9.9%  >30  0.0%
+   B:Jörmungandr, the World Serpent         n  141 win  19.1  avgFight 5.00  turns   9.1  >20  0.7%  >30  0.0%
+   B:The Wild Hunt                          n  145 win  20.0  avgFight 5.00  turns   7.0  >20  0.7%  >30  0.0%
+   E:Fáfnir, the Hoard-Dragon               n  353 win  30.3  avgFight 2.38  turns   9.7  >20  0.8%  >30  0.0%
+   E:The Norns                              n  345 win  39.1  avgFight 2.48  turns   9.5  >20  6.7%  >30  0.0%
+   ALL fights n5237  turns 8.2  >20 1.5%  >30 0.0%
