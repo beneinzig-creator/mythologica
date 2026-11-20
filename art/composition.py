@@ -42,6 +42,10 @@ PALETTES = ['dawn rose and pale gold', 'harsh noon white and ochre', 'deep crims
             'icy dawn blue', 'dusty bronze and brown']
 # Other heroes get light from their own world (the list above is Odysseus's Mediterranean one).
 HERO_PALETTES = {
+    'thoth': ['lapis lazuli blue and gold', 'desert noon ochre and white', 'Nile turquoise and papyrus green', 'night sky indigo full of stars',
+              'sunset red-orange over the desert', 'temple lamplight amber in darkness', 'underworld teal and black', 'red granite and black basalt',
+              'faience blue-green and gold', 'pale moonlight silver on sand', 'electrum white-gold', 'carnelian red and cream limestone',
+              'malachite green and black', 'dawn rose over the Nile'],
     'wukong': ['cinnabar red and gold', 'deep azurite night with a silver moon', 'jade bamboo green and mist',
                'imperial yellow and red lacquer', 'storm-grey splashed ink and white lightning', 'peach-blossom pink and pale jade',
                'malachite green and gold', 'furnace orange and black smoke', 'violet dusk over dark peaks', 'lotus pink and teal water',
@@ -56,6 +60,11 @@ HERO_PALETTES = {
 }
 # Legendaries for these heroes cycle through different camera set-ups instead of all being shot from below.
 HERO_LEGEND_SHOTS = {
+    'thoth': [('a monumental full figure', 'in strict profile, seen from slightly below'),
+              ('a heroic waist-up portrait', 'in three-quarter view at eye level'),
+              ('a close head-and-shoulders portrait', 'in profile'),
+              ('a full figure', 'seen from slightly above'),
+              ('a full figure', 'seen from behind and to one side, turning back toward the viewer')],
     'wukong': [('a heroic full figure', 'in a dynamic pose, seen from slightly below'),
                ('a heroic waist-up portrait', 'in three-quarter view at eye level'),
                ('a close head-and-shoulders portrait', 'in profile'),
@@ -68,6 +77,8 @@ HERO_LEGEND_SHOTS = {
              ('a full figure', 'seen from behind and to one side, turning back toward the viewer')],
 }
 HERO_POWER = {
+    'thoth': {'Legendary': 'larger than life, monumental and iconic, beneath a radiant winged sun disc of gold; '
+                           'the most dramatic kind of image in the set'},
     'wukong': {'Legendary': 'larger than life, monumental and iconic, with a radiant golden halo of light behind it; '
                             'the most dramatic kind of image in the set'},
     'odin': {'Legendary': 'larger than life, monumental and iconic, lit by a cold rim of lightning or aurora; '

@@ -26,12 +26,29 @@ SETTING = {
            'wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire',
     'odin': 'Viking Age Norse myth: iron mail, round wooden shields, furs, runestones, longhalls, '
             'ravens, wolves, fjords, snow and northern sky',
+    'thoth': 'Ancient Egyptian myth: temples, tombs, the Nile, papyrus marshes, the desert, the Duat underworld, gods with animal heads, gold, faience and linen',
     'wukong': 'Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, '
               'clouds, mountains, celestial palaces',
 }
 # A hero's own look, laid over the shared card style. Same rules as Odysseus (tight framing, one distinct
 # shot per card, rarity in the framing), but a different art experience per mythology.
 HERO_STYLE = {
+    'thoth': ('Egyptian look for this hero: the same 1990s hand-made card art, but painted in the manner of '
+              'ancient Egyptian tomb paintings, temple reliefs and illustrated papyri. Crisp, even, dark outlines '
+              'around every shape and flat areas of bold mineral colour with very little shading: Egyptian blue, '
+              'lapis, malachite green, red and yellow ochre, gold leaf, black and white; the faint texture of painted '
+              'plaster, carved limestone or papyrus fibres shows through. Gods and people may keep the strong '
+              'Egyptian profile silhouette, but the camera angle still varies from card to card. Ornament comes from '
+              'Egypt: lotus and papyrus borders, winged sun discs, broad collars, gold and faience. Warm desert and '
+              'Nile light, between Odin\'s darkness and Wukong\'s brightness. Every card has its own strong colour '
+              'key (given under Light and colour) that fills the picture. No readable writing: hieroglyphs only as '
+              'small decorative carving in the background, never as the subject. Not modern Egyptian-themed fantasy '
+              'game art, not a movie poster, no glowing sci-fi pyramids. '
+              'Focus over scenery: the card\'s subject is the star of the picture and should look as striking and '
+              'powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and '
+              'secondary, and no second large figure or creature competes with the subject unless the card is about '
+              'that creature. Only paint Thoth himself (ibis-headed god with a reed pen and palette) when the subject '
+              'names him.'),
     'wukong': ('Chinese look for this hero: the same 1990s hand-made card art, but painted in the manner of classical '
                'Chinese painting and the illustrated Ming editions of Journey to the West. Fluid, calligraphic brush '
                'lines that swell and taper, never hard woodcut or pen hatching. Figures in the fine-line gongbi manner '

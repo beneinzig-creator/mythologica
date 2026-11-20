@@ -1043,5 +1043,22 @@
  "wukong:dint": {
   "composition": "the hand and the falling warrior filling the frame, seen from below and to one side",
   "palette": "celestial gold on deep blue"
+ },
+ "thoth:dosir": {
+  "palette": "lapis lazuli blue and gold"
+ },
+ "thoth:gweigh": {
+  "composition": "the scales centred at eye level, Anubis and Ammit on either side",
+  "palette": "underworld teal and black"
+ },
+ "thoth:ithoth": {
+  "composition": "the opened nest of boxes and the glowing scroll close up, from slightly above"
+ },
+ "thoth:yibis": {
+  "palette": "pale moonlight silver on sand"
+ },
+ "thoth:ybab": {
+  "composition": "a full figure on the pylon, seen from below",
+  "palette": "dawn rose over the Nile"
  }
 }
