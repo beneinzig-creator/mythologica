@@ -596,29 +596,82 @@ FRAMES['thoth'] = {
               + EGYPT_LOOK,
     'uncommon': 'Uncommon rarity: a frame of turquoise faience tiles set in dark ebony, with a fine lotus-and-papyrus '
                 'frieze along the edges and small blue lotus flowers at the corners. ' + EGYPT_LOOK,
-    'rare': 'Rare rarity: a frame of hammered gold inlaid with lapis lazuli and carnelian like a royal pectoral, with a '
-            'small winged sun disc above the art window and a row of tiny cobras along the top. ' + EGYPT_LOOK,
-    'legendary': 'Legendary rarity, the grandest frame of all, fit for the temple of Thoth at Hermopolis: radiant '
-                 'burnished gold inlaid with lapis, turquoise and carnelian; the outspread wings of a great sacred ibis '
-                 'wrapping the two sides of the card; at the top centre the silver moon disc held in a golden crescent, '
-                 'glowing; a band of the starry night sky of the goddess Nut along the top and a row of lotus flowers '
-                 'along the bottom. Warm golden light seems to shine from the frame itself. Rich and divine, still hand-'
-                 'painted, never glossy or 3D-rendered. ' + EGYPT_LOOK,
+    # Ben (Nov 2026): the first Rare looked too like the Uncommon, so the Rare blends it with the first Legendary,
+    # and the Legendary is redone with far more gold.
+    'rare': 'Rare rarity: a frame of hammered gold inlaid with lapis lazuli, turquoise and carnelian like a royal pectoral, '
+            'a pair of colourful outspread vulture wings (lapis, turquoise and red feathers edged in gold) wrapping the '
+            'upper sides of the card, a small winged sun disc above the art window, and a frieze of blue lotus flowers '
+            'along the bottom; richer than the common and uncommon, but not yet the full glory of a legendary. '
+            + EGYPT_LOOK,
+    'legendary': 'Legendary rarity, the grandest frame of all, made almost entirely of radiant burnished gold, like the '
+                 'golden shrine and mask of Tutankhamun: thick sculpted gold borders glowing with warm light, the great '
+                 'golden outspread wings of the sacred ibis of Thoth sweeping all the way down both sides, every feather '
+                 'of beaten gold with thin inlays of lapis and turquoise; at the top centre a large glowing silver moon '
+                 'disc in a golden crescent, sending out golden rays; gold cobras and gold lotus flowers, jewels of '
+                 'carnelian and lapis set into the corners, a band of gold stars on deep lapis along the top, and gold '
+                 'hieroglyph-like ornament (no readable signs) along the bottom. It shines like treasure in torchlight. '
+                 'Hand-painted, never glossy or 3D-rendered. ' + EGYPT_LOOK,
 }
 ICONS['thoth'] = {k: v + ' Ancient Egyptian style, colourful.' for k, v in {
     'life': 'Life: a golden ankh inlaid with red carnelian.',
+    'mana': 'Mana: a single glowing drop of blue Nile water falling from a small gold libation vase.',
+    'action': 'Action points: a gold-and-turquoise scarab beetle with its wings open, mid-flight.',
+    'victory': 'Victory points: a gold feather of Maat standing upright.',
     'attack': 'Attack form: an ancient Egyptian khopesh with a curved bronze blade, lying diagonally, as painted on a temple wall.',
+    'defense': 'Defense form: a tall Egyptian cowhide shield, rounded at the top, dappled brown and white with a gold rim.',
+    'switch': 'Switch stance: two curved golden arrows chasing each other in a circle, one tipped lapis blue, one carnelian red.',
+    'upgrade': 'Upgrade level: a single golden lotus bud.',
+    'target': 'Choose a target: a golden arrowhead pointing straight down, with a faint blue glow.',
+    'cleared': 'Fight won: a broken Egyptian spear, snapped in two, the halves crossed.',
+    'chosen': 'Chosen: a tick mark painted in gold with one confident reed-pen stroke.',
+    'menu': 'Menu: three short horizontal lapis-blue bars edged in gold, stacked neatly.',
+    'foretold': 'Foretold: a gold-rimmed bronze scrying bowl of dark water with the reflection of a crescent moon.',
+    'gold': 'Gold: a small heap of gold rings and gold nuggets beside a gold collar.',
+    'gift': 'Gift: a small painted wooden casket with a gold lid, slightly open with warm light inside.',
     'start': 'Starting point and emblem of Thoth: a silver moon disc resting in a golden crescent.',
+    'here': 'You are here: a small Egyptian reed boat with a white sail, seen from the side.',
+    'camp': 'Campfire: a small fire in a ring of stones beside a palm tree.',
+    'craft': 'Crafting table: a scribe\'s low wooden table with a papyrus roll, palette and reed pens.',
+    'altar': 'Altar: a small stone offering table with a loaf, a jar and a lotus, and a thin column of incense smoke.',
+    'greataltar': 'The great altar: a golden pyramid capstone (pyramidion) glowing at its tip.',
+    'coin': 'The Offering coin: a single worn gold Egyptian ring-money disc seen perfectly straight-on, filling the frame, '
+            'tarnished and nicked, a faint low-relief skull struck in the centre. Matte, painted like the weathered frames '
+            'of an old trading card; no shine, no text, no hieroglyphs, no numbers.',
     'offering': 'The icon for the Offering (sacrifice) value on an Egyptian-mythology card: a weathered, bone-white human '
                 'skull seen from the front, aged and slightly cracked, with a blue lotus flower beside it. Solid and opaque, '
                 'no glow, no smoke.',
 }.items()}
 MEDALS['thoth'] = {
+    'robbers': 'The Tomb Robbers: a masked thief\'s face lit by a torch, gold glinting. Colours: torch orange, umber and gold.',
+    'scorpions': 'The Scorpions of Serket: a black scorpion with raised tail on golden sand. Colours: black, sand gold and amber.',
+    'servants': 'Servants of the Tomb: a little blue faience shabti figure with folded arms. Colours: turquoise blue and black.',
+    'sobek': 'The Crocodiles of Sobek: a green crocodile head rising from the Nile among papyrus. Colours: Nile green and teal.',
     'anubis': 'The Jackals of Anubis: a black jackal head with gold collar and gold-lined ears. Colours: black, gold and '
               'deep lapis blue.',
+    'heka': 'The Priests of Heka: two entwined cobras around a magician\'s staff. Colours: violet, black and gold.',
+    'ammit': 'Ammit, the Devourer: a monster with a crocodile head and lion\'s mane beside the scales of judgement. Colours: '
+             'dark red, ochre and gold.',
+    'sphinx': 'The Great Sphinx: the face of the Sphinx in profile with the striped nemes headdress. Colours: warm sandstone '
+              'and dusk rose.',
+    'apophis': 'Apophis, the Serpent of Chaos: a huge coiling serpent in darkness. Colours: deep black, poison green and violet.',
+    'set': 'Set, Lord of the Red Desert: the head of the Set animal with tall square ears in a red sandstorm. Colours: red '
+           'ochre and rust.',
+    'sekhmet': 'Sekhmet, the Eye of Ra: a lioness head crowned with a blazing sun disc. Colours: blazing orange, red and gold.',
 }
 STAMPS['thoth'] = {
+    'D': 'Sundered: a small human figure splitting into its shadow and a bird-soul.',
     'I': 'Scribes: a scribe\'s palette with two ink wells and a reed pen.',
+    'Y': 'Recorder: a papyrus scroll half unrolled.',
+    # Marks for Thoth's six regular opponents and two elites. Letters and digits are all taken, so these use
+    # lowercase letters; their files are named arch_xa..arch_xh (lowercase alone would clash with capitals on macOS).
+    'xa': 'Robbers: a burning torch.',
+    'xb': 'Scorpions: a scorpion seen from above.',
+    'xc': 'Shabti: a small mummiform shabti figure.',
+    'xd': 'Crocodile: a crocodile seen from the side.',
+    'xe': 'Jackal: a reclining black jackal.',
+    'xf': 'Heka: a rearing cobra.',
+    'xg': 'Judgement: a pair of balance scales.',
+    'xh': 'Riddle: a small sphinx lying down.',
 }
 HERO_UI['thoth'] = {
     # Ben's pick (Nov 2026) from seven ideas: the Eye of the Moon.

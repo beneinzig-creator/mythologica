@@ -14415,13 +14415,13 @@
         },
         "rare": {
           "name": "Rare frame",
-          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nRare rarity: a frame of hammered gold inlaid with lapis lazuli and carnelian like a royal pectoral, with a small winged sun disc above the art window and a row of tiny cobras along the top. Ancient Egyptian look, New Kingdom, like Egyptian temple and tomb painting and the jewellery of Tutankhamun: lapis lazuli blue, turquoise and faience green, carnelian and red ochre, gold leaf, black and limestone white; lotus and papyrus friezes, block borders of coloured bars, winged sun discs, decorative pattern bands with no readable hieroglyphs. No Greek, Norse or Chinese elements.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nRare rarity: a frame of hammered gold inlaid with lapis lazuli, turquoise and carnelian like a royal pectoral, a pair of colourful outspread vulture wings (lapis, turquoise and red feathers edged in gold) wrapping the upper sides of the card, a small winged sun disc above the art window, and a frieze of blue lotus flowers along the bottom; richer than the common and uncommon, but not yet the full glory of a legendary. Ancient Egyptian look, New Kingdom, like Egyptian temple and tomb painting and the jewellery of Tutankhamun: lapis lazuli blue, turquoise and faience green, carnelian and red ochre, gold leaf, black and limestone white; lotus and papyrus friezes, block borders of coloured bars, winged sun discs, decorative pattern bands with no readable hieroglyphs. No Greek, Norse or Chinese elements.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
           "output": "art/frames/thoth/rare.webp",
           "size": "1024x1536"
         },
         "legendary": {
           "name": "Legendary frame",
-          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nLegendary rarity, the grandest frame of all, fit for the temple of Thoth at Hermopolis: radiant burnished gold inlaid with lapis, turquoise and carnelian; the outspread wings of a great sacred ibis wrapping the two sides of the card; at the top centre the silver moon disc held in a golden crescent, glowing; a band of the starry night sky of the goddess Nut along the top and a row of lotus flowers along the bottom. Warm golden light seems to shine from the frame itself. Rich and divine, still hand-painted, never glossy or 3D-rendered. Ancient Egyptian look, New Kingdom, like Egyptian temple and tomb painting and the jewellery of Tutankhamun: lapis lazuli blue, turquoise and faience green, carnelian and red ochre, gold leaf, black and limestone white; lotus and papyrus friezes, block borders of coloured bars, winged sun discs, decorative pattern bands with no readable hieroglyphs. No Greek, Norse or Chinese elements.\nNear-mint condition: aged and antique, but no play wear, creases or scuffs. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nLegendary rarity, the grandest frame of all, made almost entirely of radiant burnished gold, like the golden shrine and mask of Tutankhamun: thick sculpted gold borders glowing with warm light, the great golden outspread wings of the sacred ibis of Thoth sweeping all the way down both sides, every feather of beaten gold with thin inlays of lapis and turquoise; at the top centre a large glowing silver moon disc in a golden crescent, sending out golden rays; gold cobras and gold lotus flowers, jewels of carnelian and lapis set into the corners, a band of gold stars on deep lapis along the top, and gold hieroglyph-like ornament (no readable signs) along the bottom. It shines like treasure in torchlight. Hand-painted, never glossy or 3D-rendered. Ancient Egyptian look, New Kingdom, like Egyptian temple and tomb painting and the jewellery of Tutankhamun: lapis lazuli blue, turquoise and faience green, carnelian and red ochre, gold leaf, black and limestone white; lotus and papyrus friezes, block borders of coloured bars, winged sun discs, decorative pattern bands with no readable hieroglyphs. No Greek, Norse or Chinese elements.\nNear-mint condition: aged and antique, but no play wear, creases or scuffs. The wear is on the frame only; the black art window stays solid, untouched black.",
           "output": "art/frames/thoth/legendary.webp",
           "size": "1024x1536"
         }
@@ -14435,10 +14435,114 @@
           "format": "png",
           "background": "transparent"
         },
+        "mana": {
+          "name": "Mana icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Mana: a single glowing drop of blue Nile water falling from a small gold libation vase. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/mana.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "action": {
+          "name": "Action icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Action points: a gold-and-turquoise scarab beetle with its wings open, mid-flight. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/action.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "victory": {
+          "name": "Victory icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Victory points: a gold feather of Maat standing upright. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/victory.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "attack": {
           "name": "Attack icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Attack form: an ancient Egyptian khopesh with a curved bronze blade, lying diagonally, as painted on a temple wall. Ancient Egyptian style, colourful.",
           "output": "art/icons/thoth/attack.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "defense": {
+          "name": "Defense icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Defense form: a tall Egyptian cowhide shield, rounded at the top, dappled brown and white with a gold rim. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/defense.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "switch": {
+          "name": "Switch icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Switch stance: two curved golden arrows chasing each other in a circle, one tipped lapis blue, one carnelian red. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/switch.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "upgrade": {
+          "name": "Upgrade icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Upgrade level: a single golden lotus bud. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/upgrade.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "target": {
+          "name": "Target icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Choose a target: a golden arrowhead pointing straight down, with a faint blue glow. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/target.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "cleared": {
+          "name": "Cleared icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Fight won: a broken Egyptian spear, snapped in two, the halves crossed. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/cleared.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "chosen": {
+          "name": "Chosen icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Chosen: a tick mark painted in gold with one confident reed-pen stroke. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/chosen.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "menu": {
+          "name": "Menu icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Menu: three short horizontal lapis-blue bars edged in gold, stacked neatly. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/menu.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "foretold": {
+          "name": "Foretold icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Foretold: a gold-rimmed bronze scrying bowl of dark water with the reflection of a crescent moon. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/foretold.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "gold": {
+          "name": "Gold icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Gold: a small heap of gold rings and gold nuggets beside a gold collar. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/gold.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "gift": {
+          "name": "Gift icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Gift: a small painted wooden casket with a gold lid, slightly open with warm light inside. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/gift.png",
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
@@ -14451,6 +14555,54 @@
           "format": "png",
           "background": "transparent"
         },
+        "here": {
+          "name": "Here icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: You are here: a small Egyptian reed boat with a white sail, seen from the side. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/here.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "camp": {
+          "name": "Camp icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Campfire: a small fire in a ring of stones beside a palm tree. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/camp.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "craft": {
+          "name": "Craft icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Crafting table: a scribe's low wooden table with a papyrus roll, palette and reed pens. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/craft.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "altar": {
+          "name": "Altar icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Altar: a small stone offering table with a loaf, a jar and a lotus, and a thin column of incense smoke. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/altar.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "greataltar": {
+          "name": "Greataltar icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: The great altar: a golden pyramid capstone (pyramidion) glowing at its tip. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/greataltar.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "coin": {
+          "name": "Coin icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: The Offering coin: a single worn gold Egyptian ring-money disc seen perfectly straight-on, filling the frame, tarnished and nicked, a faint low-relief skull struck in the centre. Matte, painted like the weathered frames of an old trading card; no shine, no text, no hieroglyphs, no numbers. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/coin.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "offering": {
           "name": "Offering icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: The icon for the Offering (sacrifice) value on an Egyptian-mythology card: a weathered, bone-white human skull seen from the front, aged and slightly cracked, with a blue lotus flower beside it. Solid and opaque, no glow, no smoke. Ancient Egyptian style, colourful.",
@@ -14459,10 +14611,90 @@
           "format": "png",
           "background": "transparent"
         },
+        "arch_D": {
+          "name": "D archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Sundered: a small human figure splitting into its shadow and a bird-soul.",
+          "output": "art/icons/thoth/arch_D.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "arch_I": {
           "name": "I archetype mark",
           "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Scribes: a scribe's palette with two ink wells and a reed pen.",
           "output": "art/icons/thoth/arch_I.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_Y": {
+          "name": "Y archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Recorder: a papyrus scroll half unrolled.",
+          "output": "art/icons/thoth/arch_Y.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xa": {
+          "name": "xa archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Robbers: a burning torch.",
+          "output": "art/icons/thoth/arch_xa.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xb": {
+          "name": "xb archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Scorpions: a scorpion seen from above.",
+          "output": "art/icons/thoth/arch_xb.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xc": {
+          "name": "xc archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Shabti: a small mummiform shabti figure.",
+          "output": "art/icons/thoth/arch_xc.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xd": {
+          "name": "xd archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Crocodile: a crocodile seen from the side.",
+          "output": "art/icons/thoth/arch_xd.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xe": {
+          "name": "xe archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Jackal: a reclining black jackal.",
+          "output": "art/icons/thoth/arch_xe.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xf": {
+          "name": "xf archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Heka: a rearing cobra.",
+          "output": "art/icons/thoth/arch_xf.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xg": {
+          "name": "xg archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Judgement: a pair of balance scales.",
+          "output": "art/icons/thoth/arch_xg.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_xh": {
+          "name": "xh archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Riddle: a small sphinx lying down.",
+          "output": "art/icons/thoth/arch_xh.png",
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
@@ -14483,10 +14715,90 @@
           "format": "png",
           "background": "transparent"
         },
+        "med_robbers": {
+          "name": "robbers medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Tomb Robbers: a masked thief's face lit by a torch, gold glinting. Colours: torch orange, umber and gold.",
+          "output": "art/icons/thoth/med_robbers.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_scorpions": {
+          "name": "scorpions medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Scorpions of Serket: a black scorpion with raised tail on golden sand. Colours: black, sand gold and amber.",
+          "output": "art/icons/thoth/med_scorpions.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_servants": {
+          "name": "servants medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Servants of the Tomb: a little blue faience shabti figure with folded arms. Colours: turquoise blue and black.",
+          "output": "art/icons/thoth/med_servants.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_sobek": {
+          "name": "sobek medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Crocodiles of Sobek: a green crocodile head rising from the Nile among papyrus. Colours: Nile green and teal.",
+          "output": "art/icons/thoth/med_sobek.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "med_anubis": {
           "name": "anubis medallion",
           "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Jackals of Anubis: a black jackal head with gold collar and gold-lined ears. Colours: black, gold and deep lapis blue.",
           "output": "art/icons/thoth/med_anubis.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_heka": {
+          "name": "heka medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Priests of Heka: two entwined cobras around a magician's staff. Colours: violet, black and gold.",
+          "output": "art/icons/thoth/med_heka.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_ammit": {
+          "name": "ammit medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Ammit, the Devourer: a monster with a crocodile head and lion's mane beside the scales of judgement. Colours: dark red, ochre and gold.",
+          "output": "art/icons/thoth/med_ammit.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_sphinx": {
+          "name": "sphinx medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Great Sphinx: the face of the Sphinx in profile with the striped nemes headdress. Colours: warm sandstone and dusk rose.",
+          "output": "art/icons/thoth/med_sphinx.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_apophis": {
+          "name": "apophis medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Apophis, the Serpent of Chaos: a huge coiling serpent in darkness. Colours: deep black, poison green and violet.",
+          "output": "art/icons/thoth/med_apophis.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_set": {
+          "name": "set medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Set, Lord of the Red Desert: the head of the Set animal with tall square ears in a red sandstorm. Colours: red ochre and rust.",
+          "output": "art/icons/thoth/med_set.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_sekhmet": {
+          "name": "sekhmet medallion",
+          "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Sekhmet, the Eye of Ra: a lioness head crowned with a blazing sun disc. Colours: blazing orange, red and gold.",
+          "output": "art/icons/thoth/med_sekhmet.png",
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
@@ -14871,6 +15183,83 @@
       "hero": "wukong",
       "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the edge of the world at the end of heaven from Journey to the West, where Sun Wukong leapt to the five pillars and found he had never left the Buddha's palm: five colossal pinkish-flesh pillars rising into the clouds along the right edge, which are the Buddha's fingers; a vast golden radiance and a giant serene palm curving across the far distance; rolling clouds and a tiny cloud trail at the lower left; lotus flowers drifting; the Five Elements Mountain faint on the horizon The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: near-black indigo to warm gold (#14121e to #b08a3a) with saffron, lotus pink and jade accents.",
       "output": "art/scenes/wukong/buddhapalm.webp",
+      "size": "1536x1024"
+    },
+    "robbers": {
+      "name": "The Tomb Robbers background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a looted royal tomb in the Valley of the Kings at night: a torch-lit burial chamber with painted walls of gods in blue, red and gold along the left and right edges; a smashed stone sarcophagus lid at the lower left; spilled gold, jewelled collars and toppled statues across the floor; a rough robbers' tunnel breaking through the far right wall with a rope hanging down; long shadows from the torches Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: deep umber and black (#1a120a to #6b4a24) lit by torch orange, with gold, lapis and turquoise accents.",
+      "output": "art/scenes/thoth/robbers.webp",
+      "size": "1536x1024"
+    },
+    "scorpions": {
+      "name": "The Scorpions of Serket background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a desert canyon of red sandstone at dusk, the shrine of the scorpion goddess Serket: a small rock-cut temple with a scorpion carved over the door at the far left; dunes and boulders along the right edge; dozens of scorpions crawling over the rocks in the foreground; a huge orange sun setting over the dunes; tamarisk bushes Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: dusky rose and amber (#2a1408 to #c76a2a) with black scorpions, gold sand and violet shadows.",
+      "output": "art/scenes/thoth/scorpions.webp",
+      "size": "1536x1024"
+    },
+    "servants": {
+      "name": "Servants of the Tomb background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast underground tomb hall lined with rows of blue faience shabti figures on shelves along the left and right edges, some stepping down to march; painted columns with papyrus capitals; a doorway to darker chambers at the back; faint blue-green light from oil lamps Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: deep turquoise and black (#081a1c to #2f7a7a) with faience blue, gold and limestone white.",
+      "output": "art/scenes/thoth/servants.webp",
+      "size": "1536x1024"
+    },
+    "sobek": {
+      "name": "The Crocodiles of Sobek background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Nile at the temple of Sobek in the morning: tall papyrus thickets and blue lotus along the left and right edges; the river in the middle with crocodiles sliding into the water and only their eyes showing; a temple with painted columns and a crocodile statue on the far bank; ibises and herons; a reed boat pulled up on the mud at the lower right Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: Nile green and teal (#0a1a14 to #3f8a6a) with blue lotus, white ibises, gold sunlight and red-ochre temple paint.",
+      "output": "art/scenes/thoth/sobek.webp",
+      "size": "1536x1024"
+    },
+    "anubis": {
+      "name": "The Jackals of Anubis background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the necropolis at the edge of the western desert under a full moon: rows of tombs and small pyramids along the left and right edges; a great black statue of the jackal god Anubis lying on a shrine at the far left; jackals prowling among the tombs with glowing eyes; a funeral path of torches leading away; stars over the desert Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: midnight lapis blue and black (#0a0f1f to #2f4a7a) with silver moonlight, gold and torch orange.",
+      "output": "art/scenes/thoth/anubis.webp",
+      "size": "1536x1024"
+    },
+    "heka": {
+      "name": "The Priests of Heka background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a temple of magic at night: a dark hall of carved columns along the left and right edges; a sacred lake at the lower centre reflecting the moon; magician-priests in leopard skins casting spells with glowing green smoke; rearing cobras on the steps; walls carved with protective signs (no readable writing); braziers burning Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: deep violet and black (#140a1f to #5a3a7a) with poison green smoke, gold and flame orange.",
+      "output": "art/scenes/thoth/heka.webp",
+      "size": "1536x1024"
+    },
+    "ammit": {
+      "name": "Ammit, the Devourer background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Hall of Two Truths in the underworld, where the dead are judged: a giant pair of golden scales at the centre right, a heart on one pan and a white feather on the other; rows of seated judging gods along the back wall; the monster Ammit, part crocodile, lion and hippopotamus, crouching beside the scales at the left; a pool of darkness at her feet; columns of lotus Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: dark red and ochre (#1f0a08 to #8a3a24) with gold, lapis, a white feather and black.",
+      "output": "art/scenes/thoth/ammit.webp",
+      "size": "1536x1024"
+    },
+    "sphinx": {
+      "name": "The Great Sphinx background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Great Sphinx at Giza at sunset: the huge weathered stone face and paws of the Sphinx filling the right side, the pyramids glowing behind it; sand dunes and a ruined temple at the left; a long dusk sky of rose, orange and violet; a few palm trees; tiny figures of travellers for scale Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: warm sandstone and dusk rose (#2a1a10 to #d08a5a) with violet sky, gold light and long blue shadows.",
+      "output": "art/scenes/thoth/sphinx.webp",
+      "size": "1536x1024"
+    },
+    "apophis": {
+      "name": "Apophis, the Serpent of Chaos background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the underworld river of night, where the sun-boat of Ra fights the serpent Apophis: a black river under a starless sky; the colossal coils of the serpent rising from the water across the whole scene; the small glowing golden sun-boat at the far left; lightning and poison-green mist; jagged black cliffs at the right Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: deep black and poison green (#05080a to #2f6a3a) with violet, gold and acid light.",
+      "output": "art/scenes/thoth/apophis.webp",
+      "size": "1536x1024"
+    },
+    "set": {
+      "name": "Set, Lord of the Red Desert background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the red desert in a great sandstorm: towering red dunes and wind-carved rocks along the left and right edges; a whirling red sandstorm filling the sky; the ruins of a temple half buried in sand at the far left; a giant shadow of the Set animal with tall square ears in the storm; scattered bones and a lost chariot wheel Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: red ochre and rust (#1f0806 to #b04a24) with dust gold, black and a pale sun.",
+      "output": "art/scenes/thoth/set.webp",
+      "size": "1536x1024"
+    },
+    "sekhmet": {
+      "name": "Sekhmet, the Eye of Ra background",
+      "hero": "thoth",
+      "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a temple of the lioness goddess Sekhmet under a blazing midday sun: rows of black granite lion-headed statues along the left and right edges; a burning sky of orange and gold; the land beyond cracked and scorched with plague smoke rising; a great sun disc blazing over the temple pylon at the centre back; red beer spilled like blood across the courtyard stones Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: blazing orange, red and gold (#2a0a04 to #e07a24) with black granite and white glare.",
+      "output": "art/scenes/thoth/sekhmet.webp",
       "size": "1536x1024"
     }
   }
