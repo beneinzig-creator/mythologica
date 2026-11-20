@@ -621,22 +621,13 @@ STAMPS['thoth'] = {
     'I': 'Scribes: a scribe\'s palette with two ink wells and a reed pen.',
 }
 HERO_UI['thoth'] = {
-    # Three card-back emblems for Ben to choose from; the chosen one becomes sigil_thoth.
-    'sigil_thoth_ibis': ('1024x1024', 'transparent',
-        'An emblem for the back of every card in Thoth\'s deck: a sacred ibis in profile, standing, its long curved beak '
-        'and slender legs, drawn as a flat Egyptian temple inlay in gold with black and lapis blue, inside a thin gold '
-        'ring. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, '
-        'no hieroglyphs, no badge behind it.'),
-    'sigil_thoth_moon': ('1024x1024', 'transparent',
-        'An emblem for the back of every card in Thoth\'s deck: the moon of Thoth, a full silver moon disc resting in a '
-        'golden crescent, with a pair of outspread Egyptian wings in gold, lapis and turquoise beneath it, like a royal '
-        'pectoral. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, '
-        'no hieroglyphs, no badge behind it.'),
-    'sigil_thoth_palette': ('1024x1024', 'transparent',
-        'An emblem for the back of every card in Thoth\'s deck: a scribe\'s palette of gold, upright, with two ink wells '
-        '(red and black) and a reed pen, crossed by a was-sceptre, with a small moon disc above, inlaid in lapis and '
-        'turquoise. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, '
-        'no hieroglyphs, no badge behind it.'),
+    # Ben's pick (Nov 2026) from seven ideas: the Eye of the Moon.
+    'sigil_thoth': ('1024x1024', 'transparent',
+        'A single emblem for the back of every card in Thoth\'s deck: the Eye of the Moon, the wadjet eye that Thoth '
+        'healed, drawn as a bold Egyptian eye with its long cosmetic line and the curling spiral and teardrop marks beneath, '
+        'inlaid in lapis lazuli and gold like Tutankhamun\'s jewellery, with a silver crescent moon cradled beneath it. '
+        'Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no '
+        'hieroglyphs, no circle or badge behind it.'),
     'ui_button': ('1536x1024', 'transparent',
         'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
         'width of the image: a gold-edged lapis-blue plaque with a thin band of coloured block border and small gold '

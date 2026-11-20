@@ -14467,26 +14467,10 @@
           "format": "png",
           "background": "transparent"
         },
-        "sigil_thoth_ibis": {
-          "name": "sigil_thoth_ibis",
-          "prompt": "An emblem for the back of every card in Thoth's deck: a sacred ibis in profile, standing, its long curved beak and slender legs, drawn as a flat Egyptian temple inlay in gold with black and lapis blue, inside a thin gold ring. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no hieroglyphs, no badge behind it.",
-          "output": "art/icons/thoth/sigil_thoth_ibis.png",
-          "size": "1024x1024",
-          "format": "png",
-          "background": "transparent"
-        },
-        "sigil_thoth_moon": {
-          "name": "sigil_thoth_moon",
-          "prompt": "An emblem for the back of every card in Thoth's deck: the moon of Thoth, a full silver moon disc resting in a golden crescent, with a pair of outspread Egyptian wings in gold, lapis and turquoise beneath it, like a royal pectoral. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no hieroglyphs, no badge behind it.",
-          "output": "art/icons/thoth/sigil_thoth_moon.png",
-          "size": "1024x1024",
-          "format": "png",
-          "background": "transparent"
-        },
-        "sigil_thoth_palette": {
-          "name": "sigil_thoth_palette",
-          "prompt": "An emblem for the back of every card in Thoth's deck: a scribe's palette of gold, upright, with two ink wells (red and black) and a reed pen, crossed by a was-sceptre, with a small moon disc above, inlaid in lapis and turquoise. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no hieroglyphs, no badge behind it.",
-          "output": "art/icons/thoth/sigil_thoth_palette.png",
+        "sigil_thoth": {
+          "name": "sigil_thoth",
+          "prompt": "A single emblem for the back of every card in Thoth's deck: the Eye of the Moon, the wadjet eye that Thoth healed, drawn as a bold Egyptian eye with its long cosmetic line and the curling spiral and teardrop marks beneath, inlaid in lapis lazuli and gold like Tutankhamun's jewellery, with a silver crescent moon cradled beneath it. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no hieroglyphs, no circle or badge behind it.",
+          "output": "art/icons/thoth/sigil_thoth.png",
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
