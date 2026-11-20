@@ -19,6 +19,11 @@ HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong'}
 TIER = {'Staple': 'c', 'Common': 'c', 'Uncommon': 'u', 'Rare': 'r', 'Legendary': 'l',
         'common': 'c', 'uncommon': 'u', 'rare': 'r', 'legendary': 'l'}
 FRAME_NAME = {'c': 'common', 'u': 'uncommon', 'r': 'rare', 'l': 'legendary'}
+# Each hero's frames get their own codes in the game (Odysseus c/u/r/l, Odin oc/ou/or/ol, ...), so one
+# cards.json and one set of frame files serve every hero. Generic icons that every hero has (life, mana, coin,
+# button, ...) go in a per-hero folder; archetype marks and medallions have unique names and stay flat.
+CODE_PREFIX = {'ody': '', 'odin': 'o', 'wukong': 'w'}
+ICON_SUB = {'ody': '', 'odin': 'odin/', 'wukong': 'wukong/'}
 
 
 def shrink(src, dst, width, fmt='jpeg', quality='78'):
@@ -31,6 +36,30 @@ def shrink(src, dst, width, fmt='jpeg', quality='78'):
     cmd += ['--resampleWidth', str(width), src, '--out', dst]
     subprocess.run(cmd, check=True, capture_output=True)
     return True
+
+
+BOXCODES = {c + s for c in 'curl' for s in ('', 's')}
+
+
+def opaque_box(src):
+    """(height, width, top, left) of the opaque pixels of a transparent PNG, in source pixels."""
+    import struct, tempfile
+    with tempfile.TemporaryDirectory() as t:
+        bmp = os.path.join(t, 's.bmp')
+        subprocess.run(['sips', '-s', 'format', 'bmp', '-Z', '512', src, '--out', bmp], check=True, capture_output=True)
+        b = open(bmp, 'rb').read()
+    off, = struct.unpack_from('<I', b, 10)
+    w, h = struct.unpack_from('<ii', b, 18)
+    bpp, = struct.unpack_from('<H', b, 28)
+    step, row, flip, h = bpp // 8, (w * (bpp // 8) + 3) & ~3, h > 0, abs(h)
+    if step < 4:
+        raise SystemExit('opaque_box needs an image with an alpha channel: ' + src)
+    alpha = lambda x, y: b[off + (h - 1 - y if flip else y) * row + x * step + 3]
+    pts = [(x, y) for y in range(h) for x in range(w) if alpha(x, y) > 40]
+    x0, x1 = min(p[0] for p in pts), max(p[0] for p in pts)
+    y0, y1 = min(p[1] for p in pts), max(p[1] for p in pts)
+    k = int(subprocess.run(['sips', '-g', 'pixelWidth', src], capture_output=True, text=True).stdout.split()[-1]) / w
+    return int((y1 - y0 + 1) * k), int((x1 - x0 + 1) * k), int(y0 * k), int(x0 * k)
 
 
 def crop_mark(src, dst, size):
@@ -82,14 +111,14 @@ def main():
             continue
         made += shrink(src, os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
         army = c.get('type') == 'Army member'
-        table[cid] = tier + ('' if army else 's')
+        table[cid] = CODE_PREFIX.get(a.hero, '') + tier + ('' if army else 's')
 
     fr = os.path.join(ART, 'frames', folder)
     for code, name in FRAME_NAME.items():
         for suffix, tag in (('', ''), ('s', '_spell')):
             src = os.path.join(fr, f'{name}{tag}.webp')
             if os.path.exists(src):
-                made += shrink(src, os.path.join(GAME, 'frames', f'{code}{suffix}.jpg'), 640, quality='82')
+                made += shrink(src, os.path.join(GAME, 'frames', f'{CODE_PREFIX.get(a.hero, "")}{code}{suffix}.jpg'), 640, quality='82')
     # every painted icon for this hero (interface, map, opponent medallions)
     idir = os.path.join(ART, 'icons', folder)
     for fn in sorted(os.listdir(idir)) if os.path.isdir(idir) else []:
@@ -98,20 +127,24 @@ def main():
         src = os.path.join(idir, fn)
         if fn == 'ui_button.png':
             # crop the plate out of its transparent surround, then keep it crisp for border-image slicing
-            dst = os.path.join(GAME, 'icons', 'ui_button.png')
+            dst = os.path.join(GAME, 'icons', ICON_SUB.get(a.hero, ''), 'ui_button.png')
             if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
-                subprocess.run(['sips', '--cropToHeightWidth', '222', '1514', '--cropOffset', '391', '11', src,
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                # Odysseus's plate was cut by hand; other heroes' plates are trimmed to their opaque pixels
+                ch, cw, oy, ox = (222, 1514, 391, 11) if a.hero == 'ody' else opaque_box(src)
+                subprocess.run(['sips', '--cropToHeightWidth', str(ch), str(cw), '--cropOffset', str(oy), str(ox), src,
                                 '--out', dst], check=True, capture_output=True)
                 subprocess.run(['sips', '--resampleWidth', '760', dst], check=True, capture_output=True)
                 made += 1
         elif fn.startswith('ui_'):
-            made += shrink(src, os.path.join(GAME, 'icons', fn[:-4] + '.jpg'), 1600, quality='76')
+            made += shrink(src, os.path.join(GAME, 'icons', ICON_SUB.get(a.hero, ''), fn[:-4] + '.jpg'), 1600, quality='76')
         elif fn.startswith('arch_'):
             made += crop_mark(src, os.path.join(GAME, 'icons', fn), 128)
         elif fn.startswith('sigil_'):
             made += shrink(src, os.path.join(GAME, 'back', fn), 256, fmt='png')
         else:
-            made += shrink(src, os.path.join(GAME, 'icons', fn), 128 if fn.startswith('med_') else 96, fmt='png')
+            sub = '' if fn.startswith('med_') and a.hero == 'ody' else ICON_SUB.get(a.hero, '')
+            made += shrink(src, os.path.join(GAME, 'icons', sub, fn), 128 if fn.startswith('med_') else 96, fmt='png')
     # home screen portraits and background
     hdir = os.path.join(ART, 'home')
     # the round frame shows the head, so each portrait is cut to a square around the face (on the 1024 source)
@@ -187,7 +220,16 @@ def main():
             t = t[:cut if cut > 120 else 230].rstrip(' ,;') + '.'
         return t
     myth = {cid: caption(subj[cid]) for cid in table if cid in subj}
-    with open(os.path.join(GAME, 'cards.json'), 'w', encoding='utf-8') as f:
+    # Merge with the other heroes already in cards.json: replace only this hero's cards, frame boxes and captions.
+    pre = CODE_PREFIX.get(a.hero, '')
+    mine = lambda code: (code[:len(pre)] == pre and code[len(pre):] in BOXCODES) if pre else code in BOXCODES
+    cj = os.path.join(GAME, 'cards.json')
+    prev = json.load(open(cj, encoding='utf-8')) if os.path.exists(cj) else {}
+    keep = {cid: code for cid, code in prev.get('cards', {}).items() if not mine(code) and cid not in table}
+    kept_myth = {cid: t for cid, t in prev.get('myth', {}).items() if cid in keep}
+    boxes = {**{k: v for k, v in prev.get('boxes', {}).items() if not mine(k)}, **{pre + k: v for k, v in boxes.items()}}
+    table, myth = {**keep, **table}, {**kept_myth, **myth}
+    with open(cj, 'w', encoding='utf-8') as f:
         json.dump({'cards': table, 'boxes': boxes, 'myth': myth}, f, indent=0, sort_keys=True)
         f.write('\n')
     print(f'{len(table)} cards with art, {made} files (re)made. Wrote art/game/cards.json.')

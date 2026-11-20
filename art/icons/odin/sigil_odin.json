@@ -1,0 +1,22 @@
+{
+  "id": "sigil_odin",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-18 22:02:11",
+  "prompt": "A single emblem for the back of every card in Odin's deck: the spear Gungnir standing perfectly upright through the centre, its long leaf-shaped iron blade at the top, the shaft carved with knotwork, inside a circular ring of carved Elder Futhark runes, as if cut into a stone or a silver disc. Rendered in worn gold leaf and dark iron, rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters of the Latin alphabet, no words, no circle or badge behind the ring.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 119,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 119
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1875
+  }
+}
