@@ -1,0 +1,22 @@
+{
+  "id": "wking",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:42:46",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours taken from the card's own light and colour key (no default orange) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nChinese look for this hero: the same 1990s hand-made card art, but painted in the manner of classical Chinese painting and the illustrated Ming editions of Journey to the West. Fluid, calligraphic brush lines that swell and taper, never hard woodcut or pen hatching. Figures in the fine-line gongbi manner with flat, bold mineral colours (cinnabar red, azurite blue, malachite green, gold) on a warm rice-paper ground; backgrounds in loose xieyi ink wash: misty peaks, pines, waterfalls, splashed ink. Clouds are drawn as curling auspicious-cloud scrolls. Faces and poses are bold and theatrical, like Peking opera. Every card has its own strong colour key (given under Light and colour) that dominates the picture. Not Japanese, not samurai, not anime, not modern Chinese fantasy game art, no restaurant-style dragons. Focus over scenery: the card's subject is the star of the picture and should look as striking and powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and secondary, and no second large figure or creature competes with the subject unless the card is about that creature.\n\nSetting: Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, clouds, mountains, celestial palaces.\n\nSubject: Sun Wukong, the Great Sage Equal to Heaven, in his full glory: the Monkey King with golden fur and blazing fiery golden eyes, wearing a phoenix-feather cap with two long pheasant plumes, golden chain mail, a red silk cape and cloud-walking boots, spinning his golden-banded iron staff Ruyi Jingu Bang above his head, standing on a swirl of auspicious cloud. Proud, fearless and grinning.\n\nComposition: a full figure leaping in mid-air, seen from slightly above. Light and colour: cinnabar red and gold. Presence: larger than life, monumental and iconic, with a radiant golden halo of light behind it; the most dramatic kind of image in the set. The subject fills most of the picture; keep the background minimal.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 654,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 654
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 2026
+  }
+}

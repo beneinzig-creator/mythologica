@@ -725,5 +725,323 @@
  },
  "sunch": {
   "composition": "the chariot and horses in side profile, racing across the frame"
+ },
+ "wking": {
+  "palette": "cinnabar red and gold"
+ },
+ "wpig": {
+  "palette": "jade green and gold"
+ },
+ "wmount": {
+  "composition": "the giant palm and its five peaks filling the frame, the tiny monkey's head poking out at the base, at eye level",
+  "palette": "celestial gold on deep blue"
+ },
+ "wfan": {
+  "composition": "the princess swinging the fan at eye level, the gale roaring away from her across the frame",
+  "palette": "azurite blue and white cloud"
+ },
+ "wpeachk": {
+  "composition": "the monkey on its branch, close up, at eye level"
+ },
+ "wfurn": {
+  "composition": "the furnace filling the frame with the monkey bursting out of it, from a low angle",
+  "palette": "furnace orange and black smoke"
+ },
+ "wcloudm": {},
+ "wruyi": {
+  "composition": "the whole staff rising out of the sea into the clouds, seen from a distance",
+  "palette": "turquoise sea and white foam"
+ },
+ "wpeachg": {
+  "composition": "a wide view down the length of the banquet table, at eye level",
+  "palette": "imperial yellow and red lacquer"
+ },
+ "wsandy": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "wqt": {
+  "palette": "imperial yellow and red lacquer",
+  "composition": "the empty throne centred, seen from the foot of its steps at eye level"
+ },
+ "wmirm": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "wbear": {
+  "composition": "a waist-up portrait, from a low angle"
+ },
+ "wnull": {
+  "palette": "pale ink wash on rice-paper white"
+ },
+ "wgate": {
+  "palette": "malachite green and gold"
+ },
+ "wmist": {
+  "palette": "jade bamboo green and mist"
+ },
+ "wsomer": {
+  "palette": "celestial gold on deep blue"
+ },
+ "wrout": {
+  "palette": "celestial gold on deep blue",
+  "composition": "a wide view of the fleeing army across the clouds, seen from slightly above"
+ },
+ "wburn": {
+  "palette": "furnace orange and black smoke"
+ },
+ "wledger": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "wpeachc": {
+  "palette": "peach-blossom pink and pale jade"
+ },
+ "worchard": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "wtree": {
+  "palette": "dawn rose over misty peaks",
+  "composition": "the whole tree on its mountain, seen from a distance"
+ },
+ "wdrink": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "wcycle": {
+  "palette": "ink black and white with a touch of cinnabar"
+ },
+ "wunward": {
+  "palette": "jade bamboo green and mist"
+ },
+ "wmillion": {
+  "palette": "autumn persimmon orange and brown",
+  "composition": "seen from high above, looking down on the valley"
+ },
+ "wpierce": {
+  "palette": "furnace orange and black smoke"
+ },
+ "wthou": {
+  "composition": "seen from behind and to one side, on the mountain top"
+ },
+ "spd1": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "spd2": {
+  "palette": "jade bamboo green and mist"
+ },
+ "spd3": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "spdq": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "cocn": {
+  "palette": "jade bamboo green and mist"
+ },
+ "cweb": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "hsol": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hcap": {
+  "palette": "vermilion and black ink"
+ },
+ "hsil": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "hgol": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hrope": {
+  "palette": "vermilion and black ink"
+ },
+ "hbot": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "gourd": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hsd": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hhd": {
+  "palette": "azurite blue and white cloud"
+ },
+ "hgn": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "hnz": {
+  "palette": "celestial gold on deep blue",
+  "composition": "a full figure in mid-air, seen from slightly above"
+ },
+ "hpg": {
+  "palette": "azurite blue and white cloud"
+ },
+ "decree": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "rimp": {
+  "palette": "furnace orange and black smoke"
+ },
+ "rgrd": {
+  "palette": "cinnabar red and gold"
+ },
+ "rspr": {
+  "palette": "vermilion and black ink"
+ },
+ "rboy": {
+  "palette": "furnace orange and black smoke"
+ },
+ "rflm": {
+  "palette": "cinnabar red and gold"
+ },
+ "sfire": {
+  "palette": "vermilion and black ink"
+ },
+ "bsk": {
+  "palette": "pale ink wash on rice-paper white"
+ },
+ "bghl": {
+  "palette": "moonlit silver mist over dark peaks"
+ },
+ "bhag": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "bsp": {
+  "palette": "pale ink wash on rice-paper white"
+ },
+ "bone": {
+  "palette": "moonlit silver mist over dark peaks"
+ },
+ "ybat": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "ytig": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "ydef": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "ygen": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "ygale": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "ywind": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "eplum": {
+  "palette": "deep azurite night with a silver moon"
+ },
+ "ehnd": {
+  "palette": "malachite green and gold"
+ },
+ "eerl": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "esw": {
+  "palette": "deep azurite night with a silver moon"
+ },
+ "hnet": {
+  "palette": "malachite green and gold"
+ },
+ "eye": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "iwnd": {
+  "palette": "jade bamboo green and mist"
+ },
+ "imaid": {
+  "palette": "turquoise sea and white foam"
+ },
+ "iguard": {
+  "palette": "cinnabar red and gold"
+ },
+ "iprin": {
+  "palette": "jade bamboo green and mist",
+  "composition": "a waist-up portrait, seated, at eye level"
+ },
+ "ifan": {
+  "palette": "turquoise sea and white foam"
+ },
+ "mmon": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "mape": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "mear": {
+  "palette": "ink black and white with a touch of cinnabar"
+ },
+ "mac6": {
+  "palette": "violet dusk over dark peaks",
+  "composition": "a waist-up portrait beside the mirror, at eye level"
+ },
+ "mecho": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "mtrump": {
+  "palette": "ink black and white with a touch of cinnabar"
+ },
+ "bgrd": {
+  "palette": "furnace orange and black smoke"
+ },
+ "bcap": {
+  "palette": "vermilion and black ink"
+ },
+ "bhrn": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "bdk": {
+  "palette": "furnace orange and black smoke"
+ },
+ "bfury": {
+  "palette": "vermilion and black ink"
+ },
+ "pdis": {
+  "palette": "celestial gold on deep blue"
+ },
+ "pfin": {
+  "palette": "dawn rose over misty peaks"
+ },
+ "pgrd": {
+  "palette": "peach-blossom pink and pale jade"
+ },
+ "plm": {
+  "palette": "celestial gold on deep blue",
+  "composition": "the Buddha seen from far below, enormous against the sky"
+ },
+ "palm": {
+  "palette": "dawn rose over misty peaks",
+  "composition": "a wide view of the five peaks from a distance"
+ },
+ "hgod": {
+  "composition": "the hanging figure seen from below and to one side, the tree trunk and branch filling the frame",
+  "palette": "aurora green over a black sky"
+ },
+ "blot": {
+  "palette": "deep crimson firelight and black"
+ },
+ "kvas": {
+  "palette": "pale midnight-sun gold"
+ },
+ "tithe": {
+  "palette": "aurora violet and teal"
+ },
+ "karma": {},
+ "odin:karma": {
+  "composition": "the runestone filling the frame against the sky, seen from slightly below",
+  "palette": "aurora green over a black sky"
+ },
+ "odin:dint": {
+  "composition": "the hand and the falling warrior filling the frame, seen from below and to one side",
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "wukong:karma": {
+  "composition": "the abacus filling the frame among the clouds, at eye level",
+  "palette": "jade bamboo green and mist"
+ },
+ "wukong:dint": {
+  "composition": "the hand and the falling warrior filling the frame, seen from below and to one side",
+  "palette": "celestial gold on deep blue"
  }
 }

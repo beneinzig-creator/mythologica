@@ -42,6 +42,11 @@ PALETTES = ['dawn rose and pale gold', 'harsh noon white and ochre', 'deep crims
             'icy dawn blue', 'dusty bronze and brown']
 # Other heroes get light from their own world (the list above is Odysseus's Mediterranean one).
 HERO_PALETTES = {
+    'wukong': ['cinnabar red and gold', 'deep azurite night with a silver moon', 'jade bamboo green and mist',
+               'imperial yellow and red lacquer', 'storm-grey splashed ink and white lightning', 'peach-blossom pink and pale jade',
+               'malachite green and gold', 'furnace orange and black smoke', 'violet dusk over dark peaks', 'lotus pink and teal water',
+               'celestial gold on deep blue', 'dawn rose over misty peaks', 'vermilion and black ink', 'turquoise sea and white foam',
+               'midnight indigo with lantern light', 'autumn persimmon orange and brown'],
     'odin': ['blood red on snow', 'deep crimson firelight and black', 'aurora green over a black sky',
              'aurora violet and teal', 'velvet purple and black, like a seidr spell', 'smoky amethyst dusk',
              'ember orange and soot black', 'molten forge gold and red', 'glacier blue and white',
@@ -51,6 +56,11 @@ HERO_PALETTES = {
 }
 # Legendaries for these heroes cycle through different camera set-ups instead of all being shot from below.
 HERO_LEGEND_SHOTS = {
+    'wukong': [('a heroic full figure', 'in a dynamic pose, seen from slightly below'),
+               ('a heroic waist-up portrait', 'in three-quarter view at eye level'),
+               ('a close head-and-shoulders portrait', 'in profile'),
+               ('a full figure leaping in mid-air', 'seen from slightly above'),
+               ('a full figure', 'seen from behind and to one side, turning back toward the viewer')],
     'odin': [('a monumental full figure', 'seen from a very low angle'),
              ('a heroic waist-up portrait', 'in three-quarter view at eye level'),
              ('a close head-and-shoulders portrait', 'in profile, seen slightly from above'),
@@ -58,6 +68,8 @@ HERO_LEGEND_SHOTS = {
              ('a full figure', 'seen from behind and to one side, turning back toward the viewer')],
 }
 HERO_POWER = {
+    'wukong': {'Legendary': 'larger than life, monumental and iconic, with a radiant golden halo of light behind it; '
+                            'the most dramatic kind of image in the set'},
     'odin': {'Legendary': 'larger than life, monumental and iconic, lit by a cold rim of lightning or aurora; '
                           'the most dramatic kind of image in the set'},
 }
@@ -103,7 +115,8 @@ def plan(groups, hero='ody'):
         rng.shuffle(pals)
         used, pi = set(), 0
         for cid, ctype, lore, name, rarity in sorted(members, key=lambda m: (order.get(m[4], 3), m[0])):
-            k = (overrides.get(cid) or {}).get('kind') or kind_of(ctype, lore, name)
+            ov = overrides.get(f'{hero}:{cid}') or overrides.get(cid)  # a hero can set its own shot for a shared card
+            k = (ov or {}).get('kind') or kind_of(ctype, lore, name)
             if rarity in ('Legendary', 'legendary') and k in ('person', 'monster') and hero in HERO_LEGEND_SHOTS:
                 ls = HERO_LEGEND_SHOTS[hero]
                 combos = [ls[legend_i % len(ls)]]
@@ -127,7 +140,7 @@ def plan(groups, hero='ody'):
                 pi += 1
             p = {'group': group, 'kind': k, 'shot': shot, 'angle': angle, 'palette': palette,
                  'power': HERO_POWER.get(hero, {}).get(rarity) or POWER.get(rarity, '')}
-            o = overrides.get(cid)
+            o = ov
             if o:
                 p.update({kk: v for kk, v in o.items() if not kk.startswith('_')})
                 p['source'] = 'compositions.json'

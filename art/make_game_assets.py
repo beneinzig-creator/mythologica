@@ -103,15 +103,29 @@ def main():
     hero = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero]
 
     table, made = {}, 0
+    # Cards that several heroes share (Divine Karma, Divine Intervention): Odysseus's picture stays at
+    # cards/<id>.jpg; every other hero's own version goes to cards/<folder>/<id>.jpg and is listed under
+    # cards.json "hero" -> {hero: {id: frame code}}, which the game uses for that hero (patch59).
+    allh = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes']
+    others = set()
+    for hk, hv in allh.items():
+        if hk != a.hero:
+            others |= set(hv.get('cards', {})) | set(hv.get('opponents') or {})
+    htable = {}
     entries = [(cid, c, TIER.get(c.get('rarity'), 'c')) for cid, c in hero['cards'].items()]
     entries += [(cid, c, TIER.get(c.get('frame'), 'c')) for cid, c in (hero.get('opponents') or {}).items()]
     for cid, c, tier in entries:
         src = os.path.join(os.path.dirname(ART), c['output'])
         if not os.path.exists(src):
             continue
-        made += shrink(src, os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
         army = c.get('type') == 'Army member'
-        table[cid] = CODE_PREFIX.get(a.hero, '') + tier + ('' if army else 's')
+        code = CODE_PREFIX.get(a.hero, '') + tier + ('' if army else 's')
+        if a.hero != 'ody' and cid in others:
+            made += shrink(src, os.path.join(GAME, 'cards', folder, f'{cid}.jpg'), 480)
+            htable[cid] = code
+            continue
+        made += shrink(src, os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
+        table[cid] = code
 
     fr = os.path.join(ART, 'frames', folder)
     for code, name in FRAME_NAME.items():
@@ -229,8 +243,15 @@ def main():
     kept_myth = {cid: t for cid, t in prev.get('myth', {}).items() if cid in keep}
     boxes = {**{k: v for k, v in prev.get('boxes', {}).items() if not mine(k)}, **{pre + k: v for k, v in boxes.items()}}
     table, myth = {**keep, **table}, {**kept_myth, **myth}
+    hero_tab = {k: v for k, v in prev.get('hero', {}).items() if k != a.hero}
+    if htable:
+        hero_tab[a.hero] = htable
+    hmyth = {k: v for k, v in prev.get('hero_myth', {}).items() if k != a.hero}
+    hm = {cid: caption(subj[cid]) for cid in htable if cid in subj}
+    if hm:
+        hmyth[a.hero] = hm
     with open(cj, 'w', encoding='utf-8') as f:
-        json.dump({'cards': table, 'boxes': boxes, 'myth': myth}, f, indent=0, sort_keys=True)
+        json.dump({'cards': table, 'boxes': boxes, 'myth': myth, 'hero': hero_tab, 'hero_myth': hmyth}, f, indent=0, sort_keys=True)
         f.write('\n')
     print(f'{len(table)} cards with art, {made} files (re)made. Wrote art/game/cards.json.')
 

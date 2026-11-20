@@ -32,6 +32,25 @@ SETTING = {
 # A hero's own look, laid over the shared card style. Same rules as Odysseus (tight framing, one distinct
 # shot per card, rarity in the framing), but a different art experience per mythology.
 HERO_STYLE = {
+    'wukong': ('Chinese look for this hero: the same 1990s hand-made card art, but painted in the manner of classical '
+               'Chinese painting and the illustrated Ming editions of Journey to the West. Fluid, calligraphic brush '
+               'lines that swell and taper, never hard woodcut or pen hatching. Figures in the fine-line gongbi manner '
+               'with flat, bold mineral colours (cinnabar red, azurite blue, malachite green, gold); backgrounds in loose '
+               'xieyi ink wash: misty peaks, pines, waterfalls, splashed ink. Clouds are '
+               'drawn as curling auspicious-cloud scrolls. Faces and poses are bold and theatrical, like Peking opera. '
+               'Every card has its own strong colour key (given under Light and colour) that fills the whole picture, '
+               'background included: a warm rice-paper ground is only one of many grounds, and most cards should instead be '
+               'washed in their own colour, such as deep azurite night, jade bamboo green, cinnabar palace red, violet dusk '
+               'or storm-grey ink, so that no two cards share the same cream background. Brighter and more colourful than '
+               'the Greek and Norse cards, but never washed out. '
+               'Not Japanese, not samurai, not anime, not modern Chinese fantasy game art, no restaurant-style dragons. '
+               'Only paint Sun Wukong himself (golden fur, phoenix-feather cap with long plumes, golden armour, red cape) when '
+               'the subject names him; any other monkey is an ordinary monkey of Flower-Fruit Mountain with brown or grey fur '
+               'and simple clothes, never his cap, armour or face. '
+               'Focus over scenery: the card\'s subject is the star of the picture and should look as striking and '
+               'powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and '
+               'secondary, and no second large figure or creature competes with the subject unless the card is about '
+               'that creature.'),
     'odin': ('Norse look for this hero: the same 1990s hand-made card art, but colder and harder than the Greek '
              'cards. Heavier, rougher black ink lines with a carved, woodcut-like quality, as if cut into wood or '
              'stone; flat areas of colour broken by scratchy hatching. A northern base of slate, iron grey, bone white '
