@@ -43,8 +43,8 @@ const tick=()=>new Promise(r=>setImmediate(r));
  R(`tutStart(${LI('th2')})`);R("bt('tutnext');hd0('h:'+handU('yibis'))");ok('thoth 2: Ibis foresees 2',R('G.tut.s')==2&&R('G.e.deck.filter(c=>c.fs).length')==2);
  R("enter(G.p,mk('tmedj'));G.tut.s=5;G.p.hand.push(mk('gfeather'));G.p.mana=2");R("hd0('h:'+handU('gfeather'))");
  R("hd0('p:'+bfU('tmedj'))");ok('thoth 2: the Feather goes on the chosen army member and advances',R('G.tut.s')==6&&R("G.p.bf.find(x=>x.id=='gfeather').on==bfU('tmedj')"));
- // winnability: the bot plays each lesson in free-play mode; from turn 12 it also attacks with everything,
- // as a person would, because the bot alone won't attack into a full board
+ // winnability: the bot plays each lesson in free-play mode (its own pressure mode handles long fights;
+ // the old all-in override below is switched off at turn 99)
  for(let L=0;L<R('TUT.length');L++){let w=0,N=60,turns=0;for(let k=0;k<N;k++){R(`tutStart(${L});G.tut.s=TUT[${L}].steps.length-1`);let g=0;
   for(;;){const ph=R('G.phase');if(ph=='tutend')break;if(R("G.turn")>30)break;if(ph=='main'){if(L==2&&R('G.turn')>=6)R("G.p.bf.forEach(c=>{if(isC(c)&&!has(c,'k')&&c.def)stance(G.p,c)})");if(R('G.turn')>=99&&!R('G.atkd')){R("G.p.bf.forEach(c=>{if(isC(c)&&!has(c,'k')&&c.def&&!c.sw)stance(G.p,c)});G.sel=G.p.bf.filter(c=>canAtk(c)).map(c=>c.u);if(G.sel.length)bt('atk')");if(R('G.phase')=='dmgP'){R("bt('res')")}}if(R('G.phase')=='main')R('botMain()')}else if(ph=='blockP')R('botBlock()');else if(ph=='dmgP')R("bt('res')");await tick();if(++g>5000)break}
   if(R('G.tut.won'))w++;turns+=R('G.turn')}
