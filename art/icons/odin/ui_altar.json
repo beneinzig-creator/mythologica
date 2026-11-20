@@ -1,0 +1,22 @@
+{
+  "id": "ui_altar",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:19:38",
+  "prompt": "A quiet Norse sacred grove in snow at dusk: a heap-stone altar (horgr) with a carved runestone, offering bowls and a thin column of smoke, ancient yew and ash trees around it. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, no people.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 95,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 95
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1467
+  }
+}

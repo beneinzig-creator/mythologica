@@ -1,4 +1,10 @@
 {
+"odin": {
+"bossp": "s_odin_bossp",
+"draft_reward": "s_odin_draft_reward",
+"draft_start": "s_odin_draft_start",
+"otg": "s_odin_otg"
+},
 "ody": {
 "bossp": "s_bossp",
 "draft_reward": "s_draft_reward",

@@ -392,6 +392,13 @@ STAMPS['odin'] = {
     'B': 'Berserkers: the head of a snarling bear.',
     'V': 'Valhalla: the gabled front of a great Viking hall whose roof is thatched with round shields.',
     'H': 'Runes: a single carved rune stave, the rune Ansuz.',
+    # Odin's regular opponents (like Odysseus's Z/S/K/F/M/E): archetype letters added in patch56
+    'J': "Pack (Fenrir's Brood): the head of a howling wolf.",
+    'G': 'Giants (the Jotnar): a jagged mountain peak crowned with ice.',
+    'A': 'Forge (the Dwarven Forge): a dwarven hammer resting on an anvil.',
+    'U': 'Fire (Muspelheim): a flame shaped like a sword blade.',
+    'L': "Draugr (Hel's Legion): a skull wearing a rusted Viking helmet.",
+    'X': "Trickery (Loki's Court): a sly grinning mask.",
 }
 HERO_UI['odin'] = {
     'sigil_odin': ('1024x1024', 'transparent',
@@ -400,6 +407,27 @@ HERO_UI['odin'] = {
         'of carved Elder Futhark runes, as if cut into a stone or a silver disc. Rendered in worn gold leaf and dark iron, '
         'rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters of the '
         'Latin alphabet, no words, no circle or badge behind the ring.'),
+    'ui_map': ('1536x1024', 'opaque',
+        'An antique Norse sea chart of the northern seas and the Nine Worlds, painted on aged, stained and creased '
+        'vellum: faint fjord coastlines and islands, a knotwork compass rose, small longships, sea serpents and a world '
+        'tree drawn in faded ink at the margins, wind faces in the corners; muted sepia, umber and faded sea-green. The '
+        'centre is mostly open sea with very few marks so game icons can sit on top. Rustic 1990s hand-painted style. '
+        'No text, no letters, no labels, no runes.'),
+    'ui_victory': ('1536x1024', 'opaque',
+        'Victory: the great shield-roofed hall of Valhalla at dawn on a mountain, its doors open and golden light '
+        'spilling out, ravens circling, a lone warrior seen from behind climbing the last steps towards it. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text.'),
+    'ui_defeat': ('1536x1024', 'opaque',
+        'Defeat: a Viking ship funeral at night, a longship burning as it drifts out onto a dark fjord, embers rising '
+        'into a sky of faint green aurora, black mountains around. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text.'),
+    'ui_camp': ('1536x1024', 'opaque',
+        'A small campfire in a ring of stones on a snowy shore at night, a longship drawn up behind it and warriors '
+        'asleep under furs, dark pines, sparks rising to the stars. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, calm.'),
+    'ui_craft': ('1536x1024', 'opaque',
+        'A Viking smithy in a turf-roofed hut: a glowing hearth forge with bellows, an iron anvil with a hammer and tongs, '
+        'half-made axe heads and a sword blade, tools hung on the timber walls. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, no people.'),
+    'ui_altar': ('1536x1024', 'opaque',
+        'A quiet Norse sacred grove in snow at dusk: a heap-stone altar (horgr) with a carved runestone, offering bowls '
+        'and a thin column of smoke, ancient yew and ash trees around it. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, no people.'),
     'ui_button': ('1536x1024', 'transparent',
         'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
         'width of the image: a dark weathered oak board bound with black hammered-iron strap ends and round iron rivets '

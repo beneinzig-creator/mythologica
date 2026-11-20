@@ -1,0 +1,22 @@
+{
+  "id": "ui_camp",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:18:25",
+  "prompt": "A small campfire in a ring of stones on a snowy shore at night, a longship drawn up behind it and warriors asleep under furs, dark pines, sparks rising to the stars. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, calm.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 90,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 90
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1462
+  }
+}

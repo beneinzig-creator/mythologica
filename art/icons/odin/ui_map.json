@@ -1,0 +1,22 @@
+{
+  "id": "ui_map",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:16:51",
+  "prompt": "An antique Norse sea chart of the northern seas and the Nine Worlds, painted on aged, stained and creased vellum: faint fjord coastlines and islands, a knotwork compass rose, small longships, sea serpents and a world tree drawn in faded ink at the margins, wind faces in the corners; muted sepia, umber and faded sea-green. The centre is mostly open sea with very few marks so game icons can sit on top. Rustic 1990s hand-painted style. No text, no letters, no labels, no runes.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 122,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 122
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1494
+  }
+}

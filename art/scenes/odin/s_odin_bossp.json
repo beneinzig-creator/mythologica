@@ -1,0 +1,22 @@
+{
+  "id": "s_odin_bossp",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:18:28",
+  "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the edge of the world in Norse myth at the coming of a great storm: on the left the coils of the World Serpent rising from a black ocean; across the top a storm of ghostly riders and hounds, the Wild Hunt, racing through the clouds; on the right a towering stone giant standing on the cliffs; lightning far off; the dragon prow of a longship at the very bottom edge Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black storm blue to cold grey-green (#080e14 to #2a4652) with white foam and lightning accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 411,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 411
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1783
+  }
+}
