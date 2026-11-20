@@ -17,7 +17,7 @@ ART = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(ART)
 SRC = os.path.join(ROOT, 'tooling', 'n1.html')
 
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth'}
 TYPE = {'C': 'Army member', 'I': 'Quick spell', 'S': 'Spell', 'E': 'Modifier', 'A': 'Item'}
 RARITY = {'C': 'Common', 'U': 'Uncommon', 'R': 'Rare', 'L': 'Legendary'}
 SETTING = {
@@ -28,6 +28,8 @@ SETTING = {
             'ravens, wolves, fjords, snow and northern sky',
     'wukong': 'Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, '
               'clouds, mountains, celestial palaces',
+    'thoth': 'Ancient Egyptian myth of the New Kingdom: temples, tombs, papyrus, the Nile, desert, '
+             'gods with animal heads, gold, lapis lazuli and faience',
 }
 # A hero's own look, laid over the shared card style. Same rules as Odysseus (tight framing, one distinct
 # shot per card, rarity in the framing), but a different art experience per mythology.
@@ -165,9 +167,11 @@ FRAMES['odin'] = {
                  'still rustic and understated. ' + NORSE_LOOK,
 }
 HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
-             'wukong': 'Journey to the West and classical Chinese myth'}
+             'wukong': 'Journey to the West and classical Chinese myth',
+             'thoth': 'ancient Egyptian myth and the Book of the Dead'}
 MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone',
-              'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below'}
+              'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below',
+              'thoth': 'an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below'}
 
 # How played each rarity looks: cheaper cards have been shuffled more.
 CONDITION = {
@@ -579,6 +583,65 @@ HERO_UI['wukong'] = {
         'A quiet mountain Buddhist shrine at dusk: a small red-pillared pavilion with a golden Buddha statue, a bronze '
         'incense burner with smoking sticks, offerings of peaches and lotus flowers, prayer flags and old pines, '
         'misty peaks behind. ' + WK_SCREEN + ' No text. Dark around the edges, no people.'),
+}
+
+# ---- Thoth (ancient Egyptian) ----
+EGYPT_LOOK = ('Ancient Egyptian look, New Kingdom, like Egyptian temple and tomb painting and the jewellery of '
+              'Tutankhamun: lapis lazuli blue, turquoise and faience green, carnelian and red ochre, gold leaf, black '
+              'and limestone white; lotus and papyrus friezes, block borders of coloured bars, winged sun discs, '
+              'decorative pattern bands with no readable hieroglyphs. No Greek, Norse or Chinese elements.')
+FRAMES['thoth'] = {
+    'common': 'Common rarity: a plain frame of sun-bleached sandstone with a simple painted border of alternating blue, '
+              'red and green bars (the Egyptian block border) and small papyrus-bud corners, modest and unornamented. '
+              + EGYPT_LOOK,
+    'uncommon': 'Uncommon rarity: a frame of turquoise faience tiles set in dark ebony, with a fine lotus-and-papyrus '
+                'frieze along the edges and small blue lotus flowers at the corners. ' + EGYPT_LOOK,
+    'rare': 'Rare rarity: a frame of hammered gold inlaid with lapis lazuli and carnelian like a royal pectoral, with a '
+            'small winged sun disc above the art window and a row of tiny cobras along the top. ' + EGYPT_LOOK,
+    'legendary': 'Legendary rarity, the grandest frame of all, fit for the temple of Thoth at Hermopolis: radiant '
+                 'burnished gold inlaid with lapis, turquoise and carnelian; the outspread wings of a great sacred ibis '
+                 'wrapping the two sides of the card; at the top centre the silver moon disc held in a golden crescent, '
+                 'glowing; a band of the starry night sky of the goddess Nut along the top and a row of lotus flowers '
+                 'along the bottom. Warm golden light seems to shine from the frame itself. Rich and divine, still hand-'
+                 'painted, never glossy or 3D-rendered. ' + EGYPT_LOOK,
+}
+ICONS['thoth'] = {k: v + ' Ancient Egyptian style, colourful.' for k, v in {
+    'life': 'Life: a golden ankh inlaid with red carnelian.',
+    'attack': 'Attack form: an ancient Egyptian khopesh with a curved bronze blade, lying diagonally, as painted on a temple wall.',
+    'start': 'Starting point and emblem of Thoth: a silver moon disc resting in a golden crescent.',
+    'offering': 'The icon for the Offering (sacrifice) value on an Egyptian-mythology card: a weathered, bone-white human '
+                'skull seen from the front, aged and slightly cracked, with a blue lotus flower beside it. Solid and opaque, '
+                'no glow, no smoke.',
+}.items()}
+MEDALS['thoth'] = {
+    'anubis': 'The Jackals of Anubis: a black jackal head with gold collar and gold-lined ears. Colours: black, gold and '
+              'deep lapis blue.',
+}
+STAMPS['thoth'] = {
+    'I': 'Scribes: a scribe\'s palette with two ink wells and a reed pen.',
+}
+HERO_UI['thoth'] = {
+    # Three card-back emblems for Ben to choose from; the chosen one becomes sigil_thoth.
+    'sigil_thoth_ibis': ('1024x1024', 'transparent',
+        'An emblem for the back of every card in Thoth\'s deck: a sacred ibis in profile, standing, its long curved beak '
+        'and slender legs, drawn as a flat Egyptian temple inlay in gold with black and lapis blue, inside a thin gold '
+        'ring. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, '
+        'no hieroglyphs, no badge behind it.'),
+    'sigil_thoth_moon': ('1024x1024', 'transparent',
+        'An emblem for the back of every card in Thoth\'s deck: the moon of Thoth, a full silver moon disc resting in a '
+        'golden crescent, with a pair of outspread Egyptian wings in gold, lapis and turquoise beneath it, like a royal '
+        'pectoral. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, '
+        'no hieroglyphs, no badge behind it.'),
+    'sigil_thoth_palette': ('1024x1024', 'transparent',
+        'An emblem for the back of every card in Thoth\'s deck: a scribe\'s palette of gold, upright, with two ink wells '
+        '(red and black) and a reed pen, crossed by a was-sceptre, with a small moon disc above, inlaid in lapis and '
+        'turquoise. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, '
+        'no hieroglyphs, no badge behind it.'),
+    'ui_button': ('1536x1024', 'transparent',
+        'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
+        'width of the image: a gold-edged lapis-blue plaque with a thin band of coloured block border and small gold '
+        'lotus caps at both ends, worn and scratched; the centre is plain and flat for a label. Ancient Egyptian style, '
+        'rustic 1990s hand-painted. Fully transparent background around the plate. No text, no hieroglyphs, no letters.'),
 }
 
 STUB = r'''

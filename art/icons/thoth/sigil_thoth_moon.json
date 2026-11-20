@@ -1,0 +1,22 @@
+{
+  "id": "sigil_thoth_moon",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-20 12:11:46",
+  "prompt": "An emblem for the back of every card in Thoth's deck: the moon of Thoth, a full silver moon disc resting in a golden crescent, with a pair of outspread Egyptian wings in gold, lapis and turquoise beneath it, like a royal pectoral. Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no hieroglyphs, no badge behind it.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 95,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 95
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1851
+  }
+}
