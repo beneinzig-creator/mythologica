@@ -1013,5 +1013,18 @@
  "palm": {
   "palette": "dawn rose over misty peaks",
   "composition": "a wide view of the five peaks from a distance"
+ },
+ "hgod": {
+  "composition": "the hanging figure seen from below and to one side, the tree trunk and branch filling the frame",
+  "palette": "aurora green over a black sky"
+ },
+ "blot": {
+  "palette": "deep crimson firelight and black"
+ },
+ "kvas": {
+  "palette": "pale midnight-sun gold"
+ },
+ "tithe": {
+  "palette": "aurora violet and teal"
  }
 }
