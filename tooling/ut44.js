@@ -132,7 +132,7 @@ setup(0);R(`var l2=G.e.life;G.p.mo=2`);cast('wbigstaff');ok('big staff hits face
 setup(0);cast('wsandy');R(`G.p.life=10;wkMom(G.p)`);ok('sand monk heals on momentum',R('G.p.life')==11);
 setup(0);cast('wtree');R(`G.p.life=10;G.p.bf.push;wkUp(G.p)`);ok('tree heals at turn start',R('G.p.life')==12);
 // start screen
-ok('start screen lists 3 characters',R(`Object.keys(CHARS).length==3`));
+ok('start screen lists 4 characters',R(`Object.keys(CHARS).length==4`));
 R(`G.phase='char';G.cv='wukong'`);try{R('render0()');ok('char screen renders',true)}catch(e){ok('char screen renders '+e.message,false)}
 setup(0);try{R('render0()');ok('fight screen renders',true)}catch(e){ok('fight screen renders '+e.message,false)}
 console.log(f?('FAILED '+f):'ALL OK');

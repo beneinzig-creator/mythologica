@@ -10,9 +10,11 @@ FONTS = (
 "@font-face{font-family:'Cinzel Decorative';font-style:normal;font-weight:700;font-display:swap;src:url(" + _font('cinzel-decorative-700.woff2') + ") format('woff2')}"
 "@font-face{font-family:'IM Fell English';font-style:normal;font-weight:400;font-display:swap;src:url(" + _font('im-fell-english.woff2') + ") format('woff2')}"
 "@font-face{font-family:'IM Fell English';font-style:italic;font-weight:400;font-display:swap;src:url(" + _font('im-fell-english-italic.woff2') + ") format('woff2')}"
-":root{--fb:'IM Fell English','Palatino Linotype',Palatino,Georgia,serif;--fd:'Cinzel Decorative','Palatino Linotype',Palatino,Georgia,serif}"
+"@font-face{font-family:'Fell Digits';font-style:normal;font-weight:400;font-display:swap;unicode-range:U+0030-0039;src:local('Palatino'),local('Palatino Linotype'),local('Book Antiqua'),url(" + _font('cinzel-decorative-700.woff2') + ") format('woff2')}"
+":root{--fb:'Fell Digits','IM Fell English','Palatino Linotype',Palatino,Georgia,serif;--fd:'Cinzel Decorative','Palatino Linotype',Palatino,Georgia,serif}"
 )
 
+# Digits in body text use 'Fell Digits' (lining figures): IM Fell English's old-style 2 reads like an 'a'.
 # Route every hard-coded font stack (CSS and JS-built inline styles) through --fb.
 _STACKS = [
     r"'Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif",
