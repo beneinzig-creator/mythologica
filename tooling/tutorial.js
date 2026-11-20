@@ -191,6 +191,10 @@ const TIPS={
  bossp:'<b>The guardian.</b> Choose which boss to face. Read their trump: it changes the rules of the fight.',
  a2:'<b>Act II.</b> You\'re in another hero\'s realm now. These enemies were built for a different hero, so read their trumps carefully.'
 };
+/* v108: the turn-start message names the hero's own mana source (every hero can still offer) */
+const TURNM={ody:'offer army members (💀) for more.',odin:'press Blood price to pay life for 1 more, or offer army members (💀).',
+ wukong:'play different card types in a row (Strike, Trick, Leap) to build Momentum.',thoth:'speak a Ren (◆+2) or offer army members (💀) for more.'};
+function turnMsg(){return'Your turn. Mana refills to 2; '+(TURNM[(G&&G.ch)||'ody']||TURNM.ody)}
 /* ---------- tutorial flow ---------- */
 function tutStart(i){const L=TUT[i];if(!L)return;const h=L.h||'ody';setChar(h);UND=null;U=0;
  G={ch:h,th:h,fi:0,log:[],sel:[],tg:{},p:side([],20),rt:[],lanes:[],web:genWeb(),pos:0,act:2,trail:{},phase:'main',boss:0,elt:0,tut:{i,s:0,won:0}};

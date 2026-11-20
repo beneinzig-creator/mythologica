@@ -25,3 +25,4 @@ TCSS = ("#tutc{position:fixed;top:calc(52px + env(safe-area-inset-top,0px));righ
  ".tutj{font-size:18px;line-height:1.6;max-width:640px;text-align:center}.tutj b{color:#ffe2a0}"
  "html.ph #tutc{top:auto;bottom:130px;right:8px;width:min(300px,60vw);font-size:12px;padding:8px 10px}")
 _b3("html.gs .hdet{animation:none}\n", "html.gs .hdet{animation:none}\n" + TCSS + "\n")
+_b3("G.msg='Your turn. Mana refills to 2; offer army members (💀) for more.'+whNote();", "G.msg=turnMsg()+whNote();")

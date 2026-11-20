@@ -487,7 +487,7 @@ if(s.bf.some(x=>x.id=='censer')){const t=best(tg(o).filter(c=>!c.tap));if(t){t.t
 function fight(){instCap();const f=G.boss?BOSS[G.bi]:G.elt?ELITES[G.elt-1]:EN[G.rt[G.fi]],p=G.p;G.e=side(f.d,f.l);G.e.nm=f.n;scaleEnemy(G.e,G.boss?f.sc:G.fi+(G.a2?4:0));if(G.boss&&G.a2)scaleEnemy(G.e,[4,1,0]);if(!G.boss){const xa=xAdj(f);if(xa)scaleEnemy(G.e,xa);if(f.sb&&G.fi>=4)scaleEnemy(G.e,f.sb);const ca=G.a2?0:((G.elt?CFAE:CFA)[G.ch]||{})[G.fi];if(ca)scaleEnemy(G.e,ca)}if(f.trump){const tt=mk(f.trump);tt.boss=1;G.e.bf.push(tt)}p.deck=sh(p.recs.map(r=>mk(r.id,r)));p.gy=[];p.hand=[];p.bf=[];p.fl=0;p.bp=0;p.et=0;p.sp=0;G.turn=0;G.hq=0;G.hdisc=0;draw(p,4);startHand(f);G.cmb=0;G.sel=[];G.mode=0;G.blk=0;G.lib=0;G.pend=0;G.pc=0;G.endstep=0;log(G.boss?'Guardian: '+f.n:'Fight '+(G.fi+1)+' of '+FLOORS+': '+f.n);startP()}
 function startP(){const p=G.p;G.turn++;whStep();p.mana=2+(p.bf.some(x=>x.id=='karma')?p.mana:0);p.bp=0;G.endstep=0;
 for(const c of p.bf.slice()){if(c.frz)c.frz--;else c.tap=0;c.sick=0;c.att=0;c.sw=0;if(c.id=='horse'&&++c.t>=2){p.bf.splice(p.bf.indexOf(c),1);bury(p,c);const room=Math.max(0,AM()-cr(p).length);for(let i=0;i<Math.min(3,room);i++)enter(p,mk('sold'));log(room<3?'The Trojan Horse opens, but the army is nearly full ('+room+' Soldier'+(room==1?'':'s')+').':'The Trojan Horse opens: three Soldiers!')}}
-upkeep(p,G.e);draw(p,1+wkDraw());G.atkd=0;G.tg={};G.cur=0;G.phase='main';G.mode=0;G.blk=0;G.sel=p.bf.filter(c=>c.forced&&canAtk(c)).map(c=>c.u);G.msg='Your turn. Mana refills to 2; offer army members (💀) for more.'+whNote();if(G.p.life<=0)chk();render()}
+upkeep(p,G.e);draw(p,1+wkDraw());G.atkd=0;G.tg={};G.cur=0;G.phase='main';G.mode=0;G.blk=0;G.sel=p.bf.filter(c=>c.forced&&canAtk(c)).map(c=>c.u);G.msg=turnMsg()+whNote();if(G.p.life<=0)chk();render()}
 function cast(c,t){const p=G.p,d=D[c.id];sphPlay(c);p.mana-=cost(c);if(d[2]=='S'||d[2]=='I')p.sp=G.turn;p.life-=lcost(c);p.hand=p.hand.filter(x=>x!==c);log('You cast '+d[0]+'.');wkPlay(p,c);
 if('CEA'.includes(d[2])){enter(p,c);if(AMU[c.id]&&t&&typeof t=='object'){c.on=t.u;if(c.id=='iword')c.gl=['h']}const P=PEND[c.id];if(P){if(pendOpts(P,c).length){G.pend=c.id;G.pc=c;G.msg=P.m}}else ETB[c.id]&&ETB[c.id](p,G.e)}else{CUR=c;fxRun(p,c,t);CUR=null;bury(p,c)}if(c.rec&&c.rec.dr&&!isC(c))draw(p,1);sweep();chk();if(G.qp){G.qp=0;G.qk=0;G.qrs=1}render()}
 /* ---- combat evaluation shared by both sides ---- */
@@ -2734,6 +2734,10 @@ const TIPS={
  bossp:'<b>The guardian.</b> Choose which boss to face. Read their trump: it changes the rules of the fight.',
  a2:'<b>Act II.</b> You\'re in another hero\'s realm now. These enemies were built for a different hero, so read their trumps carefully.'
 };
+/* v108: the turn-start message names the hero's own mana source (every hero can still offer) */
+const TURNM={ody:'offer army members (💀) for more.',odin:'press Blood price to pay life for 1 more, or offer army members (💀).',
+ wukong:'play different card types in a row (Strike, Trick, Leap) to build Momentum.',thoth:'speak a Ren (◆+2) or offer army members (💀) for more.'};
+function turnMsg(){return'Your turn. Mana refills to 2; '+(TURNM[(G&&G.ch)||'ody']||TURNM.ody)}
 /* ---------- tutorial flow ---------- */
 function tutStart(i){const L=TUT[i];if(!L)return;const h=L.h||'ody';setChar(h);UND=null;U=0;
  G={ch:h,th:h,fi:0,log:[],sel:[],tg:{},p:side([],20),rt:[],lanes:[],web:genWeb(),pos:0,act:2,trail:{},phase:'main',boss:0,elt:0,tut:{i,s:0,won:0}};
