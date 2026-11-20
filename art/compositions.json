@@ -370,8 +370,8 @@
   "angle": "from a low angle, lit from below by the fire"
  },
  "thor": {
-  "composition": "a heroic waist-up portrait in three-quarter view at eye level, Thor filling the frame",
-  "palette": "storm-dark slate blue with lightning"
+  "composition": "a full figure in mid-action, seen from slightly below and to one side, filling the frame",
+  "palette": "storm-dark slate blue with blinding white lightning"
  },
  "ygg": {
   "composition": "a wide shot of the whole tree from roots to crown, seen from a distance at eye level, the tree centred and filling the height of the picture",
@@ -703,5 +703,27 @@
  },
  "holm": {
   "palette": "peat-brown dusk under a low red sun"
+ },
+ "mhall": {
+  "composition": "a wide shot down the length of the hall, seen from slightly above",
+  "palette": "ember orange and soot black"
+ },
+ "gslay": {
+  "composition": "a wide shot seen from a distance, the giant filling the lower picture",
+  "palette": "glacier blue and white"
+ },
+ "hugi": {
+  "composition": "the full raven in flight, wings spread wide, at eye level",
+  "palette": "aurora violet and teal"
+ },
+ "muni": {
+  "composition": "the raven close up and centred, the ghostly memories around it",
+  "palette": "faded sepia and silver mist, like an old memory"
+ },
+ "horse": {
+  "composition": "a wide shot of the whole horse before the walls, seen from a distance at eye level"
+ },
+ "sunch": {
+  "composition": "the chariot and horses in side profile, racing across the frame"
  }
 }
