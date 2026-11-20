@@ -42,10 +42,11 @@ PALETTES = ['dawn rose and pale gold', 'harsh noon white and ochre', 'deep crims
             'icy dawn blue', 'dusty bronze and brown']
 # Other heroes get light from their own world (the list above is Odysseus's Mediterranean one).
 HERO_PALETTES = {
-    'wukong': ['cinnabar red and gold', 'azurite blue and white cloud', 'malachite green mist', 'imperial yellow and red lacquer',
-               'ink black on rice-paper white', 'peach-blossom pink and pale jade', 'jade green and gold', 'furnace orange and smoke',
-               'moonlit silver mist over dark peaks', 'lotus pink and teal water', 'celestial gold on deep blue', 'dawn rose over misty peaks',
-               'smoky violet dusk', 'vermilion and black ink'],
+    'wukong': ['cinnabar red and gold', 'deep azurite night with a silver moon', 'jade bamboo green and mist',
+               'imperial yellow and red lacquer', 'storm-grey splashed ink and white lightning', 'peach-blossom pink and pale jade',
+               'malachite green and gold', 'furnace orange and black smoke', 'violet dusk over dark peaks', 'lotus pink and teal water',
+               'celestial gold on deep blue', 'dawn rose over misty peaks', 'vermilion and black ink', 'turquoise sea and white foam',
+               'midnight indigo with lantern light', 'autumn persimmon orange and brown'],
     'odin': ['blood red on snow', 'deep crimson firelight and black', 'aurora green over a black sky',
              'aurora violet and teal', 'velvet purple and black, like a seidr spell', 'smoky amethyst dusk',
              'ember orange and soot black', 'molten forge gold and red', 'glacier blue and white',

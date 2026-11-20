@@ -741,14 +741,43 @@
   "palette": "azurite blue and white cloud"
  },
  "wpeachk": {
-  "composition": "the monkey on its branch, close up, at eye level",
-  "palette": "peach-blossom pink and pale jade"
+  "composition": "the monkey on its branch, close up, at eye level"
  },
  "wfurn": {
   "composition": "the furnace filling the frame with the monkey bursting out of it, from a low angle",
-  "palette": "furnace orange and smoke"
+  "palette": "furnace orange and black smoke"
  },
- "wcloudm": {
-  "palette": "dawn rose over misty peaks"
+ "wcloudm": {},
+ "wruyi": {
+  "composition": "the whole staff rising out of the sea into the clouds, seen from a distance",
+  "palette": "turquoise sea and white foam"
+ },
+ "wpeachg": {
+  "composition": "a wide view down the length of the banquet table, at eye level",
+  "palette": "imperial yellow and red lacquer"
+ },
+ "wsandy": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "wqt": {
+  "palette": "cinnabar red and gold"
+ },
+ "wmirm": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "wbear": {
+  "composition": "a waist-up portrait, from a low angle"
+ },
+ "wnull": {
+  "palette": "pale ink wash on rice-paper white"
+ },
+ "wgate": {
+  "palette": "malachite green and gold"
+ },
+ "wmist": {
+  "palette": "jade bamboo green and mist"
+ },
+ "wsomer": {
+  "palette": "celestial gold on deep blue"
  }
 }
