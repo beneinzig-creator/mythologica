@@ -12,6 +12,9 @@
 "Circe, Witch of Aeaea": {
 "id": "circe"
 },
+"Erlang Shen, the Three-Eyed": {
+"id": "erlang"
+},
 "Fenrir's Brood": {
 "id": "fenrir"
 },
@@ -51,6 +54,12 @@
 "Polyphemus": {
 "id": "polyphemus"
 },
+"Princess Iron Fan": {
+"id": "ironfan"
+},
+"Red Boy": {
+"id": "redboy"
+},
 "Scylla": {
 "bg": [
 "#08141a",
@@ -58,11 +67,31 @@
 ],
 "id": "scylla"
 },
+"The Buddha's Palm": {
+"bg": [
+"#14121e",
+"#b08a3a"
+],
+"id": "buddhapalm"
+},
+"The Bull Demon King": {
+"bg": [
+"#140808",
+"#7a2a1e"
+],
+"id": "bulldemon"
+},
 "The Cicones": {
 "id": "cicones"
 },
 "The Dwarven Forge": {
 "id": "forge"
+},
+"The Gold and Silver Horn Kings": {
+"id": "hornkings"
+},
+"The Heavenly Host": {
+"id": "heavenlyhost"
 },
 "The Jotnar": {
 "id": "jotnar"
@@ -82,11 +111,27 @@
 "The Sirens": {
 "id": "sirens"
 },
+"The Six-Eared Macaque": {
+"bg": [
+"#0a1614",
+"#2f6a5c"
+],
+"id": "macaque"
+},
+"The Spider Cave": {
+"id": "spider"
+},
+"The White Bone Spirit": {
+"id": "whitebone"
+},
 "The Wild Hunt": {
 "bg": [
 "#0a0f1a",
 "#3e5470"
 ],
 "id": "wildhunt"
+},
+"The Yellow Wind Ridge": {
+"id": "yellowwind"
 }
 }

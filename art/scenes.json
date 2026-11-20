@@ -185,5 +185,74 @@
       "setting": "the edge of the world in Norse myth at the coming of a great storm: on the left the coils of the World Serpent rising from a black ocean; across the top a storm of ghostly riders and hounds, the Wild Hunt, racing through the clouds; on the right a towering stone giant standing on the cliffs; lightning far off; the dragon prow of a longship at the very bottom edge Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements",
       "palette": "near-black storm blue to cold grey-green (#080e14 to #2a4652) with white foam and lightning accents"
     }
+  },
+  "wukong": {
+    "whitebone": {
+      "name": "The White Bone Spirit",
+      "setting": "White Tiger Ridge from the Ming-dynasty novel Journey to the West, where the White Bone Spirit lies in wait for the pilgrims: steep, mist-wrapped limestone peaks in the manner of classical Chinese landscape painting, twisted pines clinging to the cliffs along the left and right edges; a narrow stone mountain path winding up past scattered white bones and a half-buried skull at the lower corners; a small ruined roadside shrine with a curved tiled roof at the far left; a pale ghostly woman's silhouette fading into the mist at the far right; a cold moon behind thin cloud. The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black charcoal to pale bone grey (#15151a to #b8b2a0) with bone-white and a faint jade-green accent"
+    },
+    "heavenlyhost": {
+      "name": "The Heavenly Host",
+      "setting": "the Celestial Palace of the Jade Emperor in the clouds, from the Ming-dynasty novel Journey to the West, where Sun Wukong fought the armies of Heaven: vermilion-pillared halls with sweeping gold-tiled roofs and carved dragon ridges along the left edge; the great Southern Heavenly Gate of white jade and gold standing on rolling clouds at the far right; ranks of celestial soldiers with tall coloured banners and halberds as small silhouettes on a cloud bridge in the far distance; swirling auspicious clouds in the classical Chinese ruyi shape at the lower corners; a deep blue twilight sky with a few bright stars. The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black midnight blue to sky blue-grey (#101826 to #8aa6c8) with vermilion red, imperial gold and jade green accents"
+    },
+    "spider": {
+      "name": "The Spider Cave",
+      "setting": "the Silken Cave of the seven spider demons from Journey to the West: a lush, misty mountain gorge with a hot spring pool where the spider-women bathed, at the lower left; vast glittering silk webs strung between gnarled trees and rock pillars along the left and right edges, beaded with dew; a cave mouth hung with silk curtains at the far right; giant spiders as dark shapes in the webs; peach blossom and ferns; sunbeams through the mist The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black forest green to bright moss (#0c1410 to #4f7a3a) with silver-white silk, pink peach blossom and turquoise water accents"
+    },
+    "hornkings": {
+      "name": "The Gold and Silver Horn Kings",
+      "setting": "the Lotus Flower Cave on Level-Top Mountain from Journey to the West, lair of the Gold Horn and Silver Horn demon kings: a cavern hall lined with lacquered red pillars and hanging lanterns along the left edge; their magic treasures on a carved altar at the lower right, the red-gold calabash gourd that swallows whoever answers its call, a jade vase, a sword and a golden rope; demon guards as small silhouettes; a round moon-gate opening onto blue mountain peaks at the far right The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black brown to burnished gold (#1a1409 to #a88a3a) with lacquer red, silver and blue-jade accents"
+    },
+    "redboy": {
+      "name": "Red Boy",
+      "setting": "the Fire Cloud Cave beneath the Flaming Mountains from Journey to the West, home of Red Boy and his True Samadhi Fire: jagged red-orange volcanic peaks wreathed in fire along the left and right edges; columns of flame and smoke pouring from the cave mouth at the far right; five small fire-carts arranged on a ledge at the lower left; a fire-tipped spear planted in the rock; glowing embers drifting across a smoky crimson sky The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black red-brown to flame orange (#240a05 to #d4642a) with gold, scarlet and a small turquoise smoke-shadow accent"
+    },
+    "yellowwind": {
+      "name": "The Yellow Wind Ridge",
+      "setting": "Yellow Wind Ridge from Journey to the West, where the Yellow Wind Demon blows his sand-storm: wind-carved ochre cliffs and sandstone pillars along the left and right edges; a howling yellow sand-wind swirling in great curling bands across the top; the demon's cave fortress with a tattered banner at the far left; a lone pilgrim's dropped bamboo hat and staff half-buried in sand at the lower right; scrub pines bent flat by the wind The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black umber to golden ochre (#241d07 to #c9a227) with amber, rust red and a little jade-green accent"
+    },
+    "erlang": {
+      "name": "Erlang Shen, the Three-Eyed",
+      "setting": "Mount Guanjiang from Journey to the West, temple-fortress of the three-eyed god Erlang Shen, Wukong's great rival: a mountain temple with blue-green tiled roofs and white walls on cliffs at the far right; Erlang's three-pointed double-edged spear and his white hound beside a stone stair at the lower left; his celestial archers as silhouettes on a ridge; a single luminous vertical third eye shape echoed in a cloud bank above; rivers and terraced peaks below in sunset light The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black navy to pale silver-blue (#0e1824 to #9ab8d8) with white-gold, vermilion and jade accents"
+    },
+    "ironfan": {
+      "name": "Princess Iron Fan",
+      "setting": "the Plantain Cave on Emerald Cloud Mountain from Journey to the West, home of Princess Iron Fan and her magic palm-leaf fan: giant banana and plantain leaves, purple wisteria and bamboo framing the left and right edges; an elegant pavilion with violet silk curtains at the far left; a great green palm-leaf fan as tall as a person leaning on a rock at the lower right; a violent gust of wind swirling leaves and petals across the scene; the far-off Flaming Mountains glowing on the horizon The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black plum to soft violet (#1c1226 to #b88ad0) with emerald leaf green, fuchsia and distant flame-orange accents"
+    },
+    "macaque": {
+      "name": "The Six-Eared Macaque",
+      "setting": "the Water Curtain Cave on the Mountain of Flowers and Fruit from Journey to the West, seized by the Six-Eared Macaque, Wukong's perfect double: a roaring waterfall pouring over the cave mouth at the far right; a stone throne inside the cave; a mirror-still pool below reflecting two identical monkey-king silhouettes facing each other; peach trees heavy with fruit, flowers and misty peaks along the left edge; troops of monkeys in the rocks The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black jade to deep teal (#0a1614 to #2f6a5c) with peach pink, gold and white-water accents",
+      "bg": [
+        "#0a1614",
+        "#2f6a5c"
+      ]
+    },
+    "bulldemon": {
+      "name": "The Bull Demon King",
+      "setting": "the Palm Cloud Cave of the Bull Demon King from Journey to the West, at the foot of the Flaming Mountains: a demon king's cavern palace with huge black-iron doors studded with bosses at the far left; enormous bull horns mounted over a throne of red rock; his giant iron cudgel leaning against a pillar at the lower right; the Flaming Mountains blazing on the horizon through the cave mouth; smoke and ash drifting The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black iron to deep red (#140808 to #7a2a1e) with bronze, flame orange and dull gold accents",
+      "bg": [
+        "#140808",
+        "#7a2a1e"
+      ]
+    },
+    "buddhapalm": {
+      "name": "The Buddha's Palm",
+      "setting": "the edge of the world at the end of heaven from Journey to the West, where Sun Wukong leapt to the five pillars and found he had never left the Buddha's palm: five colossal pinkish-flesh pillars rising into the clouds along the right edge, which are the Buddha's fingers; a vast golden radiance and a giant serene palm curving across the far distance; rolling clouds and a tiny cloud trail at the lower left; lotus flowers drifting; the Five Elements Mountain faint on the horizon The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "near-black indigo to warm gold (#14121e to #b08a3a) with saffron, lotus pink and jade accents",
+      "bg": [
+        "#14121e",
+        "#b08a3a"
+      ]
+    }
   }
 }
