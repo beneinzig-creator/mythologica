@@ -15,13 +15,13 @@ POOLS = {
         'R': 'brasidas shield testudo medic myrsh closer', 'L': 'leon thermo ajax'},
   '-': {'C': 'rally hammer', 'U': 'gale muse pegasus', 'L': 'karma dint horse'}},
  'odin': {
-  'B': {'C': 'bldr bsrk fjrd gslay howl sprm ulf wulf', 'U': 'egil gash hamr mhall rage skar skul',
+  'B': {'C': 'bldr bsrk fjrd gslay howl sprm ulf wulf', 'U': 'egil hamr mhall rage skul bdrunk hoff',
         'R': 'blod lstd rend roar ulfk mjol', 'L': 'star thor bodvar'},
-  'V': {'C': 'einw huscl ofr shmd stdb thegn vmar vinit', 'U': 'eir ghall hguard scav skld slst valk',
+  'V': {'C': 'einw huscl ofr shmd stdb thegn vmar vinit', 'U': 'eir ghall hguard tithe skld slst valk',
         'R': 'gunn host jarl sigur vfea slei', 'L': 'bald brynh freyja'},
-  'H': {'C': 'gald hugi muni reir scrb skal alg ansu', 'U': 'fylg rfly rser ruru seid tiwa volv',
-        'R': 'fehu hagl hrav mimr norn tyr', 'L': 'ygg othala bragi'},
-  '-': {'C': 'mead vlnd', 'U': 'hela idun loki', 'L': 'karma dint odn'}},
+  'H': {'C': 'blot hugi muni reir scrb skal alg ansu', 'U': 'fylg rfly rser ruru seid tiwa volv',
+        'R': 'fehu hagl hrav mimr hgod tyr', 'L': 'ygg othala bragi'},
+  '-': {'C': 'kvas vlnd', 'U': 'hela idun loki', 'L': 'karma dint odn'}},
  'wukong': {
   'W': {'C': 'wspin wgrow wsent wpierce wblock wcounter wdodge wgate', 'U': 'wcloudr wbear wvang wrally wflurry wburn wtypes',
         'R': 'wsmash wrout wpig wbreak wmyriad wsplit', 'L': 'wruyi wking wbigstaff'},
@@ -63,6 +63,18 @@ D.horse=['Trojan Horse',3,'A',0,0,'','Two turns from now: make three 2/3 Greek S
 Object.assign(LORE,{dint:'Grace of the One True God',raidr:'Ithacan sailor',myrsh:'Myrmidon',closer:'Phalanx drill',bodvar:'Bear-warrior',
  vinit:'Fallen recruit',freyja:'Goddess of the slain',othala:'Rune of heritage',bragi:'God of poetry',horse:'The gift of the Greeks'});
 LC.othala=2;
+/* v110: Blood price cards for Odin (replacing Spear-Gash, Skar, Battlefield Scavenger, Galdr of Winds, Weaving of Wyrd, Mead of Poetry) */
+Object.assign(D,{
+ blot:['Blót Bowl',1,'E',0,0,'','Carve 1. Your Blood price costs 1 less (never less than 1).','🥣','U'],
+ hgod:['The Hanged God',3,'E',0,0,'','Carve 2. You can pay Blood price twice per turn.','🌳','U'],
+ bdrunk:['Blood-Drunk Berserker',2,'C',2,2,'','Whenever you pay Blood price, it gets +1/+1 for the rest of the fight.','🩸','R',1],
+ hoff:['Hanged Man\'s Offering',1,'I',0,0,'','Your army members get +1/+0 until end of turn (+2/+0 if you paid Blood price this turn).','🪢','R'],
+ tithe:['Tithe of the Slain',2,'E',0,0,'','Whenever you pay Blood price, gain 1 life back (2 if 3 or more of your army members have died this fight). At most once per turn.','⚱️','W'],
+ kvas:['Mead of Kvasir',1,'S',0,0,'','Your Blood price drops back to its starting cost for this fight. Draw a card.','🍯','A']});
+Object.assign(LORE,{blot:'Sacrificial bowl',hgod:'Nine nights on the World-Tree',bdrunk:'Drunk on his own blood',hoff:'A gift to the gallows-lord',tithe:'The Valkyries take their share',kvas:'The wisest of beings, brewed into mead'});
+LC.blot=1;LC.hgod=2;
+FX.hoff=s=>{const n=((s.bp||0)>0?2:1)+mg();cr(s).forEach(c=>{c.ta+=n});log('Hanged Man\'s Offering: your army gets +'+n+'/+0.')};
+FX.kvas=(s,o)=>{if(G.e)G.e.bpn=0;draw(s,1);log('Mead of Kvasir: your Blood price returns to its starting cost.')};
 Object.assign(ETB,{
  myrsh:s=>{const L=cr(s),me=L[L.length-1];L.filter(x=>x!==me&&has(x,'p')).forEach(x=>{x.pd+=2});log('The Myrmidon locks shields: your Phalanx gets +0/+2.')},
  freyja:s=>{let n=0;for(let i=0;i<2;i++){const g=s.gy.filter(x=>isC(x)&&!TOKE.includes(x.id)).sort((a,b)=>D[b.id][1]-D[a.id][1]);if(!g.length)break;const x=g[0];s.gy.splice(s.gy.indexOf(x),1);x.sick=1;s.hand.push(x);n++}if(n)log('Freyja claims her share of the slain: '+n+' return to your hand.')},

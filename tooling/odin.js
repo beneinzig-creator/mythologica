@@ -150,9 +150,13 @@ Object.assign(TS,{gung:'c',oath:'c',howl:'c',rend:'c',gald:'c',seid:'c',loki:'c'
 const LC={oath:2,ruru:3,alg:2,fehu:3,reir:2,gald:1,seid:1,ygg:2,tiwa:1,ansu:1,hagl:1};
 const lcost=c=>{const b=LC[c.id]||0;return b?Math.max(0,b-((G&&G.p&&G.p.bf.some(x=>x.id=='rser'))?1:0)):0};
 const TAPA={reir:{fn:s=>{s.life+=hcap(s,1);log('The Rune of Eir restores 1 life.')}},tiwa:{dmg:1},mjol:{dmg:2}};
-const hcap=(s,n)=>Math.max(0,Math.min(n,Math.floor(s.max/2)-s.life));const BPMAX=1,BPB=1;const bpc=()=>BPB+((G.e&&G.e.bpn)||0)+1;
-function bloodPrice(){const p=G.p;if(G.ch!='odin'||!['main','blockP','dmgP'].includes(G.phase))return;if((p.bp||0)>=BPMAX)return msg('Blood price: at most '+BPMAX+' per turn.');const c=bpc();if(p.life<=c)return msg('You cannot spare any more life.');p.life-=c;G.e.bpn=(G.e.bpn||0)+1;p.mana+=1;p.bp=(p.bp||0)+1;log('Blood price: you pay '+c+' life for 1 mana.');chk();render()}
-const bpBtn=()=>G.ch=='odin'&&G.p?`<button class="b" data-b="bp" title="Pay ${bpc()} life to gain 1 mana (the price rises each time this fight) (up to ${BPMAX} times per turn)"${(G.p.bp||0)>=BPMAX||G.p.life<=bpc()?' disabled':''}>Blood price ${bpc()}❤→◆ (${G.p.bp||0}/${BPMAX})</button>`:'';
+const hcap=(s,n)=>Math.max(0,Math.min(n,Math.floor(s.max/2)-s.life));const BPB=1,BPCAP=5;const bpOwn=id=>G.p?G.p.bf.filter(x=>x.id==id).length:0;
+/* v110: the price rises by 1 per use each fight, capped at 5; the Blót Bowl takes 1 off (never below 1); The Hanged God allows 2 per turn */
+const bpc=()=>Math.max(1,Math.min(BPCAP,BPB+((G.e&&G.e.bpn)||0)+1)-bpOwn('blot'));const bpMax=()=>1+(bpOwn('hgod')?1:0);
+function bloodPrice(){const p=G.p;if(G.ch!='odin'||!['main','blockP','dmgP'].includes(G.phase))return;if((p.bp||0)>=bpMax())return msg('Blood price: at most '+bpMax()+' per turn.');const c=bpc();if(p.life<=c)return msg('You cannot spare any more life.');p.life-=c;G.e.bpn=(G.e.bpn||0)+1;p.mana+=1;p.bp=(p.bp||0)+1;log('Blood price: you pay '+c+' life for 1 mana.');bpHooks(p);chk();render()}
+function bpHooks(p){cr(p).filter(x=>x.id=='bdrunk').forEach(x=>{x.pa++;x.pd++;log('The Blood-Drunk Berserker grows: +1/+1.')});
+ if(bpOwn('tithe')&&p.tth!==G.turn){p.tth=G.turn;const g=(p.fl||0)>=3?2:1;p.life=Math.min(p.max,p.life+g);log('Tithe of the Slain: you gain '+g+' life back.')}}
+const bpBtn=()=>G.ch=='odin'&&G.p?`<button class="b" data-b="bp" title="Pay ${bpc()} life to gain 1 mana (the price rises by 1 each time this fight, up to ${BPCAP}) (up to ${bpMax()} times per turn)"${(G.p.bp||0)>=bpMax()||G.p.life<=bpc()?' disabled':''}>Blood price ${bpc()}❤→◆ (${G.p.bp||0}/${bpMax()})</button>`:'';
 function upk2(s,o){const n=id=>s.bf.filter(x=>x.id==id).length;
  if(n('fehu')){s.mana+=n('fehu');log('Fehu grants extra mana.')}
  if(n('drpn')){s.mana+=n('drpn');log('Draupnir grants extra mana.')}

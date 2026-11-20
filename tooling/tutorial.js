@@ -83,7 +83,7 @@ const TUT=[
  steps:[
  {m:'Welcome, Allfather. You get <b>2 mana</b> (◆) a turn, like every hero. Odin gets more by <b>paying with his own blood</b>.',hi:'.me .orb',next:1},
  {m:'Play <b>Hirdman</b> (cost 1): click it in your hand.',hi:hiHand('hird'),done:()=>onBf('hird'),noEnd:1},
- {m:'Now press <b>Blood price</b>: pay a little life for 1 mana. You can do it <b>once per turn</b>, and the price rises each time you use it this fight.',hi:'[data-b="bp"]',done:()=>(G.p.bp||0)>=1,noEnd:1},
+ {m:'Now press <b>Blood price</b>: pay a little life for 1 mana. You can do it <b>once per turn</b>, and the price rises by 1 each time you use it this fight, up to 5 life.',hi:'[data-b="bp"]',done:()=>(G.p.bp||0)>=1,noEnd:1},
  {m:'With that mana, play <b>Fjord Raider</b> (cost 2). It has <b>Charge</b>: it can attack the turn it arrives.',hi:hiHand('fjrd'),done:()=>onBf('fjrd'),noEnd:1},
  {m:'Attack with it: <b>click Fjord Raider</b>, then press <b>Attack</b>.',hi:()=>[hiBf('fjrd')(),'[data-b="atk"]'].filter(Boolean).join(','),done:()=>G.atkd||G.phase=='dmgP',noEnd:1},
  {m:'Press <b>Resolve combat</b>.',hi:'[data-b="res"]',done:()=>G.phase=='main'&&!G.cmb},
