@@ -4,6 +4,7 @@ var _offer=offer;offer=function(s,c){(CNT[G.fi]||(CNT[G.fi]={p:0,e:0}))[s===G.p?
 function val(x){return pw(x)+th(x)-x.dmg}
 function cardVal(c){const d=D[c.id];if(d[2]=='C')return d[3]+d[4];return({horse:8,bow:(G.e.life<=10?14:6),altar:5,spearc:5,feast:4,gale:4,salve:3})[c.id]||4}
 function plan(c){const p=G.p,e=G.e,id=c.id,E=cr(e),M=cr(p);
+ if(id=='xlie')return {};
  if(id=='dint'||id=='karma'||id=='othala')return p.bf.some(x=>x.id==id)?null:{};
  if(id=='closer')return M.filter(x=>has(x,'p')&&!x.att).length>=2?{}:null;
  if(G.ch==='odin'){const r=planOdin(c,p,e,E,M);if(r!==undefined)return r}
@@ -68,7 +69,9 @@ function botAttack(){const p=G.p,e=G.e;{const hz=p.hand.find(c=>c.id==='horde'&&
   if(G.ch==='odin')odinTricks();
   bt('res')}}}
 var MAXA=0;function trk(){MAXA=Math.max(MAXA,cr(G.p).length,cr(G.e).length)}
-function botMain(){trk();botHades();botBow();if(G.ch==='odin')botTaps();let rs=0;if(wallTax(1)){const pl=attackPlan(G.p,G.e);rs=Math.min(pl&&pl.S?pl.S.length:0,G.p.mana);G.p.mana-=rs}castLoop();G.p.mana+=rs;if(G.phase!=='main')return;botAttack();if(G.phase!=='main')return;castLoop();if(G.phase==='main')bt('end')}
+/* v111 Act III: accept Lucifer's Bargain when the extra mana casts something now and his army has room */
+function botBarg(){if(typeof a3BargOk!='function'||!a3BargOk())return;const p=G.p;if(cr(G.e).length>=AM()-1)return;if(p.hand.some(c=>cost(c)==p.mana+1&&plan(c)))bt('a3barg')}
+function botMain(){trk();try{botBarg()}catch(e){}botHades();botBow();if(G.ch==='odin')botTaps();let rs=0;if(wallTax(1)){const pl=attackPlan(G.p,G.e);rs=Math.min(pl&&pl.S?pl.S.length:0,G.p.mana);G.p.mana-=rs}castLoop();G.p.mana+=rs;if(G.phase!=='main')return;botAttack();if(G.phase!=='main')return;castLoop();if(G.phase==='main')bt('end')}
 function botBlock(){trk();botHades();const p=G.p,c=G.cmb,A=c.atk.map(u=>G.e.bf.find(x=>x.u==u)).filter(Boolean).sort((a,b)=>pwr(b)-pwr(a)),used=new Set();
  const tot=A.reduce((n,a)=>n+(c.tg&&c.tg[a.u]?0:pwr(a)),0);
  for(const a of A){const bl=cr(p).filter(x=>!used.has(x.u)&&canBlock(x,a)),ah=th(a)-a.dmg;

@@ -1,0 +1,23 @@
+== ody: fights 1-4   55%   49%   44%   44% | general   31% | Beast   52% | runs won   16% | stalls 0 errors 0
+== odin: fights 1-4   44%   48%   23%   28% | general   19% | Beast    4% | runs won    1% | stalls 0 errors 0
+== wukong: fights 1-4   48%   41%   27%   21% | general   26% | Beast    6% | runs won    2% | stalls 0 errors 0
+== thoth: fights 1-4   45%   45%   34%   34% | general   39% | Beast   38% | runs won   15% | stalls 0 errors 0
+enemy                                                ody          odin        wukong         thoth
+R:King Paimon's Procession                     45%  7.0t     31%  6.9t     27%  6.8t     43%  7.6t
+R:Legion                                       45%  8.0t     24%  6.9t     30%  6.9t     55%  8.1t
+R:Mammon's Hoard                               46%  7.3t     23%  6.8t     43%  7.1t     34%  7.6t
+R:Mastema's Spirits                            44%  8.4t     41%  8.4t     30%  9.5t     40%  9.6t
+R:Sons of Darkness                             56%  8.3t     43%  7.3t     42%  8.5t     30%  7.1t
+R:The Builders of Babel                        51%  8.1t     40%  7.5t     44%  7.2t     49%  7.7t
+R:The Cult of Moloch                           53%  8.2t     52%  8.2t     40%  7.5t     40%  8.1t
+R:The Nephilim                                 45%  7.9t     29%  7.1t     39%  6.7t     22%  8.1t
+R:The Pairikas                                 49%  6.4t     36%  6.5t     37%  7.0t     28%  7.2t
+R:The Watchers                                 47%  8.4t     41%  7.4t     28%  7.8t     54%  8.9t
+E:Asmodeus                                     63%  6.5t     30%  6.7t     29%  6.7t     44%  8.0t
+E:Azazel, the Scapegoat                        56%  8.3t     40%  7.7t     29%  8.7t     48%  9.9t
+E:Beelzebub, Lord of the Flies                 49%  9.6t     26%  8.1t     17%  8.6t     48%  9.3t
+E:Lilith                                       28%  5.6t     36%  6.3t     27%  7.3t     23%  6.9t
+G:Abaddon, the Opened Abyss                    22%  8.0t      8%  8.0t     16%  9.5t     48%  9.6t
+G:Ahriman, the Smiling Stranger                44%  9.5t     34%  9.1t     25%  9.7t     39%  9.7t
+G:Lucifer, the Morning Star                    26%  7.0t     15%  5.5t     35%  9.0t     32%  8.2t
+F:The Beast of the Sea                         52%  8.6t      4%  5.7t      6%  6.2t     38%  9.2t

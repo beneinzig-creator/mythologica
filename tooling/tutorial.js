@@ -168,7 +168,7 @@ const TUT=[
 
 ];
 const JOURNEY=[
- {t:'A run',m:'A run is a journey through your hero\'s home realm (<b>Act I</b>), then another hero\'s realm (<b>Act II</b>). Win both acts to win the run. If your life reaches 0, the run ends.'},
+ {t:'A run',m:'A run is a journey through your hero\'s home realm (<b>Act I</b>), then another hero\'s realm (<b>Act II</b>), then the War in Heaven (<b>Act III</b>). Win all three acts to win the run. If your life reaches 0, the run ends.'},
  {t:'Drafting your deck',m:C=>'You start with 4 <b>staple</b> cards and draft 11 more, choosing 1 of 3 each time. Rarer cards appear less often. Stick mostly to one or two <b>archetypes</b> (for '+C.n.split(',')[0]+': '+C.arch.map(a=>a[1]).join(', ').replace(/, ([^,]*)$/,' or $1')+'): their cards are built to work together.'},
  {t:'The map',m:'Each act is a web of places. Moving costs <b>action points</b> (⚡). Winning a fight earns a <b>victory point</b> (🏆) and more action points. Gold-starred fights are <b>elites</b>: harder, with better rewards. You can see how strong the next opponent will be before you go.'},
  {t:'Places to visit',m:'<b>Campfires</b> heal you. <b>Crafting tables</b> let you draft a new card or remove a weak one. <b>Altars</b> let you duplicate or upgrade a card. Each costs action points, so plan your route.'},

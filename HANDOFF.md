@@ -982,6 +982,18 @@ Bosses:
 
 ---
 
+### 6.4 Act III: the War in Heaven (v111, shared by every hero)
+
+Design doc: "Mythologica Act 3: The War in Heaven" (Claude Docs). Code: `tooling/act3.js` (content and hooks, loaded last; it wraps `egUp`, `egDie`, `egPx`, `enter`, `offer`, `cast`, `thEnd`, `chk`, `fight`, `render0`, `bt0`, `vicVis`) and `tooling/patch_act3.py` (scaling, map, guardian choice, save/load routed through `G.a3`). Test: `ut53.js`.
+
+- **Flow:** Act II victory offers "Continue to Act III" (`startAct3`, heals 10). Map of 10 regular decks (`A3.en`) and 2 of the 4 elites (`A3.el`). At 4 victory points two of three generals answer (`A3.bo`). A general's win goes to the `a3front` scene (the other two fronts fall to their champions), then `startFinale` (heals 10) starts the Last Battle (`A3.fin`). Only that victory ends the run and clears the save.
+- **Generals** (two phases; at half life `a3Phase` swaps the trump and renames the boss): Lucifer (The Bargain: +1 mana for a Fallen Angel → the Red Dragon: 3 damage to a third of your army, three Heads shuffled in), Ahriman (The Druj: a Lie into your deck each turn → the Assault: a Khrafstra per Lie still in your deck or hand, and per death of yours), Abaddon (Smoke of the Pit: -1/+0 to your 3+ power army members, a Locust every other turn → Apollyon: Locusts +1/+1 and Venomous, damaged army members take 1 more each turn). Champions: Michael, Sraosha, Uriel.
+- **The Last Battle:** the Beast of the Sea (Ward), with the False Prophet (Sentinel, Ward) on the battlefield as its trump and seven Heads in its deck. The Prophet marks your strongest army member each turn (it can't attack next turn). While the Prophet lives, the Beast's first death heals it to half life.
+- **Regular decks:** Legion, the Watchers, the Nephilim, the Cult of Moloch, the Builders of Babel, the Pairikas, Sons of Darkness, Mammon's Hoard, Mastema's Spirits, King Paimon's Procession. **Elites:** Beelzebub, Azazel, Asmodeus, Lilith.
+- **Scaling:** visible ramp `SCL[8..11]` = [4,1,0] [6,1,0] [8,1,1] [10,1,1]; generals and the Beast get `A3BS` [4,1,0] (not the Act II boss boost). Hidden adjustments, like Act II's `XADJ`: `A3H` per hero for every Act III fight, `A3HG` per hero and general, `A3HB` per hero for the Beast.
+- **Balance method:** decks that really reach Act III. `bank3.sh` plays full runs (regular-fight losses continue, a guardian loss ends the run) and banks every deck that beats both guardians (`bal/bank3_<hero>.jsonl`, 189 decks); the "proven" ones with 6+ wins (`bank3p_`, 89 decks) are replayed with `a3runs.py` (whole act) and `a3boss.sh` (one boss). Results: `bal/results/11`–`17`. Final (proven decks, bot): regular fights about 30–50% per hero, elites 23–59%, generals 22–43%, the Beast 23–43% in isolation.
+- **Art still needed:** the Act III map and screens, and art for all 109 new cards.
+
 ## 7. Roguelike structure
 
 **Character select.** Choose from three hero boxes, each with a "see full library" button. The title screen says MYTHOLOGICA in big bold letters.
