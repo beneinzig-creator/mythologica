@@ -1,0 +1,22 @@
+{
+  "id": "ui_victory",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:17:23",
+  "prompt": "Victory: the great shield-roofed hall of Valhalla at dawn on a mountain, its doors open and golden light spilling out, ravens circling, a lone warrior seen from behind climbing the last steps towards it. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 89,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 89
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1461
+  }
+}

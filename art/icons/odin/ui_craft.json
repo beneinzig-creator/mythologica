@@ -1,0 +1,22 @@
+{
+  "id": "ui_craft",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:18:57",
+  "prompt": "A Viking smithy in a turf-roofed hut: a glowing hearth forge with bellows, an iron anvil with a hammer and tongs, half-made axe heads and a sword blade, tools hung on the timber walls. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, no people.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 98,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 98
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1470
+  }
+}

@@ -7845,6 +7845,54 @@
           "format": "png",
           "background": "transparent"
         },
+        "arch_J": {
+          "name": "J archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Pack (Fenrir's Brood): the head of a howling wolf.",
+          "output": "art/icons/odin/arch_J.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_G": {
+          "name": "G archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Giants (the Jotnar): a jagged mountain peak crowned with ice.",
+          "output": "art/icons/odin/arch_G.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_A": {
+          "name": "A archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Forge (the Dwarven Forge): a dwarven hammer resting on an anvil.",
+          "output": "art/icons/odin/arch_A.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_U": {
+          "name": "U archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Fire (Muspelheim): a flame shaped like a sword blade.",
+          "output": "art/icons/odin/arch_U.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_L": {
+          "name": "L archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Draugr (Hel's Legion): a skull wearing a rusted Viking helmet.",
+          "output": "art/icons/odin/arch_L.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_X": {
+          "name": "X archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Trickery (Loki's Court): a sly grinning mask.",
+          "output": "art/icons/odin/arch_X.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "sigil_odin": {
           "name": "sigil_odin",
           "prompt": "A single emblem for the back of every card in Odin's deck: the spear Gungnir standing perfectly upright through the centre, its long leaf-shaped iron blade at the top, the shaft carved with knotwork, inside a circular ring of carved Elder Futhark runes, as if cut into a stone or a silver disc. Rendered in worn gold leaf and dark iron, rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters of the Latin alphabet, no words, no circle or badge behind the ring.",
@@ -7852,6 +7900,54 @@
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
+        },
+        "ui_map": {
+          "name": "ui_map",
+          "prompt": "An antique Norse sea chart of the northern seas and the Nine Worlds, painted on aged, stained and creased vellum: faint fjord coastlines and islands, a knotwork compass rose, small longships, sea serpents and a world tree drawn in faded ink at the margins, wind faces in the corners; muted sepia, umber and faded sea-green. The centre is mostly open sea with very few marks so game icons can sit on top. Rustic 1990s hand-painted style. No text, no letters, no labels, no runes.",
+          "output": "art/icons/odin/ui_map.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_victory": {
+          "name": "ui_victory",
+          "prompt": "Victory: the great shield-roofed hall of Valhalla at dawn on a mountain, its doors open and golden light spilling out, ravens circling, a lone warrior seen from behind climbing the last steps towards it. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text.",
+          "output": "art/icons/odin/ui_victory.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_defeat": {
+          "name": "ui_defeat",
+          "prompt": "Defeat: a Viking ship funeral at night, a longship burning as it drifts out onto a dark fjord, embers rising into a sky of faint green aurora, black mountains around. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text.",
+          "output": "art/icons/odin/ui_defeat.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_camp": {
+          "name": "ui_camp",
+          "prompt": "A small campfire in a ring of stones on a snowy shore at night, a longship drawn up behind it and warriors asleep under furs, dark pines, sparks rising to the stars. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, calm.",
+          "output": "art/icons/odin/ui_camp.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_craft": {
+          "name": "ui_craft",
+          "prompt": "A Viking smithy in a turf-roofed hut: a glowing hearth forge with bellows, an iron anvil with a hammer and tongs, half-made axe heads and a sword blade, tools hung on the timber walls. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, no people.",
+          "output": "art/icons/odin/ui_craft.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_altar": {
+          "name": "ui_altar",
+          "prompt": "A quiet Norse sacred grove in snow at dusk: a heap-stone altar (horgr) with a carved runestone, offering bowls and a thin column of smoke, ancient yew and ash trees around it. Fantasy trading-card painting in the style of 1990s card art: gouache and ink, rustic, matte. Norse, Viking Age: no Greek elements. No text. Dark around the edges, no people.",
+          "output": "art/icons/odin/ui_altar.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
         },
         "ui_button": {
           "name": "ui_button",
@@ -8220,6 +8316,38 @@
       "hero": "odin",
       "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: Grjotunagardar, the border of the giants' lands in Norse myth, where Thor fought the stone giant Hrungnir in a duel (holmgang): a ring of standing stones marking the duelling ground on a bleak upland; a colossal giant with a heart and head of stone looming as a silhouette with a whetstone club at the far right; a clay giant (Mokkurkalfi) crumbling at the far left; shattered rock and a broken hammer-struck boulder at the lower corners; a grey stormy sky Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black slate to stone grey (#121418 to #5a6068) with a faint storm-blue accent.",
       "output": "art/scenes/odin/hrungnir.webp",
+      "size": "1536x1024"
+    },
+    "s_odin_draft_start": {
+      "name": "Odin draft (start of run) background",
+      "hero": "odin",
+      "screen": "draft_start",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a Norse harbour in a narrow fjord at grey winter dawn as Odin's warriors gather to sail: dragon-prow longships drawn up on the shingle along the left edge, round painted shields hung along their rails; sea chests, spears, axes and coiled ropes piled on the beach at the lower corners; a turf-roofed longhouse with smoke rising and a tall carved runestone on the headland at the far right; dark pine slopes, snow on the peaks, a calm steel-grey fjord Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black slate to cold fjord blue-grey (#0b1622 to #3a5a70) with pale dawn light and a few iron and blood-red accents.",
+      "output": "art/scenes/odin/s_odin_draft_start.webp",
+      "size": "1536x1024"
+    },
+    "s_odin_draft_reward": {
+      "name": "Odin draft (spoils after a fight) background",
+      "hero": "odin",
+      "screen": "draft_reward",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the spoils of battle laid out in a Norse longhall at night: hacksilver, twisted gold arm-rings, swords, mail shirts, helmets and round shields heaped on furs before the carved high seat at the far left; long tables and drinking horns along the right edge; a long hearth fire glowing low down the hall; carved roof pillars with interlaced beasts; smoke hanging under the dark rafters Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black umber to smoky brown (#120c08 to #5a3c22) with firelight and tarnished gold accents.",
+      "output": "art/scenes/odin/s_odin_draft_reward.webp",
+      "size": "1536x1024"
+    },
+    "s_odin_otg": {
+      "name": "Odin's Altar to the One True God background",
+      "hero": "odin",
+      "screen": "otg",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast ancient sacrificial altar of piled stone at the foot of one colossal root of the world tree Yggdrasil, high on a frozen mountain at night: four great iron fire baskets burning at the corners along the left and right edges; a monumental stone stair rising from the lower corners; the root vanishing upward into a sky of green and violet aurora; carved runestones leaning around the altar Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black midnight blue to deep teal (#060c14 to #1d3a48) with four flame-gold accents and green aurora.",
+      "output": "art/scenes/odin/s_odin_otg.webp",
+      "size": "1536x1024"
+    },
+    "s_odin_bossp": {
+      "name": "Odin boss pick background",
+      "hero": "odin",
+      "screen": "bossp",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the edge of the world in Norse myth at the coming of a great storm: on the left the coils of the World Serpent rising from a black ocean; across the top a storm of ghostly riders and hounds, the Wild Hunt, racing through the clouds; on the right a towering stone giant standing on the cliffs; lightning far off; the dragon prow of a longship at the very bottom edge Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black storm blue to cold grey-green (#080e14 to #2a4652) with white foam and lightning accents.",
+      "output": "art/scenes/odin/s_odin_bossp.webp",
       "size": "1536x1024"
     }
   }
