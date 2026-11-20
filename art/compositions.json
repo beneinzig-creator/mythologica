@@ -725,5 +725,30 @@
  },
  "sunch": {
   "composition": "the chariot and horses in side profile, racing across the frame"
+ },
+ "wking": {
+  "palette": "cinnabar red and gold"
+ },
+ "wpig": {
+  "palette": "jade green and gold"
+ },
+ "wmount": {
+  "composition": "the giant palm and its five peaks filling the frame, the tiny monkey's head poking out at the base, at eye level",
+  "palette": "celestial gold on deep blue"
+ },
+ "wfan": {
+  "composition": "the princess swinging the fan at eye level, the gale roaring away from her across the frame",
+  "palette": "azurite blue and white cloud"
+ },
+ "wpeachk": {
+  "composition": "the monkey on its branch, close up, at eye level",
+  "palette": "peach-blossom pink and pale jade"
+ },
+ "wfurn": {
+  "composition": "the furnace filling the frame with the monkey bursting out of it, from a low angle",
+  "palette": "furnace orange and smoke"
+ },
+ "wcloudm": {
+  "palette": "dawn rose over misty peaks"
  }
 }
