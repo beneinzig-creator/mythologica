@@ -33,9 +33,20 @@ function plan(c){const p=G.p,e=G.e,id=c.id,E=cr(e),M=cr(p);
  if(id=='feast'){const d=M.reduce((n,x)=>n+Math.min(x.dmg,1),0);return(p.life<=p.max-3||d>=2)?{}:null}
  return null}
 function exec(c,pl){hd('h:'+c.u);if(pl.t)hd(pl.t);if(G.pend=='sinon'){const t=cr(G.p).filter(x=>x!==G.pc).sort((a,b)=>val(a)-val(b))[0];hd('p:'+t.u);return}if(G.pend=='sapper'||G.pend=='vlnd'){const t=G.e.bf.filter(x=>!isC(x)&&!has(x,'w')).sort((a,b)=>(IV[b.id]||5)-(IV[a.id]||5))[0];hd('e:'+t.u);return}if(G.pend&&PEND[G.pend]&&(PEND[G.pend].who=='p'||G.ch==='thoth')){const P=PEND[G.pend];const L=(P.who=='p'?cr(G.p):tg(G.e)).filter(x=>P.ok(x,G.pc)).sort((a,b)=>val(b)-val(a));if(L[0])hd((P.who=='p'?'p:':'e:')+L[0].u);else G.pend=0;return}if(G.pend){const E=tg(G.e).filter(x=>G.pend=='slinger'||!x.tap),k=E.filter(x=>th(x)-x.dmg<=1),t=(k.length?k:E).sort((a,b)=>val(b)-val(a))[0];if(t)hd('e:'+t.u);else G.pend=0}}
+/* v108 pressure: as a fight drags on, the bot takes the risks a person would (0 = normal, 1 from turn 10, 2 from turn 16) */
+var PRESS=1;const prs=()=>!PRESS||!G||!G.turn?0:G.turn>=16?2:G.turn>=10?1:0;
+function botAtkPlan(e,p,lam,rk){const Bp=cr(p).filter(b=>!b.tap&&!has(b,'n')),ready=cr(e).filter(canAtk).filter(c=>pwr(c)>0);
+ const must=ready.filter(c=>c.id=='poly'||c.forced),free=ready.filter(c=>!must.includes(c)).sort((a,b)=>pwr(b)-pwr(a)).slice(0,10);
+ const pAtk=cr(p).filter(c=>!has(c,'k')&&pw(c)>0&&!(c.tap&&c.frz)).sort((a,b)=>pwr(b)-pwr(a)).slice(0,duelOn()?1:9);
+ const counter=S=>combatEval(pAtk,cr(e).filter(b=>!b.tap&&!has(b,'n')&&(!S.includes(b)||has(b,'s'))),e.life,{}).dmg;
+ let best=null,bs=-1e9;const n=free.length;
+ for(let m=0;m<(1<<n);m++){const S=[...must,...free.filter((_,i)=>m>>i&1)];if(!S.length)continue;if(S.length>1&&duelOn())continue;
+  const r=combatEval(S,Bp,p.life,{});let sc;if(r.dmg>=p.life)sc=5000;else{const c=counter(S);sc=1.5*r.dmg+r.gain-lam*r.loss-(c>=e.life?1000:rk*c)}
+  if(sc>bs){bs=sc;best={S,tgm:{},sc}}}
+ return best&&best.sc>0?best:null}
 function sacPlan(c){const p=G.p,alt=p.bf.some(x=>x.id=='altar')?1:0,need=cost(c)-p.mana,S=[];let gn=0;
  for(const x of cr(p).sort((a,b)=>val(a)-val(b))){if(gn>=need)break;S.push(x);gn+=sv(x)+alt}
- const ok=gn>=need&&S.length<=2&&(S.every(x=>th(x)-x.dmg<=1)||cardVal(c)>=S.reduce((n,x)=>n+val(x),0)+4);return ok?S:null}
+ const P=prs(),ok=gn>=need&&S.length<=(P?3:2)&&(S.every(x=>th(x)-x.dmg<=1)||cardVal(c)>=S.reduce((n,x)=>n+val(x),0)+(P==2?0:P==1?2:4));return ok?S:null}
 function botBow(){const b=G.p.bf.find(x=>x.id=='bow'&&!x.tap);if(!b)return;const E=tg(G.e).filter(x=>th(x)-x.dmg<=1);hd('p:'+b.u);hd(E[0]?'e:'+E[0].u:'ef')}
 function botHades(){const p=G.p;for(let k=0;k<6&&G.hq;k++){if(G.hdisc){const w=p.hand.slice().sort((a,b)=>((RATE[a.id]==null?5:RATE[a.id])+(cost(a)>p.mana+3?-2:0))-((RATE[b.id]==null?5:RATE[b.id])+(cost(b)>p.mana+3?-2:0)))[0];hqd(w.u)}else if(p.hand.length<=5)bt('hqy');else bt('hqn')}}
 function castLoop(){const p=G.p;let ns=0;for(let n=0;n<40&&G.phase==='main';n++){let acted=false;botHades();if(G.ch==='thoth'&&botThoth())continue;
@@ -48,7 +59,7 @@ function castLoop(){const p=G.p;let ns=0;for(let n=0;n<40&&G.phase==='main';n++)
  if(!acted&&G.ch==='wukong'){WKLR=1;for(const c of orderHand(p)){if(cost(c)>p.mana)continue;const pl=plan(c);if(pl){WKLR=0;exec(c,pl);acted=true;break}}WKLR=0}
  if(!acted&&G.ch==='odin')acted=botBP();
  if(!acted)break}}
-function botAttack(){const p=G.p,e=G.e;{const hz=p.hand.find(c=>c.id==='horde'&&cost(c)<=p.mana);if(hz&&cr(p).filter(x=>has(x,'r')&&canAtk(x)).length>=2)exec(hz,{})}const pl=attackPlan(p,e);const forced=cr(p).filter(c=>c.forced&&canAtk(c));
+function botAttack(){const p=G.p,e=G.e;{const hz=p.hand.find(c=>c.id==='horde'&&cost(c)<=p.mana);if(hz&&cr(p).filter(x=>has(x,'r')&&canAtk(x)).length>=2)exec(hz,{})}let pl=attackPlan(p,e);{const P=prs();if(P&&(!pl||!pl.S.length)){const q=botAtkPlan(p,e,P==2?.35:.6,P==2?.2:.4);if(q)pl=q}}const forced=cr(p).filter(c=>c.forced&&canAtk(c));
  let at=pl&&pl.S.length?pl.S:[];forced.forEach(c=>{if(!at.includes(c))at=[...at,c]});
  if(wallTax(1)){at=at.slice().sort((a,b)=>(forced.includes(b)?99:pwr(b))-(forced.includes(a)?99:pwr(a)));while(at.length&&wallTax(at.length)>p.mana)at.pop()}
  if(at.length){G.sel=at.map(c=>c.u);G.tg=pl&&pl.tgm?{...pl.tgm}:{};bt('atk');if(G.phase==='dmgP'){const r=p.hand.find(c=>c.id==='rally'&&cost(c)<=p.mana);if(r&&G.cmb.atk.length>=2)exec(r,{});
@@ -73,7 +84,7 @@ var KOS=[3.2,3,3.4,1.5,3.6,2.5,3.3];for(let i=7;i<20;i++)KOS.push(3.1);
 function koBest(c,opts){return opts.slice().sort((a,b)=>(KOS[b]+(b==2&&cost(c)>=3?.6:0))-(KOS[a]+(a==2&&cost(c)>=3?.6:0)))[0]}
 function botKleos(){for(const x of G.kl){const o=koBest(x.c,x.o),j=x.o.indexOf(o);KO[o][1](x.c.rec);x.c.rec.k++;x.d=j+1}bt('next')}
 
-var RATE={sunch:7,dint:7,raidr:6,myrsh:7,closer:6,bodvar:8,vinit:6,freyja:8,othala:7,bragi:8,horse:7,wall:6,shield:7,drill:5,ares:7,spoils:5,ossuary:6,requiem:8,dream:0,garden:0,dirge:0,forge:0,thess:6,zerk:7,boar:7,diom:7,agam:7,nike:8,iris:6,helios:7,athena:6,pyrep:6,ox:5,sent:5,gate:7,hydra:6,sinon:5,tires:5,sapper:7,pyre:6,doct:5,banner:7,skies:6,net:6,hearth:5,hammer:4,plunder:5,hecat:5,fury:5,testudo:5,thunder:8,labyr:3,spear:5,sailor:5,goat:4,myrm:5,herm:5,camp:6,argus:7,pythia:5,slinger:7,healer:6,spartan:6,telem:5,bull:8,cass:7,nestor:6,pegasus:7,ajax:6,achil:9,eagle:8,hopl:7,owl:5,tela:6,spearc:8,salve:4,gale:4,feast:5,altar:7,horse:6,bow:8,aegis:4,hold:3,mist:6,rally:5,rampart:4,zeus:6};
+var RATE={blot:5,hgod:7,bdrunk:6,hoff:5,tithe:6,kvas:5,sunch:7,dint:7,raidr:6,myrsh:7,closer:6,bodvar:8,vinit:6,freyja:8,othala:7,bragi:8,horse:7,wall:6,shield:7,drill:5,ares:7,spoils:5,ossuary:6,requiem:8,dream:0,garden:0,dirge:0,forge:0,thess:6,zerk:7,boar:7,diom:7,agam:7,nike:8,iris:6,helios:7,athena:6,pyrep:6,ox:5,sent:5,gate:7,hydra:6,sinon:5,tires:5,sapper:7,pyre:6,doct:5,banner:7,skies:6,net:6,hearth:5,hammer:4,plunder:5,hecat:5,fury:5,testudo:5,thunder:8,labyr:3,spear:5,sailor:5,goat:4,myrm:5,herm:5,camp:6,argus:7,pythia:5,slinger:7,healer:6,spartan:6,telem:5,bull:8,cass:7,nestor:6,pegasus:7,ajax:6,achil:9,eagle:8,hopl:7,owl:5,tela:6,spearc:8,salve:4,gale:4,feast:5,altar:7,horse:6,bow:8,aegis:4,hold:3,mist:6,rally:5,rampart:4,zeus:6};
 var DMODE=(typeof process!=='undefined'&&process.env&&process.env.DMODE)||'rated';
 function botDraft(){if(typeof FORCED!=='undefined'&&FORCED&&FORCED.length){while(G.phase==='draft'&&FORCED.length){const id=FORCED.shift();G.dr.off=[{id}];pickDraft(0)}return}
 while(G.phase==='draft'){const dr=G.dr,off=dr.off,crN=(dr.mode==='reward'?G.p.recs.map(r=>r.id):STAPLES).concat(dr.picks).filter(id=>D[id][2]==='C').length,left=dr.rounds-dr.n,needC=Math.max(0,(G.ch==='wukong'?3:6)-crN);
@@ -122,6 +133,8 @@ function planOdin(c,p,e,E,M){const id=c.id,t=D[id][2];
  if(lcost(c)>0&&p.life<=lcost(c)+4)return null;
  const kill=n=>E.filter(x=>th(x)-x.dmg<=n&&!has(x,'w')).sort((a,b)=>val(b)-val(a))[0];
  const have=()=>p.bf.some(x=>x.id==id);
+ if(id=='kvas')return (G.e.bpn||0)>=2?{}:null;
+ if(id=='hoff')return M.filter(x=>canAtk(x)).length>=2&&G.phase==='main'?{}:null;
  if(t=='C')return undefined;
  if(t=='E'||t=='A'){if(have())return null;
   const n=(f)=>M.filter(f).length;
@@ -148,10 +161,10 @@ function planOdin(c,p,e,E,M){const id=c.id,t=D[id][2];
  case'vfea':return M.length<5&&p.gy.some(x=>isC(x)&&x.id!='sold'&&x.id!='ein'&&cost(x)>=3)?{}:null;
  case'host':return M.length<=3&&(p.fl||0)>=2?{}:null;
  default:return null}}
-function botBP(){const p=G.p;if(G.ch!=='odin'||(p.bp||0)>=BPMAX||p.life<=9)return false;
+function botBP(){const p=G.p,fl=prs()?6:9;if(G.ch!=='odin'||(p.bp||0)>=bpMax()||p.life<=fl)return false;
  const need=c=>cost(c)-p.mana;
- const cs=p.hand.filter(c=>need(c)>0&&need(c)<=BPMAX-(p.bp||0)&&plan(c)).sort((a,b)=>cardVal(b)-cardVal(a));
- if(!cs.length)return false;const c=cs[0];if(p.life-bpc()<9)return false;
+ const cs=p.hand.filter(c=>need(c)>0&&need(c)<=bpMax()-(p.bp||0)&&plan(c)).sort((a,b)=>cardVal(b)-cardVal(a));
+ if(!cs.length){if(cr(p).some(x=>x.id=='bdrunk')&&p.life-bpc()>=12){bt('bp');return true}return false}const c=cs[0];if(p.life-bpc()<fl)return false;
  for(let i=need(c);i>0;i--)bt('bp');return true}
 function botTaps(){const p=G.p,E=tg(G.e);
  for(const it of p.bf.filter(x=>TAPA[x.id]&&!x.tap)){

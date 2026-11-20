@@ -1,6 +1,7 @@
 # MYTHOLOGICA — Developer Handoff
 
-Written 2026-11-08. Current build: v97 of the published single-file game, also called `odysseus-act1.html` (about 270 KB).
+Written 2026-11-08, brought up to date 2026-11-19. Current build: **v112** (`index.html`, about 780 KB, plus the painted art in `art/game/`).
+Repo: github.com/beneinzig-creator/mythologica. Live: **mythologica.vercel.app**, deployed automatically from `main`.
 Owner and designer: Ben. These notes collect every design decision made so far. Where a decision was reversed, the final ruling is given and the old one is noted.
 
 ---
@@ -1134,15 +1135,48 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 
 ## 9. Code architecture
 
-**Source and build.** The published HTML is a build product, made by a patch pipeline. All of it is in **`mythologica-tooling.zip`**, delivered with this document. It rebuilds the published v97 script byte-for-byte; that was verified.
+**Source and build.** The game is a build product, made by a patch pipeline in `tooling/`.
 - `build.py` starts from `before_step12.html` and injects `engine_a.js`, `engine_b.js` and `data_new.js`.
-- It then execs `patch_data.py` and `patch2.py` … `patch40.py` in order. Each patch uses `_b3(old,new)`, which asserts exactly one match, to string-replace code.
-- Patches also splice in `odin.js`, `odinboss.js`, `minitrump.js`, `web.js`, `rendermap.js`, `upgs.js`, `elites.js`, `wukong.js` (includes the phone block), `mapcss.css` and `webcss.css`.
+- It then execs the patches in this order (each uses `_b3(old,new)`, which asserts exactly one match):
+  `patch_data.py`, `patch2.py` … `patch44.py`, `patch_fx.py`, then the gameplay patches `patch_bal.py`, `patch_pool.py`, `patch_thoth.py`, `patch_tut.py`, `patch_names.py`, then the art patches `patch45.py` … `patch56.py`.
+  The gameplay patches must run **before** the art patches: `patch_bal` anchors on text the art patches change.
+- Patches also splice in `odin.js`, `odinboss.js`, `minitrump.js`, `web.js`, `rendermap.js`, `upgs.js`, `elites.js`, `wukong.js` (includes the phone block), `thoth.js`, `thoth_cards.js`, `tutorial.js`, `bal/*.js`, `mapcss.css` and `webcss.css`.
 - Finally the army-cap literal `5` becomes `AM()`.
-- `rebuild.sh` → `n1.html` + `g.js` + `node --check`.
-- `build.py` and `runset.sh` hard-code the old sandbox path in `S=` / `cd`. Change these to the repo path.
+- Run it from inside `tooling/`: `python3 build.py n1.html` writes its output **relative to the current folder**. `rebuild.sh` does that and adds `g.js` plus `node --check`.
+- `index.html` is `n1.html` wrapped in a doctype/head/body skeleton (the first 531 and last 15 characters of `index.html`). After a rebuild, rewrap and commit both files.
+- The patch stack was **not** frozen. Every change still goes in as a new patch file appended to `build.py`.
 
-**Recommended next step:** freeze the patch stack. Commit the built HTML as `index.html` and make it, or a module split of it, the single source of truth. Editing through 40 sequential string-replace patches is fragile. Until then, every new change can go in as `patch41.py`.
+**What each later patch does** (v98 onward):
+
+| Patch | Version | What it does |
+| --- | --- | --- |
+| `patch41` | v98 | Hero select with progressive disclosure |
+| `patch42` | v99 | Carved-stone "inscription" look |
+| `patch43` | v100 | GSAP motion layer (inlined, so the game stays offline) |
+| `patch44` | v101 | Cinzel Decorative and IM Fell English fonts (embedded) |
+| `patch_fx` | v102 | Realm particles, torchlight, stone map, combat effects |
+| `patch_bal` | v103 | Balance pass (section 8.1) |
+| `patch_pool` | v104 | Shared 80-card pool layout (section 5.6) |
+| `patch_thoth` | v105 | Thoth and the Egyptian realm (section 5.5) |
+| `patch_tut` | v106–107 | How to play lessons and first-time tips (section 10.1) |
+| `patch_names` | v107 | No player card shares a name with a hero or enemy |
+| `patch45` | | Painted hero portraits and home background |
+| `patch46` | | Painted card art and rarity frames |
+| `patch47` | | Painted icons and card back |
+| `patch48` | | Cleaner battlefield |
+| `patch49` | | Painted fight backgrounds, one per opponent |
+| `patch50` | | Inspect shows the card's myth |
+| `patch51` | | Parchment cost medallions and painted digits |
+| `patch52` | | Per-hero card-back sigil, styled map and end screens |
+| `patch53` | | Painted draft, altar and boss-pick screens |
+| `patch54` | v110 | One hover pop-up per card; hold-to-inspect everywhere |
+| `patch55` | v111 | Odin's Norse frames, icons, button and card back |
+| `patch56` | v112 | Odin's painted screens and opponent marks |
+
+**Workflow.**
+- Work on a branch, open a PR into `main`. Vercel builds a preview for each PR and deploys `main` to production on merge.
+- **Never run `vercel --prod` from a local folder.** On 2026-11-18 that replaced the live site with a build that had no art (fixed by PR #10).
+- Several Claude sessions have worked in parallel, each in its own git worktree: `Mythologica` (balancing and gameplay), `Mythologica-art` (card art), `Mythologica-backgrounds` (backgrounds, screens and chrome). Take a new patch number and check your anchors still match after merging `main`.
 
 **File layout** (one `<script>` plus one `<style>`):
 - **`D`**: the card table. Each entry is
@@ -1232,7 +1266,8 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 - Odysseus data is the oldest. Some of his `D[id][6]` texts are stale and silently overridden by `TXT`.
 - Enemy decks are small and never reshuffle.
 - The pre-existing failing tests `ut32` (Shades answers), `ut2x`, `ut35o`, `t18`, `t2`, `t4` and `ut` are stale against current rules; ignore or rewrite them.
-- The passing suite is ut41–ut47, t19, plus Playwright scripts (touchtest, combat, rot, desk, tour, playfull).
+- The passing suite is ut41–ut50 and t19, plus Playwright scripts (touchtest, combat, rot, desk, tour, playfull). Run each from `tooling/` as `node utNN.js n1.html`.
+- `ut43` has 3 known failures since the v103 balance pass (elite trump in hand for Odysseus and Odin, and "beasts grow"). They also fail on the Balancing build before the art merge, so they are stale against the new decks, not art regressions.
 - Playwright uses the preinstalled Chromium: `NODE_PATH=$(npm root -g)`, `executablePath:'/opt/pw-browsers/chromium'`.
 - `wrap.sh` adds a viewport meta for tests.
 
@@ -1247,10 +1282,13 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 - Dark theme only. Each enemy has a two-colour background `bg`, e.g. Lotus-Eaters `#0b1a14 → #2f5a3a`, Muspelheim `#240a05 → #d4642a`.
 - Map: a web of icon nodes on a dark field, with hover tips, an animated trail, and the glowing altar at the centre once 4 VP are reached.
 - Desktop vs phone: section 9.
-- **Art plan** (not started; only if Ben asks):
-  - Replace emoji with AI art. Train a custom style LoRA for consistency, then use a shared style guide plus a per-card prompt manifest, starting with one hero.
-  - Keep emoji as a fallback.
-  - Image generators considered: Midjourney, Flux, Ideogram.
+- **Painted art** (made with the OpenAI Images API; pipeline and style rules in `art/README.md`, `art/STYLE.md`, `art/ICONS.md`):
+  - **Odysseus:** done. All his cards and his opponents' cards, rarity frames, icons and medallions, archetype marks, bronze button, ship card-back sigil, 11 fight backgrounds and 10 screens (map, campfire, crafting table, altar, victory, defeat, two drafts, the One True God altar, boss pick).
+  - **Odin:** done, in a heavier Norse woodcut style. All his cards and his opponents' cards in Norse frames, Norse icons and medallions, his own and his opponents' archetype marks, oak button, Gungnir card-back emblem, 11 fight backgrounds and 10 screens.
+  - **Sun Wukong and Thoth:** not started. They use the old emoji look.
+  - **Shared:** the home screen background and portraits (Odysseus, Odin, Wukong). Divine Karma keeps its Greek picture for every hero for now.
+  - Game-ready copies live in `art/game/` (cards, frames, icons, scenes, home, back, digits) with `cards.json`, `scenes.json` and `screens.json`; source images and prompts are in `art/odysseus/`, `art/odin/`, `art/scenes/` and the manifests. Emoji remain the fallback when a picture is missing.
+  - The full gallery of everything painted so far is the claude.ai artifact **Mythologica Art Proofs** (private to Ben).
 
 ### 10.1 Tutorial and run tips (v106)
 
@@ -1301,12 +1339,13 @@ Lessons 1–4 use a fixed deck and draw order against a fixed enemy (an entry pu
 
 ## 12. Open questions and known bugs
 
-- **Enemy decks run dry.** Shades of Hades has 8 cards, Fenrir's Brood 8, the Jotnar 9, and Wild Hunt / Hrungnir 9. Enemies never reshuffle, and those matchups stall the most. Decide: reshuffle the graveyard, give a fatigue penalty, or enlarge the decks?
+- ~~Enemy decks run dry.~~ Addressed in v103 with bigger decks (section 8.1). A few defensive matchups still stall; that needs an anti-stall rule.
 - Out-of-band matchups: Odin vs Loki's Court (45%) and Odin vs Hel's Legion (24%). Odysseus vs the Lotus-Eaters and Wukong vs Red Boy (27%) are borderline.
 - The v97 Norns changes are unit-tested but not visually verified in a real browser: the reveal titles "The Norns foretell…" and "The Norns: fate comes to pass", the 5-second pacing, and the foretold placeholder tooltip. The phone stance-label offset is also unverified.
 - The enemy AI sometimes skips an attack it should take.
-- The tier lists are stale (Odin from October 20, Odysseus older, Wukong none).
-- Odysseus needs 4 more cards and Odin 6 to reach 80. Getting to 20 of each rarity also means rebalancing their rarity mix (Odysseus is currently 27/27/15/7).
+- The tier lists are stale (Odin from October 20, Odysseus older, Wukong and Thoth none), and predate the v103 balance pass and the v104 pool layout.
+- ~~Pool sizes.~~ Every hero now has the 80-card layout (section 5.6).
+- `ut43` has 3 stale failures (section 9). A tutorial test was reported to hang on `main` (2026-11-19); not yet investigated.
 - Act 3 and Act 4 are undesigned. The 3 shared final bosses are undecided.
 - The second Odysseus elite was settled as Cattle of the Sun, which avoided another giant.
 - Possible phone improvement offered but not requested: 1-tap blocking and targeting.
@@ -1315,26 +1354,20 @@ Lessons 1–4 use a fixed deck and draw order against a fixed enemy (an entry pu
 
 ## 13. Roadmap
 
-**Last work completed (v97):**
-- Norns fight:
-  - live, accurate card text;
-  - OK-gated reveals at foretell time and at play time;
-  - the foretold card resolves first;
-  - 5-second pacing.
-- Stance labels moved above cards.
-- Cave Spiderling / enemy offering fix: only damaged 1-health creatures count as doomed, and the AI plays the card it offered for.
-- Wukong fight-1 nudge.
-- Before that: v96 was the landscape phone overhaul, and v95 added Wukong's last 20 cards, his 3 bosses, Iron Fan, and Act 2 realm randomization.
+**Last work completed (v98–v112):**
+- Look and feel: hero select, carved stone, GSAP motion, fonts, realm atmosphere and effects (v98–v102).
+- Balance pass with bigger enemy decks and one visible enemy ramp (v103).
+- The shared 80-card pool for every hero (v104), Thoth and the Egyptian realm (v105), the How to play tutorial and run tips (v106–107), name clean-up (v107).
+- Painted art for Odysseus and Odin, complete (patches 45–56), plus one hover pop-up per card and hold-to-inspect everywhere (v110).
+- Repo, GitHub and Vercel set up; the game deploys from `main`.
 
 **Next, in priority order:**
-1. Set up the repo from `mythologica-tooling.zip`: build, tests and sim. Decide on freezing the patch stack.
-2. Fix enemy deck exhaustion, then retune the out-of-band matchups to 32–36%.
-3. Regenerate tier lists for all three heroes. Buff or nerf the outliers (Pyre of Heroes, Mimir's Well, Skull-Cleaver, Starkad, Uruz, Fehu…).
-4. Bring Odysseus and Odin to 80 cards each at 20/20/20/20. Discuss card proposals with Ben before building.
+1. Regenerate tier lists for all four heroes against the current pool and balance.
+2. Fix or rewrite the 3 stale `ut43` checks; look at the reported tutorial-test hang.
+3. An anti-stall rule for defensive walls (Shades, Hel's Legion, Hrungnir, the Norns, the Scorpions).
+4. Art for Sun Wukong, then Thoth, through the same pipeline (cards, frames, icons, backgrounds, screens). Thoth also needs a home-screen portrait.
 5. Act 3 (all-realm amalgam) and its 3 shared final bosses. Design with Ben first.
-6. The Egypt hero (duality, briefly suspending death; Thoth?).
-7. The art pipeline (style LoRA plus prompt manifest), only when Ben asks.
-8. Act 4.
+6. Act 4.
 
 **Ideas discussed, not built:**
 - "The Claimed" boss mechanic.
@@ -1349,6 +1382,7 @@ Lessons 1–4 use a fixed deck and draw order against a fixed enemy (an entry pu
 
 ## Start here
 
-1. Unzip `mythologica-tooling.zip` into the repo, fix the hard-coded `S=` / `cd` paths in `build.py` and `runset.sh`, and run `./rebuild.sh` plus `node ut47.js n1.html` (and ut41–46, t19) to confirm the build is green. Then decide whether to freeze the patch stack into a single `index.html` source (recommended).
-2. Reproduce the section 8 balance numbers with `./runset.sh n1.html base 300 "ody:0 … wukong:5"`. Expect about ±3 points at N=300. Play one fight with each hero in a browser to learn the feel.
-3. Decide with Ben how to handle enemy deck exhaustion (section 12), then retune Odin vs Loki's Court and Odin vs Hel's Legion into the 32–36% band.
+1. Clone the repo, then from `tooling/` run `./rebuild.sh` and `node ut41.js n1.html` … `ut50.js`, `t19.js` to confirm the build is green (expect the 3 known `ut43` failures).
+2. Open `index.html` in a browser, or the live site, and play one fight with each hero.
+3. Branch, add your change as a new patch at the end of `build.py`, rebuild, rewrap `index.html`, test, and open a PR. Merging deploys it.
+4. Read section 8.1 for the current balance numbers and tools before touching enemy or card numbers.
