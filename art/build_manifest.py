@@ -167,7 +167,7 @@ FRAMES['odin'] = {
 HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
              'wukong': 'Journey to the West and classical Chinese myth'}
 MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone',
-              'wukong': 'a carved cinnabar-lacquer or jade roundel from the Ming dynasty'}
+              'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below'}
 
 # How played each rarity looks: cheaper cards have been shuffled more.
 CONDITION = {
@@ -511,17 +511,17 @@ ICONS['wukong'] = {k: v + ' Chinese, Journey to the West style, colourful.' for 
                 'opaque, no glow, no smoke.',
 }.items()}
 MEDALS['wukong'] = {
-    'spider': 'The Spider Cave: a spider in a silver web with peach blossom.',
-    'hornkings': 'The Gold and Silver Horn Kings: a red-gold calabash gourd.',
-    'heavenlyhost': 'The Heavenly Host: a celestial soldier\'s helmet with tall pheasant plumes on a cloud.',
-    'redboy': 'Red Boy: a fire-tipped spear in a ring of flame.',
-    'whitebone': 'The White Bone Spirit: a pale woman\'s face half turned into a skull.',
-    'yellowwind': 'The Yellow Wind Ridge: a swirling yellow whirlwind.',
-    'erlang': 'Erlang Shen: a stern face with a glowing third eye on the forehead.',
-    'ironfan': 'Princess Iron Fan: a great green palm-leaf fan.',
-    'macaque': 'The Six-Eared Macaque: a fierce monkey face with six ears.',
-    'bulldemon': 'The Bull Demon King: a horned bull demon\'s face.',
-    'buddhapalm': 'The Buddha\'s Palm: a giant open golden palm on a cloud.',
+    'spider': 'The Spider Cave: a spider in a silver web with peach blossom. Colours: jade green, silver and deep night teal, with pale pink blossom; no red.',
+    'hornkings': 'The Gold and Silver Horn Kings: a red-gold calabash gourd. Colours: burnished gold and silver on deep indigo blue; no red.',
+    'heavenlyhost': 'The Heavenly Host: a celestial soldier\'s helmet with tall pheasant plumes on a cloud. Colours: azure blue, white and gold; no red.',
+    'redboy': 'Red Boy: a fire-tipped spear in a ring of flame. Colours: cinnabar red, flame orange and gold.',
+    'whitebone': 'The White Bone Spirit: a pale woman\'s face half turned into a skull. Colours: bone white, pale grey and faded violet on misty grey; no red.',
+    'yellowwind': 'The Yellow Wind Ridge: a swirling yellow whirlwind. Colours: ochre yellow, sandy brown and dusty amber; no red.',
+    'erlang': 'Erlang Shen: a stern face with a glowing third eye on the forehead. Colours: steel blue and silver with a glowing gold eye; no red.',
+    'ironfan': 'Princess Iron Fan: a great green palm-leaf fan. Colours: malachite green and teal with a touch of violet; no red.',
+    'macaque': 'The Six-Eared Macaque: a fierce monkey face with six ears. Colours: dark teal, moss green and grey fur with gold eyes; no red.',
+    'bulldemon': 'The Bull Demon King: a horned bull demon\'s face. Colours: black, smoky crimson and ember orange.',
+    'buddhapalm': 'The Buddha\'s Palm: a giant open golden palm on a cloud. Colours: imperial gold and warm cream white clouds; no red.',
 }
 STAMPS['wukong'] = {
     'C': 'Clones: a single monkey hair curling into the shape of a small monkey.',
@@ -537,6 +537,10 @@ STAMPS['wukong'] = {
     '7': 'Third Eye: a single glowing vertical eye.',
     '8': 'Fan: a green palm-leaf fan.',
 }
+WK_SCREEN = ('Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat '
+             'transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain '
+             'showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, '
+             'gold, peach pink) rather than muddy. No Japanese elements.')
 HERO_UI['wukong'] = {
     'sigil_wukong': ('1024x1024', 'transparent',
         'A single emblem for the back of every card in Sun Wukong\'s deck: his somersault cloud (jindou yun), drawn as a '
@@ -548,7 +552,33 @@ HERO_UI['wukong'] = {
         'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
         'width of the image: a red cinnabar lacquer board with a thin carved gold fret border and small gold cloud-scroll '
         'caps at both ends, worn and scratched; the centre is plain and flat for a label. Chinese, Ming dynasty style, '
-        'rustic 1990s hand-painted. Fully transparent background around the plate. No text, no characters, no letters.'),
+        'rustic 1990s hand-painted. Fully transparent background around the plate. No text, no characters, no letters.'),    # Wukong's screens, in the rough pen-and-ink-with-washes look Ben chose for his backgrounds, and colourful.
+    'ui_map': ('1536x1024', 'opaque',
+        'An antique Chinese pilgrim\'s map of the long road to the West, painted on an aged, stained silk scroll: '
+        'misty blue-green mountain ranges, winding rivers, tiny pagodas, temples and walled towns, auspicious clouds '
+        'and a small dragon at the margins, all in faded ink and soft mineral washes of azurite, malachite, cinnabar '
+        'and gold. The centre is mostly open plain and mist with very few marks so game icons can sit on top. '
+        + WK_SCREEN + ' No text, no characters, no seals with writing.'),
+    'ui_victory': ('1536x1024', 'opaque',
+        'Victory: the pilgrims arriving at Thunderclap Monastery on Vulture Peak at dawn, the golden temple glowing on '
+        'its mountain above a sea of rose and gold clouds, a rainbow of light, cranes flying, and Sun Wukong seen from '
+        'behind on a cloud, staff on his shoulder, looking up at it. ' + WK_SCREEN + ' No text.'),
+    'ui_defeat': ('1536x1024', 'opaque',
+        'Defeat: Sun Wukong imprisoned beneath the Mountain of Five Elements, only his head and one arm free, grass '
+        'growing over his shoulders, under a dusky violet sky with the faint golden seal of the Buddha on the peak, '
+        'a lonely pine and falling leaves. ' + WK_SCREEN + ' No text.'),
+    'ui_camp': ('1536x1024', 'opaque',
+        'A small campfire under an old twisted pine on a mountain ledge at night, the white horse tethered nearby and '
+        'the pilgrims asleep on their bundles, a bamboo pack and a monk\'s staff against a rock, misty peaks and a '
+        'big silver moon, sparks rising. ' + WK_SCREEN + ' No text. Dark around the edges, calm.'),
+    'ui_craft': ('1536x1024', 'opaque',
+        'The alchemy hall of Laozi in heaven: the great bronze Eight-Trigram Furnace glowing red-gold in the centre, '
+        'gourds of elixir, scrolls, bellows and jade tools on lacquered shelves, red pillars and clouds drifting through '
+        'the open doors. ' + WK_SCREEN + ' No text. Dark around the edges, no people.'),
+    'ui_altar': ('1536x1024', 'opaque',
+        'A quiet mountain Buddhist shrine at dusk: a small red-pillared pavilion with a golden Buddha statue, a bronze '
+        'incense burner with smoking sticks, offerings of peaches and lotus flowers, prayer flags and old pines, '
+        'misty peaks behind. ' + WK_SCREEN + ' No text. Dark around the edges, no people.'),
 }
 
 STUB = r'''

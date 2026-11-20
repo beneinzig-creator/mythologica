@@ -3,20 +3,20 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "high",
   "size": "1024x1024",
-  "created": "2026-11-20 06:53:10",
-  "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Princess Iron Fan: a great green palm-leaf fan.",
+  "created": "2026-11-20 07:57:56",
+  "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Princess Iron Fan: a great green palm-leaf fan. Colours: malachite green and teal with a touch of violet; no red.",
   "revised_prompt": null,
   "usage": {
-    "input_tokens": 97,
+    "input_tokens": 115,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 97
+      "text_tokens": 115
     },
     "output_tokens": 1756,
     "output_tokens_details": {
       "image_tokens": 1756,
       "text_tokens": 0
     },
-    "total_tokens": 1853
+    "total_tokens": 1871
   }
 }

@@ -1,0 +1,22 @@
+{
+  "id": "ui_victory",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-20 07:49:58",
+  "prompt": "Victory: the pilgrims arriving at Thunderclap Monastery on Vulture Peak at dawn, the golden temple glowing on its mountain above a sea of rose and gold clouds, a rainbow of light, cranes flying, and Sun Wukong seen from behind on a cloud, staff on his shoulder, looking up at it. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 163,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 163
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1535
+  }
+}

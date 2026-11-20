@@ -11436,9 +11436,57 @@
           "format": "png",
           "background": "transparent"
         },
+        "ui_map": {
+          "name": "ui_map",
+          "prompt": "An antique Chinese pilgrim's map of the long road to the West, painted on an aged, stained silk scroll: misty blue-green mountain ranges, winding rivers, tiny pagodas, temples and walled towns, auspicious clouds and a small dragon at the margins, all in faded ink and soft mineral washes of azurite, malachite, cinnabar and gold. The centre is mostly open plain and mist with very few marks so game icons can sit on top. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text, no characters, no seals with writing.",
+          "output": "art/icons/wukong/ui_map.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_victory": {
+          "name": "ui_victory",
+          "prompt": "Victory: the pilgrims arriving at Thunderclap Monastery on Vulture Peak at dawn, the golden temple glowing on its mountain above a sea of rose and gold clouds, a rainbow of light, cranes flying, and Sun Wukong seen from behind on a cloud, staff on his shoulder, looking up at it. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text.",
+          "output": "art/icons/wukong/ui_victory.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_defeat": {
+          "name": "ui_defeat",
+          "prompt": "Defeat: Sun Wukong imprisoned beneath the Mountain of Five Elements, only his head and one arm free, grass growing over his shoulders, under a dusky violet sky with the faint golden seal of the Buddha on the peak, a lonely pine and falling leaves. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text.",
+          "output": "art/icons/wukong/ui_defeat.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_camp": {
+          "name": "ui_camp",
+          "prompt": "A small campfire under an old twisted pine on a mountain ledge at night, the white horse tethered nearby and the pilgrims asleep on their bundles, a bamboo pack and a monk's staff against a rock, misty peaks and a big silver moon, sparks rising. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text. Dark around the edges, calm.",
+          "output": "art/icons/wukong/ui_camp.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_craft": {
+          "name": "ui_craft",
+          "prompt": "The alchemy hall of Laozi in heaven: the great bronze Eight-Trigram Furnace glowing red-gold in the centre, gourds of elixir, scrolls, bellows and jade tools on lacquered shelves, red pillars and clouds drifting through the open doors. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text. Dark around the edges, no people.",
+          "output": "art/icons/wukong/ui_craft.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_altar": {
+          "name": "ui_altar",
+          "prompt": "A quiet mountain Buddhist shrine at dusk: a small red-pillared pavilion with a golden Buddha statue, a bronze incense burner with smoking sticks, offerings of peaches and lotus flowers, prayer flags and old pines, misty peaks behind. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; Chinese, Ming dynasty, Journey to the West; bright and colourful (cinnabar, azurite, malachite, gold, peach pink) rather than muddy. No Japanese elements. No text. Dark around the edges, no people.",
+          "output": "art/icons/wukong/ui_altar.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
         "med_spider": {
           "name": "spider medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Spider Cave: a spider in a silver web with peach blossom.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Spider Cave: a spider in a silver web with peach blossom. Colours: jade green, silver and deep night teal, with pale pink blossom; no red.",
           "output": "art/icons/wukong/med_spider.png",
           "size": "1024x1024",
           "format": "png",
@@ -11446,7 +11494,7 @@
         },
         "med_hornkings": {
           "name": "hornkings medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Gold and Silver Horn Kings: a red-gold calabash gourd.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Gold and Silver Horn Kings: a red-gold calabash gourd. Colours: burnished gold and silver on deep indigo blue; no red.",
           "output": "art/icons/wukong/med_hornkings.png",
           "size": "1024x1024",
           "format": "png",
@@ -11454,7 +11502,7 @@
         },
         "med_heavenlyhost": {
           "name": "heavenlyhost medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Heavenly Host: a celestial soldier's helmet with tall pheasant plumes on a cloud.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Heavenly Host: a celestial soldier's helmet with tall pheasant plumes on a cloud. Colours: azure blue, white and gold; no red.",
           "output": "art/icons/wukong/med_heavenlyhost.png",
           "size": "1024x1024",
           "format": "png",
@@ -11462,7 +11510,7 @@
         },
         "med_redboy": {
           "name": "redboy medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Red Boy: a fire-tipped spear in a ring of flame.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Red Boy: a fire-tipped spear in a ring of flame. Colours: cinnabar red, flame orange and gold.",
           "output": "art/icons/wukong/med_redboy.png",
           "size": "1024x1024",
           "format": "png",
@@ -11470,7 +11518,7 @@
         },
         "med_whitebone": {
           "name": "whitebone medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The White Bone Spirit: a pale woman's face half turned into a skull.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The White Bone Spirit: a pale woman's face half turned into a skull. Colours: bone white, pale grey and faded violet on misty grey; no red.",
           "output": "art/icons/wukong/med_whitebone.png",
           "size": "1024x1024",
           "format": "png",
@@ -11478,7 +11526,7 @@
         },
         "med_yellowwind": {
           "name": "yellowwind medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Yellow Wind Ridge: a swirling yellow whirlwind.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Yellow Wind Ridge: a swirling yellow whirlwind. Colours: ochre yellow, sandy brown and dusty amber; no red.",
           "output": "art/icons/wukong/med_yellowwind.png",
           "size": "1024x1024",
           "format": "png",
@@ -11486,7 +11534,7 @@
         },
         "med_erlang": {
           "name": "erlang medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Erlang Shen: a stern face with a glowing third eye on the forehead.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Erlang Shen: a stern face with a glowing third eye on the forehead. Colours: steel blue and silver with a glowing gold eye; no red.",
           "output": "art/icons/wukong/med_erlang.png",
           "size": "1024x1024",
           "format": "png",
@@ -11494,7 +11542,7 @@
         },
         "med_ironfan": {
           "name": "ironfan medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Princess Iron Fan: a great green palm-leaf fan.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Princess Iron Fan: a great green palm-leaf fan. Colours: malachite green and teal with a touch of violet; no red.",
           "output": "art/icons/wukong/med_ironfan.png",
           "size": "1024x1024",
           "format": "png",
@@ -11502,7 +11550,7 @@
         },
         "med_macaque": {
           "name": "macaque medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Six-Eared Macaque: a fierce monkey face with six ears.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Six-Eared Macaque: a fierce monkey face with six ears. Colours: dark teal, moss green and grey fur with gold eyes; no red.",
           "output": "art/icons/wukong/med_macaque.png",
           "size": "1024x1024",
           "format": "png",
@@ -11510,7 +11558,7 @@
         },
         "med_bulldemon": {
           "name": "bulldemon medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Bull Demon King: a horned bull demon's face.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Bull Demon King: a horned bull demon's face. Colours: black, smoky crimson and ember orange.",
           "output": "art/icons/wukong/med_bulldemon.png",
           "size": "1024x1024",
           "format": "png",
@@ -11518,7 +11566,7 @@
         },
         "med_buddhapalm": {
           "name": "buddhapalm medallion",
-          "prompt": "A round medallion portrait for a game map, painted like a carved cinnabar-lacquer or jade roundel from the Ming dynasty: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Buddha's Palm: a giant open golden palm on a cloud.",
+          "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Buddha's Palm: a giant open golden palm on a cloud. Colours: imperial gold and warm cream white clouds; no red.",
           "output": "art/icons/wukong/med_buddhapalm.png",
           "size": "1024x1024",
           "format": "png",

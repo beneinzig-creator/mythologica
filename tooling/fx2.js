@@ -66,6 +66,12 @@ const PSPEC=(()=>{
   macaque:[L('spray',36,SEA),L('petal',20,['255,180,190','255,205,215'])],
   bulldemon:[L('ember',50,FIRE),L('smoke',4,['80,60,55']),L('spark',10,['255,220,140'])],
   buddhapalm:[L('gold',26,GOLD),L('mote',30,GOLD),L('petal',10,['255,215,120','255,235,180'])],
+  'wukong/ui_map':[L('mote',16,GOLD),L('petal',6,PINK)],
+  'wukong/ui_victory':[L('gold',22,GOLD),L('petal',14,['255,200,170','255,225,150','250,180,200'])],
+  'wukong/ui_defeat':[L('leaf',14,['200,120,60','170,90,50','220,160,80']),L('mist',3,['200,180,220'])],
+  'wukong/ui_camp':[L('ember',36,EMB),L('mote',10,['230,235,255'])],
+  'wukong/ui_craft':[L('ember',34,FIRE),L('smoke',4,['200,190,180']),L('gold',8,GOLD)],
+  'wukong/ui_altar':[L('smoke',5,['190,180,170']),L('petal',10,PINK),L('mote',12,GOLD)],
   // Defaults: home screen and each hero's other screens
   home:[L('mote',16,['255,236,200'])],
   ody:[L('mote',22,['200,228,255'])],
