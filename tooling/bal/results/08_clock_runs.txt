@@ -1,0 +1,52 @@
+== ody  by fight: f1 35% (n798)  f2 30% (n798)  f3 28% (n798)  f4 28% (n798)  f5 20% (n299)
+   R:Polyphemus                             n  439 win  30.8  avgFight 2.46  turns   6.9  >20  0.2%  >30  0.0%
+   R:The Cicones                            n  446 win  31.4  avgFight 2.46  turns   7.7  >20  3.1%  >30  0.0%
+   R:The Lotus-Eaters                       n  476 win  26.7  avgFight 2.59  turns   7.2  >20  0.0%  >30  0.0%
+   R:The Phaeacians                         n  471 win  29.5  avgFight 2.59  turns   7.4  >20  1.1%  >30  0.0%
+   R:The Shades of Hades                    n  475 win  31.8  avgFight 2.48  turns   8.9  >20  4.6%  >30  0.0%
+   R:The Sirens                             n  471 win  33.1  avgFight 2.42  turns   9.0  >20  2.3%  >30  0.0%
+   B:Charybdis                              n  100 win  13.0  avgFight 5.00  turns  11.5  >20  0.0%  >30  0.0%
+   B:Hector, Tamer of Horses                n  101 win  22.8  avgFight 5.00  turns  10.1  >20  6.9%  >30  0.0%
+   B:Scylla                                 n   98 win  23.5  avgFight 5.00  turns   8.1  >20  0.0%  >30  0.0%
+   E:Cattle of the Sun                      n  211 win  22.3  avgFight 2.45  turns   8.8  >20  0.5%  >30  0.0%
+   E:Circe, Witch of Aeaea                  n  203 win  33.5  avgFight 2.54  turns   8.8  >20  3.4%  >30  0.0%
+   ALL fights n3491  turns 8.1  >20 1.9%  >30 0.0%
+== odin  by fight: f1 40% (n798)  f2 31% (n798)  f3 30% (n798)  f4 28% (n798)  f5 25% (n313)
+   R:Fenrir's Brood                         n  463 win  31.3  avgFight 2.47  turns   6.5  >20  0.4%  >30  0.0%
+   R:Hel's Legion                           n  483 win  30.8  avgFight 2.51  turns   9.8  >20  2.7%  >30  0.0%
+   R:Loki's Court                           n  472 win  34.5  avgFight 2.51  turns   9.2  >20  2.5%  >30  0.0%
+   R:Muspelheim                             n  437 win  33.6  avgFight 2.41  turns   6.7  >20  0.0%  >30  0.0%
+   R:The Dwarven Forge                      n  439 win  32.8  avgFight 2.56  turns   8.6  >20  0.9%  >30  0.0%
+   R:The Jotnar                             n  446 win  31.8  avgFight 2.50  turns   7.1  >20  0.7%  >30  0.0%
+   B:Hrungnir, the Stone-Hearted            n  121 win  26.4  avgFight 5.00  turns  11.5  >20 12.4%  >30  0.0%
+   B:Jörmungandr, the World Serpent         n   83 win  19.3  avgFight 5.00  turns   9.3  >20  1.2%  >30  0.0%
+   B:The Wild Hunt                          n  109 win  26.6  avgFight 5.00  turns   7.3  >20  0.0%  >30  0.0%
+   E:Fáfnir, the Hoard-Dragon               n  211 win  29.4  avgFight 2.41  turns   9.6  >20  1.9%  >30  0.0%
+   E:The Norns                              n  241 win  32.8  avgFight 2.65  turns   9.8  >20  7.9%  >30  0.0%
+   ALL fights n3505  turns 8.4  >20 2.1%  >30 0.0%
+== wukong  by fight: f1 36% (n798)  f2 31% (n798)  f3 27% (n798)  f4 25% (n798)  f5 19% (n279)
+   R:Red Boy                                n  461 win  29.9  avgFight 2.44  turns   7.5  >20  0.0%  >30  0.0%
+   R:The Gold and Silver Horn Kings         n  436 win  30.3  avgFight 2.42  turns   9.2  >20  1.6%  >30  0.0%
+   R:The Heavenly Host                      n  465 win  34.8  avgFight 2.63  turns   6.8  >20  0.0%  >30  0.0%
+   R:The Spider Cave                        n  503 win  33.4  avgFight 2.46  turns   7.5  >20  0.2%  >30  0.0%
+   R:The White Bone Spirit                  n  418 win  30.4  avgFight 2.50  turns   8.8  >20  0.2%  >30  0.0%
+   R:The Yellow Wind Ridge                  n  448 win  24.6  avgFight 2.56  turns   5.7  >20  0.0%  >30  0.0%
+   B:The Buddha's Palm                      n   82 win  24.4  avgFight 5.00  turns   9.1  >20  0.0%  >30  0.0%
+   B:The Bull Demon King                    n  106 win  17.0  avgFight 5.00  turns   7.0  >20  0.0%  >30  0.0%
+   B:The Six-Eared Macaque                  n   91 win  15.4  avgFight 5.00  turns   6.2  >20  0.0%  >30  0.0%
+   E:Erlang Shen, the Three-Eyed            n  242 win  25.2  avgFight 2.49  turns   7.5  >20  0.4%  >30  0.0%
+   E:Princess Iron Fan                      n  219 win  22.4  avgFight 2.44  turns   8.2  >20  0.5%  >30  0.0%
+   ALL fights n3471  turns 7.6  >20 0.3%  >30 0.0%
+== thoth  by fight: f1 33% (n798)  f2 32% (n798)  f3 30% (n798)  f4 29% (n798)  f5 24% (n292)
+   R:Servants of the Tomb                   n  486 win  35.4  avgFight 2.51  turns   9.7  >20  3.7%  >30  0.0%
+   R:The Crocodiles of Sobek                n  451 win  26.2  avgFight 2.43  turns   7.9  >20  0.7%  >30  0.0%
+   R:The Jackals of Anubis                  n  453 win  29.1  avgFight 2.44  turns   9.0  >20  2.2%  >30  0.0%
+   R:The Priests of Heka                    n  446 win  31.4  avgFight 2.51  turns  10.4  >20  5.2%  >30  0.0%
+   R:The Scorpions of Serket                n  444 win  35.8  avgFight 2.45  turns  12.4  >20  9.7%  >30  0.0%
+   R:The Tomb Robbers                       n  458 win  35.6  avgFight 2.52  turns  10.5  >20  6.3%  >30  0.0%
+   B:Apophis, the Serpent of Chaos          n   96 win  26.0  avgFight 5.00  turns  11.0  >20  6.2%  >30  0.0%
+   B:Sekhmet, the Eye of Ra                 n  102 win  29.4  avgFight 5.00  turns   5.4  >20  0.0%  >30  0.0%
+   B:Set, Lord of the Red Desert            n   94 win  17.0  avgFight 5.00  turns   7.2  >20  1.1%  >30  0.0%
+   E:Ammit, the Devourer                    n  232 win  24.6  avgFight 2.67  turns   9.2  >20  2.2%  >30  0.0%
+   E:The Great Sphinx                       n  222 win  22.1  avgFight 2.59  turns   7.7  >20  0.0%  >30  0.0%
+   ALL fights n3484  turns 9.6  >20 4.0%  >30 0.0%
