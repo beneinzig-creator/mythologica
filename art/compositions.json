@@ -1107,5 +1107,63 @@
  },
  "thoth:gcanop": {
   "palette": "dawn rose over the Nile"
+ },
+ "thoth:dkhep": {
+  "palette": "dawn rose over the Nile"
+ },
+ "thoth:dreun": {
+  "palette": "papyrus reed green and gold sunlight",
+  "composition": "a wide view of the field, the figures small in it"
+ },
+ "thoth:dshade": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:iobel": {
+  "palette": "red granite and black basalt",
+  "composition": "the whole obelisk from a distance, tiny people at its base"
+ },
+ "thoth:ierase": {
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:iname": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:yread": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:yprep": {
+  "palette": "papyrus reed green and gold sunlight"
+ },
+ "thoth:yechoes": {
+  "palette": "sandstorm yellow haze"
+ },
+ "thoth:ywarn": {
+  "palette": "sandstorm yellow haze"
+ },
+ "thoth:dsoul": {
+  "palette": "underworld teal and black"
+ },
+ "thoth:dbook": {
+  "palette": "underworld teal and black"
+ },
+ "thoth:karma": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:dint": {
+  "palette": "sunset red-orange over the desert",
+  "composition": "the hand and the falling warrior filling the frame, seen from below and to one side"
+ },
+ "thoth:ytruth": {
+  "palette": "electrum white-gold"
+ },
+ "thoth:yhall": {
+  "composition": "looking down the length of the hall between the columns"
+ },
+ "thoth:yledger": {
+  "composition": "a wide view of the whole courtyard, seen from slightly above",
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:ycopy": {
+  "composition": "seen from directly above"
  }
 }
