@@ -448,12 +448,18 @@ FRAMES['wukong'] = {
               'small bronze corner caps, modest and unornamented. ' + CHINESE_LOOK,
     'uncommon': 'Uncommon rarity: a frame of black lacquer and pale jade with a fine border of curling ruyi clouds and small '
                 'jade discs at the corners. ' + CHINESE_LOOK,
-    'rare': 'Rare rarity: a frame of vermilion cinnabar lacquer and gold with a border of carved clouds, two small gold '
-            'dragons facing each other above the art window and coral beads at the corners. ' + CHINESE_LOOK,
-    'legendary': 'Legendary rarity: an aged, hand-tooled frame of antique gold over dark red lacquer, worn at the edges, a '
-                 'restrained cloud-and-fret border and a single small golden peach of immortality with two leaves at the '
-                 'top centre, like a treasured relic in a temple; richer than the other rarities but still rustic and '
-                 'understated. ' + CHINESE_LOOK,
+    # Ben (Nov 2026): the first Legendary became the Rare; the Legendary is a new, grander frame.
+    'rare': 'Rare rarity: an aged, hand-tooled frame of antique gold over dark red lacquer, worn at the edges, a '
+            'restrained cloud-and-fret border and a single small golden peach of immortality with two leaves at the '
+            'top centre, like a treasured relic in a temple; richer than the common and uncommon but still rustic and '
+            'understated. ' + CHINESE_LOOK,
+    'legendary': 'Legendary rarity, the grandest frame of all, fit for the Jade Emperor\'s Celestial Palace: radiant '
+                 'burnished gold and imperial yellow over cinnabar lacquer, set with jade, coral and pearls; a golden '
+                 'dragon and a vermilion phoenix curling up the two sides toward a flaming pearl at the top centre, '
+                 'framed by a glowing golden halo of light; bands of five-coloured auspicious clouds (azure, jade, '
+                 'cinnabar, gold, white) rolling along the top and bottom; a peach of immortality on a lotus at the '
+                 'bottom centre. Warm golden light seems to shine from the frame itself. Rich and celestial, still hand-'
+                 'painted, never glossy or 3D-rendered. ' + CHINESE_LOOK,
 }
 ICONS['wukong'] = {k: v + ' Chinese, Journey to the West style, colourful.' for k, v in {
     'life': 'Life: a heart carved from red cinnabar lacquer set in a thin gold rim.',
