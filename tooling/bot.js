@@ -33,9 +33,20 @@ function plan(c){const p=G.p,e=G.e,id=c.id,E=cr(e),M=cr(p);
  if(id=='feast'){const d=M.reduce((n,x)=>n+Math.min(x.dmg,1),0);return(p.life<=p.max-3||d>=2)?{}:null}
  return null}
 function exec(c,pl){hd('h:'+c.u);if(pl.t)hd(pl.t);if(G.pend=='sinon'){const t=cr(G.p).filter(x=>x!==G.pc).sort((a,b)=>val(a)-val(b))[0];hd('p:'+t.u);return}if(G.pend=='sapper'||G.pend=='vlnd'){const t=G.e.bf.filter(x=>!isC(x)&&!has(x,'w')).sort((a,b)=>(IV[b.id]||5)-(IV[a.id]||5))[0];hd('e:'+t.u);return}if(G.pend&&PEND[G.pend]&&(PEND[G.pend].who=='p'||G.ch==='thoth')){const P=PEND[G.pend];const L=(P.who=='p'?cr(G.p):tg(G.e)).filter(x=>P.ok(x,G.pc)).sort((a,b)=>val(b)-val(a));if(L[0])hd((P.who=='p'?'p:':'e:')+L[0].u);else G.pend=0;return}if(G.pend){const E=tg(G.e).filter(x=>G.pend=='slinger'||!x.tap),k=E.filter(x=>th(x)-x.dmg<=1),t=(k.length?k:E).sort((a,b)=>val(b)-val(a))[0];if(t)hd('e:'+t.u);else G.pend=0}}
+/* v108 pressure: as a fight drags on, the bot takes the risks a person would (0 = normal, 1 from turn 10, 2 from turn 16) */
+var PRESS=1;const prs=()=>!PRESS||!G||!G.turn?0:G.turn>=16?2:G.turn>=10?1:0;
+function botAtkPlan(e,p,lam,rk){const Bp=cr(p).filter(b=>!b.tap&&!has(b,'n')),ready=cr(e).filter(canAtk).filter(c=>pwr(c)>0);
+ const must=ready.filter(c=>c.id=='poly'||c.forced),free=ready.filter(c=>!must.includes(c)).sort((a,b)=>pwr(b)-pwr(a)).slice(0,10);
+ const pAtk=cr(p).filter(c=>!has(c,'k')&&pw(c)>0&&!(c.tap&&c.frz)).sort((a,b)=>pwr(b)-pwr(a)).slice(0,duelOn()?1:9);
+ const counter=S=>combatEval(pAtk,cr(e).filter(b=>!b.tap&&!has(b,'n')&&(!S.includes(b)||has(b,'s'))),e.life,{}).dmg;
+ let best=null,bs=-1e9;const n=free.length;
+ for(let m=0;m<(1<<n);m++){const S=[...must,...free.filter((_,i)=>m>>i&1)];if(!S.length)continue;if(S.length>1&&duelOn())continue;
+  const r=combatEval(S,Bp,p.life,{});let sc;if(r.dmg>=p.life)sc=5000;else{const c=counter(S);sc=1.5*r.dmg+r.gain-lam*r.loss-(c>=e.life?1000:rk*c)}
+  if(sc>bs){bs=sc;best={S,tgm:{},sc}}}
+ return best&&best.sc>0?best:null}
 function sacPlan(c){const p=G.p,alt=p.bf.some(x=>x.id=='altar')?1:0,need=cost(c)-p.mana,S=[];let gn=0;
  for(const x of cr(p).sort((a,b)=>val(a)-val(b))){if(gn>=need)break;S.push(x);gn+=sv(x)+alt}
- const ok=gn>=need&&S.length<=2&&(S.every(x=>th(x)-x.dmg<=1)||cardVal(c)>=S.reduce((n,x)=>n+val(x),0)+4);return ok?S:null}
+ const P=prs(),ok=gn>=need&&S.length<=(P?3:2)&&(S.every(x=>th(x)-x.dmg<=1)||cardVal(c)>=S.reduce((n,x)=>n+val(x),0)+(P==2?0:P==1?2:4));return ok?S:null}
 function botBow(){const b=G.p.bf.find(x=>x.id=='bow'&&!x.tap);if(!b)return;const E=tg(G.e).filter(x=>th(x)-x.dmg<=1);hd('p:'+b.u);hd(E[0]?'e:'+E[0].u:'ef')}
 function botHades(){const p=G.p;for(let k=0;k<6&&G.hq;k++){if(G.hdisc){const w=p.hand.slice().sort((a,b)=>((RATE[a.id]==null?5:RATE[a.id])+(cost(a)>p.mana+3?-2:0))-((RATE[b.id]==null?5:RATE[b.id])+(cost(b)>p.mana+3?-2:0)))[0];hqd(w.u)}else if(p.hand.length<=5)bt('hqy');else bt('hqn')}}
 function castLoop(){const p=G.p;let ns=0;for(let n=0;n<40&&G.phase==='main';n++){let acted=false;botHades();if(G.ch==='thoth'&&botThoth())continue;
@@ -48,7 +59,7 @@ function castLoop(){const p=G.p;let ns=0;for(let n=0;n<40&&G.phase==='main';n++)
  if(!acted&&G.ch==='wukong'){WKLR=1;for(const c of orderHand(p)){if(cost(c)>p.mana)continue;const pl=plan(c);if(pl){WKLR=0;exec(c,pl);acted=true;break}}WKLR=0}
  if(!acted&&G.ch==='odin')acted=botBP();
  if(!acted)break}}
-function botAttack(){const p=G.p,e=G.e;{const hz=p.hand.find(c=>c.id==='horde'&&cost(c)<=p.mana);if(hz&&cr(p).filter(x=>has(x,'r')&&canAtk(x)).length>=2)exec(hz,{})}const pl=attackPlan(p,e);const forced=cr(p).filter(c=>c.forced&&canAtk(c));
+function botAttack(){const p=G.p,e=G.e;{const hz=p.hand.find(c=>c.id==='horde'&&cost(c)<=p.mana);if(hz&&cr(p).filter(x=>has(x,'r')&&canAtk(x)).length>=2)exec(hz,{})}let pl=attackPlan(p,e);{const P=prs();if(P&&(!pl||!pl.S.length)){const q=botAtkPlan(p,e,P==2?.35:.6,P==2?.2:.4);if(q)pl=q}}const forced=cr(p).filter(c=>c.forced&&canAtk(c));
  let at=pl&&pl.S.length?pl.S:[];forced.forEach(c=>{if(!at.includes(c))at=[...at,c]});
  if(wallTax(1)){at=at.slice().sort((a,b)=>(forced.includes(b)?99:pwr(b))-(forced.includes(a)?99:pwr(a)));while(at.length&&wallTax(at.length)>p.mana)at.pop()}
  if(at.length){G.sel=at.map(c=>c.u);G.tg=pl&&pl.tgm?{...pl.tgm}:{};bt('atk');if(G.phase==='dmgP'){const r=p.hand.find(c=>c.id==='rally'&&cost(c)<=p.mana);if(r&&G.cmb.atk.length>=2)exec(r,{});
@@ -148,10 +159,10 @@ function planOdin(c,p,e,E,M){const id=c.id,t=D[id][2];
  case'vfea':return M.length<5&&p.gy.some(x=>isC(x)&&x.id!='sold'&&x.id!='ein'&&cost(x)>=3)?{}:null;
  case'host':return M.length<=3&&(p.fl||0)>=2?{}:null;
  default:return null}}
-function botBP(){const p=G.p;if(G.ch!=='odin'||(p.bp||0)>=BPMAX||p.life<=9)return false;
+function botBP(){const p=G.p,fl=prs()?6:9;if(G.ch!=='odin'||(p.bp||0)>=BPMAX||p.life<=fl)return false;
  const need=c=>cost(c)-p.mana;
  const cs=p.hand.filter(c=>need(c)>0&&need(c)<=BPMAX-(p.bp||0)&&plan(c)).sort((a,b)=>cardVal(b)-cardVal(a));
- if(!cs.length)return false;const c=cs[0];if(p.life-bpc()<9)return false;
+ if(!cs.length)return false;const c=cs[0];if(p.life-bpc()<fl)return false;
  for(let i=need(c);i>0;i--)bt('bp');return true}
 function botTaps(){const p=G.p,E=tg(G.e);
  for(const it of p.bf.filter(x=>TAPA[x.id]&&!x.tap)){
