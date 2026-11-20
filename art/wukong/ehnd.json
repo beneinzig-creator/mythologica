@@ -1,0 +1,22 @@
+{
+  "id": "ehnd",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "1536x1024",
+  "created": "2026-11-20 07:02:24",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours taken from the card's own light and colour key (no default orange) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nChinese look for this hero: the same 1990s hand-made card art, but painted in the manner of classical Chinese painting and the illustrated Ming editions of Journey to the West. Fluid, calligraphic brush lines that swell and taper, never hard woodcut or pen hatching. Figures in the fine-line gongbi manner with flat, bold mineral colours (cinnabar red, azurite blue, malachite green, gold); backgrounds in loose xieyi ink wash: misty peaks, pines, waterfalls, splashed ink. Clouds are drawn as curling auspicious-cloud scrolls. Faces and poses are bold and theatrical, like Peking opera. Every card has its own strong colour key (given under Light and colour) that fills the whole picture, background included: a warm rice-paper ground is only one of many grounds, and most cards should instead be washed in their own colour, such as deep azurite night, jade bamboo green, cinnabar palace red, violet dusk or storm-grey ink, so that no two cards share the same cream background. Brighter and more colourful than the Greek and Norse cards, but never washed out. Not Japanese, not samurai, not anime, not modern Chinese fantasy game art, no restaurant-style dragons. Only paint Sun Wukong himself (golden fur, phoenix-feather cap with long plumes, golden armour, red cape) when the subject names him; any other monkey is an ordinary monkey of Flower-Fruit Mountain with brown or grey fur and simple clothes, never his cap, armour or face. Focus over scenery: the card's subject is the star of the picture and should look as striking and powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and secondary, and no second large figure or creature competes with the subject unless the card is about that creature.\n\nSetting: Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, clouds, mountains, celestial palaces.\n\nSubject: The howling celestial hound: Erlang Shen's loyal black hunting dog, lean and fierce, leaping with jaws open across a rocky mountain.\n\nComposition: the creature filling the whole frame, head close to the viewer, in side profile. Light and colour: malachite green and gold. Presence: a formidable foe. The subject fills most of the picture; keep the background minimal.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 711,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 711
+    },
+    "output_tokens": 343,
+    "output_tokens_details": {
+      "image_tokens": 343,
+      "text_tokens": 0
+    },
+    "total_tokens": 1054
+  }
+}

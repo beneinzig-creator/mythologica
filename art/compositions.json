@@ -819,5 +819,199 @@
  },
  "wthou": {
   "composition": "seen from behind and to one side, on the mountain top"
+ },
+ "spd1": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "spd2": {
+  "palette": "jade bamboo green and mist"
+ },
+ "spd3": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "spdq": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "cocn": {
+  "palette": "jade bamboo green and mist"
+ },
+ "cweb": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "hsol": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hcap": {
+  "palette": "vermilion and black ink"
+ },
+ "hsil": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "hgol": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hrope": {
+  "palette": "vermilion and black ink"
+ },
+ "hbot": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "gourd": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hsd": {
+  "palette": "celestial gold on deep blue"
+ },
+ "hhd": {
+  "palette": "azurite blue and white cloud"
+ },
+ "hgn": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "hnz": {
+  "palette": "celestial gold on deep blue",
+  "composition": "a full figure in mid-air, seen from slightly above"
+ },
+ "hpg": {
+  "palette": "azurite blue and white cloud"
+ },
+ "decree": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "rimp": {
+  "palette": "furnace orange and black smoke"
+ },
+ "rgrd": {
+  "palette": "cinnabar red and gold"
+ },
+ "rspr": {
+  "palette": "vermilion and black ink"
+ },
+ "rboy": {
+  "palette": "furnace orange and black smoke"
+ },
+ "rflm": {
+  "palette": "cinnabar red and gold"
+ },
+ "sfire": {
+  "palette": "vermilion and black ink"
+ },
+ "bsk": {
+  "palette": "pale ink wash on rice-paper white"
+ },
+ "bghl": {
+  "palette": "moonlit silver mist over dark peaks"
+ },
+ "bhag": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "bsp": {
+  "palette": "pale ink wash on rice-paper white"
+ },
+ "bone": {
+  "palette": "moonlit silver mist over dark peaks"
+ },
+ "ybat": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "ytig": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "ydef": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "ygen": {
+  "palette": "autumn persimmon orange and brown"
+ },
+ "ygale": {
+  "palette": "imperial yellow and red lacquer"
+ },
+ "ywind": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "eplum": {
+  "palette": "deep azurite night with a silver moon"
+ },
+ "ehnd": {
+  "palette": "malachite green and gold"
+ },
+ "eerl": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "esw": {
+  "palette": "deep azurite night with a silver moon"
+ },
+ "hnet": {
+  "palette": "malachite green and gold"
+ },
+ "eye": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "iwnd": {
+  "palette": "jade bamboo green and mist"
+ },
+ "imaid": {
+  "palette": "turquoise sea and white foam"
+ },
+ "iguard": {
+  "palette": "cinnabar red and gold"
+ },
+ "iprin": {
+  "palette": "jade bamboo green and mist",
+  "composition": "a waist-up portrait, seated, at eye level"
+ },
+ "ifan": {
+  "palette": "turquoise sea and white foam"
+ },
+ "mmon": {
+  "palette": "violet dusk over dark peaks"
+ },
+ "mape": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "mear": {
+  "palette": "ink black and white with a touch of cinnabar"
+ },
+ "mac6": {
+  "palette": "violet dusk over dark peaks",
+  "composition": "a waist-up portrait beside the mirror, at eye level"
+ },
+ "mecho": {
+  "palette": "midnight indigo with lantern light"
+ },
+ "mtrump": {
+  "palette": "ink black and white with a touch of cinnabar"
+ },
+ "bgrd": {
+  "palette": "furnace orange and black smoke"
+ },
+ "bcap": {
+  "palette": "vermilion and black ink"
+ },
+ "bhrn": {
+  "palette": "storm-grey splashed ink and white lightning"
+ },
+ "bdk": {
+  "palette": "furnace orange and black smoke"
+ },
+ "bfury": {
+  "palette": "vermilion and black ink"
+ },
+ "pdis": {
+  "palette": "celestial gold on deep blue"
+ },
+ "pfin": {
+  "palette": "dawn rose over misty peaks"
+ },
+ "pgrd": {
+  "palette": "peach-blossom pink and pale jade"
+ },
+ "plm": {
+  "palette": "celestial gold on deep blue",
+  "composition": "the Buddha seen from far below, enormous against the sky"
+ },
+ "palm": {
+  "palette": "dawn rose over misty peaks",
+  "composition": "a wide view of the five peaks from a distance"
  }
 }
