@@ -1,0 +1,22 @@
+{
+  "id": "ironfan",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:53:15",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Plantain Cave on Emerald Cloud Mountain from Journey to the West, home of Princess Iron Fan and her magic palm-leaf fan: giant banana and plantain leaves, purple wisteria and bamboo framing the left and right edges; an elegant pavilion with violet silk curtains at the far left; a great green palm-leaf fan as tall as a person leaning on a rock at the lower right; a violent gust of wind swirling leaves and petals across the scene; the far-off Flaming Mountains glowing on the horizon The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: near-black plum to soft violet (#1c1226 to #b88ad0) with emerald leaf green, fuchsia and distant flame-orange accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 445,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 445
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1817
+  }
+}

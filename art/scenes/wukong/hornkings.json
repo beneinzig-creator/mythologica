@@ -1,0 +1,22 @@
+{
+  "id": "hornkings",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-19 19:50:58",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Lotus Flower Cave on Level-Top Mountain from Journey to the West, lair of the Gold Horn and Silver Horn demon kings: a cavern hall lined with lacquered red pillars and hanging lanterns along the left edge; their magic treasures on a carved altar at the lower right, the red-gold calabash gourd that swallows whoever answers its call, a jade vase, a sword and a golden rope; demon guards as small silhouettes; a round moon-gate opening onto blue mountain peaks at the far right The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: near-black brown to burnished gold (#1a1409 to #a88a3a) with lacquer red, silver and blue-jade accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 448,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 448
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1820
+  }
+}
