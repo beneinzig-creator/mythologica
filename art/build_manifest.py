@@ -508,6 +508,15 @@ STAMPS['wukong'] = {
     'C': 'Clones: a single monkey hair curling into the shape of a small monkey.',
     'W': 'Staff: a staff with golden bands at both ends.',
     'T': 'Trickster: a mischievous monkey face.',
+    # Marks for Wukong's eight regular opponents. The letters are nearly used up, so these use digits.
+    '1': 'Bone Spirits: a small pale skull with a curling wisp of white smoke.',
+    '2': 'Heaven: a celestial halberd standing on a small cloud.',
+    '3': 'Spiders: a spider hanging on a single silk thread.',
+    '4': 'Gourd: a magic calabash gourd with its stopper popping out.',
+    '5': 'Samadhi Fire: a ring of red and blue flame.',
+    '6': 'Wind: a spiralling yellow whirlwind.',
+    '7': 'Third Eye: a single glowing vertical eye.',
+    '8': 'Fan: a green palm-leaf fan.',
 }
 HERO_UI['wukong'] = {
     'sigil_wukong': ('1024x1024', 'transparent',

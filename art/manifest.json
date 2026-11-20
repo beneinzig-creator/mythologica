@@ -11240,6 +11240,70 @@
           "format": "png",
           "background": "transparent"
         },
+        "arch_1": {
+          "name": "1 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Bone Spirits: a small pale skull with a curling wisp of white smoke.",
+          "output": "art/icons/wukong/arch_1.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_2": {
+          "name": "2 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Heaven: a celestial halberd standing on a small cloud.",
+          "output": "art/icons/wukong/arch_2.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_3": {
+          "name": "3 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Spiders: a spider hanging on a single silk thread.",
+          "output": "art/icons/wukong/arch_3.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_4": {
+          "name": "4 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Gourd: a magic calabash gourd with its stopper popping out.",
+          "output": "art/icons/wukong/arch_4.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_5": {
+          "name": "5 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Samadhi Fire: a ring of red and blue flame.",
+          "output": "art/icons/wukong/arch_5.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_6": {
+          "name": "6 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Wind: a spiralling yellow whirlwind.",
+          "output": "art/icons/wukong/arch_6.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_7": {
+          "name": "7 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Third Eye: a single glowing vertical eye.",
+          "output": "art/icons/wukong/arch_7.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "arch_8": {
+          "name": "8 archetype mark",
+          "prompt": "A small emblem printed in worn dark umber ink, like a set symbol on an old trading card: flat single-colour ink, slightly uneven and worn with tiny gaps, a bold simple silhouette readable at 12 pixels, centred on a fully transparent background. No text, no letters, no border, no circle behind it.\n\nSubject: Fan: a green palm-leaf fan.",
+          "output": "art/icons/wukong/arch_8.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "sigil_wukong": {
           "name": "sigil_wukong",
           "prompt": "A single emblem for the back of every card in Sun Wukong's deck: his somersault cloud (jindou yun), drawn as a classic Chinese auspicious cloud scroll curling into a bold, round, balanced shape with spiralling ruyi heads and a short trailing tail, as carved on a Ming dynasty lacquer box. Rendered in worn gold leaf with touches of jade and cinnabar red, rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No characters, no letters, no words, no circle or badge behind it.",
