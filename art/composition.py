@@ -40,6 +40,27 @@ PALETTES = ['dawn rose and pale gold', 'harsh noon white and ochre', 'deep crims
             'warm torchlight orange in darkness', 'stormy grey-green', 'underworld green and black', 'deep sea teal',
             'firelight red and black', 'marble white and gold', 'twilight violet', 'smoky amber haze',
             'icy dawn blue', 'dusty bronze and brown']
+# Other heroes get light from their own world (the list above is Odysseus's Mediterranean one).
+HERO_PALETTES = {
+    'odin': ['blood red on snow', 'deep crimson firelight and black', 'aurora green over a black sky',
+             'aurora violet and teal', 'velvet purple and black, like a seidr spell', 'smoky amethyst dusk',
+             'ember orange and soot black', 'molten forge gold and red', 'glacier blue and white',
+             'grey winter dawn over snow', 'storm-dark slate blue with lightning', 'pale midnight-sun gold',
+             'deep pine green and frost', 'misty fjord blue-grey', 'cold moonlight silver-blue',
+             'peat-brown dusk under a low red sun'],
+}
+# Legendaries for these heroes cycle through different camera set-ups instead of all being shot from below.
+HERO_LEGEND_SHOTS = {
+    'odin': [('a monumental full figure', 'seen from a very low angle'),
+             ('a heroic waist-up portrait', 'in three-quarter view at eye level'),
+             ('a close head-and-shoulders portrait', 'in profile, seen slightly from above'),
+             ('a full figure in mid-action', 'seen from slightly above'),
+             ('a full figure', 'seen from behind and to one side, turning back toward the viewer')],
+}
+HERO_POWER = {
+    'odin': {'Legendary': 'larger than life, monumental and iconic, lit by a cold rim of lightning or aurora; '
+                          'the most dramatic kind of image in the set'},
+}
 POWER = {
     'Common': 'an ordinary, humble presence at a modest scale',
     'Staple': 'an ordinary, humble presence at a modest scale',
@@ -67,30 +88,45 @@ def _rng(group):
     return random.Random(int(hashlib.md5(group.encode()).hexdigest()[:8], 16))
 
 
-def plan(groups):
+def plan(groups, hero='ody'):
     """groups: {group name: [(card id, card type, lore, name, rarity)]} -> {card id: plan dict}"""
     over_path = os.path.join(ART, 'compositions.json')
     overrides = json.load(open(over_path, encoding='utf-8')) if os.path.exists(over_path) else {}
     order = {'Legendary': 0, 'legendary': 0, 'Rare': 1, 'rare': 1, 'Uncommon': 2, 'uncommon': 2}
     out = {}
+    legend_i = 0
+    angle_count = {}
+    pal_count = {}
     for group, members in groups.items():
         rng = _rng(group)
-        pals = PALETTES[:]
+        pals = (HERO_PALETTES.get(hero) or PALETTES)[:]
         rng.shuffle(pals)
         used, pi = set(), 0
         for cid, ctype, lore, name, rarity in sorted(members, key=lambda m: (order.get(m[4], 3), m[0])):
             k = (overrides.get(cid) or {}).get('kind') or kind_of(ctype, lore, name)
-            if rarity in ('Legendary', 'legendary') and k in ('person', 'monster'):
+            if rarity in ('Legendary', 'legendary') and k in ('person', 'monster') and hero in HERO_LEGEND_SHOTS:
+                ls = HERO_LEGEND_SHOTS[hero]
+                combos = [ls[legend_i % len(ls)]]
+                legend_i += 1
+            elif rarity in ('Legendary', 'legendary') and k in ('person', 'monster'):
                 combos = [('a monumental full figure', 'seen from a very low angle')]
             else:
                 combos = [(s, a) for s in SHOTS[k] for a in ANGLES[k]]
                 rng.shuffle(combos)
-            shot, angle = next((c for c in combos if (k, c) not in used), combos[0])
+            free = [c for c in combos if (k, c) not in used] or combos
+            if hero in HERO_LEGEND_SHOTS:  # balance angles across the whole hero, not just the group
+                free = sorted(free, key=lambda c: angle_count.get(c[1], 0))
+            shot, angle = free[0]
+            angle_count[angle] = angle_count.get(angle, 0) + 1
             used.add((k, (shot, angle)))
-            palette = pals[pi % len(pals)]
-            pi += 1
+            if hero in HERO_LEGEND_SHOTS:  # spread colour keys evenly across the whole hero
+                palette = min(pals, key=lambda c: (pal_count.get(c, 0), pals.index(c)))
+                pal_count[palette] = pal_count.get(palette, 0) + 1
+            else:
+                palette = pals[pi % len(pals)]
+                pi += 1
             p = {'group': group, 'kind': k, 'shot': shot, 'angle': angle, 'palette': palette,
-                 'power': POWER.get(rarity, '')}
+                 'power': HERO_POWER.get(hero, {}).get(rarity) or POWER.get(rarity, '')}
             o = overrides.get(cid)
             if o:
                 p.update({kk: v for kk, v in o.items() if not kk.startswith('_')})

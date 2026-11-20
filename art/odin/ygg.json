@@ -1,0 +1,22 @@
+{
+  "id": "ygg",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-18 21:36:25",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours taken from the card's own light and colour key (no default orange) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nNorse look for this hero: the same 1990s hand-made card art, but colder and harder than the Greek cards. Heavier, rougher black ink lines with a carved, woodcut-like quality, as if cut into wood or stone; flat areas of colour broken by scratchy hatching. A northern palette of slate blue, iron grey, bone white and deep pine green, with sparing accents of blood red and dull, tarnished gold; no warm Mediterranean light, no sunsets, no bronze glow. Weather matters: snow, sleet, sea-spray, mist and long winter dusk. Where the picture shows objects, give them Viking Age ornament: interlaced beasts and knotwork carved on wood, iron and runestones in the Urnes and Mammen styles, and the look of the Gotland picture-stones. People are weathered and heavy, in wool, fur, leather and iron; no horned helmets, no winged helmets, no fantasy plate armour. Focus over scenery: the card's subject is the star of the picture and should look as striking and powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and secondary, and no second large figure or creature competes with the subject unless the card is about that creature.\n\nSetting: Viking Age Norse myth: iron mail, round wooden shields, furs, runestones, longhalls, ravens, wolves, fjords, snow and northern sky.\n\nSubject: Yggdrasil, the world-ash: one immense, ancient ash tree, unmistakably a tree, standing alone on a rise above a sea of mist, its whole shape visible from the great spreading roots to the vast crown of branches; its roots sink into a glowing well at its foot. Only small details: an eagle silhouetted at the very top, and three tiny cloaked Norns at the roots for scale. Clean and simple, the tree is the whole picture.\n\nComposition: a wide shot of the whole tree from roots to crown, seen from a distance at eye level, the tree centred and filling the height of the picture. Light and colour: pale ice blue and bone, with a faint glow from the well. Presence: larger than life, monumental and iconic, lit by a cold rim of lightning or aurora; the most dramatic kind of image in the set. The subject fills most of the picture; keep the background minimal.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 715,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 715
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 2087
+  }
+}
