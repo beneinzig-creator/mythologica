@@ -1026,5 +1026,22 @@
  },
  "tithe": {
   "palette": "aurora violet and teal"
+ },
+ "karma": {},
+ "odin:karma": {
+  "composition": "the runestone filling the frame against the sky, seen from slightly below",
+  "palette": "aurora green over a black sky"
+ },
+ "odin:dint": {
+  "composition": "the hand and the falling warrior filling the frame, seen from below and to one side",
+  "palette": "storm-dark slate blue with lightning"
+ },
+ "wukong:karma": {
+  "composition": "the abacus filling the frame among the clouds, at eye level",
+  "palette": "jade bamboo green and mist"
+ },
+ "wukong:dint": {
+  "composition": "the hand and the falling warrior filling the frame, seen from below and to one side",
+  "palette": "celestial gold on deep blue"
  }
 }

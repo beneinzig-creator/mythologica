@@ -1448,6 +1448,26 @@
 "zerk": "u",
 "zeus": "rs"
 },
+"hero": {
+"odin": {
+"dint": "ols",
+"karma": "ols"
+},
+"wukong": {
+"dint": "wls",
+"karma": "wls"
+}
+},
+"hero_myth": {
+"odin": {
+"dint": "Divine intervention in the north: a vast hand of shimmering aurora light reaching down through a raging blizzard to catch a falling, wounded Norse warrior just before he hits the snow, the storm parting around the hand.",
+"karma": "Divine Karma, the cosmic tally of deeds in the Norse way: a vast runestone standing in a starry winter sky, every deed of gods and men carved into it as a spiralling serpent band of runes; some runes glow fresh and gold while old."
+},
+"wukong": {
+"dint": "Divine intervention: a vast radiant golden hand reaching down out of curling auspicious clouds to catch a falling, wounded warrior just before he strikes the mountainside, lotus petals drifting down around it.",
+"karma": "Divine Karma, the cosmic ledger of merit: a giant celestial abacus of glowing jade beads floating among auspicious clouds, the beads sliding by themselves to count good and bad deeds."
+}
+},
 "myth": {
 "achil": "Achilles in the divine armour Hephaestus made him, leaping forward with his great ash spear, the plain and walls of Troy behind him, his one vulnerable heel just visible.",
 "aegis": "Athena's aegis, the goatskin cloak fringed with golden serpents and bearing the Gorgon's head, spread in divine light over a kneeling Greek warrior.",

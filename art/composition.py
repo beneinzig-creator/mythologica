@@ -115,7 +115,8 @@ def plan(groups, hero='ody'):
         rng.shuffle(pals)
         used, pi = set(), 0
         for cid, ctype, lore, name, rarity in sorted(members, key=lambda m: (order.get(m[4], 3), m[0])):
-            k = (overrides.get(cid) or {}).get('kind') or kind_of(ctype, lore, name)
+            ov = overrides.get(f'{hero}:{cid}') or overrides.get(cid)  # a hero can set its own shot for a shared card
+            k = (ov or {}).get('kind') or kind_of(ctype, lore, name)
             if rarity in ('Legendary', 'legendary') and k in ('person', 'monster') and hero in HERO_LEGEND_SHOTS:
                 ls = HERO_LEGEND_SHOTS[hero]
                 combos = [ls[legend_i % len(ls)]]
@@ -139,7 +140,7 @@ def plan(groups, hero='ody'):
                 pi += 1
             p = {'group': group, 'kind': k, 'shot': shot, 'angle': angle, 'palette': palette,
                  'power': HERO_POWER.get(hero, {}).get(rarity) or POWER.get(rarity, '')}
-            o = overrides.get(cid)
+            o = ov
             if o:
                 p.update({kk: v for kk, v in o.items() if not kk.startswith('_')})
                 p['source'] = 'compositions.json'

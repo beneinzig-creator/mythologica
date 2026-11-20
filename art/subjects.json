@@ -349,7 +349,9 @@
   "tithe": "The tithe of the slain: two valkyries in mail riding low over a battlefield at dusk, each lifting the glowing spirit of a fallen warrior from among the dead, taking their share for Valhalla and Folkvangr.",
   "blot": "A blót bowl: a heavy bronze sacrificial bowl full of dark blood standing on a stone altar, a bundle of fir twigs lying in it for sprinkling the blood, carved knotwork on its rim, firelight from a temple hall behind.",
   "hgod": "The hanged god: Odin hanging from a branch of the world-tree Yggdrasil for nine nights, wounded by his own spear, gaunt and pale, one eye open and burning as he looks down and the runes appear glowing in the dark below him. Nobody gave him food or drink.",
-  "kvas": "The mead of Kvasir, brewed from the blood of the wisest of beings: three great vessels, the kettle Odrerir and the crocks Bodn and Son, brimming with glowing golden mead in a dark dwarf's cave, the light of wisdom rising from them."
+  "kvas": "The mead of Kvasir, brewed from the blood of the wisest of beings: three great vessels, the kettle Odrerir and the crocks Bodn and Son, brimming with glowing golden mead in a dark dwarf's cave, the light of wisdom rising from them.",
+  "karma": "Divine Karma, the cosmic tally of deeds in the Norse way: a vast runestone standing in a starry winter sky, every deed of gods and men carved into it as a spiralling serpent band of runes; some runes glow fresh and gold while old ones fade, and a few glowing runes drift off the stone to be carried forward.",
+  "dint": "Divine intervention in the north: a vast hand of shimmering aurora light reaching down through a raging blizzard to catch a falling, wounded Norse warrior just before he hits the snow, the storm parting around the hand."
  },
  "wukong": {
   "wking": "Sun Wukong, the Great Sage Equal to Heaven, in his full glory: the Monkey King with golden fur and blazing fiery golden eyes, wearing a phoenix-feather cap with two long pheasant plumes, golden chain mail, a red silk cape and cloud-walking boots, spinning his golden-banded iron staff Ruyi Jingu Bang above his head, standing on a swirl of auspicious cloud. Proud, fearless and grinning.",
@@ -496,6 +498,8 @@
   "pfin": "A finger of the mountain: a single colossal stone pillar shaped like a finger rising from the clouds, carved with sutras.",
   "pgrd": "A mountain warden: a stone guardian lion-dog on a temple step, its stone mane cracked and mossy, its eyes glowing gold.",
   "plm": "The Buddha's palm: the serene Tathagata Buddha seen from far below, seated on a lotus among clouds, his right hand raised in the gesture of blessing, golden light pouring from his palm.",
-  "palm": "The five-finger mountain: five immense peaks shaped like fingers standing in a ring in a sea of clouds, a golden talisman fluttering at the summit of the tallest."
+  "palm": "The five-finger mountain: five immense peaks shaped like fingers standing in a ring in a sea of clouds, a golden talisman fluttering at the summit of the tallest.",
+  "karma": "Divine Karma, the cosmic ledger of merit: a giant celestial abacus of glowing jade beads floating among auspicious clouds, the beads sliding by themselves to count good and bad deeds, a golden thread of merit carrying a few beads over to the next row.",
+  "dint": "Divine intervention: a vast radiant golden hand reaching down out of curling auspicious clouds to catch a falling, wounded warrior just before he strikes the mountainside, lotus petals drifting down around it."
  }
 }
