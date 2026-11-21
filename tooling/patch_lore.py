@@ -3,6 +3,7 @@
 # The text lives in tooling/lore/*.js, one file per realm (see tooling/lore/README.md); this patch only wires it in.
 # Also fixes two realm-name bugs: the map's centre altar always said "the strait", and in Act II the altar,
 # the guardian's "falls silent" line and the anti-stall clock named the hero's home realm, not the realm you are in.
+# Act III (G.a3) is checked first: it is "the War in Heaven" and has its own clock line.
 _LORE_FILES = ['shared', 'greek', 'norse', 'chinese', 'egyptian', 'heaven']
 _LORE_JS = (r"""
 /* ===== Lore (tooling/lore/*.js) ===== */
@@ -31,7 +32,8 @@ _b3("const lore=boss&&B.lore?B.lore.split(/(?<=\\.)\\s+/).slice(0,2).join(' '):(
     "const lore=boss&&B.lore?B.lore.split(/(?<=\\.)\\s+/).slice(0,2).join(' '):((B.lore?B.lore.split(/(?<=\\.)\\s+/).slice(0,2).join(' ')+'<span class=\"fxin-h\">'+(B.hint||'')+'</span>':(B.hint||'')))")
 # realm-name bugs
 _b3("const RWORD=()=>({odin:'the Nine Worlds',wukong:'the Western Heaven',thoth:'the Two Lands'})[(G&&G.ch)||'ody']||'the strait';",
-    "const RWORD=()=>({odin:'the Nine Worlds',wukong:'the Western Heaven',thoth:'the Two Lands'})[(G&&(G.a2||G.ch))||'ody']||'the strait';")
+    "const RWORD=()=>(G&&G.a3)?'the War in Heaven':({odin:'the Nine Worlds',wukong:'the Western Heaven',thoth:'the Two Lands'})[(G&&(G.a2||G.ch))||'ody']||'the strait';")
 _b3("to face a guardian of the strait.'", "to face a guardian of '+RWORD()+'.'")
+_b3("const CLKN=()=>({", "const CLKN=()=>(G&&G.a3)?'The seventh trumpet sounds':({")
 _b3("Ma\\'at tip'})[(G&&G.ch)||'ody']", "Ma\\'at tip'})[(G&&(G.a2||G.ch))||'ody']")
 _b3("#insp .myth{", ".wn .tipx .flore{display:block;margin-top:2px;font-style:italic;font-size:11.5px;line-height:1.3;opacity:.8}.fxin-h{display:block;margin-top:12px;font-style:normal;font-size:.85em;opacity:.9}#insp .myth{")

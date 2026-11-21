@@ -1122,7 +1122,7 @@ let QK=[];
 const duelOn=()=>!!(G&&G.e&&G.e.bf&&G.e.bf.some(x=>x.id=='holm'));
 const AM=()=>duelOn()?2:5;
 const qB=(t,src)=>(t&&t.qy&&src&&HUNT.includes(src.id))?2:0;
-const RWORD=()=>({odin:'the Nine Worlds',wukong:'the Western Heaven',thoth:'the Two Lands'})[(G&&(G.a2||G.ch))||'ody']||'the strait';
+const RWORD=()=>(G&&G.a3)?'the War in Heaven':({odin:'the Nine Worlds',wukong:'the Western Heaven',thoth:'the Two Lands'})[(G&&(G.a2||G.ch))||'ody']||'the strait';
 const RWC=()=>RWORD().replace(/^t/,'T');
 const SAGA=()=>({odin:'The saga of Ragnarok',wukong:'The Journey to the West',thoth:'The Book of the Dead'})[(G&&G.ch)||'ody']||'The Odyssey';
 Object.assign(D,{
@@ -2993,7 +2993,7 @@ function turnMsg(){return'Your turn. Mana refills to 2; '+(TURNM[(G&&G.ch)||'ody
 
 /* ===== v109: anti-stall clock ===== */
 const CLK0=20,CLKW=15;
-const CLKN=()=>({odin:'Ragnarök draws near',wukong:'The Jade Emperor grows impatient',thoth:'The scales of Ma\'at tip'})[(G&&(G.a2||G.ch))||'ody']||'The gods grow impatient';
+const CLKN=()=>(G&&G.a3)?'The seventh trumpet sounds':({odin:'Ragnarök draws near',wukong:'The Jade Emperor grows impatient',thoth:'The scales of Ma\'at tip'})[(G&&(G.a2||G.ch))||'ody']||'The gods grow impatient';
 const clkOn=()=>!!(G&&G.e&&G.p&&!G.tut);
 function clockTick(){if(!clkOn()||G.turn<CLK0)return 0;const n=G.turn-CLK0+1;G.p.life-=n;G.e.life-=n;log(CLKN()+': you and '+(G.e.nm||'the enemy')+' each lose '+n+' life.');return n}
 function clkBadge(){if(!clkOn()||!G.turn||G.turn<CLKW)return'';const left=CLK0-G.turn,nx=Math.max(1,G.turn+1-CLK0+1);
@@ -3315,6 +3315,13 @@ const LB={cards:{},foes:{},elites:{},bosses:{},hero:{},dyn:{},realms:{},
 LB.realm('shared',{
 cards:{
 karma:"Every deed is written somewhere, in some ledger older than the gods who keep it. What is left over is never lost; it is carried forward.",
+/* --- tutorial training targets (the How to play lessons) --- */
+tdum:"Every hero who ever lived first struck something that could not strike back.",
+tdum1:"Straw dressed as a soldier. It teaches the one lesson real soldiers never wait to give.",
+tblk:"A shield on a post. It teaches that the wall in front of you is also a choice someone made.",
+tstraw:"It charges every time, because straw cannot learn. Watch it, and learn what charging costs.",
+tspear:"A straw spear with a real point. Even practice can draw blood.",
+tgiant:"Clay piled high and told to stand still. Some enemies are not meant to be beaten, only to be gone around.",
 dint:"Above every pantheon there is a silence, and sometimes the silence reaches down. No hero has ever learned its name.",
 }
 });
