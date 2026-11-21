@@ -8,6 +8,7 @@ All of Mythologica's story text lives here, one file per realm. `tooling/patch_l
 | `norse.js` | the Nine Worlds (the Eddas and sagas) | Odin |
 | `chinese.js` | the Western Heaven (Journey to the West) | Sun Wukong |
 | `egyptian.js` | the Two Lands (the Book of the Dead and the temple texts) | Thoth |
+| `heaven.js` | Act III, the War in Heaven (the Bible, Enoch, Jubilees, the War Scroll, Tobit, the Avesta, the Goetia) | all |
 | `shared.js` | cards every hero can draft | all |
 
 Each file calls `LB.realm(key, {...})` with these sections:

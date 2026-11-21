@@ -3,7 +3,7 @@
 # The text lives in tooling/lore/*.js, one file per realm (see tooling/lore/README.md); this patch only wires it in.
 # Also fixes two realm-name bugs: the map's centre altar always said "the strait", and in Act II the altar,
 # the guardian's "falls silent" line and the anti-stall clock named the hero's home realm, not the realm you are in.
-_LORE_FILES = ['shared', 'greek', 'norse', 'chinese', 'egyptian']
+_LORE_FILES = ['shared', 'greek', 'norse', 'chinese', 'egyptian', 'heaven']
 _LORE_JS = (r"""
 /* ===== Lore (tooling/lore/*.js) ===== */
 const LB={cards:{},foes:{},elites:{},bosses:{},hero:{},dyn:{},realms:{},
