@@ -4,9 +4,9 @@ src=src.replace("const wait=ms=>new Promise(r=>setTimeout(r,ms));","const wait=m
 const ctx=vm.createContext({window:{},console,setTimeout:()=>{},requestAnimationFrame:()=>{},document:{getElementById:()=>({}),querySelector:()=>null}});
 vm.runInContext(src,ctx);const R=e=>vm.runInContext(e,ctx);let f=0;const ok=(n,c)=>{console.log(c?'ok  ':'FAIL',n);if(!c)f++};
 const setup=(bi)=>R(`setChar('odin');newRun();for(let i=0;i<11;i++)pickDraft(0);G.boss=1;G.bi=${bi};fight();G.phase='main';G.p.life=20;G.p.mana=9;G.p.bf=[];G.e.bf=G.e.bf.filter(x=>!isC(x));G.e.hand=[]`);
-ok('12 bosses (3 per hero)',R('BOSS.length')==12);
+ok('12 hero bosses (3 per hero), plus the Act III generals and the Beast',R('BOSS.filter(b=>!b.a3).length')==12&&R('BOSS.filter(b=>b.a3).length')==4);
 ok('odin offered 3,4,5',R('JSON.stringify(CHARS.odin.bo)')=='[3,4,5]'&&R('JSON.stringify(CHARS.ody.bo)')=='[0,1,2]');
-ok('lore has 5 sentences each',R('BOSS.map(b=>b.lore.split(/(?<=[.!?])\\s+/).length).join()')=='5,5,5,5,5,5,5,5,5,5,5,5');
+ok('lore has 5 sentences each',R('BOSS.filter(b=>!b.a3).map(b=>b.lore.split(/(?<=[.!?])\\s+/).length).join()')=='5,5,5,5,5,5,5,5,5,5,5,5');
 // ---- Hrungnir duel
 setup(5);
 ok('holmgang trump present',R('duelOn()'));
