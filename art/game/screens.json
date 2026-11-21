@@ -3,7 +3,8 @@
 "bossp": "s_odin_bossp",
 "draft_reward": "s_odin_draft_reward",
 "draft_start": "s_odin_draft_start",
-"otg": "s_odin_otg"
+"otg": "s_odin_otg",
+"tutfight": "s_odin_tut_ground"
 },
 "ody": {
 "bossp": "s_bossp",
@@ -12,5 +13,11 @@
 "otg": "s_otg",
 "tutfight": "s_tut_ground",
 "tuttext": "s_tut_text"
+},
+"thoth": {
+"tutfight": "s_th_tut_ground"
+},
+"wukong": {
+"tutfight": "s_wk_tut_ground"
 }
 }
