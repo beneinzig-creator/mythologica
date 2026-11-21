@@ -35,4 +35,4 @@ setup('odin',1);R(`G.e.bf.push(mk('rwall'));var g=mk('hgnt');G.e.bf.push(g);var 
 // Hit and run
 setup('ody',5);R(`G.e.bf.push(mk('hitr'));var m=mk('mraid');m.sick=0;G.e.bf.push(m);G.cmb=launch(G.e,[m],{});G.cmb.side='e';resolve()`);
 ok('hit and run bounces unblocked marauder',R(`G.e.hand.some(c=>c.id=='mraid')&&!G.e.bf.includes(m)`));
-process.exit(f?1:0);
+console.log(f?'FAILS '+f:'ALL OK');process.exit(f?1:0);
