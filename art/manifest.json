@@ -3801,7 +3801,7 @@
         },
         "mana": {
           "name": "Mana icon",
-          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Mana: a single glowing drop of golden ichor, the blood of the gods, with a soft inner light.",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Mana: a single drop of golden ichor, the blood of the gods, painted flat like a figure on a Greek vase: a plump teardrop of matte ochre gold with a thick dark brown outline and one small cream highlight, no gloss, no shine, no glow, no 3D shading, filling most of the frame.",
           "output": "art/icons/odysseus/mana.png",
           "size": "1024x1024",
           "format": "png",
@@ -14999,6 +14999,22 @@
       "output": "art/scenes/ody/s_bossp.webp",
       "size": "1536x1024"
     },
+    "s_tut_text": {
+      "name": "Tutorial reading screen background",
+      "hero": "ody",
+      "screen": "tuttext",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Hall of Myths, a vast ancient library where the stories of every land are kept together: tall shelves of scrolls, clay tablets, bamboo books and papyrus rolls along the left and right edges; a great round reading table with an open scroll, an oil lamp and a quill at the lower left; a starry painted dome high above; warm lamplight pooling on the floor; the centre calm, softly lit and uncluttered so text can sit over it.\nColour: deep warm umber and midnight blue (#140f0a to #3a2a18) with lamplight gold, lapis and parchment cream accents.",
+      "output": "art/scenes/ody/s_tut_text.webp",
+      "size": "1536x1024"
+    },
+    "s_tut_ground": {
+      "name": "Tutorial battle (Odysseus) background",
+      "hero": "ody",
+      "screen": "tutfight",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a Greek training ground (palaestra) on the island of Ithaca in the morning: a sand floor marked with lines; wooden practice dummies wearing battered bronze shields and crested helmets along the left edge; racks of spears and a white colonnade along the right edge; olive trees, a stone water trough and a bronze gong; the wine-dark sea and a black ship beyond.\nColour: warm sand and sea blue (#1a1408 to #4a6a7a) with bronze, olive green, white marble and morning gold.",
+      "output": "art/scenes/ody/s_tut_ground.webp",
+      "size": "1536x1024"
+    },
     "jotnar": {
       "name": "The Jotnar background",
       "hero": "odin",
@@ -15108,6 +15124,14 @@
       "output": "art/scenes/odin/s_odin_bossp.webp",
       "size": "1536x1024"
     },
+    "s_odin_tut_ground": {
+      "name": "Tutorial battle (Odin) background",
+      "hero": "odin",
+      "screen": "tutfight",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a Viking training yard beside a longhall in winter: a ring of trampled snow; thick wooden posts hacked by axe blows along the left edge; racks of round painted shields and spears along the right edge; a straw target bristling with arrows; braziers burning; the turf roof of the longhall and a frozen fjord beyond under a pale sky.\nColour: cold slate and snow white (#0f141a to #4a5a6a) with brazier orange, painted shield reds and blues, and iron grey.",
+      "output": "art/scenes/odin/s_odin_tut_ground.webp",
+      "size": "1536x1024"
+    },
     "whitebone": {
       "name": "The White Bone Spirit background",
       "hero": "wukong",
@@ -15185,6 +15209,14 @@
       "output": "art/scenes/wukong/buddhapalm.webp",
       "size": "1536x1024"
     },
+    "s_wk_tut_ground": {
+      "name": "Tutorial battle (Sun Wukong) background",
+      "hero": "wukong",
+      "screen": "tutfight",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a training terrace on the Mountain of Flowers and Fruit from Journey to the West: a stone terrace among misty peaks; wooden posts and straw training dummies along the left edge; racks of staffs, spears and banners along the right edge; peach trees in pink blossom, a waterfall in the distance; a small shrine with incense.\nColour: jade green and peach pink (#0a1a14 to #4f8a6a) with cinnabar banners, gold and misty white.",
+      "output": "art/scenes/wukong/s_wk_tut_ground.webp",
+      "size": "1536x1024"
+    },
     "robbers": {
       "name": "The Tomb Robbers background",
       "hero": "thoth",
@@ -15260,6 +15292,14 @@
       "hero": "thoth",
       "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a temple of the lioness goddess Sekhmet under a blazing midday sun: rows of black granite lion-headed statues along the left and right edges; a burning sky of orange and gold; the land beyond cracked and scorched with plague smoke rising; a great sun disc blazing over the temple pylon at the centre back; red beer spilled like blood across the courtyard stones Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: blazing orange, red and gold (#2a0a04 to #e07a24) with black granite and white glare.",
       "output": "art/scenes/thoth/sekhmet.webp",
+      "size": "1536x1024"
+    },
+    "s_th_tut_ground": {
+      "name": "Tutorial battle (Thoth) background",
+      "hero": "thoth",
+      "screen": "tutfight",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a training court inside an Egyptian temple: a sand floor between painted columns with papyrus capitals; wooden sparring staffs and shields of cowhide on racks along the left edge; archery targets and a scribe's school bench with palettes along the right edge; a sacred ibis by a pool; the temple pylon and palm trees beyond in the morning sun.\nColour: warm sandstone and lapis blue (#1a1208 to #6a5a3a) with turquoise, red ochre, gold and palm green.",
+      "output": "art/scenes/thoth/s_th_tut_ground.webp",
       "size": "1536x1024"
     }
   }

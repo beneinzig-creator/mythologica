@@ -9,6 +9,8 @@
 "bossp": "s_bossp",
 "draft_reward": "s_draft_reward",
 "draft_start": "s_draft_start",
-"otg": "s_otg"
+"otg": "s_otg",
+"tutfight": "s_tut_ground",
+"tuttext": "s_tut_text"
 }
 }
