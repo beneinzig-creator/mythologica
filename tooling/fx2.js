@@ -72,11 +72,30 @@ const PSPEC=(()=>{
   'wukong/ui_camp':[L('ember',36,EMB),L('mote',10,['230,235,255'])],
   'wukong/ui_craft':[L('ember',34,FIRE),L('smoke',4,['200,190,180']),L('gold',8,GOLD)],
   'wukong/ui_altar':[L('smoke',5,['190,180,170']),L('petal',10,PINK),L('mote',12,GOLD)],
+  // Thoth
+  robbers:[L('ember',26,EMB),L('mote',22,['230,200,140']),L('gold',10,GOLD)],
+  scorpions:[L('sand',30,['230,170,100','200,130,80']),L('mote',16,['255,200,140'])],
+  servants:[L('mote',24,['150,230,230','200,240,240']),L('mist',3,['120,200,200'])],
+  sobek:[L('mote',20,['255,236,170']),L('petal',10,['120,150,255','160,190,255']),L('firefly',8,['230,255,200'])],
+  anubis:[L('mote',18,['220,230,255']),L('firefly',10,['255,220,120']),L('sand',10,['180,190,210'])],
+  heka:[L('smoke',4,['120,220,130']),L('gold',14,['170,255,170','230,200,255']),L('ember',14,EMB)],
+  ammit:[L('gold',16,GOLD),L('mist',3,['160,60,40']),L('mote',14,['255,220,180'])],
+  sphinx:[L('sand',30,['230,190,130','245,210,160']),L('mote',18,GOLD)],
+  apophis:[L('mist',4,['80,160,90']),L('ember',20,['150,255,150','190,120,255']),L('flash',1,['200,255,210'])],
+  set:[L('sand',100,['200,90,50','230,130,70','170,70,40']),L('mist',3,['200,90,50'])],
+  sekhmet:[L('ember',44,FIRE),L('ash',14,ASH),L('mote',16,['255,230,160'])],
+  // Tutorial
+  s_tut_text:[L('mote',22,['255,226,170']),L('gold',6,GOLD)],
+  s_tut_ground:[L('mote',20,['240,225,190']),L('sand',8,['220,200,160'])],
+  s_odin_tut_ground:[L('snow',40,SNOW),L('ember',10,EMB)],
+  s_wk_tut_ground:[L('petal',22,PINK),L('mist',2,['230,240,235'])],
+  s_th_tut_ground:[L('mote',22,['240,215,160']),L('gold',8,GOLD)],
   // Defaults: home screen and each hero's other screens
   home:[L('mote',16,['255,236,200'])],
   ody:[L('mote',22,['200,228,255'])],
   odin:[L('snow',40,SNOW)],
   wukong:[L('ember',30,EMB),L('mist',3,['255,214,140'])],
+  thoth:[L('mote',30,['230,200,140','245,220,160']),L('gold',10,GOLD),L('sand',12,['220,190,130'])],
  }})();
 
 function fxScene(){try{

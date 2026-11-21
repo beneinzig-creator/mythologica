@@ -17,7 +17,7 @@ ART = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(ART)
 SRC = os.path.join(ROOT, 'tooling', 'n1.html')
 
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth'}
 TYPE = {'C': 'Army member', 'I': 'Quick spell', 'S': 'Spell', 'E': 'Modifier', 'A': 'Item'}
 RARITY = {'C': 'Common', 'U': 'Uncommon', 'R': 'Rare', 'L': 'Legendary'}
 SETTING = {
@@ -26,12 +26,33 @@ SETTING = {
            'wine-dark Aegean sea, white limestone, temples, cypress, smoke and fire',
     'odin': 'Viking Age Norse myth: iron mail, round wooden shields, furs, runestones, longhalls, '
             'ravens, wolves, fjords, snow and northern sky',
+    'thoth': 'Ancient Egyptian myth: temples, tombs, the Nile, papyrus marshes, the desert, the Duat underworld, gods with animal heads, gold, faience and linen',
     'wukong': 'Journey to the West, classical Chinese myth: silk robes, lacquered armour, temples, '
               'clouds, mountains, celestial palaces',
+    'thoth': 'Ancient Egyptian myth of the New Kingdom: temples, tombs, papyrus, the Nile, desert, '
+             'gods with animal heads, gold, lapis lazuli and faience',
 }
 # A hero's own look, laid over the shared card style. Same rules as Odysseus (tight framing, one distinct
 # shot per card, rarity in the framing), but a different art experience per mythology.
 HERO_STYLE = {
+    'thoth': ('Egyptian look for this hero: the same 1990s hand-made card art, but painted in the manner of '
+              'ancient Egyptian tomb paintings, temple reliefs and illustrated papyri. Crisp, even, dark outlines '
+              'around every shape and flat areas of bold mineral colour with very little shading: Egyptian blue, '
+              'lapis, malachite green, red and yellow ochre, gold leaf, black and white; the faint texture of painted '
+              'plaster, carved limestone or papyrus fibres shows through. Gods and people may keep the strong '
+              'Egyptian profile silhouette, but the camera angle still varies from card to card. Ornament comes from '
+              'Egypt: lotus and papyrus borders, winged sun discs, broad collars, gold and faience. Warm desert and '
+              'Nile light, between Odin\'s darkness and Wukong\'s brightness. Every card has its own strong colour '
+              'key (given under Light and colour) that fills the picture; Egyptian art is not only blue and gold, '
+              'so many cards are dominated by red ochre, desert yellow, malachite green, black and white, carnelian or rose. '
+              'No readable writing: hieroglyphs only as '
+              'small decorative carving in the background, never as the subject. Not modern Egyptian-themed fantasy '
+              'game art, not a movie poster, no glowing sci-fi pyramids. '
+              'Focus over scenery: the card\'s subject is the star of the picture and should look as striking and '
+              'powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and '
+              'secondary, and no second large figure or creature competes with the subject unless the card is about '
+              'that creature. Only paint Thoth himself (ibis-headed god with a reed pen and palette) when the subject '
+              'names him.'),
     'wukong': ('Chinese look for this hero: the same 1990s hand-made card art, but painted in the manner of classical '
                'Chinese painting and the illustrated Ming editions of Journey to the West. Fluid, calligraphic brush '
                'lines that swell and taper, never hard woodcut or pen hatching. Figures in the fine-line gongbi manner '
@@ -165,9 +186,11 @@ FRAMES['odin'] = {
                  'still rustic and understated. ' + NORSE_LOOK,
 }
 HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
-             'wukong': 'Journey to the West and classical Chinese myth'}
+             'wukong': 'Journey to the West and classical Chinese myth',
+             'thoth': 'ancient Egyptian myth and the Book of the Dead'}
 MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone',
-              'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below'}
+              'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below',
+              'thoth': 'an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below'}
 
 # How played each rarity looks: cheaper cards have been shuffled more.
 CONDITION = {
@@ -191,7 +214,10 @@ ICON_BASE = (
 ICONS = {'ody': {
     # interface
     'life': 'Life: a heart of deep red enamel set in a worn bronze rim.',
-    'mana': 'Mana: a single glowing drop of golden ichor, the blood of the gods, with a soft inner light.',
+    # Ben (playtest, Nov 2026): the first drop looked glossy and odd on the mana orb; this one is flat and bold.
+    'mana': 'Mana: a single drop of golden ichor, the blood of the gods, painted flat like a figure on a Greek vase: '
+            'a plump teardrop of matte ochre gold with a thick dark brown outline and one small cream highlight, no gloss, '
+            'no shine, no glow, no 3D shading, filling most of the frame.',
     'action': 'Action points: a small bronze thunderbolt of Zeus, a jagged zig-zag with a few sparks.',
     'victory': 'Victory points: a green-and-gold laurel wreath closed into a ring.',
     'attack': 'Attack form: two crossed bronze Greek short swords (xiphos) with leather-wrapped grips.',
@@ -579,6 +605,109 @@ HERO_UI['wukong'] = {
         'A quiet mountain Buddhist shrine at dusk: a small red-pillared pavilion with a golden Buddha statue, a bronze '
         'incense burner with smoking sticks, offerings of peaches and lotus flowers, prayer flags and old pines, '
         'misty peaks behind. ' + WK_SCREEN + ' No text. Dark around the edges, no people.'),
+}
+
+# ---- Thoth (ancient Egyptian) ----
+EGYPT_LOOK = ('Ancient Egyptian look, New Kingdom, like Egyptian temple and tomb painting and the jewellery of '
+              'Tutankhamun: lapis lazuli blue, turquoise and faience green, carnelian and red ochre, gold leaf, black '
+              'and limestone white; lotus and papyrus friezes, block borders of coloured bars, winged sun discs, '
+              'decorative pattern bands with no readable hieroglyphs. No Greek, Norse or Chinese elements.')
+FRAMES['thoth'] = {
+    'common': 'Common rarity: a plain frame of sun-bleached sandstone with a simple painted border of alternating blue, '
+              'red and green bars (the Egyptian block border) and small papyrus-bud corners, modest and unornamented. '
+              + EGYPT_LOOK,
+    'uncommon': 'Uncommon rarity: a frame of turquoise faience tiles set in dark ebony, with a fine lotus-and-papyrus '
+                'frieze along the edges and small blue lotus flowers at the corners. ' + EGYPT_LOOK,
+    # Ben (Nov 2026): the first Rare looked too like the Uncommon, so the Rare blends it with the first Legendary,
+    # and the Legendary is redone with far more gold.
+    'rare': 'Rare rarity: a frame of hammered gold inlaid with lapis lazuli, turquoise and carnelian like a royal pectoral, '
+            'a pair of colourful outspread vulture wings (lapis, turquoise and red feathers edged in gold) wrapping the '
+            'upper sides of the card, a small winged sun disc above the art window, and a frieze of blue lotus flowers '
+            'along the bottom; richer than the common and uncommon, but not yet the full glory of a legendary. '
+            + EGYPT_LOOK,
+    'legendary': 'Legendary rarity, the grandest frame of all, made almost entirely of radiant burnished gold, like the '
+                 'golden shrine and mask of Tutankhamun: thick sculpted gold borders glowing with warm light, the great '
+                 'golden outspread wings of the sacred ibis of Thoth sweeping all the way down both sides, every feather '
+                 'of beaten gold with thin inlays of lapis and turquoise; at the top centre a large glowing silver moon '
+                 'disc in a golden crescent, sending out golden rays; gold cobras and gold lotus flowers, jewels of '
+                 'carnelian and lapis set into the corners, a band of gold stars on deep lapis along the top, and gold '
+                 'hieroglyph-like ornament (no readable signs) along the bottom. It shines like treasure in torchlight. '
+                 'Hand-painted, never glossy or 3D-rendered. ' + EGYPT_LOOK,
+}
+ICONS['thoth'] = {k: v + ' Ancient Egyptian style, colourful.' for k, v in {
+    'life': 'Life: a golden ankh inlaid with red carnelian.',
+    'mana': 'Mana: a single glowing drop of blue Nile water falling from a small gold libation vase.',
+    'action': 'Action points: a gold-and-turquoise scarab beetle with its wings open, mid-flight.',
+    'victory': 'Victory points: a gold feather of Maat standing upright.',
+    'attack': 'Attack form: an ancient Egyptian khopesh with a curved bronze blade, lying diagonally, as painted on a temple wall.',
+    'defense': 'Defense form: a tall Egyptian cowhide shield, rounded at the top, dappled brown and white with a gold rim.',
+    'switch': 'Switch stance: two curved golden arrows chasing each other in a circle, one tipped lapis blue, one carnelian red.',
+    'upgrade': 'Upgrade level: a single golden lotus bud.',
+    'target': 'Choose a target: a golden arrowhead pointing straight down, with a faint blue glow.',
+    'cleared': 'Fight won: a broken Egyptian spear, snapped in two, the halves crossed.',
+    'chosen': 'Chosen: a tick mark painted in gold with one confident reed-pen stroke.',
+    'menu': 'Menu: three short horizontal lapis-blue bars edged in gold, stacked neatly.',
+    'foretold': 'Foretold: a gold-rimmed bronze scrying bowl of dark water with the reflection of a crescent moon.',
+    'gold': 'Gold: a small heap of gold rings and gold nuggets beside a gold collar.',
+    'gift': 'Gift: a small painted wooden casket with a gold lid, slightly open with warm light inside.',
+    'start': 'Starting point and emblem of Thoth: a silver moon disc resting in a golden crescent.',
+    'here': 'You are here: a small Egyptian reed boat with a white sail, seen from the side.',
+    'camp': 'Campfire: a small fire in a ring of stones beside a palm tree.',
+    'craft': 'Crafting table: a scribe\'s low wooden table with a papyrus roll, palette and reed pens.',
+    'altar': 'Altar: a small stone offering table with a loaf, a jar and a lotus, and a thin column of incense smoke.',
+    'greataltar': 'The great altar: a golden pyramid capstone (pyramidion) glowing at its tip.',
+    'coin': 'The Offering coin: a single worn gold Egyptian ring-money disc seen perfectly straight-on, filling the frame, '
+            'tarnished and nicked, a faint low-relief skull struck in the centre. Matte, painted like the weathered frames '
+            'of an old trading card; no shine, no text, no hieroglyphs, no numbers.',
+    'offering': 'The icon for the Offering (sacrifice) value on an Egyptian-mythology card: a weathered, bone-white human '
+                'skull seen from the front, aged and slightly cracked, with a blue lotus flower beside it. Solid and opaque, '
+                'no glow, no smoke.',
+}.items()}
+MEDALS['thoth'] = {
+    'robbers': 'The Tomb Robbers: a masked thief\'s face lit by a torch, gold glinting. Colours: torch orange, umber and gold.',
+    'scorpions': 'The Scorpions of Serket: a black scorpion with raised tail on golden sand. Colours: black, sand gold and amber.',
+    'servants': 'Servants of the Tomb: a little blue faience shabti figure with folded arms. Colours: turquoise blue and black.',
+    'sobek': 'The Crocodiles of Sobek: a green crocodile head rising from the Nile among papyrus. Colours: Nile green and teal.',
+    'anubis': 'The Jackals of Anubis: a black jackal head with gold collar and gold-lined ears. Colours: black, gold and '
+              'deep lapis blue.',
+    'heka': 'The Priests of Heka: two entwined cobras around a magician\'s staff. Colours: violet, black and gold.',
+    'ammit': 'Ammit, the Devourer: a monster with a crocodile head and lion\'s mane beside the scales of judgement. Colours: '
+             'dark red, ochre and gold.',
+    'sphinx': 'The Great Sphinx: the face of the Sphinx in profile with the striped nemes headdress. Colours: warm sandstone '
+              'and dusk rose.',
+    'apophis': 'Apophis, the Serpent of Chaos: a huge coiling serpent in darkness. Colours: deep black, poison green and violet.',
+    'set': 'Set, Lord of the Red Desert: the head of the Set animal with tall square ears in a red sandstorm. Colours: red '
+           'ochre and rust.',
+    'sekhmet': 'Sekhmet, the Eye of Ra: a lioness head crowned with a blazing sun disc. Colours: blazing orange, red and gold.',
+}
+STAMPS['thoth'] = {
+    'D': 'Sundered: a small human figure splitting into its shadow and a bird-soul.',
+    'I': 'Scribes: a scribe\'s palette with two ink wells and a reed pen.',
+    'Y': 'Recorder: a papyrus scroll half unrolled.',
+    # Marks for Thoth's six regular opponents and two elites. Letters and digits are all taken, so these use
+    # lowercase letters; their files are named arch_xa..arch_xh (lowercase alone would clash with capitals on macOS).
+    'xa': 'Robbers: a burning torch.',
+    'xb': 'Scorpions: a scorpion seen from above.',
+    'xc': 'Shabti: a small mummiform shabti figure.',
+    'xd': 'Crocodile: a crocodile seen from the side.',
+    'xe': 'Jackal: a reclining black jackal.',
+    'xf': 'Heka: a rearing cobra.',
+    'xg': 'Judgement: a pair of balance scales.',
+    'xh': 'Riddle: a small sphinx lying down.',
+}
+HERO_UI['thoth'] = {
+    # Ben's pick (Nov 2026) from seven ideas: the Eye of the Moon.
+    'sigil_thoth': ('1024x1024', 'transparent',
+        'A single emblem for the back of every card in Thoth\'s deck: the Eye of the Moon, the wadjet eye that Thoth '
+        'healed, drawn as a bold Egyptian eye with its long cosmetic line and the curling spiral and teardrop marks beneath, '
+        'inlaid in lapis lazuli and gold like Tutankhamun\'s jewellery, with a silver crescent moon cradled beneath it. '
+        'Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no '
+        'hieroglyphs, no circle or badge behind it.'),
+    'ui_button': ('1536x1024', 'transparent',
+        'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
+        'width of the image: a gold-edged lapis-blue plaque with a thin band of coloured block border and small gold '
+        'lotus caps at both ends, worn and scratched; the centre is plain and flat for a label. Ancient Egyptian style, '
+        'rustic 1990s hand-painted. Fully transparent background around the plate. No text, no hieroglyphs, no letters.'),
 }
 
 STUB = r'''

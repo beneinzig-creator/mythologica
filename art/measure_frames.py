@@ -15,7 +15,7 @@ Uses only Python and macOS `sips`.
 import argparse, json, os, struct, subprocess, sys, tempfile
 
 ART = os.path.dirname(os.path.abspath(__file__))
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth'}
 
 # x0, y0, x1, y1 in pixels on the 1024x1536 frame
 MANUAL = {'ody': {
@@ -47,6 +47,17 @@ MANUAL = {'ody': {
                   'text': (78, 960, 948, 1385), 'pt': (765, 1332, 972, 1422)},
     'legendary': {'name': (178, 112, 848, 185), 'cost': (862, 85, 985, 205),  'type': (140, 870, 885, 935),
                   'text': (72, 965, 955, 1350), 'pt': (768, 1328, 962, 1400)},
+}, 'thoth': {
+    # Read from the frames by eye (Nov 2026). Name and type boxes keep to the clear stretch of each bar, inside the
+    # rounded ends and away from the papyrus capitals, cobras and ibis heads, so names never sit on the ornament.
+    'common':    {'name': (105, 74, 818, 150),  'cost': (832, 72, 945, 165),  'type': (110, 868, 920, 934),
+                  'text': (88, 962, 938, 1380), 'pt': (782, 1342, 975, 1432)},
+    'uncommon':  {'name': (110, 108, 828, 180), 'cost': (840, 100, 938, 195), 'type': (110, 870, 920, 940),
+                  'text': (100, 968, 930, 1385), 'pt': (775, 1342, 945, 1418)},
+    'rare':      {'name': (90, 62, 855, 132),   'cost': (862, 55, 960, 145),  'type': (100, 872, 930, 935),
+                  'text': (100, 950, 925, 1365), 'pt': (758, 1315, 960, 1395)},
+    'legendary': {'name': (132, 120, 815, 188), 'cost': (828, 110, 918, 195), 'type': (130, 850, 900, 915),
+                  'text': (130, 950, 895, 1335), 'pt': (775, 1290, 925, 1360)},
 }}
 
 

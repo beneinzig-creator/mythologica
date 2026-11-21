@@ -15,15 +15,15 @@ import tempfile, argparse, json, os, subprocess
 
 ART = os.path.dirname(os.path.abspath(__file__))
 GAME = os.path.join(ART, 'game')
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth'}
 TIER = {'Staple': 'c', 'Common': 'c', 'Uncommon': 'u', 'Rare': 'r', 'Legendary': 'l',
         'common': 'c', 'uncommon': 'u', 'rare': 'r', 'legendary': 'l'}
 FRAME_NAME = {'c': 'common', 'u': 'uncommon', 'r': 'rare', 'l': 'legendary'}
 # Each hero's frames get their own codes in the game (Odysseus c/u/r/l, Odin oc/ou/or/ol, ...), so one
 # cards.json and one set of frame files serve every hero. Generic icons that every hero has (life, mana, coin,
 # button, ...) go in a per-hero folder; archetype marks and medallions have unique names and stay flat.
-CODE_PREFIX = {'ody': '', 'odin': 'o', 'wukong': 'w'}
-ICON_SUB = {'ody': '', 'odin': 'odin/', 'wukong': 'wukong/'}
+CODE_PREFIX = {'ody': '', 'odin': 'o', 'wukong': 'w', 'thoth': 't'}
+ICON_SUB = {'ody': '', 'odin': 'odin/', 'wukong': 'wukong/', 'thoth': 'thoth/'}
 
 
 def shrink(src, dst, width, fmt='jpeg', quality='78'):

@@ -1,4 +1,14 @@
 {
+"Ammit, the Devourer": {
+"id": "ammit"
+},
+"Apophis, the Serpent of Chaos": {
+"bg": [
+"#05080a",
+"#2f6a3a"
+],
+"id": "apophis"
+},
 "Cattle of the Sun": {
 "id": "cattle"
 },
@@ -67,6 +77,23 @@
 ],
 "id": "scylla"
 },
+"Sekhmet, the Eye of Ra": {
+"bg": [
+"#2a0a04",
+"#e07a24"
+],
+"id": "sekhmet"
+},
+"Servants of the Tomb": {
+"id": "servants"
+},
+"Set, Lord of the Red Desert": {
+"bg": [
+"#1f0806",
+"#b04a24"
+],
+"id": "set"
+},
 "The Buddha's Palm": {
 "bg": [
 "#14121e",
@@ -84,14 +111,23 @@
 "The Cicones": {
 "id": "cicones"
 },
+"The Crocodiles of Sobek": {
+"id": "sobek"
+},
 "The Dwarven Forge": {
 "id": "forge"
 },
 "The Gold and Silver Horn Kings": {
 "id": "hornkings"
 },
+"The Great Sphinx": {
+"id": "sphinx"
+},
 "The Heavenly Host": {
 "id": "heavenlyhost"
+},
+"The Jackals of Anubis": {
+"id": "anubis"
 },
 "The Jotnar": {
 "id": "jotnar"
@@ -104,6 +140,12 @@
 },
 "The Phaeacians": {
 "id": "phaeacians"
+},
+"The Priests of Heka": {
+"id": "heka"
+},
+"The Scorpions of Serket": {
+"id": "scorpions"
 },
 "The Shades of Hades": {
 "id": "shades"
@@ -120,6 +162,9 @@
 },
 "The Spider Cave": {
 "id": "spider"
+},
+"The Tomb Robbers": {
+"id": "robbers"
 },
 "The White Bone Spirit": {
 "id": "whitebone"
