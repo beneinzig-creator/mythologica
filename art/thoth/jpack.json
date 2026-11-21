@@ -1,0 +1,22 @@
+{
+  "id": "jpack",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "1536x1024",
+  "created": "2026-11-20 17:15:39",
+  "prompt": "Fantasy trading-card illustration in the style of early-to-mid 1990s card art: hand-made traditional media (gouache, acrylic, watercolour and pen-and-ink), visible brushstrokes and pen lines, matte paper texture, and the slightly soft, faded look of a card printed in the 1990s. Expressive and a little stylised rather than realistic: strong shapes, bold silhouettes, sometimes inked outlines and flat patterned colour. Dark overall with near-black shadows, lit by bold, saturated accent colours taken from the card's own light and colour key (no default orange) where they matter. Frame the subject tightly: it fills most of the picture and may be cropped by the edges, with its face or focal point near the centre; keep the background minimal, simple and dark. Landscape 3:2 composition. No text, no letters, no border, no card frame, no logo, no watermark, no signature. Not photorealistic, not 3D render, not modern digital concept art, not anime.\n\nEgyptian look for this hero: the same 1990s hand-made card art, but painted in the manner of ancient Egyptian tomb paintings, temple reliefs and illustrated papyri. Crisp, even, dark outlines around every shape and flat areas of bold mineral colour with very little shading: Egyptian blue, lapis, malachite green, red and yellow ochre, gold leaf, black and white; the faint texture of painted plaster, carved limestone or papyrus fibres shows through. Gods and people may keep the strong Egyptian profile silhouette, but the camera angle still varies from card to card. Ornament comes from Egypt: lotus and papyrus borders, winged sun discs, broad collars, gold and faience. Warm desert and Nile light, between Odin's darkness and Wukong's brightness. Every card has its own strong colour key (given under Light and colour) that fills the picture; Egyptian art is not only blue and gold, so many cards are dominated by red ochre, desert yellow, malachite green, black and white, carnelian or rose. No readable writing: hieroglyphs only as small decorative carving in the background, never as the subject. Not modern Egyptian-themed fantasy game art, not a movie poster, no glowing sci-fi pyramids. Focus over scenery: the card's subject is the star of the picture and should look as striking and powerful as possible, large and unmistakable at a glance. The background is simple, atmospheric and secondary, and no second large figure or creature competes with the subject unless the card is about that creature. Only paint Thoth himself (ibis-headed god with a reed pen and palette) when the subject names him.\n\nSetting: Ancient Egyptian myth: temples, tombs, the Nile, papyrus marshes, the desert, the Duat underworld, gods with animal heads, gold, faience and linen.\n\nSubject: A jackal packleader: a big black jackal leading a pack down a desert ridge at night, the others' eyes glowing behind it.\n\nComposition: an extreme close-up of the eyes and helmet, from a low angle looking up. Light and colour: night sky indigo full of stars. Presence: a dangerous but ordinary foe. The subject fills most of the picture; keep the background minimal.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 687,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 687
+    },
+    "output_tokens": 343,
+    "output_tokens_details": {
+      "image_tokens": 343,
+      "text_tokens": 0
+    },
+    "total_tokens": 1030
+  }
+}
