@@ -1172,6 +1172,7 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 | `patch54` | v110 | One hover pop-up per card; hold-to-inspect everywhere |
 | `patch55` | v111 | Odin's Norse frames, icons, button and card back |
 | `patch56` | v112 | Odin's painted screens and opponent marks |
+| `patch_lore` | | Lore from `tooling/lore/*.js`: a line for every card (shown only on inspect), enemy and elite lore, hero backstories; realm-name fixes |
 
 **Workflow.**
 - Work on a branch, open a PR into `main`. Vercel builds a preview for each PR and deploys `main` to production on merge.
@@ -1190,6 +1191,7 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
   - **`TXT`**: rules text by id.
   - **`DYN`**: functions `c => text` for live text, e.g. scaled damage or Disintegrate counts.
   - **`LORE`**: the type-line lore phrase.
+  - **`LB`** (from `tooling/lore/*.js`, see `tooling/lore/README.md`): the inspect lore line per card (`cardLore(c)`), regular-enemy and elite lore (`foeLore(o)`), hero backstories, and boss-lore overrides.
   - **`TAG`**: archetype letter by id.
   - **`ARCH`**: letter to archetype name.
   - **`RAR`** / **`RARN`** / **`RARX`**: rarity.
