@@ -3,7 +3,7 @@ let src=fs.readFileSync(process.argv[2]||'n1.html','utf8').match(/<script>([\s\S
 src=src.replace("const wait=ms=>new Promise(r=>setTimeout(r,ms));","const wait=ms=>Promise.resolve();").replace("const reveal=c=>new Promise(res=>{G.rv={c,res};render()});","const reveal=c=>Promise.resolve(1);");
 const ctx=vm.createContext({window:{},console,setTimeout:()=>{},requestAnimationFrame:()=>{},document:{getElementById:()=>({}),querySelector:()=>null}});
 vm.runInContext(src,ctx);const R=e=>vm.runInContext(e,ctx);let f=0;const ok=(n,c)=>{console.log(c?'ok  ':'FAIL',n);if(!c)f++};
-const setupB=(i)=>R(`setChar('wukong');newRun();for(let i=0;i<11;i++)pickDraft(0);G.boss=1;G.bi=CHARS.wukong.bo[${i}];fight();G.phase='main';G.p.life=20;G.p.mana=9;G.p.bf=[];G.p.hand=[];G.e.hand=[];wkUp(G.p);G.turn=5;`);
+const setupB=(i)=>R(`setChar('wukong');newRun();for(let i=0;i<11;i++)pickDraft(0);G.boss=1;G.bi=CHARS.wukong.bo[${i}];fight();{const t=G.e.hand.find(x=>x.boss);if(t){G.e.hand=G.e.hand.filter(x=>x!==t);enter(G.e,t)}}G.phase='main';G.p.life=20;G.p.mana=9;G.p.bf=[];G.p.hand=[];G.e.hand=[];wkUp(G.p);G.turn=5;`);
 const cast=(id,t)=>R(`(function(){var c=mk('${id}');G.p.hand.push(c);cast(c,${t||'undefined'});return c})()`);
 ok('3 wukong bosses',R('CHARS.wukong.bo.length')==3&&R('CHARS.wukong.bo.every(i=>BOSS[i])'));
 for(let i=0;i<3;i++){const l=R(`BOSS[CHARS.wukong.bo[${i}]].lore.split(/(?<=[.!?])\\s+/).length`);ok('boss '+i+' lore 5 sentences ('+l+')',l==5)}

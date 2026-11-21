@@ -6,7 +6,7 @@ vm.runInContext(src,ctx);const R=e=>vm.runInContext(e.replace(/\bconst /g,"var "
 const A3=()=>R("setChar('ody');newRun();G.p.recs=[...'spear,spear,sailor,sailor,peltast,peltast,hopl,hopl,thess,thess,ox,ox,camp,argus,charon'.split(',')].map(id=>({id,a:0,d:0,c:0,s:0,k:0,fl:0}));G.a2='odin';A2R='odin';G.p.life=10;startAct3()");
 const reg=(name)=>R(`(()=>{const i=A3.en.findIndex(x=>x.n==${JSON.stringify(name)});G.rt[G.fi]=i;G.elt=0;G.boss=0;fight();G.e.bf.push(mk(A3.en[i].mt));return i})()`);
 const elite=(name)=>R(`(()=>{const k=ELITES.findIndex(x=>x.n==${JSON.stringify(name)});G.elt=k+1;G.boss=0;fight();G.e.bf.push(mk(ELITES[k].mt));return k})()`);
-const boss=(k)=>R(`G.boss=1;G.bi=A3.bo[${k}];G.elt=0;fight()`);
+const boss=(k)=>R(`G.boss=1;G.bi=A3.bo[${k}];G.elt=0;fight();{const t=G.e.hand.find(x=>x.boss);if(t){G.e.hand=G.e.hand.filter(x=>x!==t);enter(G.e,t)}}`);
 // --- flow ---
 A3();ok('startAct3: Act III flag, 10 regular decks, life healed by 10',R('G.a3')==1&&R('EN.length')==10&&R('G.p.life')==20&&R('G.phase')=='map');
 ok('the Act III map has 2 elites from the Act III pool',R('G.web.nodes.filter(n=>n.el).length')==2&&R('G.web.nodes.filter(n=>n.el).every(n=>A3.el.includes(n.el-1))'));
@@ -44,13 +44,13 @@ R("G.e.life=Math.floor(G.e.max/2);chk()");ok('Abaddon phase 2: the smoke clears,
 R("G.p.bf.find(x=>x.id=='hopl').dmg=1;a3Up(G.p,G.e)");ok('…and torment: damaged army members take 1 more',R("G.p.bf.find(x=>x.id=='hopl').dmg")==2);
 // --- general victory, the other fronts, the Beast ---
 A3();boss(0);R("G.e.life=0;chk()");ok('beating a general leads to the other fronts, not the end',R('G.phase')=='a3front'&&R('G.front')=='Michael');
-R("bt('a3fin')");ok('then the Last Battle: the Beast with the False Prophet and a Head',R('G.fin')==1&&R('G.bi')==R('A3.fin')&&R("G.e.bf.some(x=>x.id=='xproph'&&!x.boss)")&&R("G.e.bf.some(x=>x.id=='xhb')"));
+R("bt('a3fin');{const t=G.e.hand.find(x=>x.boss);if(t){G.e.hand=G.e.hand.filter(x=>x!==t);enter(G.e,t)}}");ok('then the Last Battle: the Beast casts the False Prophet, and a Head stands ready',R('G.fin')==1&&R('G.bi')==R('A3.fin')&&R("G.e.bf.some(x=>x.id=='xproph')")&&R("G.e.bf.some(x=>x.id=='xhb')"));
 R("G.e.life=0;chk()");ok('the mortal wound heals while the Prophet lives',R('G.phase')=='main'&&R('G.rose')==1&&R('G.e.life')==R('Math.ceil(G.e.max/2)'));
 R("G.e.life=0;chk()");ok('the second time, the Beast falls: the run is won',R('G.phase')=='victory');
-A3();boss(0);R("G.e.life=0;chk();bt('a3fin')");R("G.e.bf=G.e.bf.filter(x=>x.id!='xproph');G.e.life=0;chk()");ok('with the Prophet dead, the Beast falls the first time',R('G.phase')=='victory');
+A3();boss(0);R("G.e.life=0;chk();bt('a3fin');{const t=G.e.hand.find(x=>x.boss);if(t){G.e.hand=G.e.hand.filter(x=>x!==t);enter(G.e,t)}}");R("G.e.bf=G.e.bf.filter(x=>x.id!='xproph');G.e.life=0;chk()");ok('with the Prophet dead, the Beast falls the first time',R('G.phase')=='victory');
 // --- save ---
 A3();R("G.phase='map';persist()");ok('Act III runs are saved',!!store.mythologica_run_v1);R("loadRun()");ok('loading an Act III run restores its enemies',R('G.a3')==1&&R('EN[0].n')=='Legion');
-A3();boss(0);R("G.e.life=0;chk();bt('a3fin');G.e.bf=G.e.bf.filter(x=>x.id!='xproph');G.e.life=0;chk();persist()");ok('the final victory clears the save',!store.mythologica_run_v1);
+A3();boss(0);R("G.e.life=0;chk();bt('a3fin');{const t=G.e.hand.find(x=>x.boss);if(t){G.e.hand=G.e.hand.filter(x=>x!==t);enter(G.e,t)}}G.e.bf=G.e.bf.filter(x=>x.id!='xproph');G.e.life=0;chk();persist()");ok('the final victory clears the save',!store.mythologica_run_v1);
 // --- the Lie and the bot ---
 A3();boss(1);R("G.phase='main';G.p.life=10;G.p.hand=[mk('xlie')];G.p.mana=0");R("hd0('h:'+G.p.hand[0].u)");ok('the Lie: casting it costs 1 life and clears it',R('G.p.life')==9&&R('G.p.hand.length')==0);
 A3();R("G.phase='a3front';G.front='Michael';startFinale();G.e.bf.push(mk('xhl'))");R("thSunder(G.e.bf.find(x=>x.id=='xhl'),G.p)");ok("the Beast's Heads can't be Sundered by you",R("G.e.bf.some(x=>x.id=='xhl')"));

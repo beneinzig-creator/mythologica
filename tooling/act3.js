@@ -88,7 +88,7 @@ xcook:['Royal Cook',2,'C',1,4,'','When it enters, restore 2 health to each of th
 xapol:['Apollyon, the Destroyer',5,'C',5,5,'f','','🦗','N',3], xkeep:['Keeper of the Key',3,'C',2,4,'','When it dies, two Locusts rise.','🗝️','N',2],
 xcharg:['Iron-Breasted Charger',2,'C',3,2,'h','','🐎','N',1], xsting:['Scorpion Tail',2,'S',0,0,'','Destroy target army member that has damage on it.','🦂','N'],
 /* the Last Battle */
-xproph:['The False Prophet',3,'C',1,6,'kw','At the start of the Beast\'s turn, it marks your strongest army member: it can\'t attack on your next turn (it can still block). While it lives, the Beast\'s mortal wound heals.','🐑','R',2],
+xproph:['The False Prophet',0,'C',1,6,'kw','At the start of the Beast\'s turn, it marks your strongest army member: it can\'t attack on your next turn (it can still block). While it lives, the Beast\'s mortal wound heals.','🐑','R',2],
 xbeast:['The Beast of the Sea',6,'C',6,7,'w','The Beast and its Heads can\'t be Sundered: they are one body.','🐉','R',3], xhb:['Head of Blasphemy',2,'C',2,3,'','The Beast\'s other Heads get +1/+0. Can\'t be Sundered.','🐉','R',1],
 xhd:['Head of Dominion',2,'C',2,3,'w','Can\'t be Sundered.','🐉','R',1], xhl:['Head of the Lion',3,'C',3,3,'r','Can\'t be Sundered.','🦁','R',2],
 ximg:['Image of the Beast',2,'C',2,3,'','','🗿','R',1],
@@ -187,13 +187,13 @@ const A3E=[
 A3E.forEach(x=>{ELITES.push(x);A3.el.push(ELITES.length-1)});
 {const b0=BOSS.length;
 BOSS.push(
- {n:'Lucifer, the Morning Star',n2:'Lucifer, the Red Dragon',ic:'🌟',l:21,sc:[0,0,0],trump:'xbarg',trump2:'xdrag',a3:1,champ:'Michael',
+ {n:'Lucifer, the Morning Star',n2:'Lucifer, the Red Dragon',ic:'🌟',l:23,sc:[0,0,0],trump:'xbarg',trump2:'xdrag',a3:1,champ:'Michael',
   d:ids('xlucg,xfang:3,xpride:5,xspear:2,xfall:2,xcast'),
   lore:`"How you have fallen from heaven, shining one, son of the dawn!" The brightest of the angels wanted the throne of God and was thrown down, and a third of the stars fell with him. He still offers bargains, and every one is a gift with a price. At half his strength the angel falls away, and the great red dragon of Revelation stands in his place: seven heads, ten horns and a tail that sweeps the stars from the sky. The archangel Michael and the host of Heaven ride with you.`},
- {n:'Ahriman, the Smiling Stranger',n2:'Ahriman, the Destructive Spirit',ic:'🌑',l:22,sc:[0,0,0],trump:'xdruj',trump2:'xassa',a3:1,champ:'Sraosha',
+ {n:'Ahriman, the Smiling Stranger',n2:'Ahriman, the Destructive Spirit',ic:'🌑',l:24,sc:[0,0,0],trump:'xdruj',trump2:'xassa',a3:1,champ:'Sraosha',
   d:ids('xahri,xdaeva:5,xcook:2,xzah:3,xcurse:2,xcast'),
   lore:`Ahriman never fights openly at first. In the Shahnameh he came to the prince Zahhak as a charming youth and then as a royal cook, and from his kiss serpents grew. His weapon is the Druj, the Lie, and he plants it everywhere. At half his strength he becomes what he was at the beginning of the world: the Destructive Spirit who broke through the sky like a serpent and filled creation with noxious creatures. Every Lie you still hold then crawls out to fight you. Sraosha, the angel of obedience, walks beside you.`},
- {n:'Abaddon, the Opened Abyss',n2:'Apollyon, the Destroyer',ic:'🕳️',l:17,sc:[0,0,0],trump:'xsmoke',trump2:'xtorm',a3:1,champ:'Uriel',
+ {n:'Abaddon, the Opened Abyss',n2:'Apollyon, the Destroyer',ic:'🕳️',l:19,sc:[0,0,0],trump:'xsmoke',trump2:'xtorm',a3:1,champ:'Uriel',
   d:ids('xapol,xkeep:2,xcharg:3,xloc:4,xsting:2,xcast:2'),
   lore:`A fallen star is given the key, and the shaft of the Abyss opens. Smoke pours out like a great furnace and darkens the sun, and from the smoke come the locusts. At first Abaddon is the pit itself. At half his strength its king takes the field: Apollyon, the Destroyer, whose locusts wear golden crowns and iron breastplates and carry the tails of scorpions, and for five months men seek death and do not find it. Uriel, who keeps the key of Tartarus, waits for you to drive him back.`},
  {n:'The Beast of the Sea',ic:'🐉',l:31,sc:[0,-1,0],trump:'xproph',a3:1,fin:1,
@@ -216,7 +216,7 @@ function a3Phase(){if(!G||!G.boss||!G.e||G.phase=='victory')return;const f=BOSS[
  if(f.fin){if(e.life<=0&&!G.rose&&e.bf.some(x=>x.id=='xproph')){G.rose=1;e.life=Math.ceil(e.max/2);cr(e).filter(x=>['xhb','xhd','xhl'].includes(x.id)).forEach(c=>{c.pa++;c.pd++});
    log('The mortal wound heals! "Who is like the beast? Who can make war against it?"');G.msg='The Beast rises again at half its life. Kill the False Prophet, or the wound will keep it alive.'}return}
  if(G.ph2||e.life<=0||e.life*2>e.max)return;G.ph2=1;
- const t=e.bf.find(x=>x.id==f.trump);if(t)e.bf.splice(e.bf.indexOf(t),1);const t2=mk(f.trump2);t2.boss=1;e.bf.push(t2);e.nm=f.n2;
+ const t=e.bf.find(x=>x.id==f.trump);if(t)e.bf.splice(e.bf.indexOf(t),1);e.hand=e.hand.filter(x=>x.id!=f.trump);const t2=mk(f.trump2);t2.boss=1;e.bf.push(t2);e.nm=f.n2;
  if(f.trump2=='xdrag'){const L=cr(p).slice().sort((a,b)=>ev(b)-ev(a)).slice(0,Math.ceil(cr(p).length/3));L.forEach(c=>{c.dmg+=3});cr(e).filter(x=>x.barg).forEach(c=>{c.pa++;c.pd++});for(let i=0;i<3;i++)e.deck.splice(Math.random()*(e.deck.length+1)|0,0,mk('xdhead'));
   log('The angel falls away: Lucifer becomes the Red Dragon, and his tail sweeps the stars.')}
  if(f.trump2=='xassa'){const n=Math.min(4,[...p.deck,...p.hand].filter(x=>x.id=='xlie').length);for(let i=0;i<n&&a3Room(e);i++)enter(e,mk('xkhr'));log('The Smiling Stranger breaks through the sky as the Destructive Spirit'+(n?': '+n+' of your Lies crawl out as Khrafstra.':'.'))}
@@ -232,7 +232,7 @@ function renderA3Front(){try{const R=document.documentElement.style;R.setPropert
  document.getElementById('app').innerHTML=`<div class="dft"><div class="ovt" style="font-size:30px">The other fronts</div><div class="dsub" style="font-size:17px;max-width:620px;text-align:center;line-height:1.6">Your general has fallen. ${others.map(k=>A3FRONT[k]).join(' ')}</div><div class="dsub" style="font-size:16px;max-width:620px;text-align:center;opacity:.85">The generals are beaten, but the kings of the earth gather at Armageddon behind the Beast of the Sea, and the False Prophet calls fire from the sky. You rest before the battle and recover 10 life.</div><div class="hbt" style="margin-top:10px"><button class="b" data-b="a3fin">March to Armageddon</button></div></div>`}
 {const _r=render0;render0=function(){if(G&&G.phase=='a3front')return renderA3Front();return _r.apply(this,arguments)}}
 {const _b=bt0;bt0=function(b){if(b=='a3fin')return startFinale();if(b=='a3barg')return a3Bargain();return _b.apply(this,arguments)}}
-{const _f=fight;fight=function(){if(G&&G.boss){G.ph2=0;G.rose=0}const r=_f.apply(this,arguments);try{if(G.a3&&A3H[G.ch]){scaleEnemy(G.e,[A3H[G.ch][0]+(G.fin&&A3HB[G.ch]||0)+(G.boss&&!G.fin?(A3HG[G.ch+':'+A3.bo.indexOf(G.bi)]||0):0),A3H[G.ch][1],A3H[G.ch][2]]);render()}}catch(e){}try{if(G.boss&&BOSS[G.bi]&&BOSS[G.bi].fin){const pr=G.e.bf.find(x=>x.id=='xproph');if(pr){delete pr.boss;pr.sick=0}G.e.bf.push(mk('xhb'));render()}}catch(e){}return r}}
+{const _f=fight;fight=function(){if(G&&G.boss){G.ph2=0;G.rose=0}const r=_f.apply(this,arguments);try{if(G.a3&&A3H[G.ch]){scaleEnemy(G.e,[A3H[G.ch][0]+(G.fin&&A3HB[G.ch]||0)+(G.boss&&!G.fin?(A3HG[G.ch+':'+A3.bo.indexOf(G.bi)]||0):0),A3H[G.ch][1],A3H[G.ch][2]]);render()}}catch(e){}try{if(G.boss&&BOSS[G.bi]&&BOSS[G.bi].fin){G.e.bf.push(mk('xhb'));render()}}catch(e){}return r}}
 SAFE.push('a3front');
 {const _v=vicVis;vicVis=function(){_v.apply(this,arguments);const o=typeof document!='undefined'&&document.getElementById&&document.getElementById('vico');if(!o||!o.querySelector||!G||G.phase!='victory')return;
  if(!o.a3h){o.a3h=1;o.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button');if(b&&b.dataset.v=='a3')startAct3()})}
