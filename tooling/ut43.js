@@ -10,13 +10,13 @@ for(const ch of['ody','odin']){R(`setChar('${ch}');newRun()`);ok(ch+' map has 2 
  ok(ch+' correct realm elites',R(`JSON.stringify(G.web.nodes.filter(n=>n.el).map(n=>n.o).sort())`)==(ch=='ody'?'[100,101]':'[102,103]'));
  ok(ch+' tooltip mentions Elite',R(`nodeTip(G.web.nodes.find(n=>n.el))`).includes('Elite'));
  R('for(let i=0;i<11;i++)pickDraft(0);G.phase="map"');try{R('renderMap()');ok(ch+' renderMap ok',true)}catch(e){ok(ch+' renderMap '+e.message,false)}}
-// fights start with trump in hand
-for(const [ch,el,t] of[['ody',0,'cup'],['ody',1,'sacril'],['odin',2,'fate'],['odin',3,'hoard']]){setupE(ch,el);ok(ch+' elite '+el+' trump in hand, hand 4, not on field, life 18',R(`G.e.hand.some(c=>c.id=='${t}')&&!G.e.bf.some(c=>c.id=='${t}')&&G.e.hand.length==4&&G.e.max>=10`));}
+// fights start with trump in hand (elite life: base life plus the visible fight-1 ramp, SCL[0], from the v103 balance pass)
+for(const [ch,el,t] of[['ody',0,'cup'],['ody',1,'sacril'],['odin',2,'fate'],['odin',3,'hoard']]){setupE(ch,el);ok(ch+' elite '+el+' trump in hand, hand 4, not on field, life = base + the fight-1 ramp',R(`G.e.hand.some(c=>c.id=='${t}')&&!G.e.bf.some(c=>c.id=='${t}')&&G.e.hand.length==4&&G.e.max==ELITES[${el}].l+SCL[0][0]`));}
 // Circe
 setupE('ody',0);R(`G.e.bf.push(mk('cup'));G.e.bf.push(mk('cwolf'));var a=mk('hird'),b=mk('sold');var big=mk('brute')||0;`);
 R(`var A=mk('brute');A.sick=0;var B=mk('hird');G.p.bf=[A,B];circeStart()`);
 ok('cup swines the strongest cost>=3',R(`G.p.bf.some(c=>c.id=='swine')&&G.p.bf.filter(c=>c.id=='swine').length==1`));
-ok('beasts grow',R(`cr(G.e).find(c=>c.id=='cwolf').pa==1`));
+ok('the cup no longer grows her beasts (removed in the v103 balance pass)',R(`cr(G.e).find(c=>c.id=='cwolf').pa==0`));
 R(`circeStart()`);ok('only one swine',R(`G.p.bf.filter(c=>c.id=='swine').length`)==1);
 R(`var sw=G.p.bf.find(c=>c.id=='swine');sw.dmg=5;sweep()`);ok('swine dies -> original in hand',R(`G.p.hand.some(c=>true)&&!G.p.bf.some(c=>c.id=='swine')&&G.p.gy.every(c=>c.id!='swine')`));
 R(`G.p.bf=[];G.p.hand=[];var Q=mk('goat');G.p.bf=[Q];Q.sick=0;`);
@@ -49,4 +49,4 @@ R(`var rl=G.p.recs.length;pickDraft(0)`);ok('elite draft returns to map, no AP c
 setupE('ody',0);R(`G.act=0;G.e.life=0;chk();startReward()`);R(`bt('dpass')`);ok('pass returns to map free',R('G.phase')=='map'&&R('G.act')==3);
 // regular reward unchanged
 R(`setChar('ody');newRun();for(let i=0;i<11;i++)pickDraft(0);G.rt[0]=0;G.elt=0;G.fi=0;fight();G.e.life=0;chk();G.act=0;startReward()`);ok('regular reward +2 AP, no draft',R('G.act')==2&&R('G.phase')=='map');
-process.exit(f?1:0);
+console.log(f?'FAILS '+f:'ALL OK');process.exit(f?1:0);
