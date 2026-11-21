@@ -1,53 +1,20 @@
-// v106: tutorial lessons advance and are winnable
+// v106-112: tutorial lessons. Every lesson is scripted to a win: following the guide step by step (tutAuto)
+// must defeat the dummies within 3 turns, and every hero has at least 3 lessons (one per archetype).
 const vm=require('vm'),fs=require('fs');
 let src=fs.readFileSync(process.argv[2]||'n1.html','utf8').match(/<script>([\s\S]*)<\/script>/)[1];
 src=src.replace("const wait=ms=>new Promise(r=>setTimeout(r,ms));","const wait=ms=>Promise.resolve();").replace("const reveal=c=>new Promise(res=>{G.rv={c,res};render()});","const reveal=c=>Promise.resolve(1);");
 const store={};const ctx=vm.createContext({console,setTimeout:()=>{},requestAnimationFrame:()=>{},innerWidth:1400,innerHeight:900,localStorage:{getItem:k=>k in store?store[k]:null,setItem:(k,v)=>{store[k]=String(v)}},document:{getElementById:()=>({}),querySelector:()=>null,querySelectorAll:()=>[]}});
-vm.runInContext(src,ctx);vm.runInContext(fs.readFileSync(__dirname+'/bot.js','utf8'),ctx);const R=e=>vm.runInContext(e,ctx);let f=0;const ok=(n,c)=>{console.log(c?'ok  ':'FAIL',n);if(!c)f++};
+vm.runInContext(src,ctx);const R=e=>vm.runInContext(e,ctx);let f=0;const ok=(n,c)=>{console.log(c?'ok  ':'FAIL',n);if(!c)f++};
 const tick=()=>new Promise(r=>setImmediate(r));
 (async()=>{
- // lesson 1 scripted opening
- R('tutStart(0)');ok('lesson 1 starts on step 1 with a fixed hand',R('G.tut.s')==0&&R("G.p.hand.map(c=>c.id).join()")=='spear,sailor,peltast,spearc'.split(',').reverse().reverse().join()||true);
- R("bt('tutnext');bt('tutnext')");ok('info steps advance with Next',R('G.tut.s')==2);
- R("bt('end')");ok('End turn is blocked while a step needs doing',R("G.phase")=='main');
- R("hd0('h:'+handU('spear'))");ok('playing the Spearman advances',R('G.tut.s')==3);
- R("hd0('h:'+handU('sailor'))");ok('playing the Sailor advances',R('G.tut.s')==4);
- R("bt('tutnext')");R("bt('end')");for(let i=0;i<400&&R('G.phase')!='main';i++)await tick();
- ok('after the enemy turn the lesson waits for an attack (step 8)',R('G.tut.s')==7&&R('G.turn')==2);
- // lesson 2 offering steps
- R('tutStart(1)');R("bt('tutnext')");R("hd0('h:'+handU('camp'))");R("hd0('o:'+bfU('camp'))");ok('lesson 2: offering the Camp Follower advances',R('G.tut.s')==3);
- // v107: every hero has lessons; old numeric saves migrate
- ok('lessons for all four heroes',['ody','odin','wukong','thoth'].every(h=>R(`tutOf('${h}').length`)>=2));
+ ok('every hero has at least 3 lessons',['ody','odin','wukong','thoth'].every(h=>R(`tutOf('${h}').length`)>=3));
  ok('lesson ids are unique',R("new Set(TUT.map(L=>L.id)).size==TUT.length"));
  ok('every lesson card exists',R("TUT.every(L=>[...L.deck,...L.edeck].every(id=>D[id]))"));
+ ok('every step names its action',R("TUT.every(L=>L.steps.every(s=>s.k||s.done))"));
  store.myth_tut_done='[0,2,9]';ok('old numeric progress migrates to ids',R("tutDone().join()")=='ody1,ody3,journey');delete store.myth_tut_done;
- const LI=id=>R(`TUT.findIndex(L=>L.id=='${id}')`);
- // Odin: Blood price
- R(`tutStart(${LI('odin1')})`);ok('odin lesson sets Odin as the hero',R('G.ch')=='odin'&&R('CH')=='odin');
- R("bt('tutnext');hd0('h:'+handU('hird'))");ok('odin: Hirdman advances',R('G.tut.s')==2);
- R("bt('bp')");ok('odin: Blood price advances',R('G.tut.s')==3&&R('G.p.mana')==2);
- R("hd0('h:'+handU('fjrd'))");ok('odin: Fjord Raider advances',R('G.tut.s')==4);
- R("hd0('p:'+bfU('fjrd'));bt('atk')");ok('odin: attacking advances',R('G.tut.s')>=5);
- // Wukong: Momentum
- R(`tutStart(${LI('wk1')})`);R("bt('tutnext');hd0('h:'+handU('wmonk'))");ok('wukong: Mountain Monkey advances',R('G.tut.s')==2&&R('G.p.mo')==1);
- R("hd0('h:'+handU('wdart'));hd0('ef')");ok('wukong: Hair Dart at the enemy raises Momentum to 2',R('G.tut.s')==3&&R('G.p.mo')==2);
- R("hd0('h:'+handU('wfeint'))");ok('wukong: Feint after a Strike, Momentum 3',R('G.tut.s')==4&&R('G.p.mo')==3);
- R("hd0('h:'+handU('wrod'));hd0('ef')");ok('wukong: Iron Rod, Momentum 4',R('G.tut.s')==5&&R('G.p.mo')==4);
- R(`tutStart(${LI('wk2')})`);R("bt('tutnext');hd0('h:'+handU('wpluck'))");ok('wukong 2: Pluck a Hair advances',R('G.tut.s')==2);
- // Thoth: Sunder, speak, glyph
- R(`tutStart(${LI('th1')})`);R("bt('tutnext');hd0('h:'+handU('tmedj'))");ok('thoth: Medjay advances',R('G.tut.s')==2);
- R("hd0('h:'+handU('tsun'));hd0('p:'+bfU('tmedj'))");ok('thoth: Sunder gives a Ren and advances',R('G.tut.s')==3&&R('G.p.hand.some(c=>c.ren)'));
- R("hd0('spk:'+G.p.hand.find(c=>c.ren).u)");ok('thoth: speaking the Ren gives 2 mana and advances',R('G.tut.s')==4&&R('G.p.mana')==2);
- R("hd0('h:'+handU('tscr'))");if(R('G.mode'))R("hd0('p:'+G.p.bf.find(x=>isC(x)).u)");ok('thoth: Temple Scribe advances',R('G.tut.s')==5);
- // Thoth: amulets
- R(`tutStart(${LI('th2')})`);R("bt('tutnext');hd0('h:'+handU('yibis'))");ok('thoth 2: Ibis foresees 2',R('G.tut.s')==2&&R('G.e.deck.filter(c=>c.fs).length')==2);
- R("enter(G.p,mk('tmedj'));G.tut.s=5;G.p.hand.push(mk('gfeather'));G.p.mana=2");R("hd0('h:'+handU('gfeather'))");
- R("hd0('p:'+bfU('tmedj'))");ok('thoth 2: the Feather goes on the chosen army member and advances',R('G.tut.s')==6&&R("G.p.bf.find(x=>x.id=='gfeather').on==bfU('tmedj')"));
- // winnability: the bot plays each lesson in free-play mode (its own pressure mode handles long fights;
- // the old all-in override below is switched off at turn 99)
- for(let L=0;L<R('TUT.length');L++){let w=0,N=60,turns=0;for(let k=0;k<N;k++){R(`tutStart(${L});G.tut.s=TUT[${L}].steps.length-1`);let g=0;
-  for(;;){const ph=R('G.phase');if(ph=='tutend')break;if(R("G.turn")>30)break;if(ph=='main'){if(L==2&&R('G.turn')>=6)R("G.p.bf.forEach(c=>{if(isC(c)&&!has(c,'k')&&c.def)stance(G.p,c)})");if(R('G.turn')>=99&&!R('G.atkd')){R("G.p.bf.forEach(c=>{if(isC(c)&&!has(c,'k')&&c.def&&!c.sw)stance(G.p,c)});G.sel=G.p.bf.filter(c=>canAtk(c)).map(c=>c.u);if(G.sel.length)bt('atk')");if(R('G.phase')=='dmgP'){R("bt('res')")}}if(R('G.phase')=='main')R('botMain()')}else if(ph=='blockP')R('botBlock()');else if(ph=='dmgP')R("bt('res')");await tick();if(++g>5000)break}
-  if(R('G.tut.won'))w++;turns+=R('G.turn')}
-  console.log(`lesson ${R('TUT['+L+'].id')}: bot wins ${(100*w/N).toFixed(0)}% in ${(turns/N).toFixed(1)} turns`);ok(`lesson ${L+1} is winnable (bot wins at least 60%)`,w/N>=0.6)}
+ R('tutStart(0)');R("bt('tutnext');bt('tutnext')");ok('info steps advance with Next',R('G.tut.s')==2);R("bt('end')");ok('End turn is blocked while a step needs doing',R('G.phase')=='main'&&R('G.turn')==1);
+ for(let L=0;L<R('TUT.length');L++){const id=R(`TUT[${L}].id`);R(`tutStart(${L})`);let g=0;
+  for(;;){const ph=R('G.phase');if(ph=='tutend'||++g>3000)break;if(ph=='main')R('tutAuto()');else if(ph=='blockP')R('tutAutoBlock()');else if(ph=='dmgP')R("bt('res')");await tick()}
+  ok(`${id}: following the guide wins (turn ${R('G.turn')}, step ${R('G.tut.s')+1}/${R(`TUT[${L}].steps.length`)})`,R('G.phase')=='tutend'&&R('G.tut.won')==1&&R('G.turn')<=3&&R('G.tut.s')>=R(`TUT[${L}].steps.length`)-1)}
  ok('the saved run is untouched by lessons',!('mythologica_run_v1' in store));
  console.log(f?'FAILS '+f:'ALL OK')})();
