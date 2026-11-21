@@ -15,4 +15,6 @@ art/compare.html
 art/compare/
 art/archive/
 tooling/bal/bank_*.jsonl
+tooling/bal/bank3*.jsonl
+tooling/bal/bank3_log.txt
 tooling/bal/*.part
