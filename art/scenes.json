@@ -254,5 +254,74 @@
         "#b08a3a"
       ]
     }
+  },
+  "thoth": {
+    "robbers": {
+      "name": "The Tomb Robbers",
+      "setting": "a looted royal tomb in the Valley of the Kings at night: a torch-lit burial chamber with painted walls of gods in blue, red and gold along the left and right edges; a smashed stone sarcophagus lid at the lower left; spilled gold, jewelled collars and toppled statues across the floor; a rough robbers' tunnel breaking through the far right wall with a rope hanging down; long shadows from the torches Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "deep umber and black (#1a120a to #6b4a24) lit by torch orange, with gold, lapis and turquoise accents"
+    },
+    "scorpions": {
+      "name": "The Scorpions of Serket",
+      "setting": "a desert canyon of red sandstone at dusk, the shrine of the scorpion goddess Serket: a small rock-cut temple with a scorpion carved over the door at the far left; dunes and boulders along the right edge; dozens of scorpions crawling over the rocks in the foreground; a huge orange sun setting over the dunes; tamarisk bushes Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "dusky rose and amber (#2a1408 to #c76a2a) with black scorpions, gold sand and violet shadows"
+    },
+    "servants": {
+      "name": "Servants of the Tomb",
+      "setting": "a vast underground tomb hall lined with rows of blue faience shabti figures on shelves along the left and right edges, some stepping down to march; painted columns with papyrus capitals; a doorway to darker chambers at the back; faint blue-green light from oil lamps Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "deep turquoise and black (#081a1c to #2f7a7a) with faience blue, gold and limestone white"
+    },
+    "sobek": {
+      "name": "The Crocodiles of Sobek",
+      "setting": "the Nile at the temple of Sobek in the morning: tall papyrus thickets and blue lotus along the left and right edges; the river in the middle with crocodiles sliding into the water and only their eyes showing; a temple with painted columns and a crocodile statue on the far bank; ibises and herons; a reed boat pulled up on the mud at the lower right Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "Nile green and teal (#0a1a14 to #3f8a6a) with blue lotus, white ibises, gold sunlight and red-ochre temple paint"
+    },
+    "anubis": {
+      "name": "The Jackals of Anubis",
+      "setting": "the necropolis at the edge of the western desert under a full moon: rows of tombs and small pyramids along the left and right edges; a great black statue of the jackal god Anubis lying on a shrine at the far left; jackals prowling among the tombs with glowing eyes; a funeral path of torches leading away; stars over the desert Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "midnight lapis blue and black (#0a0f1f to #2f4a7a) with silver moonlight, gold and torch orange"
+    },
+    "heka": {
+      "name": "The Priests of Heka",
+      "setting": "a temple of magic at night: a dark hall of carved columns along the left and right edges; a sacred lake at the lower centre reflecting the moon; magician-priests in leopard skins casting spells with glowing green smoke; rearing cobras on the steps; walls carved with protective signs (no readable writing); braziers burning Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "deep violet and black (#140a1f to #5a3a7a) with poison green smoke, gold and flame orange"
+    },
+    "ammit": {
+      "name": "Ammit, the Devourer",
+      "setting": "the Hall of Two Truths in the underworld, where the dead are judged: a giant pair of golden scales at the centre right, a heart on one pan and a white feather on the other; rows of seated judging gods along the back wall; the monster Ammit, part crocodile, lion and hippopotamus, crouching beside the scales at the left; a pool of darkness at her feet; columns of lotus Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "dark red and ochre (#1f0a08 to #8a3a24) with gold, lapis, a white feather and black"
+    },
+    "sphinx": {
+      "name": "The Great Sphinx",
+      "setting": "the Great Sphinx at Giza at sunset: the huge weathered stone face and paws of the Sphinx filling the right side, the pyramids glowing behind it; sand dunes and a ruined temple at the left; a long dusk sky of rose, orange and violet; a few palm trees; tiny figures of travellers for scale Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "warm sandstone and dusk rose (#2a1a10 to #d08a5a) with violet sky, gold light and long blue shadows"
+    },
+    "apophis": {
+      "name": "Apophis, the Serpent of Chaos",
+      "setting": "the underworld river of night, where the sun-boat of Ra fights the serpent Apophis: a black river under a starless sky; the colossal coils of the serpent rising from the water across the whole scene; the small glowing golden sun-boat at the far left; lightning and poison-green mist; jagged black cliffs at the right Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "deep black and poison green (#05080a to #2f6a3a) with violet, gold and acid light",
+      "bg": [
+        "#05080a",
+        "#2f6a3a"
+      ]
+    },
+    "set": {
+      "name": "Set, Lord of the Red Desert",
+      "setting": "the red desert in a great sandstorm: towering red dunes and wind-carved rocks along the left and right edges; a whirling red sandstorm filling the sky; the ruins of a temple half buried in sand at the far left; a giant shadow of the Set animal with tall square ears in the storm; scattered bones and a lost chariot wheel Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "red ochre and rust (#1f0806 to #b04a24) with dust gold, black and a pale sun",
+      "bg": [
+        "#1f0806",
+        "#b04a24"
+      ]
+    },
+    "sekhmet": {
+      "name": "Sekhmet, the Eye of Ra",
+      "setting": "a temple of the lioness goddess Sekhmet under a blazing midday sun: rows of black granite lion-headed statues along the left and right edges; a burning sky of orange and gold; the land beyond cracked and scorched with plague smoke rising; a great sun disc blazing over the temple pylon at the centre back; red beer spilled like blood across the courtyard stones Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "blazing orange, red and gold (#2a0a04 to #e07a24) with black granite and white glare",
+      "bg": [
+        "#2a0a04",
+        "#e07a24"
+      ]
+    }
   }
 }
