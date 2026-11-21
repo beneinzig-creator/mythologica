@@ -195,7 +195,10 @@ ICON_BASE = (
 ICONS = {'ody': {
     # interface
     'life': 'Life: a heart of deep red enamel set in a worn bronze rim.',
-    'mana': 'Mana: a single glowing drop of golden ichor, the blood of the gods, with a soft inner light.',
+    # Ben (playtest, Nov 2026): the first drop looked glossy and odd on the mana orb; this one is flat and bold.
+    'mana': 'Mana: a single drop of golden ichor, the blood of the gods, painted flat like a figure on a Greek vase: '
+            'a plump teardrop of matte ochre gold with a thick dark brown outline and one small cream highlight, no gloss, '
+            'no shine, no glow, no 3D shading, filling most of the frame.',
     'action': 'Action points: a small bronze thunderbolt of Zeus, a jagged zig-zag with a few sparks.',
     'victory': 'Victory points: a green-and-gold laurel wreath closed into a ring.',
     'attack': 'Attack form: two crossed bronze Greek short swords (xiphos) with leather-wrapped grips.',

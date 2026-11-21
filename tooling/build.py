@@ -97,6 +97,7 @@ exec(open(S+'patch59.py',encoding='utf-8').read())
 exec(open(S+'patch60.py',encoding='utf-8').read())
 exec(open(S+'patch61.py',encoding='utf-8').read())
 exec(open(S+'patch62.py',encoding='utf-8').read())
+exec(open(S+'patch63.py',encoding='utf-8').read())
 exec(open(S+'patch_clock.py',encoding='utf-8').read())
 head=head.replace('.pn{font-size:15px','.hub{display:flex;flex-direction:column;gap:12px;align-items:stretch;min-width:280px}.hub .b{font-size:17px}.b[disabled]{opacity:.4;cursor:default;box-shadow:none}.pn{font-size:15px')
 out=head+'\n'+A+'\n'+mid+'\n'+B+'\n'+tail

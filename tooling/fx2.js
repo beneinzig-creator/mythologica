@@ -84,6 +84,12 @@ const PSPEC=(()=>{
   apophis:[L('mist',4,['80,160,90']),L('ember',20,['150,255,150','190,120,255']),L('flash',1,['200,255,210'])],
   set:[L('sand',100,['200,90,50','230,130,70','170,70,40']),L('mist',3,['200,90,50'])],
   sekhmet:[L('ember',44,FIRE),L('ash',14,ASH),L('mote',16,['255,230,160'])],
+  // Tutorial
+  s_tut_text:[L('mote',22,['255,226,170']),L('gold',6,GOLD)],
+  s_tut_ground:[L('mote',20,['240,225,190']),L('sand',8,['220,200,160'])],
+  s_odin_tut_ground:[L('snow',40,SNOW),L('ember',10,EMB)],
+  s_wk_tut_ground:[L('petal',22,PINK),L('mist',2,['230,240,235'])],
+  s_th_tut_ground:[L('mote',22,['240,215,160']),L('gold',8,GOLD)],
   // Defaults: home screen and each hero's other screens
   home:[L('mote',16,['255,236,200'])],
   ody:[L('mote',22,['200,228,255'])],
