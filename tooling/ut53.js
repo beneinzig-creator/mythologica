@@ -18,7 +18,7 @@ R("enter(G.e,mk('xpos'))");ok('Legion: Possessed bring no one',R("G.e.bf.filter(
 R("G.e.bf=G.e.bf.filter(x=>!isC(x));enter(G.e,mk('xger'))");ok('Legion: only army members costing 2+ bring a Possessed',R("G.e.bf.filter(x=>x.id=='xpos').length")==1);
 A3();reg('The Watchers');R("G.e.wd=0;G.p.mana=9");const h0=R('G.e.hand.length');for(let i=0;i<3;i++)R("cast(mk('spearc'),G.e.bf.find(x=>isC(x))||G.e)");ok('Watchers: they draw for your spells, at most 2 a turn',R('G.e.hand.length')-h0==2);
 A3();reg('The Nephilim');R("ETB.xneph(G.e,G.p)");ok('Nephilim: their army members costing 3+ cost 1 less, the small ones do not',R("G.e.deck.filter(c=>isC(c)&&D[c.id][1]>=3).every(c=>c.disc>=1)&&G.e.deck.filter(c=>isC(c)&&D[c.id][1]<3).every(c=>!c.disc)"));
-A3();reg('The Cult of Moloch');R("enter(G.e,mk('xcult'));enter(G.e,mk('xfire'))");const p0=R("pwr(G.e.bf.find(x=>x.id=='xcult'))");R("const v=G.e.bf.find(x=>x.id=='xfire');v.dmg=9;sweep()");ok('Moloch: a death makes the others stronger',R("pwr(G.e.bf.find(x=>x.id=='xcult'))")==p0+1);
+A3();reg('The Prophets of Baal');R("enter(G.e,mk('xcult'));enter(G.e,mk('xfire'))");const p0=R("pwr(G.e.bf.find(x=>x.id=='xcult'))");R("const v=G.e.bf.find(x=>x.id=='xfire');v.dmg=9;sweep()");ok('Baal: a death makes the others stronger',R("pwr(G.e.bf.find(x=>x.id=='xcult'))")==p0+1);
 A3();reg('The Builders of Babel');R("G.p.hand=[mk('spear'),mk('hopl'),mk('charon')]");const c0=R("G.p.hand.map(cost).sort().join()");R('a3Up(G.e,G.p)');ok('Babel: hand costs are shuffled, not changed',R("G.p.hand.map(cost).sort().join()")==c0);
 A3();reg("Mastema's Spirits");R("const a=mk('hopl');enter(G.p,a);a.att=1;const b=mk('spear');enter(G.p,b)");R('a3Up(G.e,G.p)');ok('Mastema: only the attacker takes 1 damage',R("G.p.bf.find(x=>x.id=='hopl').dmg")==1&&R("G.p.bf.find(x=>x.id=='spear').dmg")==0);
 A3();reg("Mammon's Hoard");R("enter(G.e,mk('xhoard'));G.p.mana=2;thEnd(G.p);a3Up(G.e,G.p)");ok('Mammon: 2 unspent mana = +2/+0 next turn',R("G.e.bf.find(x=>x.id=='xhoard').ta")==2);
@@ -53,5 +53,6 @@ A3();R("G.phase='map';persist()");ok('Act III runs are saved',!!store.mythologic
 A3();boss(0);R("G.e.life=0;chk();bt('a3fin');G.e.bf=G.e.bf.filter(x=>x.id!='xproph');G.e.life=0;chk();persist()");ok('the final victory clears the save',!store.mythologica_run_v1);
 // --- the Lie and the bot ---
 A3();boss(1);R("G.phase='main';G.p.life=10;G.p.hand=[mk('xlie')];G.p.mana=0");R("hd0('h:'+G.p.hand[0].u)");ok('the Lie: casting it costs 1 life and clears it',R('G.p.life')==9&&R('G.p.hand.length')==0);
+A3();R("G.phase='a3front';G.front='Michael';startFinale();G.e.bf.push(mk('xhl'))");R("thSunder(G.e.bf.find(x=>x.id=='xhl'),G.p)");ok("the Beast's Heads can't be Sundered by you",R("G.e.bf.some(x=>x.id=='xhl')"));
 ok('every Act III deck card exists',R("[...A3.en,...A3.el.map(i=>ELITES[i]),...A3.bo.map(i=>BOSS[i]),BOSS[A3.fin]].every(x=>x.d.every(id=>D[id])&&(!x.mt||D[x.mt])&&(!x.trump||D[x.trump])&&(!x.trump2||D[x.trump2]))"));
 console.log(f?'FAILS '+f:'ALL OK');

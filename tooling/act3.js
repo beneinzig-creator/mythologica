@@ -8,7 +8,7 @@ Object.assign(D,{
 xlegion:['We Are Many',0,'E',0,0,'w','Ward. Whenever they play an army member that costs 2 or more, a 1/1 Possessed joins it (if there is room).','👥','B'],
 xwatch:['Forbidden Arts',1,'E',0,0,'w','Ward. Whenever you cast a spell, they draw a card (at most 2 a turn).','📜','B'],
 xneph:['Giants in the Earth',1,'E',0,0,'w','Ward. Their army members that cost 3 or more cost 1 less.','🗿','N'],
-xmol:['Fires of Tophet',1,'E',0,0,'w','Ward. Whenever one of their army members dies or is offered, their other army members get +1/+0 permanently.','🔥','R'],
+xmol:['Blood on Carmel',1,'E',0,0,'w','Ward. Whenever one of their army members dies or is offered, their other army members get +1/+0 permanently.','🩸','R'],
 xbab:['Confusion of Tongues',1,'E',0,0,'w','Ward. At the start of their turn, the costs of the cards in your hand are shuffled among them.','🗼','N'],
 xpair:['Falling Stars',1,'E',0,0,'w','Ward. At the start of their turn, a random untapped army member of yours is tapped.','🌠','W'],
 xbel:['Battle Lines',1,'E',0,0,'w','Ward. Every third turn, their army members get +2/+0 until end of turn.','⚔️','B'],
@@ -44,10 +44,10 @@ xcurse:['Forbidden Charm',2,'S',0,0,'','Target army member gets -2/-2.','🔮','
 xyneph:['Young Nephil',2,'C',2,4,'','','🗿','N',1], xnep:['Nephil',3,'C',4,6,'z','','🗿','N',2],
 xgib:['Gibborim, Mighty Men of Old',4,'C',5,7,'z','','🗿','N',3], xog:['Og of Bashan',5,'C',6,8,'z','','🗿','N',3],
 xroar:['Roar of the Giants',2,'S',0,0,'','Tap target army member; it doesn\'t untap next turn.','📢','N'], xclub:['Giant\'s Club',3,'S',0,0,'','Deal 4 damage to target army member (more in later fights).','🪵','N'],
-/* 4 the Cult of Moloch */
-xfire:['Fire-Bearer',1,'C',1,1,'','','🔥','R',2], xcult:['Cultist of Moloch',2,'C',2,3,'','','🔥','R',1],
-xidol:['Brazen Idol',3,'C',2,6,'','','🐂','R',2], xmolp:['Priest of Moloch',3,'C',3,3,'r','','🔥','R',2],
-xflame:['Flames of the Valley',3,'S',0,0,'','Deal 2 damage to each opposing army member.','🔥','R'],
+/* 4 the Prophets of Baal (Mount Carmel, 1 Kings 18) */
+xfire:['Prophet of Baal',1,'C',1,1,'','','🗡️','R',2], xcult:['Dancer at the Altar',2,'C',2,3,'','','💃','R',1],
+xidol:['Altar of Carmel',3,'C',2,6,'','','🪨','R',2], xmolp:['High Priest of Baal',3,'C',3,3,'r','','🐂','R',2],
+xflame:['Fire That Never Came',3,'S',0,0,'','Deal 2 damage to each opposing army member.','🔥','R'],
 /* 5 the Builders of Babel */
 xbrick:['Brick-Maker',1,'C',2,3,'','','🧱','N',1], xmason:['Tower Mason',2,'C',3,4,'','','🧱','N',1],
 xzigg:['Ziggurat Guard',3,'C',3,4,'','','🗼','N',2], xnim:['Nimrod, the Mighty Hunter',4,'C',4,4,'r','','🏹','N',3],
@@ -73,7 +73,7 @@ xher:['Herald with Trumpets',1,'C',1,2,'','','🎺','R',1], xlegs:['Spirit of th
 xdrom:['Dromedary Rider',3,'C',3,3,'h','','🐪','R',2], xpaimon:['King Paimon',4,'C',4,5,'','When it enters, two of their army members learn a keyword.','👑','R',3],
 xsecr:['Secret Arts',2,'S',0,0,'','Target army member gets -2/-2.','📖','R'],
 /* elites */
-xbeelg:['Beelzebub, Lord of the Flies',4,'C',4,5,'f','','🪰','B',3], xbaal:['Priest of Baal-zebub',2,'C',2,3,'','','🪰','B',1], xcarr:['Carrion Feeder',1,'C',2,1,'','','🪰','B',1],
+xbeelg:['Beelzebub, Lord of the Flies',4,'C',4,5,'f','','🪰','B',3], xbaal:['Swarm-Priest',2,'C',2,3,'','','🪰','B',1], xcarr:['Carrion Feeder',1,'C',2,1,'','','🪰','B',1],
 xazag:['Azazel, the Scapegoat',4,'C',4,6,'','','🐐','B',3], xsmith:['Forbidden Smith',2,'C',2,3,'','','⚒️','B',1],
 xasmg:['Asmodeus',5,'C',5,5,'r','','💔','R',3], xjeal:['Jealous Shade',1,'C',2,1,'','','👤','R',1], xwrath:['Spirit of Wrath',2,'C',3,2,'','','😠','R',1],
 xlilg:['Lilith',4,'C',3,5,'d','','🌙','B',3], xlilin:['Lilin',2,'C',2,2,'f','','🦇','B',1], xowl:['Screech Owl',1,'C',1,2,'f','','🦉','B',1],
@@ -89,8 +89,8 @@ xapol:['Apollyon, the Destroyer',5,'C',5,5,'f','','🦗','N',3], xkeep:['Keeper 
 xcharg:['Iron-Breasted Charger',2,'C',3,2,'h','','🐎','N',1], xsting:['Scorpion Tail',2,'S',0,0,'','Destroy target army member that has damage on it.','🦂','N'],
 /* the Last Battle */
 xproph:['The False Prophet',3,'C',1,6,'kw','At the start of the Beast\'s turn, it marks your strongest army member: it can\'t attack on your next turn (it can still block). While it lives, the Beast\'s mortal wound heals.','🐑','R',2],
-xbeast:['The Beast of the Sea',6,'C',6,7,'w','','🐉','R',3], xhb:['Head of Blasphemy',2,'C',2,3,'w','The Beast\'s other Heads get +1/+0.','🐉','R',1],
-xhd:['Head of Dominion',2,'C',2,3,'w','','🐉','R',1], xhl:['Head of the Lion',3,'C',3,3,'rw','','🦁','R',2],
+xbeast:['The Beast of the Sea',6,'C',6,7,'w','The Beast and its Heads can\'t be Sundered: they are one body.','🐉','R',3], xhb:['Head of Blasphemy',2,'C',2,3,'','The Beast\'s other Heads get +1/+0. Can\'t be Sundered.','🐉','R',1],
+xhd:['Head of Dominion',2,'C',2,3,'w','Can\'t be Sundered.','🐉','R',1], xhl:['Head of the Lion',3,'C',3,3,'r','Can\'t be Sundered.','🦁','R',2],
 ximg:['Image of the Beast',2,'C',2,3,'','','🗿','R',1],
 xfheav:['Fire from Heaven',2,'S',0,0,'','Deal damage to target army member (more in later fights).','🔥','R']
 });
@@ -103,7 +103,7 @@ const A3TR=['xlegion','xwatch','xneph','xmol','xbab','xpair','xbel','xmam','xmas
 A3TR.forEach(k=>{IV[k]=40;LORE[k]=['xbeel','xaza','xasm','xlil'].includes(k)?'Elite trump':['xbarg','xdrag','xdruj','xassa','xsmoke','xtorm'].includes(k)?'General\'s trump':'Opening trump'});
 Object.assign(LORE,{xlie:'A lie of Ahriman',xpos:'Possessed',xfly:'Fly',xspir:'Spirit',xkhr:'Noxious creature',xloc:'Locust of the Abyss',
  xlgn:'Demon of Legion',xger:'Demon of Legion',xswn:'Possessed swine',xlegc:'"We are many"',xcast:'Spell',xwat:'Fallen angel',xchrm:'Fallen angel',xkok:'Fallen angel',xsemj:'Leader of the Watchers',xcurse:'Curse',
- xyneph:'Giant',xnep:'Giant',xgib:'Giant',xog:'Giant king',xroar:'Spell',xclub:'Spell',xfire:'Cultist',xcult:'Cultist',xidol:'Idol of Moloch',xmolp:'Cultist',xflame:'Spell',
+ xyneph:'Giant',xnep:'Giant',xgib:'Giant',xog:'Giant king',xroar:'Spell',xclub:'Spell',xfire:'Prophet of Baal',xcult:'Prophet of Baal',xidol:'The altar on Carmel',xmolp:'Prophet of Baal',xflame:'Spell',
  xbrick:'Builder',xmason:'Builder',xzigg:'Builder',xnim:'King of Babel',xtong:'Spell',xstar:'Pairika',xench:'Pairika',xmush:'Pairika',xdroug:'Pairika of drought',xglam:'Spell',
  xline:'Son of Darkness',xsling:'Son of Darkness',xcapt:'Son of Darkness',xbelg:'Angel of darkness',xjav:'Spell',xcoin:'Servant of Mammon',xhoard:'Servant of Mammon',xmerc:'Servant of Mammon',xmamg:'Wealth personified',xbribe:'Spell',
  xacc:'Evil spirit',xtenth:'Evil spirit',xtempt:'Evil spirit',xmastg:'The Accuser',xtest:'Spell',xher:'Herald of Paimon',xlegs:'Spirit of Paimon',xdrom:'Spirit of Paimon',xpaimon:'A king of hell',xsecr:'Spell',
@@ -142,7 +142,7 @@ function a3Die(s,c){const o=oppOf(s);if(!o)return;
  if(a3Has(s,'xaza')&&isC(c)){const t=cr(o).sort((a,b)=>ev(b)-ev(a))[0];if(t){t.dmg+=2;log('The Scapegoat: '+D[t.id][0]+' bears the sin (2 damage).')}}
  if(s===G.p&&a3Has(o,'xlil')){o.life=Math.min(o.max,o.life+2);log('Lilith feeds: she gains 2 life.')}
  if(s===G.p&&a3Has(o,'xassa')&&a3Room(o)){enter(o,mk('xkhr'));log('A Khrafstra crawls from the dead.')}}
-function a3Moloch(s){cr(s).forEach(c=>{c.pa++});log('The fires of Tophet: their army members get +1/+0.')}
+function a3Moloch(s){cr(s).forEach(c=>{c.pa++});log('Blood on Carmel: the prophets of Baal grow more frenzied (+1/+0).')}
 function a3Enter(s,c){if(!G||!G.e||!isC(c))return;const o=oppOf(s);
  if(s===G.e&&a3Has(s,'xlegion')&&D[c.id][1]>=2&&a3Room(s)){const t=mk('xpos');t.sick=c.sick;s.bf.push(t);log('A Possessed joins '+D[c.id][0]+'.')}
  if(s===G.e&&c.id=='xloc'&&a3Has(s,'xtorm')&&!c.trm){c.trm=1;c.pa++;c.pd++;if(!c.f.includes('v'))c.f+='v'}
@@ -157,6 +157,9 @@ function a3Cast(c){const e=G.e;if(!e||!a3Has(e,'xwatch'))return;if('SI'.includes
 {const _p=egPx;egPx=function(c){return _p(c)+a3Px(c)}}
 {const _e=enter;enter=function(s,c){const r=_e.apply(this,arguments);try{a3Enter(s,c)}catch(e){}return r}}
 {const _o=offer;offer=function(s,c){const r=_o.apply(this,arguments);try{if(a3Has(s,'xmol')&&isC(c))a3Moloch(s)}catch(e){}return r}}
+/* the Beast and its seven Heads are one body: an opponent can't Sunder them */
+const A3ONE=['xbeast','xhb','xhd','xhl'];
+if(typeof thSunder=='function'){const _s=thSunder;thSunder=function(c,by){if(c&&A3ONE.includes(c.id)&&sideOf(c)!==by){log(D[c.id][0]+' can\'t be Sundered: the Beast is one body.');return 0}return _s.apply(this,arguments)}}
 {const _c=cast;cast=function(c,t){const r=_c.apply(this,arguments);try{a3Cast(c)}catch(e){}return r}}
 {const _t=thEnd;thEnd=function(s){try{if(s===G.p&&a3Has(G.e,'xmam'))G.e.greed=Math.min(3,Math.max(0,G.p.mana))}catch(e){}return _t.apply(this,arguments)}}
 /* --- the Bargain (Lucifer, phase 1) --- */
@@ -168,7 +171,7 @@ const A3={en:[
  {n:'Legion',l:16,ic:'👥',hint:'"We are many": every army member they play brings a Possessed with it',bg:['#140a0a','#5a2222'],d:ids('xlgn:5,xger:4,xswn:2,xlegc,xcast:2'),mt:'xlegion'},
  {n:'The Watchers',l:18,ic:'👁️',hint:'Fallen angels who learn from every spell you cast',bg:['#0e0a16','#4a3a6a'],d:ids('xwat:4,xchrm:4,xkok:2,xsemj,xcurse:2,xcast'),mt:'xwatch'},
  {n:'The Nephilim',l:19,ic:'🗿',hint:'Few, huge, hard to kill, and they arrive early',bg:['#14120c','#5a4e34'],d:ids('xyneph:4,xnep:3,xgib:2,xog,xroar:2,xclub:2'),mt:'xneph'},
- {n:'The Cult of Moloch',l:20,ic:'🔥',hint:'Every death in the fire makes the rest of them stronger',bg:['#1a0806','#7a2a12'],d:ids('xfire:5,xcult:4,xidol:2,xmolp:2,xflame'),mt:'xmol'},
+ {n:'The Prophets of Baal',l:20,ic:'🗡️',hint:'They cut themselves for Baal: every one that falls makes the rest stronger',bg:['#1a0806','#7a2a12'],d:ids('xfire:5,xcult:4,xidol:2,xmolp:2,xflame'),mt:'xmol'},
  {n:'The Builders of Babel',l:22,ic:'🗼',hint:'They confound your tongue: the costs in your hand get shuffled',bg:['#16120a','#6a5a3a'],d:ids('xbrick:5,xmason:4,xzigg:2,xnim,xtong:2'),mt:'xbab'},
  {n:'The Pairikas',l:14,ic:'🌠',hint:'Shooting-star witches who dazzle your army',bg:['#0a0e1a','#3a4a7a'],d:ids('xstar:5,xench:4,xmush:2,xdroug,xglam:2'),mt:'xpair'},
  {n:'Sons of Darkness',l:18,ic:'🌑',hint:'Belial\'s army fights in battle lines: every third turn it surges',bg:['#0a0a0e','#2a2a3a'],d:ids('xline:5,xsling:3,xcapt:3,xbelg,xjav:2'),mt:'xbel'},
@@ -200,7 +203,7 @@ A3.bo=[b0,b0+1,b0+2];A3.fin=b0+3}
 const A3FRONT={Michael:'In Heaven, Michael and his angels fight the dragon, and the dragon is cast down.',Sraosha:'In the east, Sraosha and the saviour Saoshyant drive Ahriman out of creation, and the darkness breaks.',Uriel:'Below, Uriel turns the key of the Abyss, and the Destroyer is sealed in the pit.'};
 /* hidden per-hero adjustment for every Act III fight (life), like Act II's XADJ: from the proven-deck matrix */
 const A3H={ody:[6,1,0],odin:[-3,0,0],wukong:[2,0,0],thoth:[6,0,0]};
-const A3HB={wukong:-6,odin:2,ody:6};
+const A3HB={wukong:-6,odin:6,ody:6};
 /* extra life per hero against each general (0 Lucifer, 1 Ahriman, 2 Abaddon), like Act II's per-pair table */
 const A3HG={'odin:0':-7,'odin:2':-9,'wukong:0':10,'wukong:1':-4,'wukong:2':-4,'thoth:0':8,'thoth:2':7,'ody:1':3,'ody:2':2};/* extra life for the Beast only (Thoth's Sunder halves it) */
 TIPS.a3='<b>Act III.</b> Every hero ends here, in the War in Heaven. At 4 victory points two generals of the rebellion answer: beat one, and the Last Battle against the Beast of the Sea follows. Act III bosses change form at half life.';

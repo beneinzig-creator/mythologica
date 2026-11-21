@@ -273,7 +273,7 @@ function wkBlockTricks(used){const p=G.p,c=G.cmb;const X=Math.max(1,p.mo||0);
   else if(pwr(b)<th(a)-a.dmg){const bl=p.hand.find(x=>x.id==='wblock'&&cost(x)<=p.mana);if(bl&&pwr(b)+X>=th(a)-a.dmg){exec(bl,{t:'p:'+b.u})}}}}
 /* ===== v105: Thoth planner ===== */
 function thBestOwn(M,need){const L=M.filter(x=>!need||need(x));return L.sort((a,b)=>val(b)-val(a))[0]}
-function thBestFoe(E,need){const L=E.filter(x=>!has(x,'w')&&(!need||need(x)));return L.sort((a,b)=>val(b)-val(a))[0]}
+function thBestFoe(E,need){E=E.filter(x=>!(typeof A3ONE!='undefined'&&A3ONE.includes(x.id)));const L=E.filter(x=>!has(x,'w')&&(!need||need(x)));return L.sort((a,b)=>val(b)-val(a))[0]}
 function planThoth(c,p,e,E,M){const id=c.id,k=D[id][2];if(k==='C')return undefined;
  const room=x=>roomOf(x)>0,onbf=()=>p.bf.some(x=>x.id==id);
  if(c.ren){const t=thBestOwn(M,room);return t?{t:'p:'+t.u}:null}
@@ -288,7 +288,7 @@ function planThoth(c,p,e,E,M){const id=c.id,k=D[id][2];if(k==='C')return undefin
  case'dpart':{const t=thBestFoe(E,x=>D[x.id][1]<=3&&val(x)>=3);return t?{t:'e:'+t.u}:null}
  case'dcut':{const t=M.filter(x=>!x.part&&val(x)<=5).sort((a,b)=>val(a)-val(b))[0];return t&&M.length<4&&p.hand.length<=5?{t:'p:'+t.u}:null}
  case'dreun':return M.some(x=>x.part=='ka'&&M.some(y=>y.part=='ba'&&y.src===x.src))?{}:null;
- case'dsever':return E.some(x=>!has(x,'w')&&D[x.id][1]>=3)?{}:null;
+ case'dsever':{const t=E.filter(x=>!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];return t&&D[t.id][1]>=3&&!(typeof A3ONE!='undefined'&&A3ONE.includes(t.id))?{}:null}
  case'dsplit':return E.filter(x=>!has(x,'w')&&D[x.id][1]<=2).length>=2?{}:null;
  case'dkhep':return p.gy.some(x=>isC(x)&&!TOKE.includes(x.id))&&M.length<=3?{}:null;
  case'dren':return p.gy.filter(x=>isC(x)&&!TOKE.includes(x.id)).length>=2?{}:null;
