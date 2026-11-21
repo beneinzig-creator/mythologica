@@ -1165,5 +1165,179 @@
  },
  "thoth:ycopy": {
   "composition": "seen from directly above"
+ },
+ "thoth:grob": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:tdig": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:fence": {
+  "palette": "sandstorm yellow haze"
+ },
+ "thoth:mthief": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:torch": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:drag": {
+  "palette": "sandstorm yellow haze"
+ },
+ "thoth:trob": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:sbrood": {
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:sstalk": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:squeen": {
+  "palette": "malachite green and black"
+ },
+ "thoth:sking": {
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:sting": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:curse2": {
+  "palette": "malachite green and black"
+ },
+ "thoth:serk": {
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:shbs": {
+  "palette": "faience blue-green and gold"
+ },
+ "thoth:mumw": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:embp": {
+  "palette": "carnelian red and cream limestone"
+ },
+ "thoth:tguard": {
+  "palette": "faience blue-green and gold"
+ },
+ "thoth:heal2": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:shab": {
+  "palette": "carnelian red and cream limestone"
+ },
+ "thoth:croc": {
+  "palette": "Nile turquoise and papyrus green"
+ },
+ "thoth:lurk": {
+  "palette": "papyrus reed green and gold sunlight"
+ },
+ "thoth:sobpr": {
+  "palette": "malachite green and black"
+ },
+ "thoth:sobek": {
+  "palette": "Nile turquoise and papyrus green"
+ },
+ "thoth:sobk": {
+  "palette": "papyrus reed green and gold sunlight"
+ },
+ "thoth:jack": {
+  "palette": "night sky indigo full of stars"
+ },
+ "thoth:jguard": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:wepw": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:jpack": {
+  "palette": "night sky indigo full of stars"
+ },
+ "thoth:anub": {
+  "palette": "black and white with a touch of gold"
+ },
+ "thoth:hekp": {
+  "palette": "lapis lazuli blue and gold"
+ },
+ "thoth:snake": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:hekmag": {
+  "palette": "carnelian red and cream limestone"
+ },
+ "thoth:hekhigh": {
+  "palette": "lapis lazuli blue and gold"
+ },
+ "thoth:heka": {
+  "palette": "temple lamplight amber in darkness"
+ },
+ "thoth:ammit": {
+  "palette": "underworld teal and black",
+  "composition": "a full figure pacing in profile beside the scales"
+ },
+ "thoth:soulw": {
+  "palette": "pale moonlight silver on sand"
+ },
+ "thoth:unwor": {
+  "palette": "carnelian red and cream limestone"
+ },
+ "thoth:hguard2": {
+  "palette": "underworld teal and black"
+ },
+ "thoth:ammt": {
+  "palette": "pale moonlight silver on sand"
+ },
+ "thoth:sphinx2": {
+  "palette": "desert noon ochre and white",
+  "composition": "the whole sphinx before the pyramids, seen from a distance"
+ },
+ "thoth:sphg": {
+  "palette": "night sky indigo full of stars"
+ },
+ "thoth:sphs": {
+  "palette": "dawn rose over the Nile"
+ },
+ "thoth:sphx": {
+  "palette": "desert noon ochre and white"
+ },
+ "thoth:apepx": {
+  "palette": "underworld teal and black",
+  "composition": "the serpent towering over the tiny sun boat, seen from below"
+ },
+ "thoth:apsp": {
+  "palette": "malachite green and black"
+ },
+ "thoth:apcoil": {
+  "palette": "sandstorm yellow haze"
+ },
+ "thoth:sand": {
+  "palette": "underworld teal and black"
+ },
+ "thoth:apep": {
+  "palette": "malachite green and black"
+ },
+ "thoth:setg": {
+  "palette": "red granite and black basalt"
+ },
+ "thoth:setb": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:setst": {
+  "palette": "sandstorm yellow haze"
+ },
+ "thoth:setx": {
+  "palette": "red granite and black basalt"
+ },
+ "thoth:sekhg": {
+  "palette": "sunset red-orange over the desert"
+ },
+ "thoth:lion": {
+  "palette": "carnelian red and cream limestone"
+ },
+ "thoth:plague": {
+  "palette": "electrum white-gold"
+ },
+ "thoth:sekh": {
+  "palette": "sunset red-orange over the desert"
  }
 }
