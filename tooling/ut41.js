@@ -3,7 +3,7 @@ let src=fs.readFileSync('n1.html','utf8').match(/<script>([\s\S]*)<\/script>/)[1
 src=src.replace("const wait=ms=>new Promise(r=>setTimeout(r,ms));","const wait=ms=>Promise.resolve();").replace("const reveal=c=>new Promise(res=>{G.rv={c,res};render()});","const reveal=c=>Promise.resolve(1);");
 const ctx=vm.createContext({window:{},console,setTimeout:()=>{},requestAnimationFrame:()=>{},document:{getElementById:()=>({}),querySelector:()=>null}});
 vm.runInContext(src,ctx);const R=e=>vm.runInContext(e,ctx);let f=0;const ok=(n,c)=>{console.log(c?'ok  ':'FAIL',n);if(!c)f++};
-const setup=(bi)=>R(`setChar('odin');newRun();for(let i=0;i<11;i++)pickDraft(0);G.boss=1;G.bi=${bi};fight();G.phase='main';G.p.life=20;G.p.mana=9;G.p.bf=[];G.e.bf=G.e.bf.filter(x=>!isC(x));G.e.hand=[]`);
+const setup=(bi)=>R(`setChar('odin');newRun();for(let i=0;i<11;i++)pickDraft(0);G.boss=1;G.bi=${bi};fight();{const t=G.e.hand.find(x=>x.boss);if(t){G.e.hand=G.e.hand.filter(x=>x!==t);enter(G.e,t)}}G.phase='main';G.p.life=20;G.p.mana=9;G.p.bf=[];G.e.bf=G.e.bf.filter(x=>!isC(x));G.e.hand=[]`);
 ok('12 hero bosses (3 per hero), plus the Act III generals and the Beast',R('BOSS.filter(b=>!b.a3).length')==12&&R('BOSS.filter(b=>b.a3).length')==4);
 ok('odin offered 3,4,5',R('JSON.stringify(CHARS.odin.bo)')=='[3,4,5]'&&R('JSON.stringify(CHARS.ody.bo)')=='[0,1,2]');
 ok('lore has 5 sentences each',R('BOSS.filter(b=>!b.a3).map(b=>b.lore.split(/(?<=[.!?])\\s+/).length).join()')=='5,5,5,5,5,5,5,5,5,5,5,5');
