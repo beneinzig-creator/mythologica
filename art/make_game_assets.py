@@ -112,9 +112,11 @@ def main():
         if hk != a.hero:
             others |= set(hv.get('cards', {})) | set(hv.get('opponents') or {}) | set(hv.get('tutorial') or {})
     htable = {}
+    _cj0 = os.path.join(GAME, 'cards.json')
+    prev_cards = json.load(open(_cj0, encoding='utf-8')).get('cards', {}) if os.path.exists(_cj0) else {}
     entries = [(cid, c, TIER.get(c.get('rarity'), 'c')) for cid, c in hero['cards'].items()]
     entries += [(cid, c, TIER.get(c.get('frame'), 'c')) for cid, c in (hero.get('opponents') or {}).items()]
-    entries += [(cid, c, 'c') for cid, c in (hero.get('tutorial') or {}).items()]
+    entries += [(cid, c, TIER.get(c.get('rarity'), 'c')) for cid, c in (hero.get('tutorial') or {}).items()]
     for cid, c, tier in entries:
         src = os.path.join(os.path.dirname(ART), c['output'])
         if not os.path.exists(src):
@@ -124,6 +126,12 @@ def main():
         if a.hero != 'ody' and cid in others:
             made += shrink(src, os.path.join(GAME, 'cards', folder, f'{cid}.jpg'), 480)
             htable[cid] = code
+            # the game needs a default entry for every card with art; when no other hero has filled it yet
+            # (e.g. a card shared only by Wukong and Thoth), this hero's version serves as the default too
+            _pc, _pre = prev_cards.get(cid), CODE_PREFIX.get(a.hero, '')
+            if _pc is None or (_pc[:len(_pre)] == _pre and _pc[len(_pre):] in BOXCODES):  # unset, or set by this hero before
+                made += shrink(src, os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
+                table[cid] = code
             continue
         made += shrink(src, os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
         table[cid] = code

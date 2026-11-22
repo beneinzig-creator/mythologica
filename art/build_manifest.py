@@ -904,7 +904,8 @@ def main():
                 lore = g['LORE'].get(cid) or ''
                 subject = subjects.get(cid) or auto_subject(cid, d, lore, g['TXT'].get(cid) or d[6])
                 tutorial[cid] = {
-                    'name': d[0], 'lore': lore, 'type': TYPE.get(d[2], d[2]), 'rarity': 'Common',
+                    'name': d[0], 'lore': lore, 'type': TYPE.get(d[2], d[2]),
+                    'rarity': RARITY.get(g['RAR'].get(cid), 'Common'),
                     'archetype': 'Tutorial', 'colour': d[8], 'emoji': d[7],
                     'subject_source': 'subjects.json' if cid in subjects else 'auto',
                     'prompt': f'Subject: {subject}', 'output': f'art/{folder}/{cid}.webp',
