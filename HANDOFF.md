@@ -1184,6 +1184,7 @@ Outside the acceptable 28–41% band: Odin vs Loki's Court (45, too easy) and Od
 | `patch54` | v110 | One hover pop-up per card; hold-to-inspect everywhere |
 | `patch55` | v111 | Odin's Norse frames, icons, button and card back |
 | `patch56` | v112 | Odin's painted screens and opponent marks |
+| `patch69` | v123 | Names back to left-aligned (lighter stroke); Legendary gold line on the compositor, random timing per card; hover pop-up above the card, never over it (`ut55_hover.js`, run in a browser); offering coin in the parchment pop-up; home painting behind Full card pool / Starting cards; opening hand flies in |
 | `patch_lore` | | Lore from `tooling/lore/*.js`: a line for every card (shown only on inspect), enemy and elite lore, hero backstories; realm-name fixes |
 
 **Workflow.**
