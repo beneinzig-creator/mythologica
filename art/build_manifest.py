@@ -881,6 +881,36 @@ def main():
                     'output': f'art/{folder}/{cid}.webp',
                 }
 
+    # Tutorial cards: the training targets and tokens in this hero's tutorial lessons (tooling/tutorial.js)
+    # that are not already in the hero's pool or decks. Kept in their own table and planned last, so they
+    # never change the shots of the hero's other cards.
+    tutorial = {}
+    tj = os.path.join(ROOT, 'tooling', 'tutorial.js')
+    if os.path.exists(tj):
+        import re as _re
+        src = open(tj, encoding='utf-8').read()
+        for m in _re.finditer(r"\{id:'[^']+',h:'(\w+)'(.*?)(?=\n\{id:'|\nconst JOURNEY)", src, _re.S):
+            if m.group(1) != a.hero:
+                continue
+            body = m.group(2).replace('DUMMIES', "'tdum'")
+            want = set()
+            for dm in _re.finditer(r"(?:deck|edeck):(\[[^\]]*\]|Array\(\d+\)\.fill\('(\w+)'\))", body):
+                want |= set(_re.findall(r"'([a-z0-9]+)'", dm.group(0)))
+            want |= set(_re.findall(r"S\.atk\(\['(\w+)'", body)) & {'ein'}
+            for cid in sorted(want):
+                if cid in cards or cid in opponents or cid not in g['D']:
+                    continue
+                d = g['D'][cid]
+                lore = g['LORE'].get(cid) or ''
+                subject = subjects.get(cid) or auto_subject(cid, d, lore, g['TXT'].get(cid) or d[6])
+                tutorial[cid] = {
+                    'name': d[0], 'lore': lore, 'type': TYPE.get(d[2], d[2]),
+                    'rarity': RARITY.get(g['RAR'].get(cid), 'Common'),
+                    'archetype': 'Tutorial', 'colour': d[8], 'emoji': d[7],
+                    'subject_source': 'subjects.json' if cid in subjects else 'auto',
+                    'prompt': f'Subject: {subject}', 'output': f'art/{folder}/{cid}.webp',
+                }
+
     # Composition plan: a distinct shot, angle, light and power level per card within each group,
     # so cards don't look alike at a glance (see composition.py and compositions.json).
     import composition
@@ -889,8 +919,10 @@ def main():
         groups.setdefault('hero:' + c['archetype'], []).append((cid, c['type'], c['lore'], c['name'], c['rarity']))
     for cid, c in opponents.items():
         groups.setdefault('opp:' + c['opponent'], []).append((cid, c['type'], c['lore'], c['name'], c['frame']))
+    for cid, c in tutorial.items():
+        groups.setdefault('tutorial', []).append((cid, c['type'], c['lore'], c['name'], c['rarity']))
     plans = composition.plan(groups, a.hero)
-    for table in (cards, opponents):
+    for table in (cards, opponents, tutorial):
         for cid, c in table.items():
             subject = c['prompt'].split('Subject: ', 1)[1].split('\n\nComposition:', 1)[0]
             c['composition'] = plans[cid]
@@ -926,7 +958,8 @@ def main():
         icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
                              'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',
                              'background': 'transparent'}
-    old.setdefault('heroes', {})[a.hero] = {'name': ch['n'], 'cards': cards, 'opponents': opponents, 'frames': frames, 'icons': icons}
+    old.setdefault('heroes', {})[a.hero] = {'name': ch['n'], 'cards': cards, 'opponents': opponents, 'tutorial': tutorial,
+                                            'frames': frames, 'icons': icons}
     back = {'back': {'name': 'Card back', 'prompt': BACK, 'output': 'art/back/back.webp', 'size': '1024x1536'}}
     for k, t in SIGILS.items():
         back[f'sigil_{k}'] = {'name': f'{k} sigil', 'prompt': f'{SIGIL_BASE}\n\nSubject: {t}',
@@ -958,6 +991,7 @@ def main():
     hand = sum(1 for c in cards.values() if c['subject_source'] != 'auto')
     print(f'Wrote {len(cards)} {ch["n"]} cards to art/manifest.json ({hand} with hand-written subjects).')
     ohand = sum(1 for c in opponents.values() if c['subject_source'] != 'auto')
+    print(f'Wrote {len(tutorial)} tutorial cards: {", ".join(tutorial) or "none"}.')
     print(f'Wrote {len(opponents)} opponent cards ({ohand} with hand-written subjects).')
 
 

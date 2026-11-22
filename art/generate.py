@@ -193,8 +193,8 @@ def main():
     elif a.ids:
         ids = [i.strip() for i in a.ids.split(',') if i.strip()]
         # --ids can name the hero's cards or opponent cards
-        opp = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero].get('opponents') or {}
-        cards = {**opp, **cards}
+        _h = json.load(open(os.path.join(ART, 'manifest.json'), encoding='utf-8'))['heroes'][a.hero]
+        cards = {**(_h.get('opponents') or {}), **(_h.get('tutorial') or {}), **cards}
     elif a.all:
         ids = list(cards)
     elif a.rarity:

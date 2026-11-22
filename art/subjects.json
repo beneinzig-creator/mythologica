@@ -180,7 +180,10 @@
   "myrsh": "A Myrmidon shield-bearer, one of Achilles' disciplined warriors from Phthia: a hard-faced hoplite in dark bronze armour and a black-crested helmet bracing a huge round shield painted with the ant emblem of the Myrmidons, feet planted, eyes cold over the rim.",
   "closer": "Close ranks: a line of Greek hoplites slamming their round shields together into an overlapping wall at the shout of their officer, spears levelled over the rims, dust rising around their feet.",
   "horse": "The Trojan Horse: the colossal wooden horse standing before the great walls of Troy at dawn, built from the timbers of the Greek ships and taller than the gate, a small hatch in its belly barely visible, tiny Trojans gathered in wonder at its hooves.",
-  "dint": "Divine intervention: a vast shining hand reaching down through parting storm clouds to catch a falling, wounded warrior just before he strikes the ground, pure golden light pouring through the gap in the clouds."
+  "dint": "Divine intervention: a vast shining hand reaching down through parting storm clouds to catch a falling, wounded warrior just before he strikes the ground, pure golden light pouring through the gap in the clouds.",
+  "tdum": "A training dummy in a sandy Greek practice yard by the sea: a figure of straw and sacking lashed to a wooden post, wearing a dented old bronze helmet and a battered round shield, spear-holes in its chest.",
+  "tstraw": "A straw raider: a straw dummy dressed as a raider with a wooden sword, mounted on a little wheeled cart that young soldiers are shoving across a Greek training yard toward the viewer.",
+  "tbrute": "A straw brute: a big, heavy straw dummy built like a wrestler, stuffed into an old bronze breastplate with a wooden club strapped to its arm, mounted on a wheeled sledge that a team of young soldiers is shoving across a Greek training yard toward the viewer."
  },
  "odin": {
   "brynh": "Brynhild the valkyrie from the Volsunga saga, who defied Odin and was cast into an enchanted sleep inside a ring of fire on the mountain Hindarfjall: she stands awake at the heart of the wall of flame in a long iron mail byrnie and a plain iron helmet, gripping a spear and a round painted shield, her pale braids lifting in the heat, the fire ring closing around her on a dark snowy peak.",
@@ -351,7 +354,10 @@
   "hgod": "The hanged god: Odin hanging from a branch of the world-tree Yggdrasil for nine nights, wounded by his own spear, gaunt and pale, one eye open and burning as he looks down and the runes appear glowing in the dark below him. Nobody gave him food or drink.",
   "kvas": "The mead of Kvasir, brewed from the blood of the wisest of beings: three great vessels, the kettle Odrerir and the crocks Bodn and Son, brimming with glowing golden mead in a dark dwarf's cave, the light of wisdom rising from them.",
   "karma": "Divine Karma, the cosmic tally of deeds in the Norse way: a vast runestone standing in a starry winter sky, every deed of gods and men carved into it as a spiralling serpent band of runes; some runes glow fresh and gold while old ones fade, and a few glowing runes drift off the stone to be carried forward.",
-  "dint": "Divine intervention in the north: a vast hand of shimmering aurora light reaching down through a raging blizzard to catch a falling, wounded Norse warrior just before he hits the snow, the storm parting around the hand."
+  "dint": "Divine intervention in the north: a vast hand of shimmering aurora light reaching down through a raging blizzard to catch a falling, wounded Norse warrior just before he hits the snow, the storm parting around the hand.",
+  "tdum": "A training dummy in a snowy Norse practice yard beside a longhall: a figure of straw and sackcloth tied to a post, wearing a dented iron helmet and an old split wooden shield, axe-cuts all over it.",
+  "tspear": "A straw spearman: a straw dummy holding a long wooden spear, lashed onto a sled that warriors are shoving through the snow toward the viewer.",
+  "ein": "An einherjar newly risen: a slain warrior stepping out of a shaft of golden light from Valhalla's roof of shields, his wounds closing, sword in hand, his face calm and proud."
  },
  "wukong": {
   "wking": "Sun Wukong, the Great Sage Equal to Heaven, in his full glory: the Monkey King with golden fur and blazing fiery golden eyes, wearing a phoenix-feather cap with two long pheasant plumes, golden chain mail, a red silk cape and cloud-walking boots, spinning his golden-banded iron staff Ruyi Jingu Bang above his head, standing on a swirl of auspicious cloud. Proud, fearless and grinning.",
@@ -500,7 +506,10 @@
   "plm": "The Buddha's palm: the serene Tathagata Buddha seen from far below, seated on a lotus among clouds, his right hand raised in the gesture of blessing, golden light pouring from his palm.",
   "palm": "The five-finger mountain: five immense peaks shaped like fingers standing in a ring in a sea of clouds, a golden talisman fluttering at the summit of the tallest.",
   "karma": "Divine Karma, the cosmic ledger of merit: a giant celestial abacus of glowing jade beads floating among auspicious clouds, the beads sliding by themselves to count good and bad deeds, a golden thread of merit carrying a few beads over to the next row.",
-  "dint": "Divine intervention: a vast radiant golden hand reaching down out of curling auspicious clouds to catch a falling, wounded warrior just before he strikes the mountainside, lotus petals drifting down around it."
+  "dint": "Divine intervention: a vast radiant golden hand reaching down out of curling auspicious clouds to catch a falling, wounded warrior just before he strikes the mountainside, lotus petals drifting down around it.",
+  "tdum": "A training dummy in a temple courtyard on Flower-Fruit Mountain: a straw figure on a wooden post wearing a little red headband, its arms made of bamboo poles, scuffed from staff practice, plum blossom falling.",
+  "tblk": "A shield dummy: a wooden training figure like a wing-chun wooden man, holding a large round rattan shield in front of itself, standing in a bamboo grove practice ground.",
+  "whair": "A spare hair: a single golden hair from the Monkey King drifting on the wind like a tiny comet, glowing, sparks and a faint curl of cloud trailing from it against misty peaks."
  },
  "thoth": {
   "dosir": "Osiris, lord of the dead: the green-skinned king of the underworld seated on his throne, wrapped in white linen like a mummy, wearing the tall white atef crown with two ostrich plumes, holding the crook and flail crossed over his chest, a lake of lotus flowers at his feet.",
@@ -643,6 +652,10 @@
   "sekhg": "Sekhmet, the eye of Ra: the lioness-headed goddess of war in a red dress with a sun disc and cobra on her head, roaring with flames streaming from her mouth across the desert.",
   "lion": "A lioness of Sekhmet: a powerful lioness charging across the desert in the red light of sunset, sand flying from her paws.",
   "plague": "A bringer of plague: a dark messenger of Sekhmet with a lion's mask and a quiver of glowing arrows, loosing them over a city at night.",
-  "sekh": "The eye of Ra: a huge blazing eye of fire in the sky, a lioness's shape inside the flames, scorching the desert below."
+  "sekh": "The eye of Ra: a huge blazing eye of fire in the sky, a lioness's shape inside the flames, scorching the desert below.",
+  "tdum": "A training dummy in a temple courtyard by the Nile: a figure of bundled reeds and linen on a wooden post, its face painted with simple eyes, a small wicker shield tied to its arm.",
+  "tdum1": "A straw soldier: a straw figure dressed as an Egyptian soldier with a linen kilt, a wooden khopesh sword and a reed shield, standing in a row of others on a dusty parade ground.",
+  "tgiant": "The clay giant: a huge figure of a soldier sculpted from Nile mud, twice the height of a man, standing guard with a clay shield, cracks drying in the sun and priests' handprints still in the clay.",
+  "tblk": "A shield dummy: a reed-and-linen training figure on a post holding up a tall cowhide shield in front of itself, standing in a sunlit temple courtyard by the Nile."
  }
 }
