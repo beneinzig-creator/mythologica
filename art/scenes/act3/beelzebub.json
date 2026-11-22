@@ -1,0 +1,22 @@
+{
+  "id": "beelzebub",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-22 13:06:59",
+  "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the throne room of Beelzebub in hell: a monstrous Lord of the Flies with huge buzzing wings enthroned on a mountain of bones, a storm of black flies swirling like smoke filling the sky, rotting banners, demon courtiers bowing, rivers of filth and fire, a cracked ceiling of red rock A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: putrid green and black (#0a0c06 to #4a5a1a) with ember red and bone white.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 441,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 441
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1813
+  }
+}

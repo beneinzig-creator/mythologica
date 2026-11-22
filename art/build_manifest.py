@@ -754,19 +754,26 @@ HERO_UI['thoth'] = {
 APOC_LOOK = ('The look of a medieval illuminated Apocalypse manuscript (like the Beatus and Angers Apocalypse): gold leaf, '
              'deep ultramarine, vermilion and black; flames, falling stars, scorched angel feathers and broken halos; dark '
              'and ominous, the host of the fallen. No Greek, Norse, Chinese or Egyptian elements.')
+# Ben (Nov 2026): the first set looked too alike. Each rarity now has its own material and colour, and they get more
+# epic as they climb: bronze and feathers, obsidian and hellfire, storm silver and lightning, the gold-and-crimson dragon.
 FRAMES['act3'] = {
-    'common': 'Common rarity: a plain frame of blackened iron and ash-grey stone, cracked and scorched, with a thin border '
-              'of small flames and falling stars and plain iron corner studs, modest and unornamented. ' + APOC_LOOK,
-    'uncommon': 'Uncommon rarity: a frame of tarnished dark bronze, with scorched black angel feathers laid along the two '
-                'sides and small ember-red gems at the corners. ' + APOC_LOOK,
-    'rare': 'Rare rarity: a frame of dark gold leaf and ultramarine like an Apocalypse manuscript border, a pair of fallen '
-            'angel wings with burnt, smouldering tips curling up the two sides, and a cracked golden halo above the art '
-            'window. ' + APOC_LOOK,
-    'legendary': 'Legendary rarity, the grandest frame of all: blazing gold and black, the vast dark wings of a fallen '
-                 'seraph spread around the top and sides with gold-edged feathers burning at their tips, a shattered '
-                 'golden halo and a single burning eye at the top centre, a band of falling stars across a cracked '
-                 'ultramarine sky along the top and a river of fire along the bottom. Dark golden light glows from the '
-                 'frame itself. Rich and terrible, still hand-painted, never glossy or 3D-rendered. ' + APOC_LOOK,
+    'common': 'Common rarity: a frame of tarnished dark bronze, worn and dented, with a few scorched black angel feathers '
+              'laid along the two sides and small dull ember-red stones at the corners; restrained and simple. Colours: '
+              'dark bronze, black and a little ember red. ' + APOC_LOOK,
+    'uncommon': 'Uncommon rarity: a frame of black obsidian veined with glowing red-orange cracks like cooling lava, heavy '
+                'iron chains wrapped around the corners with broken shackles, small horned skulls at the four corners, '
+                'flames licking up from the bottom edge. Colours: glossy black and glowing hellfire orange. Clearly '
+                'different in colour and material from a bronze frame. ' + APOC_LOOK,
+    'rare': 'Rare rarity: a frame of storm silver and deep ultramarine: torn silver-edged angel wings, battered and '
+            'bleeding light, rising up both sides; storm clouds and forked lightning crackling around the border; seven '
+            'small golden trumpets along the top edge and a cracked silver halo above the art window. Colours: silver, '
+            'stormy blue, white lightning, touches of gold. Epic and dramatic. ' + APOC_LOOK,
+    'legendary': 'Legendary rarity, the most epic frame of all: the great red dragon of the Apocalypse, with seven crowned '
+                 'heads and ten horns, coiled all the way around the card in blazing gold and crimson scales, its heads '
+                 'rearing over the top edge, its tail sweeping a third of the stars from the sky along one side; a burning '
+                 'halo of golden light behind the art window, gold leaf everywhere, fire and falling stars. Colours: '
+                 'blazing gold and deep crimson on black. Overwhelming and climactic, still hand-painted, never glossy or '
+                 '3D-rendered. ' + APOC_LOOK,
 }
 
 
