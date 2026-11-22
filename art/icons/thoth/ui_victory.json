@@ -1,0 +1,22 @@
+{
+  "id": "ui_victory",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-21 10:29:46",
+  "prompt": "Victory: the golden sun-boat of Ra rising over the Nile at dawn, the temple of Thoth at Hermopolis glowing on the bank, ibises flying across a sky of rose and gold, the Field of Reeds green and gold beyond. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 153,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 153
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1525
+  }
+}

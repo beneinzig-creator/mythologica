@@ -1,0 +1,22 @@
+{
+  "id": "ui_camp",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-21 10:30:59",
+  "prompt": "A small campfire beside a palm grove on the bank of the Nile at night: a reed boat pulled up on the mud, a bedroll and a scribe's satchel by the fire, the river reflecting a big silver moon and stars, the desert dark beyond. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text. Dark around the edges, calm.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 165,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 165
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1537
+  }
+}

@@ -695,6 +695,10 @@ STAMPS['thoth'] = {
     'xg': 'Judgement: a pair of balance scales.',
     'xh': 'Riddle: a small sphinx lying down.',
 }
+TH_SCREEN = ('Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat '
+             'transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain '
+             'showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, '
+             'red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements.')
 HERO_UI['thoth'] = {
     # Ben's pick (Nov 2026) from seven ideas: the Eye of the Moon.
     'sigil_thoth': ('1024x1024', 'transparent',
@@ -703,6 +707,33 @@ HERO_UI['thoth'] = {
         'inlaid in lapis lazuli and gold like Tutankhamun\'s jewellery, with a silver crescent moon cradled beneath it. '
         'Rustic 1990s hand-painted style, symmetrical and centred on a fully transparent background. No letters, no '
         'hieroglyphs, no circle or badge behind it.'),
+    # Thoth's screens, in the pen-and-ink-with-washes look of his backgrounds.
+    'ui_map': ('1536x1024', 'opaque',
+        'An ancient Egyptian map of the Nile and the lands of the dead painted on an aged, stained papyrus: the river '
+        'winding from top to bottom, small pyramids, temples, palms and boats along it, the desert in faded ochre, '
+        'ibises and a small sun-boat in the margins, in faded ink and soft washes of lapis, turquoise, ochre and gold. The '
+        'centre is mostly open desert and river with very few marks so game icons can sit on top. ' + TH_SCREEN +
+        ' No text, no readable hieroglyphs.'),
+    'ui_victory': ('1536x1024', 'opaque',
+        'Victory: the golden sun-boat of Ra rising over the Nile at dawn, the temple of Thoth at Hermopolis glowing on '
+        'the bank, ibises flying across a sky of rose and gold, the Field of Reeds green and gold beyond. ' + TH_SCREEN +
+        ' No text.'),
+    'ui_defeat': ('1536x1024', 'opaque',
+        'Defeat: a ruined temple half buried in desert sand at dusk, a toppled ibis statue of Thoth and a broken '
+        'scribe\'s palette in the sand, the scales of judgement tipped over, jackals watching from the dunes under a '
+        'violet sky. ' + TH_SCREEN + ' No text.'),
+    'ui_camp': ('1536x1024', 'opaque',
+        'A small campfire beside a palm grove on the bank of the Nile at night: a reed boat pulled up on the mud, a '
+        'bedroll and a scribe\'s satchel by the fire, the river reflecting a big silver moon and stars, the desert dark '
+        'beyond. ' + TH_SCREEN + ' No text. Dark around the edges, calm.'),
+    'ui_craft': ('1536x1024', 'opaque',
+        'A temple workshop of scribes and craftsmen: low tables with papyrus rolls, ink palettes and reed pens; an '
+        'artisan\'s bench with gold, faience amulets and a small furnace glowing; painted walls and oil lamps. '
+        + TH_SCREEN + ' No text. Dark around the edges, no people.'),
+    'ui_altar': ('1536x1024', 'opaque',
+        'A quiet temple sanctuary at dusk: a stone offering table with bread, jars of beer and blue lotus flowers before '
+        'a gilded shrine holding an ibis statue of Thoth, incense smoke rising, painted columns with papyrus capitals. '
+        + TH_SCREEN + ' No text. Dark around the edges, no people.'),
     'ui_button': ('1536x1024', 'transparent',
         'One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the '
         'width of the image: a gold-edged lapis-blue plaque with a thin band of coloured block border and small gold '

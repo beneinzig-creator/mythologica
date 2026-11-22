@@ -277,6 +277,30 @@
       "screen": "tutfight",
       "setting": "a training terrace on the Mountain of Flowers and Fruit from Journey to the West: a stone terrace among misty peaks; wooden posts and straw training dummies along the left edge; racks of staffs, spears and banners along the right edge; peach trees in pink blossom, a waterfall in the distance; a small shrine with incense",
       "palette": "jade green and peach pink (#0a1a14 to #4f8a6a) with cinnabar banners, gold and misty white"
+    },
+    "s_wk_draft_start": {
+      "name": "Draft (start of run)",
+      "screen": "draft_start",
+      "setting": "the great west gate of the Tang capital Chang'an at dawn as the pilgrims set out for the West: the tall red gate tower with its tiled roofs along the left edge; banners, a farewell crowd and officials in silk robes; the white horse loaded with bundles and a monk's staff; the long road winding away west through misty hills on the right The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "misty dawn blue-green (#0c1618 to #3f6a6a) with cinnabar gate, gold roof tiles and peach-pink morning light"
+    },
+    "s_wk_draft_reward": {
+      "name": "Draft (reward)",
+      "screen": "draft_reward",
+      "setting": "treasures won from the demons laid out in a cave hall by lantern light: magic gourds, golden bells, a purple-gold calabash, a jade belt, pearls, silk banners and demon weapons heaped on a red carpet before a carved stone throne at the far left; lanterns and stalactites along the right edge The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "deep cave umber (#120c08 to #5a3a22) with lantern orange, jade green, gold and cinnabar accents"
+    },
+    "s_wk_otg": {
+      "name": "One True God altar",
+      "screen": "otg",
+      "setting": "a vast ancient sacrificial altar of carved white jade on a mountain peak above the five-coloured clouds of heaven at night: four great bronze tripod cauldrons burning at the corners along the left and right edges; a monumental stair rising from the lower corners; the Milky Way and the moon above; dragons carved on the balustrades The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "midnight indigo (#060a18 to #2a3a6a) with four flame-gold cauldrons, white jade and five-coloured cloud accents"
+    },
+    "s_wk_bossp": {
+      "name": "Boss pick",
+      "screen": "bossp",
+      "setting": "the end of the Western road at the coming of a great storm: on the left the burning Flaming Mountains with the shadow of the Bull Demon King; across the top a storm cloud in the shape of a monkey with six ears; on the right a colossal golden palm of the Buddha rising out of the clouds, five fingers like pillars The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements",
+      "palette": "storm violet to ember red (#100814 to #6a2a24) with gold, fire orange and lightning white"
     }
   },
   "thoth": {
@@ -352,6 +376,30 @@
       "screen": "tutfight",
       "setting": "a training court inside an Egyptian temple: a sand floor between painted columns with papyrus capitals; wooden sparring staffs and shields of cowhide on racks along the left edge; archery targets and a scribe's school bench with palettes along the right edge; a sacred ibis by a pool; the temple pylon and palm trees beyond in the morning sun",
       "palette": "warm sandstone and lapis blue (#1a1208 to #6a5a3a) with turquoise, red ochre, gold and palm green"
+    },
+    "s_th_draft_start": {
+      "name": "Draft (start of run)",
+      "screen": "draft_start",
+      "setting": "the harbour of Thebes on the Nile at dawn as Thoth's followers gather: reed boats and a gilded royal barque moored along the left edge; scribes loading papyrus scrolls and chests; tall temple pylons with banners on poles along the right edge; palms and the western cliffs beyond under a rosy sky Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "dawn rose and Nile teal (#14100c to #4a6a6a) with gold, lapis and red-ochre accents"
+    },
+    "s_th_draft_reward": {
+      "name": "Draft (reward)",
+      "screen": "draft_reward",
+      "setting": "the spoils laid out in a temple treasury by lamplight: gold collars, scarab amulets, canopic jars, painted chests, golden statues and rolls of papyrus heaped on reed mats before a gilded shrine at the far left; painted columns and oil lamps along the right edge Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "deep umber (#140e08 to #5a4022) with lamplight gold, lapis blue, turquoise and carnelian"
+    },
+    "s_th_otg": {
+      "name": "One True God altar",
+      "screen": "otg",
+      "setting": "a vast ancient sacrificial altar of sandstone at the foot of a colossal golden obelisk in the desert at night: four great bronze fire bowls burning at the corners along the left and right edges; a monumental stair rising from the lower corners; the starry body of the sky goddess Nut arching across the heavens; ibis statues guarding the steps Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "midnight lapis (#060a16 to #1f2f5a) with four flame-gold bowls, starlight and sandstone gold"
+    },
+    "s_th_bossp": {
+      "name": "Boss pick",
+      "screen": "bossp",
+      "setting": "the edge of the world at the coming of a great storm: on the left the coils of the serpent Apophis rising from a black river; across the top a red sandstorm with the tall-eared shadow of Set; on the right the blazing sun disc of the lioness Sekhmet over burning desert Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
+      "palette": "storm black to red ochre (#0c0806 to #8a3a1c) with poison green, blazing gold and sand"
     }
   }
 }
