@@ -182,7 +182,7 @@ def main():
     # home screen portraits and background
     hdir = os.path.join(ART, 'home')
     # the round frame shows the head, so each portrait is cut to a square around the face (on the 1024 source)
-    face_crop = {'ody': (1, 1, 620), 'odin': (190, 40, 640), 'wukong': (300, 1, 620)}  # sips treats an offset of 0 as 'centre'
+    face_crop = {'ody': (1, 1, 620), 'odin': (190, 40, 640), 'wukong': (300, 1, 620), 'thoth': (190, 1, 580)}  # sips treats an offset of 0 as 'centre'
     for k, (x0, y0, side) in face_crop.items():
         src, dst = os.path.join(hdir, k + '.webp'), os.path.join(GAME, 'home', k + '.jpg')
         if os.path.exists(src) and (not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src)):
