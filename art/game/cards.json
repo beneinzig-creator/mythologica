@@ -1410,6 +1410,7 @@
 "eerl": "wu",
 "egil": "ou",
 "ehnd": "wu",
+"ein": "oc",
 "einw": "oc",
 "eir": "ou",
 "elder": "c",
@@ -1752,10 +1753,14 @@
 "sting": "tcs",
 "sunch": "u",
 "surtr": "oc",
+"tblk": "wc",
 "tbull": "c",
 "tdig": "tc",
+"tdum": "c",
+"tdum1": "tc",
 "telem": "u",
 "testudo": "rs",
+"tgiant": "tc",
 "tguard": "tc",
 "thanat": "r",
 "thegn": "oc",
@@ -1775,6 +1780,8 @@
 "trob": "tls",
 "tscar": "tcs",
 "tscr": "tc",
+"tspear": "oc",
+"tstraw": "c",
 "tsun": "tcs",
 "tyr": "or",
 "ulf": "oc",
@@ -1825,6 +1832,7 @@
 "wgreat": "wr",
 "wgrow": "wcs",
 "wgust": "wus",
+"whair": "wcs",
 "wheist": "wrs",
 "whirl": "ls",
 "whstorm": "wus",
@@ -1917,29 +1925,35 @@
 "hero": {
 "odin": {
 "dint": "ols",
-"karma": "ols"
+"karma": "ols",
+"tdum": "oc"
 },
 "thoth": {
 "dint": "tls",
-"karma": "tls"
+"karma": "tls",
+"tdum": "tc"
 },
 "wukong": {
 "dint": "wls",
-"karma": "wls"
+"karma": "wls",
+"tdum": "wc"
 }
 },
 "hero_myth": {
 "odin": {
 "dint": "Divine intervention in the north: a vast hand of shimmering aurora light reaching down through a raging blizzard to catch a falling, wounded Norse warrior just before he hits the snow, the storm parting around the hand.",
-"karma": "Divine Karma, the cosmic tally of deeds in the Norse way: a vast runestone standing in a starry winter sky, every deed of gods and men carved into it as a spiralling serpent band of runes; some runes glow fresh and gold while old."
+"karma": "Divine Karma, the cosmic tally of deeds in the Norse way: a vast runestone standing in a starry winter sky, every deed of gods and men carved into it as a spiralling serpent band of runes; some runes glow fresh and gold while old.",
+"tdum": "A training dummy in a snowy Norse practice yard beside a longhall: a figure of straw and sackcloth tied to a post, wearing a dented iron helmet and an old split wooden shield, axe-cuts all over it."
 },
 "thoth": {
 "dint": "Divine intervention: a vast radiant golden hand reaching down from a blazing winged sun disc in the sky to catch a falling, wounded warrior just before he strikes the desert sand.",
-"karma": "Divine Karma in Egypt: the great ledger of the gods, an immense open papyrus book resting on the back of a sacred baboon of Thoth, every deed written in it glowing."
+"karma": "Divine Karma in Egypt: the great ledger of the gods, an immense open papyrus book resting on the back of a sacred baboon of Thoth, every deed written in it glowing.",
+"tdum": "A training dummy in a temple courtyard by the Nile: a figure of bundled reeds and linen on a wooden post, its face painted with simple eyes, a small wicker shield tied to its arm."
 },
 "wukong": {
 "dint": "Divine intervention: a vast radiant golden hand reaching down out of curling auspicious clouds to catch a falling, wounded warrior just before he strikes the mountainside, lotus petals drifting down around it.",
-"karma": "Divine Karma, the cosmic ledger of merit: a giant celestial abacus of glowing jade beads floating among auspicious clouds, the beads sliding by themselves to count good and bad deeds."
+"karma": "Divine Karma, the cosmic ledger of merit: a giant celestial abacus of glowing jade beads floating among auspicious clouds, the beads sliding by themselves to count good and bad deeds.",
+"tdum": "A training dummy in a temple courtyard on Flower-Fruit Mountain: a straw figure on a wooden post wearing a little red headband, its arms made of bamboo poles, scuffed from staff practice, plum blossom falling."
 }
 },
 "myth": {
@@ -2071,6 +2085,7 @@
 "eerl": "Erlang Shen, the Illustrious Sage: a handsome, stern god with a third eye blazing on his forehead, in silver armour and a yellow cloak, holding his three-pointed double-edged blade.",
 "egil": "Egil the Mad, the poet-warrior of Egil's saga: a huge, ugly, heavy-browed man with a wild beard, laughing as he chants a verse with an axe in his fist, drinking horn in the other hand, firelit.",
 "ehnd": "The howling celestial hound: Erlang Shen's loyal black hunting dog, lean and fierce, leaping with jaws open across a rocky mountain.",
+"ein": "An einherjar newly risen: a slain warrior stepping out of a shaft of golden light from Valhalla's roof of shields, his wounds closing, sword in hand, his face calm and proud.",
 "einw": "An einherjar warrior, one of the slain heroes of Valhalla: a warrior with healed battle wounds and a calm, proud face, in mail and a gold-trimmed cloak, holding a sword, light from the shields that roof Valhalla falling on him.",
 "eir": "Eir the healer, goddess of healing: a calm woman in a pale green cloak kneeling beside a wounded warrior, holding a bowl of herbs and a cup, her hands glowing faintly.",
 "elder": "An ancient grey-bearded Cyclops elder with his single wise, weary eye, leaning on a gnarled staff outside his cave.",
@@ -2413,10 +2428,14 @@
 "sting": "The sting of Serket: a giant scorpion's tail curling down and striking, venom glistening at its tip. The sting is the whole picture.",
 "sunch": "The chariot of the sun: Helios's golden chariot racing across the sky, drawn by four fiery horses with manes of flame, sparks streaming from its wheels.",
 "surtr": "Surtr, lord of Muspelheim: the black fire giant with a flaming sword brighter than the sun, his face dark and terrible, a crown of flames, standing amid a sea of fire.",
+"tblk": "A shield dummy: a wooden training figure like a wing-chun wooden man, holding a large round rattan shield in front of itself, standing in a bamboo grove practice ground.",
 "tbull": "The great white bull that Poseidon sent from the sea to King Minos, rising out of the waves onto the shore of Crete.",
 "tdig": "A tunnel digger: a sweating robber chipping through the stone of a tomb wall with a copper chisel, rubble around his knees, a rope leading back up a narrow shaft.",
+"tdum": "A training dummy in a sandy Greek practice yard by the sea: a figure of straw and sacking lashed to a wooden post, wearing a dented old bronze helmet and a battered round shield, spear-holes in its chest.",
+"tdum1": "A straw soldier: a straw figure dressed as an Egyptian soldier with a linen kilt, a wooden khopesh sword and a reed shield, standing in a row of others on a dusty parade ground.",
 "telem": "Telemachus, the grown son of Odysseus, standing at the prow of a ship leaving Ithaca to seek news of his father, the goddess Athena beside him disguised as old Mentor.",
 "testudo": "Warriors crouched under a locked roof of shields as a rain of arrows and stones falls on them from a city wall.",
+"tgiant": "The clay giant: a huge figure of a soldier sculpted from Nile mud, twice the height of a man, standing guard with a clay shield, cracks drying in the sun and priests' handprints still in the clay.",
 "tguard": "The mummy king: a mummified pharaoh in a crumbling gold-trimmed shroud and the double crown, standing in his burial chamber with a crook and flail, his painted eyes glowing.",
 "thanat": "Thanatos, the winged god of death, a solemn dark-winged young man holding an upside-down extinguished torch, gliding silently over a battlefield at dusk.",
 "thegn": "A thegn of the hall, kneeling: a young retainer in a fine red embroidered tunic kneeling on one knee before his lord's high seat and offering his sword up hilt-first with both hands, his head bowed.",
@@ -2436,6 +2455,8 @@
 "trob": "Grave-goods: a robbed tomb chamber heaped with gilded chairs, chests, chariots and statues, a robbers' rope hanging down through a hole in the ceiling.",
 "tscar": "A scarab amulet: a single large carved scarab of lapis lazuli and gold with outspread falcon wings, resting on folded white linen, glowing faintly. The amulet is the whole picture.",
 "tscr": "A temple scribe: a young scribe sitting cross-legged in the classic pose with a papyrus roll across his kilt, a reed pen behind his ear, ink palette at his side, in a sunlit courtyard.",
+"tspear": "A straw spearman: a straw dummy holding a long wooden spear, lashed onto a sled that warriors are shoving through the snow toward the viewer.",
+"tstraw": "A straw raider: a straw dummy dressed as a raider with a wooden sword, mounted on a little wheeled cart that young soldiers are shoving across a Greek training yard toward the viewer.",
 "tsun": "Sunder the soul: a priest raising an ostrich-feather fan over a dying warrior as his soul parts in two, the Ka rising as a pale double of his body with raised arms on its head, the Ba flying free as a human-headed bird.",
 "tyr": "Tyr the one-handed, god of war and oaths: a stern, broad-shouldered god with one hand missing at the wrist, holding his sword in the other, the shadow of the wolf Fenrir who bit off his hand looming faintly behind him.",
 "ulf": "A young Ulfhednar initiate pulling a grey wolf pelt over his head and shoulders for the first time, the wolf skull resting on his brow, in a forest clearing at night lit by one fire.",
@@ -2486,6 +2507,7 @@
 "wgreat": "A great wall monkey: a giant stone monkey statue standing guard on a watchtower of a long mountain wall, moss on its shoulders, a staff in its fist.",
 "wgrow": "Grow tall: a small monkey soldier growing to giant size in a single moment, towering over a mountain pass, tiny enemy soldiers staring up at him in shock.",
 "wgust": "An iron fan gust: a giant palm-leaf fan sweeping across the picture and blowing a demon soldier head over heels into the distance.",
+"whair": "A spare hair: a single golden hair from the Monkey King drifting on the wind like a tiny comet, glowing, sparks and a faint curl of cloud trailing from it against misty peaks.",
 "wheist": "The heavenly heist: a furry brown hand reaching through a silk curtain into Laozi's alchemy chamber to snatch a gourd of golden elixir pills from a lacquered shelf. Only the hand and the shelf.",
 "whirl": "The whirlpool Charybdis seen from above, a vast spiral of dark sea, a ship's timbers caught at its rim.",
 "whstorm": "A hair storm: a whirlwind of glowing golden hairs tearing across a battlefield like a sandstorm, demon soldiers shielding their faces. No monkey in the picture.",

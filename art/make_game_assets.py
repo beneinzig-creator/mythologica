@@ -110,10 +110,11 @@ def main():
     others = set()
     for hk, hv in allh.items():
         if hk != a.hero:
-            others |= set(hv.get('cards', {})) | set(hv.get('opponents') or {})
+            others |= set(hv.get('cards', {})) | set(hv.get('opponents') or {}) | set(hv.get('tutorial') or {})
     htable = {}
     entries = [(cid, c, TIER.get(c.get('rarity'), 'c')) for cid, c in hero['cards'].items()]
     entries += [(cid, c, TIER.get(c.get('frame'), 'c')) for cid, c in (hero.get('opponents') or {}).items()]
+    entries += [(cid, c, 'c') for cid, c in (hero.get('tutorial') or {}).items()]
     for cid, c, tier in entries:
         src = os.path.join(os.path.dirname(ART), c['output'])
         if not os.path.exists(src):
