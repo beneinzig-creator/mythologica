@@ -280,6 +280,13 @@ HOME = {
                'red-and-gold staff balanced across his shoulders, golden fur, the golden fillet on his brow and a '
                'phoenix-feather cap. Misty ink-wash mountain peaks far below. Colours of red, dull gold and ink '
                'black, with the brush rhythm of classical Chinese ink painting mixed into the pen-and-ink style.'),
+    'thoth': ('Thoth, the ibis-headed Egyptian god of writing, wisdom and the moon, seen in three-quarter view from '
+              'slightly below, seated cross-legged like a scribe on the steps of his temple at Hermopolis, a reed pen '
+              'raised in one hand and a half-unrolled papyrus across his knees, his long curved ibis beak turned '
+              'toward the viewer, a silver moon disc in a gold crescent resting on his head; a broad collar of lapis '
+              'and gold over white linen. Night, a starry lapis sky, painted columns behind him and a sacred ibis at '
+              'his feet. Colours of lapis blue, gold, white linen and moon silver, with the flat bold colours of '
+              'Egyptian tomb painting mixed into the pen-and-ink style.'),
 }
 HOME_BG = (
     'A wide, very dark, atmospheric background painting for the title screen of a mythology card game: a vast '
