@@ -773,7 +773,10 @@ FRAMES['act3'] = {
                  'rearing over the top edge, its tail sweeping a third of the stars from the sky along one side; a burning '
                  'halo of golden light behind the art window, gold leaf everywhere, fire and falling stars. Colours: '
                  'blazing gold and deep crimson on black. Overwhelming and climactic, still hand-painted, never glossy or '
-                 '3D-rendered. ' + APOC_LOOK,
+                 '3D-rendered. IMPORTANT: the border is exactly as thin as on an ordinary card frame, so the art window '
+                 'and the text box are just as large as on the other rarities: the dragon\'s body is drawn slim and '
+                 'tight along the outer edges only, and its seven heads are small, kept inside the thin band above the '
+                 'title bar; nothing pushes the title bar, art window or text box inwards or downwards. ' + APOC_LOOK,
 }
 
 
