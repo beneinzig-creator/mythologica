@@ -127,6 +127,25 @@ def main():
         made += shrink(src, os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
         table[cid] = code
 
+    # Cards that left this hero's deck lists but are still in the game (for example a card a tutorial
+    # still uses, or one kept for a later act) keep their painted picture: any art/<folder>/<id>.webp
+    # whose id the game still knows is copied in too, framed from the game's own rarity and type.
+    import sys as _sys
+    _sys.path.insert(0, ART)
+    import build_manifest as _bm
+    _g = _bm.load_game()
+    _rt = {'C': 'c', 'U': 'u', 'R': 'r', 'L': 'l'}
+    for fn in sorted(os.listdir(os.path.join(ART, folder))):
+        cid = fn[:-5]
+        if not fn.endswith('.webp') or cid in table or cid in htable or cid not in _g['D']:
+            continue
+        if cid in others:  # shared ids are handled per hero above
+            continue
+        d = _g['D'][cid]
+        code = CODE_PREFIX.get(a.hero, '') + _rt.get(_g['RAR'].get(cid), 'c') + ('' if d[2] == 'C' else 's')
+        made += shrink(os.path.join(ART, folder, fn), os.path.join(GAME, 'cards', f'{cid}.jpg'), 480)
+        table[cid] = code
+
     fr = os.path.join(ART, 'frames', folder)
     for code, name in FRAME_NAME.items():
         for suffix, tag in (('', ''), ('s', '_spell')):
