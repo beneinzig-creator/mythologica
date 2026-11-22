@@ -1,0 +1,1 @@
+Act III card pictures (art/act3/<card id>.webp) go here. Act III is shared by every hero; its cards are all opponents', framed by tier with the x* frames (regular decks xc, elites xu, generals xr, trumps xl).
