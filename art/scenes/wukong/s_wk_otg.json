@@ -1,0 +1,22 @@
+{
+  "id": "s_wk_otg",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-21 09:01:41",
+  "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast ancient sacrificial altar of carved white jade on a mountain peak above the five-coloured clouds of heaven at night: four great bronze tripod cauldrons burning at the corners along the left and right edges; a monumental stair rising from the lower corners; the Milky Way and the moon above; dragons carved on the balustrades The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: midnight indigo (#060a18 to #2a3a6a) with four flame-gold cauldrons, white jade and five-coloured cloud accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 420,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 420
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1792
+  }
+}

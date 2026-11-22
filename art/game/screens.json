@@ -15,9 +15,17 @@
 "tuttext": "s_tut_text"
 },
 "thoth": {
+"bossp": "s_th_bossp",
+"draft_reward": "s_th_draft_reward",
+"draft_start": "s_th_draft_start",
+"otg": "s_th_otg",
 "tutfight": "s_th_tut_ground"
 },
 "wukong": {
+"bossp": "s_wk_bossp",
+"draft_reward": "s_wk_draft_reward",
+"draft_start": "s_wk_draft_start",
+"otg": "s_wk_otg",
 "tutfight": "s_wk_tut_ground"
 }
 }
