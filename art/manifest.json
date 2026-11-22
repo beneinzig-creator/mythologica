@@ -14818,6 +14818,54 @@
           "format": "png",
           "background": "transparent"
         },
+        "ui_map": {
+          "name": "ui_map",
+          "prompt": "An ancient Egyptian map of the Nile and the lands of the dead painted on an aged, stained papyrus: the river winding from top to bottom, small pyramids, temples, palms and boats along it, the desert in faded ochre, ibises and a small sun-boat in the margins, in faded ink and soft washes of lapis, turquoise, ochre and gold. The centre is mostly open desert and river with very few marks so game icons can sit on top. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text, no readable hieroglyphs.",
+          "output": "art/icons/thoth/ui_map.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_victory": {
+          "name": "ui_victory",
+          "prompt": "Victory: the golden sun-boat of Ra rising over the Nile at dawn, the temple of Thoth at Hermopolis glowing on the bank, ibises flying across a sky of rose and gold, the Field of Reeds green and gold beyond. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text.",
+          "output": "art/icons/thoth/ui_victory.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_defeat": {
+          "name": "ui_defeat",
+          "prompt": "Defeat: a ruined temple half buried in desert sand at dusk, a toppled ibis statue of Thoth and a broken scribe's palette in the sand, the scales of judgement tipped over, jackals watching from the dunes under a violet sky. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text.",
+          "output": "art/icons/thoth/ui_defeat.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_camp": {
+          "name": "ui_camp",
+          "prompt": "A small campfire beside a palm grove on the bank of the Nile at night: a reed boat pulled up on the mud, a bedroll and a scribe's satchel by the fire, the river reflecting a big silver moon and stars, the desert dark beyond. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text. Dark around the edges, calm.",
+          "output": "art/icons/thoth/ui_camp.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_craft": {
+          "name": "ui_craft",
+          "prompt": "A temple workshop of scribes and craftsmen: low tables with papyrus rolls, ink palettes and reed pens; an artisan's bench with gold, faience amulets and a small furnace glowing; painted walls and oil lamps. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text. Dark around the edges, no people.",
+          "output": "art/icons/thoth/ui_craft.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
+        "ui_altar": {
+          "name": "ui_altar",
+          "prompt": "A quiet temple sanctuary at dusk: a stone offering table with bread, jars of beer and blue lotus flowers before a gilded shrine holding an ibis statue of Thoth, incense smoke rising, painted columns with papyrus capitals. Made by hand like a 1993 fantasy game-book illustration: bold, wobbly black pen-and-ink outlines, thin flat transparent watercolour washes with blotchy hard edges, a little cross-hatching, rough off-white paper grain showing through; ancient Egyptian, New Kingdom, with the flat bright colours of tomb painting (lapis, turquoise, red ochre, gold, palm green); colourful rather than muddy. No Greek, Norse or Chinese elements. No text. Dark around the edges, no people.",
+          "output": "art/icons/thoth/ui_altar.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        },
         "ui_button": {
           "name": "ui_button",
           "prompt": "One long, empty horizontal button plate for a game interface, seen perfectly flat and straight-on, filling the width of the image: a gold-edged lapis-blue plaque with a thin band of coloured block border and small gold lotus caps at both ends, worn and scratched; the centre is plain and flat for a label. Ancient Egyptian style, rustic 1990s hand-painted. Fully transparent background around the plate. No text, no hieroglyphs, no letters.",
@@ -14935,6 +14983,12 @@
       "name": "wukong portrait",
       "prompt": "A hero portrait for a card game's character-select screen, made by hand like a 1993 fantasy trading-card or game-book illustration, the same look as the game's cards: confident black pen-and-ink outlines around every shape, ink hatching in the shadows, filled with flat, slightly blotchy gouache and watercolour washes, visible brush marks and the rough off-white paper grain showing through, colours a little faded and misregistered like an old printed card. A limited palette of 4 or 5 colours, dark overall. Stylised and graphic with bold simple shapes, not realistic: no smooth skin rendering, no soft glow, no rim light, no sunset glare, no depth of field, no oil-painting polish, no 3D, not modern digital concept art, not a heroic movie poster. Not head-on and not looking at the viewer: the figure is seen from an angle, caught in a moment of their story. Head and upper body fill the square and may be cropped by the edges; the background is simple and dark and falls to near-black at the edges so it sits on a dark screen. No text, no letters, no border, no frame, no logo.\n\nSubject: Sun Wukong, the Monkey King of Journey to the West, seen from above and behind at a steep angle, crouched on a curling cloud and turning his head back toward the viewer with a sly grin, his red-and-gold staff balanced across his shoulders, golden fur, the golden fillet on his brow and a phoenix-feather cap. Misty ink-wash mountain peaks far below. Colours of red, dull gold and ink black, with the brush rhythm of classical Chinese ink painting mixed into the pen-and-ink style.",
       "output": "art/home/wukong.webp",
+      "size": "1024x1024"
+    },
+    "portrait_thoth": {
+      "name": "thoth portrait",
+      "prompt": "A hero portrait for a card game's character-select screen, made by hand like a 1993 fantasy trading-card or game-book illustration, the same look as the game's cards: confident black pen-and-ink outlines around every shape, ink hatching in the shadows, filled with flat, slightly blotchy gouache and watercolour washes, visible brush marks and the rough off-white paper grain showing through, colours a little faded and misregistered like an old printed card. A limited palette of 4 or 5 colours, dark overall. Stylised and graphic with bold simple shapes, not realistic: no smooth skin rendering, no soft glow, no rim light, no sunset glare, no depth of field, no oil-painting polish, no 3D, not modern digital concept art, not a heroic movie poster. Not head-on and not looking at the viewer: the figure is seen from an angle, caught in a moment of their story. Head and upper body fill the square and may be cropped by the edges; the background is simple and dark and falls to near-black at the edges so it sits on a dark screen. No text, no letters, no border, no frame, no logo.\n\nSubject: Thoth, the ibis-headed Egyptian god of writing, wisdom and the moon, seen in three-quarter view from slightly below, seated cross-legged like a scribe on the steps of his temple at Hermopolis, a reed pen raised in one hand and a half-unrolled papyrus across his knees, his long curved ibis beak turned toward the viewer, a silver moon disc in a gold crescent resting on his head; a broad collar of lapis and gold over white linen. Night, a starry lapis sky, painted columns behind him and a sacred ibis at his feet. Colours of lapis blue, gold, white linen and moon silver, with the flat bold colours of Egyptian tomb painting mixed into the pen-and-ink style.",
+      "output": "art/home/thoth.webp",
       "size": "1024x1024"
     },
     "background": {
@@ -15328,6 +15382,38 @@
       "output": "art/scenes/wukong/s_wk_tut_ground.webp",
       "size": "1536x1024"
     },
+    "s_wk_draft_start": {
+      "name": "Draft (start of run) background",
+      "hero": "wukong",
+      "screen": "draft_start",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the great west gate of the Tang capital Chang'an at dawn as the pilgrims set out for the West: the tall red gate tower with its tiled roofs along the left edge; banners, a farewell crowd and officials in silk robes; the white horse loaded with bundles and a monk's staff; the long road winding away west through misty hills on the right The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: misty dawn blue-green (#0c1618 to #3f6a6a) with cinnabar gate, gold roof tiles and peach-pink morning light.",
+      "output": "art/scenes/wukong/s_wk_draft_start.webp",
+      "size": "1536x1024"
+    },
+    "s_wk_draft_reward": {
+      "name": "Draft (reward) background",
+      "hero": "wukong",
+      "screen": "draft_reward",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: treasures won from the demons laid out in a cave hall by lantern light: magic gourds, golden bells, a purple-gold calabash, a jade belt, pearls, silk banners and demon weapons heaped on a red carpet before a carved stone throne at the far left; lanterns and stalactites along the right edge The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: deep cave umber (#120c08 to #5a3a22) with lantern orange, jade green, gold and cinnabar accents.",
+      "output": "art/scenes/wukong/s_wk_draft_reward.webp",
+      "size": "1536x1024"
+    },
+    "s_wk_otg": {
+      "name": "One True God altar background",
+      "hero": "wukong",
+      "screen": "otg",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast ancient sacrificial altar of carved white jade on a mountain peak above the five-coloured clouds of heaven at night: four great bronze tripod cauldrons burning at the corners along the left and right edges; a monumental stair rising from the lower corners; the Milky Way and the moon above; dragons carved on the balustrades The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: midnight indigo (#060a18 to #2a3a6a) with four flame-gold cauldrons, white jade and five-coloured cloud accents.",
+      "output": "art/scenes/wukong/s_wk_otg.webp",
+      "size": "1536x1024"
+    },
+    "s_wk_bossp": {
+      "name": "Boss pick background",
+      "hero": "wukong",
+      "screen": "bossp",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the end of the Western road at the coming of a great storm: on the left the burning Flaming Mountains with the shadow of the Bull Demon King; across the top a storm cloud in the shape of a monkey with six ears; on the right a colossal golden palm of the Buddha rising out of the clouds, five fingers like pillars The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: storm violet to ember red (#100814 to #6a2a24) with gold, fire orange and lightning white.",
+      "output": "art/scenes/wukong/s_wk_bossp.webp",
+      "size": "1536x1024"
+    },
     "robbers": {
       "name": "The Tomb Robbers background",
       "hero": "thoth",
@@ -15411,6 +15497,38 @@
       "screen": "tutfight",
       "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a training court inside an Egyptian temple: a sand floor between painted columns with papyrus capitals; wooden sparring staffs and shields of cowhide on racks along the left edge; archery targets and a scribe's school bench with palettes along the right edge; a sacred ibis by a pool; the temple pylon and palm trees beyond in the morning sun.\nColour: warm sandstone and lapis blue (#1a1208 to #6a5a3a) with turquoise, red ochre, gold and palm green.",
       "output": "art/scenes/thoth/s_th_tut_ground.webp",
+      "size": "1536x1024"
+    },
+    "s_th_draft_start": {
+      "name": "Draft (start of run) background",
+      "hero": "thoth",
+      "screen": "draft_start",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the harbour of Thebes on the Nile at dawn as Thoth's followers gather: reed boats and a gilded royal barque moored along the left edge; scribes loading papyrus scrolls and chests; tall temple pylons with banners on poles along the right edge; palms and the western cliffs beyond under a rosy sky Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: dawn rose and Nile teal (#14100c to #4a6a6a) with gold, lapis and red-ochre accents.",
+      "output": "art/scenes/thoth/s_th_draft_start.webp",
+      "size": "1536x1024"
+    },
+    "s_th_draft_reward": {
+      "name": "Draft (reward) background",
+      "hero": "thoth",
+      "screen": "draft_reward",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the spoils laid out in a temple treasury by lamplight: gold collars, scarab amulets, canopic jars, painted chests, golden statues and rolls of papyrus heaped on reed mats before a gilded shrine at the far left; painted columns and oil lamps along the right edge Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: deep umber (#140e08 to #5a4022) with lamplight gold, lapis blue, turquoise and carnelian.",
+      "output": "art/scenes/thoth/s_th_draft_reward.webp",
+      "size": "1536x1024"
+    },
+    "s_th_otg": {
+      "name": "One True God altar background",
+      "hero": "thoth",
+      "screen": "otg",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast ancient sacrificial altar of sandstone at the foot of a colossal golden obelisk in the desert at night: four great bronze fire bowls burning at the corners along the left and right edges; a monumental stair rising from the lower corners; the starry body of the sky goddess Nut arching across the heavens; ibis statues guarding the steps Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: midnight lapis (#060a16 to #1f2f5a) with four flame-gold bowls, starlight and sandstone gold.",
+      "output": "art/scenes/thoth/s_th_otg.webp",
+      "size": "1536x1024"
+    },
+    "s_th_bossp": {
+      "name": "Boss pick background",
+      "hero": "thoth",
+      "screen": "bossp",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the edge of the world at the coming of a great storm: on the left the coils of the serpent Apophis rising from a black river; across the top a red sandstorm with the tall-eared shadow of Set; on the right the blazing sun disc of the lioness Sekhmet over burning desert Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: storm black to red ochre (#0c0806 to #8a3a1c) with poison green, blazing gold and sand.",
+      "output": "art/scenes/thoth/s_th_bossp.webp",
       "size": "1536x1024"
     }
   }

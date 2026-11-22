@@ -1,0 +1,22 @@
+{
+  "id": "s_th_draft_start",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-21 09:02:49",
+  "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the harbour of Thebes on the Nile at dawn as Thoth's followers gather: reed boats and a gilded royal barque moored along the left edge; scribes loading papyrus scrolls and chests; tall temple pylons with banners on poles along the right edge; palms and the western cliffs beyond under a rosy sky Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements.\nColour: dawn rose and Nile teal (#14100c to #4a6a6a) with gold, lapis and red-ochre accents.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 418,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 418
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1790
+  }
+}
