@@ -2782,144 +2782,184 @@ const onBf=id=>!!(G.p&&G.p.bf.some(x=>x.id==id));
 const hiHand=id=>()=>{const u=handU(id);return u?`.hand .cd[data-z="h:${u}"]`:''};
 const hiBf=id=>()=>{const u=bfU(id);return u?`.fp .cd[data-z="p:${u}"]`:''};
 
-/* v112: every lesson is scripted to a win. Each step names the one action the guide asks for (k), so the
-   game can tell when it is done and the test (tutAuto) can follow the guide exactly. Opponents are straw dummies. */
+/* v113: deeper lessons. Each one runs 3-4 turns and shows its idea two or three ways, still scripted to a win:
+   every step names the one action the guide asks for (k), so the game can tell when it is done and tutAuto can
+   follow the guide exactly. Tutorial opponents play one card a turn: their training cards cost 2. */
 Object.assign(D,{
- tdum:['Training Dummy',0,'C',0,2,'n','A straw target. It can\'t attack or block.','🎯','N',1],
- tdum1:['Straw Soldier',1,'C',0,2,'n','A straw target. It can\'t attack or block.','🎯','N',1],
- tblk:['Shield Dummy',1,'C',0,3,'','A straw target that blocks.','🛡️','N',1],
- tstraw:['Straw Raider',1,'C',1,1,'nh','It charges in every turn and can\'t block.','🪓','N',1],
- tspear:['Straw Spearman',1,'C',3,1,'nh','It charges in every turn and can\'t block.','🗡️','N',1],
+ tdum:['Training Dummy',2,'C',0,2,'n','A straw target. It can\'t attack or block.','🎯','N',1],
+ tblk:['Shield Dummy',2,'C',0,3,'','A straw target that blocks.','🛡️','N',1],
+ tbrute:['Straw Brute',2,'C',3,3,'nh','It charges in every turn and can\'t block.','🪓','N',1],
+ tspear:['Straw Spearman',2,'C',3,1,'nh','It charges in every turn and can\'t block.','🗡️','N',1],
  tgiant:['Clay Giant',2,'C',2,6,'k','A Sentinel: it only blocks.','🗿','N',2]});
-Object.assign(LORE,{tdum:'Training dummy',tdum1:'Training dummy',tblk:'Training dummy',tstraw:'Training dummy',tspear:'Training dummy',tgiant:'Training dummy'});
-ENTD.tstraw=(s,c)=>{c.forced=1};ENTD.tspear=(s,c)=>{c.forced=1};
+Object.assign(LORE,{tdum:'Training dummy',tblk:'Training dummy',tbrute:'Training dummy',tspear:'Training dummy',tgiant:'Training dummy'});
+ENTD.tbrute=(s,c)=>{c.forced=1};ENTD.tspear=(s,c)=>{c.forced=1};
+const tMatch=(c,id)=>id=='@ren'?!!c.ren:c.id==id;
+const handU2=id=>{const c=G.p&&G.p.hand.find(x=>tMatch(x,id));return c?c.u:0};
+const hiHand2=id=>()=>{const u=handU2(id);return u?`.hand .cd[data-z="h:${u}"]`:''};
 const bfAll=id=>G.p?G.p.bf.filter(x=>x.id==id):[];
-const cntIn=(L,id)=>L.filter(x=>x.id==id).length;
+const cntIn=(L,id)=>L.filter(x=>tMatch(x,id)).length;
 const S={
  info:(m,hi)=>({k:'info',m,hi,next:1}),
  play:(id,m,tgt)=>({k:'play',id,tgt,m,noEnd:1}),
  atk:(ids,m)=>({k:'atk',ids,m,noEnd:1}),
- end:(m,blk)=>({k:'end',m,blk}),
+ end:(m,blk,q)=>({k:'end',m,blk,q}),
  offer:(id,m)=>({k:'offer',id,m,noEnd:1}),
  bp:m=>({k:'bp',m,noEnd:1}),
  stance:(id,want,m)=>({k:'stance',id,want,m,noEnd:1}),
- speak:m=>({k:'speak',m,noEnd:1})};
-function tutHi(s){if(s.hi)return typeof s.hi=='function'?s.hi():s.hi;const p=G.p;
- if(s.k=='play'){const L=[hiHand(s.id)()];if(G.mode&&s.tgt){if(s.tgt=='ef')L.push('.eh .hp');else if(s.tgt.startsWith('e:'))L.push('.fe .cd');else L.push('.fp .cd')}return L.filter(Boolean).join(',')}
+ speak:m=>({k:'speak',m,noEnd:1}),
+ equip:(id,tgt,m)=>({k:'equip',id,tgt,m,noEnd:1})};
+function tutHi(s){if(s.hi)return typeof s.hi=='function'?s.hi():s.hi;
+ if(s.k=='play'){const L=[hiHand2(s.id)()];if((G.mode||G.pend)&&s.tgt){if(s.tgt=='ef')L.push('.eh .hp');else if(s.tgt.startsWith('e:'))L.push('.fe .cd');else L.push('.fp .cd')}return L.filter(Boolean).join(',')}
  if(s.k=='atk'){const L=s.ids.map(id=>bfAll(id).map(c=>`.fp .cd[data-z="p:${c.u}"]`).join(',')).filter(Boolean);L.push('[data-b="atk"]','[data-b="res"]');return L.join(',')}
- if(s.k=='end')return G.phase=='blockP'?'.fp .cd,.fe .cd,[data-b="res"]':'[data-b="end"]';
+ if(s.k=='end')return G.phase=='blockP'?['.fp .cd','.fe .cd','[data-b="res"]',s.q?hiHand2(s.q)():''].filter(Boolean).join(','):'[data-b="end"]';
  if(s.k=='offer'){const u=bfU(s.id);return u?`.fp .ob[data-z="o:${u}"]`:''}
  if(s.k=='bp')return'[data-b="bp"]';
  if(s.k=='stance')return bfAll(s.id).filter(c=>!!c.def!=!!s.want).map(c=>`.fp .sb[data-z="s:${c.u}"]`).join(',');
- if(s.k=='speak')return'.hand .spk';return''}
-function tutSnap(){const p=G.p,t=G.tut;t.si=t.s;t.sn={t:G.turn,h:{},b:{},bp:p.bp||0};p.hand.forEach(c=>{t.sn.h[c.id]=(t.sn.h[c.id]||0)+1});p.bf.forEach(c=>{t.sn.b[c.id]=(t.sn.b[c.id]||0)+1})}
-function tutIsDone(s){const p=G.p,n=G.tut.sn;if(s.done)return s.done();
- switch(s.k){case'play':return cntIn(p.hand,s.id)<(n.h[s.id]||0);
+ if(s.k=='speak')return'.hand .spk';
+ if(s.k=='fin')return!G.atkd&&cr(G.p).some(canAtk)?'[data-b="atkall"],[data-b="res"]':'[data-b="end"]';
+ if(s.k=='equip'){const a=G.p.bf.find(x=>x.id==s.id);return a?`.fp .cd[data-z="p:${a.u}"],.fp .cd`:''}return''}
+function tutSnap(){const p=G.p,t=G.tut;t.si=t.s;t.sn={t:G.turn,h:{},b:{},bp:p.bp||0,ren:p.hand.filter(c=>c.ren).length};p.hand.forEach(c=>{t.sn.h[c.id]=(t.sn.h[c.id]||0)+1});p.bf.forEach(c=>{t.sn.b[c.id]=(t.sn.b[c.id]||0)+1})}
+function tutIsDone(s){const p=G.p,n=G.tut.sn;if(s.done)return s.done();if(s.k=='fin')return false;
+ switch(s.k){case'play':return(s.id=='@ren'?cntIn(p.hand,'@ren')<n.ren:cntIn(p.hand,s.id)<(n.h[s.id]||0))&&!G.mode&&!G.pend;
   case'atk':return!!G.atkd&&!G.cmb&&G.phase=='main';
   case'end':return G.turn>n.t&&G.phase=='main';
   case'offer':return cntIn(p.bf,s.id)<(n.b[s.id]||0);
   case'bp':return(p.bp||0)>n.bp;
   case'stance':{const L=bfAll(s.id);return L.length>0&&L.every(c=>!!c.def==!!s.want)}
-  case'speak':return!p.hand.some(c=>c.ren)}return false}
+  case'speak':return p.hand.filter(c=>c.ren).length<n.ren;
+  case'equip':return p.bf.some(x=>x.id==s.id&&x.on&&(!s.tgt||(p.bf.find(y=>y.u==x.on)||{}).id==s.tgt))}return false}
 /* the guide, followed exactly (tests) */
-function tutTarget(t){const e=G.e,p=G.p;if(!t)return;if(t=='ef')return hd0('ef');const [k,id]=t.split(':');const L=(k=='e'?e:p).bf.filter(x=>x.id==id||(id=='*'));const c=L.find(x=>!x.tap)||L[0];if(c)hd0(k+':'+c.u)}
+function tutTarget(t){const e=G.e,p=G.p;if(!t)return;if(t=='ef')return hd0('ef');const [k,id]=t.split(':');const L=(k=='e'?e:p).bf.filter(x=>x.id==id);const c=L.find(x=>!x.tap)||L[0];if(c)hd0(k+':'+c.u)}
 function tutAuto(){const s=tutStep();if(!s||G.phase!='main')return;
  if(s.next)return bt('tutnext');
- if(s.k=='play'){const u=handU(s.id);if(!u)return;hd0('h:'+u);if(G.mode||G.pend)tutTarget(s.tgt);return}
+ if(s.k=='play'){const u=handU2(s.id);if(!u)return;hd0('h:'+u);if(G.mode||G.pend)tutTarget(s.tgt);return}
  if(s.k=='atk'){const used=new Set();G.sel=[];s.ids.forEach(id=>{const c=G.p.bf.find(x=>x.id==id&&!used.has(x.u)&&canAtk(x));if(c){used.add(c.u);G.sel.push(c.u)}});bt('atk');if(G.phase=='dmgP')bt('res');return}
  if(s.k=='end')return bt('end');
+ if(s.k=='fin'){if(!G.atkd&&cr(G.p).some(canAtk)){bt('atkall');if(G.phase=='dmgP')bt('res')}else bt('end');return}
  if(s.k=='offer')return hd0('o:'+bfU(s.id));
  if(s.k=='bp')return bt('bp');
  if(s.k=='stance'){const c=bfAll(s.id).find(x=>!!x.def!=!!s.want);if(c)hd0('s:'+c.u);return}
- if(s.k=='speak'){const c=G.p.hand.find(x=>x.ren);if(c)hd0('spk:'+c.u)}}
+ if(s.k=='speak'){const c=G.p.hand.find(x=>x.ren);if(c)hd0('spk:'+c.u);return}
+ if(s.k=='equip'){const a=G.p.bf.find(x=>x.id==s.id);if(a){hd0('p:'+a.u);if(G.mode)tutTarget('p:'+s.tgt)}}}
 function tutAutoBlock(){const s=tutStep();if(G.phase!='blockP')return;const used=new Set();
- ((s&&s.blk)||[]).forEach(([mine,theirs])=>{const b=G.p.bf.find(x=>x.id==mine&&!used.has(x.u)&&!x.tap);const a=G.cmb.atk.map(u=>G.e.bf.find(x=>x.u==u)).find(x=>x&&x.id==theirs&&!Object.keys(G.cmb.blk).includes(String(x.u)));if(b&&a){used.add(b.u);hd0('p:'+b.u);hd0('e:'+a.u)}});bt('res')}
+ ((s&&s.blk)||[]).forEach(([mine,theirs])=>{const b=G.p.bf.find(x=>x.id==mine&&!used.has(x.u)&&!x.tap);const a=G.cmb.atk.map(u=>G.e.bf.find(x=>x.u==u)).find(x=>x&&x.id==theirs&&!Object.keys(G.cmb.blk).includes(String(x.u)));if(b&&a){used.add(b.u);hd0('p:'+b.u);hd0('e:'+a.u)}});
+ if(s&&s.q){const u=handU2(s.q);if(u){hd0('h:'+u);if(G.mode)tutTarget(s.qt)}}bt('res')}
 const DUMMIES=Array(10).fill('tdum');
 const TUT=[
 /* ---------------- Odysseus ---------------- */
-{id:'ody1',h:'ody',t:'Army and battle',sub:'The basics: mana, army members and attacking.',ename:'Training Dummies',eic:'🎯',elife:11,ebg:['#0b1820','#1d4452'],
- deck:['sailor','corsair','thess','spearc','aegis','sailor','corsair','thess'],edeck:DUMMIES,
+{id:'ody1',h:'ody',t:'Army and battle',sub:'Mana, army members, attacking and blocking.',ename:'Training Camp',eic:'🎯',elife:17,ebg:['#0b1820','#1d4452'],
+ deck:['sailor','corsair','spear','thess','aegis','sailor','corsair','thess'],edeck:['tdum','tdum','tdum','tdum','tdum','tbrute',...DUMMIES],
  steps:[
  S.info('Welcome, Odysseus. Every fight is a duel between two armies. <b>Bring the enemy\'s life to 0</b> to win (top left). You have <b>20 life</b> (bottom left).','.eh .hp,.me .hp'),
  S.info('Each turn you get <b>2 mana</b> (◆). A card\'s cost is in its top-right corner.','.me .orb'),
  S.play('sailor','Play <b>Sailor of the Fleet</b>: click it in your hand. Army members stay on the battlefield.'),
- S.play('corsair','Play <b>Cicone Corsair</b>. It has <b>Charge</b>, so it can attack the turn it arrives.'),
+ S.play('corsair','Play <b>Cicone Corsair</b>. It has <b>Charge</b>: it can attack the turn it arrives.'),
  S.atk(['corsair'],'Attack: click the <b>Corsair</b>, press <b>Attack</b>, then <b>Resolve combat</b>. <b>Ruthless</b> gives it +1 power when it attacks.'),
- S.info('The Sailor is tired: army members can\'t attack the turn they arrive unless they have Charge. Damage on army members stays until they die or heal.'),
- S.end('Press <b>End turn</b>. The dummies can\'t fight back.'),
- S.play('thess','Your mana is back to 2 and you drew a card. Play <b>Thessalian Rider</b> (Charge).'),
- S.atk(['sailor','corsair','thess'],'Attack with all three: click each one, press <b>Attack</b>, then <b>Resolve combat</b>. That\'s enough to win.')]},
-{id:'ody2',h:'ody',t:'Offerings',sub:'Odysseus\'s mana engine: offer army members for mana.',ename:'Training Dummies',eic:'🎯',elife:9,ebg:['#1a1406','#6a5a2a'],
- deck:['camp','ox','pent','corsair','sailor','sailor'],edeck:DUMMIES,
+ S.info('The Sailor is tired: army members can\'t attack the turn they arrive unless they have Charge.'),
+ S.end('Press <b>End turn</b>. Here the enemy plays one card a turn: watch it set up a Training Dummy.'),
+ S.play('spear','You drew a card and your mana is back to 2. Play <b>Ithacan Spearman</b>.'),
+ S.stance('spear',1,'Attacking taps an army member, and a tapped army member can\'t block. Keep the Spearman home: click its red <b>Attack form</b> label to switch it to <b>defense form</b> (+2 health, and it can\'t attack).'),
+ S.atk(['sailor','corsair'],'Now attack with the <b>Sailor</b> and the <b>Corsair</b>, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>. A Straw Brute will charge you: <b>click your Spearman, then the Brute</b> to block it, then press <b>Resolve combat</b>.',[['spear','tbrute']]),
+ S.info('Your Spearman held. <b>Damage stays</b> on army members until they die or heal, so the Brute\'s hits on it will add up if it attacks again.'),
+ S.play('thess','Play <b>Thessalian Rider</b> (Charge).'),
+ S.atk(['sailor','corsair','thess'],'Attack with the <b>Sailor</b>, the <b>Corsair</b> and the <b>Rider</b>, then <b>Resolve combat</b>. That wins the fight.')]},
+{id:'ody2',h:'ody',t:'Offerings',sub:'Offer army members for mana, and get more out of them when you do.',ename:'Training Camp',eic:'🎯',elife:19,ebg:['#1a1406','#6a5a2a'],
+ deck:['camp','charon','ox','argus','corsair','pent','sailor','sailor'],edeck:DUMMIES,
  steps:[
  S.info('Two mana a turn isn\'t much. Odysseus gets more by <b>offering</b> army members to the gods: each one is worth the <b>💀</b> number on its art in mana.'),
  S.play('camp','Play <b>Camp Follower</b>. It costs nothing.'),
- S.offer('camp','Click the <b>💀</b> badge on the Camp Follower to offer it: +1 mana.'),
+ S.offer('camp','Click the <b>💀</b> badge on the Camp Follower to offer it: +1 mana. You have 3.'),
+ S.play('charon','Play <b>Charon the Ferryman</b>. He costs 3: offering let you afford him on your first turn.'),
+ S.end('Press <b>End turn</b>.'),
  S.play('ox','Play <b>Sacred Ox</b> (cost 1). It is worth <b>💀3</b>.'),
- S.offer('ox','Offer the <b>Ox</b>: +3 mana. You now have 5.'),
- S.play('pent','Play <b>Penthesilea</b>. She costs 4, which you could never afford with 2 mana. She has Charge and gives your other Raiders Charge and +1 power.'),
- S.play('corsair','Play <b>Cicone Corsair</b> with your last mana.'),
- S.atk(['pent','corsair'],'Attack with both: click them, press <b>Attack</b>, then <b>Resolve combat</b>.')]},
-{id:'ody3',h:'ody',t:'Phalanx',sub:'Hold the line in defense form, then strike.',ename:'Straw Raiders',eic:'🪓',elife:4,ebg:['#1a0a06','#6a2a1a'],
- deck:['spear','spear','aegis','sailor','sailor','sailor'],edeck:['tstraw','tstraw',...DUMMIES],
+ S.offer('ox','Offer the <b>Ox</b>: +3 mana.'),
+ S.play('argus','Play <b>Faithful Argus</b>.'),
+ S.offer('argus','Many cards do something <b>when they are offered</b>. Offer <b>Argus</b>: +1 mana, and you draw a card.'),
+ S.play('pent','You drew <b>Penthesilea</b> (cost 4). Play her: she has Charge and gives your other Raiders Charge and +1 power.'),
+ S.atk(['pent','charon'],'Attack with <b>Penthesilea</b> and <b>Charon</b>, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.offer('charon','Charon is worth the most when offered: <b>+5 mana</b> (3, plus 2 extra) and a card. Offer him.'),
+ S.play('corsair','Play <b>Cicone Corsair</b>. Penthesilea gives it Charge too.'),
+ S.atk(['pent','corsair'],'Attack with <b>Penthesilea</b> and the <b>Corsair</b>, then <b>Resolve combat</b>.')]},
+{id:'ody3',h:'ody',t:'Phalanx',sub:'Hold the line in defense form, then strike back.',ename:'Straw Brutes',eic:'🪓',elife:4,ebg:['#1a0a06','#6a2a1a'],
+ deck:['spear','spear','testudo','aegis','sailor','sailor','sailor'],edeck:['tbrute','tbrute',...DUMMIES],
  steps:[
  S.info('<b>Phalanx</b> army members get <b>+2 power in defense form</b>: they hit back hard when they block. Defense form also gives +2 health.'),
  S.play('spear','Play <b>Ithacan Spearman</b>.'),
- S.stance('spear',1,'Click the red <b>Attack form</b> label on the Spearman to switch it to <b>defense form</b>.'),
+ S.stance('spear',1,'Click its red <b>Attack form</b> label to switch it to <b>defense form</b>.'),
  S.play('spear','Play the second <b>Spearman</b>.'),
  S.stance('spear',1,'Switch it to <b>defense form</b> too.'),
- S.end('Press <b>End turn</b>. Two Straw Raiders will charge you: <b>click a Spearman, then a Raider</b> to block it, do the same for the other, then press <b>Resolve combat</b>.',[['spear','tstraw'],['spear','tstraw']]),
- S.info('The Raiders broke on your shields. Now it\'s your turn to strike.'),
- S.stance('spear',0,'Switch both Spearmen back to <b>attack form</b> (click each label).'),
+ S.end('Press <b>End turn</b>. A Straw Brute (3/3) charges in: block it with a <b>Spearman</b> (click the Spearman, then the Brute), then press <b>Resolve combat</b>.',[['spear','tbrute']]),
+ S.info('In defense form the Spearman hits for 3, enough to break the Brute.'),
+ S.end('Keep your mana. Press <b>End turn</b>. When the next Brute charges, block it with your <b>unhurt Spearman</b>, then cast <b>Testudo</b> (a quick spell: it works during their attack) for +2/+2, then <b>Resolve combat</b>.',[['spear','tbrute']],'testudo'),
+ S.info('Quick spells like Testudo can be cast on your turn or during the enemy\'s attack. Now both Brutes are gone: time to strike.'),
+ S.stance('spear',0,'Switch both Spearmen back to <b>attack form</b>.'),
  S.play('aegis','Cast <b>Aegis Blessing</b> on a Spearman: +2/+2 this turn.','p:spear'),
  S.atk(['spear','spear'],'Attack with both Spearmen, then <b>Resolve combat</b>.')]},
-{id:'ody4',h:'ody',t:'Raiders',sub:'Strike fast with Charge and Ruthless.',ename:'Training Dummies',eic:'🎯',elife:15,ebg:['#0b1a14','#2f5a3a'],
- deck:['corsair','sailor','horde','raidr','sailor','corsair'],edeck:DUMMIES,
+{id:'ody4',h:'ody',t:'Raiders',sub:'Charge, Ruthless, and spells that count your Raiders.',ename:'Training Camp',eic:'🎯',elife:24,ebg:['#0b1a14','#2f5a3a'],
+ deck:['corsair','sailor','raidr','spoils','horde','sailor','corsair'],edeck:DUMMIES,
  steps:[
  S.info('<b>Raiders</b> win by speed: <b>Charge</b> attacks the turn it arrives, and <b>Ruthless</b> gets +1 power when it attacks.'),
  S.play('corsair','Play <b>Cicone Corsair</b> (Charge, Ruthless).'),
  S.play('sailor','Play <b>Sailor of the Fleet</b> (Ruthless).'),
  S.atk(['corsair'],'Attack with the <b>Corsair</b> right away, then <b>Resolve combat</b>.'),
  S.end('Press <b>End turn</b>.'),
- S.play('horde','Cast <b>Charge of the Amazons</b>: your Raiders get +4/+0 this turn.'),
- S.atk(['corsair','sailor'],'Attack with both, then <b>Resolve combat</b>. Raiders are fragile, so they win before the enemy can answer.')]},
+ S.play('raidr','Play <b>Ithacan Raider</b> (Charge, Ruthless).'),
+ S.atk(['corsair','sailor','raidr'],'Attack with all three Raiders, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('spoils','Some spells count your Raiders. Cast <b>Spoils of War</b>: 1 damage to the enemy for each Raider you control, and draw a card.'),
+ S.atk(['corsair','sailor','raidr'],'Attack with all three again, then <b>Resolve combat</b>. Raiders are fragile, so they win before the enemy can answer.')]},
 /* ---------------- Odin ---------------- */
-{id:'odin1',h:'odin',t:'Berserkers',sub:'Pay life for mana, then hit hardest while Wounded.',ename:'Training Dummies',eic:'🎯',elife:14,plife:12,ebg:['#0a1220','#2a3a5a'],
- deck:['fjrd','hird','rage','bsrk','hird','thrl'],edeck:DUMMIES,
+{id:'odin1',h:'odin',t:'Berserkers',sub:'Pay life for mana, then hit hardest while Wounded.',ename:'Training Camp',eic:'🎯',elife:20,plife:14,ebg:['#0a1220','#2a3a5a'],
+ deck:['fjrd','hird','bsrk','oath','skar','thrl','hird'],edeck:DUMMIES,
  steps:[
  S.info('Odin pays with his own blood. <b>Blood price</b>: pay life for 1 mana, once per turn. At half life (10 or less) you are <b>Wounded</b>, and Berserkers get stronger.','.me .hp'),
- S.bp('Press <b>Blood price</b>: 2 life for 1 mana. You drop to 10: <b>Wounded</b>.'),
+ S.bp('Press <b>Blood price</b>: 2 life for 1 mana.'),
  S.play('fjrd','Play <b>Fjord Raider</b> (Charge).'),
  S.atk(['fjrd'],'Attack with the <b>Fjord Raider</b>, then <b>Resolve combat</b>.'),
  S.play('hird','Play <b>Hirdman</b> with your last mana.'),
  S.end('Press <b>End turn</b>.'),
- S.bp('Pay <b>Blood price</b> again. It costs 3 now: the price rises each time this fight.'),
- S.play('rage','Cast <b>Berserkergang</b>: +3/+0 for your army, or <b>+5/+0 because you are Wounded</b>.'),
- S.atk(['fjrd','hird'],'Attack with both, then <b>Resolve combat</b>.')]},
-{id:'odin2',h:'odin',t:'Valhalla',sub:'Army members that pay off when they die.',ename:'Straw Spearmen',eic:'🗡️',elife:6,ebg:['#0a1622','#3a5a6a'],
- deck:['huscl','hguard','thegn','hird','thrl','hird'],edeck:['tspear','tspear',...DUMMIES],
+ S.bp('Pay <b>Blood price</b> again. It costs 3 now (the price rises each time this fight), and it drops you to 9: <b>Wounded</b>.'),
+ S.play('bsrk','Play <b>Bear-Shirt Berserker</b>. It has <b>Battle-rage</b>: +2 power while you are Wounded.'),
+ S.atk(['fjrd','hird'],'Attack with the <b>Fjord Raider</b> and the <b>Hirdman</b>, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('oath','Cast <b>Blood Oath</b> on the Berserker: +3/+3 this turn. It costs 1 mana and <b>Carve 2</b>: you also pay 2 life.','p:bsrk'),
+ S.atk(['fjrd','hird','bsrk'],'Attack with all three, then <b>Resolve combat</b>.')]},
+{id:'odin2',h:'odin',t:'Valhalla',sub:'Army members that pay off when they die.',ename:'Straw Spearmen',eic:'🗡️',elife:10,ebg:['#0a1622','#3a5a6a'],
+ deck:['huscl','thegn','einw','hguard','hird','thrl','hird'],edeck:['tspear','tspear','tspear',...DUMMIES],
  steps:[
  S.info('<b>Valhalla</b> army members do something when they die. Losing them is part of the plan.'),
  S.bp('Press <b>Blood price</b> for 1 more mana.'),
  S.play('huscl','Play <b>Housecarl</b>. When it dies, it deals 3 damage to the opponent.'),
- S.end('Press <b>End turn</b>. Two Straw Spearmen charge in: <b>click the Housecarl, then a Spearman</b> to block it, then press <b>Resolve combat</b>.',[['huscl','tspear']]),
- S.info('The Housecarl fell, took its Spearman with it, and struck the enemy for 3.'),
+ S.end('Press <b>End turn</b>. A Straw Spearman (3/1) charges in: block it with the <b>Housecarl</b>, then press <b>Resolve combat</b>.',[['huscl','tspear']]),
+ S.info('The Housecarl fell, took the Spearman with it, and struck the enemy for 3.'),
  S.bp('Press <b>Blood price</b> again.'),
+ S.play('thegn','Play <b>Thegn of the Hall</b>. When it dies, you draw a card.'),
+ S.play('einw','Play <b>Einherjar Warrior</b>.'),
+ S.end('Press <b>End turn</b>. Block the next Spearman with the <b>Thegn</b>, then <b>Resolve combat</b>.',[['thegn','tspear']]),
+ S.info('The Thegn died and drew you a card: the <b>Hall-Guard</b>.'),
+ S.bp('Press <b>Blood price</b>.'),
  S.play('hguard','Play <b>Hall-Guard of Valhalla</b>. When it dies, a 3/3 Einherjar rises.'),
- S.end('Press <b>End turn</b>, then block the last Spearman with the <b>Hall-Guard</b> and press <b>Resolve combat</b>.',[['hguard','tspear']]),
- S.atk(['ein'],'The Einherjar rose from the Hall-Guard. Attack with it, then <b>Resolve combat</b>.')]},
-{id:'odin3',h:'odin',t:'Runes',sub:'Modifiers carved in blood that stay all fight.',ename:'Training Dummies',eic:'🎯',elife:7,ebg:['#0a1622','#2a3a4a'],
- deck:['hird','ruru','fjrd','thrl','hird','thrl'],edeck:DUMMIES,
+ S.atk(['einw'],'Attack with the <b>Einherjar Warrior</b>, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>. Block the last Spearman with the <b>Hall-Guard</b>, then <b>Resolve combat</b>.',[['hguard','tspear']]),
+ S.atk(['ein','einw'],'The Einherjar rose from the Hall-Guard. Attack with it and the <b>Warrior</b>, then <b>Resolve combat</b>.')]},
+{id:'odin3',h:'odin',t:'Runes',sub:'Modifiers carved in blood that stay all fight.',ename:'Training Camp',eic:'🎯',elife:14,ebg:['#0a1622','#2a3a4a'],
+ deck:['fehu','hird','ruru','fjrd','alg','thrl','hird'],edeck:DUMMIES,
  steps:[
  S.info('<b>Runes</b> are modifiers that stay for the whole fight. Most cost life as well as mana: <b>Carve 3</b> means you also pay 3 life.'),
+ S.play('fehu','Carve <b>Fehu, Rune of Wealth</b>: 1 mana and 3 life. From now on you gain 1 extra mana every turn.'),
  S.play('hird','Play <b>Hirdman</b>.'),
- S.play('ruru','Carve <b>Uruz, Rune of Strength</b>: 1 mana and 3 life. Your army members get +1/+0 for the rest of the fight.'),
  S.end('Press <b>End turn</b>.'),
- S.play('fjrd','Play <b>Fjord Raider</b> (Charge). Uruz makes it 4 power.'),
- S.atk(['hird','fjrd'],'Attack with both, then <b>Resolve combat</b>.')]},
+ S.play('ruru','Fehu gave you a third mana. Carve <b>Uruz, Rune of Strength</b>: your army members get +1/+0 for the rest of the fight.'),
+ S.play('fjrd','Play <b>Fjord Raider</b> (Charge). With Uruz it has 4 power.'),
+ S.atk(['hird','fjrd'],'Attack with both, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('alg','Carve <b>Algiz, Rune of Protection</b>: your army members get +0/+2. Runes stack, and each one keeps working all fight.'),
+ S.atk(['hird','fjrd'],'Attack with both again, then <b>Resolve combat</b>.')]},
 /* ---------------- Wukong ---------------- */
-{id:'wk1',h:'wukong',t:'Staff and Momentum',sub:'Chain different kinds of cards to build Momentum.',ename:'Training Dummies',eic:'🎯',elife:7,ebg:['#1a0806','#6a2a12'],
- deck:['wmonk','wdart','wfeint','wrod','wbear','wslip','wfeint','wrod','wdart','wmonk','wdart','wrod'],edeck:DUMMIES,
+{id:'wk1',h:'wukong',t:'Staff and Momentum',sub:'Chain different kinds of cards to build Momentum.',ename:'Training Camp',eic:'🎯',elife:15,ebg:['#1a0806','#6a2a12'],
+ deck:['wmonk','wdart','wfeint','wrod','wbear','wslip','wfeint','wrod','wdart','wfeint','wdart','wsplit','wrod','wdart'],edeck:DUMMIES,
  steps:[
  S.info('Every card of yours is a <b>Strike</b>, a <b>Trick</b> or a <b>Leap</b> (shown on the card). Play a different type than the card before and your <b>Momentum</b> rises. It resets every turn.','.me .cn'),
  S.play('wmonk','Play <b>Mountain Monkey</b> (a Leap). It draws a card. Momentum 1.'),
@@ -2929,62 +2969,90 @@ const TUT=[
  S.end('Press <b>End turn</b>. Momentum resets to 0.'),
  S.play('wdart','Build it again. Cast <b>Hair Dart</b> (a Strike) at the enemy\'s life. Momentum 1.','ef'),
  S.play('wslip','Cast <b>Slip Away</b> (a Leap). It draws a card. Momentum 2.'),
- S.play('wbear','Play <b>Staff-Bearer</b> (a Strike). Momentum 3, and when it enters the opponent takes damage equal to your Momentum.')]},
-{id:'wk2',h:'wukong',t:'Clones',sub:'Spare Hairs: free cards that vanish after use.',ename:'Training Dummies',eic:'🎯',elife:5,ebg:['#14140a','#5a5a2a'],
- deck:['wclone','wclone','whair','whair','whair','wmonk','wdart'],edeck:DUMMIES,
+ S.play('wbear','Play <b>Staff-Bearer</b> (a Strike). Momentum 3, and when it enters the opponent takes damage equal to your Momentum.'),
+ S.atk(['wmonk'],'Attack with the <b>Monkey</b>, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('wfeint','One more chain. Cast <b>Feint</b> (a Trick). Momentum 1.'),
+ S.play('wdart','Cast <b>Hair Dart</b> (a Strike) at the enemy\'s life. Momentum 2.','ef'),
+ S.play('wsplit','Finish with <b>Heaven-Splitting Blow</b>: damage equal to your Momentum plus half the cards you played this turn. The longer the chain, the harder it hits.'),
+ S.atk(['wmonk','wbear'],'Attack with the <b>Monkey</b> and the <b>Staff-Bearer</b>, then <b>Resolve combat</b>.')]},
+{id:'wk2',h:'wukong',t:'Clones',sub:'Many small cards: Spare Hairs and spells that count your cards.',ename:'Training Camp',eic:'🎯',elife:10,ebg:['#14140a','#5a5a2a'],
+ deck:['wclone','wclone','whair','whair','wcloudh','whair','wclone','whair','whair','wdart'],edeck:DUMMIES,
  steps:[
  S.info('<b>Clones</b> fight with many small cards. <b>Spare Hairs</b> cost nothing and deal 1 damage, then <b>Disintegrate</b>: they leave the fight for good.'),
  S.play('wclone','Play <b>Clone of the Great Sage</b> (Charge).'),
  S.play('wclone','Play the second <b>Clone</b>.'),
  S.atk(['wclone','wclone'],'Attack with both Clones, then <b>Resolve combat</b>.'),
- S.play('whair','Cast a <b>Spare Hair</b> at the enemy\'s life.','ef'),
- S.play('whair','And the other <b>Spare Hair</b>.','ef'),
- S.end('Press <b>End turn</b>. Clones that die shuffle more Spare Hairs into your deck.'),
- S.play('whair','You drew another <b>Spare Hair</b>. Cast it at the enemy to win.','ef')]},
-{id:'wk3',h:'wukong',t:'Trickster',sub:'Tap blockers out of the way and cheat mana.',ename:'Shield Dummies',eic:'🛡️',elife:3,ebg:['#100c18','#4a3a6a'],
- deck:['wmonk','wclone','wdance','wslip','wseal','wrod','wdart'],edeck:['tblk','tblk',...DUMMIES],
+ S.play('whair','Cast a <b>Spare Hair</b> at the enemy\'s life. Keep the other one for next turn.','ef'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('whair','Free cards keep your turn going. Cast your other <b>Spare Hair</b> at the enemy.','ef'),
+ S.play('wcloudh','Cast <b>Hair Whirl</b>: it draws a card for every 2 cards you have played this turn.'),
+ S.play('whair','Cast the <b>Spare Hair</b> it drew at the enemy.','ef'),
+ S.atk(['wclone','wclone'],'Attack with both Clones, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('wclone','Play a third <b>Clone</b> (Charge).'),
+ S.atk(['wclone','wclone','wclone'],'Attack with all three Clones, then <b>Resolve combat</b>.')]},
+{id:'wk3',h:'wukong',t:'Trickster',sub:'Tap blockers out of the way and cheat mana.',ename:'Shield Dummies',eic:'🛡️',elife:8,ebg:['#100c18','#4a3a6a'],
+ deck:['wmonk','wclone','wfeint','wslip','wseal','wdance','wfoot','wdart','wrod','wdart'],edeck:['tblk','tblk','tblk',...DUMMIES],
  steps:[
  S.info('<b>Tricksters</b> tap, bounce and cheat mana. A <b>tapped</b> army member can\'t block.'),
  S.play('wmonk','Play <b>Mountain Monkey</b>. It draws a card.'),
  S.play('wclone','Play <b>Clone of the Great Sage</b> (Charge).'),
  S.atk(['wclone'],'Attack with the <b>Clone</b>, then <b>Resolve combat</b>.'),
- S.end('Press <b>End turn</b>. The enemy will set up two Shield Dummies to block you.'),
- S.play('wseal','Cast <b>Five-Finger Seal</b> (a Trick) on a Shield Dummy: it is tapped and stays tapped.','e:tblk'),
- S.play('wslip','Cast <b>Slip Away</b>. After a Trick it gives you <b>1 mana</b>.'),
- S.play('wdance','Cast <b>Dancing Away</b> on the other Shield Dummy to tap it.','e:tblk'),
- S.atk(['wmonk','wclone'],'Nothing can block now. Attack with both, then <b>Resolve combat</b>.')]},
+ S.end('Press <b>End turn</b>. The enemy will set up a Shield Dummy to block you.'),
+ S.play('wfeint','Cast <b>Feint</b> (a Trick). It draws a card.'),
+ S.play('wslip','Cast <b>Slip Away</b>. After a Trick it gives you <b>1 mana</b>: you have 3.'),
+ S.play('wseal','Cast <b>Five-Finger Seal</b> on the Shield Dummy: it is tapped and stays tapped through their next turn.','e:tblk'),
+ S.atk(['wmonk','wclone'],'Nothing can block now. Attack with both, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>. They add a second Shield Dummy; the first one is still sealed.'),
+ S.play('wdance','Cast <b>Dancing Away</b> on the new Shield Dummy to tap it.','e:tblk'),
+ S.play('wdart','Cast <b>Hair Dart</b> at the enemy\'s life.','ef'),
+ S.play('wfoot','Cast <b>Nimble Footwork</b>: this is your third card this turn, so it gives you 1 mana back.'),
+ S.play('wrod','Spend it on <b>Iron Rod</b> at the enemy\'s life.','ef'),
+ S.atk(['wmonk','wclone'],'Attack with both, then <b>Resolve combat</b>.')]},
 /* ---------------- Thoth ---------------- */
-{id:'th1',h:'thoth',t:'Sundered',sub:'Split an army member into Ka and Ba and take its name.',ename:'The Clay Giant',eic:'🗿',elife:3,ebg:['#1a1206','#6a5222'],
- deck:['tmedj','tmedj','tsun','iink','tmedj','tscr'],edeck:['tgiant',...DUMMIES],
+{id:'th1',h:'thoth',t:'Sundered',sub:'Split army members into Ka and Ba, and use their names.',ename:'The Clay Giant',eic:'🗿',elife:4,ebg:['#1a1206','#6a5222'],
+ deck:['tmedj','tmedj','tsun','iink','dcut','tmedj','tscr','tmedj'],edeck:['tgiant',...DUMMIES],
  steps:[
  S.info('Thoth splits army members apart. <b>Sunder</b> one and it becomes its <b>Ka</b> (the body: no power, can\'t block) and its <b>Ba</b> (the soul: 1 health), and you take its <b>Ren</b>, its true name.'),
  S.play('tmedj','Play <b>Medjay of the Temple</b>.'),
  S.play('tmedj','Play the second <b>Medjay</b>.'),
  S.end('Press <b>End turn</b>. The enemy will raise a Clay Giant to block you.'),
  S.play('tsun','Cast <b>Sunder the Soul</b> on the <b>Clay Giant</b>.','e:tgiant'),
- S.speak('You took the Giant\'s <b>Ren</b>. Click the <b>◆+2</b> badge on it to speak the name: +2 mana.'),
+ S.speak('You took the Giant\'s <b>Ren</b>. Click the <b>◆+2</b> badge on it to <b>speak</b> the name: +2 mana.'),
  S.play('iink','Cast <b>Ink of Seshat</b> on a Medjay: +1/+1 and Ruthless, written as glyphs.','p:tmedj'),
- S.atk(['tmedj','tmedj'],'The Giant can\'t block any more. Attack with both Medjay, then <b>Resolve combat</b>.')]},
-{id:'th2',h:'thoth',t:'Scribes',sub:'Write glyphs and equip amulets.',ename:'Training Dummies',eic:'🎯',elife:4,ebg:['#1a1206','#5a4a2a'],
- deck:['tmedj','iink','gfeather','tscr','tmedj','iscribe'],edeck:DUMMIES,
+ S.atk(['tmedj','tmedj'],'The Giant can\'t block any more. Attack with both Medjay, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('dcut','You can Sunder your own army members too. Cast <b>Ritual Knife</b> on a Medjay: it splits, you take its Ren, and you draw a card.','p:tmedj'),
+ S.play('@ren','This time <b>write</b> the Ren instead of speaking it: play it on your other Medjay to give it +1/+1.','p:tmedj'),
+ S.atk(['tmedj'],'Attack with the Medjay, then <b>Resolve combat</b>.')]},
+{id:'th2',h:'thoth',t:'Scribes',sub:'Write glyphs and equip amulets.',ename:'Training Camp',eic:'🎯',elife:12,ebg:['#1a1206','#5a4a2a'],
+ deck:['tmedj','iink','gfeather','tscr','iwas','tmedj','iscribe','tmedj'],edeck:DUMMIES,
  steps:[
  S.info('<b>Scribes</b> make one army member great: <b>glyphs</b> written onto it (up to 3) and <b>amulets</b> it wears.'),
  S.play('tmedj','Play <b>Medjay of the Temple</b>.'),
  S.play('iink','Cast <b>Ink of Seshat</b> on it: glyphs of +1/+1 and Ruthless.','p:tmedj'),
  S.end('Press <b>End turn</b>.'),
- S.play('gfeather','Play <b>Feather of Ma\'at</b> and put it on the Medjay: +1/+1. If the wearer dies, the amulet stays and can be moved.','p:tmedj'),
- S.play('tscr','Play <b>Temple Scribe</b>: it writes a glyph of <b>Ward</b> onto the Medjay.','p:tmedj'),
+ S.play('gfeather','Play <b>Feather of Ma\'at</b> and put it on the Medjay: +1/+1.','p:tmedj'),
+ S.play('tscr','Play <b>Temple Scribe</b>: it writes a glyph of <b>Ward</b> onto the Medjay. That is its third glyph.','p:tmedj'),
+ S.atk(['tmedj'],'Attack with the Medjay, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>.'),
+ S.play('iwas','Play the <b>Was-Sceptre</b> and put it on the Medjay: +1/+0, and +1/+0 more for each glyph on it.','p:tmedj'),
+ S.info('If an amulet\'s wearer dies, the amulet stays on the battlefield: click it and another army member to move it (it costs its equip price).'),
  S.atk(['tmedj'],'Attack with the Medjay, then <b>Resolve combat</b>.')]},
-{id:'th3',h:'thoth',t:'Recorder',sub:'Foresee the enemy\'s cards and punish them.',ename:'Straw Soldiers',eic:'🎯',elife:5,ebg:['#1a1206','#4a3a1a'],
- deck:['yfore','yibis','ywatch','tmedj','tmedj','tscr'],edeck:Array(10).fill('tdum1'),
+{id:'th3',h:'thoth',t:'Recorder',sub:'Foresee the enemy\'s cards and punish them.',ename:'Training Camp',eic:'🎯',elife:6,ebg:['#1a1206','#4a3a1a'],
+ deck:['yfore','yibis','ywatch','tmedj','ypre','tmedj','tscr'],edeck:['tdum','tblk','tdum','tdum','tdum','tdum','tdum','tdum','tdum','tdum'],
  steps:[
  S.info('The <b>Recorder</b> reads the future. <b>Foresee</b> marks the enemy\'s next cards (listed under their mana, 👁), and other cards punish them for playing what you saw.'),
  S.play('yfore','Play <b>Foreknowledge</b>: whenever they play a Foreseen card, they lose 2 life.'),
  S.play('yibis','Play <b>Ibis of Thoth</b>: it Foresees the top 2 cards of their deck.'),
- S.end('Press <b>End turn</b> and watch the enemy play what you foresaw.'),
+ S.end('Press <b>End turn</b> and watch them play what you foresaw.'),
  S.play('ywatch','Play <b>Watcher at the Gate</b>: it Foresees their whole hand.'),
  S.atk(['yibis'],'Attack with the <b>Ibis</b> (Flying), then <b>Resolve combat</b>.'),
- S.end('Press <b>End turn</b>. Every card they play now costs them 2 life.')]}
+ S.end('Press <b>End turn</b>. Every card they play now costs them 2 life.'),
+ S.play('ypre','Their next foreseen card is a <b>Shield Dummy</b> that would block you. Cast <b>Preempt</b>: when they play it, it fails. You draw a card.'),
+ S.atk(['yibis','ywatch'],'Attack with the <b>Ibis</b> and the <b>Watcher</b>, then <b>Resolve combat</b>.'),
+ S.end('Press <b>End turn</b>. Their preempted card fails, and the rest still cost them life.')]}
 ];
 
 const JOURNEY=[
@@ -3034,7 +3102,9 @@ function tutStart(i){const L=TUT[i];if(!L)return;const h=L.h||'ody';setChar(h);U
  p.deck=L.deck.map(id=>mk(id)).reverse();p.hand=[];p.gy=[];draw(p,4);
  e.deck=L.edeck.map(id=>mk(id)).reverse();e.hand=[];draw(e,4);e.life=e.max=L.elife;e.bf=[];if(L.plife)p.life=L.plife;
  G.log=[];G.msg='';G.phase='main';render()}
-function tutStep(){if(!G||!G.tut)return null;const L=TUT[G.tut.i];return L?L.steps[G.tut.s]:null}
+/* safety net: if the guide's steps are done and the enemy still stands, keep guiding until it falls */
+const TFIN={k:'fin',m:'Finish the fight: press <b>Attack with all</b>, then <b>Resolve combat</b>. If nothing can attack, press <b>End turn</b>.'};
+function tutStep(){if(!G||!G.tut)return null;const L=TUT[G.tut.i];if(!L)return null;return L.steps[G.tut.s]||(G.phase!='tutend'?TFIN:null)}
 function tutNoEnd(){const s=tutStep();return s&&s.noEnd&&G.phase=='main'?'Finish this step first: '+s.m.replace(/<[^>]+>/g,'').split('.')[0]+'.':''}
 function tutChk(){const p=G.p,e=G.e;if(e.life<=0||p.life<=0){G.tut.won=e.life<=0?1:0;G.phase='tutend';if(G.tut.won)tutMark(TUT[G.tut.i].id);return true}return false}
 function tutTick(){if(!G||!G.tut||G.phase=='tutend')return;for(let k=0;k<20;k++){const s=tutStep();if(!s)return;if(G.tut.si!==G.tut.s)tutSnap();if(s.next)return;let ok=false;try{ok=tutIsDone(s)}catch(e){}if(!ok)return;G.tut.s++}}
@@ -3060,7 +3130,7 @@ function coachPost(){if(typeof document==='undefined'||!document.createElement||
  const hide=()=>{if(el)el.style.display='none'};document.querySelectorAll('.tuthi').forEach(x=>x.classList.remove('tuthi'));
  if(G&&G.tut&&G.phase!=='tutend'){tutTick();const L=TUT[G.tut.i],s=tutStep();if(!s)return hide();
   if(!el){el=document.createElement('div');el.id='tutc';document.body.appendChild(el)}el.style.display='block';
-  el.innerHTML=`<div class="tutch">${L.t}<span>${G.tut.s+1} / ${L.steps.length}</span></div><div class="tutcm">${s.m}</div><div class="tutcb">${s.next?'<button class="b" data-b="tutnext">Next</button>':''}<button class="tutx" data-b="tutmenu">Leave lesson</button></div>`;
+  el.innerHTML=`<div class="tutch">${L.t}<span>${Math.min(G.tut.s+1,L.steps.length)} / ${L.steps.length}</span></div><div class="tutcm">${s.m}</div><div class="tutcb">${s.next?'<button class="b" data-b="tutnext">Next</button>':''}<button class="tutx" data-b="tutmenu">Leave lesson</button></div>`;
   const h=tutHi(s);if(h)try{document.querySelectorAll(h).forEach(x=>x.classList.add('tuthi'))}catch(e){}return}
  const k=tipKey();if(!k||lsGet(TIPK,'1')!='1'){return hide()}let seen=[];try{seen=JSON.parse(lsGet(TIPSEEN,'[]'))}catch(e){}const tx=TIPS[k+':'+G.ch]||TIPS[k];if(seen.includes(k)||!tx)return hide();
  if(!el){el=document.createElement('div');el.id='tutc';document.body.appendChild(el)}el.style.display='block';
