@@ -16039,7 +16039,160 @@
           "size": "1024x1536"
         }
       },
-      "icons": {}
+      "icons": {
+        "med_legion": {
+          "name": "legion medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Legion: a crowd of pale possessed faces crammed together, many eyes staring. Colours: ash grey, sickly green and blood red.",
+          "output": "art/icons/act3/med_legion.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_watchers": {
+          "name": "watchers medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Watchers: a single great eye ringed by dark fallen-angel wings. Colours: midnight blue, silver and forge orange.",
+          "output": "art/icons/act3/med_watchers.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_nephilim": {
+          "name": "nephilim medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Nephilim: a giant's head and shoulders towering over tiny mountains. Colours: storm grey, earth brown and dull bronze.",
+          "output": "art/icons/act3/med_nephilim.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_baal": {
+          "name": "baal medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Prophets of Baal: a bronze bull idol on an altar with a curved knife before it. Colours: blood red, ochre and bronze.",
+          "output": "art/icons/act3/med_baal.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_babel": {
+          "name": "babel medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Builders of Babel: the stepped Tower of Babel cracking under a storm. Colours: brick red, dusk ochre and gold.",
+          "output": "art/icons/act3/med_babel.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_pairikas": {
+          "name": "pairikas medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Pairikas: a star-witch streaking across the night as a shooting star. Colours: deep violet, indigo and white gold.",
+          "output": "art/icons/act3/med_pairikas.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_sons": {
+          "name": "sons medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Sons of Darkness: a black war banner with a dark sun above ranks of spears. Colours: black, salt white and blood red.",
+          "output": "art/icons/act3/med_sons.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_mammon": {
+          "name": "mammon medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Mammon's Hoard: a clawed hand clutching a heap of gold coins. Colours: gold, black and sickly green.",
+          "output": "art/icons/act3/med_mammon.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_mastema": {
+          "name": "mastema medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Mastema's Spirits: a pale accuser holding a pair of scales, spirits swirling. Colours: cold grey, bruised violet and gold.",
+          "output": "art/icons/act3/med_mastema.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_paimon": {
+          "name": "paimon medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: King Paimon's Procession: a crowned demon king riding a dromedary, a herald's trumpet raised. Colours: crimson, brass and violet.",
+          "output": "art/icons/act3/med_paimon.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_beelzebub": {
+          "name": "beelzebub medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Beelzebub, Lord of the Flies: a crowned fly with a demon's face. Colours: putrid green, black and ember red.",
+          "output": "art/icons/act3/med_beelzebub.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_azazel": {
+          "name": "azazel medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Azazel, the Scapegoat: a black horned goat with a scarlet thread tied to its horns. Colours: blood red, bone and black.",
+          "output": "art/icons/act3/med_azazel.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_asmodeus": {
+          "name": "asmodeus medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Asmodeus: a three-headed demon king (bull, man and ram) wreathed in flame. Colours: crimson, dark rose and gold.",
+          "output": "art/icons/act3/med_asmodeus.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_lilith": {
+          "name": "lilith medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Lilith: a winged demon queen with long black hair before a blood moon, a screech owl beside her. Colours: night violet, blood red and silver.",
+          "output": "art/icons/act3/med_lilith.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_lucifer": {
+          "name": "lucifer medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Lucifer, the Morning Star: a radiant six-winged fallen angel with a burning star on his brow. Colours: blazing gold, ultramarine and white fire.",
+          "output": "art/icons/act3/med_lucifer.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_ahriman": {
+          "name": "ahriman medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Ahriman, the Smiling Stranger: a smiling dark face with serpents rising from its shoulders. Colours: smoky black, fire orange and poison green.",
+          "output": "art/icons/act3/med_ahriman.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_abaddon": {
+          "name": "abaddon medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Abaddon, the Opened Abyss: an armoured angel-king rising from a burning pit, locusts swarming. Colours: abyss red, smoke black and bronze.",
+          "output": "art/icons/act3/med_abaddon.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "med_beast": {
+          "name": "beast medallion",
+          "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Beast of the Sea: seven crowned heads with ten horns rising from a raging sea. Colours: storm sea green, crimson and gold.",
+          "output": "art/icons/act3/med_beast.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "ui_map": {
+          "name": "ui_map",
+          "prompt": "A map of the War in Heaven painted like a page from a medieval illuminated Apocalypse manuscript, on aged and stained vellum: heaven's golden walls and clouds along the top, the lake of fire and the bottomless pit along the bottom, the plain of Armageddon, the sea of the Beast and small battling angels and demons in the margins, falling stars, all in faded ink with gold leaf, ultramarine and vermilion. The centre is mostly open, pale vellum with very few marks so game icons can sit on top. The look of a medieval illuminated Apocalypse manuscript (like the Beatus and Angers Apocalypse): gold leaf, deep ultramarine, vermilion and black; flames, falling stars, scorched angel feathers and broken halos; dark and ominous, the host of the fallen. No Greek, Norse, Chinese or Egyptian elements. No text, no letters, no labels.",
+          "output": "art/icons/act3/ui_map.png",
+          "size": "1536x1024",
+          "format": "png",
+          "background": "opaque"
+        }
+      }
     }
   },
   "_note": "Generated by art/build_manifest.py from tooling/n1.html. Do not edit by hand: change art/subjects.json or the script, then re-run it.",
@@ -16732,6 +16885,46 @@
       "hero": "act3",
       "prompt": "A wide background illustration for the battle screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Last Battle: the seven-headed Beast with ten horns and ten crowns rising out of a raging sea, every head roaring, the False Prophet with lamb's horns calling down fire from heaven on the shore at the left, the kings of the earth and their armies gathered on the plain, the heavens splitting with light, the dragon in the storm clouds, waves, fire and falling stars everywhere A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: storm sea green and crimson (#060a0c to #6a1a1a) with gold crowns, fire and white lightning.",
       "output": "art/scenes/act3/beast.webp",
+      "size": "1536x1024"
+    },
+    "s_a3_bossp": {
+      "name": "General pick background",
+      "hero": "act3",
+      "screen": "bossp",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the three generals of the rebellion seen across a burning battlefield in heaven: on the left the radiant six-winged Lucifer in a blaze of gold, in the middle distance the dark smiling shape of Ahriman with serpents at his shoulders, on the right the armoured Abaddon rising from a smoking pit; storm clouds, falling stars and broken golden walls of heaven between them Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: storm ultramarine and fire (#0a0a18 to #6a3a20) with gold, white fire and abyss red.",
+      "output": "art/scenes/act3/s_a3_bossp.webp",
+      "size": "1536x1024"
+    },
+    "s_a3_otg": {
+      "name": "Act III altar background",
+      "hero": "act3",
+      "screen": "otg",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: a vast altar of white stone and gold before the throne of heaven, on a platform among the clouds at night: four great golden lampstands burning at the corners along the left and right edges; a monumental stair rising from the lower corners; a sea of glass like crystal before it and a rainbow of light far above; angels with trumpets standing guard Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: deep ultramarine and night (#06081a to #2a3a6a) with four gold flames, white light and a faint rainbow.",
+      "output": "art/scenes/act3/s_a3_otg.webp",
+      "size": "1536x1024"
+    },
+    "s_a3_draft_reward": {
+      "name": "Act III reward draft background",
+      "hero": "act3",
+      "screen": "draft_reward",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the spoils of the War in Heaven laid out in a ruined celestial armoury: fallen angels' broken swords, cracked golden shields, torn wings, crowns and burning spears heaped on the marble floor before a shattered golden gate at the far left; broken columns and drifting embers along the right edge Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: smoke grey and gold (#100c0a to #5a4022) with ember orange, ultramarine and white feathers.",
+      "output": "art/scenes/act3/s_a3_draft_reward.webp",
+      "size": "1536x1024"
+    },
+    "s_a3_fronts": {
+      "name": "The other fronts background",
+      "hero": "act3",
+      "screen": "a3front",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the War in Heaven raging on the other fronts, seen from a high cliff: in the distance three great battles under one stormy sky, the archangel Michael's host of golden light clashing with a red dragon on the left, the shining warrior Sraosha driving back a tide of darkness in the middle, the angel Uriel with a fiery sword at the edge of a smoking abyss on the right; banners, lightning and falling stars Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: storm grey and dusk gold (#0c0a12 to #4a3a24) with gold, crimson and white lightning.",
+      "output": "art/scenes/act3/s_a3_fronts.webp",
+      "size": "1536x1024"
+    },
+    "s_a3_victory": {
+      "name": "Final victory background",
+      "hero": "act3",
+      "screen": "final",
+      "prompt": "A wide background illustration for the menu screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; the centre is a calm, empty, evenly dark area, because a title, text and buttons sit on top of it. No figures or creatures in the centre. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the end of the War in Heaven: a new dawn breaking in gold over a calm sea of glass and a shining city of light on a mountain, the clouds parting, angels with trumpets in the sky, the defeated dragon bound in a great chain sinking into the abyss far below in the lower corner, light streaming down over everything Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style.\nColour: dawn gold and pale ultramarine (#1a1410 to #c8a050) with white light, rose and soft blue.",
+      "output": "art/scenes/act3/s_a3_victory.webp",
       "size": "1536x1024"
     }
   }
