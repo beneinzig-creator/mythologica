@@ -1,0 +1,8 @@
+{
+ "id": "node_craft",
+ "realm": "act3",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Crafting table: a smith's anvil and hammer in a ruined armoury, a glowing sword blade being forged, sparks flying, torn war banners. Colours: iron, molten gold, dark crimson."
+}
