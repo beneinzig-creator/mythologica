@@ -1,4 +1,4 @@
-/* ===== v105: Thoth engine (Sunder, Ren, glyphs, Erase, Reunite, amulets, Foresee/Record/Preempt) ===== */
+/* ===== v105: Thoth engine (Sunder, Name, glyphs, Erase, Reunite, amulets, Foresee/Record/Preempt) ===== */
 let THN=0;const THSRC={};
 const KWG='fwhzsrvdxbyqp';
 const GLN={f:'Flying',w:'Ward',h:'Charge',z:'Resilient',s:'Steadfast',r:'Ruthless',v:'Venomous',d:'Draining',x:'Siege',b:'Bulldoze',y:'Rally',q:'Opportunist',p:'Phalanx','+':'+1/+1'};
@@ -22,20 +22,20 @@ const roomOf=c=>c?3-((c.gl||[]).length):0;
 function thErase(c,who){const s=sideOf(c);if(!s||!isC(c))return 0;if(has(c,'w')&&s!==who)return 0;if(amOf(c).some(a=>a.id=='ishen')&&s!==who)return 0;
  const d=D[c.id],id='nm'+(++THN);D[id]=['Nameless '+d[0].split(',')[0],d[1],'C',d[3],d[4],'','Its name was chiselled away.','🗿',d[8],d[9]||1];LORE[id]='Erased';TOKE.push(id);
  const was=d[0];c.id=id;c.f='';c.gl=[];c.wr=[];log(was+' is erased: it loses its name, keywords and abilities.');return 1}
-/* ---------- Sunder, Ka and Ba, Ren ---------- */
+/* ---------- Sunder, Body and Spirit, Name ---------- */
 function makeParts(s,src,bonus){const d=D[src.id],nm=d[0].split(',')[0],col=d[8];const kaH=Math.max(1,Math.ceil((src.d+src.pd)/2)),bp0=Math.max(0,src.a+src.pa),baP=bp0>0?Math.max(1,Math.floor(bp0/2)):0;
- const ki='ka'+(++THN),bi='ba'+THN;D[ki]=['Ka of '+nm,0,'C',0,kaH,'n','Ka: the body (half its health). It cannot block. Reunites with its Ba.','🗿',col,1];D[bi]=['Ba of '+nm,0,'C',baP,1,'f','Ba: the spirit (half its power). Reunites with its Ka.','🕊️',col,1];
+ const ki='ka'+(++THN),bi='ba'+THN;D[ki]=['Body of '+nm,0,'C',0,kaH,'n','Body: half its health. It cannot block. Reunites with its Spirit.','🗿',col,1];D[bi]=['Spirit of '+nm,0,'C',baP,1,'f','Spirit: half its power. Reunites with its Body.','🕊️',col,1];
  LORE[ki]='The body';LORE[bi]='The spirit';TOKE.push(ki,bi);THSRC[src.u]=src;const out=[];
  for(const id of [ki,bi]){if(cr(s).length>=AM())break;const t=mk(id);t.src=src.u;t.part=id[0]=='k'?'ka':'ba';if(bonus){t.pa+=bonus;t.pd+=bonus}enter(s,t);out.push(t)}
  return out}
 function makeRen(src){const d=D[src.id],nm=d[0].split(',')[0],keys=[...new Set(src.f.split('').filter(k=>KWG.includes(k)))];const die=DEATH[src.id]?src.id:'';
  const id='ren'+(++THN),what=(keys.length?keys.map(k=>GLN[k]).join(', ')+', ':'')+(die?'its death ability, ':'')+'+1/+1';
- D[id]=['Ren of '+nm,0,'S',0,0,'','Write: target army member you control gains '+what+' (as glyphs). Or speak it (◆+2) for 2 mana.','📜','A'];LORE[id]='A true name';TS[id]='pc';
+ D[id]=['Name of '+nm,0,'S',0,0,'','Write: target army member you control gains '+what+' (as glyphs). Or speak it (◆+2) for 2 mana.','📜','A'];LORE[id]='A true name';TS[id]='pc';
  FX[id]=(s,o,t)=>{if(!t||typeof t!='object')return;keys.forEach(k=>inscribe(t,k));if(die)inscribe(t,'n:'+die);inscribe(t,'+');log('You write the name of '+nm+' onto '+D[t.id][0]+'.')};
  const c=mk(id);c.ren=1;c.dis=1;return c}
 function thSunder(c,by){const s=sideOf(c);if(!s||!isC(c))return 0;if(s!==by&&has(c,'w'))return 0;if(s!==by&&amOf(c).some(a=>a.id=='ishen'))return 0;
  const heart=amOf(c).some(a=>a.id=='dheart');s.bf.splice(s.bf.indexOf(c),1);if(G.cmb){G.cmb.atk=G.cmb.atk.filter(u=>u!==c.u);for(const k in G.cmb.blk)if(G.cmb.blk[k]===c.u||k==c.u)delete G.cmb.blk[k]}
- const parts=makeParts(s,c,heart?1:0);log(D[c.id][0]+' is sundered into its Ka and Ba.');
+ const parts=makeParts(s,c,heart?1:0);log(D[c.id][0]+' is sundered into its Body and Spirit.');
  if(by===G.p){const r=makeRen(c);G.p.hand.push(r);const bk=nOn(G.p,'dbook');for(let i=0;i<bk&&cr(G.p).length<AM();i++){const b=parts.find(x=>x.part=='ba');const id=b?b.id:null;if(id){const t=mk(id);t.src=c.u;t.part='ba';enter(G.p,t)}}}
  thHook(s===G.p?'sunMine':'sunTheirs',c);amFall();return 1}
 function speak(c){const p=G.p;if(!c||!c.ren)return;p.hand=p.hand.filter(x=>x!==c);p.mana+=2;log('You speak the name aloud: +2 mana.');thHook('speak',c)}

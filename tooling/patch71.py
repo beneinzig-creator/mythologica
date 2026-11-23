@@ -37,7 +37,7 @@ _b3("document.body.appendChild(o);SFX.play(boss?'gong':'stamp');",
 _b3('.dft{position:absolute;inset:0;display:flex;',
     # full-screen map
     'html.mapfull body::before{background:radial-gradient(ellipse at 50% 50%,#0000 62%,#0008 100%),var(--scn) center/cover no-repeat!important;opacity:1!important}'
-    'html.mapfull .tmap{background:none!important;box-shadow:none!important;border-color:transparent!important;border-image:none!important}'
+    'html.mapfull .tmap,html.mapfull[data-realm][data-hero] .tmap{background:none!important;box-shadow:none!important;border-color:transparent!important;border-image:none!important}'
     'html.mapfull .tmap:before,html.mapfull .tmap:after{display:none!important}'
     'html.mapfull .mapscr .ovt,html.mapfull .mapscr .dsub,html.mapfull .mapscr h1,html.mapfull .mapscr p{text-shadow:0 1px 2px #000,0 0 8px #000,0 0 16px #000c}'
     # figure intro: the fight background shows through, the enemy stands tall

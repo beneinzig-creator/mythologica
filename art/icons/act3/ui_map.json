@@ -1,0 +1,22 @@
+{
+  "id": "ui_map",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-23 07:26:54",
+  "prompt": "A map of the War in Heaven painted like a page from a medieval illuminated Apocalypse manuscript, on aged and stained vellum: heaven's golden walls and clouds along the top, the lake of fire and the bottomless pit along the bottom, the plain of Armageddon, the sea of the Beast and small battling angels and demons in the margins, falling stars, all in faded ink with gold leaf, ultramarine and vermilion. The centre is mostly open, pale vellum with very few marks so game icons can sit on top. The look of a medieval illuminated Apocalypse manuscript (like the Beatus and Angers Apocalypse): gold leaf, deep ultramarine, vermilion and black; flames, falling stars, scorched angel feathers and broken halos; dark and ominous, the host of the fallen. No Greek, Norse, Chinese or Egyptian elements. No text, no letters, no labels.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 192,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 192
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1564
+  }
+}
