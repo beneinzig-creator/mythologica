@@ -581,7 +581,7 @@ let plan=attackPlan(e,p);{const all=cr(e).filter(canAtk).filter(c=>pwr(c)>0).sor
 G.cmb=launch(e,plan.S,plan.tgm);G.phase='blockP';G.blk=0;G.msg='They attack! Click your army member, then the attacker to block (two blockers can gang up on one attacker). Quick spells and offerings work now. A dashed red outline marks a targeted army member.';chk();render()}
 function hd0(z){if(G.hq)return;if(['enemy','kleos','lost','victory','draft','remove','nextf','map','char','loc','hub'].includes(G.phase)&&!(G.phase=='enemy'&&G.qp))return;const[k,u]=z.split(':'),p=G.p,e=G.e,M=G.mode,sf=s=>s.bf.find(c=>c.u==u);
 if(G.pend){const P=PEND[G.pend],T=k=='e'?sf(e):k=='p'?sf(p):0;if(!T||!pendOk(P,T,k))return msg(P.m);P.fn(T);G.pend=0;G.pc=0;G.msg='Your turn.';sweep();chk();return render()}
-if(M&&M.tgt){const t=k=='e'?sf(e):k=='p'?sf(p):(k=='ef'||k=='pf')?k:0;G.mode=0;
+if(M&&M.tgt){const t=k=='e'?sf(e):k=='p'?sf(p):(k=='ef'||k=='pf')?k:0;G.mode=0;G.msg='';
 if(M.tgt==='eq'){if(!t||typeof t!='object'||k!='p'||!isC(t)){G.msg='Cancelled.';return render()}p.mana-=AMU[M.am.id].eq;M.am.on=t.u;log('You equip '+D[M.am.id][0]+' to '+D[t.id][0]+'.');return render()}if(M.tgt===3){if(!t||typeof t!='object'||k!='e'||!isC(t)||has(t,'w')){G.msg='Cancelled.';return render()}M.b.tap=1;t.dmg+=M.dmg;log(D[M.b.id][0]+' strikes '+D[t.id][0]+' for '+M.dmg+'.');sweep();chk();return render()}if(M.tgt===2){if(!t||(typeof t=='object'&&(!isC(t)||(k=='e'&&has(t,'w'))))){G.msg=t&&typeof t=='object'&&has(t,'w')?'That army member is warded.':'Cancelled.';return render()}M.b.tap=1;{const bm=1+((M.b.rec&&M.b.rec.m)||0);if(t=='ef')e.life-=bm;else if(t=='pf')p.life-=bm;else t.dmg+=bm}log('The Bow strikes.');sweep();chk();return render()}
 if(!(M.tgt=='xf'&&t=='ef')&&(!t||typeof t=='string'||!tsOk(M.tgt,t,k))){G.msg='Cancelled.';return render()}if(k=='e'&&M.tgt!='ei'&&has(t,'w')){G.msg='That army member is warded: it cannot be targeted.';return render()}return cast(M.c,t)}
 if(k=='s'||k=='o'){const c=sf(p);if(!c||!isC(c))return;
@@ -729,7 +729,7 @@ const hqh=G.hq?(G.hdisc?`<div class="ov" style="z-index:120"><div class="ovb"><d
 const lib=G.lib?`<div class="ov"><div class="ovb"><div class="ovt">Your library: ${p.deck.length} card${p.deck.length==1?'':'s'}, sorted by rarity, then cost (not draw order)</div><div class="lib">${p.deck.slice().sort(rsort).map(c=>card(c,'v:'+c.u)).join('')||'<p>Your library is empty.</p>'}</div><button class="b" data-b="okl">OK</button></div></div>`:'';
 const mine=ph=='kleos'?(G.kl.map((x,i)=>`<div class="kc">${card(x.c,'k:'+i)}<div class="ko">${x.d?`<em>${koLabel(x.o[x.d-1],x.c)} ✓</em>`:x.o.map((o,j)=>`<button class="b" data-k="${i}:${j}">${koLabel(o,x.c)}</button>`).join('')}</div></div>`).join('')||'<p>No survivors earned glory.</p>'):fld(p,'p');
 try{const SC=SCN[e.nm],FO=G.boss?BOSS[G.bi]:G.elt?ELITES[G.elt-1]:fo(G.rt[G.fi]),BG=(SC&&SC.bg)||(FO||{}).bg||['#0b1820','#1d4452'],R=document.documentElement.style;R.setProperty('--b1',BG[0]);R.setProperty('--b2',BG[1]);R.setProperty('--scn',SC?`url(art/game/scenes/${SC.id}.jpg)`:'none');R.setProperty('--scno',SC?'1':'0');document.documentElement.classList.toggle('scn',!!SC)}catch(e){}
-document.getElementById('app').innerHTML=`<div class="top"><div class="eh"><b>${G.fi+1}. ${e.nm}</b><span class="hp" data-z="ef"${G.mode&&G.mode.tgt=='xf'?' style="outline:2px dashed #e0b04a;outline-offset:3px;cursor:pointer"':''}>❤ ${e.life}</span><span class="cn" style="margin-left:10px">Army ${cr(e).length}/${AM()}</span><div class="cn" style="margin-top:3px;opacity:.85">◆ Mana ${e.mana}</div>${foreStrip()}${clkBadge()}<u style="width:${Math.max(0,e.life/e.max*100)}%"></u></div><div class="eHand">${e.hand.map(c=>'<div class="cb"'+(c.fly>Date.now()?' style="visibility:hidden"':'')+'></div>').join('')}</div><div style="min-width:210px"></div></div><div class="board"><div class="fld fe">${fld(e,'e')}</div><div class="mgap"></div><div class="fld fp">${mine}</div></div><div class="mid">${G.msg||''}<small>${G.log.join(' · ')}</small></div><div class="hand">${p.hand.map(c=>card(c,'h:'+c.u)).join('')}</div><div class="me"><b class="pn">${CHN()}</b><div class="orb" title="Mana">◆${p.mana}</div><span class="hp" data-z="pf">❤ ${p.life}</span><span class="cn">Army ${cr(p).length}/${AM()}</span>${wkBar()}</div><div class="decks">${gyPile(e,'gye','Enemy graveyard')}<div class="cb pile${e.deck.length?'':' empty'}"><div class="tip">Enemy library: ${e.deck.length} card${e.deck.length==1?'':'s'}</div></div><div class="cb pile mine${p.deck.length?'':' empty'}" data-z="lib"><div class="tip">Your library: ${p.deck.length} card${p.deck.length==1?'':'s'}. Click to view.</div></div>${gyPile(p,'gyp','Your graveyard')}</div><div class="ctl">${b}</div>${lib}${gv}${qkh}${hqh}${G.rv?`<div class="ov"><div class="ovb"><div class="ovt">${G.rvt||e.nm+' plays'}</div><div class="big">${card(G.rv.c,'v:0')}</div><button class="b" data-b="ok">OK</button></div></div>`:''}`}
+document.getElementById('app').innerHTML=`<div class="top"><div class="eh"><b title="${e.nm}">${G.fi+1}. ${e.nm}</b><span class="hp" data-z="ef"${G.mode&&G.mode.tgt=='xf'?' style="outline:2px dashed #e0b04a;outline-offset:3px;cursor:pointer"':''}>❤ ${e.life}</span><span class="cn" style="margin-left:10px">Army ${cr(e).length}/${AM()}</span><div class="cn" style="margin-top:3px;opacity:.85">◆ Mana ${e.mana}</div>${foreStrip()}${clkBadge()}<u style="width:${Math.max(0,e.life/e.max*100)}%"></u></div><div class="eHand">${e.hand.map(c=>'<div class="cb"'+(c.fly>Date.now()?' style="visibility:hidden"':'')+'></div>').join('')}</div><div style="min-width:210px"></div></div><div class="board"><div class="fld fe">${fld(e,'e')}</div><div class="mgap"></div><div class="fld fp">${mine}</div></div><div class="mid">${G.msg||''}<small>${G.log.map(x=>'<span class="lgl">'+x+'</span>').join('')}</small></div><div class="hand">${p.hand.map(c=>card(c,'h:'+c.u)).join('')}</div><div class="me"><b class="pn">${CHN()}</b><div class="orb" title="Mana">◆${p.mana}</div><span class="hp" data-z="pf">❤ ${p.life}</span><span class="cn">Army ${cr(p).length}/${AM()}</span>${wkBar()}</div><div class="decks">${gyPile(e,'gye','Enemy graveyard')}<div class="cb pile${e.deck.length?'':' empty'}"><div class="tip">Enemy library: ${e.deck.length} card${e.deck.length==1?'':'s'}</div></div><div class="cb pile mine${p.deck.length?'':' empty'}" data-z="lib"><div class="tip">Your library: ${p.deck.length} card${p.deck.length==1?'':'s'}. Click to view.</div></div>${gyPile(p,'gyp','Your graveyard')}</div><div class="ctl">${b}</div>${lib}${gv}${qkh}${hqh}${G.rv?`<div class="ov"><div class="ovb"><div class="ovt">${G.rvt||e.nm+' plays'}</div><div class="big">${card(G.rv.c,'v:0')}</div><button class="b" data-b="ok">OK</button></div></div>`:''}`}
 function fitTip(fx,dx){fx.style.transform='';const r=fx.getBoundingClientRect(),z=fx.offsetWidth?r.width/fx.offsetWidth:1,H=innerHeight-10,s=r.height>H?H/r.height:1,h=r.height*s,top=Math.max(5,Math.min(r.top,innerHeight-5-h)),dy=(top-r.top)/z,dx2=r.right>innerWidth-6?(innerWidth-6-r.right)/z:(r.left<6?(6-r.left)/z:0),up=fx.classList.contains('up')?'translateX(-50%) ':'';fx.style.transformOrigin='0 0';fx.style.transform=(dy||dx2?up+'translate('+dx2+'px,'+dy+'px) ':'')+(s<1?'scale('+s+')':'')}
 document.onmouseover=ev=>{try{let T=document.getElementById('tip');if(!T){T=document.createElement('div');T.id='tip';document.body.appendChild(T)}const cd=ev.target.closest&&ev.target.closest('.cd'),fx=cd&&cd.querySelector('.fxp');if(!cd||!fx){T.style.display='none';return}
 if(cd.closest('.lib')){T.innerHTML=fx.innerHTML;T.style.display='block';T.style.transform='';const r=cd.getBoundingClientRect(),w=190,x=r.right+10+w>innerWidth?Math.max(4,r.left-w-10):r.right+10;T.style.left=x+'px';T.style.top=r.top+'px';const q=T.getBoundingClientRect(),H=innerHeight-10,s=q.height>H?H/q.height:1,top=Math.max(5,Math.min(q.top,innerHeight-5-q.height*s));T.style.top=top+'px';T.style.transformOrigin='0 0';T.style.transform=s<1?'scale('+s+')':''}else{T.style.display='none';fitTip(fx);setTimeout(()=>{try{fitTip(fx)}catch(e){}},170)}}catch(e){}};
@@ -4635,6 +4635,48 @@ fxLunge=function(done){const c=G&&G.cmb;if(!c||FXS.lunging)return done();const s
    const e=paRun(u,'mv',[{translate:dx.toFixed(1)+'px '+dy.toFixed(1)+'px',scale:'1.08'},{translate:'0px 0px',scale:'1'}],{duration:440,easing:'cubic-bezier(.2,.7,.25,1)'},el);
    if(e){e.bx=cx;e.by=cy;e.a.finished.then(()=>{if(e.el===el)el.style.zIndex=zi}).catch(()=>{})}})}};
 {const _R=render;render=function(){const out=_R.apply(this,arguments);try{paPost()}catch(e){}paSync();return out}}
+
+/* ===== patch_fightlayout: fight-screen layout fixes ===== */
+{const f0=fight;fight=function(){if(G){G.log=[];G.msg=''}return f0.apply(this,arguments)}}
+{const w0=wkBar;wkBar=function(){const s=w0.apply(this,arguments);return s?s.replace('class="cn"','class="cn wkb"').replace(/ · (\d+ played)/,'<br>$1'):s}}
+{const r0=render;render=function(){try{if(G&&G.msg&&!(G.mode&&G.mode.tgt)&&!G.pend){const m=G.msg;if(Object.values(TSM).includes(m)||/^Choose one of your army members to wear /.test(m))G.msg=''}}catch(e){}
+ const out=r0.apply(this,arguments);try{const s=document.querySelector('#app>.mid small');if(s)s.scrollTop=s.scrollHeight}catch(e){}return out}}
+try{const st=document.createElement('style');st.id='pfl';st.textContent=`
+html .me .orb>.dg:has(+.dg){transform:translate(calc(var(--mx2,0px) - 50%),var(--my2,9px))}
+html .me .orb>.dg+.dg{transform:translate(calc(var(--mx2,0px) + 50%),var(--my2,9px))}
+html .me .orb>.dg:has(+.dg+.dg){transform:translate(calc(var(--mx2,0px) - 100%),var(--my2,9px))}
+html .me .orb>.dg+.dg:has(+.dg){transform:translate(var(--mx2,0px),var(--my2,9px))}
+html .me .orb>.dg+.dg+.dg{transform:translate(calc(var(--mx2,0px) + 100%),var(--my2,9px))}
+#app>.mid small{display:block;-webkit-line-clamp:unset;max-height:7.4em;overflow-x:hidden;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c9a24c66 transparent}
+#app>.mid small .lgl{display:block}
+#app>.mid small .lgl+.lgl{margin-top:2px}
+html:not(.ph) .dft.mapscr{padding-left:12px;padding-right:12px}
+html:not(.ph) .me .wkb{text-align:center;line-height:1.25;white-space:nowrap}
+html:not(.ph) .itc{gap:10px}
+html:not(.ph) .fe .itc{column-gap:14px}
+html:not(.ph) .itc .cd+.cd{margin-left:0}
+@media (min-width:561px){
+ html:not(.ph) .eh{z-index:2;padding-right:14px;display:grid;grid-template-columns:minmax(0,max-content) max-content max-content 1fr;align-items:baseline}
+ html:not(.ph) .eh>b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:.02em;margin-right:8px}
+ html:not(.ph) .eh>.hp,html:not(.ph) .eh>span.cn:not(.clk){white-space:nowrap}
+ html:not(.ph) .eh>:not(b):not(.hp):not(span.cn:not(.clk)):not(u){grid-column:1/-1}
+ html:not(.ph) .ctl{zoom:min(var(--zu,1.4),1.15);width:176px;align-items:stretch;gap:5px}
+ html:not(.ph) .ctl .b{width:100%;white-space:normal;line-height:1.15;border-width:7px 16px;padding:5px 4px;min-height:0;font-size:12.5px}
+ html:not(.ph) .fp .itc{align-self:flex-start}
+ html:not(.ph) .hand{padding-right:calc(176px * min(var(--zu,1.4),1.15) / var(--zc,1.25) + 26px)}
+ html:not(.ph) .itc:has(>.cd:nth-child(3)){display:grid;grid-auto-flow:column;gap:6px 18px;align-content:start}
+ html:not(.ph) .fe .itc:has(>.cd:nth-child(3)){column-gap:24px}
+ html:not(.ph) .itc:has(>.cd:nth-child(3))>.cd{zoom:calc(var(--czf,1) * .68)}
+ html:not(.ph) .itc:has(>.cd:nth-child(4)){grid-template-rows:auto auto}
+ html:not(.ph) .itc:has(>.cd:nth-child(4))>.cd{zoom:calc(var(--czf,1) * .6)}
+}
+@media (min-width:561px) and (max-height:720px){
+ html:not(.ph) .fp .itc>.cd{zoom:calc(var(--czf,1) * .78)}
+ html:not(.ph) .fp .itc:has(>.cd:nth-child(3))>.cd{zoom:calc(var(--czf,1) * .6)}
+ html:not(.ph) .fp .itc:has(>.cd:nth-child(4)){grid-template-rows:none}
+ html:not(.ph) .fp .itc:has(>.cd:nth-child(4))>.cd{zoom:calc(var(--czf,1) * .5)}
+}
+`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>
 
