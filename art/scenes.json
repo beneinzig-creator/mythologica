@@ -401,5 +401,129 @@
       "setting": "the edge of the world at the coming of a great storm: on the left the coils of the serpent Apophis rising from a black river; across the top a red sandstorm with the tall-eared shadow of Set; on the right the blazing sun disc of the lioness Sekhmet over burning desert Painted with the flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style. Distinctly ancient Egyptian: no Greek, Norse or Chinese elements",
       "palette": "storm black to red ochre (#0c0806 to #8a3a1c) with poison green, blazing gold and sand"
     }
+  },
+  "act3": {
+    "legion": {
+      "name": "Legion",
+      "setting": "the country of the Gadarenes by the sea at dusk: a steep rocky slope down to dark water along the right edge, a great herd of swine plunging into the sea, tombs cut into the cliffs along the left edge with pale possessed figures crowding out of them, broken chains on the rocks, a torn grey sky Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "ash grey and sea green (#0e1210 to #4a5a4a) with sickly yellow light and blood red accents"
+    },
+    "watchers": {
+      "name": "The Watchers",
+      "setting": "Mount Hermon at night where the fallen Watchers descended: two hundred angels with dark wings standing in a ring on the snowy peak, teaching forbidden arts to men below: forges, astrology charts, potions and weapons laid out on rocks along the left and right edges; a cold full moon and stars watching Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "midnight blue and snow white (#080c18 to #3a4a6a) with forge orange and silver starlight"
+    },
+    "nephilim": {
+      "name": "The Nephilim",
+      "setting": "a valley before the Flood where the giant Nephilim walk: colossal shadowy giants striding between mountains along the left and right edges, tiny walled cities and fleeing people at their feet, uprooted cedars, heavy rain clouds gathering Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "storm grey and earth brown (#12100c to #5a4a3a) with pale lightning and dull bronze"
+    },
+    "baal": {
+      "name": "The Prophets of Baal",
+      "setting": "the altar contest on Mount Carmel: a great stone altar with a bull at the centre back, hundreds of prophets of Baal in red robes leaping and dancing in a wild frenzy around it, arms raised, shouting to the sky, a bronze idol of Baal along the left edge, the sky dark and empty, a thin storm cloud far off Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "blood red and sun-baked ochre (#1a0a08 to #8a4a2a) with bronze and a white-hot sky"
+    },
+    "babel": {
+      "name": "The Builders of Babel",
+      "setting": "the Tower of Babel rising unfinished into a stormy sunset over the plain of Shinar: the colossal stepped brick tower with spiral ramps filling the right side, scaffolds and cranes of timber on its upper levels, crowds of tiny builders and brick kilns smoking at its foot; broken bricks and abandoned tools in the foreground at the left; the top of the tower vanishing into dark swirling clouds lit by gold and red, with faint shapes of falling stars Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "dusk ochre and brick red (#16120a to #8a5a2a) with storm violet, gold leaf and ultramarine accents"
+    },
+    "pairikas": {
+      "name": "The Pairikas",
+      "setting": "a Persian desert at night beneath a sky raining shooting stars: the Pairikas, star-witches with long glowing hair, streaking across the sky as falling meteors; an ancient fire temple with a sacred flame on a hill at the left; palm trees and tents of a caravan along the right edge Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "deep violet and indigo (#0c0818 to #3a2a6a) with white-gold meteors and fire-temple orange"
+    },
+    "sons": {
+      "name": "Sons of Darkness",
+      "setting": "the battle lines of the Sons of Darkness from the Dead Sea War Scroll: rank upon rank of dark armoured soldiers with banners and trumpets drawn up on a salt plain, the cliffs of Qumran along the left edge, black war standards against a smoky sky, the Dead Sea glinting far off Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "black and salt white (#0a0a0c to #4a4a52) with bronze trumpets and blood-red banners"
+    },
+    "mammon": {
+      "name": "Mammon's Hoard",
+      "setting": "the treasure vault of Mammon: an endless cavern of gold coins, chests, crowns and idols heaped into hills, greedy figures clawing at the gold, chains of gold hanging from the ceiling, a golden throne half buried in coins at the right, gold dripping like molten wax Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "gold and black (#140c04 to #8a6a1a) with sickly green and ember red"
+    },
+    "mastema": {
+      "name": "Mastema's Spirits",
+      "setting": "a grey wilderness of judgement: Mastema, the Accuser, a vast faint shape of a winged prosecutor in the clouds, holding scales; swarms of pale spirits sweeping over the land below; stone tablets of accusation standing like gravestones along the left and right edges Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "cold grey and bruised violet (#0e0c12 to #4a4058) with pale white spirits and gold scales"
+    },
+    "paimon": {
+      "name": "King Paimon's Procession",
+      "setting": "the procession of King Paimon: a crowned king riding a dromedary at the head of a vast parade of demons with trumpets, cymbals and banners, winding down a mountain road toward the viewer; heralds blowing long horns at the front, torches, music, a lurid sunset Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "crimson and brass (#1a0a0a to #8a3a1a) with gold crowns, torch orange and violet sky"
+    },
+    "beelzebub": {
+      "name": "Beelzebub, Lord of the Flies",
+      "setting": "the throne room of Beelzebub in hell: a monstrous Lord of the Flies with huge buzzing wings enthroned on a mountain of bones, a storm of black flies swirling like smoke filling the sky, rotting banners, demon courtiers bowing, rivers of filth and fire, a cracked ceiling of red rock A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "putrid green and black (#0a0c06 to #4a5a1a) with ember red and bone white",
+      "bg": [
+        "#0a0c06",
+        "#4a5a1a"
+      ]
+    },
+    "azazel": {
+      "name": "Azazel, the Scapegoat",
+      "setting": "the wilderness of Azazel: a vast cracked desert under a blood-red sky, the great horned fallen angel Azazel chained to jagged rocks in a ravine, the scapegoat with scarlet thread driven toward him, the sky torn by fire and darkness, forbidden weapons and jewels scattered, whirlwinds of sand and storms of crows A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "blood red and bone (#1a0606 to #8a2a1a) with black, scarlet thread and gold",
+      "bg": [
+        "#1a0606",
+        "#8a2a1a"
+      ]
+    },
+    "asmodeus": {
+      "name": "Asmodeus",
+      "setting": "the burning bridal chamber of Asmodeus: a ruined palace hall in flames, the three-headed demon king (bull, man and ram) with the wings of a fire-bird, rising in jealous fury, broken wedding feast and torn curtains, the archangel Raphael's light breaking in through a window, smoke of burning fish heart, chaos everywhere A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "jealous crimson and dark rose (#1a060c to #8a1a3a) with gold flame and pale angelic light",
+      "bg": [
+        "#1a060c",
+        "#8a1a3a"
+      ]
+    },
+    "lilith": {
+      "name": "Lilith",
+      "setting": "a haunted ruin under a huge blood moon, the realm of Lilith: the winged demon queen with long dark hair standing on a broken wall, screech owls and night spirits swirling around her in a storm, ruined towers overgrown with thorns, wolves and wild beasts howling, cradles of the Lilin glowing, ghosts drifting across a violet sky A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "night violet and blood moon (#0c0614 to #5a1a4a) with moonlight silver and deep red",
+      "bg": [
+        "#0c0614",
+        "#5a1a4a"
+      ]
+    },
+    "lucifer": {
+      "name": "Lucifer, the Morning Star",
+      "setting": "the War in Heaven at its height: the heavens torn open, the radiant Lucifer, the Morning Star, a burning six-winged angel of terrible beauty at the centre top, leading a vast host of rebel angels against the armies of heaven; thousands of angels clashing in the sky with spears and fire, falling angels streaming down like burning stars, golden walls of heaven cracking, lightning and light everywhere A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "blazing gold and deep ultramarine (#0a0c1a to #6a5a2a) with white fire, crimson and falling-star sparks",
+      "bg": [
+        "#0a0c1a",
+        "#6a5a2a"
+      ]
+    },
+    "ahriman": {
+      "name": "Ahriman, the Smiling Stranger",
+      "setting": "the end of the world in Persian myth: Ahriman, the Destructive Spirit, a colossal smiling dark figure in the sky with serpents rising from his shoulders, pouring darkness, demons (daevas), plagues, locusts and storms over the land; the sacred fire temples blazing defiantly along the left edge, armies of light and darkness clashing on the plain, a river of molten metal A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "smoky black and fire orange (#080606 to #6a3a1a) with sacred-fire gold and poison green",
+      "bg": [
+        "#080606",
+        "#6a3a1a"
+      ]
+    },
+    "abaddon": {
+      "name": "Abaddon, the Opened Abyss",
+      "setting": "the bottomless pit opened: Abaddon, the Destroyer, a vast armoured angel-king rising out of a burning abyss in the ground, a black sun darkened by smoke, endless swarms of locusts with human faces, iron breastplates and scorpion tails pouring up into the sky, a star fallen from heaven holding the key, the earth cracking in rings of fire A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "smoke black and abyss red (#080404 to #7a2a10) with locust bronze and a darkened sun",
+      "bg": [
+        "#080404",
+        "#7a2a10"
+      ]
+    },
+    "beast": {
+      "name": "The Beast of the Sea",
+      "setting": "the Last Battle: the seven-headed Beast with ten horns and ten crowns rising out of a raging sea, every head roaring, the False Prophet with lamb's horns calling down fire from heaven on the shore at the left, the kings of the earth and their armies gathered on the plain, the heavens splitting with light, the dragon in the storm clouds, waves, fire and falling stars everywhere A huge, crowded, climactic scene full of movement and detail, like the greatest battle painting ever made, while the middle of the picture stays a little calmer and darker so cards can sit on it Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "storm sea green and crimson (#060a0c to #6a1a1a) with gold crowns, fire and white lightning",
+      "bg": [
+        "#060a0c",
+        "#6a1a1a"
+      ]
+    }
   }
 }

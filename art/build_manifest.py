@@ -17,7 +17,7 @@ ART = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(ART)
 SRC = os.path.join(ROOT, 'tooling', 'n1.html')
 
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth', 'act3': 'act3'}
 TYPE = {'C': 'Army member', 'I': 'Quick spell', 'S': 'Spell', 'E': 'Modifier', 'A': 'Item'}
 RARITY = {'C': 'Common', 'U': 'Uncommon', 'R': 'Rare', 'L': 'Legendary'}
 SETTING = {
@@ -187,7 +187,8 @@ FRAMES['odin'] = {
 }
 HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
              'wukong': 'Journey to the West and classical Chinese myth',
-             'thoth': 'ancient Egyptian myth and the Book of the Dead'}
+             'thoth': 'ancient Egyptian myth and the Book of the Dead',
+             'act3': 'the War in Heaven, the fall of the rebel angels and the Apocalypse'}
 MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone',
               'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below',
               'thoth': 'an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below'}
@@ -752,6 +753,62 @@ HERO_UI['thoth'] = {
         'rustic 1990s hand-painted. Fully transparent background around the plate. No text, no hieroglyphs, no letters.'),
 }
 
+# ---- Act III, the War in Heaven (shared by every hero; its cards are all opponents') ----
+# Opponent cards are framed by tier: regular decks Common, elites Uncommon, the generals Rare, trumps Legendary.
+APOC_LOOK = ('The look of a medieval illuminated Apocalypse manuscript (like the Beatus and Angers Apocalypse): gold leaf, '
+             'deep ultramarine, vermilion and black; flames, falling stars, scorched angel feathers and broken halos; dark '
+             'and ominous, the host of the fallen. No Greek, Norse, Chinese or Egyptian elements.')
+# Ben (Nov 2026): the first set looked too alike. Each rarity now has its own material and colour, and they get more
+# epic as they climb: bronze and feathers, obsidian and hellfire, storm silver and lightning, the gold-and-crimson dragon.
+FRAMES['act3'] = {
+    'common': 'Common rarity: a frame of tarnished dark bronze, worn and dented, with a few scorched black angel feathers '
+              'laid along the two sides and small dull ember-red stones at the corners; restrained and simple. Colours: '
+              'dark bronze, black and a little ember red. ' + APOC_LOOK,
+    'uncommon': 'Uncommon rarity: a frame of black obsidian veined with glowing red-orange cracks like cooling lava, heavy '
+                'iron chains wrapped around the corners with broken shackles, small horned skulls at the four corners, '
+                'flames licking up from the bottom edge. Colours: glossy black and glowing hellfire orange. Clearly '
+                'different in colour and material from a bronze frame. ' + APOC_LOOK,
+    'rare': 'Rare rarity: a frame of storm silver and deep ultramarine: torn silver-edged angel wings, battered and '
+            'bleeding light, rising up both sides; storm clouds and forked lightning crackling around the border; seven '
+            'small golden trumpets along the top edge and a cracked silver halo above the art window. Colours: silver, '
+            'stormy blue, white lightning, touches of gold. Epic and dramatic. ' + APOC_LOOK,
+    'legendary': 'Legendary rarity, the most epic frame of all: the great red dragon of the Apocalypse, with seven crowned '
+                 'heads and ten horns, coiled all the way around the card in blazing gold and crimson scales, its heads '
+                 'rearing over the top edge, its tail sweeping a third of the stars from the sky along one side; a burning '
+                 'halo of golden light behind the art window, gold leaf everywhere, fire and falling stars. Colours: '
+                 'blazing gold and deep crimson on black. Overwhelming and climactic, still hand-painted, never glossy or '
+                 '3D-rendered. IMPORTANT: the border is exactly as thin as on an ordinary card frame, so the art window '
+                 'and the text box are just as large as on the other rarities: the dragon\'s body is drawn slim and '
+                 'tight along the outer edges only, and its seven heads are small, kept inside the thin band above the '
+                 'title bar; nothing pushes the title bar, art window or text box inwards or downwards. ' + APOC_LOOK,
+}
+
+
+def build_act3():
+    """Act III has no hero in CHARS: write only its frames into manifest.json (scenes come from scenes.json)."""
+    out = os.path.join(ART, 'manifest.json')
+    old = json.load(open(out, encoding='utf-8'))
+    fbase = FRAME_BASE.replace('the Odyssey and Greek myth', HERO_MYTH['act3'])
+    frames = {r: {'name': f'{r.title()} frame', 'prompt': f'{fbase}\n\n{t}\n{CONDITION[r]} {WEAR_NOTE}',
+                  'output': f'art/frames/act3/{r}.webp', 'size': '1024x1536'}
+              for r, t in FRAMES['act3'].items()}
+    # The 109 card pictures (art/act3/<id>.webp, each with a .json holding its prompt) were painted outside this
+    # script in four sacred-art looks (woodcut, grotesque fresco, manuscript, stained glass; see each .json).
+    # art/act3/cards.json gives each card's name, type and frame tier, and make_game_assets frames them from it.
+    opp = {}
+    cj = os.path.join(ART, 'act3', 'cards.json')
+    for cid, c in (json.load(open(cj, encoding='utf-8')) if os.path.exists(cj) else {}).items():
+        side = os.path.join(ART, 'act3', f'{cid}.json')
+        prompt = json.load(open(side, encoding='utf-8')).get('prompt', '') if os.path.exists(side) else ''
+        opp[cid] = {'name': c['name'], 'type': c['type'], 'frame': c['frame'], 'prompt': prompt,
+                    'output': f'art/act3/{cid}.webp'}
+    old.setdefault('heroes', {})['act3'] = {'name': 'Act III', 'cards': {}, 'opponents': opp, 'tutorial': {},
+                                            'frames': frames, 'icons': {}}
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump(old, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+    print('Wrote Act III frames to art/manifest.json.')
+
 STUB = r'''
 var __h={get:function(t,k){if(k===Symbol.toPrimitive)return function(){return 0};if(k==='length')return 0;return __p},
  apply:function(){return __p},construct:function(){return __p},set:function(){return true}};
@@ -822,6 +879,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--hero', default='ody', help='hero key in CHARS: ody, odin, wukong')
     a = ap.parse_args()
+    if a.hero == 'act3':
+        return build_act3()
 
     g = load_game()
     if a.hero not in g['CHARS']:

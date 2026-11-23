@@ -1,4 +1,18 @@
 {
+"Abaddon, the Opened Abyss": {
+"bg": [
+"#080404",
+"#7a2a10"
+],
+"id": "abaddon"
+},
+"Ahriman, the Smiling Stranger": {
+"bg": [
+"#080606",
+"#6a3a1a"
+],
+"id": "ahriman"
+},
 "Ammit, the Devourer": {
 "id": "ammit"
 },
@@ -8,6 +22,27 @@
 "#2f6a3a"
 ],
 "id": "apophis"
+},
+"Asmodeus": {
+"bg": [
+"#1a060c",
+"#8a1a3a"
+],
+"id": "asmodeus"
+},
+"Azazel, the Scapegoat": {
+"bg": [
+"#1a0606",
+"#8a2a1a"
+],
+"id": "azazel"
+},
+"Beelzebub, Lord of the Flies": {
+"bg": [
+"#0a0c06",
+"#4a5a1a"
+],
+"id": "beelzebub"
 },
 "Cattle of the Sun": {
 "id": "cattle"
@@ -55,8 +90,34 @@
 ],
 "id": "jormungandr"
 },
+"King Paimon's Procession": {
+"id": "paimon"
+},
+"Legion": {
+"id": "legion"
+},
+"Lilith": {
+"bg": [
+"#0c0614",
+"#5a1a4a"
+],
+"id": "lilith"
+},
 "Loki's Court": {
 "id": "loki"
+},
+"Lucifer, the Morning Star": {
+"bg": [
+"#0a0c1a",
+"#6a5a2a"
+],
+"id": "lucifer"
+},
+"Mammon's Hoard": {
+"id": "mammon"
+},
+"Mastema's Spirits": {
+"id": "mastema"
 },
 "Muspelheim": {
 "id": "muspelheim"
@@ -94,12 +155,25 @@
 ],
 "id": "set"
 },
+"Sons of Darkness": {
+"id": "sons"
+},
+"The Beast of the Sea": {
+"bg": [
+"#060a0c",
+"#6a1a1a"
+],
+"id": "beast"
+},
 "The Buddha's Palm": {
 "bg": [
 "#14121e",
 "#b08a3a"
 ],
 "id": "buddhapalm"
+},
+"The Builders of Babel": {
+"id": "babel"
 },
 "The Bull Demon King": {
 "bg": [
@@ -135,14 +209,23 @@
 "The Lotus-Eaters": {
 "id": "lotus"
 },
+"The Nephilim": {
+"id": "nephilim"
+},
 "The Norns": {
 "id": "norns"
+},
+"The Pairikas": {
+"id": "pairikas"
 },
 "The Phaeacians": {
 "id": "phaeacians"
 },
 "The Priests of Heka": {
 "id": "heka"
+},
+"The Prophets of Baal": {
+"id": "baal"
 },
 "The Scorpions of Serket": {
 "id": "scorpions"
@@ -165,6 +248,9 @@
 },
 "The Tomb Robbers": {
 "id": "robbers"
+},
+"The Watchers": {
+"id": "watchers"
 },
 "The White Bone Spirit": {
 "id": "whitebone"

@@ -1,0 +1,547 @@
+{
+ "xacc": {
+  "frame": "common",
+  "name": "Accusing Spirit",
+  "type": "Army member"
+ },
+ "xahri": {
+  "frame": "rare",
+  "name": "Ahriman, the Destructive Spirit",
+  "type": "Army member"
+ },
+ "xapol": {
+  "frame": "rare",
+  "name": "Apollyon, the Destroyer",
+  "type": "Army member"
+ },
+ "xasm": {
+  "frame": "legendary",
+  "name": "Jealousy",
+  "type": "Trump"
+ },
+ "xasmg": {
+  "frame": "uncommon",
+  "name": "Asmodeus",
+  "type": "Army member"
+ },
+ "xassa": {
+  "frame": "legendary",
+  "name": "The Assault",
+  "type": "Trump"
+ },
+ "xaza": {
+  "frame": "legendary",
+  "name": "The Scapegoat",
+  "type": "Trump"
+ },
+ "xazag": {
+  "frame": "uncommon",
+  "name": "Azazel, the Scapegoat",
+  "type": "Army member"
+ },
+ "xbaal": {
+  "frame": "uncommon",
+  "name": "Swarm-Priest",
+  "type": "Army member"
+ },
+ "xbab": {
+  "frame": "legendary",
+  "name": "Confusion of Tongues",
+  "type": "Trump"
+ },
+ "xbarg": {
+  "frame": "legendary",
+  "name": "The Bargain",
+  "type": "Trump"
+ },
+ "xbeast": {
+  "frame": "rare",
+  "name": "The Beast of the Sea",
+  "type": "Army member"
+ },
+ "xbeel": {
+  "frame": "legendary",
+  "name": "Lord of the Flies",
+  "type": "Trump"
+ },
+ "xbeelg": {
+  "frame": "uncommon",
+  "name": "Beelzebub, Lord of the Flies",
+  "type": "Army member"
+ },
+ "xbel": {
+  "frame": "legendary",
+  "name": "Battle Lines",
+  "type": "Trump"
+ },
+ "xbelg": {
+  "frame": "common",
+  "name": "Belial, Angel of Darkness",
+  "type": "Army member"
+ },
+ "xbribe": {
+  "frame": "common",
+  "name": "Bribe",
+  "type": "Spell"
+ },
+ "xbrick": {
+  "frame": "common",
+  "name": "Brick-Maker",
+  "type": "Army member"
+ },
+ "xcapt": {
+  "frame": "common",
+  "name": "Captain of the Lot",
+  "type": "Army member"
+ },
+ "xcarr": {
+  "frame": "uncommon",
+  "name": "Carrion Feeder",
+  "type": "Army member"
+ },
+ "xcast": {
+  "frame": "common",
+  "name": "Cast into the Abyss",
+  "type": "Spell"
+ },
+ "xcharg": {
+  "frame": "rare",
+  "name": "Iron-Breasted Charger",
+  "type": "Army member"
+ },
+ "xchrm": {
+  "frame": "common",
+  "name": "Teacher of Charms",
+  "type": "Army member"
+ },
+ "xclub": {
+  "frame": "common",
+  "name": "Giant's Club",
+  "type": "Spell"
+ },
+ "xcoin": {
+  "frame": "common",
+  "name": "Coin-Bearer",
+  "type": "Army member"
+ },
+ "xcook": {
+  "frame": "rare",
+  "name": "Royal Cook",
+  "type": "Army member"
+ },
+ "xcult": {
+  "frame": "common",
+  "name": "Dancer at the Altar",
+  "type": "Army member"
+ },
+ "xcurse": {
+  "frame": "common",
+  "name": "Forbidden Charm",
+  "type": "Spell"
+ },
+ "xdaeva": {
+  "frame": "rare",
+  "name": "Daeva of Doubt",
+  "type": "Army member"
+ },
+ "xdhead": {
+  "frame": "rare",
+  "name": "Head of the Dragon",
+  "type": "Army member"
+ },
+ "xdrag": {
+  "frame": "legendary",
+  "name": "The Tail Sweeps the Stars",
+  "type": "Trump"
+ },
+ "xdrom": {
+  "frame": "common",
+  "name": "Dromedary Rider",
+  "type": "Army member"
+ },
+ "xdroug": {
+  "frame": "common",
+  "name": "Duzhyairya, the Bad Harvest",
+  "type": "Army member"
+ },
+ "xdruj": {
+  "frame": "legendary",
+  "name": "The Druj",
+  "type": "Trump"
+ },
+ "xench": {
+  "frame": "common",
+  "name": "Pairika Enchantress",
+  "type": "Army member"
+ },
+ "xfall": {
+  "frame": "rare",
+  "name": "Fall from Grace",
+  "type": "Spell"
+ },
+ "xfang": {
+  "frame": "rare",
+  "name": "Fallen Angel",
+  "type": "Army member"
+ },
+ "xfheav": {
+  "frame": "rare",
+  "name": "Fire from Heaven",
+  "type": "Spell"
+ },
+ "xfire": {
+  "frame": "common",
+  "name": "Prophet of Baal",
+  "type": "Army member"
+ },
+ "xflame": {
+  "frame": "common",
+  "name": "Fire That Never Came",
+  "type": "Spell"
+ },
+ "xfly": {
+  "frame": "uncommon",
+  "name": "Fly",
+  "type": "Army member"
+ },
+ "xger": {
+  "frame": "common",
+  "name": "Gerasene Demon",
+  "type": "Army member"
+ },
+ "xgib": {
+  "frame": "common",
+  "name": "Gibborim, Mighty Men of Old",
+  "type": "Army member"
+ },
+ "xglam": {
+  "frame": "common",
+  "name": "Glamour",
+  "type": "Spell"
+ },
+ "xhb": {
+  "frame": "rare",
+  "name": "Head of Blasphemy",
+  "type": "Army member"
+ },
+ "xhd": {
+  "frame": "rare",
+  "name": "Head of Dominion",
+  "type": "Army member"
+ },
+ "xher": {
+  "frame": "common",
+  "name": "Herald with Trumpets",
+  "type": "Army member"
+ },
+ "xhl": {
+  "frame": "rare",
+  "name": "Head of the Lion",
+  "type": "Army member"
+ },
+ "xhoard": {
+  "frame": "common",
+  "name": "Hoard-Keeper",
+  "type": "Army member"
+ },
+ "xidol": {
+  "frame": "common",
+  "name": "Altar of Carmel",
+  "type": "Army member"
+ },
+ "ximg": {
+  "frame": "rare",
+  "name": "Image of the Beast",
+  "type": "Army member"
+ },
+ "xjav": {
+  "frame": "common",
+  "name": "Javelins of Darkness",
+  "type": "Spell"
+ },
+ "xjeal": {
+  "frame": "uncommon",
+  "name": "Jealous Shade",
+  "type": "Army member"
+ },
+ "xkeep": {
+  "frame": "rare",
+  "name": "Keeper of the Key",
+  "type": "Army member"
+ },
+ "xkhr": {
+  "frame": "rare",
+  "name": "Khrafstra",
+  "type": "Army member"
+ },
+ "xkok": {
+  "frame": "common",
+  "name": "Kokabiel, Teacher of the Stars",
+  "type": "Army member"
+ },
+ "xlegc": {
+  "frame": "common",
+  "name": "Legion, the Many",
+  "type": "Army member"
+ },
+ "xlegion": {
+  "frame": "legendary",
+  "name": "We Are Many",
+  "type": "Trump"
+ },
+ "xlegs": {
+  "frame": "common",
+  "name": "Spirit of the Legions",
+  "type": "Army member"
+ },
+ "xlgn": {
+  "frame": "common",
+  "name": "Legionnaire",
+  "type": "Army member"
+ },
+ "xlie": {
+  "frame": "rare",
+  "name": "The Lie",
+  "type": "Spell"
+ },
+ "xlil": {
+  "frame": "legendary",
+  "name": "Night Hag",
+  "type": "Trump"
+ },
+ "xlilg": {
+  "frame": "uncommon",
+  "name": "Lilith",
+  "type": "Army member"
+ },
+ "xlilin": {
+  "frame": "uncommon",
+  "name": "Lilin",
+  "type": "Army member"
+ },
+ "xline": {
+  "frame": "common",
+  "name": "Line Soldier",
+  "type": "Army member"
+ },
+ "xloc": {
+  "frame": "rare",
+  "name": "Locust",
+  "type": "Army member"
+ },
+ "xlucg": {
+  "frame": "rare",
+  "name": "Lucifer, the Morning Star",
+  "type": "Army member"
+ },
+ "xmam": {
+  "frame": "legendary",
+  "name": "Greed",
+  "type": "Trump"
+ },
+ "xmamg": {
+  "frame": "common",
+  "name": "Mammon, the Golden",
+  "type": "Army member"
+ },
+ "xmason": {
+  "frame": "common",
+  "name": "Tower Mason",
+  "type": "Army member"
+ },
+ "xmast": {
+  "frame": "legendary",
+  "name": "The Accuser",
+  "type": "Trump"
+ },
+ "xmastg": {
+  "frame": "common",
+  "name": "Mastema, Prince of Spirits",
+  "type": "Army member"
+ },
+ "xmerc": {
+  "frame": "common",
+  "name": "Mercenary",
+  "type": "Army member"
+ },
+ "xmol": {
+  "frame": "legendary",
+  "name": "Blood on Carmel",
+  "type": "Trump"
+ },
+ "xmolp": {
+  "frame": "common",
+  "name": "High Priest of Baal",
+  "type": "Army member"
+ },
+ "xmush": {
+  "frame": "common",
+  "name": "Mush, the Comet",
+  "type": "Army member"
+ },
+ "xnep": {
+  "frame": "common",
+  "name": "Nephil",
+  "type": "Army member"
+ },
+ "xneph": {
+  "frame": "legendary",
+  "name": "Giants in the Earth",
+  "type": "Trump"
+ },
+ "xnim": {
+  "frame": "common",
+  "name": "Nimrod, the Mighty Hunter",
+  "type": "Army member"
+ },
+ "xog": {
+  "frame": "common",
+  "name": "Og of Bashan",
+  "type": "Army member"
+ },
+ "xowl": {
+  "frame": "uncommon",
+  "name": "Screech Owl",
+  "type": "Army member"
+ },
+ "xpaim": {
+  "frame": "legendary",
+  "name": "Fanfare",
+  "type": "Trump"
+ },
+ "xpaimon": {
+  "frame": "common",
+  "name": "King Paimon",
+  "type": "Army member"
+ },
+ "xpair": {
+  "frame": "legendary",
+  "name": "Falling Stars",
+  "type": "Trump"
+ },
+ "xpos": {
+  "frame": "common",
+  "name": "Possessed",
+  "type": "Army member"
+ },
+ "xpride": {
+  "frame": "rare",
+  "name": "Herald of Pride",
+  "type": "Army member"
+ },
+ "xproph": {
+  "frame": "rare",
+  "name": "The False Prophet",
+  "type": "Army member"
+ },
+ "xroar": {
+  "frame": "common",
+  "name": "Roar of the Giants",
+  "type": "Spell"
+ },
+ "xsecr": {
+  "frame": "common",
+  "name": "Secret Arts",
+  "type": "Spell"
+ },
+ "xsemj": {
+  "frame": "common",
+  "name": "Semjaza, Chief of the Watchers",
+  "type": "Army member"
+ },
+ "xsling": {
+  "frame": "common",
+  "name": "Slinger of Belial",
+  "type": "Army member"
+ },
+ "xsmith": {
+  "frame": "uncommon",
+  "name": "Forbidden Smith",
+  "type": "Army member"
+ },
+ "xsmoke": {
+  "frame": "legendary",
+  "name": "Smoke of the Pit",
+  "type": "Trump"
+ },
+ "xspear": {
+  "frame": "rare",
+  "name": "Spear of Light",
+  "type": "Spell"
+ },
+ "xspir": {
+  "frame": "common",
+  "name": "Spirit",
+  "type": "Army member"
+ },
+ "xstar": {
+  "frame": "common",
+  "name": "Shooting Star",
+  "type": "Army member"
+ },
+ "xsting": {
+  "frame": "rare",
+  "name": "Scorpion Tail",
+  "type": "Spell"
+ },
+ "xswn": {
+  "frame": "common",
+  "name": "Herd of Swine",
+  "type": "Army member"
+ },
+ "xtempt": {
+  "frame": "common",
+  "name": "Tempter",
+  "type": "Army member"
+ },
+ "xtenth": {
+  "frame": "common",
+  "name": "Tenth of the Spirits",
+  "type": "Army member"
+ },
+ "xtest": {
+  "frame": "common",
+  "name": "Trial",
+  "type": "Spell"
+ },
+ "xtong": {
+  "frame": "common",
+  "name": "Babble",
+  "type": "Spell"
+ },
+ "xtorm": {
+  "frame": "legendary",
+  "name": "Five Months of Torment",
+  "type": "Trump"
+ },
+ "xwat": {
+  "frame": "common",
+  "name": "Watcher",
+  "type": "Army member"
+ },
+ "xwatch": {
+  "frame": "legendary",
+  "name": "Forbidden Arts",
+  "type": "Trump"
+ },
+ "xwrath": {
+  "frame": "uncommon",
+  "name": "Spirit of Wrath",
+  "type": "Army member"
+ },
+ "xyneph": {
+  "frame": "common",
+  "name": "Young Nephil",
+  "type": "Army member"
+ },
+ "xzah": {
+  "frame": "rare",
+  "name": "Serpent of the Shoulders",
+  "type": "Army member"
+ },
+ "xzigg": {
+  "frame": "common",
+  "name": "Ziggurat Guard",
+  "type": "Army member"
+ }
+}

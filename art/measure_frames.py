@@ -15,7 +15,7 @@ Uses only Python and macOS `sips`.
 import argparse, json, os, struct, subprocess, sys, tempfile
 
 ART = os.path.dirname(os.path.abspath(__file__))
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth', 'act3': 'act3'}
 
 # x0, y0, x1, y1 in pixels on the 1024x1536 frame
 MANUAL = {'ody': {
@@ -58,6 +58,17 @@ MANUAL = {'ody': {
                   'text': (100, 950, 925, 1365), 'pt': (758, 1315, 960, 1395)},
     'legendary': {'name': (132, 120, 815, 188), 'cost': (828, 110, 918, 195), 'type': (130, 850, 900, 915),
                   'text': (130, 950, 895, 1335), 'pt': (775, 1290, 925, 1360)},
+}, 'act3': {
+    # Act III (shared by every hero), read from the frames by eye (Nov 2026). The Uncommon has no power plaque,
+    # so its power/health sits in the bottom-right corner of the rules box.
+    'common':    {'name': (115, 62, 856, 135),  'cost': (866, 48, 972, 150),  'type': (138, 822, 886, 895),
+                  'text': (80, 925, 948, 1375), 'pt': (762, 1340, 970, 1428)},
+    'uncommon':  {'name': (115, 78, 818, 152),  'cost': (832, 62, 932, 162),  'type': (120, 842, 902, 912),
+                  'text': (127, 940, 898, 1315), 'pt': (770, 1250, 898, 1312)},
+    'rare':      {'name': (98, 138, 830, 205),  'cost': (838, 118, 938, 218), 'type': (128, 870, 898, 932),
+                  'text': (132, 950, 893, 1388), 'pt': (735, 1335, 925, 1408)},
+    'legendary': {'name': (90, 170, 862, 238),  'cost': (868, 160, 955, 245), 'type': (88, 858, 938, 930),
+                  'text': (92, 940, 933, 1350), 'pt': (785, 1300, 950, 1380)},
 }}
 
 
@@ -117,6 +128,9 @@ def find_circle(w, h, get, box, thr=135):
             continue
         seen.add((x, y))
         stack += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+    if len(seen) < 200 and thr > 70:
+        # darker medallions (e.g. Act III's bronze Common) fall below the parchment threshold
+        return find_circle(w, h, get, box, thr - 30)
     xs, ys = [p[0] for p in seen], [p[1] for p in seen]
     return (min(xs) + max(xs) + 1) / 2, (min(ys) + max(ys) + 1) / 2, ((max(xs) - min(xs) + 1) + (max(ys) - min(ys) + 1)) / 2
 
