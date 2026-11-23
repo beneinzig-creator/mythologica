@@ -524,6 +524,36 @@
         "#060a0c",
         "#6a1a1a"
       ]
+    },
+    "s_a3_bossp": {
+      "name": "General pick",
+      "screen": "bossp",
+      "setting": "the three generals of the rebellion seen across a burning battlefield in heaven: on the left the radiant six-winged Lucifer in a blaze of gold, in the middle distance the dark smiling shape of Ahriman with serpents at his shoulders, on the right the armoured Abaddon rising from a smoking pit; storm clouds, falling stars and broken golden walls of heaven between them Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "storm ultramarine and fire (#0a0a18 to #6a3a20) with gold, white fire and abyss red"
+    },
+    "s_a3_otg": {
+      "name": "Act III altar",
+      "screen": "otg",
+      "setting": "a vast altar of white stone and gold before the throne of heaven, on a platform among the clouds at night: four great golden lampstands burning at the corners along the left and right edges; a monumental stair rising from the lower corners; a sea of glass like crystal before it and a rainbow of light far above; angels with trumpets standing guard Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "deep ultramarine and night (#06081a to #2a3a6a) with four gold flames, white light and a faint rainbow"
+    },
+    "s_a3_draft_reward": {
+      "name": "Act III reward draft",
+      "screen": "draft_reward",
+      "setting": "the spoils of the War in Heaven laid out in a ruined celestial armoury: fallen angels' broken swords, cracked golden shields, torn wings, crowns and burning spears heaped on the marble floor before a shattered golden gate at the far left; broken columns and drifting embers along the right edge Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "smoke grey and gold (#100c0a to #5a4022) with ember orange, ultramarine and white feathers"
+    },
+    "s_a3_fronts": {
+      "name": "The other fronts",
+      "screen": "a3front",
+      "setting": "the War in Heaven raging on the other fronts, seen from a high cliff: in the distance three great battles under one stormy sky, the archangel Michael's host of golden light clashing with a red dragon on the left, the shining warrior Sraosha driving back a tide of darkness in the middle, the angel Uriel with a fiery sword at the edge of a smoking abyss on the right; banners, lightning and falling stars Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "storm grey and dusk gold (#0c0a12 to #4a3a24) with gold, crimson and white lightning"
+    },
+    "s_a3_victory": {
+      "name": "Final victory",
+      "screen": "final",
+      "setting": "the end of the War in Heaven: a new dawn breaking in gold over a calm sea of glass and a shining city of light on a mountain, the clouds parting, angels with trumpets in the sky, the defeated dragon bound in a great chain sinking into the abyss far below in the lower corner, light streaming down over everything Painted with the gold leaf, ultramarine and vermilion of a medieval illuminated Apocalypse manuscript mixed into the pen-and-ink style",
+      "palette": "dawn gold and pale ultramarine (#1a1410 to #c8a050) with white light, rose and soft blue"
     }
   }
 }

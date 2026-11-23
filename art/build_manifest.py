@@ -191,7 +191,8 @@ HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and s
              'act3': 'the War in Heaven, the fall of the rebel angels and the Apocalypse'}
 MEDAL_LOOK = {'odin': 'a worn silver Viking pendant or a roundel from a Gotland picture-stone',
               'wukong': 'a carved and painted roundel from the Ming dynasty, in the colours given below',
-              'thoth': 'an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below'}
+              'thoth': 'an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below',
+              'act3': 'a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below'}
 
 # How played each rarity looks: cheaper cards have been shuffled more.
 CONDITION = {
@@ -821,6 +822,37 @@ def build_frames_only(key, label):
     print(f'Wrote {label} frames to art/manifest.json.')
 
 
+# Act III's own medallions and map (Act III is shared by every hero; its map nodes used to show plain emoji).
+MEDALS['act3'] = {
+    'legion': 'Legion: a crowd of pale possessed faces crammed together, many eyes staring. Colours: ash grey, sickly green and blood red.',
+    'watchers': 'The Watchers: a single great eye ringed by dark fallen-angel wings. Colours: midnight blue, silver and forge orange.',
+    'nephilim': 'The Nephilim: a giant\'s head and shoulders towering over tiny mountains. Colours: storm grey, earth brown and dull bronze.',
+    'baal': 'The Prophets of Baal: a bronze bull idol on an altar with a curved knife before it. Colours: blood red, ochre and bronze.',
+    'babel': 'The Builders of Babel: the stepped Tower of Babel cracking under a storm. Colours: brick red, dusk ochre and gold.',
+    'pairikas': 'The Pairikas: a star-witch streaking across the night as a shooting star. Colours: deep violet, indigo and white gold.',
+    'sons': 'Sons of Darkness: a black war banner with a dark sun above ranks of spears. Colours: black, salt white and blood red.',
+    'mammon': 'Mammon\'s Hoard: a clawed hand clutching a heap of gold coins. Colours: gold, black and sickly green.',
+    'mastema': 'Mastema\'s Spirits: a pale accuser holding a pair of scales, spirits swirling. Colours: cold grey, bruised violet and gold.',
+    'paimon': 'King Paimon\'s Procession: a crowned demon king riding a dromedary, a herald\'s trumpet raised. Colours: crimson, brass and violet.',
+    'beelzebub': 'Beelzebub, Lord of the Flies: a crowned fly with a demon\'s face. Colours: putrid green, black and ember red.',
+    'azazel': 'Azazel, the Scapegoat: a black horned goat with a scarlet thread tied to its horns. Colours: blood red, bone and black.',
+    'asmodeus': 'Asmodeus: a three-headed demon king (bull, man and ram) wreathed in flame. Colours: crimson, dark rose and gold.',
+    'lilith': 'Lilith: a winged demon queen with long black hair before a blood moon, a screech owl beside her. Colours: night violet, blood red and silver.',
+    'lucifer': 'Lucifer, the Morning Star: a radiant six-winged fallen angel with a burning star on his brow. Colours: blazing gold, ultramarine and white fire.',
+    'ahriman': 'Ahriman, the Smiling Stranger: a smiling dark face with serpents rising from its shoulders. Colours: smoky black, fire orange and poison green.',
+    'abaddon': 'Abaddon, the Opened Abyss: an armoured angel-king rising from a burning pit, locusts swarming. Colours: abyss red, smoke black and bronze.',
+    'beast': 'The Beast of the Sea: seven crowned heads with ten horns rising from a raging sea. Colours: storm sea green, crimson and gold.',
+}
+A3_UI = {
+    'ui_map': ('1536x1024', 'opaque',
+        'A map of the War in Heaven painted like a page from a medieval illuminated Apocalypse manuscript, on aged and '
+        'stained vellum: heaven\'s golden walls and clouds along the top, the lake of fire and the bottomless pit along '
+        'the bottom, the plain of Armageddon, the sea of the Beast and small battling angels and demons in the margins, '
+        'falling stars, all in faded ink with gold leaf, ultramarine and vermilion. The centre is mostly open, pale '
+        'vellum with very few marks so game icons can sit on top. ' + APOC_LOOK + ' No text, no letters, no labels.'),
+}
+
+
 def build_act3():
     """Act III has no hero in CHARS: write only its frames into manifest.json (scenes come from scenes.json)."""
     out = os.path.join(ART, 'manifest.json')
@@ -839,8 +871,15 @@ def build_act3():
         prompt = json.load(open(side, encoding='utf-8')).get('prompt', '') if os.path.exists(side) else ''
         opp[cid] = {'name': c['name'], 'type': c['type'], 'frame': c['frame'], 'prompt': prompt,
                     'output': f'art/act3/{cid}.webp'}
+    mbase = MEDAL_BASE.replace('an old bronze coin or a roundel from a Greek vase', MEDAL_LOOK['act3'])
+    icons = {f'med_{k}': {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
+                          'output': f'art/icons/act3/med_{k}.png', 'size': '1024x1024', 'format': 'png',
+                          'background': 'transparent'} for k, t in MEDALS['act3'].items()}
+    for k, (size, bg, prompt) in A3_UI.items():
+        icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/act3/{k}.png', 'size': size,
+                    'format': 'png', 'background': bg}
     old.setdefault('heroes', {})['act3'] = {'name': 'Act III', 'cards': {}, 'opponents': opp, 'tutorial': {},
-                                            'frames': frames, 'icons': {}}
+                                            'frames': frames, 'icons': icons}
     with open(out, 'w', encoding='utf-8') as f:
         json.dump(old, f, ensure_ascii=False, indent=2)
         f.write('\n')

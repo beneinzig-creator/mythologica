@@ -1,4 +1,11 @@
 {
+"act3": {
+"a3front": "s_a3_fronts",
+"bossp": "s_a3_bossp",
+"draft_reward": "s_a3_draft_reward",
+"final": "s_a3_victory",
+"otg": "s_a3_otg"
+},
 "odin": {
 "bossp": "s_odin_bossp",
 "draft_reward": "s_odin_draft_reward",
