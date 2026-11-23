@@ -1,5 +1,5 @@
 # v105: Thoth, the 4th hero, and the Egyptian realm.
-# Engine: thoth.js (Sunder/Ka/Ba/Ren, glyphs and Erase, Reunite, amulets as equipment, Foresee/Record/Preempt).
+# Engine: thoth.js (Sunder/Body/Spirit/Name, glyphs and Erase, Reunite, amulets as equipment, Foresee/Record/Preempt).
 # Cards, hero and realm: thoth_cards.js. Pool uses the shared layout (24/24/24 + 8, 26/24/18/12).
 THOTH_POOL = {
  'D': {'C': 'dsk dbal dcut dpart dembal dheart dwrap dnomad', 'U': 'dreun dsever dshade dcart dtwof dweigh dkhep',
@@ -48,7 +48,7 @@ _b3("G.endstep=0;clean();sweep();if(chk())return render();G.sel=[];return enemyT
     "G.endstep=0;thEnd(G.p);sphCheck();clean();sweep();if(chk())return render();G.sel=[];if(G.p.xt){G.p.xt=0;log('Senet with the Moon: you take an extra turn.');startP();return render()}return enemyTurn()}")
 _b3("e.mana-=cost(pl);e.hand=e.hand.filter(x=>x!==pl);log(e.nm+' plays '+d[0]+'.');",
     "e.mana-=cost(pl);e.hand=e.hand.filter(x=>x!==pl);log(e.nm+' plays '+d[0]+'.');if(typeof thEnemyPlay=='function'&&thEnemyPlay(e,pl)){sweep();if(chk())return;if(!await pause())return;continue}")
-# ---- input: speak a Ren, equip an amulet ----
+# ---- input: speak a Name, equip an amulet ----
 _b3("if(k=='h'){const c=p.hand.find(x=>x.u==u),d=D[c.id];",
     "if(k=='spk'){const c=p.hand.find(x=>x.u==u);if(!c||!c.ren||!['main','blockP','dmgP'].includes(G.phase))return;speak(c);return render()}\nif(k=='h'){const c=p.hand.find(x=>x.u==u),d=D[c.id];")
 _b3("if(k=='p'){const c=sf(p);if(TAPA[c.id]){",

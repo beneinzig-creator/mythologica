@@ -2372,7 +2372,7 @@ if(typeof window!=='undefined'&&typeof document!=='undefined'&&typeof gsap!=='un
 }
 
 
-/* ===== v105: Thoth engine (Sunder, Ren, glyphs, Erase, Reunite, amulets, Foresee/Record/Preempt) ===== */
+/* ===== v105: Thoth engine (Sunder, Name, glyphs, Erase, Reunite, amulets, Foresee/Record/Preempt) ===== */
 let THN=0;const THSRC={};
 const KWG='fwhzsrvdxbyqp';
 const GLN={f:'Flying',w:'Ward',h:'Charge',z:'Resilient',s:'Steadfast',r:'Ruthless',v:'Venomous',d:'Draining',x:'Siege',b:'Bulldoze',y:'Rally',q:'Opportunist',p:'Phalanx','+':'+1/+1'};
@@ -2396,20 +2396,20 @@ const roomOf=c=>c?3-((c.gl||[]).length):0;
 function thErase(c,who){const s=sideOf(c);if(!s||!isC(c))return 0;if(has(c,'w')&&s!==who)return 0;if(amOf(c).some(a=>a.id=='ishen')&&s!==who)return 0;
  const d=D[c.id],id='nm'+(++THN);D[id]=['Nameless '+d[0].split(',')[0],d[1],'C',d[3],d[4],'','Its name was chiselled away.','🗿',d[8],d[9]||1];LORE[id]='Erased';TOKE.push(id);
  const was=d[0];c.id=id;c.f='';c.gl=[];c.wr=[];log(was+' is erased: it loses its name, keywords and abilities.');return 1}
-/* ---------- Sunder, Ka and Ba, Ren ---------- */
+/* ---------- Sunder, Body and Spirit, Name ---------- */
 function makeParts(s,src,bonus){const d=D[src.id],nm=d[0].split(',')[0],col=d[8];const kaH=Math.max(1,Math.ceil((src.d+src.pd)/2)),bp0=Math.max(0,src.a+src.pa),baP=bp0>0?Math.max(1,Math.floor(bp0/2)):0;
- const ki='ka'+(++THN),bi='ba'+THN;D[ki]=['Ka of '+nm,0,'C',0,kaH,'n','Ka: the body (half its health). It cannot block. Reunites with its Ba.','🗿',col,1];D[bi]=['Ba of '+nm,0,'C',baP,1,'f','Ba: the spirit (half its power). Reunites with its Ka.','🕊️',col,1];
+ const ki='ka'+(++THN),bi='ba'+THN;D[ki]=['Body of '+nm,0,'C',0,kaH,'n','Body: half its health. It cannot block. Reunites with its Spirit.','🗿',col,1];D[bi]=['Spirit of '+nm,0,'C',baP,1,'f','Spirit: half its power. Reunites with its Body.','🕊️',col,1];
  LORE[ki]='The body';LORE[bi]='The spirit';TOKE.push(ki,bi);THSRC[src.u]=src;const out=[];
  for(const id of [ki,bi]){if(cr(s).length>=AM())break;const t=mk(id);t.src=src.u;t.part=id[0]=='k'?'ka':'ba';if(bonus){t.pa+=bonus;t.pd+=bonus}enter(s,t);out.push(t)}
  return out}
 function makeRen(src){const d=D[src.id],nm=d[0].split(',')[0],keys=[...new Set(src.f.split('').filter(k=>KWG.includes(k)))];const die=DEATH[src.id]?src.id:'';
  const id='ren'+(++THN),what=(keys.length?keys.map(k=>GLN[k]).join(', ')+', ':'')+(die?'its death ability, ':'')+'+1/+1';
- D[id]=['Ren of '+nm,0,'S',0,0,'','Write: target army member you control gains '+what+' (as glyphs). Or speak it (◆+2) for 2 mana.','📜','A'];LORE[id]='A true name';TS[id]='pc';
+ D[id]=['Name of '+nm,0,'S',0,0,'','Write: target army member you control gains '+what+' (as glyphs). Or speak it (◆+2) for 2 mana.','📜','A'];LORE[id]='A true name';TS[id]='pc';
  FX[id]=(s,o,t)=>{if(!t||typeof t!='object')return;keys.forEach(k=>inscribe(t,k));if(die)inscribe(t,'n:'+die);inscribe(t,'+');log('You write the name of '+nm+' onto '+D[t.id][0]+'.')};
  const c=mk(id);c.ren=1;c.dis=1;return c}
 function thSunder(c,by){const s=sideOf(c);if(!s||!isC(c))return 0;if(s!==by&&has(c,'w'))return 0;if(s!==by&&amOf(c).some(a=>a.id=='ishen'))return 0;
  const heart=amOf(c).some(a=>a.id=='dheart');s.bf.splice(s.bf.indexOf(c),1);if(G.cmb){G.cmb.atk=G.cmb.atk.filter(u=>u!==c.u);for(const k in G.cmb.blk)if(G.cmb.blk[k]===c.u||k==c.u)delete G.cmb.blk[k]}
- const parts=makeParts(s,c,heart?1:0);log(D[c.id][0]+' is sundered into its Ka and Ba.');
+ const parts=makeParts(s,c,heart?1:0);log(D[c.id][0]+' is sundered into its Body and Spirit.');
  if(by===G.p){const r=makeRen(c);G.p.hand.push(r);const bk=nOn(G.p,'dbook');for(let i=0;i<bk&&cr(G.p).length<AM();i++){const b=parts.find(x=>x.part=='ba');const id=b?b.id:null;if(id){const t=mk(id);t.src=c.u;t.part='ba';enter(G.p,t)}}}
  thHook(s===G.p?'sunMine':'sunTheirs',c);amFall();return 1}
 function speak(c){const p=G.p;if(!c||!c.ren)return;p.hand=p.hand.filter(x=>x!==c);p.mana+=2;log('You speak the name aloud: +2 mana.');thHook('speak',c)}
@@ -2458,35 +2458,35 @@ Object.assign(ARCH,{D:'Sundered',I:'Scribes',Y:'Recorder'});
 Object.assign(D,{
 /* --- staples --- */
 tscr:['Temple Scribe',1,'C',1,2,'','When it enters, Inscribe Ward onto target army member you control.','✍️','U',1],
-tsun:['Sunder the Soul',1,'S',0,0,'','Sunder target army member: it splits into its Ka (half its health, no power) and Ba (half its power, 1 health, Flying), and you take its Ren (name).','🪓','B'],
+tsun:['Sunder the Soul',1,'S',0,0,'','Sunder target army member: it splits into its Body (half its health, no power) and Spirit (half its power, 1 health, Flying), and you take its Name.','🪓','B'],
 tscar:['Scarab Amulet',1,'A',0,0,'','Amulet (equip ◆1). The first time the bearer would die, return it to your hand instead.','🪲','A'],
 tpen:['Reed Pen',0,'I',0,0,'','Inscribe Flying onto target army member you control.','🖋️','U'],
 tmedj:['Medjay of the Temple',1,'C',1,3,'','','🛡️','N',1],
 /* --- Sundered --- */
-dsk:['Ka-Keeper',1,'C',1,3,'','Your Ka get +2/+0.','🏺','B',1],
-dbal:['Soul-Bird Keeper',2,'C',1,2,'f','Your Ba get +1/+1.','🦅','B',1],
+dsk:['Body-Keeper',1,'C',1,3,'','Your Bodies get +2/+0.','🏺','B',1],
+dbal:['Spirit Keeper',2,'C',1,2,'f','Your Spirits get +1/+1.','🦅','B',1],
 dcut:['Ritual Knife',1,'S',0,0,'','Sunder target army member you control. Draw a card.','🔪','B'],
 dpart:['Parting of Souls',2,'S',0,0,'','Sunder target opposing army member that costs 3 or less. Draw a card.','🌗','B'],
-dembal:['Embalmer',2,'C',2,2,'','When it dies, its Ka (0/2) stays in your army.','🧻','B',1],
-dheart:['Heart Scarab',1,'A',0,0,'','Amulet (equip ◆1). +0/+2. When the bearer is Sundered, its Ka and Ba each get +1/+1.','💚','A'],
+dembal:['Embalmer',2,'C',2,2,'','When it dies, its Body (0/2) stays in your army.','🧻','B',1],
+dheart:['Heart Scarab',1,'A',0,0,'','Amulet (equip ◆1). +0/+2. When the bearer is Sundered, its Body and Spirit each get +1/+1.','💚','A'],
 dwrap:['Linen Wrappings',1,'A',0,0,'','Amulet (equip ◆1). The bearer has Resilient.','🩹','A'],
-dnomad:['Wandering Ba',1,'C',1,1,'f','When it dies, draw a card.','🕊️','B',1],
-dreun:['Reunion in the Field of Reeds',2,'S',0,0,'','Reunite all your Ka and Ba pairs: each becomes its original again with +1/+1. Draw a card for each.','🌾','B'],
+dnomad:['Wandering Spirit',1,'C',1,1,'f','When it dies, draw a card.','🕊️','B',1],
+dreun:['Reunion in the Field of Reeds',2,'S',0,0,'','Reunite all your Body and Spirit pairs: each becomes its original again with +1/+1. Draw a card for each.','🌾','B'],
 dsever:['Sever the Mighty',3,'S',0,0,'','Sunder the opposing army member that costs the most (not one with Ward).','⚔️','B'],
 dshade:['Sheut, the Shadow',2,'C',2,2,'','Whenever one of your army members is Sundered, it gets +1/+1 permanently.','👤','B',1],
-dcart:['Cartouche Ring',2,'A',0,0,'','Amulet (equip ◆2). At the end of your turn, if the bearer is a Ka or Ba whose other half you control, Reunite them.','💍','A'],
-dtwof:['Amulet of the Two Feathers',1,'A',0,0,'','Amulet (equip ◆1). +1/+1, or +2/+2 on a Ba.','🪶','A'],
+dcart:['Cartouche Ring',2,'A',0,0,'','Amulet (equip ◆2). At the end of your turn, if the bearer is a Body or Spirit whose other half you control, Reunite them.','💍','A'],
+dtwof:['Amulet of the Two Feathers',1,'A',0,0,'','Amulet (equip ◆1). +1/+1, or +2/+2 on a Spirit.','🪶','A'],
 dweigh:['Weigher of Souls',3,'C',2,4,'','When it enters, Sunder target opposing army member with 2 or less power.','⚖️','B',2],
-dkhep:["Khepri's Rebirth",2,'S',0,0,'','The Ka and Ba of the most expensive army member in your graveyard rise into your army.','🌅','B'],
-dakh:['Akh, the Glorified',4,'C',3,3,'','When it enters, Reunite all your Ka and Ba pairs; each gets +1/+1 more.','✨','B',2],
+dkhep:["Khepri's Rebirth",2,'S',0,0,'','The Body and Spirit of the most expensive army member in your graveyard rise into your army.','🌅','B'],
+dakh:['Akh, the Glorified',4,'C',3,3,'','When it enters, Reunite all your Body and Spirit pairs; each gets +1/+1 more.','✨','B',2],
 dsplit:['Dismemberment',3,'S',0,0,'','Sunder each opposing army member that costs 2 or less.','🗡️','B'],
-dren:['Names of the Dead',2,'S',0,0,'','Put the Ren of up to 3 army members from your graveyard into your hand.','📜','B'],
+dren:['Names of the Dead',2,'S',0,0,'','Put the Name of up to 3 army members from your graveyard into your hand.','📜','B'],
 dsoul:['Soul-Collector',2,'C',1,3,'','Whenever an opposing army member is Sundered, draw a card.','🫙','B',2],
-dduat:['Gate of the Duat',2,'E',0,0,'','Whenever one of your Ka or Ba dies, deal 1 damage to the opponent.','🚪','B'],
-dmum:['Mummy of the Old Kingdom',4,'C',3,6,'z','Resilient. When it dies, its Ka and Ba rise into your army.','🧟','B',3],
-dosir:['Osiris, Lord of the Dead',5,'C',4,6,'','At the end of your turn, Reunite all your Ka and Ba pairs. Your Akh get +2/+2.','👑','B',3],
+dduat:['Gate of the Duat',2,'E',0,0,'','Whenever one of your Bodies or Spirits dies, deal 1 damage to the opponent.','🚪','B'],
+dmum:['Mummy of the Old Kingdom',4,'C',3,6,'z','Resilient. When it dies, its Body and Spirit rise into your army.','🧟','B',3],
+dosir:['Osiris, Lord of the Dead',5,'C',4,6,'','At the end of your turn, Reunite all your Body and Spirit pairs. Your Akh get +2/+2.','👑','B',3],
 dammit:["Ammit's Jaws",3,'S',0,0,'','Sunder target opposing army member. The opponent loses life equal to its remaining health.','🐊','B'],
-dbook:['Book of Gates',3,'E',0,0,'','Whenever you Sunder an army member, an extra Ba of it joins your army.','📕','B'],
+dbook:['Book of Gates',3,'E',0,0,'','Whenever you Sunder an army member, an extra Spirit of it joins your army.','📕','B'],
 /* --- Scribes --- */
 iink:['Ink of Seshat',1,'S',0,0,'','Inscribe +1/+1 and Ruthless onto target army member you control.','🖊️','U'],
 iscribe:['Apprentice Scribe',2,'C',1,3,'','When it enters, Inscribe +1/+1 onto target army member you control.','📝','U',1],
@@ -2511,7 +2511,7 @@ ianx:['Ankh of Life',2,'A',0,0,'','Amulet (equip ◆2). +1/+1 and Draining.','�
 inarm:['Palette of Narmer',3,'S',0,0,'','Inscribe +1/+1 onto each of your army members.','🎨','U'],
 ithoth:['The Book of Thoth',3,'A',0,0,'','At the start of your turn, Inscribe a random keyword onto each of your army members, and you lose 1 life.','📗','U'],
 iweret:['Weret-Hekau, Great of Magic',4,'C',3,4,'','Whenever you Inscribe a keyword onto an army member, also Inscribe +1/+1 onto it if it has room.','🐍','U',3],
-iname:['The Unspoken Name',2,'S',0,0,'','Erase target opposing army member, then put its Ren into your hand.','🤐','U'],
+iname:['The Unspoken Name',2,'S',0,0,'','Erase target opposing army member, then put its Name into your hand.','🤐','U'],
 /* --- Recorder --- */
 yibis:['Ibis of Thoth',1,'C',1,1,'f','When it enters, Foresee 2.','🐦','U',1],
 yread:['Read the Signs',1,'S',0,0,'','Foresee 3. Draw a card.','🔮','U'],
@@ -2560,7 +2560,7 @@ Object.assign(FX,{
  dpart:(s,o,t)=>{if(t&&typeof t=='object'&&D[t.id][1]<=3)thSunder(t,s);draw(s,1)},
  dreun:(s,o)=>{const n=reunite(s);if(n)draw(s,n)},
  dsever:(s,o)=>{const t=tg(o).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)thSunder(t,s)},
- dkhep:(s,o)=>{const g=s.gy.filter(x=>isC(x)&&!TOKE.includes(x.id)).sort((a,b)=>D[b.id][1]-D[a.id][1])[0];if(g){s.gy.splice(s.gy.indexOf(g),1);makeParts(s,g,0);log('Khepri raises the Ka and Ba of '+D[g.id][0]+'.')}},
+ dkhep:(s,o)=>{const g=s.gy.filter(x=>isC(x)&&!TOKE.includes(x.id)).sort((a,b)=>D[b.id][1]-D[a.id][1])[0];if(g){s.gy.splice(s.gy.indexOf(g),1);makeParts(s,g,0);log('Khepri raises the Body and Spirit of '+D[g.id][0]+'.')}},
  dsplit:(s,o)=>{tg(o).filter(x=>D[x.id][1]<=2).forEach(x=>thSunder(x,s))},
  dren:(s,o)=>{s.gy.filter(x=>isC(x)&&!TOKE.includes(x.id)).slice(-3).forEach(x=>s.hand.push(makeRen(x)));log('You recall the names of the dead.')},
  dammit:(s,o,t)=>{if(!t||typeof t!='object')return;const h=Math.max(0,th(t)-t.dmg);if(thSunder(t,s)){o.life-=h;log('Ammit devours the heart: they lose '+h+' life.')}},
@@ -2589,7 +2589,7 @@ Object.assign(FX,{
  gnile:(s,o)=>{s.life=Math.min(s.max,s.life+4);draw(s,1)},
  gweigh:(s,o)=>{for(const x of [...cr(s),...cr(o)]){if(D[x.id][1]>glyphsOn(x)+amOf(x).length)x.dmg=99}log('The hearts are weighed against the feather.')}
 });
-const kaOnly=(s,src)=>{if(cr(s).length>=AM())return;const d=D[src.id],ki='ka'+(++THN);D[ki]=['Ka of '+d[0].split(',')[0],0,'C',0,2,'n','Ka: the body. It cannot block.','🗿',d[8],1];LORE[ki]='The body';TOKE.push(ki);const t=mk(ki);t.part='ka';enter(s,t)};
+const kaOnly=(s,src)=>{if(cr(s).length>=AM())return;const d=D[src.id],ki='ka'+(++THN);D[ki]=['Body of '+d[0].split(',')[0],0,'C',0,2,'n','Body: it cannot block.','🗿',d[8],1];LORE[ki]='The body';TOKE.push(ki);const t=mk(ki);t.part='ka';enter(s,t)};
 Object.assign(ETB,{
  itut:s=>{if(cr(s).some(x=>(x.gl||[]).length))draw(s,1)},
  yibis:s=>foresee(2), ywatch:s=>foreseeHand(), ybab:s=>foresee(2,1), ysage:s=>foresee(3,1),
@@ -2605,9 +2605,9 @@ Object.assign(PEND,{
 Object.assign(DEATH,{
  dembal:{p:2,fn:(s,o,c)=>kaOnly(s,c)},
  dnomad:{p:2,fn:s=>draw(s,1)},
- dmum:{p:2,fn:(s,o,c)=>{const g=s.gy.indexOf(c);makeParts(s,c,0);log('The Mummy\'s Ka and Ba rise.')}}
+ dmum:{p:2,fn:(s,o,c)=>{const g=s.gy.indexOf(c);makeParts(s,c,0);log('The Mummy\'s Body and Spirit rise.')}}
 });
-/* auras for Ka/Ba and glyph payoffs */
+/* auras for Body/Spirit and glyph payoffs */
 function thPx(c){const s=sideOf(c);if(!s)return 0;let n=0;if(c.part=='ka')n+=2*nOn(s,'dsk');if(c.part=='ba')n+=nOn(s,'dbal');
  if(c.id=='iliv')n+=Math.min(4,cr(s).reduce((a,x)=>a+glyphsOn(x),0));if(glyphsOn(c)>=3)n+=2*nOn(s,'ikhem');return n}
 function thTx(c){const s=sideOf(c);if(!s)return 0;let n=0;if(c.part=='ba')n+=nOn(s,'dbal');
@@ -2628,7 +2628,7 @@ ammt:['Devour the Unworthy',1,'E',0,0,'w','Ward. Whenever one of your army membe
 sphx:['Riddle of the Sphinx',0,'E',0,0,'w','Ward. At the start of their turn, the Sphinx names a card type. At the end of your turn, if you did not play a card of that type, you lose 2 life.','🦁','W'],
 /* boss trumps */
 apep:['The Unmaking',0,'E',0,0,'w','Ward. At the start of its turn, your strongest army member is Erased: it loses its name, keywords and abilities.','🐍','B'],
-setx:['The Dismemberment',0,'E',0,0,'w','Ward. At the start of its turn, your strongest army member that costs 3 or more is Sundered: its Ka and Ba stay with you, but its name is lost.','🌪️','R'],
+setx:['The Dismemberment',0,'E',0,0,'w','Ward. At the start of its turn, your strongest army member that costs 3 or more is Sundered: its Body and Spirit stay with you, but its Name is lost.','🌪️','R'],
 sekh:['The Eye of Ra',0,'E',0,0,'w','Ward. At the start of her turn, each of her army members gets +1/+0 permanently, and her rage burns her for 1 per army member she controls.','☀️','R'],
 /* tokens and army members */
 shabt:['Shabti',0,'C',1,1,'','Token.','🗿','N',1],
@@ -2681,7 +2681,7 @@ function sphPlay(c){if(G&&G.riddle){const t=D[c.id][2];if((G.riddle=='C'&&t=='C'
 /* ===== the Egyptian realm: regular enemies, elites, bosses ===== */
 CHARS.thoth={n:'Thoth',ic:'📜',
  quote:'"What is written is made real, and what is erased was never so." Thoth gave the gods their words and kept the record of every soul, and whoever holds the pen holds the world.',
- play:'Take things apart and rewrite them. Sunder army members into their Ka and Ba and take their names, Inscribe new abilities onto your own, and Foresee the enemy\'s cards to turn their plans against them. Speak a stolen name for 2 mana when you need it. 20 life.',
+ play:'Take things apart and rewrite them. Sunder army members into their Body and Spirit and take their Names, Inscribe new abilities onto your own, and Foresee the enemy\'s cards to turn their plans against them. Speak a stolen Name for 2 mana when you need it. 20 life.',
  arch:[['D','Sundered'],['I','Scribes'],['Y','Recorder']],staples:['tscr','tmedj','tsun','tscar'],pool:[],
  en:[
   {n:'The Tomb Robbers',l:15,ic:'🦹',hint:'Thieves who steal what you set down when they outnumber you',bg:['#1a1408','#a07a3a'],d:ids('grob:5,tdig:3,fence:2,mthief,torch:2,drag'),mt:'trob'},
@@ -3043,20 +3043,20 @@ const TUT=[
  S.play('wrod','Spend it on <b>Iron Rod</b> at the enemy\'s life.','ef'),
  S.atk(['wmonk','wclone'],'Attack with both, then <b>Resolve combat</b>.')]},
 /* ---------------- Thoth ---------------- */
-{id:'th1',h:'thoth',t:'Sundered',sub:'Split army members into Ka and Ba, and use their names.',ename:'The Clay Giant',eic:'🗿',elife:4,ebg:['#1a1206','#6a5222'],
+{id:'th1',h:'thoth',t:'Sundered',sub:'Split army members into Body and Spirit, and use their Names.',ename:'The Clay Giant',eic:'🗿',elife:4,ebg:['#1a1206','#6a5222'],
  deck:['tmedj','tmedj','tsun','iink','dcut','tmedj','tscr','tmedj'],edeck:['tgiant',...DUMMIES],
  steps:[
- S.info('Thoth splits army members apart. <b>Sunder</b> one and it becomes its <b>Ka</b> (the body: no power, can\'t block) and its <b>Ba</b> (the soul: 1 health), and you take its <b>Ren</b>, its true name.'),
+ S.info('Thoth splits army members apart. <b>Sunder</b> one and it becomes its <b>Body</b> (no power, can\'t block) and its <b>Spirit</b> (1 health), and you take its <b>Name</b>.'),
  S.play('tmedj','Play <b>Medjay of the Temple</b>.'),
  S.play('tmedj','Play the second <b>Medjay</b>.'),
  S.end('Press <b>End turn</b>. The enemy will raise a Clay Giant to block you.'),
  S.play('tsun','Cast <b>Sunder the Soul</b> on the <b>Clay Giant</b>.','e:tgiant'),
- S.speak('You took the Giant\'s <b>Ren</b>. Click the <b>◆+2</b> badge on it to <b>speak</b> the name: +2 mana.'),
+ S.speak('You took the Giant\'s <b>Name</b>. Click the <b>◆+2</b> badge on it to <b>speak</b> the Name: +2 mana.'),
  S.play('iink','Cast <b>Ink of Seshat</b> on a Medjay: +1/+1 and Ruthless, written as glyphs.','p:tmedj'),
  S.atk(['tmedj','tmedj'],'The Giant can\'t block any more. Attack with both Medjay, then <b>Resolve combat</b>.'),
  S.end('Press <b>End turn</b>.'),
- S.play('dcut','You can Sunder your own army members too. Cast <b>Ritual Knife</b> on a Medjay: it splits, you take its Ren, and you draw a card.','p:tmedj'),
- S.play('@ren','This time <b>write</b> the Ren instead of speaking it: play it on your other Medjay to give it +1/+1.','p:tmedj'),
+ S.play('dcut','You can Sunder your own army members too. Cast <b>Ritual Knife</b> on a Medjay: it splits, you take its Name, and you draw a card.','p:tmedj'),
+ S.play('@ren','This time <b>write</b> the Name instead of speaking it: play it on your other Medjay to give it +1/+1.','p:tmedj'),
  S.atk(['tmedj'],'Attack with the Medjay, then <b>Resolve combat</b>.')]},
 {id:'th2',h:'thoth',t:'Scribes',sub:'Write glyphs and equip amulets.',ename:'Training Camp',eic:'🎯',elife:12,ebg:['#1a1206','#5a4a2a'],
  deck:['tmedj','iink','gfeather','tscr','iwas','tmedj','iscribe','tmedj'],edeck:DUMMIES,
@@ -3105,7 +3105,7 @@ const TIPS={
  'loc:altar':'<b>Altar.</b> Duplicate a card or upgrade one (once each). Legendary cards can\'t be duplicated or upgraded here.',
  'main:odin':'<b>Your first fight.</b> You get 2 mana a turn. Press <b>Blood price</b> to pay life for 1 more (once per turn). At half life or less you are Wounded, and many of your cards get stronger. Damage stays on army members between turns.',
  'main:wukong':'<b>Your first fight.</b> You get 2 mana a turn. Play cards of different types (Strike, Trick, Leap) one after another to raise your Momentum, which powers many of your cards. It resets every turn.',
- 'main:thoth':'<b>Your first fight.</b> You get 2 mana a turn. Sunder an army member to take its Ren, then speak the Ren (◆+2) for mana or write it onto an army member. Click an amulet on the battlefield to equip it.',
+ 'main:thoth':'<b>Your first fight.</b> You get 2 mana a turn. Sunder an army member to take its Name, then speak the Name (◆+2) for mana or write it onto an army member. Click an amulet on the battlefield to equip it.',
  main:'<b>Your first fight.</b> You get 2 mana a turn. Offer army members (click 💀) for more. Click a card\'s form label to switch between attack and defense form. Damage stays on army members between turns.',
  kleos:'<b>Prestige.</b> Each of your surviving army members earns a permanent upgrade. Pick one for each.',
  bossp:'<b>The guardian.</b> Choose which boss to face. Each boss casts its trump on its first turn: a card that changes the rules of the fight.',
@@ -3114,7 +3114,7 @@ const TIPS={
 };
 /* v108: the turn-start message names the hero's own mana source (every hero can still offer) */
 const TURNM={ody:'offer army members (💀) for more.',odin:'press Blood price to pay life for 1 more, or offer army members (💀).',
- wukong:'play different card types in a row (Strike, Trick, Leap) to build Momentum.',thoth:'speak a Ren (◆+2) or offer army members (💀) for more.'};
+ wukong:'play different card types in a row (Strike, Trick, Leap) to build Momentum.',thoth:'speak a Name (◆+2) or offer army members (💀) for more.'};
 function turnMsg(){return'Your turn. Mana refills to 2; '+(TURNM[(G&&G.ch)||'ody']||TURNM.ody)}
 
 /* ===== v109: anti-stall clock ===== */
@@ -4209,19 +4209,19 @@ hero:{
 cards:{
 /* --- Thoth: staples --- */
 tscr:"The scribe sits cross-legged with his palette on his knee. Before he writes, he pours a drop of water for Thoth.",
-tsun:"A person is many: the body, the Ka, the Ba, the shadow, the name, the heart. Death is only their parting.",
+tsun:"A person is many: the body, the spirit, the shadow, the name, the heart. Death is only their parting.",
 tscar:"The scarab rolls the sun across the sky as it rolls its ball of dung. Out of filth, every dawn.",
 tpen:"A reed from the marshes, cut at a slant and chewed soft at the tip. The gods' words have to pass through something this fragile.",
 tmedj:"The Medjay came from the deserts of Nubia to police the tombs and temples. Their loyalty was to the order, not the king.",
 /* --- Sundered --- */
-dsk:"The Ka is the life-force that came at birth and stays with the body. Offerings are left at the false door so that it does not go hungry.",
-dbal:"The Ba is a bird with a human face. By day it flies out of the tomb into the sunlight; by night it returns to rest on the mummy.",
+dsk:"The Body is the life-force that came at birth and stays with what remains. Offerings are left at the false door so that it does not go hungry.",
+dbal:"The Spirit is a bird with a human face. By day it flies out of the tomb into the sunlight; by night it returns to rest on the mummy.",
 dcut:"The obsidian blade of the embalmers. It opens the body so that what is inside can be kept.",
-dpart:"The Ka stays below; the Ba rises. The moment of their parting is called death, and the moment of their reunion is called eternity.",
+dpart:"The Body stays below; the Spirit rises. The moment of their parting is called death, and the moment of their reunion is called eternity.",
 dembal:"Seventy days: forty in the salt, thirty in the wrapping. The jackal-masked priest does Anubis's work with Anubis's patience.",
 dheart:"Placed over the heart in the wrappings, carved with a spell: O my heart, do not stand up against me as a witness.",
 dwrap:"Hundreds of yards of linen, each layer laid down with a prayer. The body becomes a book.",
-dnomad:"A Ba with no tomb to return to wanders the edge of the desert at dusk, crying like a bird.",
+dnomad:"A Spirit with no tomb to return to wanders the edge of the desert at dusk, crying like a bird.",
 dreun:"In the Field of Reeds the barley grows five cubits tall and the dead plough beside the gods. There, at last, the self is whole.",
 dsever:"Great men cast large shadows. Large shadows can be cut.",
 dshade:"The Sheut, the shadow, is part of a person. It can move without its owner, and in the Book of the Dead it walks out of the tomb by day.",
@@ -4229,9 +4229,9 @@ dcart:"The cartouche is a rope tied in an oval around a royal name. What is insi
 dtwof:"Two tall plumes, the crown of Amun the Hidden One. A soul that rises toward the sky wears it lightly.",
 dweigh:"The heart is set on one pan and the feather of Ma'at on the other. A heart heavy with wrong sinks.",
 dkhep:"Khepri is the sun at dawn, the scarab who becomes. Every morning he pushes himself out of the dark again.",
-dakh:"When Ka and Ba reunite in the afterlife, the dead become an Akh: a shining, effective spirit, like the stars that never set.",
+dakh:"When Body and Spirit reunite in the afterlife, the dead become an Akh: a shining, effective spirit, like the stars that never set.",
 dsplit:"Set tore Osiris into fourteen pieces and scattered them along the Nile. Each place a piece fell became a shrine.",
-dren:"The Ren, the name, is the most fragile part of the soul. As long as it is spoken, the dead live.",
+dren:"The Name is the most fragile part of the soul. As long as it is spoken, the dead live.",
 dsoul:"It gathers what is left after the parting, and keeps it for the scales.",
 dduat:"The Duat is the land the sun crosses every night, twelve hours, twelve gates, twelve terrors. Every soul makes the same journey.",
 dmum:"The first kings of the Two Lands sleep under the pyramids, wrapped and waiting. Their souls do not rest; they have work to do.",
@@ -4368,8 +4368,8 @@ sand:"The desert has buried armies. It does not need to be angry to do it again.
 }, /* end cards */
 /* cards made during a fight, which have no fixed id */
 dyn:{
-ka:"The Ka, the body's double, stays with what remains. It cannot strike, only endure, and it waits for its other half.",
-ba:"The Ba, the soul-bird with a human face, flies free of the body. It is light and swift, and it is not meant to be alone.",
+ka:"The Body, the double of what was, stays with what remains. It cannot strike, only endure, and it waits for its other half.",
+ba:"The Spirit, a bird with a human face, flies free of the Body. It is light and swift, and it is not meant to be alone.",
 ren:"A name, taken from the one who owned it. Spoken, it is power; written onto another, it becomes part of them.",
 nm:"Its name was chiselled from the stone. What has no name has no story, and nothing to hold on to.",
 },

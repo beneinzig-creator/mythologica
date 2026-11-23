@@ -244,20 +244,20 @@ const TUT=[
  S.play('wrod','Spend it on <b>Iron Rod</b> at the enemy\'s life.','ef'),
  S.atk(['wmonk','wclone'],'Attack with both, then <b>Resolve combat</b>.')]},
 /* ---------------- Thoth ---------------- */
-{id:'th1',h:'thoth',t:'Sundered',sub:'Split army members into Ka and Ba, and use their names.',ename:'The Clay Giant',eic:'🗿',elife:4,ebg:['#1a1206','#6a5222'],
+{id:'th1',h:'thoth',t:'Sundered',sub:'Split army members into Body and Spirit, and use their Names.',ename:'The Clay Giant',eic:'🗿',elife:4,ebg:['#1a1206','#6a5222'],
  deck:['tmedj','tmedj','tsun','iink','dcut','tmedj','tscr','tmedj'],edeck:['tgiant',...DUMMIES],
  steps:[
- S.info('Thoth splits army members apart. <b>Sunder</b> one and it becomes its <b>Ka</b> (the body: no power, can\'t block) and its <b>Ba</b> (the soul: 1 health), and you take its <b>Ren</b>, its true name.'),
+ S.info('Thoth splits army members apart. <b>Sunder</b> one and it becomes its <b>Body</b> (no power, can\'t block) and its <b>Spirit</b> (1 health), and you take its <b>Name</b>.'),
  S.play('tmedj','Play <b>Medjay of the Temple</b>.'),
  S.play('tmedj','Play the second <b>Medjay</b>.'),
  S.end('Press <b>End turn</b>. The enemy will raise a Clay Giant to block you.'),
  S.play('tsun','Cast <b>Sunder the Soul</b> on the <b>Clay Giant</b>.','e:tgiant'),
- S.speak('You took the Giant\'s <b>Ren</b>. Click the <b>◆+2</b> badge on it to <b>speak</b> the name: +2 mana.'),
+ S.speak('You took the Giant\'s <b>Name</b>. Click the <b>◆+2</b> badge on it to <b>speak</b> the Name: +2 mana.'),
  S.play('iink','Cast <b>Ink of Seshat</b> on a Medjay: +1/+1 and Ruthless, written as glyphs.','p:tmedj'),
  S.atk(['tmedj','tmedj'],'The Giant can\'t block any more. Attack with both Medjay, then <b>Resolve combat</b>.'),
  S.end('Press <b>End turn</b>.'),
- S.play('dcut','You can Sunder your own army members too. Cast <b>Ritual Knife</b> on a Medjay: it splits, you take its Ren, and you draw a card.','p:tmedj'),
- S.play('@ren','This time <b>write</b> the Ren instead of speaking it: play it on your other Medjay to give it +1/+1.','p:tmedj'),
+ S.play('dcut','You can Sunder your own army members too. Cast <b>Ritual Knife</b> on a Medjay: it splits, you take its Name, and you draw a card.','p:tmedj'),
+ S.play('@ren','This time <b>write</b> the Name instead of speaking it: play it on your other Medjay to give it +1/+1.','p:tmedj'),
  S.atk(['tmedj'],'Attack with the Medjay, then <b>Resolve combat</b>.')]},
 {id:'th2',h:'thoth',t:'Scribes',sub:'Write glyphs and equip amulets.',ename:'Training Camp',eic:'🎯',elife:12,ebg:['#1a1206','#5a4a2a'],
  deck:['tmedj','iink','gfeather','tscr','iwas','tmedj','iscribe','tmedj'],edeck:DUMMIES,
@@ -306,7 +306,7 @@ const TIPS={
  'loc:altar':'<b>Altar.</b> Duplicate a card or upgrade one (once each). Legendary cards can\'t be duplicated or upgraded here.',
  'main:odin':'<b>Your first fight.</b> You get 2 mana a turn. Press <b>Blood price</b> to pay life for 1 more (once per turn). At half life or less you are Wounded, and many of your cards get stronger. Damage stays on army members between turns.',
  'main:wukong':'<b>Your first fight.</b> You get 2 mana a turn. Play cards of different types (Strike, Trick, Leap) one after another to raise your Momentum, which powers many of your cards. It resets every turn.',
- 'main:thoth':'<b>Your first fight.</b> You get 2 mana a turn. Sunder an army member to take its Ren, then speak the Ren (◆+2) for mana or write it onto an army member. Click an amulet on the battlefield to equip it.',
+ 'main:thoth':'<b>Your first fight.</b> You get 2 mana a turn. Sunder an army member to take its Name, then speak the Name (◆+2) for mana or write it onto an army member. Click an amulet on the battlefield to equip it.',
  main:'<b>Your first fight.</b> You get 2 mana a turn. Offer army members (click 💀) for more. Click a card\'s form label to switch between attack and defense form. Damage stays on army members between turns.',
  kleos:'<b>Prestige.</b> Each of your surviving army members earns a permanent upgrade. Pick one for each.',
  bossp:'<b>The guardian.</b> Choose which boss to face. Each boss casts its trump on its first turn: a card that changes the rules of the fight.',
@@ -314,7 +314,7 @@ const TIPS={
 };
 /* v108: the turn-start message names the hero's own mana source (every hero can still offer) */
 const TURNM={ody:'offer army members (💀) for more.',odin:'press Blood price to pay life for 1 more, or offer army members (💀).',
- wukong:'play different card types in a row (Strike, Trick, Leap) to build Momentum.',thoth:'speak a Ren (◆+2) or offer army members (💀) for more.'};
+ wukong:'play different card types in a row (Strike, Trick, Leap) to build Momentum.',thoth:'speak a Name (◆+2) or offer army members (💀) for more.'};
 function turnMsg(){return'Your turn. Mana refills to 2; '+(TURNM[(G&&G.ch)||'ody']||TURNM.ody)}
 /* ---------- tutorial flow ---------- */
 function tutStart(i){const L=TUT[i];if(!L)return;const h=L.h||'ody';setChar(h);UND=null;U=0;

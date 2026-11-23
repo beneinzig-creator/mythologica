@@ -11869,7 +11869,7 @@
           }
         },
         "dsk": {
-          "name": "Ka-Keeper",
+          "name": "Body-Keeper",
           "lore": "Keeper of bodies",
           "type": "Army member",
           "rarity": "Common",
@@ -11889,7 +11889,7 @@
           }
         },
         "dbal": {
-          "name": "Soul-Bird Keeper",
+          "name": "Spirit Keeper",
           "lore": "Keeper of spirits",
           "type": "Army member",
           "rarity": "Common",
@@ -12009,7 +12009,7 @@
           }
         },
         "dnomad": {
-          "name": "Wandering Ba",
+          "name": "Wandering Spirit",
           "lore": "Wandering spirit",
           "type": "Army member",
           "rarity": "Common",

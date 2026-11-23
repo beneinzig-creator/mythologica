@@ -10,19 +10,19 @@ hero:{
 cards:{
 /* --- Thoth: staples --- */
 tscr:"The scribe sits cross-legged with his palette on his knee. Before he writes, he pours a drop of water for Thoth.",
-tsun:"A person is many: the body, the Ka, the Ba, the shadow, the name, the heart. Death is only their parting.",
+tsun:"A person is many: the body, the spirit, the shadow, the name, the heart. Death is only their parting.",
 tscar:"The scarab rolls the sun across the sky as it rolls its ball of dung. Out of filth, every dawn.",
 tpen:"A reed from the marshes, cut at a slant and chewed soft at the tip. The gods' words have to pass through something this fragile.",
 tmedj:"The Medjay came from the deserts of Nubia to police the tombs and temples. Their loyalty was to the order, not the king.",
 /* --- Sundered --- */
-dsk:"The Ka is the life-force that came at birth and stays with the body. Offerings are left at the false door so that it does not go hungry.",
-dbal:"The Ba is a bird with a human face. By day it flies out of the tomb into the sunlight; by night it returns to rest on the mummy.",
+dsk:"The Body is the life-force that came at birth and stays with what remains. Offerings are left at the false door so that it does not go hungry.",
+dbal:"The Spirit is a bird with a human face. By day it flies out of the tomb into the sunlight; by night it returns to rest on the mummy.",
 dcut:"The obsidian blade of the embalmers. It opens the body so that what is inside can be kept.",
-dpart:"The Ka stays below; the Ba rises. The moment of their parting is called death, and the moment of their reunion is called eternity.",
+dpart:"The Body stays below; the Spirit rises. The moment of their parting is called death, and the moment of their reunion is called eternity.",
 dembal:"Seventy days: forty in the salt, thirty in the wrapping. The jackal-masked priest does Anubis's work with Anubis's patience.",
 dheart:"Placed over the heart in the wrappings, carved with a spell: O my heart, do not stand up against me as a witness.",
 dwrap:"Hundreds of yards of linen, each layer laid down with a prayer. The body becomes a book.",
-dnomad:"A Ba with no tomb to return to wanders the edge of the desert at dusk, crying like a bird.",
+dnomad:"A Spirit with no tomb to return to wanders the edge of the desert at dusk, crying like a bird.",
 dreun:"In the Field of Reeds the barley grows five cubits tall and the dead plough beside the gods. There, at last, the self is whole.",
 dsever:"Great men cast large shadows. Large shadows can be cut.",
 dshade:"The Sheut, the shadow, is part of a person. It can move without its owner, and in the Book of the Dead it walks out of the tomb by day.",
@@ -30,9 +30,9 @@ dcart:"The cartouche is a rope tied in an oval around a royal name. What is insi
 dtwof:"Two tall plumes, the crown of Amun the Hidden One. A soul that rises toward the sky wears it lightly.",
 dweigh:"The heart is set on one pan and the feather of Ma'at on the other. A heart heavy with wrong sinks.",
 dkhep:"Khepri is the sun at dawn, the scarab who becomes. Every morning he pushes himself out of the dark again.",
-dakh:"When Ka and Ba reunite in the afterlife, the dead become an Akh: a shining, effective spirit, like the stars that never set.",
+dakh:"When Body and Spirit reunite in the afterlife, the dead become an Akh: a shining, effective spirit, like the stars that never set.",
 dsplit:"Set tore Osiris into fourteen pieces and scattered them along the Nile. Each place a piece fell became a shrine.",
-dren:"The Ren, the name, is the most fragile part of the soul. As long as it is spoken, the dead live.",
+dren:"The Name is the most fragile part of the soul. As long as it is spoken, the dead live.",
 dsoul:"It gathers what is left after the parting, and keeps it for the scales.",
 dduat:"The Duat is the land the sun crosses every night, twelve hours, twelve gates, twelve terrors. Every soul makes the same journey.",
 dmum:"The first kings of the Two Lands sleep under the pyramids, wrapped and waiting. Their souls do not rest; they have work to do.",
@@ -169,8 +169,8 @@ sand:"The desert has buried armies. It does not need to be angry to do it again.
 }, /* end cards */
 /* cards made during a fight, which have no fixed id */
 dyn:{
-ka:"The Ka, the body's double, stays with what remains. It cannot strike, only endure, and it waits for its other half.",
-ba:"The Ba, the soul-bird with a human face, flies free of the body. It is light and swift, and it is not meant to be alone.",
+ka:"The Body, the double of what was, stays with what remains. It cannot strike, only endure, and it waits for its other half.",
+ba:"The Spirit, a bird with a human face, flies free of the Body. It is light and swift, and it is not meant to be alone.",
 ren:"A name, taken from the one who owned it. Spoken, it is power; written onto another, it becomes part of them.",
 nm:"Its name was chiselled from the stone. What has no name has no story, and nothing to hold on to.",
 },
