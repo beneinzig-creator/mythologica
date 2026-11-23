@@ -875,6 +875,13 @@ def build_act3():
     icons = {f'med_{k}': {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
                           'output': f'art/icons/act3/med_{k}.png', 'size': '1024x1024', 'format': 'png',
                           'background': 'transparent'} for k, t in MEDALS['act3'].items()}
+    _scn = json.load(open(os.path.join(ART, 'scenes.json'), encoding='utf-8')).get('act3', {})
+    for k, (nm, sid, t) in FIGURES.get('act3', {}).items():
+        scn = _scn.get(sid) or {}
+        icons[f'fig_{k}'] = {'name': f'{nm} figure', 'opponent': nm,
+                             'prompt': (FIGURE_SCENE_BASE + f'\n\nSetting: {scn.get("setting", "")}.\nColour: {scn.get("palette", "")}.'
+                                        + f'\n\nIn the scene: {t} {FIGURE_POSE}'),
+                             'output': f'art/icons/act3/fig_{k}.webp', 'size': '1536x1024', 'format': 'webp'}
     for k, (size, bg, prompt) in A3_UI.items():
         icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/act3/{k}.png', 'size': size,
                     'format': 'png', 'background': bg}
@@ -884,6 +891,121 @@ def build_act3():
         json.dump(old, f, ensure_ascii=False, indent=2)
         f.write('\n')
     print('Wrote Act III frames to art/manifest.json.')
+
+# ---- Enemy figures: full-length art of each opponent, shown over its fight background on the pre-fight screen ----
+# Ben (Nov 2026): the first figures looked like AI art pasted on the backdrop. They now use the backdrops' own
+# hand-made look (SCENE_BASE's wording) and each takes its backdrop's palette, so figure and scene feel painted together.
+FIGURE_BASE = (
+    'A full-length figure of an enemy for the pre-fight screen of a mythology card game, made by hand like a 1993 '
+    'fantasy trading-card or game-book illustration, exactly matching the game\'s painted backgrounds: bold, wobbly '
+    'black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. '
+    'Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, '
+    'blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper '
+    'texture and grain showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed '
+    'card with slightly faded, misregistered colour, in the limited palette given below. Absolutely not realistic: no '
+    'realistic lighting or anatomy rendering, no glossy highlights, no glow, no soft gradients, no fine fur or skin '
+    'detail, no oil-painting look, no 3D, no digital painting, not modern concept art or AI art. '
+    # Ben, round four: casual and confident rather than mid-attack, eyes on the player, no smoke at the feet.
+    'The body is seen in three-quarter view from slightly below, angled away from the viewer, but the head is turned '
+    'and the eyes look straight at the viewer, sizing them up. A relaxed, casual, confident pose, at ease and '
+    'completely sure of itself: standing or leaning with its weight on one leg, its weapon resting or held loosely, '
+    'not attacking, not lunging, not shouting. Menace through calm. Give it depth and volume: overlapping forms and '
+    'shading washes and ink hatching that model the body in light and shadow, lit by the light of its scene (given '
+    'below), as if painted into the same picture as the backdrop; still hand-drawn, never glossy, airbrushed or '
+    'rendered. Only a faint, soft, semi-transparent painted shadow on the ground under the feet; no smoke, mist, dust '
+    'or embers anywhere. The whole figure fits inside the frame. '
+    'Cut out cleanly on a fully transparent background apart from that shadow: no scenery, no moon, sun, fire or '
+    'other light source drawn in (the backdrop already has it), no frame, no text.'
+)
+# The full-scene version: the backdrop's own wording, with the composition changed so the enemy stands in the scene.
+FIGURE_SCENE_BASE = SCENE_BASE.replace(
+    'A wide background illustration for the battle screen of a mythology card game',
+    'A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene').replace(
+    'Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; '
+    'the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the '
+    'centre. ',
+    'Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it '
+    'with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene\'s '
+    'own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the '
+    'picture stays a little darker and calmer for a name to be written over it. ')
+assert FIGURE_SCENE_BASE != SCENE_BASE
+FIGURE_POSE = ('A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight '
+               'at the viewer. Not attacking, not shouting.')
+# hero -> id -> (opponent name exactly as in the game, its backdrop's id in scenes.json, subject)
+FIGURES = {
+    'ody': {
+        'lotus': ('The Lotus-Eaters', 'lotus', 'A languid Lotus-Eater, a pale, beautiful young man with heavy-lidded dreamy eyes and a crown of lotus blossoms, lounging against a lotus stem and holding out a lotus flower in offering, two others asleep in the reeds behind him. Greek in every detail, as in Homer.'),
+        'sirens': ('The Sirens', 'sirens', "A Siren as in Greek vase painting: a bird with a woman's head and great dark wings, perched on a rock, lips parted in song, a second Siren on the rocks behind, bones at their feet. Greek in every detail, as in Homer."),
+        'poly': ('Polyphemus', 'polyphemus', "Polyphemus the Cyclops of Homer's Odyssey: a towering, hairy shepherd giant with a single huge glaring eye in the middle of his brow, wild black beard, a sheepskin over his shoulders, leaning on his great olive-trunk club planted beside him like a staff, his free hand resting on the head of a ram at his side, a slow grim smile under the beard. Greek in every detail. Light: the red glow of the hearth fire from the lower left."),
+        'shades': ('The Shades of Hades', 'shades', "The ghost of a dead warrior, grey and half-transparent, in faded bronze armour with an empty, hollow-eyed face, standing at the river's edge, other pale shades crowding behind. Greek in every detail, as in Homer."),
+        'phaeacians': ('The Phaeacians', 'phaeacians', 'A proud Phaeacian prince, a tall seafaring nobleman in a rich purple cloak and gold diadem, one foot on the prow of a moored ship, arms folded. Greek in every detail, as in Homer.'),
+        'cicones': ('The Cicones', 'cicones', 'A Ciconian warrior chief from Thrace in a fox-skin cap and patterned cloak, a spear resting on his shoulder and a crescent shield at his side, warriors behind him. Greek in every detail, as in Homer.'),
+        'circe': ('Circe, Witch of Aeaea', 'circe', 'Circe the enchantress: a regal woman with braided dark hair and a golden diadem, in a woven robe, holding a golden wand and a cup of potion, a tame lion and a pig at her feet. Greek in every detail, as in Homer.'),
+        'cattle': ('Cattle of the Sun', 'cattle', 'The guardian of the sacred cattle of Helios: a huge golden bull with gilded horns, standing at the head of the herd and looking at the viewer, sun-nymph Lampetie with a crook beside it. Greek in every detail, as in Homer.'),
+        'hector': ('Hector, Tamer of Horses', 'hector', 'Hector, prince of Troy: a noble warrior in bronze armour with a tall horsehair-crested helmet pushed back, a great round shield resting against his leg and a spear upright in his hand. Greek in every detail, as in Homer.'),
+        'scylla': ('Scylla', 'scylla', 'Scylla the sea monster: six long serpent necks with snarling dog-like heads rising from a cave in the cliff, rows of teeth, coiling over the water. Greek in every detail, as in Homer.'),
+        'charybdis': ('Charybdis', 'charybdis', 'Charybdis the whirlpool monster: a vast maw of churning dark water rising from the sea, with a ring of teeth and a single deep gullet, the fig tree on its rock above. Greek in every detail, as in Homer.'),
+    },
+    'odin': {
+        'jotnar': ('The Jotnar', 'jotnar', 'A frost giant of Jotunheim, huge and pale blue, with an icicle beard and fur cloak, leaning on a great stone club. Norse in every detail.'),
+        'fenrir': ("Fenrir's Brood", 'fenrir', 'The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, standing at ease with one forepaw raised on a rock, head turned to watch the viewer with a low, patient stare, lips just parted over the fangs, two cubs sitting at its feet. Norse in every detail.'),
+        'forge': ('The Dwarven Forge', 'forge', 'A dwarf master smith, stocky with a braided beard and leather apron, resting a great hammer on his shoulder beside an anvil, sparks in the air. Norse in every detail.'),
+        'muspelheim': ('Muspelheim', 'muspelheim', 'A fire giant of Muspelheim, a towering figure of black rock with glowing lava cracks, holding a flaming sword point-down. Norse in every detail.'),
+        'hel': ("Hel's Legion", 'hel', 'A draugr, an undead Viking warrior with grey shrunken skin, rusted mail and a notched axe, standing at the head of a host of the dead. Norse in every detail.'),
+        'loki': ("Loki's Court", 'loki', 'Loki the trickster god, lean and sly with red hair and a mocking smile, in a green-and-black cloak, a small flame dancing on his palm. Norse in every detail.'),
+        'norns': ('The Norns', 'norns', 'The three Norns at the roots of Yggdrasil: three tall veiled women, one young, one middle-aged, one ancient, holding the threads of fate between them. Norse in every detail.'),
+        'fafnir': ('Fáfnir, the Hoard-Dragon', 'fafnir', 'Fáfnir the dragon, a great serpentine wingless dragon coiled on his hoard of gold, head raised watching the viewer. Norse in every detail.'),
+        'jormungandr': ('Jörmungandr, the World Serpent', 'jormungandr', 'Jörmungandr, the world serpent, a colossal sea serpent rearing its huge head out of the waves, water pouring from its jaws. Norse in every detail.'),
+        'wildhunt': ('The Wild Hunt', 'wildhunt', 'The leader of the Wild Hunt, a ghostly horseman in a wide hat and billowing cloak on a black eight-legged horse, hounds and ravens around him. Norse in every detail.'),
+        'hrungnir': ('Hrungnir, the Stone-Hearted', 'hrungnir', 'Hrungnir the stone giant, a giant of grey rock with a three-horned stone heart in his chest, holding a whetstone club and a stone shield. Norse in every detail.'),
+    },
+    'wukong': {
+        'whitebone': ('The White Bone Spirit', 'whitebone', 'The White Bone Spirit, a pale, beautiful demoness in white robes with a faint skeleton showing through her skin, holding a basket, smiling falsely. Chinese, Ming dynasty, Journey to the West.'),
+        'heavenlyhost': ('The Heavenly Host', 'heavenlyhost', 'A general of the Heavenly Host in gold armour with tall pheasant plumes, holding a halberd, standing on a cloud with soldiers behind. Chinese, Ming dynasty, Journey to the West.'),
+        'spider': ('The Spider Cave', 'spider', 'A spider demoness, a beautiful woman in green silk with eight spider legs rising from her back, silk threads in her hands. Chinese, Ming dynasty, Journey to the West.'),
+        'hornkings': ('The Gold and Silver Horn Kings', 'hornkings', 'The Gold and Silver Horn Kings, two demon brothers with golden and silver horns in rich armour, one holding a red gourd, the other a sword. Chinese, Ming dynasty, Journey to the West.'),
+        'redboy': ('Red Boy', 'redboy', 'Red Boy, a fierce demon child with a red topknot and bare chest, holding a fire-tipped spear, flames at his feet. Chinese, Ming dynasty, Journey to the West.'),
+        'yellowwind': ('The Yellow Wind Ridge', 'yellowwind', 'The Yellow Wind Demon, a sable-weasel demon king in yellow armour with a trident, a swirl of yellow sand around his hands. Chinese, Ming dynasty, Journey to the West.'),
+        'erlang': ('Erlang Shen, the Three-Eyed', 'erlang', 'Erlang Shen, a handsome martial god with a third eye on his forehead, holding a three-pointed double-edged lance, his celestial hound at his feet. Chinese, Ming dynasty, Journey to the West.'),
+        'ironfan': ('Princess Iron Fan', 'ironfan', 'Princess Iron Fan, an elegant demon princess in green and violet silks holding a huge palm-leaf fan. Chinese, Ming dynasty, Journey to the West.'),
+        'macaque': ('The Six-Eared Macaque', 'macaque', 'The Six-Eared Macaque, a monkey demon identical to Sun Wukong but with six ears, in a golden headband, holding a golden-banded staff. Chinese, Ming dynasty, Journey to the West.'),
+        'bulldemon': ('The Bull Demon King', 'bulldemon', 'The Bull Demon King of Journey to the West: a huge demon king with the head of a black bull and great curved horns, burning eyes, in red-and-gold lacquered armour and a long cape, standing tall with the iron cudgel resting across his shoulders and both hands hooked over it, chin raised, looking down at the viewer with contempt. Chinese, Ming dynasty, with the brush rhythm of Chinese painting. Light: the glow of lava from the right.'),
+        'buddhapalm': ("The Buddha's Palm", 'buddhapalm', 'The Buddha, vast and serene, seated in the clouds, one enormous golden hand held open, a calm, all-knowing smile. Chinese, Ming dynasty, Journey to the West.'),
+    },
+    'thoth': {
+        'robbers': ('The Tomb Robbers', 'robbers', 'A tomb robber, a lean sly man with a scarf over his face and a torch and pick in his hands, a sack of gold at his feet. Ancient Egyptian in every detail.'),
+        'scorpions': ('The Scorpions of Serket', 'scorpions', 'A priestess of Serket with a scorpion crown, giant scorpions around her feet. Ancient Egyptian in every detail.'),
+        'servants': ('Servants of the Tomb', 'servants', 'A shabti come to life, a figure of blue faience with folded arms and a calm painted face, others behind it. Ancient Egyptian in every detail.'),
+        'sobek': ('The Crocodiles of Sobek', 'sobek', 'A crocodile-headed priest of Sobek in a green kilt with a staff, crocodiles in the water behind him. Ancient Egyptian in every detail.'),
+        'anubis': ('The Jackals of Anubis', 'anubis', 'Anubis, the jackal-headed god of the dead, black-headed with gold collar and kilt, holding a was-sceptre, jackals at his side. Ancient Egyptian in every detail.'),
+        'heka': ('The Priests of Heka', 'heka', 'A priest-magician of Heka in a leopard skin, holding two cobras, green magic smoke curling around him. Ancient Egyptian in every detail.'),
+        'ammit': ('Ammit, the Devourer', 'ammit', "Ammit, a monster with a crocodile head, lion's mane and forelegs and a hippopotamus body, crouching beside the scales of judgement. Ancient Egyptian in every detail."),
+        'sphinx': ('The Great Sphinx', 'sphinx', 'The Great Sphinx come to life, its huge lion body lying down, the stone face of a pharaoh in the nemes headdress looking at the viewer. Ancient Egyptian in every detail.'),
+        'apophis': ('Apophis, the Serpent of Chaos', 'apophis', 'Apophis, a colossal serpent of chaos rearing its head from the dark river, coils looping behind. Ancient Egyptian in every detail.'),
+        'set': ('Set, Lord of the Red Desert', 'set', 'Set, the god of storms and chaos, with the head of the Set animal (long snout, tall square ears), red-skinned, holding a was-sceptre. Ancient Egyptian in every detail.'),
+        'sekhmet': ('Sekhmet, the Eye of Ra', 'sekhmet', 'Sekhmet, the lioness-headed Egyptian goddess of war and plague: a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a rearing cobra, in a red linen dress and a broad collar of gold and lapis, standing in three-quarter profile with her weight on one hip, the sceptre held loosely at her side, head turned toward the viewer with a cool, predatory stare, mouth closed. Ancient Egyptian in every detail. Light: the blazing sun above and behind her, hot light along her edges.'),
+    },
+    'act3': {
+        'legion': ('Legion', 'legion', 'A possessed man, gaunt and wild-eyed, broken chains on his wrists, many faint faces swirling in a shadow behind him. As in a medieval illuminated Apocalypse manuscript.'),
+        'watchers': ('The Watchers', 'watchers', 'A fallen Watcher, a tall angel with dark wings and a cold face, holding a scroll of forbidden knowledge. As in a medieval illuminated Apocalypse manuscript.'),
+        'nephilim': ('The Nephilim', 'nephilim', 'A Nephil, a colossal giant in crude bronze armour, leaning on a tree-trunk spear. As in a medieval illuminated Apocalypse manuscript.'),
+        'baal': ('The Prophets of Baal', 'baal', 'A prophet of Baal in red robes with a bronze bull mask pushed up on his head, holding a curved knife. As in a medieval illuminated Apocalypse manuscript.'),
+        'babel': ('The Builders of Babel', 'babel', 'Nimrod, the mighty king of Babel, in a tall crown and royal robes, a bow over his shoulder, the tower behind him. As in a medieval illuminated Apocalypse manuscript.'),
+        'pairikas': ('The Pairikas', 'pairikas', 'A Pairika, a beautiful star-witch with long glowing hair and a robe of night, a falling star in her hand. As in a medieval illuminated Apocalypse manuscript.'),
+        'sons': ('Sons of Darkness', 'sons', "Belial's war captain, a commander in black armour holding a war banner and a trumpet, ranks behind him. As in a medieval illuminated Apocalypse manuscript."),
+        'mammon': ("Mammon's Hoard", 'mammon', 'Mammon, a bloated demon of greed in gold-encrusted robes and rings, sitting on a heap of coins. As in a medieval illuminated Apocalypse manuscript.'),
+        'mastema': ("Mastema's Spirits", 'mastema', 'Mastema, the accuser, a pale stern angel with grey wings holding a pair of scales and a scroll of charges. As in a medieval illuminated Apocalypse manuscript.'),
+        'paimon': ("King Paimon's Procession", 'paimon', 'King Paimon, a crowned demon king with an effeminate face riding a dromedary, heralds with trumpets around him. As in a medieval illuminated Apocalypse manuscript.'),
+        'beelzebub': ('Beelzebub, Lord of the Flies', 'beelzebub', 'Beelzebub, a demon lord with the head of a fly and great translucent wings, crowned, on a throne of bones, flies around him. As in a medieval illuminated Apocalypse manuscript.'),
+        'azazel': ('Azazel, the Scapegoat', 'azazel', 'Azazel, a horned fallen angel with goat features, chained, scarlet thread tied to his horns. As in a medieval illuminated Apocalypse manuscript.'),
+        'asmodeus': ('Asmodeus', 'asmodeus', "Asmodeus, a demon king with three heads (bull, man and ram), a cockerel's feet and a fire-bird's wings. As in a medieval illuminated Apocalypse manuscript."),
+        'lilith': ('Lilith', 'lilith', "Lilith, a winged demon queen with long black hair and owl's feet, a screech owl on her arm. As in a medieval illuminated Apocalypse manuscript."),
+        'lucifer': ('Lucifer, the Morning Star', 'lucifer', 'Lucifer, the Morning Star, a radiant six-winged angel of terrible beauty with a burning star on his brow, holding a spear of light. As in a medieval illuminated Apocalypse manuscript.'),
+        'ahriman': ('Ahriman, the Smiling Stranger', 'ahriman', 'Ahriman, a smiling dark-robed stranger with serpents rising from his shoulders. As in a medieval illuminated Apocalypse manuscript.'),
+        'abaddon': ('Abaddon, the Opened Abyss', 'abaddon', 'Abaddon, the angel of the abyss, a crowned armoured angel-king with a key at his belt, locusts with human faces around him. As in a medieval illuminated Apocalypse manuscript.'),
+        'beast': ('The Beast of the Sea', 'beast', "The Beast of the Sea, seven crowned heads and ten horns rising from the waves, the False Prophet with lamb's horns on the shore beside it. As in a medieval illuminated Apocalypse manuscript."),
+    },
+}
 
 STUB = r'''
 var __h={get:function(t,k){if(k===Symbol.toPrimitive)return function(){return 0};if(k==='length')return 0;return __p},
@@ -1095,6 +1217,18 @@ def main():
     for k, (size, bg, prompt) in HERO_UI.get(a.hero, {}).items():
         icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/{folder}/{k}.png', 'size': size,
                     'format': 'png', 'background': bg}
+    _scn = json.load(open(os.path.join(ART, 'scenes.json'), encoding='utf-8')).get(a.hero, {})
+    _brush = {'wukong': ' The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style.',
+              'thoth': ' The flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style.'}
+    for k, (nm, sid, t) in FIGURES.get(a.hero, {}).items():
+        pal = (_scn.get(sid) or {}).get('palette', '')
+        # Ben, round five: the figure must be part of the background itself, so the whole picture is painted in one
+        # pass with the backdrop's own prompt (SCENE_BASE, setting, palette), the enemy standing in it.
+        scn = _scn.get(sid) or {}
+        icons[f'fig_{k}'] = {'name': f'{nm} figure', 'opponent': nm,
+                             'prompt': (FIGURE_SCENE_BASE + f'\n\nSetting: {scn.get("setting", "")}.\nColour: {pal}.'
+                                        + f'\n\nIn the scene: {t} {FIGURE_POSE}'),
+                             'output': f'art/icons/{folder}/fig_{k}.webp', 'size': '1536x1024', 'format': 'webp'}
     for k, t in MEDALS.get(a.hero, {}).items():
         icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
                              'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',

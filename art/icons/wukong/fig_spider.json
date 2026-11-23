@@ -1,0 +1,22 @@
+{
+  "id": "fig_spider",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-23 15:11:37",
+  "prompt": "A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene's own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the picture stays a little darker and calmer for a name to be written over it. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the Silken Cave of the seven spider demons from Journey to the West: a lush, misty mountain gorge with a hot spring pool where the spider-women bathed, at the lower left; vast glittering silk webs strung between gnarled trees and rock pillars along the left and right edges, beaded with dew; a cave mouth hung with silk curtains at the far right; giant spiders as dark shapes in the webs; peach blossom and ferns; sunbeams through the mist The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style. Distinctly Chinese: no Japanese, Greek or Norse elements.\nColour: near-black forest green to bright moss (#0c1410 to #4f7a3a) with silver-white silk, pink peach blossom and turquoise water accents.\n\nIn the scene: A spider demoness, a beautiful woman in green silk with eight spider legs rising from her back, silk threads in her hands. Chinese, Ming dynasty, Journey to the West. A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight at the viewer. Not attacking, not shouting.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 561,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 561
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1933
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "fig_jotnar",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-23 15:03:56",
+  "prompt": "A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene's own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the picture stays a little darker and calmer for a name to be written over it. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: Jotunheim, the land of the frost giants in Norse myth (the Eddas), in endless winter: a frozen fjord between towering black cliffs hung with ice; colossal frost-giant silhouettes, bearded and furred, half-hidden in the blizzard along the far right; the ruined, snow-drifted timber hall of a giant with a carved dragon-head gable at the far left; a Viking longship with a dragon prow frozen into the ice at the lower left; a leaning runestone carved with knotwork and runes at the lower right; drifting snow, a pale aurora in a dark sky. Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black midnight blue to glacial ice blue (#0b1622 to #4f87ad) with white snow and a faint green aurora accent.\n\nIn the scene: A frost giant of Jotunheim, huge and pale blue, with an icicle beard and fur cloak, leaning on a great stone club. Norse in every detail. A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight at the viewer. Not attacking, not shouting.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 575,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 575
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1947
+  }
+}
