@@ -744,23 +744,31 @@ el.style.cssText='position:fixed;left:0;top:0;z-index:300;pointer-events:none;tr
 el.style.transform='translate('+a.left+'px,'+a.top+'px) scale('+s0+')';
 requestAnimationFrame(()=>{try{const dst=document.querySelector('.decks [data-z="'+(mine?'gyp':'gye')+'"]');if(!dst){el.remove();return}const b=dst.getBoundingClientRect(),s1=b.width/w0;
 if(GSOK()){gsap.timeline({onComplete:()=>el.remove()}).fromTo(el,{x:a.left,y:a.top,scale:s0,rotation:0,opacity:1,filter:'brightness(1)',transformOrigin:'0 0'},{y:a.top-14,filter:'brightness(.55) grayscale(.8)',duration:.25,ease:'power2.out'}).to(el,{x:b.left,y:b.top,scale:s1,rotation:mine?-14:14,opacity:.7,duration:.85,ease:'power2.in'})}else{const an=el.animate([{transform:'translate('+a.left+'px,'+a.top+'px) scale('+s0+')',opacity:1},{transform:'translate('+b.left+'px,'+b.top+'px) scale('+s1+')',opacity:.75}],{duration:1100,delay:150,easing:'ease-in',fill:'both'});an.onfinish=()=>el.remove();}setTimeout(()=>{try{el.remove()}catch(e){}},1600)}catch(e){try{el.remove()}catch(_){}}})}catch(e){}}
-function flyIn(c,s){if(!G||!(G.turn||G.deal69))return;const mine=s===G.p,K=mine?'ft':'fte',deal=!G.turn,now=Date.now(),d=Math.max(0,(G[K]||0)-now),DUR=deal?760:900;G[K]=now+d+(deal?190:300);c.fly=now+d+DUR+60000;const g=G;
+function flyIn(c,s){if(!G||!(G.turn||G.deal69))return;const mine=s===G.p,K=mine?'ft':'fte',deal=!G.turn,now=Date.now(),d=Math.max(0,(G[K]||0)-now),DUR=deal?640:620;G[K]=now+d+(deal?190:260);c.fly=now+d+DUR+60000;const g=G;
 let wrap=null,fin=false;
 const done=()=>{fin=true;try{wrap&&wrap.remove()}catch(e){}};
-const land=()=>{if(fin)return;fin=true;c.fly=0;try{if(g===G)render()}catch(e){}try{wrap&&wrap.remove()}catch(e){}};
-setTimeout(()=>{if(!fin&&(!wrap||!wrap.isConnected))land()},d+DUR+2500);setTimeout(land,d+DUR+9000);
 const dstOf=()=>{if(mine)return document.querySelector('#app .hand .cd[data-z="h:'+c.u+'"]');const i=s.hand.indexOf(c);return i<0?null:(document.querySelectorAll('#app .eHand .cb')[i]||null)};
-requestAnimationFrame(()=>{try{const src=document.querySelector(mine?'.decks .pile.mine[data-z="lib"]':'.decks .pile:nth-child(2)'),dst0=dstOf();if(!src||!dst0)return land();
+// landing reveals the card already waiting (hidden) in its slot; no re-render while other cards are in the air
+const land=()=>{if(fin)return;fin=true;c.fly=0;let shown=false;try{if(g===G){const el=dstOf();if(el){el.style.visibility='';shown=true}}}catch(e){}
+ if(!shown)try{if(g===G)render()}catch(e){}try{wrap&&wrap.remove()}catch(e){}};
+setTimeout(()=>{if(!fin&&(!wrap||!wrap.isConnected))land()},d+DUR+2500);setTimeout(land,d+DUR+9000);
+const srcOf=()=>document.querySelector(mine?'.decks .pile.mine[data-z="lib"]':'.decks .pile:nth-child(2)');
+requestAnimationFrame(()=>{try{const src=srcOf(),dst0=dstOf();if(!src||!dst0)return land();
 wrap=document.createElement('div');wrap.style.cssText='position:fixed;left:0;top:0;z-index:300;pointer-events:none;transform-origin:50% 50%;visibility:hidden;will-change:transform';
 const inr=document.createElement('div');inr.className=mine?'hand':'eHand';inr.style.cssText='position:static;inset:auto;margin:0;padding:0;width:max-content;height:auto;max-width:none;display:block;overflow:visible;transform:none;translate:none;scale:none';
-const cl=dst0.cloneNode(true);cl.removeAttribute('data-z');cl.removeAttribute('data-cu');cl.style.visibility='inherit';cl.style.margin='0';cl.style.transition='none';inr.appendChild(cl);wrap.appendChild(inr);document.body.appendChild(wrap);
-const r0=wrap.getBoundingClientRect(),w0=r0.width||1,h0=r0.height||1,a=src.getBoundingClientRect(),ax=a.left+a.width/2,ay=a.top+a.height/2,s0=a.width/w0,rot0=mine?-8:8;
-let bx=ax,by=ay,s1=1,el=-d,last=null;const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const cl=dst0.cloneNode(true);cl.removeAttribute('data-z');cl.removeAttribute('data-cu');cl.style.visibility='inherit';cl.style.margin='0';cl.style.transition='none';cl.style.translate='none';inr.appendChild(cl);wrap.appendChild(inr);document.body.appendChild(wrap);
+const r0=wrap.getBoundingClientRect(),w0=r0.width||1,h0=r0.height||1,rot0=mine?-8:8;let a=src.getBoundingClientRect();
+let bx=null,by=0,s1=1,el=-d,last=null;
+// front-loaded sine: leaves the library at once, never faster than ~1.6x its average speed, settles softly
+const ease=t=>.5-.5*Math.cos(Math.PI*Math.pow(t,.82));
 const step=ts=>{if(fin)return;if(g!==G)return done();if(!document.body.contains(wrap))return land();
- el+=last==null?0:Math.min(50,Math.max(0,ts-last));last=ts;c.fly=Date.now()+60000;
+ {const dt=last==null?0:Math.max(0,ts-last);el+=dt>45?17:dt}last=ts;c.fly=Date.now()+60000; // a long frame (the fight screen building) pauses the flight, never skips it
  if(el<0){requestAnimationFrame(step);return}
+ const sN=srcOf();if(sN){const q=sN.getBoundingClientRect();if(q.width)a=q}
+ const ax=a.left+a.width/2,ay=a.top+a.height/2,s0=a.width/w0;
  const dst=dstOf();if(!dst){if(!s.hand.includes(c)){c.fly=0;return done()}}else{const b=dst.getBoundingClientRect();if(b.width){bx=b.left+b.width/2;by=b.top+b.height/2;s1=b.width/w0}}
- const t=Math.min(1,el/DUR),k=ease(t),x=ax+(bx-ax)*k,y=ay+(by-ay)*k,sc=s0+(s1-s0)*k;
+ if(bx==null){bx=ax;by=ay;s1=s0}
+ const t=Math.min(1,el/DUR),k=ease(t),arc=Math.sin(Math.PI*k)*Math.min(26,Math.hypot(bx-ax,by-ay)*.06)*(mine?1:-1),x=ax+(bx-ax)*k,y=ay+(by-ay)*k-arc,sc=s0+(s1-s0)*k;
  wrap.style.visibility='visible';wrap.style.transform='translate('+(x-w0/2-r0.left).toFixed(1)+'px,'+(y-h0/2-r0.top).toFixed(1)+'px) rotate('+(rot0*(1-k)).toFixed(2)+'deg) scale('+sc.toFixed(4)+')';
  if(t<1){requestAnimationFrame(step);return}
  land()};
@@ -2059,12 +2067,12 @@ const PTC=(()=>{let cv,cx,parts=[],realm=null,raf=0,W=0,H=0,last=0;
  return{set}})();
 
 /* ---------- 10. light that follows the cursor on the table ---------- */
-function fxTableLight(){const app=document.getElementById('app');if(!app||app.dataset.lt)return;app.dataset.lt=1;
+function fxGlowH(f){const cs=getComputedStyle(f,'::after'),r=f.getBoundingClientRect(),k=[r.left,r.top,r.width,r.height,innerWidth,innerHeight,cs.left,cs.top,cs.right,cs.bottom].join();if(f._gk===k&&f._gh)return f._gh;const bx=document.createElement('i');bx.style.cssText='position:absolute;left:'+cs.left+';top:'+cs.top+';right:'+cs.right+';bottom:'+cs.bottom+';margin:0;padding:0;border:0;pointer-events:none;visibility:hidden';let Z=1;for(let e=f;e&&e.nodeType==1;e=e.parentElement){const z=parseFloat(getComputedStyle(e).zoom);if(z>0)Z*=z}const Q=[[0,0],[1,0],[0,1],[1,1]],P=Q.map(([u,v])=>{const p=document.createElement('i');p.style.cssText='position:absolute;display:block;width:0;height:0;margin:0;padding:0;border:0;zoom:'+(1/Z)+';'+(u?'right:0;':'left:0;')+(v?'bottom:0':'top:0');bx.appendChild(p);return p});f.appendChild(bx);const C=P.map(p=>{const q=p.getBoundingClientRect();return[q.left,q.top]});bx.remove();const M=[];C.forEach(([x,y],i)=>{const[u,v]=Q[i];M.push([x,y,1,0,0,0,-x*u,-y*u,u]);M.push([0,0,0,x,y,1,-x*v,-y*v,v])});for(let c=0;c<8;c++){let p=c;for(let j=c+1;j<8;j++)if(Math.abs(M[j][c])>Math.abs(M[p][c]))p=j;[M[c],M[p]]=[M[p],M[c]];if(Math.abs(M[c][c])<1e-12)return null;for(let j=0;j<8;j++)if(j!==c){const t=M[j][c]/M[c][c];for(let k2=c;k2<9;k2++)M[j][k2]-=t*M[c][k2]}}f._gk=k;return f._gh=M.map((row,i)=>row[8]/row[i])}function fxGlowAt(f,x,y){const h=fxGlowH(f);if(!h)return null;const w=h[6]*x+h[7]*y+1;return[((h[0]*x+h[1]*y+h[2])/w*100).toFixed(2)+'%',((h[3]*x+h[4]*y+h[5])/w*100).toFixed(2)+'%']}function fxTableLight(){const app=document.getElementById('app');if(!app||app.dataset.lt)return;app.dataset.lt=1;
  app.addEventListener('mousemove',e=>{const f=e.target.closest&&e.target.closest('.fld');document.querySelectorAll('.fld').forEach(x=>{if(x!==f)x.style.removeProperty('--mx')});if(!f)return;
-  const q=fxLoc65(f,e.clientX,e.clientY);FXS.lastMx=[f.classList.contains('fe')?'fe':'fp',q[0],q[1]];
-  f.style.setProperty('--mx',FXS.lastMx[1].toFixed(0)+'px');f.style.setProperty('--my',FXS.lastMx[2].toFixed(0)+'px')});
+  const g=fxGlowAt(f,e.clientX,e.clientY);if(!g)return;FXS.lastMx=[f.classList.contains('fe')?'fe':'fp',g[0],g[1]];
+  f.style.setProperty('--mx',g[0]);f.style.setProperty('--my',g[1])});
  app.addEventListener('mouseleave',()=>{FXS.lastMx=null;document.querySelectorAll('.fld').forEach(x=>x.style.removeProperty('--mx'))})}
-function fxRestoreLight(){if(!FXS.lastMx)return;const f=document.querySelector('.fld.'+FXS.lastMx[0]);if(f){f.style.setProperty('--mx',FXS.lastMx[1].toFixed(0)+'px');f.style.setProperty('--my',FXS.lastMx[2].toFixed(0)+'px')}}
+function fxRestoreLight(){if(!FXS.lastMx)return;const f=document.querySelector('.fld.'+FXS.lastMx[0]);if(f){f.style.setProperty('--mx',FXS.lastMx[1]);f.style.setProperty('--my',FXS.lastMx[2])}}
 
 /* ---------- 7. effects ---------- */
 function fxDust(r,n=10,col='210,190,150'){if(!r||!r.width)return;const L=fxLayer(),c=fxCtr(r);for(let i=0;i<n;i++){const d=document.createElement('i');d.className='fxd';d.style.background=`radial-gradient(circle,rgba(${col},.55),rgba(${col},0) 70%)`;L.appendChild(d);
@@ -4556,5 +4564,75 @@ html .gy .gyc{position:absolute;inset:10% 12% 16%;display:flex;align-items:cente
 html .gy .gvi{width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 2px 2px #000c)}
 html .gy.empty .gvi{filter:grayscale(.6) drop-shadow(0 2px 2px #000c)}
 `;document.body.appendChild(st)}catch(e){}
+
+/* ===== v124 (patch_ui70): cursor glow, see-through battleground, lighter names ===== */
+try{const st=document.createElement('style');st.id='p70';st.textContent=`
+html .fld::after{background:radial-gradient(240px circle at var(--mx,-900px) var(--my,-900px),#ffd59238,#0000 70%),radial-gradient(ellipse 40% 80% at 0% 50%,#ff9a4a22,#0000 70%),radial-gradient(ellipse 40% 80% at 100% 50%,#ff9a4a22,#0000 70%)}
+html .fld::before,html.scn .fld::before{background-color:color-mix(in srgb,color-mix(in srgb,var(--b1) 55%,#000) 22%,transparent);
+ box-shadow:inset 0 2px 0 #0004,inset 0 0 28px #0006,inset 0 -1px 0 #ffffff14,0 0 0 1px #ffe2a030,0 0 0 4px #0000001c}
+html .cd .nm b{-webkit-text-stroke:.0313em currentColor;text-shadow:.0155em 0 0 currentColor}
+`;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_anim: fight animations (blink, attack, draw) ===== */
+const PA={l:[],ret:null};
+const paEl=u=>document.querySelector('#app .fld .cd[data-z$=":'+u+'"]')||document.querySelector('#app .cd[data-z$=":'+u+'"]');
+const paSc=(el,r)=>{r=r||el.getBoundingClientRect();return Math.sqrt((r.width*r.height)/((el.offsetWidth*el.offsetHeight)||1))||1};
+// card animations that survive render(): re-attached to the rebuilt card at the same elapsed time
+function paStop(u,tag){PA.l=PA.l.filter(e=>{if(e.uid==u&&e.tag==tag){try{e.a.cancel()}catch(_){}return false}return true})}
+function paRun(u,tag,kf,opt,el){el=el||paEl(u);if(!el||!el.animate)return null;paStop(u,tag);const e={uid:u,tag,kf,opt,t0:performance.now(),el,a:el.animate(kf,opt)};PA.l.push(e);return e}
+function paPost(){const now=performance.now();PA.l=PA.l.filter(e=>{if(now>=e.t0+(e.opt.delay||0)+e.opt.duration&&!e.opt.fill)return false;
+ if(e.el.isConnected)return true;const n=paEl(e.uid);if(!n||!n.animate)return false;e.el=n;e.a=n.animate(e.kf,e.opt);e.a.currentTime=now-e.t0;return true})}
+// infinite CSS animations (glow pulses, dashed target outline, torchlight) keep their phase across renders
+function paSync(){try{if(!document.getAnimations||typeof CSSAnimation=='undefined')return;for(const a of document.getAnimations()){if(!(a instanceof CSSAnimation)||a.startTime===0)continue;
+ const t=a.effect&&a.effect.getTiming&&a.effect.getTiming();if(t&&t.iterations===Infinity&&!t.delay)a.startTime=0}}catch(e){}}
+{const _af=applyFlash;applyFlash=function(){const r=_af.apply(this,arguments);paSync();return r}}
+// blockers line up under their attacker before the FLIP measures them (it used to happen a frame later)
+align=function(){const c=G&&G.cmb;if(!c)return;const sd=c.side=='p'?['p','e']:['e','p'];
+ for(const a in c.blk){const A=document.querySelector(`#app .cd[data-z="${sd[0]}:${a}"]`);const bs=[c.blk[a],c.bx&&c.bx[a]].filter(Boolean);bs.forEach((bu,i)=>{const B=document.querySelector(`#app .cd[data-z="${sd[1]}:${bu}"]`);
+  if(A&&B&&!B.dataset.pal){const ra=A.getBoundingClientRect(),rb=B.getBoundingClientRect(),off=bs.length>1?(i?.55:-.55)*rb.width:0;B.style.left=(ra.left+ra.width/2-rb.left-rb.width/2+off)/paSc(B,rb)+'px';B.dataset.pal=1}})}};
+{const _ap=animPre;animPre=function(){const P=_ap.apply(this,arguments);if(P){P.rot=new Map();document.querySelectorAll('#app .fld .cd[data-z]').forEach(el=>{const k=anKey(el);if(k)P.rot.set(k,getComputedStyle(el).rotate)})}return P}}
+// FLIP: cards slide (and tap/untap) between renders using translate/rotate, so the tap rotation never skews them
+cardMoves=function(P){try{align()}catch(e){}const moved=[],fresh=[];
+ document.querySelectorAll('#app .cd[data-z]').forEach(el=>{const k=anKey(el);if(!k)return;const o=P.m.get(k);
+  if(!o){if(el.style.visibility!='hidden')fresh.push(el);return}
+  if(PA.ret&&PA.ret.has(k))return;
+  const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,r0=P.rot&&P.rot.get(k),r1=r0!=null?getComputedStyle(el).rotate:null,turn=r0!=null&&r0!==r1;
+  const cur=PA.l.find(e=>e.uid==k&&e.tag=='mv');if(cur&&!turn&&Math.abs(cur.bx-cx)+Math.abs(cur.by-cy)<3)return;
+  const s=paSc(el,r),dx=((o.left+o.width/2)-cx)/s,dy=((o.top+o.height/2)-cy)/s;if(Math.abs(dx)+Math.abs(dy)<3/s&&!turn)return;
+  moved.push([el,k,dx,dy,cx,cy,turn?[r0=='none'?'0deg':r0,r1=='none'?'0deg':r1]:null])});
+ moved.forEach(([el,k,dx,dy,cx,cy,rt])=>{const f={translate:dx.toFixed(1)+'px '+dy.toFixed(1)+'px'},t={translate:'0px 0px'};if(rt){f.rotate=rt[0];t.rotate=rt[1]}
+  const e=paRun(k,'mv',[f,t],{duration:450,easing:'cubic-bezier(.22,.9,.3,1)'},el);if(e){e.bx=cx;e.by=cy}});
+ const fe=fresh.filter(e=>e.closest('.fld')),fh=fresh.filter(e=>e.closest('.hand'));
+ if(fe.length)cdFrom(fe,{y:i=>fe[i].closest('.fe')?-36:36,scale:1.3,opacity:0,duration:.5,ease:'back.out(1.7)',stagger:.06});
+ if(fh.length)cdFrom(fh,{y:70,opacity:0,duration:.4,ease:'power2.out',stagger:.05})};
+// damage: a warm flash that fades into the card's own filter on one curve, plus a small shake
+function paHit(u){const el=document.querySelector('#app .fld .cd[data-z$=":'+u+'"]');if(!el)return;let b=getComputedStyle(el).filter;b=!b||b=='none'?'':b+' ';
+ paRun(u,'hf',[{filter:b+'brightness(1.7) sepia(.6) saturate(3) hue-rotate(-25deg)'},{filter:b+'brightness(1) sepia(0) saturate(1) hue-rotate(0deg)'}],{duration:520,easing:'cubic-bezier(.25,.6,.3,1)'},el);
+ paRun(u,'hs',[{transform:'translateX(-7px)'},{transform:'translateX(5px)',offset:.25},{transform:'translateX(-3px)',offset:.5},{transform:'translateX(1px)',offset:.75},{transform:'none'}],{duration:420,easing:'ease-out'},el)}
+{const _ff=fightFx;fightFx=function(P,first){const keep=P&&P.dm;if(P&&!first)P.dm=new Proxy({},{get:()=>Infinity});try{_ff.call(this,P,first)}finally{if(P)P.dm=keep}
+ if(first||!P||!G||!G.p||!G.e)return;[...G.p.bf,...G.e.bf].forEach(c=>{if((c.dmg||0)>((keep&&keep[c.u])||0))paHit(c.u)})}}
+// attack: ease toward the owner's side, lunge until the card meets its target, impact, resolve, glide home
+fxLunge=function(done){const c=G&&G.cmb;if(!c||FXS.lunging)return done();const side=c.side,opp=side=='p'?'e':'p',T=[];
+ c.atk.forEach(u=>{const el=document.querySelector('#app .cd[data-z="'+side+':'+u+'"]');if(!el)return;const bu=c.blk&&c.blk[u],ts=bu?'#app .cd[data-z="'+opp+':'+bu+'"]':'[data-z="'+(opp=='e'?'ef':'pf')+'"]',tEl=document.querySelector(ts);if(tEl)T.push([u,el,ts,tEl])});
+ if(!T.length)return done();FXS.lunging=1;try{SFX.play('swing')}catch(e){}
+ const own=side=='p'?1:-1,WU=210,LG=150,ST=70;
+ T.forEach(([u,el,,tEl],i)=>{const a=el.getBoundingClientRect(),b=tEl.getBoundingClientRect(),s=paSc(el,a),ax=a.left+a.width/2,ay=a.top+a.height/2,vx=b.left+b.width/2-ax,vy=b.top+b.height/2-ay,dist=Math.hypot(vx,vy)||1,ux=vx/dist,uy=vy/dist;
+  const ext=r=>Math.min(Math.abs(ux)>.001?r.width/2/Math.abs(ux):1e9,Math.abs(uy)>.001?r.height/2/Math.abs(uy):1e9);
+  const go=Math.max(dist*.3,dist-ext(a)-ext(b)+Math.min(14,ext(b)*.3)),tx=ux*go/s,ty=uy*go/s,wx=-ux*5/s,wy=own*16/s;
+  el.style.zIndex=60;
+  paRun(u,'lg',[{translate:'0px 0px',scale:'1',easing:'cubic-bezier(.33,0,.25,1)'},{translate:wx.toFixed(1)+'px '+wy.toFixed(1)+'px',scale:'1.04',offset:WU/(WU+LG),easing:'cubic-bezier(.5,0,.8,.45)'},{translate:tx.toFixed(1)+'px '+ty.toFixed(1)+'px',scale:'1.08'}],{duration:WU+LG,delay:i*ST,fill:'forwards'},el)});
+ // impact when every lunge has really finished (WAAPI starts on the next frame, so a timer fires early)
+ const t0=performance.now(),hit=(T.length-1)*ST+WU+LG,ready=()=>T.every(([u])=>{const e=PA.l.find(x=>x.uid==u&&x.tag=='lg');return !e||!e.el.isConnected||e.a.playState=='finished'});
+ const wait=()=>{if(ready()||performance.now()-t0>hit+600)impact();else requestAnimationFrame(wait)};setTimeout(wait,hit-20);
+ const impact=()=>{const imp=new Map(),old=new Map();
+  T.forEach(([u,,ts])=>{const e=PA.l.find(x=>x.uid==u&&x.tag=='lg');if(e){PA.l.splice(PA.l.indexOf(e),1);if(e.el.isConnected){const r=e.el.getBoundingClientRect();imp.set(String(u),[r.left+r.width/2,r.top+r.height/2]);old.set(String(u),e)}}
+   try{fxImpact(fxRect(document.querySelector(ts)))}catch(e){}});
+  PA.ret=imp;FXS.lunging=0;try{done()}finally{PA.ret=null}
+  imp.forEach(([x0,y0],u)=>{const o=old.get(u);if(o&&o.el.isConnected){try{o.a.cancel()}catch(e){}o.el.style.zIndex=''}
+   paStop(u,'mv');const el=document.querySelector('#app .fld .cd[data-z="'+side+':'+u+'"]');if(!el)return;
+   const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,s=paSc(el,r),dx=(x0-cx)/s,dy=(y0-cy)/s,zi=el.style.zIndex;el.style.zIndex=50;
+   const e=paRun(u,'mv',[{translate:dx.toFixed(1)+'px '+dy.toFixed(1)+'px',scale:'1.08'},{translate:'0px 0px',scale:'1'}],{duration:440,easing:'cubic-bezier(.2,.7,.25,1)'},el);
+   if(e){e.bx=cx;e.by=cy;e.a.finished.then(()=>{if(e.el===el)el.style.zIndex=zi}).catch(()=>{})}})}};
+{const _R=render;render=function(){const out=_R.apply(this,arguments);try{paPost()}catch(e){}paSync();return out}}
 showChars();
 </script>
