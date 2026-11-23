@@ -810,27 +810,34 @@ def build_act3():
     print('Wrote Act III frames to art/manifest.json.')
 
 # ---- Enemy figures: full-length art of each opponent, shown over its fight background on the pre-fight screen ----
+# Ben (Nov 2026): the first figures looked like AI art pasted on the backdrop. They now use the backdrops' own
+# hand-made look (SCENE_BASE's wording) and each takes its backdrop's palette, so figure and scene feel painted together.
 FIGURE_BASE = (
-    'A full-length figure of an enemy for a mythology card game\'s pre-fight screen, made by hand like a 1993 fantasy '
-    'game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and '
-    'watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, '
-    'dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The '
-    'whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully '
-    'transparent background: no ground, no scenery, no frame, no text, no glow behind it.'
+    'A full-length figure of an enemy for the pre-fight screen of a mythology card game, made by hand like a 1993 '
+    'fantasy trading-card or game-book illustration, exactly matching the game\'s painted backgrounds: bold, wobbly '
+    'black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. '
+    'Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, '
+    'blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper '
+    'texture and grain showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed '
+    'card with slightly faded, misregistered colour, in the limited palette given below. Absolutely not realistic: no '
+    'realistic lighting or anatomy rendering, no glossy highlights, no glow, no soft gradients, no fine fur or skin '
+    'detail, no oil-painting look, no 3D, no digital painting, not modern concept art or AI art. '
+    'A strong, menacing pose facing the viewer as an opponent about to fight; the whole figure fits inside the frame. '
+    'Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text.'
 )
-# hero -> id -> (opponent name exactly as in the game, subject)
+# hero -> id -> (opponent name exactly as in the game, its backdrop's id in scenes.json, subject)
 FIGURES = {
-    'ody': {'poly': ('Polyphemus', 'Polyphemus the Cyclops of Homer\'s Odyssey: a towering, hairy shepherd giant with a '
+    'ody': {'poly': ('Polyphemus', 'polyphemus', 'Polyphemus the Cyclops of Homer\'s Odyssey: a towering, hairy shepherd giant with a '
                      'single huge glaring eye in the middle of his brow, wild black beard, a sheepskin over his shoulders, '
                      'gripping a club made from a whole olive trunk, a ram at his feet, roaring. Greek in every detail.')},
-    'odin': {'fenrir': ('Fenrir\'s Brood', 'The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning '
+    'odin': {'fenrir': ('Fenrir\'s Brood', 'fenrir', 'The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning '
                         'yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, two '
                         'snarling wolf cubs at its paws, lunging forward. Norse in every detail.')},
-    'wukong': {'bulldemon': ('The Bull Demon King', 'The Bull Demon King of Journey to the West: a huge demon king with '
+    'wukong': {'bulldemon': ('The Bull Demon King', 'bulldemon', 'The Bull Demon King of Journey to the West: a huge demon king with '
                              'the head of a black bull and great curved horns, burning eyes, in red-and-gold lacquered '
                              'armour and a flowing cape, swinging an iron cudgel, flames curling around him. Chinese, Ming '
                              'dynasty, with the brush rhythm of Chinese painting.')},
-    'thoth': {'sekhmet': ('Sekhmet, the Eye of Ra', 'Sekhmet, the lioness-headed Egyptian goddess of war and plague: '
+    'thoth': {'sekhmet': ('Sekhmet, the Eye of Ra', 'sekhmet', 'Sekhmet, the lioness-headed Egyptian goddess of war and plague: '
                           'a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a '
                           'rearing cobra, in a red linen dress and a broad collar of gold and lapis, holding a sceptre, '
                           'mouth open in a roar, desert heat rippling around her. Ancient Egyptian in every detail.')},
@@ -1044,8 +1051,13 @@ def main():
     for k, (size, bg, prompt) in HERO_UI.get(a.hero, {}).items():
         icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/{folder}/{k}.png', 'size': size,
                     'format': 'png', 'background': bg}
-    for k, (nm, t) in FIGURES.get(a.hero, {}).items():
-        icons[f'fig_{k}'] = {'name': f'{nm} figure', 'opponent': nm, 'prompt': f'{FIGURE_BASE}\n\nSubject: {t}',
+    _scn = json.load(open(os.path.join(ART, 'scenes.json'), encoding='utf-8')).get(a.hero, {})
+    _brush = {'wukong': ' The brush rhythm of Chinese ink-wash painting mixed into the pen-and-ink style.',
+              'thoth': ' The flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style.'}
+    for k, (nm, sid, t) in FIGURES.get(a.hero, {}).items():
+        pal = (_scn.get(sid) or {}).get('palette', '')
+        icons[f'fig_{k}'] = {'name': f'{nm} figure', 'opponent': nm,
+                             'prompt': f'{FIGURE_BASE}{_brush.get(a.hero, "")}\n\nSubject: {t}\nColour: {pal}.',
                              # webp keeps transparency at a fraction of a png's size (this Mac can't encode webp)
                              'output': f'art/icons/{folder}/fig_{k}.webp', 'size': '1024x1536', 'format': 'webp',
                              'background': 'transparent'}

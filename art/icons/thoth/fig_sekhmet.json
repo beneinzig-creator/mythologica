@@ -3,20 +3,20 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "high",
   "size": "1024x1536",
-  "created": "2026-11-22 20:35:00",
-  "prompt": "A full-length figure of an enemy for a mythology card game's pre-fight screen, made by hand like a 1993 fantasy game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text, no glow behind it.\n\nSubject: Sekhmet, the lioness-headed Egyptian goddess of war and plague: a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a rearing cobra, in a red linen dress and a broad collar of gold and lapis, holding a sceptre, mouth open in a roar, desert heat rippling around her. Ancient Egyptian in every detail.",
+  "created": "2026-11-22 20:44:49",
+  "prompt": "A full-length figure of an enemy for the pre-fight screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration, exactly matching the game's painted backgrounds: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour, in the limited palette given below. Absolutely not realistic: no realistic lighting or anatomy rendering, no glossy highlights, no glow, no soft gradients, no fine fur or skin detail, no oil-painting look, no 3D, no digital painting, not modern concept art or AI art. A strong, menacing pose facing the viewer as an opponent about to fight; the whole figure fits inside the frame. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text. The flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style.\n\nSubject: Sekhmet, the lioness-headed Egyptian goddess of war and plague: a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a rearing cobra, in a red linen dress and a broad collar of gold and lapis, holding a sceptre, mouth open in a roar, desert heat rippling around her. Ancient Egyptian in every detail.\nColour: blazing orange, red and gold (#2a0a04 to #e07a24) with black granite and white glare.",
   "revised_prompt": null,
   "usage": {
-    "input_tokens": 224,
+    "input_tokens": 391,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 224
+      "text_tokens": 391
     },
     "output_tokens": 1372,
     "output_tokens_details": {
       "image_tokens": 1372,
       "text_tokens": 0
     },
-    "total_tokens": 1596
+    "total_tokens": 1763
   }
 }
