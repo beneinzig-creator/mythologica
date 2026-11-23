@@ -14,6 +14,7 @@
 # 6. Keywords already written as a sentence in the card text ("Resilient. When it dies...", "Ward.") are not
 #    added a second time by the auto keyword line.
 
+# (merge with patch_tokens: the strip uses the painted Foresee icons from art/game/icons/thoth/)
 # ---- 1. foresee strip ----
 _b3("${foreStrip()}${clkBadge()}", "${clkBadge()}")
 _b3('<div class="board"><div class="fld fe">', '${foreStrip()}<div class="board"><div class="fld fe">')
@@ -54,8 +55,8 @@ function amBadge(c,t){if(typeof amOf!='function')return'';const A=amOf(c);if(!A.
 function thFxp(c,L){if(!isC(c))return;const g=c.gl||[];if(g.length)L.push('<b>Glyphs</b> ('+g.length+'/3): '+g.map(glName).join(', ')+'.');
  if(typeof amOf=='function')amOf(c).forEach(a=>{const d=D[a.id];L.push('<b>Wears '+d[0]+'</b>: '+(TXT[a.id]||d[6])+((a.gl||[]).length?' Glyphs: '+a.gl.map(glName).join(', ')+'.':''))})}
 function foreStrip2(){const e=G.e;if(!e||!G.p)return'';const top=e.deck.filter(c=>c.fs).slice().reverse(),hd=e.hand.filter(c=>c.fs);if(!top.length&&!hd.length)return'';
- const f=c=>{const n=D[c.id][0];return`<span class="fsc${c.pre?' pre':''}" title="${n}${c.pre?' (Preempted: it will fail)':''}${c.rc?' (Recorded: you get a copy when they play it)':''}">${c.pre?'<i class="fsm">⛔</i>':''}${c.rc?'<i class="fsm">✒\uFE0F</i>':''}${n}</span>`};
- return`<div class="fsee"><i class="fsm fse" title="Foreseen">👁</i>${hd.length?'<b>Hand</b>'+hd.map(f).join(''):''}${top.length?'<b>Next</b>'+top.map(f).join(''):''}</div>`}
+ const f=c=>{const n=D[c.id][0];return`<span class="fsc${c.pre?' pre':''}" title="${n}${c.pre?' (Preempted: it will fail)':''}${c.rc?' (Recorded: you get a copy when they play it)':''}">${c.pre?'<img class="tki" src="art/game/icons/thoth/preempt.png" alt="Preempted" draggable="false">':''}${c.rc?'<img class="tki" src="art/game/icons/thoth/record.png" alt="Recorded" draggable="false">':''}${n}</span>`};
+ return`<div class="fsee"><img class="tki fse" src="art/game/icons/thoth/foresee.png" alt="Foreseen" title="Foreseen" draggable="false">${hd.length?'<b>Hand</b>'+hd.map(f).join(''):''}${top.length?'<b>Next</b>'+top.map(f).join(''):''}</div>`}
 try{const st=document.createElement('style');st.id='pthui';st.textContent=`
 .fsee{position:absolute;grid-row:2;grid-column:1/-1;align-self:start;justify-self:center;top:6px;max-width:min(1000px,calc(100% - 200px));z-index:6;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 5px;pointer-events:none;font:13px/1.25 "Palatino Linotype",Palatino,Georgia,serif;color:#efe4c8;margin:0}
 .fsee b{font:700 11px/1 "Palatino Linotype",Palatino,Georgia,serif;color:#e0b04a;text-transform:uppercase;letter-spacing:.08em;margin:0 1px 0 8px}
