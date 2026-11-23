@@ -822,25 +822,40 @@ FIGURE_BASE = (
     'card with slightly faded, misregistered colour, in the limited palette given below. Absolutely not realistic: no '
     'realistic lighting or anatomy rendering, no glossy highlights, no glow, no soft gradients, no fine fur or skin '
     'detail, no oil-painting look, no 3D, no digital painting, not modern concept art or AI art. '
-    'A strong, menacing pose facing the viewer as an opponent about to fight; the whole figure fits inside the frame. '
-    'Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text.'
+    # Ben, round three: not head-on, more depth, and it must look painted into its scene rather than pasted on.
+    'Seen in three-quarter view from slightly below, turned partly away and caught mid-action in a dramatic, '
+    'dynamic pose: never standing straight, never facing the viewer head-on like an avatar. Give it real depth and '
+    'volume: overlapping forms, foreshortening, and shading washes and ink hatching that model the body in light '
+    'and shadow, lit by the light of its scene (given below), as if painted into the same picture as the backdrop; '
+    'still hand-drawn, never glossy, airbrushed or rendered. A soft, semi-transparent painted shadow on the ground '
+    'under the feet and a few wisps of the scene\'s own atmosphere (smoke, mist or embers) around the lower legs, '
+    'so the figure sits in the scene. The whole figure fits inside the frame. '
+    'Cut out cleanly on a fully transparent background apart from that shadow and those wisps: no scenery, no '
+    'moon, sun, fire or other light source drawn in (the backdrop already has it), no frame, no text.'
 )
 # hero -> id -> (opponent name exactly as in the game, its backdrop's id in scenes.json, subject)
 FIGURES = {
     'ody': {'poly': ('Polyphemus', 'polyphemus', 'Polyphemus the Cyclops of Homer\'s Odyssey: a towering, hairy shepherd giant with a '
                      'single huge glaring eye in the middle of his brow, wild black beard, a sheepskin over his shoulders, '
-                     'gripping a club made from a whole olive trunk, a ram at his feet, roaring. Greek in every detail.')},
+                     'striding out of the shadows with the olive-trunk club swung back over his shoulder and one huge '
+                     'hand reaching forward, a ram shying away at his feet, roaring. Greek in every detail. Light: the red '
+                     'glow of the hearth fire from the lower left.')},
     'odin': {'fenrir': ('Fenrir\'s Brood', 'fenrir', 'The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning '
-                        'yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, two '
-                        'snarling wolf cubs at its paws, lunging forward. Norse in every detail.')},
+                        'yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, '
+                        'prowling sideways with its head low and turned, hackles raised, two snarling cubs flanking it. '
+                        'Norse in every detail. Light: a blood-red moon behind it from the upper right, catching the edges '
+                        'of its fur.')},
     'wukong': {'bulldemon': ('The Bull Demon King', 'bulldemon', 'The Bull Demon King of Journey to the West: a huge demon king with '
                              'the head of a black bull and great curved horns, burning eyes, in red-and-gold lacquered '
-                             'armour and a flowing cape, swinging an iron cudgel, flames curling around him. Chinese, Ming '
-                             'dynasty, with the brush rhythm of Chinese painting.')},
+                             'armour and a swirling cape, turning in a wide stance with the iron cudgel raised behind him '
+                             'for a blow, flames curling around him. Chinese, Ming dynasty, with the brush rhythm of Chinese '
+                             'painting. Light: the glow of lava from the right.')},
     'thoth': {'sekhmet': ('Sekhmet, the Eye of Ra', 'sekhmet', 'Sekhmet, the lioness-headed Egyptian goddess of war and plague: '
                           'a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a '
-                          'rearing cobra, in a red linen dress and a broad collar of gold and lapis, holding a sceptre, '
-                          'mouth open in a roar, desert heat rippling around her. Ancient Egyptian in every detail.')},
+                          'rearing cobra, in a red linen dress and a broad collar of gold and lapis, striding forward in '
+                          'three-quarter profile with the sceptre swung back in one hand, head turned to roar, heat haze '
+                          'around her. Ancient Egyptian in every detail. Light: the blazing sun above and behind her, hot '
+                          'light along her edges.')},
 }
 
 STUB = r'''

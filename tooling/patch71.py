@@ -38,8 +38,12 @@ _b3('.dft{position:absolute;inset:0;display:flex;',
     'html.mapfull .mapscr .ovt,html.mapfull .mapscr .dsub,html.mapfull .mapscr h1,html.mapfull .mapscr p{text-shadow:0 1px 2px #000,0 0 8px #000,0 0 16px #000c}'
     # figure intro: the fight background shows through, the enemy stands tall
     '#fxin.fig{background:radial-gradient(ellipse at 50% 55%,#0000 35%,#0008 80%,#000c 100%),var(--scn,none) center/cover no-repeat,#0b0908}'
-    '#fxin.fig .fxin-ic{font-size:0;filter:drop-shadow(0 10px 30px #000) drop-shadow(0 0 2px #000)}'
-    '#fxin .fxin-fig{display:block;height:min(62vh,640px);width:auto;max-width:86vw;object-fit:contain;margin:4px auto}'
+    # the figure stands in the scene: no cut-out halo, feet fading into the ground, and the scene's vignette
+    # laid over figure and backdrop alike
+    '#fxin.fig .fxin-ic{font-size:0;filter:none}'
+    '#fxin .fxin-fig{display:block;height:min(70vh,720px);width:auto;max-width:90vw;object-fit:contain;margin:0 auto -5vh;'
+    '-webkit-mask-image:linear-gradient(to bottom,#000 86%,#0000 100%);mask-image:linear-gradient(to bottom,#000 86%,#0000 100%)}'
+    '#fxin.fig::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,#0000 50%,#0005 85%,#0009 100%)}'
     '#fxin.fig .fxin-n,#fxin.fig .fxin-k,#fxin.fig .fxin-l{text-shadow:0 2px 4px #000,0 0 14px #000}'
     '#fxin.reg .fxin-k{color:#d8c79a}'
     '.dft{position:absolute;inset:0;display:flex;')

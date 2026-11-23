@@ -3,20 +3,20 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "high",
   "size": "1024x1536",
-  "created": "2026-11-22 20:43:45",
-  "prompt": "A full-length figure of an enemy for the pre-fight screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration, exactly matching the game's painted backgrounds: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour, in the limited palette given below. Absolutely not realistic: no realistic lighting or anatomy rendering, no glossy highlights, no glow, no soft gradients, no fine fur or skin detail, no oil-painting look, no 3D, no digital painting, not modern concept art or AI art. A strong, menacing pose facing the viewer as an opponent about to fight; the whole figure fits inside the frame. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text.\n\nSubject: The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, two snarling wolf cubs at its paws, lunging forward. Norse in every detail.\nColour: near-black brown to rust red (#160c0c to #6a3a30) with a red moon and yellow wolf-eye accents.",
+  "created": "2026-11-22 20:56:49",
+  "prompt": "A full-length figure of an enemy for the pre-fight screen of a mythology card game, made by hand like a 1993 fantasy trading-card or game-book illustration, exactly matching the game's painted backgrounds: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour, in the limited palette given below. Absolutely not realistic: no realistic lighting or anatomy rendering, no glossy highlights, no glow, no soft gradients, no fine fur or skin detail, no oil-painting look, no 3D, no digital painting, not modern concept art or AI art. Seen in three-quarter view from slightly below, turned partly away and caught mid-action in a dramatic, dynamic pose: never standing straight, never facing the viewer head-on like an avatar. Give it real depth and volume: overlapping forms, foreshortening, and shading washes and ink hatching that model the body in light and shadow, lit by the light of its scene (given below), as if painted into the same picture as the backdrop; still hand-drawn, never glossy, airbrushed or rendered. A soft, semi-transparent painted shadow on the ground under the feet and a few wisps of the scene's own atmosphere (smoke, mist or embers) around the lower legs, so the figure sits in the scene. The whole figure fits inside the frame. Cut out cleanly on a fully transparent background apart from that shadow and those wisps: no scenery, no moon, sun, fire or other light source drawn in (the backdrop already has it), no frame, no text.\n\nSubject: The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, prowling sideways with its head low and turned, hackles raised, two snarling cubs flanking it. Norse in every detail. Light: a blood-red moon behind it from the upper right, catching the edges of its fur.\nColour: near-black brown to rust red (#160c0c to #6a3a30) with a red moon and yellow wolf-eye accents.",
   "revised_prompt": null,
   "usage": {
-    "input_tokens": 358,
+    "input_tokens": 545,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 358
+      "text_tokens": 545
     },
     "output_tokens": 1372,
     "output_tokens_details": {
       "image_tokens": 1372,
       "text_tokens": 0
     },
-    "total_tokens": 1730
+    "total_tokens": 1917
   }
 }
