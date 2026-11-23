@@ -1,0 +1,1 @@
+Not a hero: holds no card pictures. art/frames/tsoul has the frames for Thoth's Body (common slot, code kc), Spirit (uncommon slot, ku) and Name (rare slot spell version, krs) cards; patch_soulframes applies them.

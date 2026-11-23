@@ -16040,6 +16040,33 @@
         }
       },
       "icons": {}
+    },
+    "tsoul": {
+      "name": "Body, Spirit and Name",
+      "cards": {},
+      "opponents": {},
+      "tutorial": {},
+      "frames": {
+        "common": {
+          "name": "Body, Spirit and Name common frame",
+          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nThe frame of a BODY card (the khat, the mummified body): the whole border is made of tightly wrapped, aged linen mummy bandages over black resin, bound with thin gold bands, a pair of upright djed pillars down the two sides, and a small reclining mummy on a lion-legged bier along the bottom edge. Colours: pale bone linen, glossy black resin and gold only. Ancient Egyptian afterlife look, from the Book of the Dead and tomb painting, hand-painted, with no readable hieroglyphs. Unmistakably different from an ordinary card frame.\nHeavily played condition: whitened, rounded and slightly dog-eared corners, frayed edges, a soft crease or two across the frame, small scuffs and scratches, light grime and faded ink, like a much-loved card shuffled hundreds of times. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "output": "art/frames/tsoul/common.webp",
+          "size": "1024x1536"
+        },
+        "uncommon": {
+          "name": "Body, Spirit and Name uncommon frame",
+          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nThe frame of a SPIRIT card (the ba, the soul-bird): a light, airy border of turquoise faience and pale sky blue, with soft white and silver feathers along the sides, two human-headed ba-birds with outspread wings perched at the top corners, and small silver stars scattered in the border. Colours: turquoise, sky blue, white and silver only. Ancient Egyptian afterlife look, from the Book of the Dead and tomb painting, hand-painted, with no readable hieroglyphs. Unmistakably different from an ordinary card frame.\nModerately played condition: whitened corners, light wear along the edges, a few small scuffs, slightly faded ink. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "output": "art/frames/tsoul/uncommon.webp",
+          "size": "1024x1536"
+        },
+        "rare": {
+          "name": "Body, Spirit and Name rare frame",
+          "prompt": "A blank, empty trading-card frame template for a card game based on ancient Egyptian myth and the Book of the Dead, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nThe frame of a NAME card (the ren, the true name): the whole border is a single great golden cartouche, an oval rope ring of twisted gold tied at the bottom with a gold knot, on deep carnelian red, with a band of red-and-gold ornament like writing (no readable signs) running around it and a scribe's reed pen and palette at the top centre. Colours: deep carnelian red and burnished gold only. Ancient Egyptian afterlife look, from the Book of the Dead and tomb painting, hand-painted, with no readable hieroglyphs. Unmistakably different from an ordinary card frame.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "output": "art/frames/tsoul/rare.webp",
+          "size": "1024x1536"
+        }
+      },
+      "icons": {}
     }
   },
   "_note": "Generated by art/build_manifest.py from tooling/n1.html. Do not edit by hand: change art/subjects.json or the script, then re-run it.",

@@ -17,7 +17,7 @@ ART = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(ART)
 SRC = os.path.join(ROOT, 'tooling', 'n1.html')
 
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth', 'act3': 'act3'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth', 'act3': 'act3', 'tsoul': 'tsoul'}
 TYPE = {'C': 'Army member', 'I': 'Quick spell', 'S': 'Spell', 'E': 'Modifier', 'A': 'Item'}
 RARITY = {'C': 'Common', 'U': 'Uncommon', 'R': 'Rare', 'L': 'Legendary'}
 SETTING = {
@@ -784,6 +784,43 @@ FRAMES['act3'] = {
 }
 
 
+# ---- Thoth's Body, Spirit and Name: each card a sundering makes gets its own afterlife frame ----
+# Not a hero: three frames stored in the common/uncommon/rare slots of art/frames/tsoul (codes kc, ku, kr(s)), so
+# they reuse the frame pipeline. Each has its own colour and motif so the three read apart at a glance.
+SOUL_LOOK = ('Ancient Egyptian afterlife look, from the Book of the Dead and tomb painting, hand-painted, with no '
+             'readable hieroglyphs. Unmistakably different from an ordinary card frame.')
+FRAMES['tsoul'] = {
+    'common': 'The frame of a BODY card (the khat, the mummified body): the whole border is made of tightly wrapped, '
+              'aged linen mummy bandages over black resin, bound with thin gold bands, a pair of upright djed pillars '
+              'down the two sides, and a small reclining mummy on a lion-legged bier along the bottom edge. Colours: '
+              'pale bone linen, glossy black resin and gold only. ' + SOUL_LOOK,
+    'uncommon': 'The frame of a SPIRIT card (the ba, the soul-bird): a light, airy border of turquoise faience and pale '
+                'sky blue, with soft white and silver feathers along the sides, two human-headed ba-birds with '
+                'outspread wings perched at the top corners, and small silver stars scattered in the border. Colours: '
+                'turquoise, sky blue, white and silver only. ' + SOUL_LOOK,
+    'rare': 'The frame of a NAME card (the ren, the true name): the whole border is a single great golden cartouche, an '
+            'oval rope ring of twisted gold tied at the bottom with a gold knot, on deep carnelian red, with a band of '
+            'red-and-gold ornament like writing (no readable signs) running around it and a scribe\'s reed pen and '
+            'palette at the top centre. Colours: deep carnelian red and burnished gold only. ' + SOUL_LOOK,
+}
+
+
+def build_frames_only(key, label):
+    """Frames for something that isn't a hero in CHARS (Thoth's Body/Spirit/Name): write just its frames."""
+    out = os.path.join(ART, 'manifest.json')
+    old = json.load(open(out, encoding='utf-8'))
+    fbase = FRAME_BASE.replace('the Odyssey and Greek myth', 'ancient Egyptian myth and the Book of the Dead')
+    frames = {r: {'name': f'{label} {r} frame', 'prompt': f'{fbase}\n\n{t}\n{CONDITION[r]} {WEAR_NOTE}',
+                  'output': f'art/frames/{key}/{r}.webp', 'size': '1024x1536'}
+              for r, t in FRAMES[key].items()}
+    old.setdefault('heroes', {})[key] = {'name': label, 'cards': {}, 'opponents': {}, 'tutorial': {},
+                                         'frames': frames, 'icons': {}}
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump(old, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+    print(f'Wrote {label} frames to art/manifest.json.')
+
+
 def build_act3():
     """Act III has no hero in CHARS: write only its frames into manifest.json (scenes come from scenes.json)."""
     out = os.path.join(ART, 'manifest.json')
@@ -881,6 +918,8 @@ def main():
     a = ap.parse_args()
     if a.hero == 'act3':
         return build_act3()
+    if a.hero == 'tsoul':
+        return build_frames_only('tsoul', 'Body, Spirit and Name')
 
     g = load_game()
     if a.hero not in g['CHARS']:
