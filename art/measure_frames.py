@@ -15,7 +15,7 @@ Uses only Python and macOS `sips`.
 import argparse, json, os, struct, subprocess, sys, tempfile
 
 ART = os.path.dirname(os.path.abspath(__file__))
-HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth', 'act3': 'act3'}
+HERO_DIR = {'ody': 'odysseus', 'odin': 'odin', 'wukong': 'wukong', 'thoth': 'thoth', 'act3': 'act3', 'tsoul': 'tsoul'}
 
 # x0, y0, x1, y1 in pixels on the 1024x1536 frame
 MANUAL = {'ody': {
@@ -69,6 +69,15 @@ MANUAL = {'ody': {
                   'text': (132, 950, 893, 1388), 'pt': (735, 1335, 925, 1408)},
     'legendary': {'name': (90, 170, 862, 238),  'cost': (868, 160, 955, 245), 'type': (88, 858, 938, 930),
                   'text': (92, 940, 933, 1350), 'pt': (785, 1300, 950, 1380)},
+}, 'tsoul': {
+    # Thoth's Body (common slot), Spirit (uncommon slot) and Name (rare slot) frames, read by eye (Nov 2026). The
+    # Spirit's name box stays clear of the soul-birds at both ends.
+    'common':    {'name': (100, 70, 858, 140),  'cost': (868, 62, 980, 165), 'type': (95, 840, 938, 908),
+                  'text': (92, 925, 938, 1320), 'pt': (812, 1318, 980, 1405)},
+    'uncommon':  {'name': (185, 90, 722, 158),  'cost': (732, 82, 830, 172), 'type': (152, 868, 872, 940),
+                  'text': (90, 955, 934, 1410), 'pt': (775, 1360, 970, 1448)},
+    'rare':      {'name': (132, 104, 792, 186), 'cost': (800, 92, 915, 195), 'type': (108, 840, 922, 910),
+                  'text': (120, 925, 903, 1368), 'pt': (742, 1322, 925, 1395)},
 }}
 
 
