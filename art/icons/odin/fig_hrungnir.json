@@ -1,0 +1,22 @@
+{
+  "id": "fig_hrungnir",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-23 15:09:40",
+  "prompt": "A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene's own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the picture stays a little darker and calmer for a name to be written over it. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: Grjotunagardar, the border of the giants' lands in Norse myth, where Thor fought the stone giant Hrungnir in a duel (holmgang): a ring of standing stones marking the duelling ground on a bleak upland; a colossal giant with a heart and head of stone looming as a silhouette with a whetstone club at the far right; a clay giant (Mokkurkalfi) crumbling at the far left; shattered rock and a broken hammer-struck boulder at the lower corners; a grey stormy sky Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black slate to stone grey (#121418 to #5a6068) with a faint storm-blue accent.\n\nIn the scene: Hrungnir the stone giant, a giant of grey rock with a three-horned stone heart in his chest, holding a whetstone club and a stone shield. Norse in every detail. A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight at the viewer. Not attacking, not shouting.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 554,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 554
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1926
+  }
+}

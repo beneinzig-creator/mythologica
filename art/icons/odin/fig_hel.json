@@ -1,0 +1,22 @@
+{
+  "id": "fig_hel",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-23 15:05:58",
+  "prompt": "A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene's own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the picture stays a little darker and calmer for a name to be written over it. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: Helheim, the cold realm of the dead under the goddess Hel in Norse myth: the gate of Hel's hall Eljudnir, black and frost-rimed, at the far right; the bridge Gjallarbru over the icy river Gjoll fading into mist at the left; pale draugr and the shades of the dead shuffling as grey silhouettes along the right edge; dead birch trees and a heap of old Viking helmets and broken swords at the lower corners; the great hound Garm chained by the gate; a dim sunless sky Distinctly Norse, Viking Age: no Greek temples, columns or Mediterranean elements.\nColour: near-black blue-grey to pale grey-green (#0c1214 to #7f9a9a) with sickly bone-white accents.\n\nIn the scene: A draugr, an undead Viking warrior with grey shrunken skin, rusted mail and a notched axe, standing at the head of a host of the dead. Norse in every detail. A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight at the viewer. Not attacking, not shouting.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 560,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 560
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1932
+  }
+}

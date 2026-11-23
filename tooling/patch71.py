@@ -23,6 +23,8 @@ _b3("if(GSOK()&&(G.boss||G.elt))gsap.delayedCall(.1,fxIntro)",
     "if(GSOK())gsap.delayedCall(.1,()=>{if(G.boss||G.elt||(G.e&&FIG[G.e.nm]))fxIntro()})")
 _b3("function fxIntro(){const B=G.boss?BOSS[G.bi]:ELITES[G.elt-1];if(!B)return;const boss=!!G.boss,",
     'const FIG=' + _json71.dumps(_FIG, ensure_ascii=False, separators=(',', ':')) + ';'
+    # Act III's generals take a new name at half life; their second form shares the painting
+    "for(const[a,b]of[['Lucifer, the Red Dragon','Lucifer, the Morning Star'],['Ahriman, the Destructive Spirit','Ahriman, the Smiling Stranger'],['Apollyon, the Destroyer','Abaddon, the Opened Abyss']])if(FIG[b]&&!FIG[a])FIG[a]=FIG[b];"
     "function fxIntro(){let B=G.boss?BOSS[G.bi]:G.elt?ELITES[G.elt-1]:null;"
     "if(!B){try{B=fo(G.rt[G.fi])}catch(e){}}if(!B||(G.e&&B.n!==G.e.nm&&FIG[G.e.nm]))B={n:G.e&&G.e.nm,ic:'',hint:''};"
     "const fig=G.e&&FIG[G.e.nm];if(!B||!B.n)return;const boss=!!G.boss,")
