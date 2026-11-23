@@ -834,6 +834,20 @@ FIGURE_BASE = (
     'Cut out cleanly on a fully transparent background apart from that shadow: no scenery, no moon, sun, fire or '
     'other light source drawn in (the backdrop already has it), no frame, no text.'
 )
+# The full-scene version: the backdrop's own wording, with the composition changed so the enemy stands in the scene.
+FIGURE_SCENE_BASE = SCENE_BASE.replace(
+    'A wide background illustration for the battle screen of a mythology card game',
+    'A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene').replace(
+    'Composition for a game board: low contrast, all the interesting shapes at the edges and in the bottom corners; '
+    'the centre is a calm, empty, evenly dark area, because game cards sit on top of it. No figures or creatures in the '
+    'centre. ',
+    'Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it '
+    'with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene\'s '
+    'own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the '
+    'picture stays a little darker and calmer for a name to be written over it. ')
+assert FIGURE_SCENE_BASE != SCENE_BASE
+FIGURE_POSE = ('A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight '
+               'at the viewer. Not attacking, not shouting.')
 # hero -> id -> (opponent name exactly as in the game, its backdrop's id in scenes.json, subject)
 FIGURES = {
     'ody': {'poly': ('Polyphemus', 'polyphemus', 'Polyphemus the Cyclops of Homer\'s Odyssey: a towering, hairy shepherd giant with a '
@@ -1073,11 +1087,13 @@ def main():
               'thoth': ' The flat bright colours and bold outlines of Egyptian tomb painting mixed into the pen-and-ink style.'}
     for k, (nm, sid, t) in FIGURES.get(a.hero, {}).items():
         pal = (_scn.get(sid) or {}).get('palette', '')
+        # Ben, round five: the figure must be part of the background itself, so the whole picture is painted in one
+        # pass with the backdrop's own prompt (SCENE_BASE, setting, palette), the enemy standing in it.
+        scn = _scn.get(sid) or {}
         icons[f'fig_{k}'] = {'name': f'{nm} figure', 'opponent': nm,
-                             'prompt': f'{FIGURE_BASE}{_brush.get(a.hero, "")}\n\nSubject: {t}\nColour: {pal}.',
-                             # webp keeps transparency at a fraction of a png's size (this Mac can't encode webp)
-                             'output': f'art/icons/{folder}/fig_{k}.webp', 'size': '1024x1536', 'format': 'webp',
-                             'background': 'transparent'}
+                             'prompt': (FIGURE_SCENE_BASE + f'\n\nSetting: {scn.get("setting", "")}.\nColour: {pal}.'
+                                        + f'\n\nIn the scene: {t} {FIGURE_POSE}'),
+                             'output': f'art/icons/{folder}/fig_{k}.webp', 'size': '1536x1024', 'format': 'webp'}
     for k, t in MEDALS.get(a.hero, {}).items():
         icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
                              'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',

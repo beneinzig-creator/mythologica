@@ -29,7 +29,11 @@ _b3("function fxIntro(){const B=G.boss?BOSS[G.bi]:ELITES[G.elt-1];if(!B)return;c
 _b3("o.id='fxin';o.className=boss?'boss':'elite';", "o.id='fxin';o.className=(boss?'boss':G.elt?'elite':'reg')+(fig?' fig':'');")
 _b3(":'Elite foe'}</div><div class=\"fxin-ic\">${B.ic||''}</div>",
     ":G.elt?'Elite foe':'Opponent'}</div>"
-    "<div class=\"fxin-ic\">${fig?`<img class=\"fxin-fig\" src=\"art/game/figures/${fig}.webp\" alt=\"\" draggable=\"false\">`:(B.ic||'')}</div>")
+    "<div class=\"fxin-ic\">${fig?'':(B.ic||'')}</div>")
+# the painting is the intro's own background (an <img> inside the animated icon box would be trapped by its transform)
+_b3("document.body.appendChild(o);SFX.play(boss?'gong':'stamp');",
+    "if(fig)o.style.backgroundImage=`linear-gradient(#0000 55%,#000b 100%),radial-gradient(ellipse at 50% 45%,#0000 55%,#0007 100%),url(art/game/figures/${fig}.webp)`;"
+    "document.body.appendChild(o);SFX.play(boss?'gong':'stamp');")
 _b3('.dft{position:absolute;inset:0;display:flex;',
     # full-screen map
     'html.mapfull body::before{background:radial-gradient(ellipse at 50% 50%,#0000 62%,#0008 100%),var(--scn) center/cover no-repeat!important;opacity:1!important}'
@@ -37,13 +41,9 @@ _b3('.dft{position:absolute;inset:0;display:flex;',
     'html.mapfull .tmap:before,html.mapfull .tmap:after{display:none!important}'
     'html.mapfull .mapscr .ovt,html.mapfull .mapscr .dsub,html.mapfull .mapscr h1,html.mapfull .mapscr p{text-shadow:0 1px 2px #000,0 0 8px #000,0 0 16px #000c}'
     # figure intro: the fight background shows through, the enemy stands tall
-    '#fxin.fig{background:radial-gradient(ellipse at 50% 55%,#0000 35%,#0008 80%,#000c 100%),var(--scn,none) center/cover no-repeat,#0b0908}'
-    # the figure stands in the scene: no cut-out halo, feet fading into the ground, and the scene's vignette
-    # laid over figure and backdrop alike
+    # round five: the figure is a full painting of the enemy in its scene, shown as the whole screen
+    '#fxin.fig{background-color:#0b0908;background-size:cover;background-position:center;place-items:end center;padding-bottom:7vh;box-sizing:border-box}'
     '#fxin.fig .fxin-ic{font-size:0;filter:none}'
-    '#fxin .fxin-fig{display:block;height:min(70vh,720px);width:auto;max-width:90vw;object-fit:contain;margin:0 auto -5vh;'
-    '-webkit-mask-image:linear-gradient(to bottom,#000 86%,#0000 100%);mask-image:linear-gradient(to bottom,#000 86%,#0000 100%)}'
-    '#fxin.fig::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,#0000 50%,#0005 85%,#0009 100%)}'
     '#fxin.fig .fxin-n,#fxin.fig .fxin-k,#fxin.fig .fxin-l{text-shadow:0 2px 4px #000,0 0 14px #000}'
     '#fxin.reg .fxin-k{color:#d8c79a}'
     '.dft{position:absolute;inset:0;display:flex;')
