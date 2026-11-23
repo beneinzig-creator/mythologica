@@ -1,0 +1,8 @@
+{
+ "id": "mana_jar",
+ "hero": "odysseus",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A single game icon of a potion vessel, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, antique colours, slightly worn), bold and simple so it still reads at 48 pixels. Straight front view, symmetrical, the vessel fills most of the frame, on a fully transparent background. The vessel has one large round body of clear glass filled about three quarters full with glowing liquid; the front of the body is plain and undecorated, an open area of liquid where a number will be printed in the middle. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow, no table or surface.\n\nSubject: Mana potion of Odysseus: a round-bellied Greek glass flask with a short neck, a bronze collar with a Greek key band and a little bronze handle loop on each shoulder, a cork stopper tied with a cord, filled with warm glowing golden ambrosia."
+}
