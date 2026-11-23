@@ -1,0 +1,8 @@
+{
+ "id": "node_altar",
+ "realm": "odin",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A round medallion portrait for a game map, painted like a worn silver Viking pendant or a roundel from a Gotland picture-stone: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Altar: a stone h\u00f6rgr altar in a sacred grove, a bronze offering bowl and a burning brazier, offerings hung on the branches. Colours: grey stone, dark pine green, firelight."
+}
