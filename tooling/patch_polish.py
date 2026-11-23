@@ -16,6 +16,8 @@
 # 10. Hero select subtitles: each separator stays on the line of the word before it.
 # 11. Defeat screen hides the fight HUD (deck piles, hero panel) beside the Fallen art.
 # 12. Full card pool title keeps clear of the sound button (a float reserves its corner).
+# 13. Draft: no shelf bar under the offered cards (.drf .dcards::after). It was sized to the row of cards,
+#     so it shrank to a small box between picks and grew back with every new set of three.
 
 def _rall(o,n,k):
     global head,tail,mid,A,B
@@ -54,6 +56,7 @@ try{const st=document.createElement('style');st.id='ppol';st.textContent=`
 html.phl #app>.decks,html.phl #app>.me{visibility:hidden!important}
 html #vico .box{background:radial-gradient(at 30% 20%,#d6c39a33,#0000 45%),radial-gradient(at 78% 82%,#5a3d1a2e,#0000 50%),radial-gradient(at 50% 45%,#c2ab7d 0%,#ad9466 62%,#8c7349 100%)!important;color:#1d150b!important}
 .ovlib .ovt::before{content:'';float:right;width:92px;height:36px}
+html .drf .dcards::after{display:none!important}
 `;document.body.appendChild(st)}catch(e){}
 """
 _b3("showChars();\n</script>", _JSPOL + "showChars();\n</script>")
