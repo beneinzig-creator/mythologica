@@ -1,0 +1,8 @@
+{
+ "id": "node_start",
+ "realm": "thoth",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A round medallion portrait for a game map, painted like an Egyptian gold-and-enamel amulet roundel inlaid with coloured stone, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Starting point: a silver moon disc resting in a golden crescent, rising over a temple pylon on the Nile bank at night, palm trees and the river shining. Colours: silver, gold, lapis night blue."
+}

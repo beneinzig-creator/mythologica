@@ -1,0 +1,8 @@
+{
+ "id": "node_camp",
+ "realm": "act3",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A round medallion portrait for a game map, painted like a gilded roundel from a medieval illuminated Apocalypse manuscript, gold leaf and ink, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Campfire: a lonely fire among broken stones on a blasted battlefield plain, shadows of winged demons circling in a blood-red sky. Menacing. Colours: ember orange, blood red, ash grey."
+}

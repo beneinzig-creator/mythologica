@@ -1,0 +1,8 @@
+{
+ "id": "node_craft",
+ "realm": "odin",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A round medallion portrait for a game map, painted like a worn silver Viking pendant or a roundel from a Gotland picture-stone: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Crafting table: a dwarven forge deep under a mountain, an iron anvil, a hammer and a glowing half-forged blade, sparks flying. Colours: deep cavern blue with molten orange."
+}

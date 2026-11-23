@@ -1,0 +1,8 @@
+{
+ "id": "node_craft",
+ "realm": "wukong",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Crafting table: an alchemist's great bronze eight-trigrams furnace glowing with fire, a workbench with gourds and tools before it (trigrams only as plain decorative bars, no characters). Colours: bronze, vermilion fire, purple smoke."
+}
