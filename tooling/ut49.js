@@ -8,23 +8,23 @@ const setup=(ch='thoth')=>R(`setChar('${ch}');newRun();for(let i=0;i<11;i++)pick
 const put=(id,s='p',bf)=>R(`(()=>{const c=mk('${id}');${bf?`c.sick=0;enter(G.${s},c)`:`G.${s}.hand.push(c)`};return c.u})()`);
 const card=u=>`[...G.p.bf,...G.e.bf,...G.p.hand].find(x=>x.u==${u})`;
 
-// Sunder an enemy: Ka and Ba on their side, Ren in our hand
+// Sunder an enemy: Body and Spirit on their side, Name in our hand
 setup();const gw=put('sking','e',1);R(`cast(mk('tsun'),${card(gw)})`);
 ok('Sunder: target leaves play',!R(`G.e.bf.some(x=>x.u==${gw})`));
-ok('Sunder: Ka (0 power) and Ba (flying) join their army',R(`cr(G.e).some(x=>x.part=='ka'&&pw(x)==0)&&cr(G.e).some(x=>x.part=='ba'&&has(x,'f'))`));
-ok('Sunder: Ren of the Scorpion King in our hand',R(`G.p.hand.some(x=>x.ren&&D[x.id][0].includes('Scorpion King'))`));
+ok('Sunder: Body (0 power) and Spirit (flying) join their army',R(`cr(G.e).some(x=>x.part=='ka'&&pw(x)==0)&&cr(G.e).some(x=>x.part=='ba'&&has(x,'f'))`));
+ok('Sunder: Name of the Scorpion King in our hand',R(`G.p.hand.some(x=>x.ren&&D[x.id][0].includes('Scorpion King'))`));
 // Speak the name: +2 mana
-R('G.p.mana=0');R(`speak(G.p.hand.find(x=>x.ren))`);ok('Speak the name: +2 mana and the Ren is gone',R('G.p.mana')==2&&!R('G.p.hand.some(x=>x.ren)'));
+R('G.p.mana=0');R(`speak(G.p.hand.find(x=>x.ren))`);ok('Speak the name: +2 mana and the Name is gone',R('G.p.mana')==2&&!R('G.p.hand.some(x=>x.ren)'));
 // Write a name: keywords become glyphs
 setup();const t1=put('sking','e',1);const me=put('gpriest','p',1);R(`cast(mk('tsun'),${card(t1)})`);
-R(`cast(G.p.hand.find(x=>x.ren),${card(me)})`);ok('Ren written: Venomous and +1/+1 as glyphs',R(`has(${card(me)},'v')`)&&R(`(${card(me)}).gl.length`)==2);
+R(`cast(G.p.hand.find(x=>x.ren),${card(me)})`);ok('Name written: Venomous and +1/+1 as glyphs',R(`has(${card(me)},'v')`)&&R(`(${card(me)}).gl.length`)==2);
 // Glyph limit of 3
 R(`['f','w','h','z'].forEach(k=>inscribe(${card(me)},k))`);ok('Glyph limit: never more than 3',R(`(${card(me)}).gl.length`)==3);
 // Erase
 setup();const e1=put('mthief','e',1);R(`cast(mk('ierase'),${card(e1)})`);
 ok('Erase: loses name and keywords',R(`(${card(e1)}).id.startsWith('nm')`)&&R(`(${card(e1)}).f`)=='');
 // Reunite our own Sundered army member
-setup();const s1=put('gpriest','p',1);R(`cast(mk('dcut'),${card(s1)})`);ok('Ritual Knife: our Ka and Ba',R(`cr(G.p).filter(x=>x.part).length`)==2);
+setup();const s1=put('gpriest','p',1);R(`cast(mk('dcut'),${card(s1)})`);ok('Ritual Knife: our Body and Spirit',R(`cr(G.p).filter(x=>x.part).length`)==2);
 R(`cast(mk('dreun'))`);ok('Reunion: the Priest returns with +1/+1',R(`cr(G.p).some(x=>x.u==${s1}&&x.pa==1&&x.pd==1)`)&&!R('cr(G.p).some(x=>x.part)'));
 // Amulets: attach, bonus, fall, re-equip
 setup();const a1=put('gpriest','p',1);R(`cast(mk('ianx'),${card(a1)})`);const am=R(`G.p.bf.find(x=>x.id=='ianx').u`);
@@ -43,7 +43,7 @@ ok('Record: a fading copy joins our hand',R(`G.p.hand.some(x=>x.id=='sking'&&x.d
 setup();const t0=R('G.turn');R(`cast(mk('ysenet'))`);R(`bt('end')`);ok('Senet: extra turn instead of the enemy turn',R('G.phase')=='main'&&R('G.turn')==t0+1);
 // Egyptian realm trumps work against any hero
 setup('ody');R(`G.e.bf.push(mk('apep'))`);const o1=put('hopl','p',1);R('upkeep(G.e,G.p)');ok('Apophis Erases Odysseus\'s strongest army member',R(`cr(G.p)[0].id.startsWith('nm')`));
-setup('ody');R(`G.e.bf.push(mk('setx'))`);put('hopl','p',1);R('upkeep(G.e,G.p)');ok('Set Sunders it: Ka and Ba stay with Odysseus',R(`cr(G.p).filter(x=>x.part).length`)==2&&!R('G.p.hand.some(x=>x.ren)'));
+setup('ody');R(`G.e.bf.push(mk('setx'))`);put('hopl','p',1);R('upkeep(G.e,G.p)');ok('Set Sunders it: Body and Spirit stay with Odysseus',R(`cr(G.p).filter(x=>x.part).length`)==2&&!R('G.p.hand.some(x=>x.ren)'));
 setup('odin');R(`G.e.bf.push(mk('sphx'))`);R('upkeep(G.e,G.p)');const L0=R('G.p.life');R(`bt('end')`);ok('Sphinx: unanswered riddle costs 2 life',R('G.p.life')<=L0-2||R('G.riddle')==0);
 setup('wukong');R(`G.e.bf.push(mk('trob'));enter(G.e,mk('grob'));G.p.hand.push(mk('wrod'))`);R('upkeep(G.e,G.p)');ok('Tomb Robbers steal from Wukong\'s hand when they outnumber him',R('G.p.hand.length')==0&&R('G.e.loot.length')==1);
 console.log(f?'FAILS '+f:'ALL OK');
