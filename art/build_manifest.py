@@ -792,7 +792,17 @@ def build_act3():
     frames = {r: {'name': f'{r.title()} frame', 'prompt': f'{fbase}\n\n{t}\n{CONDITION[r]} {WEAR_NOTE}',
                   'output': f'art/frames/act3/{r}.webp', 'size': '1024x1536'}
               for r, t in FRAMES['act3'].items()}
-    old.setdefault('heroes', {})['act3'] = {'name': 'Act III', 'cards': {}, 'opponents': {}, 'tutorial': {},
+    # The 109 card pictures (art/act3/<id>.webp, each with a .json holding its prompt) were painted outside this
+    # script in four sacred-art looks (woodcut, grotesque fresco, manuscript, stained glass; see each .json).
+    # art/act3/cards.json gives each card's name, type and frame tier, and make_game_assets frames them from it.
+    opp = {}
+    cj = os.path.join(ART, 'act3', 'cards.json')
+    for cid, c in (json.load(open(cj, encoding='utf-8')) if os.path.exists(cj) else {}).items():
+        side = os.path.join(ART, 'act3', f'{cid}.json')
+        prompt = json.load(open(side, encoding='utf-8')).get('prompt', '') if os.path.exists(side) else ''
+        opp[cid] = {'name': c['name'], 'type': c['type'], 'frame': c['frame'], 'prompt': prompt,
+                    'output': f'art/act3/{cid}.webp'}
+    old.setdefault('heroes', {})['act3'] = {'name': 'Act III', 'cards': {}, 'opponents': opp, 'tutorial': {},
                                             'frames': frames, 'icons': {}}
     with open(out, 'w', encoding='utf-8') as f:
         json.dump(old, f, ensure_ascii=False, indent=2)
