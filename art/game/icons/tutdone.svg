@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Completed-lesson mark (patch_tutui): a tick in oxblood ink inside a wreath of gilded laurel,
+     the victor's crown. Hand-drawn SVG so it stays crisp at every size. -->
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#f8dc8c"/><stop offset=".5" stop-color="#c9932f"/><stop offset="1" stop-color="#7d4e12"/>
+</linearGradient>
+<linearGradient id="ink" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#8a2a14"/><stop offset="1" stop-color="#4a1208"/>
+</linearGradient>
+<filter id="w" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="5" result="n"/>
+<feDisplacementMap in="SourceGraphic" in2="n" scale=".7"/>
+</filter>
+<filter id="t">
+<feTurbulence type="fractalNoise" baseFrequency="2.2" numOctaves="2" seed="3"/>
+<feColorMatrix values="0 0 0 0 .32  0 0 0 0 .2  0 0 0 0 .07  0 0 0 -2.4 1.3"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+<path id="lf" d="M0 0C2.2-2.6 6.4-3 9-1.2 6.6 1.4 2.6 1.6 0 0z" fill="url(#g)" stroke="#3a250e" stroke-width=".85" stroke-linejoin="round"/>
+<path id="k" d="M17.2 33.4c1-1.3 2.9-1.5 4.4-.4l6.9 6.2C34.2 29.8 40.6 22.8 49 16.2c.7-.5 1.3.2.8.8C42.6 25.6 37 35.6 32.8 46.6c-.8 2-3.5 2.4-4.9.8L17.4 35.7c-.6-.7-.7-1.6-.2-2.3z"/>
+</defs>
+<g filter="url(#w)">
+<g opacity=".4" transform="translate(.9 1.1)" filter="url(#t)"><use href="#k" fill="#000"/></g>
+<path d="M28.09 56.16A22.5 22.5 0 0 1 16.94 17.28" fill="none" stroke="#3a250e" stroke-width="1.6" stroke-linecap="round"/><use href="#lf" transform="translate(27.32 56.01) rotate(-130.0) scale(1.00)"/><use href="#lf" transform="translate(27.32 56.01) rotate(-206.0) scale(1.00)"/><use href="#lf" transform="translate(20.19 53.15) rotate(-110.3) scale(0.94)"/><use href="#lf" transform="translate(20.19 53.15) rotate(-186.3) scale(0.94)"/><use href="#lf" transform="translate(14.43 48.06) rotate(-90.7) scale(0.87)"/><use href="#lf" transform="translate(14.43 48.06) rotate(-166.7) scale(0.87)"/><use href="#lf" transform="translate(10.73 41.33) rotate(-71.0) scale(0.81)"/><use href="#lf" transform="translate(10.73 41.33) rotate(-147.0) scale(0.81)"/><use href="#lf" transform="translate(9.50 33.74) rotate(-51.3) scale(0.75)"/><use href="#lf" transform="translate(9.50 33.74) rotate(-127.3) scale(0.75)"/><use href="#lf" transform="translate(10.90 26.18) rotate(-31.7) scale(0.68)"/><use href="#lf" transform="translate(10.90 26.18) rotate(-107.7) scale(0.68)"/><use href="#lf" transform="translate(14.76 19.54) rotate(-12.0) scale(0.62)"/><use href="#lf" transform="translate(14.76 19.54) rotate(-88.0) scale(0.62)"/><use href="#lf" transform="translate(17.24 17.02) rotate(-41.0) scale(.6)"/>
+<path d="M35.91 56.16A22.5 22.5 0 0 0 47.06 17.28" fill="none" stroke="#3a250e" stroke-width="1.6" stroke-linecap="round"/><use href="#lf" transform="translate(36.68 56.01) rotate(-50.0) scale(1.00)"/><use href="#lf" transform="translate(36.68 56.01) rotate(26.0) scale(1.00)"/><use href="#lf" transform="translate(43.81 53.15) rotate(-69.7) scale(0.94)"/><use href="#lf" transform="translate(43.81 53.15) rotate(6.3) scale(0.94)"/><use href="#lf" transform="translate(49.57 48.06) rotate(-89.3) scale(0.87)"/><use href="#lf" transform="translate(49.57 48.06) rotate(-13.3) scale(0.87)"/><use href="#lf" transform="translate(53.27 41.33) rotate(-109.0) scale(0.81)"/><use href="#lf" transform="translate(53.27 41.33) rotate(-33.0) scale(0.81)"/><use href="#lf" transform="translate(54.50 33.74) rotate(-128.7) scale(0.75)"/><use href="#lf" transform="translate(54.50 33.74) rotate(-52.7) scale(0.75)"/><use href="#lf" transform="translate(53.10 26.18) rotate(-148.3) scale(0.68)"/><use href="#lf" transform="translate(53.10 26.18) rotate(-72.3) scale(0.68)"/><use href="#lf" transform="translate(49.24 19.54) rotate(-168.0) scale(0.62)"/><use href="#lf" transform="translate(49.24 19.54) rotate(-92.0) scale(0.62)"/><use href="#lf" transform="translate(46.76 17.02) rotate(-139.0) scale(.6)"/>
+<use href="#k" transform="translate(1 1.2)" fill="#2a120a" opacity=".35"/>
+<use href="#k" fill="url(#ink)" stroke="#2a0d05" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M30.4 43.6C34.6 34.4 40.4 26 47.6 18.4" fill="none" stroke="#d98a5e" stroke-width=".7" stroke-linecap="round" opacity=".45"/>
+</g>
+</svg>

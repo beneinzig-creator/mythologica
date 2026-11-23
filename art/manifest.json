@@ -3969,6 +3969,14 @@
           "format": "png",
           "background": "transparent"
         },
+        "grave": {
+          "name": "Grave icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Graveyard: a single weathered grave marker standing upright, seen straight from the front: a Greek marble grave stele with a small triangular pediment on top and a faint carved relief of a palmette, a little moss at the foot, on a tuft of dry grass. One solid, upright shape that fills most of the frame.",
+          "output": "art/icons/odysseus/grave.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "start": {
           "name": "Start icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Starting point and emblem of Odysseus: a bronze anchor wrapped with rope.",
@@ -7889,6 +7897,14 @@
           "format": "png",
           "background": "transparent"
         },
+        "grave": {
+          "name": "Grave icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Graveyard: a single weathered grave marker standing upright, seen straight from the front: a grey Viking rune stone, rounded at the top, carved with a serpent band curling around its edge (no readable runes), a little moss and snow at the foot. One solid, upright shape that fills most of the frame. Norse, Viking Age style.",
+          "output": "art/icons/odin/grave.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "blood": {
           "name": "Blood icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Blood price: a single drop of dark red blood falling onto a carved rune stone. Norse, Viking Age style.",
@@ -11454,6 +11470,14 @@
           "format": "png",
           "background": "transparent"
         },
+        "grave": {
+          "name": "Grave icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Graveyard: a single weathered grave marker standing upright, seen straight from the front: a Chinese stone stele with a carved curling-dragon crown on top, resting on a stone tortoise base, a faded red panel down its face (no readable characters), a little moss at the foot. One solid, upright shape that fills most of the frame. Chinese, Journey to the West style, colourful.",
+          "output": "art/icons/wukong/grave.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
         "start": {
           "name": "Start icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Starting point and emblem of Sun Wukong: the golden fillet, his golden headband circlet. Chinese, Journey to the West style, colourful.",
@@ -14902,6 +14926,14 @@
           "name": "Gift icon",
           "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Gift: a small painted wooden casket with a gold lid, slightly open with warm light inside. Ancient Egyptian style, colourful.",
           "output": "art/icons/thoth/gift.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "grave": {
+          "name": "Grave icon",
+          "prompt": "A single small game icon, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, muted antique colours, matte, slightly worn), with a bold, simple silhouette that still reads at 16 pixels. Centred with generous empty margin, on a fully transparent background. No text, no letters, no numbers, no border, no badge or circle behind it, no drop shadow.\n\nSubject: Graveyard: a single weathered grave marker standing upright, seen straight from the front: an ancient Egyptian limestone funerary stela, rounded at the top, with a faded painted winged sun disc in the curve and faint painted bands below (no readable hieroglyphs), sand at the foot. One solid, upright shape that fills most of the frame. Ancient Egyptian style, colourful.",
+          "output": "art/icons/thoth/grave.png",
           "size": "1024x1024",
           "format": "png",
           "background": "transparent"
