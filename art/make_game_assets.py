@@ -11,7 +11,7 @@ Writes (all loaded by the game by relative path):
 Then rebuild the game:  cd tooling && python3 build.py n1.html   (patch46 reads cards.json)
 Python standard library + macOS sips only. Only files that are missing or older than their source are redone.
 """
-import tempfile, argparse, json, os, subprocess
+import tempfile, argparse, json, os, shutil, subprocess
 
 ART = os.path.dirname(os.path.abspath(__file__))
 GAME = os.path.join(ART, 'game')
@@ -164,7 +164,7 @@ def main():
     # every painted icon for this hero (interface, map, opponent medallions)
     idir = os.path.join(ART, 'icons', folder)
     for fn in sorted(os.listdir(idir)) if os.path.isdir(idir) else []:
-        if not fn.endswith('.png'):
+        if not (fn.endswith('.png') or (fn.startswith('fig_') and fn.endswith('.webp'))):
             continue
         src = os.path.join(idir, fn)
         if fn == 'ui_button.png':
@@ -182,6 +182,22 @@ def main():
             made += shrink(src, os.path.join(GAME, 'icons', ICON_SUB.get(a.hero, ''), fn[:-4] + '.jpg'), 1600, quality='76')
         elif fn.startswith('arch_'):
             made += crop_mark(src, os.path.join(GAME, 'icons', fn), 128)
+        elif fn.startswith('fig_'):
+            # full-length enemy figures for the pre-fight screen: art/game/figures/<id>.webp, listed by opponent name
+            dst = os.path.join(GAME, 'figures', fn[4:])
+            if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                shutil.copyfile(src, dst)  # already a compressed webp from the image service
+                made += 1
+            nm = (hero.get('icons', {}).get(fn[:-5]) or {}).get('opponent')
+            if nm:
+                fj = os.path.join(GAME, 'figures.json')
+                figs = json.load(open(fj, encoding='utf-8')) if os.path.exists(fj) else {}
+                if figs.get(nm) != fn[4:-5]:
+                    figs[nm] = fn[4:-5]
+                    with open(fj, 'w', encoding='utf-8') as f:
+                        json.dump(figs, f, indent=0, sort_keys=True, ensure_ascii=False)
+                        f.write('\n')
         elif fn.startswith('sigil_'):
             made += shrink(src, os.path.join(GAME, 'back', fn), 256, fmt='png')
         else:
@@ -213,7 +229,6 @@ def main():
             made += shrink(os.path.join(bdir, fn), os.path.join(GAME, 'back', fn), 256, fmt='png')
     chosen = os.path.join(GAME, 'back', f'sigil_{pick}.png')
     if os.path.exists(chosen):
-        import shutil
         shutil.copyfile(chosen, os.path.join(GAME, 'back', 'sigil.png'))
         open(pick_file, 'w').write(pick + '\n')
         print(f'Card-back sigil: {pick}')

@@ -4177,6 +4177,15 @@
           "format": "png",
           "background": "transparent"
         },
+        "fig_poly": {
+          "name": "Polyphemus figure",
+          "opponent": "Polyphemus",
+          "prompt": "A full-length figure of an enemy for a mythology card game's pre-fight screen, made by hand like a 1993 fantasy game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text, no glow behind it.\n\nSubject: Polyphemus the Cyclops of Homer's Odyssey: a towering, hairy shepherd giant with a single huge glaring eye in the middle of his brow, wild black beard, a sheepskin over his shoulders, gripping a club made from a whole olive trunk, a ram at his feet, roaring. Greek in every detail.",
+          "output": "art/icons/odysseus/fig_poly.webp",
+          "size": "1024x1536",
+          "format": "webp",
+          "background": "transparent"
+        },
         "med_lotus": {
           "name": "lotus medallion",
           "prompt": "A round medallion portrait for a game map, painted like an old bronze coin or a roundel from a Greek vase: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Lotus-Eaters: a drooping lotus flower with sleepy, half-closed petals.",
@@ -8113,6 +8122,15 @@
           "format": "png",
           "background": "transparent"
         },
+        "fig_fenrir": {
+          "name": "Fenrir's Brood figure",
+          "opponent": "Fenrir's Brood",
+          "prompt": "A full-length figure of an enemy for a mythology card game's pre-fight screen, made by hand like a 1993 fantasy game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text, no glow behind it.\n\nSubject: The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, two snarling wolf cubs at its paws, lunging forward. Norse in every detail.",
+          "output": "art/icons/odin/fig_fenrir.webp",
+          "size": "1024x1536",
+          "format": "webp",
+          "background": "transparent"
+        },
         "med_fenrir": {
           "name": "fenrir medallion",
           "prompt": "A round medallion portrait for a game map, painted like a worn silver Viking pendant or a roundel from a Gotland picture-stone: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: Fenrir's Brood: a snarling wolf's head with bared fangs.",
@@ -11694,6 +11712,15 @@
           "format": "png",
           "background": "opaque"
         },
+        "fig_bulldemon": {
+          "name": "The Bull Demon King figure",
+          "opponent": "The Bull Demon King",
+          "prompt": "A full-length figure of an enemy for a mythology card game's pre-fight screen, made by hand like a 1993 fantasy game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text, no glow behind it.\n\nSubject: The Bull Demon King of Journey to the West: a huge demon king with the head of a black bull and great curved horns, burning eyes, in red-and-gold lacquered armour and a flowing cape, swinging an iron cudgel, flames curling around him. Chinese, Ming dynasty, with the brush rhythm of Chinese painting.",
+          "output": "art/icons/wukong/fig_bulldemon.webp",
+          "size": "1024x1536",
+          "format": "webp",
+          "background": "transparent"
+        },
         "med_spider": {
           "name": "spider medallion",
           "prompt": "A round medallion portrait for a game map, painted like a carved and painted roundel from the Ming dynasty, in the colours given below: a circular picture with a worn bronze rim that fills the frame, on a fully transparent background outside the circle. Rustic 1990s hand-painted style, gouache, bold and readable at 32 pixels. No text, no letters.\n\nSubject: The Spider Cave: a spider in a silver web with peach blossom. Colours: jade green, silver and deep night teal, with pale pink blossom; no red.",
@@ -15152,6 +15179,15 @@
           "output": "art/icons/thoth/ui_button.png",
           "size": "1536x1024",
           "format": "png",
+          "background": "transparent"
+        },
+        "fig_sekhmet": {
+          "name": "Sekhmet, the Eye of Ra figure",
+          "opponent": "Sekhmet, the Eye of Ra",
+          "prompt": "A full-length figure of an enemy for a mythology card game's pre-fight screen, made by hand like a 1993 fantasy game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully transparent background: no ground, no scenery, no frame, no text, no glow behind it.\n\nSubject: Sekhmet, the lioness-headed Egyptian goddess of war and plague: a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a rearing cobra, in a red linen dress and a broad collar of gold and lapis, holding a sceptre, mouth open in a roar, desert heat rippling around her. Ancient Egyptian in every detail.",
+          "output": "art/icons/thoth/fig_sekhmet.webp",
+          "size": "1024x1536",
+          "format": "webp",
           "background": "transparent"
         },
         "med_robbers": {

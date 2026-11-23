@@ -809,6 +809,33 @@ def build_act3():
         f.write('\n')
     print('Wrote Act III frames to art/manifest.json.')
 
+# ---- Enemy figures: full-length art of each opponent, shown over its fight background on the pre-fight screen ----
+FIGURE_BASE = (
+    'A full-length figure of an enemy for a mythology card game\'s pre-fight screen, made by hand like a 1993 fantasy '
+    'game-book illustration at its very best: confident black pen-and-ink outlines, rich ink hatching, flat gouache and '
+    'watercolour washes with visible brush marks, bold and colourful where the subject allows. Highly detailed, '
+    'dramatic and menacing, a powerful pose full of character, facing the viewer as an opponent about to fight. The '
+    'whole figure fits inside the frame with a little room around it, standing on nothing. Cut out cleanly on a fully '
+    'transparent background: no ground, no scenery, no frame, no text, no glow behind it.'
+)
+# hero -> id -> (opponent name exactly as in the game, subject)
+FIGURES = {
+    'ody': {'poly': ('Polyphemus', 'Polyphemus the Cyclops of Homer\'s Odyssey: a towering, hairy shepherd giant with a '
+                     'single huge glaring eye in the middle of his brow, wild black beard, a sheepskin over his shoulders, '
+                     'gripping a club made from a whole olive trunk, a ram at his feet, roaring. Greek in every detail.')},
+    'odin': {'fenrir': ('Fenrir\'s Brood', 'The wolf-brood of Fenrir from Norse myth: a gigantic black wolf with burning '
+                        'yellow eyes and bared fangs, frost on its fur, a broken silken fetter hanging from its neck, two '
+                        'snarling wolf cubs at its paws, lunging forward. Norse in every detail.')},
+    'wukong': {'bulldemon': ('The Bull Demon King', 'The Bull Demon King of Journey to the West: a huge demon king with '
+                             'the head of a black bull and great curved horns, burning eyes, in red-and-gold lacquered '
+                             'armour and a flowing cape, swinging an iron cudgel, flames curling around him. Chinese, Ming '
+                             'dynasty, with the brush rhythm of Chinese painting.')},
+    'thoth': {'sekhmet': ('Sekhmet, the Eye of Ra', 'Sekhmet, the lioness-headed Egyptian goddess of war and plague: '
+                          'a tall powerful woman with the head of a fierce lioness crowned by a blazing red sun disc and a '
+                          'rearing cobra, in a red linen dress and a broad collar of gold and lapis, holding a sceptre, '
+                          'mouth open in a roar, desert heat rippling around her. Ancient Egyptian in every detail.')},
+}
+
 STUB = r'''
 var __h={get:function(t,k){if(k===Symbol.toPrimitive)return function(){return 0};if(k==='length')return 0;return __p},
  apply:function(){return __p},construct:function(){return __p},set:function(){return true}};
@@ -1017,6 +1044,11 @@ def main():
     for k, (size, bg, prompt) in HERO_UI.get(a.hero, {}).items():
         icons[k] = {'name': k, 'prompt': prompt, 'output': f'art/icons/{folder}/{k}.png', 'size': size,
                     'format': 'png', 'background': bg}
+    for k, (nm, t) in FIGURES.get(a.hero, {}).items():
+        icons[f'fig_{k}'] = {'name': f'{nm} figure', 'opponent': nm, 'prompt': f'{FIGURE_BASE}\n\nSubject: {t}',
+                             # webp keeps transparency at a fraction of a png's size (this Mac can't encode webp)
+                             'output': f'art/icons/{folder}/fig_{k}.webp', 'size': '1024x1536', 'format': 'webp',
+                             'background': 'transparent'}
     for k, t in MEDALS.get(a.hero, {}).items():
         icons[f'med_{k}'] = {'name': f'{k} medallion', 'prompt': f'{mbase}\n\nSubject: {t}',
                              'output': f'art/icons/{folder}/med_{k}.png', 'size': '1024x1024', 'format': 'png',
