@@ -762,7 +762,7 @@ let bx=null,by=0,s1=1,el=-d,last=null;
 // front-loaded sine: leaves the library at once, never faster than ~1.6x its average speed, settles softly
 const ease=t=>.5-.5*Math.cos(Math.PI*Math.pow(t,.82));
 const step=ts=>{if(fin)return;if(g!==G)return done();if(!document.body.contains(wrap))return land();
- el+=last==null?0:Math.min(50,Math.max(0,ts-last));last=ts;c.fly=Date.now()+60000;
+ {const dt=last==null?0:Math.max(0,ts-last);el+=dt>45?17:dt}last=ts;c.fly=Date.now()+60000; // a long frame (the fight screen building) pauses the flight, never skips it
  if(el<0){requestAnimationFrame(step);return}
  const sN=srcOf();if(sN){const q=sN.getBoundingClientRect();if(q.width)a=q}
  const ax=a.left+a.width/2,ay=a.top+a.height/2,s0=a.width/w0;

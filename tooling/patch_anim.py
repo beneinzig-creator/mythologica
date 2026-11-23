@@ -21,7 +21,8 @@
 #    CSS `translate`/`scale` properties (screen-space, independent of the tap rotation, compositor-only):
 #    a short ease toward the owner's side, a faster lunge until the card's edge meets the blocker or the health
 #    bar, impact, then combat resolves and the card glides back from the impact point to its slot.
-# 3. Draw. (a) The flight ease was cubic in-out over 900 ms: the card sat on the library for ~150 ms, then
+# 3. Draw. A frame longer than 45 ms advances the flight by one normal frame, so a busy frame is a pause, not a jump.
+#    (a) The flight ease was cubic in-out over 900 ms: the card sat on the library for ~150 ms, then
 #    crossed the screen at up to 80px per frame (3x its average speed), then crawled into place — a stutter,
 #    then a teleport. Now a front-loaded sine curve (peak ~1.6x average) over 620 ms, with a slight arc.
 #    (b) Every landing called render(), rebuilding the board while the next cards were still in the air (and
@@ -51,7 +52,7 @@ let bx=null,by=0,s1=1,el=-d,last=null;
 // front-loaded sine: leaves the library at once, never faster than ~1.6x its average speed, settles softly
 const ease=t=>.5-.5*Math.cos(Math.PI*Math.pow(t,.82));
 const step=ts=>{if(fin)return;if(g!==G)return done();if(!document.body.contains(wrap))return land();
- el+=last==null?0:Math.min(50,Math.max(0,ts-last));last=ts;c.fly=Date.now()+60000;
+ {const dt=last==null?0:Math.max(0,ts-last);el+=dt>45?17:dt}last=ts;c.fly=Date.now()+60000; // a long frame (the fight screen building) pauses the flight, never skips it
  if(el<0){requestAnimationFrame(step);return}
  const sN=srcOf();if(sN){const q=sN.getBoundingClientRect();if(q.width)a=q}
  const ax=a.left+a.width/2,ay=a.top+a.height/2,s0=a.width/w0;
