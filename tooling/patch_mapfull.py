@@ -8,7 +8,8 @@
 #   every map painting has its own.
 # - The title, stats and next-opponent line sit in a parchment cartouche at the top, in dark ink and the map's
 #   fonts (Cinzel title, IM Fell text) instead of white text on blue.
-# - Re-laid out on window resize.
+# - Re-laid out on window resize. Ancestor zoom (.dft gets zoom .62 on windows 520px tall or less) is divided
+#   out of the medallion zoom and SVG size, otherwise the nodes bunch into the top-left on short screens.
 
 _JSMF = r"""
 /* ===== patch_mapfull: full-window map ===== */
@@ -17,9 +18,9 @@ function mapFit(){const ms=document.querySelector('#app>.mapscr'),t=ms&&ms.query
  const W=innerWidth,H=innerHeight,hb=hd.getBoundingClientRect(),N=G.web.nodes,xs=N.map(n=>n.x),ys=N.map(n=>n.y),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),
   s=Math.max(.6,Math.min(1.6,Math.min(W/WEBW,(H-hb.bottom)/WEBH)*1.2)),R=27*s,P=R+Math.max(22,W*.03),T=hb.bottom+R+Math.max(10,H*.015),B=R+Math.max(26,H*.04),
   sx=(W-2*P)/Math.max(1,x1-x0),sy=Math.max(.2,(H-T-B)/Math.max(1,y1-y0)),X=x=>P+(x-x0)*sx,Y=y=>T+(y-y0)*sy;
- t.style.width=t.style.height=t.style.zoom='';
- t.querySelectorAll(':scope>.wn').forEach((b,i)=>{const n=N[i];if(!n)return;b.style.zoom=s.toFixed(3);b.style.left=(X(n.x)/s-27).toFixed(1)+'px';b.style.top=(Y(n.y)/s-27).toFixed(1)+'px'});
- const sv=t.querySelector(':scope>svg');if(sv){sv.setAttribute('width',W);sv.setAttribute('height',H);sv.setAttribute('viewBox',[x0-P/sx,y0-T/sy,W/sx,H/sy].map(v=>v.toFixed(2)).join(' '));sv.setAttribute('preserveAspectRatio','none')}}
+ t.style.width=t.style.height=t.style.zoom='';let Z=1;for(let e=t;e&&e.nodeType==1;e=e.parentElement){const z=parseFloat(getComputedStyle(e).zoom);if(z>0)Z*=z}
+ t.querySelectorAll(':scope>.wn').forEach((b,i)=>{const n=N[i];if(!n)return;b.style.zoom=(s/Z).toFixed(4);b.style.left=(X(n.x)/s-27).toFixed(1)+'px';b.style.top=(Y(n.y)/s-27).toFixed(1)+'px'});
+ const sv=t.querySelector(':scope>svg');if(sv){sv.setAttribute('width',W/Z);sv.setAttribute('height',H/Z);sv.setAttribute('viewBox',[x0-P/sx,y0-T/sy,W/sx,H/sy].map(v=>v.toFixed(2)).join(' '));sv.setAttribute('preserveAspectRatio','none')}}
 {const r0=renderMap;renderMap=function(){const out=r0.apply(this,arguments);try{mapFit()}catch(e){}return out}}
 try{addEventListener('resize',()=>{try{if(G&&G.phase=='map')mapFit()}catch(e){}})}catch(e){}
 try{const st=document.createElement('style');st.id='pmf';st.textContent=`

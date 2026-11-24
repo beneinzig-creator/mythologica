@@ -4715,10 +4715,10 @@ html:not(.ph) .itc .cd+.cd{margin-left:0}
 /* ===== v125 (patch_polish): playtest text and screen polish ===== */
 function RFS(){return /s$/.test(RWORD())?' fall':' falls'}
 function fxDot(h){h=h||'';return h&&!/[.!?]$/.test(h)?h+'.':h}
-{const _R=render;render=function(){const o=_R.apply(this,arguments);try{document.documentElement.classList.toggle('phl',!!(G&&G.phase=='lost'))}catch(e){}return o}}
+{const _R=render;render=function(){const o=_R.apply(this,arguments);try{document.documentElement.classList.toggle('phlost',!!(G&&G.phase=='lost'))}catch(e){}return o}}
 try{const st=document.createElement('style');st.id='ppol';st.textContent=`
 .har .hai{white-space:nowrap}
-html.phl #app>.decks,html.phl #app>.me{visibility:hidden!important}
+html.phlost #app>.decks,html.phlost #app>.me{visibility:hidden!important}
 html #vico .box{background:radial-gradient(at 30% 20%,#d6c39a33,#0000 45%),radial-gradient(at 78% 82%,#5a3d1a2e,#0000 50%),radial-gradient(at 50% 45%,#c2ab7d 0%,#ad9466 62%,#8c7349 100%)!important;color:#1d150b!important}
 .ovlib .ovt::before{content:'';float:right;width:92px;height:36px}
 html .drf .dcards::after{display:none!important}
@@ -4730,9 +4730,9 @@ function mapFit(){const ms=document.querySelector('#app>.mapscr'),t=ms&&ms.query
  const W=innerWidth,H=innerHeight,hb=hd.getBoundingClientRect(),N=G.web.nodes,xs=N.map(n=>n.x),ys=N.map(n=>n.y),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),
   s=Math.max(.6,Math.min(1.6,Math.min(W/WEBW,(H-hb.bottom)/WEBH)*1.2)),R=27*s,P=R+Math.max(22,W*.03),T=hb.bottom+R+Math.max(10,H*.015),B=R+Math.max(26,H*.04),
   sx=(W-2*P)/Math.max(1,x1-x0),sy=Math.max(.2,(H-T-B)/Math.max(1,y1-y0)),X=x=>P+(x-x0)*sx,Y=y=>T+(y-y0)*sy;
- t.style.width=t.style.height=t.style.zoom='';
- t.querySelectorAll(':scope>.wn').forEach((b,i)=>{const n=N[i];if(!n)return;b.style.zoom=s.toFixed(3);b.style.left=(X(n.x)/s-27).toFixed(1)+'px';b.style.top=(Y(n.y)/s-27).toFixed(1)+'px'});
- const sv=t.querySelector(':scope>svg');if(sv){sv.setAttribute('width',W);sv.setAttribute('height',H);sv.setAttribute('viewBox',[x0-P/sx,y0-T/sy,W/sx,H/sy].map(v=>v.toFixed(2)).join(' '));sv.setAttribute('preserveAspectRatio','none')}}
+ t.style.width=t.style.height=t.style.zoom='';let Z=1;for(let e=t;e&&e.nodeType==1;e=e.parentElement){const z=parseFloat(getComputedStyle(e).zoom);if(z>0)Z*=z}
+ t.querySelectorAll(':scope>.wn').forEach((b,i)=>{const n=N[i];if(!n)return;b.style.zoom=(s/Z).toFixed(4);b.style.left=(X(n.x)/s-27).toFixed(1)+'px';b.style.top=(Y(n.y)/s-27).toFixed(1)+'px'});
+ const sv=t.querySelector(':scope>svg');if(sv){sv.setAttribute('width',W/Z);sv.setAttribute('height',H/Z);sv.setAttribute('viewBox',[x0-P/sx,y0-T/sy,W/sx,H/sy].map(v=>v.toFixed(2)).join(' '));sv.setAttribute('preserveAspectRatio','none')}}
 {const r0=renderMap;renderMap=function(){const out=r0.apply(this,arguments);try{mapFit()}catch(e){}return out}}
 try{addEventListener('resize',()=>{try{if(G&&G.phase=='map')mapFit()}catch(e){}})}catch(e){}
 try{const st=document.createElement('style');st.id='pmf';st.textContent=`
@@ -4748,6 +4748,28 @@ html:not(.ph) .mapfull .mhd .ovt{font-size:clamp(20px,2.1vw,30px)!important;colo
 html:not(.ph) .mapfull .mhd .dsub{color:#3b2a14!important;opacity:1!important;font-family:var(--fb);font-size:clamp(13px,1.2vw,17px)!important;margin:0;line-height:1.25;text-shadow:none}
 html:not(.ph) .mapfull .mhd .dsub+.dsub{font-size:clamp(11px,.95vw,14px)!important;font-style:italic;color:#5a3f1c!important;border-top:1px solid #6b4a1f55;padding-top:2px;margin-top:1px}
 html:not(.ph) .mapfull .mhd .b{margin-top:4px}
+`;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_playtest2: round-2 playtest fixes ===== */
+try{Object.assign(CO,{Y:'#d3b260',E:'#c9b98c'})}catch(e){}
+function ehFit(){try{if(document.documentElement.classList.contains('ph'))return;const b=document.querySelector('#app .eh>b');if(!b)return;b.style.fontSize='';
+ const f0=parseFloat(getComputedStyle(b).fontSize);let f=f0;while(b.scrollWidth>b.clientWidth&&f>f0*.72){f=Math.max(f0*.72,f-.5);b.style.fontSize=f+'px'}}catch(e){}}
+{const r0=render;render=function(){const o=r0.apply(this,arguments);ehFit();setTimeout(ehFit,120);return o}}
+try{addEventListener('resize',()=>setTimeout(ehFit,80))}catch(e){}
+try{const st=document.createElement('style');st.id='pp2';st.textContent=`
+html:not(.ph) .ctl .b[data-b=bp]{white-space:nowrap;letter-spacing:0;font-size:11px;padding-left:0;padding-right:0;border-left-width:12px;border-right-width:12px}
+html:not(.ph) .ctl .b[data-b=bp] .ico{height:1.15em;margin:0 -1px}
+html.ph.phl{--fw:min(76px,calc((var(--vh) - 84px)/4.5));--hw:var(--fw)}
+html.ph.phl .fld.fe{padding-top:16px}
+html.ph.phl .fld{padding-top:8px;padding-bottom:2px}
+html.ph.phl .ctl{flex-direction:column;flex-wrap:nowrap;right:calc(6px + env(safe-area-inset-right,0px));bottom:6px;width:122px;max-width:none;gap:4px;align-items:stretch;justify-content:flex-end}
+html.ph.phl .ctl .b{width:100%;min-height:0;white-space:nowrap;font-size:10.5px;line-height:1.1;padding:3px 2px;border-width:5px 11px;letter-spacing:0}
+html.ph.phl .ctl .b .ico{height:1.1em}
+html.ph.phl .ctl .b[data-b=bp]{white-space:normal}
+html.ph.phl .hand{padding-right:136px}
+html.phk .fld.fp{padding-right:136px}
+html.phk .ko{flex-wrap:wrap;justify-content:center}
+@media (max-height:520px){html:not(.ph) #app:has(.kc) .hand{visibility:hidden}}
 `;document.body.appendChild(st)}catch(e){}
 
 /* ===== patch_journey: spoiler-free journey, dark mana digits, no enemy mana icon ===== */
