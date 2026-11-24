@@ -4798,5 +4798,8 @@ try{const st=document.createElement('style');st.id='pr2';st.textContent=`
 html.phm:not(.ph) #tutc{top:auto!important;bottom:max(16px,env(safe-area-inset-bottom,0px))!important}
 html #vico .box,html[data-hero] #vico .box,html[data-hero] #vico.final .box{background:radial-gradient(at 30% 20%,#d6c39a33,#0000 45%),radial-gradient(at 78% 82%,#5a3d1a2e,#0000 50%),radial-gradient(at 50% 45%,#c2ab7d 0%,#ad9466 62%,#8c7349 100%)!important;color:#1d150b!important}
 `;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_cardsize: army members 5% smaller ===== */
+try{const st=document.createElement('style');st.id='pcs';st.textContent=`@media (min-width:561px){html:not(.ph) .fld .lys .cd{zoom:calc(var(--czf,1) * .95)}}`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>

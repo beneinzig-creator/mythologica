@@ -9,3 +9,12 @@
 
 _b3("R.setProperty('--czf',b(Math.min(.145*H,.8*W/5.5)/(104*zc)).toFixed(3));R.setProperty('--czh',b(.14*H/(104*zc)).toFixed(3))",
     "R.setProperty('--czf',(b(Math.min(.145*H,.8*W/5.5)/(104*zc))*1.15).toFixed(3));R.setProperty('--czh',(b(.14*H/(104*zc))*1.25).toFixed(3))")
+
+# Army members on the battlefield 5% smaller than the +15% above (Ben, after trying it): 1.15 * .95 = 1.0925 of
+# the original. Only army members (.lys); item/modifier rows keep the +15%. Amulets worn by an army member are
+# badges inside its card (.amw), so they shrink with it.
+_JSCS = r"""
+/* ===== patch_cardsize: army members 5% smaller ===== */
+try{const st=document.createElement('style');st.id='pcs';st.textContent=`@media (min-width:561px){html:not(.ph) .fld .lys .cd{zoom:calc(var(--czf,1) * .95)}}`;document.body.appendChild(st)}catch(e){}
+"""
+_b3("showChars();\n</script>", _JSCS + "showChars();\n</script>")
