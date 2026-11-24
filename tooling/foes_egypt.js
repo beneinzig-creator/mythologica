@@ -12,20 +12,20 @@ F('mthief',{c:4,a:4,h:4,f:'r',tag:'rob',t:'Ruthless. When it enters, it steals a
  die:s=>{const L=fTag(s,'rob');L.forEach(x=>{x.dmg+=2});if(L.length)log('Under questioning, the Master of Thieves names his gang.')}});
 F('torch',{c:2,t:'They set the coffins alight: deal 2 damage to target army member, or 4 if it is already damaged.',
  ai:(s,o)=>{const k=fTop(fTg(o).filter(x=>fHp(x)<=(x.dmg?4:2)));return k&&ev(k)>=2.5?{s:2.5+ev(k)*.8,t:k}:null},fx:(s,o,t)=>{if(t)t.dmg+=t.dmg?4:2}});
-F('drag',{c:2,t:'Drag below: return target opposing army member to its owner\'s hand. It costs 1 more to play again.',
- ai:(s,o)=>{const T=fTop(fTg(o).filter(x=>D[x.id][1]>=3));return T&&ev(T)>=5?{s:2+ev(T)*.55,t:T}:null},fx:(s,o,t)=>{if(!t)return;bounce(t);t.disc=(t.disc||0)-1}});
-DK('The Tomb Robbers',{d:'grob:5,tdig:3,fence:2,mthief,torch:2,drag',hint:'Cowards in numbers: they steal when they outnumber you and sell what they take'});
+DK('The Tomb Robbers',{d:'grob:5,tdig:3,fence:2,mthief,torch:3',hint:'Cowards in numbers: they steal when they outnumber you and sell what they take'});
 
-/* ---------- The Scorpions of Serket: seven escorts who pool their venom into one sting ---------- */
-F('sbrood',{c:1,a:1,h:1,f:'h',tag:'scor',t:'Charge. One of the seven: when it dies, its venom pools. The next of their army members to attack has Venomous that turn.',die:s=>{s.pool=(s.pool||0)+1;log('A scorpion\'s venom pools for the next sting.')}});
-F('sstalk',{c:2,a:3,h:2,f:'',tag:'scor',t:'It waits under the sand: when you attack while it is in defense form, it has Venomous until their next turn.',
- dfd:(s,o,c)=>{if(c.def&&!c.f.includes('v')){c.f+='v';c.vtmp=1}},up:(s,o,c)=>{if(c.vtmp){c.f=c.f.replace('v','');c.vtmp=0}}});
-F('squeen',{c:3,a:3,h:3,f:'',tag:'scor',t:'She heals stings and knows how to cause them: when it enters, your weakest army member takes 1 damage. At the start of their turn, restore 2 health to each of their army members.',
- etb:(s,o)=>{const t=fLow(cr(o));if(t)t.dmg+=1},up:s=>cr(s).forEach(x=>heal(x,2))});
-F('sking',{c:4,a:4,h:4,f:'',tag:'scor',t:'The first king gathers the seven: gets +1/+1 for each Scorpion Brood they control (at most +3/+3).',self:c=>{const n=Math.min(3,fCnt(sideOf(c),'sbrood'));return[n,n]}});
-F('sting',{c:2,t:'Destroy target army member that has damage on it.',ai:(s,o)=>{const T=fTop(fTg(o).filter(x=>x.dmg>0));return T&&ev(T)>=3?{s:2+ev(T)*.8,t:T}:null},fx:(s,o,t)=>{if(t)fDestroy(t)}});
-{const _l=launch;launch=function(s,S,tgm){const r=_l.apply(this,arguments);try{if(s===G.e&&s.pool>0){const a=S.find(x=>!x.f.includes('v'));if(a){a.f+='v';a.vtmp=1;s.pool--;log(fNm(a)+' carries the pooled venom.')}}}catch(e){}return r}}
-DK('The Scorpions of Serket',{d:'sbrood:6,sstalk:3,squeen:2,sking,sting:2',hint:'Small stingers pool their venom: every one that dies arms the next attacker'});
+/* ---------- The Scorpions of Serket: THE VENOM POOL. Six escorts give their venom to Tefen, who stings ---------- */
+const fPool=(s,n,why)=>{s.venom=(s.venom||0)+n;if(why)log(why+' Venom: '+Math.min(7,s.venom)+' of 7.');if(s.venom>=7){s.venom=0;const o=oppOf(s);const t=fTop(cr(o));if(t){fDestroy(t);log('Tefen stings with the venom of all seven: '+fNm(t)+' dies.')}fHurt(o,3,'The pooled venom burns you too. ');cr(s).filter(x=>x.id=='squeen').forEach(()=>{cr(o).forEach(x=>heal(x,1))})}};
+const fScor=['sbrood','sstalk','squeen','sking'];
+F('serk',{t:'Ward. The venom pool: whenever one of their scorpions dies or deals combat damage to you, the pool fills by 1. At 7, Tefen stings with the venom of all seven: your strongest army member dies, you lose 3 life, and the pool empties.',
+ allyDie:(s,o,c,x)=>{if(fScor.includes(x.id))fPool(s,x.id=='sbrood'?2:1,'A scorpion\'s venom pools.')}});
+F('sbrood',{c:1,a:1,h:1,f:'h',tag:'scor',t:'Charge. One of the seven escorts: when it dies, it gives its venom to the pool twice over (+2). When it deals combat damage to you, +1.',hit:s=>fPool(s,1,'A sting.')});
+F('sstalk',{c:2,a:3,h:2,f:'',tag:'scor',t:'It waits under the sand: after it blocks, the pool fills by 1.',blk:s=>fPool(s,1,'The Sand Stalker strikes from under the sand.'),hit:s=>fPool(s,1,'A sting.')});
+F('squeen',{c:3,a:3,h:3,f:'',tag:'scor',t:'Serket heals stings as well as causing them: at the start of their turn, restore 2 health to each of their army members. When Tefen stings, Isis\'s mercy: your army members heal 1.',up:s=>cr(s).forEach(x=>heal(x,2))});
+F('sking',{c:4,a:4,h:4,f:'',tag:'scor',t:'The first king, named for the scorpion: gets +1/+1 for every 2 venom in the pool (at most +3/+3).',self:c=>{const n=Math.min(3,Math.floor((sideOf(c).venom||0)/2));return[n,n]},hit:s=>fPool(s,1,'A sting.')});
+F('sting',{c:2,t:'Spend 3 venom from the pool: destroy target army member. With less venom, it only deals 2 damage.',
+ ai:(s,o)=>{if((s.venom||0)>=3){const T=fTop(fTg(o));return T&&ev(T)>=4?{s:2+ev(T)*.8,t:T}:null}return fAiKill(o,2,2.5)},fx:(s,o,t)=>{if(!t)return;if((s.venom||0)>=3){s.venom-=3;fDestroy(t)}else t.dmg+=2}});
+DK('The Scorpions of Serket',{d:'sbrood:6,sstalk:3,squeen:2,sking,sting:2',hint:'Every scorpion that dies or stings fills the venom pool; at seven, Tefen stings your strongest army member'});
 
 /* ---------- Servants of the Tomb: the shabti answer "Here I am!" and stand in for the dead ---------- */
 F('shbs',{c:1,a:3,h:1,f:'',tag:'shab',t:'"Here I am!": once each turn, when another of their army members dies, this servant dies in its place and that army member returns with 1 health.',
@@ -40,24 +40,32 @@ F('heal2',{c:2,t:'The Nile\'s yearly renewal: they gain 4 life and restore 2 hea
  ai:s=>{const hurt=cr(s).reduce((n,x)=>n+Math.min(2,x.dmg),0);return(s.life<=s.max-4||hurt>=3)?{s:3+(s.max-s.life)/2.5+hurt*.5}:null},fx:s=>{fGain(s,4);cr(s).forEach(x=>heal(x,2))}});
 DK('Servants of the Tomb',{d:'shbs:6,mumw:3,embp:2,tguard,heal2:2',hint:'Shabti servants die in their masters\' place; the mummies endure'});
 
-/* ---------- The Crocodiles of Sobek: they wait in the water, and everything that attacks walks into their jaws ---------- */
+/* ---------- The Crocodiles of Sobek: THE RIVER. Your army members are dragged under and held; Sobek gives back what the water took ---------- */
+const fRiver=s=>(s.river||[]).length;
+function fDrag(s,o,x,why){if(!x||!o.bf.includes(x))return;o.bf.splice(o.bf.indexOf(x),1);Object.assign(x,{dmg:0,tap:0,def:0,att:0,sw:0,ta:0,td:0,vn:0,rs:0,forced:0});(s.river=s.river||[]).push(x);try{amFall()}catch(e){}log((why||'')+fNm(x)+' is dragged into the river ('+fRiver(s)+' held).')}
+F('sobk',{t:'Ward. The river: your army members dragged under are held in the river, not killed. When Sobek dies, he gives back what the water took: they return to your hand.'});
 F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +2/+0 in defense form.',self:c=>[c.def?2:0,0]});
-F('lurk',{c:2,a:3,h:2,f:'',tag:'croc',t:'It lies in wait: when you attack, if it is untapped, it bites your strongest attacker for 2.',
- dfd:(s,o,c,S)=>{if(c.tap)return;const t=fTop(S);if(t){t.dmg+=2;log('A Nile Lurker bites '+fNm(t)+' from the water.')}}});
-F('sobpr',{c:3,a:3,h:4,f:'',tag:'croc',t:'The priests feed the sacred crocodile: at the start of their turn, Sobek (or their strongest crocodile) gets +1/+1 permanently.',
- up:(s,o,c)=>{const t=s.bf.find(x=>x.id=='sobek')||fTop(fTag(s,'croc',c));if(t){t.pa++;t.pd++;log('The priests of Sobek feed '+fNm(t)+' honey cakes.')}}});
-F('sobek',{c:5,a:6,h:6,f:'',tag:'croc',t:'The death roll: after it blocks an army member, that army member is dragged under and destroyed.',
- blk:(s,o,c)=>{const cm=G.cmbLast;if(!cm)return;for(const[a,b]of Object.entries(cm.blk||{}))if(b==c.u){const A=o.bf.find(x=>x.u==a);if(A){fDestroy(A);log('Sobek drags '+fNm(A)+' under the water.')}}}});
-{const _r=resolve;resolve=function(){try{G.cmbLast=G.cmb?{blk:{...G.cmb.blk},side:G.cmb.side}:null}catch(e){}return _r.apply(this,arguments)}}
-DK('The Crocodiles of Sobek',{d:'croc:5,lurk:3,sobpr:3,sobek,drag:2',hint:'Ambushers: attacking them walks into their jaws'});
+F('lurk',{c:2,a:3,h:2,f:'',tag:'croc',t:'The death roll: when it blocks an army member that has 3 or less health left, it drags it into the river before it can strike.'});
+F('sobpr',{c:3,a:3,h:4,f:'',tag:'croc',t:'The priests hang the sacred crocodiles with gold: their army members get +1/+0 for each army member held in the river (at most +3).',aura:(x,c)=>[Math.min(3,fRiver(sideOf(c))),0],self:c=>[Math.min(3,fRiver(sideOf(c))),0]});
+F('sobek',{c:5,a:5,h:6,f:'',tag:'croc',t:'When it blocks an army member, it drags it into the river before it can strike. Gets +1/+1 for each army member held in the river. When it dies, the river gives them all back to your hand.',
+ self:c=>{const n=fRiver(sideOf(c));return[n,n]},
+ die:(s,o)=>{const L=s.river||[];s.river=[];L.forEach(x=>o.hand.push(x));if(L.length)log('Sobek gives back what the water took: '+L.length+' army member'+(L.length==1?'':'s')+' return to your hand.')}});
+F('drag',{c:2,t:'Drag below: a damaged army member of yours is dragged into the river.',ai:(s,o)=>{const T=fTop(fTg(o).filter(x=>x.dmg>0));return T&&ev(T)>=3?{s:2+ev(T)*.8,t:T}:null},fx:(s,o,t)=>{if(t)fDrag(s,o,t)}});
+/* the death roll happens as they block: the attacker is gone before it strikes */
+{const _a=aiBlock;aiBlock=function(at){const r=_a.apply(this,arguments);try{const c=G.cmb,e=G.e,p=G.p;if(c&&c.side=='p'&&e)for(const[u,b]of Object.entries(c.blk||{})){const B=e.bf.find(x=>x.u==b),A=p.bf.find(x=>x.u==u);if(!B||!A)continue;if(B.id=='sobek'||(B.id=='lurk'&&fHp(A)<=3)){c.atk=c.atk.filter(x=>x!=u);delete c.blk[u];fDrag(e,p,A,B.id=='sobek'?'Sobek: ':'The Nile Lurker rolls: ')}}}catch(e2){}return r}}
+DK('The Crocodiles of Sobek',{d:'croc:5,lurk:3,sobpr:3,sobek,drag:2',hint:'They drag your army into the river and grow fat on it; kill Sobek and the river gives everything back'});
 
-/* ---------- The Jackals of Anubis: guides of the dead, fed by every death; Wepwawet opens the way ---------- */
-F('jack',{c:1,a:3,h:1,f:'h',tag:'jack',t:'Charge. The cemetery scavenger: gets +1/+0 for every 3 army members in your graveyard (at most +2).',self:c=>[Math.min(2,Math.floor(oppOf(sideOf(c)).gy.filter(isC).length/3)),0]});
-F('jguard',{c:2,a:2,h:3,f:'',tag:'jack',t:'Guardian of the necropolis: whenever another of their army members dies, it gets +0/+1 permanently and they gain 1 life.',allyDie:(s,o,c)=>{c.pd++;fGain(s,1)}});
+/* ---------- The Jackals of Anubis: CLAIMING THE DEAD. Your dead go to them and are led into the Hall ---------- */
+const fSouls=s=>s.gy.filter(x=>x.claim).length+(s.hall||0);
+F('anub',{t:'Ward. Guides of the dead: when one of your army members dies, Anubis claims it. It goes to their graveyard, not yours.',
+ oppDie:(s,o,c,x)=>{const i=o.gy.indexOf(x);if(i<0)return;o.gy.splice(i,1);x.claim=1;s.gy.push(x);log('Anubis claims the soul of '+fNm(x)+'.');cr(s).filter(y=>y.id=='jguard').forEach(y=>{y.pd++;fGain(s,1)})}});
+F('jack',{c:1,a:3,h:1,f:'h',tag:'jack',t:'Charge. The cemetery jackal: +1/+0 for every 2 souls they hold (claimed dead, in their graveyard or the Hall; at most +2).',self:c=>[Math.min(2,Math.floor(fSouls(sideOf(c))/2)),0]});
+F('jguard',{c:2,a:2,h:3,f:'',tag:'jack',t:'Guardian of the necropolis: whenever Anubis claims one of your dead, it gets +0/+1 permanently and they gain 1 life.'});
 F('wepw',{c:3,a:4,h:3,f:'r',tag:'jack',t:'Ruthless. Opener of the ways: when it attacks, the other attackers can\'t be blocked this turn.',atk:(s,o,c)=>{cr(s).filter(x=>x.att&&x!==c).forEach(x=>{x.ub=1})}});
-F('jpack',{c:4,a:5,h:4,f:'',tag:'jack',t:'When it enters, your weakest army member takes 2 damage. Their other Jackals get +1/+0.',
- etb:(s,o)=>{const t=fLow(cr(o));if(t)t.dmg+=2},aura:x=>[FOE[x.id]&&FOE[x.id].tag=='jack'?1:0,0]});
-DK('The Jackals of Anubis',{d:'jack:6,jguard:5,wepw:2,jpack',hint:'Every death feeds them, and the Opener of the Ways lets the pack through'});
+F('jpack',{c:4,a:4,h:4,f:'',tag:'jack',t:'When it enters, and at the start of their turn, it leads one claimed soul into the Hall for good, and their Jackals get +1/+1 permanently.',
+ etb:(s,o,c)=>FOE.jpack.lead(s),up:s=>FOE.jpack.lead(s),
+ lead:s=>{const x=s.gy.find(y=>y.claim);if(!x)return;s.gy.splice(s.gy.indexOf(x),1);s.hall=(s.hall||0)+1;cr(s).filter(y=>FOE[y.id]&&FOE[y.id].tag=='jack').forEach(y=>{y.pa++;y.pd++});log('The Packleader leads the soul of '+fNm(x)+' into the Hall.')}});
+DK('The Jackals of Anubis',{d:'jack:6,jguard:5,wepw:2,jpack',hint:'Your dead are claimed by Anubis and led into the Hall; every soul they hold makes the pack stronger'});
 
 /* ---------- The Priests of Heka: magic through names; the cursed cards in your hand ---------- */
 const fCurseHand=(o,n,why)=>{for(let i=0;i<n;i++){const L=o.hand.filter(x=>!x.cursed);const x=fRnd(L.length?L:o.hand);if(!x)return;x.disc=(x.disc||0)-1;x.cursed=1;log((why||'Execration: ')+fNm(x)+' is cursed (costs 1 more).')}};
@@ -104,7 +112,7 @@ F('setb',{c:2,a:3,h:2,f:'h',tag:'set',t:'Charge. When it deals combat damage to 
  hit:(s,o)=>{const t=fLow(cr(o).filter(x=>!x.part&&!has(x,'w')));if(t&&typeof thSunder=='function')thSunder(t,s)}});
 F('setst',{c:3,a:3,h:3,f:'',tag:'set',t:'The red desert walks: at the start of their turn, each of your Bodies and Spirits takes 1 damage.',up:(s,o)=>{const L=cr(o).filter(x=>x.part);L.forEach(x=>{x.dmg+=1});if(L.length)log('The storm scatters the pieces.')}});
 F('sand',{c:3,t:'Deal 2 damage to each opposing army member.',ai:(s,o)=>{const L=cr(o),k=L.filter(x=>fHp(x)<=2).length;return L.length>=2&&k>=1?{s:3+k*3+L.length}:null},fx:(s,o)=>{cr(o).forEach(x=>{x.dmg+=2})}});
-DK('Set, Lord of the Red Desert',{d:'setg,setb:5,setst:4,sand:2,drag:2'});
+DK('Set, Lord of the Red Desert',{d:'setg,setb:5,setst:4,sand:3'});
 
 /* ---------- Sekhmet: the Eye of Ra's rage, which burns her too; red beer calms her ---------- */
 F('lion',{c:2,a:2,h:3,f:'r',tag:'sekh',t:'Ruthless. The pride hunts together: gets +1/+0 for each other Lioness (at most +2).',self:c=>[Math.min(2,fCnt(sideOf(c),'lion')-1),0]});

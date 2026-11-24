@@ -48,6 +48,8 @@ const fNewest=o=>cr(o).slice().sort((a,b)=>(b.eN||0)-(a.eN||0))[0];
 {const _o=offer;offer=function(s,c){const F0=FOE[c&&c.id];const r=_o.apply(this,arguments);try{if(G&&G.e){const o=oppOf(s);if(F0&&F0.sac)F0.sac(s,o,c);if(isC(c))for(const x of fOn(s,'allySac'))if(x!==c)FOE[x.id].allySac(s,o,x,c)}}catch(e){}return r}}
 {const _u=egUp;egUp=function(s,o){_u(s,o);try{if(!G||!G.e||!o)return;fRun('up',s,o);fRun('oup',o,s)}catch(e){}}}
 {const _l=launch;launch=function(s,S,tgm){const r=_l.apply(this,arguments);try{const o=oppOf(s);for(const a of S)if(FOE[a.id]&&FOE[a.id].atk&&s.bf.includes(a))FOE[a.id].atk(s,o,a);for(const x of fOn(o,'dfd'))FOE[x.id].dfd(o,s,x,S)}catch(e){}return r}}
+/* after every combat: FOE.post(s,o,c,hurt) where hurt = its side's army members that took damage this combat and survived */
+{const _r=resolve;resolve=function(){try{for(const s of[G.p,G.e])for(const x of cr(s))x.preD=x.dmg}catch(e){}const r=_r.apply(this,arguments);try{if(G&&G.e&&G.p&&!['victory','lost','kleos'].includes(G.phase))for(const s of[G.e,G.p]){const hurt=cr(s).filter(x=>x.preD!=null&&x.dmg>x.preD);fRun('post',s,oppOf(s),hurt)}}catch(e){}return r}}
 {const _r=resolve;resolve=function(){let hits=[];try{const c=G.cmb;if(c){const A=c.side=='p'?G.p:G.e;for(const u of c.atk){const a=A.bf.find(x=>x.u==u);if(!a||c.blk[u]||(c.bx&&c.bx[u])||(c.tg&&c.tg[u]))continue;if(FOE[a.id]&&FOE[a.id].hit)hits.push([A,a,pwr(a)])}
    for(const u of Object.values(c.blk||{})){const N=c.side=='p'?G.e:G.p;const b=N.bf.find(x=>x.u==u);if(b&&FOE[b.id]&&FOE[b.id].blk)hits.push([N,b,-1])}}}catch(e){}
  const r=_r.apply(this,arguments);

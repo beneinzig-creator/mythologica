@@ -100,7 +100,7 @@ function wkPlay(p,c){p.cp=(p.cp||0)+1;p.pid=p.lid||'';p.lid=c.id;p.pl=p.lt||'';l
 function wkUp(s){if(s!==G.p)return;s.cp=0;s.mo=0;s.lt='';s.pl='';s.pid='';s.lid='';s.tys={};s.mir=0;cr(s).forEach(c=>{c.ub=0});if(s.bf.some(x=>x.id=='wtree')){s.life+=2;wkShuffle(s,'wpeach',1);log('The Peach Tree blooms: you gain 2 life.')}}
 function wkCopy(t,src){const n=mk(src.id);t.id=n.id;t.a=n.a+(t.rec?t.rec.a:0);t.d=n.d+(t.rec?t.rec.d:0);t.f=n.f;t.pa=t.pd=t.ta=t.td=0;t.vn=0;t.def=has(t,'k')?1:0}
 function fxRun(p,c,t){
- if(G.e.bf.some(x=>x.id=='gourd')&&t&&typeof t=='object'&&G.e.bf.includes(t)&&p.gt!==G.turn){p.gt=G.turn;log('The Gourd of Names swallows '+D[c.id][0]+'!');return}
+ /* gourd: the name call now lives in foes_chinese.js */
  FX[c.id](p,G.e,t);
  if(p.mir&&c.id!='wmirror'){p.mir=0;log('Mirror Hair: it is cast again!');FX[c.id](p,G.e,t)}}
 function wkBar(){const p=G.p;if(!p||G.ch!='wukong')return'';return`<span class="cn" title="Momentum rises each time you play a card of a different type (Strike, Trick, Leap) than the card before it. It resets every turn.">⛓ Momentum ${p.mo||0} · ${p.cp||0} played${p.lt?' · last: '+WTN[p.lt]:''}</span>`}
@@ -226,8 +226,8 @@ CHARS.wukong.en.push(
 {n:'The Yellow Wind Ridge',l:20,ic:'🌪️',hint:'Everything the wind carries strikes the moment it lands',bg:['#241d07','#c9a227'],d:ids('ybat:3,ytig:4,ydef:2,ygen:2,ygale:2'),mt:'ywind'});
 ELITES.push({n:'Erlang Shen, the Three-Eyed',l:21,ic:'👁️',hint:'His third eye sees through every clone and feint: spells that cost 0 cost 1 more for you',bg:['#0e1824','#9ab8d8'],d:ids('eplum:4,ehnd:3,eerl:2,esw:2,hnet'),mt:'eye'});
 CHARS.wukong.el=[ELITES.length-1];
-function boneBack(s,c){if(!isC(c)||TOKE.includes(c.id)||!s.bf||s===G.p||!s.bf.some(x=>x.id=='bone')||s.bn===G.turn)return 0;s.bn=G.turn;Object.assign(c,{tap:0,dmg:0,def:0,att:0,sw:0,sick:1,frz:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,forced:0});s.hand.push(c);log(D[c.id][0]+' sheds its corpse and returns to their hand.');return 1}
-function ecx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;const t=D[c.id][2];if(t=='C'||t=='E'||D[c.id][1]!==0)return 0;return G.p.hand.includes(c)&&G.e.bf.some(x=>x.id=='eye')?1:0}
+function boneBack(s,c){return 0;if(!isC(c)||TOKE.includes(c.id)||!s.bf||s===G.p||!s.bf.some(x=>x.id=='bone')||s.bn===G.turn)return 0;s.bn=G.turn;Object.assign(c,{tap:0,dmg:0,def:0,att:0,sw:0,sick:1,frz:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,forced:0});s.hand.push(c);log(D[c.id][0]+' sheds its corpse and returns to their hand.');return 1}
+function ecx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;const t=D[c.id][2];if(t=='C'||t=='E'||D[c.id][1]!==0)return 0;return 0}
 
 /* ===== UI: instant offer-skull tooltip (left, 15% larger); counter-zoom for draft card tooltips ===== */
 (function(){try{
@@ -578,11 +578,11 @@ BOSS.push(
 CHARS.wukong.bo=[b0,b0+1,b0+2]}
 ELITES.push({n:'Princess Iron Fan',l:17,ic:'🪭',hint:'Her fan blows your priciest army member back to your hand every turn: win with cheap bodies and spells',bg:['#1c1226','#b88ad0'],d:ids('iwnd:2,imaid:3,iguard:2,iprin,hnet'),mt:'ifan'});
 CHARS.wukong.el.push(ELITES.length-1);
-function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;return (G.p.cp||0)>=3&&G.p.hand.includes(c)&&G.e.bf.some(x=>x.id=='palm')?2:0}
+function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(!G.e.bf.some(x=>x.id=='palm')||!G.p.hand.includes(c))return 0;const lim=Math.max(1,4-G.e.bf.filter(x=>x.id=='pfin').length);return (G.p.cp||0)>=lim?2:0}
 function bossStart(){const e=G.e,p=G.p;if(!e||!e.bf||!p)return;
  if(e.bf.some(x=>x.id=='bfury')){cr(e).forEach(c=>{c.ta=(c.ta||0)+1});if(cr(e).length)log("The Bull Demon King's fury surges: their army members get +1/+0 until end of turn.")}
  if(e.bf.some(x=>x.id=='ifan')){const L=cr(p).filter(x=>D[x.id][1]>=2).sort((a,b)=>D[b.id][1]-D[a.id][1]||pwr(b)-pwr(a));if(L.length){log('The Iron Fan gusts: '+D[L[0].id][0]+' is blown back to your hand.');bounce(L[0])}}}
-{const op=wkPlay;wkPlay=function(p,c){op(p,c);const e=G.e;if(p===G.p&&D[c.id][2]=='C'&&e&&e.bf&&e.bf.some(x=>x.id=='mtrump')&&e.mcT!==G.turn){e.mcT=G.turn;if(cr(e).length<5){const n=mk(c.id);n.dis=1;enter(e,n);n.sick=1;log('The Six-Eared Macaque mimics '+D[c.id][0]+'.')}}}}
+{const op=wkPlay;wkPlay=function(p,c){op(p,c);const e=G.e;if(p===G.p&&D[c.id][2]=='C'&&e&&e.bf&&false&&e.mcT!==G.turn){e.mcT=G.turn;if(cr(e).length<5){const n=mk(c.id);n.dis=1;enter(e,n);n.sick=1;log('The Six-Eared Macaque mimics '+D[c.id][0]+'.')}}}}
 /* ===== deck balance at the common health ===== */
 CHARS.odin.en[0].d=ids('pup:2,wolf:3,hati,skoll,fenr');
 CHARS.odin.en[1].d=ids('ithrl:4,rimew:3,hgnt,icesp');
