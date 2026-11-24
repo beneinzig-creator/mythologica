@@ -32,6 +32,17 @@ R("G.e.bf=G.e.bf.filter(x=>!isC(x));const b2=mk('xbaal');enter(G.e,b2);G.cmb={si
 A3();elite('Asmodeus');R("G.p.bf=[];const h1=mk('hopl');enter(G.p,h1);const h2=mk('hopl');enter(G.p,h2);const s1=mk('thess');enter(G.p,s1);egUp(G.e,G.p)");ok('Asmodeus: the newer of a same-cost pair takes 2, the lone one is spared',R('h2.dmg')==2&&R('h1.dmg')==0&&R('s1.dmg')==0);
 A3();elite('Lilith');R("G.e.life=5;const c=mk('spear');enter(G.p,c);c.dmg=9;sweep()");ok('Lilith: she gains 2 when your army member dies',R('G.e.life')==7);
 A3();elite('Azazel, the Scapegoat');R("const a=mk('hopl');enter(G.p,a);const c=mk('xsmith');enter(G.e,c);c.dmg=9;sweep()");ok('Azazel: his losses fall on your strongest',R("G.p.bf.find(x=>x.id=='hopl').dmg")==2);
+
+// --- v2 elite pools ---
+A3();elite('Beelzebub, Lord of the Flies');R("G.e.bf=G.e.bf.filter(x=>!isC(x));var zb=mk('xzebul');enter(G.e,zb);var bp=mk('xbaal');enter(G.e,bp);var sp2=mk('hopl');G.p.bf.push(sp2);G.cmb={side:'p'};globalThis.dz=dAdj(bp,3,sp2);G.cmb=null");ok('High House: shared damage never lands on it',R('zb.dmg')==0&&R('dz')==0);
+R("G.e.bf=G.e.bf.filter(x=>!isC(x));enter(G.e,mk('xpraer'))");ok('Prince of the Air brings two Flies',R("G.e.bf.filter(x=>x.id=='xfly').length")==2);
+R("G.e.bf.push(mk('xdung'));var of=mk('spear');G.p.hand.push(of);offer(G.p,of)");ok('Dung-Heap: your offering brings a Fly',R("G.e.bf.filter(x=>x.id=='xfly').length")==3);
+A3();elite('Azazel, the Scapegoat');R("G.e.bf=G.e.bf.filter(x=>!isC(x));var gt=mk('xgoat');enter(G.e,gt);var sm=mk('xsmith');enter(G.e,sm);var at=mk('hopl');G.p.bf.push(at);G.cmb={side:'p'};globalThis.dg=dAdj(sm,3,at);globalThis.dg2=dAdj(sm,3,at);G.cmb=null");ok('The Goat Sent Out takes the first blow each turn',R('gt.dmg')==3&&R('dg')==-3&&R('dg2')==0);
+R("var ss=mk('xsword');const p0=pwr(sm);enter(G.e,ss);globalThis.p0=p0");ok('Swordsmith arms the army',R('pwr(sm)')==R('p0')+1);
+A3();elite('Asmodeus');R("G.e.bf=G.e.bf.filter(x=>!isC(x));G.p.bf=[];var g1=mk('xgroom');enter(G.e,g1);enter(G.p,mk('hopl'));enter(G.p,mk('hopl'));const gp=g1.pa;egUp(G.e,G.p);globalThis.gp=gp");ok('Seven Grooms grow on the wedding night',R('g1.pa')==R('gp')+1);
+R("G.p.bf=[];var q1=mk('spear'),q2=mk('spear');enter(G.p,q1);enter(G.p,q2);FX.xfeast(G.e,G.p)");ok('Wedding Feast strikes every pair',R('q1.dmg')==2&&R('q2.dmg')==2);
+R("G.p.bf=[];enter(G.p,mk('charon'));G.p.hand=[mk('spear')];enter(G.e,mk('xdesire'))");ok('Demon of Desire matches costs',R('cost(G.p.hand[0])')==3);
+A3();elite('Lilith');R("G.p.bf=[];var nb=mk('spear');enter(G.p,nb);FX.xamulet(G.e,G.p,nb);sweep()");ok('Broken Amulet destroys a newborn',!R("G.p.bf.includes(nb)"));
 // --- generals ---
 A3();boss(0);ok('Lucifer starts with the Bargain',R("G.e.bf.some(x=>x.id=='xbarg')"));R("G.phase='main';G.p.mana=2;G.p.barg=0");R("bt('a3barg')");ok('Bargain: +1 mana and Lucifer gains a Fallen Angel',R('G.p.mana')==3&&R("G.e.bf.filter(x=>x.id=='xfang'&&x.barg).length")==1);
 R("bt('a3barg')");ok('Bargain: once per turn',R('G.p.mana')==3);

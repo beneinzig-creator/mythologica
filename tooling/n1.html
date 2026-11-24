@@ -5561,11 +5561,54 @@ F('xlucg',{c:5,a:5,h:6,f:'fw',tag:'luc',t:'Flying. Ward. The light-bringer: thei
 F('xahri',{c:5,a:5,h:6,f:'',tag:'ahr',t:'He cannot create, only spoil: at the start of their turn, your strongest army member gets -1/-1 permanently for each Lie you hold (at most 3).',
  up:(s,o)=>{const n=Math.min(3,o.hand.filter(x=>x.id=='xlie').length);const t=fTop(cr(o));if(n&&t){t.pa-=n;t.pd-=n;log('Ahriman spoils '+fNm(t)+' with your lies (-'+n+'/-'+n+').')}}});
 
+/* ===== Act III elites: new cards (v2 pools; art pending, emoji until then) ===== */
+Object.assign(D,{
+xzebul:['Lord of the High House',3,'C',2,6,'k','','🏛️','B',2], xpraer:['Prince of the Air',3,'C',3,3,'f','','🌪️','B',2],
+xdung:['Dung-Heap of Ekron',2,'A',0,0,'','','💩','B',1], xplague:['Plague of Flies',2,'S',0,0,'','','🪰','B',2],
+xgoat:['The Goat Sent Out',1,'C',0,5,'k','','🐐','B',1], xadorn:['Teacher of Adornment',2,'C',2,3,'','','🪞','B',2],
+xsword:['Swordsmith of the Earth',3,'C',3,4,'','','🗡️','B',2], xdudael:['Bound in Dudael',3,'S',0,0,'','','⛓️','B',2],
+xdesire:['Demon of Desire',3,'C',3,3,'','','💘','R',2], xgroom:['Seven Grooms',2,'C',2,2,'','','💍','R',1],
+xfeast:['The Wedding Feast',2,'S',0,0,'','','🍷','R',2], xashm:['Ashmedai, King of Demons',4,'C',4,4,'r','','👑','R',3],
+xdemon:['Night Demoness',2,'C',3,2,'','','😈','B',1], xcradle:['Cradle-Robber',3,'C',3,4,'f','','🦇','B',2],
+xnight:['The Long Night',3,'E',0,0,'','','🌑','B',2], xamulet:['Broken Amulet',2,'S',0,0,'','','🧿','B',2]});
+Object.assign(LORE,{xzebul:'Lord of the house',xpraer:'Prince of the air',xdung:'Altar of Ekron',xplague:'Plague',xgoat:'Scapegoat',xadorn:'Fallen teacher',xsword:'Fallen teacher',xdudael:'Binding',
+ xdesire:'Demon of desire',xgroom:'Bridegrooms',xfeast:'Wedding feast',xashm:'King of demons',xdemon:'Night demon',xcradle:'Night demon',xnight:'Night',xamulet:'Amulet'});
+/* Beelzebub */
+fHouse.push('xzebul','xpraer');
+{const _f=fShare;fShare=function(t,n,src){const s=sideOf(t);if(!s||!src||sideOf(src)===s||n<=0)return 0;const A=cr(s).filter(x=>x!==t);if(!A.length)return n;const L=A.filter(x=>x.id!='xzebul');if(!L.length)return 0;let k=0;const order=L.slice().sort((a,b)=>(b.id=='xfly')-(a.id=='xfly'));for(const x of order){if(k>=n-1)break;x.dmg+=1;k++}return -k}}
+F('xzebul',{tag:'fly',t:'Can only defend. Baal-zebul, the beam of the high house: damage shared through the house never lands on it, and their Flies get +0/+1.',aura:x=>[0,x.id=='xfly'?1:0],dmgIn:(t,n,src)=>fShare(t,n,src)});
+F('xpraer',{tag:'fly',t:'Flying. The swarm rides the air: when it enters, two Flies join them.',etb:s=>{if(fSum(s,'xfly',2))log('The Prince of the Air brings the swarm.')},dmgIn:(t,n,src)=>fShare(t,n,src)});
+F('xdung',{iv:7,t:'Zebel, the dung of Ekron: whenever you offer an army member, a Fly comes to the offering and joins them.'});
+{const _o=offer;offer=function(s,c){const r=_o.apply(this,arguments);try{if(G&&G.e&&s===G.p&&G.e.bf.some(x=>x.id=='xdung')&&fSum(G.e,'xfly',1))log('A fly comes to your offering.')}catch(e){}return r}}
+F('xplague',{t:'Deal 1 damage to each of your army members for every two Flies they control.',ai:(s,o)=>{const n=fCnt(s,'xfly')>>1;return n&&cr(o).length?{s:1.5+n*cr(o).length}:null},fx:(s,o)=>{const n=fCnt(s,'xfly')>>1;cr(o).forEach(x=>{x.dmg+=n});if(n)log('A plague of flies: each of your army members takes '+n+'.')}});
+DK('Beelzebub, Lord of the Flies',{d:'xbeelg,xbaal:4,xcarr:4,xzebul:2,xpraer:2,xdung,xplague:2'});
+/* Azazel */
+F('xgoat',{tag:'aza',t:'Can only defend. It bears their sins into the wilderness: the first damage each turn dealt to another of their army members is dealt to it instead.'});
+{const _d=dAdj;dAdj=function(t,n,src){let d=_d.apply(this,arguments);try{const s=sideOf(t);if(s&&t.id!='xgoat'&&n+d>0){const g=s.bf.find(x=>x.id=='xgoat'&&x.gt!==G.turn);if(g){g.gt=G.turn;g.dmg+=n+d;log('The goat bears it: '+(n+d)+' damage falls on the Goat Sent Out.');return -n}}}catch(e){}return d}}
+F('xadorn',{tag:'aza',t:'The art of antimony and the mirror: when it enters, their strongest other army member gets Ward.',etb:(s,o,c)=>{const t=fTop(cr(s).filter(x=>x!==c));if(t){fKey(t,'w');log('Azazel\'s teacher adorns '+fNm(t)+' (Ward).')}}});
+F('xsword',{tag:'aza',t:'He taught men to make swords and shields: when it enters, each of their army members gets +1/+0 permanently.',etb:s=>{cr(s).forEach(x=>{x.pa++})}});
+F('xdudael',{t:'Bound under rough and jagged rocks: tap your strongest army member. It stays tapped for two turns.',ai:(s,o)=>{const t=fTop(cr(o).filter(x=>!has(x,'w')));return t?{s:2+ev(t)*.7,t}:null},fx:(s,o,t)=>{t=t||fTop(cr(o));if(t){t.tap=1;t.frz=Math.max(t.frz||0,2);log(fNm(t)+' is bound in Dudael.')}}});
+DK('Azazel, the Scapegoat',{d:'xazag,xsmith:4,xwat:3,xcurse:2,xgoat:2,xadorn:2,xsword:2,xdudael'});
+/* Asmodeus */
+F('xdesire',{tag:'asm',t:'Matchmaker: when it enters, the cheapest army member in your hand now costs the same as your newest army member.',etb:(s,o)=>{const n=fNewest(o);const h=o.hand.filter(x=>isC(x)).sort((a,b)=>D[a.id][1]-D[b.id][1])[0];if(n&&h){const k=D[n.id][1];h.disc=D[h.id][1]-k;log('Desire: '+fNm(h)+' now costs '+k+', the same as '+fNm(n)+'.')}}});
+F('xgroom',{tag:'asm',t:'The seven bridegrooms: whenever the wedding night hurts one of your army members, it gets +1/+1 permanently.'});
+{const U=FOE.xasm.up;FOE.xasm.up=function(s,o){const n=fPairs(o).length;U(s,o);if(n)cr(s).filter(x=>x.id=='xgroom').forEach(x=>{x.pa+=n;x.pd+=n})}}
+F('xfeast',{t:'Fourteen days of feasting: each of your army members that shares a cost with another takes 2 damage.',ai:(s,o)=>{const n=fPairs(o).flat().length;return n?{s:1+n*1.5}:null},fx:(s,o)=>{fPairs(o).flat().forEach(x=>{x.dmg+=2});log('The wedding feast: every pair is struck.')}});
+F('xashm',{tag:'asm',t:'Ruthless. Ashmedai, king of the demons: +1/+1 for each pair of your army members that share a cost.',self:c=>{const n=fPairs(oppOf(sideOf(c))).length;return[n,n]}});
+DK('Asmodeus',{d:'xasmg,xjeal:4,xwrath:4,xdesire:2,xgroom:2,xfeast:2,xashm'});
+/* Lilith */
+F('xdemon',{tag:'lil',t:'When it enters, your newest army member takes 2 damage.',etb:(s,o)=>{const t=fNewest(o);if(t){t.dmg+=2;log('A night demoness falls on '+fNm(t)+'.')}}});
+F('xcradle',{tag:'lil',t:'Flying. When it deals combat damage to you, your newest army member is snatched back to your hand.',hit:(s,o)=>{const t=fNewest(o);if(t&&o.bf.includes(t)){bounce(t);log('The Cradle-Robber snatches '+fNm(t)+'.')}}});
+F('xnight',{iv:7,t:'Their army members keep their night power (+1/+0) on your turn as well.',aura:(x,c)=>[actSide()!==sideOf(c)?1:0,0]});
+F('xamulet',{t:'The three angels\' names are scratched out: destroy target army member of yours that arrived this turn or last, if it has 3 or less health left.',
+ ai:(s,o)=>{const t=fTop(cr(o).filter(x=>(x.eT||0)>=G.turn-1&&fHp(x)<=3&&!has(x,'w')));return t?{s:2+ev(t)*.9,t}:null},fx:(s,o,t)=>{if(t&&fHp(t)<=3)fDestroy(t)}});
+DK('Lilith',{d:'xlilg,xlilin:4,xowl:4,xdemon:2,xcradle:2,xnight,xamulet:2'});
+
 /* ===== difficulty tuning (life totals), from the bal/foes matrix ===== */
 [['The Lotus-Eaters',14],['The Shades of Hades',13],["Fenrir's Brood",7],['The Norns',12],['Jörmungandr, the World Serpent',12],
  ['The Spider Cave',12],['The Gold and Silver Horn Kings',22],['The Heavenly Host',10],['The Six-Eared Macaque',10],
  ['The Crocodiles of Sobek',16],['The Jackals of Anubis',19],['The Priests of Heka',14],['Cattle of the Sun',18],
- ['Polyphemus',12],['The Cicones',10],['Princess Iron Fan',11],['Ammit, the Devourer',15],['The Prophets of Baal',25]
+ ['Polyphemus',12],['The Cicones',10],['Princess Iron Fan',11],['Ammit, the Devourer',15],['The Prophets of Baal',25],['Lilith',10],['Asmodeus',17],['Beelzebub, Lord of the Flies',21]
 
  ,['The Buddha\'s Palm',28]].forEach(([n,l])=>DK(n,{l}));
 
