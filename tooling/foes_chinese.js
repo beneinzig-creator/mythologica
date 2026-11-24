@@ -109,15 +109,15 @@ DK('Erlang Shen, the Three-Eyed',{d:'eplum:5,ehnd:4,eerl:2,esw:3',hint:'Every ar
 
 /* ---------- Princess Iron Fan: BLOWN AWAY BY WEIGHT. Light things blow a little way; heavy ones 84,000 li ---------- */
 function fBlow(o,t,why){if(!t||!o.bf.includes(t)||has(t,'w'))return;o.bf.splice(o.bf.indexOf(t),1);Object.assign(t,{dmg:0,tap:0,def:0,att:0,sw:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,forced:0});
- if(G.e.bf.some(x=>x.id=='iguard'))t.disc=(t.disc||0)-1;const far=D[t.id][1]>=4;if(far)o.deck.unshift(t);else o.deck.push(t);try{amFall()}catch(e){}log((why||'The fan blows ')+fNm(t)+(far?' 84,000 li away, to the bottom of your deck.':' back onto the top of your deck.'))}
-F('ifan',{t:'Ward. At the start of their turn, the fan blows away your most expensive army member that costs 3 or more: to the top of your deck, or, if it costs 4 or more, 84,000 li to the bottom of your deck.',
- up:(s,o)=>{const min=s.bf.some(x=>x.id=='imaid')?2:3;const t=cr(o).filter(x=>D[x.id][1]>=min&&!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)fBlow(o,t)}});
-F('iwnd',{c:1,a:2,h:1,f:'f',tag:'fan',t:'Flying. A breath of the fan: when it dies, your newest army member is blown away.',die:(s,o)=>fBlow(o,fNewest(o),'A last gust blows ')});
+ if(G.e.bf.some(x=>x.id=='iguard'))t.disc=(t.disc||0)-1;const far=D[t.id][1]>=4;if(far)o.deck.splice(Math.max(0,o.deck.length-3),0,t);else o.deck.push(t);try{amFall()}catch(e){}log((why||'The fan blows ')+fNm(t)+(far?' 84,000 li away: it lands three cards down in your deck.':' back onto the top of your deck.'))}
+F('ifan',{t:'Ward. Every other turn (on their first, third, fifth…), the fan blows away your most expensive army member that costs 3 or more: to the top of your deck, or, if it costs 4 or more, 84,000 li away: three cards down in your deck.',
+ up:(s,o)=>{s.waves=(s.waves||0)+1;if(s.waves%2==0)return;const min=s.bf.some(x=>x.id=='imaid')?2:3;const t=cr(o).filter(x=>D[x.id][1]>=min&&!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)fBlow(o,t)}});
+F('iwnd',{c:1,a:2,h:1,f:'f',tag:'fan',t:'Flying. A breath of the fan: when it dies, your newest army member is blown away if it costs 2 or less.',die:(s,o)=>{const t=fNewest(o);if(t&&D[t.id][1]<=2)fBlow(o,t,'A last gust blows ')}});
 F('imaid',{c:2,a:2,h:3,f:'',tag:'fan',t:'She guards the fan\'s case: while she lives, the fan also blows away army members that cost 2.'});
 F('iguard',{c:3,a:3,h:4,f:'p',tag:'fan',t:'Phalanx. The false fan: while it lives, army members the fan blows away cost 1 more to play again.'});
-F('iprin',{c:4,a:4,h:5,f:'z',tag:'fan',t:'Resilient. One wave sends a man 84,000 li: when it enters, she blows away all your army members that cost 3 or more.',
- etb:(s,o)=>{cr(o).filter(x=>D[x.id][1]>=3).forEach(x=>fBlow(o,x,'Princess Iron Fan blows '))}});
-DK('Princess Iron Fan',{d:'iwnd:6,imaid:4,iguard:3,iprin',hint:'Her fan blows your army away by weight: light things onto your deck, heavy ones 84,000 li to its bottom'});
+F('iprin',{c:4,a:4,h:5,f:'z',tag:'fan',t:'Resilient. One wave sends a man 84,000 li: when it enters, she blows away your two most expensive army members that cost 3 or more.',
+ etb:(s,o)=>{cr(o).filter(x=>D[x.id][1]>=3).sort((a,b)=>D[b.id][1]-D[a.id][1]).slice(0,2).forEach(x=>fBlow(o,x,'Princess Iron Fan blows '))}});
+DK('Princess Iron Fan',{d:'iwnd:6,imaid:4,iguard:3,iprin',hint:'Her fan blows your army away by weight: light things onto your deck, heavy ones 84,000 li away, deeper in it'});
 
 /* ---------- The Six-Eared Macaque: THE STOLEN LUGGAGE. He robs your deck and fields copies of what he takes ---------- */
 const fSteal=(s,o,why)=>{const x=o.deck.pop();if(!x)return;if(isC(x)&&fRoom(s)){const n=mk(x.id);n.dis=1;enter(s,n);log(why+fNm(x)+' from your pack and fields a copy.')}else log(why+fNm(x)+' from your pack.')};
@@ -143,7 +143,7 @@ F('bdk',{c:5,a:6,h:7,f:'z',tag:'bull',t:'Resilient. At 6 rage he becomes a white
 DK('The Bull Demon King',{d:'bgrd:5,bcap:5,bhrn:3,bdk'});
 
 /* ---------- The Buddha's Palm: LIMITS. However far you go, you are still inside the hand ---------- */
-F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the fourth in a turn costs 2 more. Each Finger of the Mountain lowers that limit by one (never below 1).'});
+F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the third in a turn costs 2 more. Each Finger of the Mountain lowers that limit by one (never below 1). The hand closes: at the start of their turn, you take 1 damage for each Finger of the Mountain they have beyond the first.',up:(s,o)=>{const n=fCnt(s,'pfin')-1;if(n>0)fHurt(o,n,'The hand closes around you. ')}});
 F('pdis',{c:1,a:1,h:3,f:'',tag:'palm',t:'He sat so still he became the mountain: at the start of their turn, +0/+1 permanently (at most +3).',up:(s,o,c)=>{if((c.grow||0)<3){c.grow=(c.grow||0)+1;c.pd++}}});
 F('pfin',{c:2,a:2,h:5,f:'kp',tag:'palm',t:'Can only defend. Phalanx. One of the five pillars at the end of the world: while it lives, the palm\'s limit is one card lower.'});
 F('pgrd',{c:3,a:3,h:6,f:'',tag:'palm',t:'The talisman, om mani padme hum: while it lives, your army members that cost 4 or more are sealed and can\'t attack.',

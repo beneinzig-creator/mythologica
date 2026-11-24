@@ -1905,7 +1905,7 @@ BOSS.push(
 CHARS.wukong.bo=[b0,b0+1,b0+2]}
 ELITES.push({n:'Princess Iron Fan',l:17,ic:'🪭',hint:'Her fan blows your priciest army member back to your hand every turn: win with cheap bodies and spells',bg:['#1c1226','#b88ad0'],d:ids('iwnd:2,imaid:3,iguard:2,iprin,hnet'),mt:'ifan'});
 CHARS.wukong.el.push(ELITES.length-1);
-function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(!G.e.bf.some(x=>x.id=='palm')||!G.p.hand.includes(c))return 0;const lim=Math.max(1,4-G.e.bf.filter(x=>x.id=='pfin').length);return (G.p.cp||0)>=lim?2:0}
+function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(!G.e.bf.some(x=>x.id=='palm')||!G.p.hand.includes(c))return 0;const lim=Math.max(1,3-G.e.bf.filter(x=>x.id=='pfin').length);return (G.p.cp||0)>=lim?2:0}
 function bossStart(){const e=G.e,p=G.p;if(!e||!e.bf||!p)return;
  if(e.bf.some(x=>x.id=='bfury')){cr(e).forEach(c=>{c.ta=(c.ta||0)+1});if(cr(e).length)log("The Bull Demon King's fury surges: their army members get +1/+0 until end of turn.")}
  /* ifan: foes_chinese.js */}
@@ -4940,8 +4940,8 @@ FOE.fafn=Object.assign(FOE.fafn||{},{dmgIn:(t,n,src)=>G.cmb&&G.cmb.side=='e'&&sr
 /* ===== Odysseus's realm, unique cores ===== */
 /* ---------- The Lotus-Eaters: STAYING. They never plan your death; your sleeping crew forgets the way home ---------- */
 const fSleepers=o=>cr(o).filter(x=>x.tap&&x.lastAtk!==G.turn&&!has(x,'s'));
-F('lhz',{t:'Ward. The lotus haze: the first army member you play each turn enters tapped. They do not plan your death: at the end of your turn, you lose 1 life for each of your army members still asleep (tapped without having attacked). Drag them to the ships: whenever one of your army members attacks, one of your sleepers wakes and untaps.',
- oend:(s,o)=>{const n=fSleepers(o).length;if(n)fHurt(o,n,'Your sleeping crew forget the way home. ')}});
+F('lhz',{t:'Ward. The lotus haze: the first army member you play each turn enters tapped. They do not plan your death: at the end of your turn, you lose 1 life for each of your army members still asleep (tapped without having attacked; at most 2). Drag them to the ships: whenever one of your army members attacks, one of your sleepers wakes and untaps.',
+ oend:(s,o)=>{const n=Math.min(2,fSleepers(o).length);if(n)fHurt(o,n,'Your sleeping crew forget the way home. ')}});
 {const _l=launch;launch=function(s,S){const r=_l.apply(this,arguments);try{if(G.e&&s===G.p&&G.e.bf.some(x=>x.id=='lhz')){let k=0;for(const a of S){const z=fSleepers(s).find(x=>!S.includes(x));if(z){z.frz=0;z.tap=0;k++}}if(k)log('You drag '+k+' of your sleepers weeping to the ships.')}}catch(e){}return r}}
 F('isl',{c:1,a:2,h:3,f:'q',tag:'lotus',t:'Opportunist. It offers the lotus: when it enters, your weakest untapped army member falls asleep (tapped, and it doesn\'t untap next turn).',etb:(s,o)=>{const t=fLow(cr(o).filter(x=>!x.tap));if(t){fTap(t,1);log(fNm(t)+' tastes the lotus and falls asleep.')}}});
 F('priest',{c:2,a:1,h:4,f:'q',tag:'lotus',t:'Opportunist. The poppy rite: when it enters, your strongest untapped army member falls asleep (tapped, and it doesn\'t untap next turn).',etb:(s,o)=>{const t=fTop(fTg(o).filter(x=>!x.tap));if(t){fTap(t,1);log(fNm(t)+' breathes the poppy smoke and sleeps.')}}});
@@ -4949,12 +4949,12 @@ F('lbow',{c:2,a:1,h:4,f:'a',tag:'lotus',t:'Range. Poppy darts: when it enters, y
 F('titan',{t:'Ruthless. Opportunist. A heavy sleeper: skips its next untap after attacking. +1/+1 for each of your army members that is asleep (tapped, at most +3/+3).',self:c=>{const o=oppOf(sideOf(c));const n=o?Math.min(3,fSleepers(o).length):0;return[n,n]}});
 
 /* ---------- Polyphemus: TRAPPED. The boulder seals the cave; you escape beneath the sheep ---------- */
-const fCaveOpen=s=>(s.cave||0)>=3;
-F('mouth',{t:'The boulder seals the cave: while it stands, your army deals no combat damage to them. It rolls away once three of their Cyclopes or Flock Sheep have died: your men escape beneath the sheep. Army members with power 1 or less can\'t attack.',
- allyDie:(s,o,c,x)=>{if(fCaveOpen(s))return;if(x.id=='sheep'||has(x,'g')){s.cave=(s.cave||0)+1;log(fCaveOpen(s)?'The boulder rolls away: the cave is open!':'One step closer to the cave mouth ('+s.cave+' of 3).')}}});
+const fCaveOpen=s=>(s.cave||0)>=2;
+F('mouth',{t:'The boulder seals the cave: while it stands, your army deals no combat damage to them. It rolls away once two of their Cyclopes or Flock Sheep have died: your men escape beneath the sheep. Army members with power 1 or less can\'t attack.',
+ allyDie:(s,o,c,x)=>{if(fCaveOpen(s))return;if(x.id=='sheep'||has(x,'g')){s.cave=(s.cave||0)+1;log(fCaveOpen(s)?'The boulder rolls away: the cave is open!':'One step closer to the cave mouth ('+s.cave+' of 2).')}}});
 {const _r=resolve;resolve=function(){let L=null;try{const e=G.e;if(G.cmb&&G.cmb.side=='p'&&e&&e.bf.some(x=>x.id=='mouth')&&!fCaveOpen(e))L=e.life}catch(e){}const r=_r.apply(this,arguments);try{if(L!=null&&G.e&&G.e.life<L){G.e.life=L;log('The boulder holds: your blows cannot reach the Cyclops.')}}catch(e){}return r}}
 F('sheep',{c:1,a:1,h:3,f:'',tag:'cyc',t:'Under its belly your men escape: when it dies, its controller gains 2 life, and the boulder moves a step.',die:s=>{s.life+=2}});
-DK('Polyphemus',{l:15,hint:'The boulder seals the cave: you can\'t hurt them in combat until three Cyclopes or sheep have died'});
+DK('Polyphemus',{l:15,hint:'The boulder seals the cave: you can\'t hurt them in combat until two Cyclopes or sheep have died'});
 
 /* ---------- The Shades of Hades: BLOOD. Only the shades that drink can speak ---------- */
 const fDrink=(s,x)=>{if((s.blood||0)<1||!has(x,'e'))return false;s.blood--;x.pa++;x.pd++;x.spoke=1;if(x.id=='mourner')x.ub=1;log(fNm(x)+' drinks from the pit and speaks.');return true};
@@ -4974,9 +4974,12 @@ DK('The Phaeacians',{hint:'A contest every turn: boxing, the footrace, the discu
 
 /* ---------- The Cicones: THE DAWN COUNTERATTACK. Linger on the beach and the inland neighbours come ---------- */
 hitRun=function(){};
-F('hitr',{t:'Ward. You linger on the beach: at dawn on the fifth turn, the inland neighbours counterattack: two Cicone Raiders join them, and their army gets +1/+0 and Charge permanently. Sack the town before dawn.',
- up:s=>{if(s.dawn||G.turn<5)return;s.dawn=1;fSum(s,'mraid',2);cr(s).forEach(x=>{x.pa++;fKey(x,'h')});log('Dawn: the inland Cicones counterattack, more numerous than leaves in spring.')},allyEnter:(s,o,c,x)=>{if(s.dawn&&x!==c){x.pa++;fKey(x,'h')}}});
-DK('The Cicones',{hint:'Weak at first; at dawn on the fifth turn the inland Cicones counterattack. Win fast'});
+F('hitr',{t:'Ward. You linger on the beach: at dawn on the sixth turn, the inland neighbours counterattack: two Cicone Raiders join them, and their army gets +1/+0 permanently. Sack the town before dawn.',
+ up:s=>{if(s.dawn||G.turn<6)return;s.dawn=1;fSum(s,'mraid',2);cr(s).forEach(x=>{x.pa++;fKey(x,'h')});log('Dawn: the inland Cicones counterattack, more numerous than leaves in spring.')},allyEnter:(s,o,c,x)=>{if(s.dawn&&x!==c){x.pa++;fKey(x,'h')}}});
+DK('The Cicones',{hint:'Weak at first; at dawn on the sixth turn the inland Cicones counterattack. Win fast'});
+
+DK('The Lotus-Eaters',{hint:'Your sleeping crew forget the way home; attack to drag them back to the ships'});
+DK('The Sirens',{hint:'The song draws you in; sail past without attacking and the Sirens die'});
 
 /* ===== Odin's realm, the Nine Worlds: every opponent rebuilt around one theme (lore: tooling/lore/norse.js + the Lore session's briefs) ===== */
 
@@ -4993,14 +4996,13 @@ DK("Fenrir's Brood",{d:'pup:5,wolf:5,hati,skoll,fenr',hint:'A pack that grows ev
 /* ---------- The Jotnar: FIMBULWINTER. Three winters with no summer between; the giants thrive in it ---------- */
 const fWinter=s=>Math.min(3,s.winter||0);
 const fDeepen=(s,n)=>{const w=fWinter(s);s.winter=Math.min(3,(s.winter||0)+n);if(s.winter>w)log('Fimbulwinter deepens: winter '+s.winter+' of 3.')};
-const fGiantHide=(t,n)=>G.cmb&&n>0?-1:0;
-F('rwall',{t:'Ward. Fimbulwinter: at the start of their turn the winter deepens (three winters at most, with no summer between). Your army members get -1/-0 for each winter. Their Giants take 1 less combat damage.',
- up:s=>fDeepen(s,1),oaura:(x,c)=>[-fWinter(sideOf(c)),0]});
-F('ithrl',{c:1,a:2,h:3,f:'c',dmgIn:fGiantHide,tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
-F('rimew',{c:2,a:2,h:3,f:'c',dmgIn:fGiantHide,tag:'giant',t:'Giant. Giantess sorcery: when it enters, the winter deepens by 1.',etb:s=>fDeepen(s,1)});
-F('hgnt',{c:2,a:3,h:5,f:'cz',dmgIn:fGiantHide,tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
+F('rwall',{t:'Ward. Fimbulwinter: on every second turn of theirs the winter deepens (three winters at most, with no summer between). Your army members get -1/-0 for each winter. Break the winter: whenever a Rime-Witch dies, the winter eases by 1.',
+ up:s=>{s.wt=(s.wt||0)+1;if(s.wt%2==0)fDeepen(s,1)},oaura:(x,c)=>[-fWinter(sideOf(c)),0]});
+F('ithrl',{c:1,a:2,h:3,f:'c',tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
+F('rimew',{c:2,a:2,h:3,f:'c',tag:'giant',t:'Giant. Rime-sorcery: when it enters, your weakest army member takes 1 damage for each winter. When it dies, the winter eases by 1.',etb:(s,o)=>{const t=fLow(cr(o)),n=fWinter(s);if(t&&n){t.dmg+=n;log('Rime-sorcery: '+fNm(t)+' takes '+n+'.')}},die:s=>{if(s.winter>0){s.winter=Math.min(3,s.winter)-1;log('The witch falls: the winter eases ('+s.winter+' of 3).')}}});
+F('hgnt',{c:2,a:3,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
 F('icesp',{c:2,t:'Ice Spear: deal 2 damage plus 1 for each winter to target army member.',ai:(s,o)=>fAiKill(o,2+fWinter(s),2.5),fx:(s,o,t)=>{if(t)t.dmg+=2+fWinter(s)}});
-DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'The winter deepens every turn and saps your army, while the giants grow in it'});
+DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'The winter deepens and saps your army while the giants grow in it; kill the Rime-Witches to ease it'});
 
 /* ---------- The Dwarven Forge: treasures forged one by one ---------- */
 const fItems=s=>s.bf.filter(x=>!isC(x)&&'A'.includes(D[x.id][2])).length;
@@ -5042,7 +5044,7 @@ F('lokib',{c:3,t:'The insults of Lokasenna: deal 1 damage to target army member 
 DK("Loki's Court",{d:'lrav:2,imp:5,skinw:2,lokis,lsnare,lcurse,lgale:2,lokib:2',hint:'Bounce, swaps and tricks that turn your own army against you'});
 
 /* ---------- The Norns: what is carved happens ---------- */
-F('nspin',{c:1,a:1,h:3,f:'',tag:'norn',t:'She carves a fate: at the start of their turn, your weakest army member is doomed (-1/-1 permanently).',up:(s,o)=>{const t=fLow(cr(o));if(t){t.pa--;t.pd--;log('A Thread-Spinner carves '+fNm(t)+'\'s doom.')}}});
+F('nspin',{c:1,a:1,h:3,f:'',tag:'norn',t:'She carves a fate: at the start of their turn, your weakest army member is doomed (-1/-1 permanently). The sisters carve one doom a turn, however many spin.',up:(s,o)=>{if(s.spun===G.turn)return;s.spun=G.turn;const t=fLow(cr(o));if(t){t.pa--;t.pd--;log('A Thread-Spinner carves '+fNm(t)+'\'s doom.')}}});
 F('nwarr',{c:2,a:3,h:3,f:'r',tag:'norn',t:'Ruthless. Fated: when it dies, Skuld foretells what comes next: their costliest army member in hand costs 1 less.',die:s=>{const x=s.hand.filter(isC).sort((a,b)=>cost(b)-cost(a))[0];if(x){x.disc=(x.disc||0)+1;log('Skuld foretells: '+fNm(x)+' comes sooner.')}}});
 DK('The Norns',{d:'urd,verd:2,skuld,nspin:5,nwarr:4,ndoom'});
 
@@ -5178,15 +5180,15 @@ DK('Erlang Shen, the Three-Eyed',{d:'eplum:5,ehnd:4,eerl:2,esw:3',hint:'Every ar
 
 /* ---------- Princess Iron Fan: BLOWN AWAY BY WEIGHT. Light things blow a little way; heavy ones 84,000 li ---------- */
 function fBlow(o,t,why){if(!t||!o.bf.includes(t)||has(t,'w'))return;o.bf.splice(o.bf.indexOf(t),1);Object.assign(t,{dmg:0,tap:0,def:0,att:0,sw:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,forced:0});
- if(G.e.bf.some(x=>x.id=='iguard'))t.disc=(t.disc||0)-1;const far=D[t.id][1]>=4;if(far)o.deck.unshift(t);else o.deck.push(t);try{amFall()}catch(e){}log((why||'The fan blows ')+fNm(t)+(far?' 84,000 li away, to the bottom of your deck.':' back onto the top of your deck.'))}
-F('ifan',{t:'Ward. At the start of their turn, the fan blows away your most expensive army member that costs 3 or more: to the top of your deck, or, if it costs 4 or more, 84,000 li to the bottom of your deck.',
- up:(s,o)=>{const min=s.bf.some(x=>x.id=='imaid')?2:3;const t=cr(o).filter(x=>D[x.id][1]>=min&&!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)fBlow(o,t)}});
-F('iwnd',{c:1,a:2,h:1,f:'f',tag:'fan',t:'Flying. A breath of the fan: when it dies, your newest army member is blown away.',die:(s,o)=>fBlow(o,fNewest(o),'A last gust blows ')});
+ if(G.e.bf.some(x=>x.id=='iguard'))t.disc=(t.disc||0)-1;const far=D[t.id][1]>=4;if(far)o.deck.splice(Math.max(0,o.deck.length-3),0,t);else o.deck.push(t);try{amFall()}catch(e){}log((why||'The fan blows ')+fNm(t)+(far?' 84,000 li away: it lands three cards down in your deck.':' back onto the top of your deck.'))}
+F('ifan',{t:'Ward. Every other turn (on their first, third, fifth…), the fan blows away your most expensive army member that costs 3 or more: to the top of your deck, or, if it costs 4 or more, 84,000 li away: three cards down in your deck.',
+ up:(s,o)=>{s.waves=(s.waves||0)+1;if(s.waves%2==0)return;const min=s.bf.some(x=>x.id=='imaid')?2:3;const t=cr(o).filter(x=>D[x.id][1]>=min&&!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)fBlow(o,t)}});
+F('iwnd',{c:1,a:2,h:1,f:'f',tag:'fan',t:'Flying. A breath of the fan: when it dies, your newest army member is blown away if it costs 2 or less.',die:(s,o)=>{const t=fNewest(o);if(t&&D[t.id][1]<=2)fBlow(o,t,'A last gust blows ')}});
 F('imaid',{c:2,a:2,h:3,f:'',tag:'fan',t:'She guards the fan\'s case: while she lives, the fan also blows away army members that cost 2.'});
 F('iguard',{c:3,a:3,h:4,f:'p',tag:'fan',t:'Phalanx. The false fan: while it lives, army members the fan blows away cost 1 more to play again.'});
-F('iprin',{c:4,a:4,h:5,f:'z',tag:'fan',t:'Resilient. One wave sends a man 84,000 li: when it enters, she blows away all your army members that cost 3 or more.',
- etb:(s,o)=>{cr(o).filter(x=>D[x.id][1]>=3).forEach(x=>fBlow(o,x,'Princess Iron Fan blows '))}});
-DK('Princess Iron Fan',{d:'iwnd:6,imaid:4,iguard:3,iprin',hint:'Her fan blows your army away by weight: light things onto your deck, heavy ones 84,000 li to its bottom'});
+F('iprin',{c:4,a:4,h:5,f:'z',tag:'fan',t:'Resilient. One wave sends a man 84,000 li: when it enters, she blows away your two most expensive army members that cost 3 or more.',
+ etb:(s,o)=>{cr(o).filter(x=>D[x.id][1]>=3).sort((a,b)=>D[b.id][1]-D[a.id][1]).slice(0,2).forEach(x=>fBlow(o,x,'Princess Iron Fan blows '))}});
+DK('Princess Iron Fan',{d:'iwnd:6,imaid:4,iguard:3,iprin',hint:'Her fan blows your army away by weight: light things onto your deck, heavy ones 84,000 li away, deeper in it'});
 
 /* ---------- The Six-Eared Macaque: THE STOLEN LUGGAGE. He robs your deck and fields copies of what he takes ---------- */
 const fSteal=(s,o,why)=>{const x=o.deck.pop();if(!x)return;if(isC(x)&&fRoom(s)){const n=mk(x.id);n.dis=1;enter(s,n);log(why+fNm(x)+' from your pack and fields a copy.')}else log(why+fNm(x)+' from your pack.')};
@@ -5212,7 +5214,7 @@ F('bdk',{c:5,a:6,h:7,f:'z',tag:'bull',t:'Resilient. At 6 rage he becomes a white
 DK('The Bull Demon King',{d:'bgrd:5,bcap:5,bhrn:3,bdk'});
 
 /* ---------- The Buddha's Palm: LIMITS. However far you go, you are still inside the hand ---------- */
-F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the fourth in a turn costs 2 more. Each Finger of the Mountain lowers that limit by one (never below 1).'});
+F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the third in a turn costs 2 more. Each Finger of the Mountain lowers that limit by one (never below 1). The hand closes: at the start of their turn, you take 1 damage for each Finger of the Mountain they have beyond the first.',up:(s,o)=>{const n=fCnt(s,'pfin')-1;if(n>0)fHurt(o,n,'The hand closes around you. ')}});
 F('pdis',{c:1,a:1,h:3,f:'',tag:'palm',t:'He sat so still he became the mountain: at the start of their turn, +0/+1 permanently (at most +3).',up:(s,o,c)=>{if((c.grow||0)<3){c.grow=(c.grow||0)+1;c.pd++}}});
 F('pfin',{c:2,a:2,h:5,f:'kp',tag:'palm',t:'Can only defend. Phalanx. One of the five pillars at the end of the world: while it lives, the palm\'s limit is one card lower.'});
 F('pgrd',{c:3,a:3,h:6,f:'',tag:'palm',t:'The talisman, om mani padme hum: while it lives, your army members that cost 4 or more are sealed and can\'t attack.',
@@ -5268,7 +5270,7 @@ DK('Servants of the Tomb',{d:'shbs:6,mumw:3,embp:2,tguard,heal2:2',hint:'Shabti 
 const fRiver=s=>(s.river||[]).length;
 function fDrag(s,o,x,why){if(!x||!o.bf.includes(x))return;o.bf.splice(o.bf.indexOf(x),1);Object.assign(x,{dmg:0,tap:0,def:0,att:0,sw:0,ta:0,td:0,vn:0,rs:0,forced:0});(s.river=s.river||[]).push(x);try{amFall()}catch(e){}log((why||'')+fNm(x)+' is dragged into the river ('+fRiver(s)+' held).')}
 F('sobk',{t:'Ward. The river: your army members dragged under are held in the river, not killed. When Sobek dies, he gives back what the water took: they return to your hand.'});
-F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +2/+0 in defense form.',self:c=>[c.def?2:0,0]});
+F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +2/+0 in defense form, and +1/+1 for each army member held in the river (at most +2/+2).',self:c=>{const n=Math.min(2,fRiver(sideOf(c)));return[(c.def?2:0)+n,n]}});
 F('lurk',{c:2,a:3,h:2,f:'',tag:'croc',t:'The death roll: when it blocks an army member that has 3 or less health left, it drags it into the river before it can strike.'});
 F('sobpr',{c:3,a:3,h:4,f:'',tag:'croc',t:'The priests hang the sacred crocodiles with gold: their army members get +1/+0 for each army member held in the river (at most +3).',aura:(x,c)=>[Math.min(3,fRiver(sideOf(c))),0],self:c=>[Math.min(3,fRiver(sideOf(c))),0]});
 F('sobek',{c:5,a:5,h:6,f:'',tag:'croc',t:'When it blocks an army member, it drags it into the river before it can strike. Gets +1/+1 for each army member held in the river. When it dies, the river gives them all back to your hand.',
@@ -5282,9 +5284,9 @@ DK('The Crocodiles of Sobek',{d:'croc:5,lurk:3,sobpr:3,sobek,drag:2',hint:'They 
 /* ---------- The Jackals of Anubis: CLAIMING THE DEAD. Your dead go to them and are led into the Hall ---------- */
 const fSouls=s=>s.gy.filter(x=>x.claim).length+(s.hall||0);
 F('anub',{t:'Ward. Guides of the dead: when one of your army members dies, Anubis claims it. It goes to their graveyard, not yours.',
- oppDie:(s,o,c,x)=>{const i=o.gy.indexOf(x);if(i<0)return;o.gy.splice(i,1);x.claim=1;s.gy.push(x);log('Anubis claims the soul of '+fNm(x)+'.');cr(s).filter(y=>y.id=='jguard').forEach(y=>{y.pd++;fGain(s,1)})}});
-F('jack',{c:1,a:3,h:1,f:'h',tag:'jack',t:'Charge. The cemetery jackal: +1/+0 for every 2 souls they hold (claimed dead, in their graveyard or the Hall; at most +2).',self:c=>[Math.min(2,Math.floor(fSouls(sideOf(c))/2)),0]});
-F('jguard',{c:2,a:2,h:3,f:'',tag:'jack',t:'Guardian of the necropolis: whenever Anubis claims one of your dead, it gets +0/+1 permanently and they gain 1 life.'});
+ oppDie:(s,o,c,x)=>{const i=o.gy.indexOf(x);if(i<0)return;o.gy.splice(i,1);x.claim=1;s.gy.push(x);log('Anubis claims the soul of '+fNm(x)+'.');cr(s).filter(y=>y.id=='jguard').forEach(y=>{y.pa++;y.pd++;fGain(s,1)})}});
+F('jack',{c:1,a:3,h:2,f:'h',tag:'jack',t:'Charge. The cemetery jackal: +1/+0 for each soul they hold (claimed dead, in their graveyard or the Hall; at most +3).',self:c=>[Math.min(3,fSouls(sideOf(c))),0]});
+F('jguard',{c:2,a:2,h:3,f:'',tag:'jack',t:'Guardian of the necropolis: whenever Anubis claims one of your dead, it gets +1/+1 permanently and they gain 1 life.'});
 F('wepw',{c:3,a:4,h:3,f:'r',tag:'jack',t:'Ruthless. Opener of the ways: when it attacks, the other attackers can\'t be blocked this turn.',atk:(s,o,c)=>{cr(s).filter(x=>x.att&&x!==c).forEach(x=>{x.ub=1})}});
 F('jpack',{c:4,a:4,h:4,f:'',tag:'jack',t:'When it enters, and at the start of their turn, it leads one claimed soul into the Hall for good, and their Jackals get +1/+1 permanently.',
  etb:(s,o,c)=>FOE.jpack.lead(s),up:s=>FOE.jpack.lead(s),
@@ -5393,12 +5395,13 @@ F('xclub',{c:3,t:'Deal damage to target army member equal to the power of their 
 DK('The Nephilim',{d:'xyneph:4,xnep:3,xgib:2,xog,xroar:2,xclub:2',hint:'Their hunger eats your hand, then each other'});
 
 /* ---------- The Prophets of Baal: they cut themselves for a god who never answers ---------- */
-const fCut=(c,n,a,perm)=>{c.dmg+=n;if(perm)c.pa+=a;else c.ta+=a};
+/* a prophet's own blade never kills him: the cut stops at 1 health */
+const fCut=(c,n,a,perm)=>{if(perm)c.pa+=a;else c.ta+=a;c.dmg=Math.max(c.dmg,Math.min(c.dmg+n,th(c)-1))};
 F('xfire',{c:1,a:1,h:2,f:'',tag:'baal',t:'At the start of their turn it cuts itself: 1 damage to itself, +2/+0 permanently.',up:(s,o,c)=>{fCut(c,1,2,1);log('A prophet of Baal cuts himself and cries louder.')}});
 F('xcult',{c:2,a:2,h:3,f:'',tag:'baal',t:'When it attacks, it cuts itself: 1 damage to itself and +2/+0 this turn.',atk:(s,o,c)=>fCut(c,1,2,0)});
 F('xidol',{c:3,a:2,h:6,f:'k',tag:'baal',t:'Can only defend. The bull lies on the wood: at the start of their turn, each other army member they control takes 1 damage and gets +1/+0 permanently. No fire comes.',
  up:(s,o,c)=>{const L=cr(s).filter(x=>x!==c);L.forEach(x=>fCut(x,1,1,1));if(L.length)log('They limp around the altar and cut themselves. No fire comes.')}});
-F('xmolp',{c:3,a:3,h:3,f:'r',tag:'baal',t:'Ruthless. "Cry aloud": whenever another of their army members dies, they draw a card.',allyDie:s=>draw(s,1)});
+F('xmolp',{c:3,a:3,h:3,f:'r',tag:'baal',t:'Ruthless. "Cry aloud": whenever another of their army members dies, they draw a card and their army gets +1/+0 permanently.',allyDie:(s,o,c)=>{draw(s,1);cr(s).forEach(x=>{x.pa++})}});
 F('xflame',{c:3,t:'They call on Baal all day. No fire falls. Each of their army members cuts itself: 1 damage and +2/+0 this turn.',
  ai:(s,o)=>{const n=cr(s).filter(x=>canAtk(x)&&fHp(x)>1).length;return n>=2?{s:3+n*2}:null},fx:s=>{cr(s).forEach(x=>fCut(x,1,2,0));log('There was no voice, nor any that answered.')}});
 DK('The Prophets of Baal',{d:'xfire:5,xcult:4,xidol:2,xmolp:2,xflame:2',hint:'They bleed for power; every one that falls makes the rest stronger'});
@@ -5443,17 +5446,18 @@ F('xbel',{t:'Ward. The seven engagements: the Sons of Light prevail first: on th
 DK('Sons of Darkness',{d:'xline:5,xsling:3,xcapt:3,xbelg,xjav:2',hint:'The War Scroll\'s fixed cycle: they surge, they hold, and on the seventh turn they falter'});
 
 /* ---------- Mammon's Hoard: RICHES AND RUST. He makes you rich; what you hoard rots and feeds him ---------- */
-F('xmam',{t:'Ward. Mammon\'s gold: at the start of your turn you gain 2 extra mana. Moth and rust: at the end of your turn, you lose 1 life for each mana you left unspent, and his army gets that much +1/+0 on his next turn (up to +3).',
- oup:(s,o)=>{if(s.noGold)return;const n=2+(o.coin||0)+(o.bribe||0);o.coin=0;o.bribe=0;o.mana+=n;log('Mammon\'s gold: you gain '+n+' extra mana.')},
- oend:(s,o)=>{const n=Math.max(0,o.mana);s.waste=n;if(n){fHurt(o,n,'Moth and rust corrupt your hoard. ');s.rust=Math.min(3,n);cr(s).filter(x=>x.id=='xmerc'&&n>=2).forEach(x=>{x.pa++;x.pd++});cr(s).filter(x=>x.id=='xmamg').forEach(x=>{x.pa+=n;x.pd+=n})}},
- up:s=>{if(s.rust){cr(s).forEach(x=>{x.ta+=s.rust});log('Mammon\'s army grows fat on your waste (+'+s.rust+'/+0).');s.rust=0}}});
+F('xmam',{t:'Ward. Mammon\'s gold: at the start of your turn you gain 1 extra mana. You cannot serve two masters: at the end of your turn, each gold you spent buys one of his army members +1/+1 permanently, and you lose 1 life for each mana you left unspent (moth and rust).',
+ oup:(s,o)=>{if(s.noGold){s.gilt=0;return}const n=1+(o.coin||0)+(o.bribe||0);o.coin=0;o.bribe=0;o.mana+=n;s.gilt=n;s.m0=o.mana;log('Mammon\'s gold: you gain '+n+' extra mana.')},
+ oend:(s,o)=>{const n=Math.max(0,o.mana);s.waste=n;const spent=Math.max(0,Math.min(s.gilt||0,(s.m0||0)-n));s.gilt=0;
+  for(let i=0;i<spent;i++){const t=fRnd(cr(s));if(t){t.pa++;t.pd++}}if(spent&&cr(s).length)log('Mammon\'s gold comes home: his army grows richer.');
+  if(n){fHurt(o,n,'Moth and rust corrupt your hoard. ');cr(s).filter(x=>x.id=='xmerc'&&n>=2).forEach(x=>{x.pa++;x.pd++});cr(s).filter(x=>x.id=='xmamg').forEach(x=>{x.pa+=n;x.pd+=n})}}});
 F('xcoin',{c:1,a:1,h:2,f:'',tag:'mam',t:'Tribute: when it enters, Mammon gives you 1 more gold next turn.',etb:(s,o)=>{o.coin=(o.coin||0)+1}});
 F('xhoard',{c:2,a:2,h:4,f:'',tag:'mam',t:'Where your treasure is: +1/+1 for each mana you wasted last turn (at most +3/+3).',self:c=>{const n=Math.min(3,sideOf(c).waste||0);return[n,n]}});
 F('xmerc',{c:2,a:3,h:3,f:'h',tag:'mam',t:'Charge. Paid from your waste: whenever you end a turn with 2 or more mana unspent, it gets +1/+1 permanently.'});
 F('xmamg',{c:4,a:3,h:6,f:'',tag:'mam',t:'Wealth itself: +1/+1 permanently for every mana you leave unspent. When he dies, the gold stops: you no longer gain Mammon\'s mana.',die:s=>{s.noGold=1;log('Mammon falls: the gold stops.')}});
 F('xbribe',{c:2,t:'The bribe: return target army member of yours to your hand, and Mammon pays you its cost in gold next turn.',
  ai:(s,o)=>{const t=fTop(fTg(o).filter(x=>D[x.id][1]>=2));return t&&ev(t)>=4?{s:2+ev(t)*.6,t}:null},fx:(s,o,t)=>{if(!t)return;o.bribe=(o.bribe||0)+D[t.id][1];bounce(t);log('Mammon buys off '+fNm(t)+'.')}});
-DK("Mammon's Hoard",{d:'xcoin:5,xhoard:4,xmerc:3,xmamg,xbribe:2',hint:'He makes you rich, and every mana you hoard rots into damage and feeds his army'});
+DK("Mammon's Hoard",{d:'xcoin:5,xhoard:4,xmerc:3,xmamg,xbribe:2',hint:'He makes you rich: every gold you spend buys his army, every mana you hoard rots into damage. Kill Mammon to stop the gold'});
 
 /* ---------- Mastema's Spirits: THE LEDGER. Every point of damage you deal is written down and charged to you ---------- */
 const fLedger=(s,n,why)=>{if(n<=0)return;s.ledger=(s.ledger||0)+n;if(why)log(why+' Ledger: '+s.ledger+'.')};
@@ -5554,6 +5558,14 @@ F('xfheav',{c:2,t:'A false sign: deal 2 damage to target army member and mark it
 F('xlucg',{c:5,a:5,h:6,f:'fw',tag:'luc',t:'Flying. Ward. The light-bringer: their Fallen Angels get +1/+1. "I will ascend above the stars": at the start of their turn he gets +1/+0 permanently.',aura:x=>x.id=='xfang'?[1,1]:[0,0],up:(s,o,c)=>{c.pa++}});
 F('xahri',{c:5,a:5,h:6,f:'',tag:'ahr',t:'He cannot create, only spoil: at the start of their turn, your strongest army member gets -1/-1 permanently for each Lie you hold (at most 3).',
  up:(s,o)=>{const n=Math.min(3,o.hand.filter(x=>x.id=='xlie').length);const t=fTop(cr(o));if(n&&t){t.pa-=n;t.pd-=n;log('Ahriman spoils '+fNm(t)+' with your lies (-'+n+'/-'+n+').')}}});
+
+/* ===== difficulty tuning (life totals), from the bal/foes matrix ===== */
+[['The Lotus-Eaters',14],['The Shades of Hades',13],["Fenrir's Brood",7],['The Norns',12],['Jörmungandr, the World Serpent',12],
+ ['The Spider Cave',12],['The Gold and Silver Horn Kings',22],['The Heavenly Host',10],['The Six-Eared Macaque',10],
+ ['The Crocodiles of Sobek',16],['The Jackals of Anubis',19],['The Priests of Heka',14],['Cattle of the Sun',18],
+ ['Polyphemus',12],['The Cicones',10],['Princess Iron Fan',11],['Ammit, the Devourer',15],['The Prophets of Baal',25]
+
+ ,['The Buddha\'s Palm',28]].forEach(([n,l])=>DK(n,{l}));
 
 showChars();
 </script>

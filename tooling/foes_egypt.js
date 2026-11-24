@@ -44,7 +44,7 @@ DK('Servants of the Tomb',{d:'shbs:6,mumw:3,embp:2,tguard,heal2:2',hint:'Shabti 
 const fRiver=s=>(s.river||[]).length;
 function fDrag(s,o,x,why){if(!x||!o.bf.includes(x))return;o.bf.splice(o.bf.indexOf(x),1);Object.assign(x,{dmg:0,tap:0,def:0,att:0,sw:0,ta:0,td:0,vn:0,rs:0,forced:0});(s.river=s.river||[]).push(x);try{amFall()}catch(e){}log((why||'')+fNm(x)+' is dragged into the river ('+fRiver(s)+' held).')}
 F('sobk',{t:'Ward. The river: your army members dragged under are held in the river, not killed. When Sobek dies, he gives back what the water took: they return to your hand.'});
-F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +2/+0 in defense form.',self:c=>[c.def?2:0,0]});
+F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +2/+0 in defense form, and +1/+1 for each army member held in the river (at most +2/+2).',self:c=>{const n=Math.min(2,fRiver(sideOf(c)));return[(c.def?2:0)+n,n]}});
 F('lurk',{c:2,a:3,h:2,f:'',tag:'croc',t:'The death roll: when it blocks an army member that has 3 or less health left, it drags it into the river before it can strike.'});
 F('sobpr',{c:3,a:3,h:4,f:'',tag:'croc',t:'The priests hang the sacred crocodiles with gold: their army members get +1/+0 for each army member held in the river (at most +3).',aura:(x,c)=>[Math.min(3,fRiver(sideOf(c))),0],self:c=>[Math.min(3,fRiver(sideOf(c))),0]});
 F('sobek',{c:5,a:5,h:6,f:'',tag:'croc',t:'When it blocks an army member, it drags it into the river before it can strike. Gets +1/+1 for each army member held in the river. When it dies, the river gives them all back to your hand.',
@@ -58,9 +58,9 @@ DK('The Crocodiles of Sobek',{d:'croc:5,lurk:3,sobpr:3,sobek,drag:2',hint:'They 
 /* ---------- The Jackals of Anubis: CLAIMING THE DEAD. Your dead go to them and are led into the Hall ---------- */
 const fSouls=s=>s.gy.filter(x=>x.claim).length+(s.hall||0);
 F('anub',{t:'Ward. Guides of the dead: when one of your army members dies, Anubis claims it. It goes to their graveyard, not yours.',
- oppDie:(s,o,c,x)=>{const i=o.gy.indexOf(x);if(i<0)return;o.gy.splice(i,1);x.claim=1;s.gy.push(x);log('Anubis claims the soul of '+fNm(x)+'.');cr(s).filter(y=>y.id=='jguard').forEach(y=>{y.pd++;fGain(s,1)})}});
-F('jack',{c:1,a:3,h:1,f:'h',tag:'jack',t:'Charge. The cemetery jackal: +1/+0 for every 2 souls they hold (claimed dead, in their graveyard or the Hall; at most +2).',self:c=>[Math.min(2,Math.floor(fSouls(sideOf(c))/2)),0]});
-F('jguard',{c:2,a:2,h:3,f:'',tag:'jack',t:'Guardian of the necropolis: whenever Anubis claims one of your dead, it gets +0/+1 permanently and they gain 1 life.'});
+ oppDie:(s,o,c,x)=>{const i=o.gy.indexOf(x);if(i<0)return;o.gy.splice(i,1);x.claim=1;s.gy.push(x);log('Anubis claims the soul of '+fNm(x)+'.');cr(s).filter(y=>y.id=='jguard').forEach(y=>{y.pa++;y.pd++;fGain(s,1)})}});
+F('jack',{c:1,a:3,h:2,f:'h',tag:'jack',t:'Charge. The cemetery jackal: +1/+0 for each soul they hold (claimed dead, in their graveyard or the Hall; at most +3).',self:c=>[Math.min(3,fSouls(sideOf(c))),0]});
+F('jguard',{c:2,a:2,h:3,f:'',tag:'jack',t:'Guardian of the necropolis: whenever Anubis claims one of your dead, it gets +1/+1 permanently and they gain 1 life.'});
 F('wepw',{c:3,a:4,h:3,f:'r',tag:'jack',t:'Ruthless. Opener of the ways: when it attacks, the other attackers can\'t be blocked this turn.',atk:(s,o,c)=>{cr(s).filter(x=>x.att&&x!==c).forEach(x=>{x.ub=1})}});
 F('jpack',{c:4,a:4,h:4,f:'',tag:'jack',t:'When it enters, and at the start of their turn, it leads one claimed soul into the Hall for good, and their Jackals get +1/+1 permanently.',
  etb:(s,o,c)=>FOE.jpack.lead(s),up:s=>FOE.jpack.lead(s),

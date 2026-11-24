@@ -44,12 +44,13 @@ F('xclub',{c:3,t:'Deal damage to target army member equal to the power of their 
 DK('The Nephilim',{d:'xyneph:4,xnep:3,xgib:2,xog,xroar:2,xclub:2',hint:'Their hunger eats your hand, then each other'});
 
 /* ---------- The Prophets of Baal: they cut themselves for a god who never answers ---------- */
-const fCut=(c,n,a,perm)=>{c.dmg+=n;if(perm)c.pa+=a;else c.ta+=a};
+/* a prophet's own blade never kills him: the cut stops at 1 health */
+const fCut=(c,n,a,perm)=>{if(perm)c.pa+=a;else c.ta+=a;c.dmg=Math.max(c.dmg,Math.min(c.dmg+n,th(c)-1))};
 F('xfire',{c:1,a:1,h:2,f:'',tag:'baal',t:'At the start of their turn it cuts itself: 1 damage to itself, +2/+0 permanently.',up:(s,o,c)=>{fCut(c,1,2,1);log('A prophet of Baal cuts himself and cries louder.')}});
 F('xcult',{c:2,a:2,h:3,f:'',tag:'baal',t:'When it attacks, it cuts itself: 1 damage to itself and +2/+0 this turn.',atk:(s,o,c)=>fCut(c,1,2,0)});
 F('xidol',{c:3,a:2,h:6,f:'k',tag:'baal',t:'Can only defend. The bull lies on the wood: at the start of their turn, each other army member they control takes 1 damage and gets +1/+0 permanently. No fire comes.',
  up:(s,o,c)=>{const L=cr(s).filter(x=>x!==c);L.forEach(x=>fCut(x,1,1,1));if(L.length)log('They limp around the altar and cut themselves. No fire comes.')}});
-F('xmolp',{c:3,a:3,h:3,f:'r',tag:'baal',t:'Ruthless. "Cry aloud": whenever another of their army members dies, they draw a card.',allyDie:s=>draw(s,1)});
+F('xmolp',{c:3,a:3,h:3,f:'r',tag:'baal',t:'Ruthless. "Cry aloud": whenever another of their army members dies, they draw a card and their army gets +1/+0 permanently.',allyDie:(s,o,c)=>{draw(s,1);cr(s).forEach(x=>{x.pa++})}});
 F('xflame',{c:3,t:'They call on Baal all day. No fire falls. Each of their army members cuts itself: 1 damage and +2/+0 this turn.',
  ai:(s,o)=>{const n=cr(s).filter(x=>canAtk(x)&&fHp(x)>1).length;return n>=2?{s:3+n*2}:null},fx:s=>{cr(s).forEach(x=>fCut(x,1,2,0));log('There was no voice, nor any that answered.')}});
 DK('The Prophets of Baal',{d:'xfire:5,xcult:4,xidol:2,xmolp:2,xflame:2',hint:'They bleed for power; every one that falls makes the rest stronger'});
@@ -94,17 +95,18 @@ F('xbel',{t:'Ward. The seven engagements: the Sons of Light prevail first: on th
 DK('Sons of Darkness',{d:'xline:5,xsling:3,xcapt:3,xbelg,xjav:2',hint:'The War Scroll\'s fixed cycle: they surge, they hold, and on the seventh turn they falter'});
 
 /* ---------- Mammon's Hoard: RICHES AND RUST. He makes you rich; what you hoard rots and feeds him ---------- */
-F('xmam',{t:'Ward. Mammon\'s gold: at the start of your turn you gain 2 extra mana. Moth and rust: at the end of your turn, you lose 1 life for each mana you left unspent, and his army gets that much +1/+0 on his next turn (up to +3).',
- oup:(s,o)=>{if(s.noGold)return;const n=2+(o.coin||0)+(o.bribe||0);o.coin=0;o.bribe=0;o.mana+=n;log('Mammon\'s gold: you gain '+n+' extra mana.')},
- oend:(s,o)=>{const n=Math.max(0,o.mana);s.waste=n;if(n){fHurt(o,n,'Moth and rust corrupt your hoard. ');s.rust=Math.min(3,n);cr(s).filter(x=>x.id=='xmerc'&&n>=2).forEach(x=>{x.pa++;x.pd++});cr(s).filter(x=>x.id=='xmamg').forEach(x=>{x.pa+=n;x.pd+=n})}},
- up:s=>{if(s.rust){cr(s).forEach(x=>{x.ta+=s.rust});log('Mammon\'s army grows fat on your waste (+'+s.rust+'/+0).');s.rust=0}}});
+F('xmam',{t:'Ward. Mammon\'s gold: at the start of your turn you gain 1 extra mana. You cannot serve two masters: at the end of your turn, each gold you spent buys one of his army members +1/+1 permanently, and you lose 1 life for each mana you left unspent (moth and rust).',
+ oup:(s,o)=>{if(s.noGold){s.gilt=0;return}const n=1+(o.coin||0)+(o.bribe||0);o.coin=0;o.bribe=0;o.mana+=n;s.gilt=n;s.m0=o.mana;log('Mammon\'s gold: you gain '+n+' extra mana.')},
+ oend:(s,o)=>{const n=Math.max(0,o.mana);s.waste=n;const spent=Math.max(0,Math.min(s.gilt||0,(s.m0||0)-n));s.gilt=0;
+  for(let i=0;i<spent;i++){const t=fRnd(cr(s));if(t){t.pa++;t.pd++}}if(spent&&cr(s).length)log('Mammon\'s gold comes home: his army grows richer.');
+  if(n){fHurt(o,n,'Moth and rust corrupt your hoard. ');cr(s).filter(x=>x.id=='xmerc'&&n>=2).forEach(x=>{x.pa++;x.pd++});cr(s).filter(x=>x.id=='xmamg').forEach(x=>{x.pa+=n;x.pd+=n})}}});
 F('xcoin',{c:1,a:1,h:2,f:'',tag:'mam',t:'Tribute: when it enters, Mammon gives you 1 more gold next turn.',etb:(s,o)=>{o.coin=(o.coin||0)+1}});
 F('xhoard',{c:2,a:2,h:4,f:'',tag:'mam',t:'Where your treasure is: +1/+1 for each mana you wasted last turn (at most +3/+3).',self:c=>{const n=Math.min(3,sideOf(c).waste||0);return[n,n]}});
 F('xmerc',{c:2,a:3,h:3,f:'h',tag:'mam',t:'Charge. Paid from your waste: whenever you end a turn with 2 or more mana unspent, it gets +1/+1 permanently.'});
 F('xmamg',{c:4,a:3,h:6,f:'',tag:'mam',t:'Wealth itself: +1/+1 permanently for every mana you leave unspent. When he dies, the gold stops: you no longer gain Mammon\'s mana.',die:s=>{s.noGold=1;log('Mammon falls: the gold stops.')}});
 F('xbribe',{c:2,t:'The bribe: return target army member of yours to your hand, and Mammon pays you its cost in gold next turn.',
  ai:(s,o)=>{const t=fTop(fTg(o).filter(x=>D[x.id][1]>=2));return t&&ev(t)>=4?{s:2+ev(t)*.6,t}:null},fx:(s,o,t)=>{if(!t)return;o.bribe=(o.bribe||0)+D[t.id][1];bounce(t);log('Mammon buys off '+fNm(t)+'.')}});
-DK("Mammon's Hoard",{d:'xcoin:5,xhoard:4,xmerc:3,xmamg,xbribe:2',hint:'He makes you rich, and every mana you hoard rots into damage and feeds his army'});
+DK("Mammon's Hoard",{d:'xcoin:5,xhoard:4,xmerc:3,xmamg,xbribe:2',hint:'He makes you rich: every gold you spend buys his army, every mana you hoard rots into damage. Kill Mammon to stop the gold'});
 
 /* ---------- Mastema's Spirits: THE LEDGER. Every point of damage you deal is written down and charged to you ---------- */
 const fLedger=(s,n,why)=>{if(n<=0)return;s.ledger=(s.ledger||0)+n;if(why)log(why+' Ledger: '+s.ledger+'.')};

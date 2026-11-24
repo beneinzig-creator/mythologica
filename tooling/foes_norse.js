@@ -13,14 +13,13 @@ DK("Fenrir's Brood",{d:'pup:5,wolf:5,hati,skoll,fenr',hint:'A pack that grows ev
 /* ---------- The Jotnar: FIMBULWINTER. Three winters with no summer between; the giants thrive in it ---------- */
 const fWinter=s=>Math.min(3,s.winter||0);
 const fDeepen=(s,n)=>{const w=fWinter(s);s.winter=Math.min(3,(s.winter||0)+n);if(s.winter>w)log('Fimbulwinter deepens: winter '+s.winter+' of 3.')};
-const fGiantHide=(t,n)=>G.cmb&&n>0?-1:0;
-F('rwall',{t:'Ward. Fimbulwinter: at the start of their turn the winter deepens (three winters at most, with no summer between). Your army members get -1/-0 for each winter. Their Giants take 1 less combat damage.',
- up:s=>fDeepen(s,1),oaura:(x,c)=>[-fWinter(sideOf(c)),0]});
-F('ithrl',{c:1,a:2,h:3,f:'c',dmgIn:fGiantHide,tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
-F('rimew',{c:2,a:2,h:3,f:'c',dmgIn:fGiantHide,tag:'giant',t:'Giant. Giantess sorcery: when it enters, the winter deepens by 1.',etb:s=>fDeepen(s,1)});
-F('hgnt',{c:2,a:3,h:5,f:'cz',dmgIn:fGiantHide,tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
+F('rwall',{t:'Ward. Fimbulwinter: on every second turn of theirs the winter deepens (three winters at most, with no summer between). Your army members get -1/-0 for each winter. Break the winter: whenever a Rime-Witch dies, the winter eases by 1.',
+ up:s=>{s.wt=(s.wt||0)+1;if(s.wt%2==0)fDeepen(s,1)},oaura:(x,c)=>[-fWinter(sideOf(c)),0]});
+F('ithrl',{c:1,a:2,h:3,f:'c',tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
+F('rimew',{c:2,a:2,h:3,f:'c',tag:'giant',t:'Giant. Rime-sorcery: when it enters, your weakest army member takes 1 damage for each winter. When it dies, the winter eases by 1.',etb:(s,o)=>{const t=fLow(cr(o)),n=fWinter(s);if(t&&n){t.dmg+=n;log('Rime-sorcery: '+fNm(t)+' takes '+n+'.')}},die:s=>{if(s.winter>0){s.winter=Math.min(3,s.winter)-1;log('The witch falls: the winter eases ('+s.winter+' of 3).')}}});
+F('hgnt',{c:2,a:3,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
 F('icesp',{c:2,t:'Ice Spear: deal 2 damage plus 1 for each winter to target army member.',ai:(s,o)=>fAiKill(o,2+fWinter(s),2.5),fx:(s,o,t)=>{if(t)t.dmg+=2+fWinter(s)}});
-DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'The winter deepens every turn and saps your army, while the giants grow in it'});
+DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'The winter deepens and saps your army while the giants grow in it; kill the Rime-Witches to ease it'});
 
 /* ---------- The Dwarven Forge: treasures forged one by one ---------- */
 const fItems=s=>s.bf.filter(x=>!isC(x)&&'A'.includes(D[x.id][2])).length;
@@ -62,7 +61,7 @@ F('lokib',{c:3,t:'The insults of Lokasenna: deal 1 damage to target army member 
 DK("Loki's Court",{d:'lrav:2,imp:5,skinw:2,lokis,lsnare,lcurse,lgale:2,lokib:2',hint:'Bounce, swaps and tricks that turn your own army against you'});
 
 /* ---------- The Norns: what is carved happens ---------- */
-F('nspin',{c:1,a:1,h:3,f:'',tag:'norn',t:'She carves a fate: at the start of their turn, your weakest army member is doomed (-1/-1 permanently).',up:(s,o)=>{const t=fLow(cr(o));if(t){t.pa--;t.pd--;log('A Thread-Spinner carves '+fNm(t)+'\'s doom.')}}});
+F('nspin',{c:1,a:1,h:3,f:'',tag:'norn',t:'She carves a fate: at the start of their turn, your weakest army member is doomed (-1/-1 permanently). The sisters carve one doom a turn, however many spin.',up:(s,o)=>{if(s.spun===G.turn)return;s.spun=G.turn;const t=fLow(cr(o));if(t){t.pa--;t.pd--;log('A Thread-Spinner carves '+fNm(t)+'\'s doom.')}}});
 F('nwarr',{c:2,a:3,h:3,f:'r',tag:'norn',t:'Ruthless. Fated: when it dies, Skuld foretells what comes next: their costliest army member in hand costs 1 less.',die:s=>{const x=s.hand.filter(isC).sort((a,b)=>cost(b)-cost(a))[0];if(x){x.disc=(x.disc||0)+1;log('Skuld foretells: '+fNm(x)+' comes sooner.')}}});
 DK('The Norns',{d:'urd,verd:2,skuld,nspin:5,nwarr:4,ndoom'});
 
