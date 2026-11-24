@@ -1,0 +1,7 @@
+{
+ "id": "rim",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1024",
+ "prompt": "A single empty circular frame ring for a game portrait, painted in a rustic 1990s hand-painted trading-card style (gouache and ink): a thick ring of worn, dark antique bronze with a thin raised gold bead along its inner and outer edges, small dents and verdigris in the recesses, lit softly from the top left. The ring is perfectly round, centred and fills the frame edge to edge; it is about one tenth of the width thick. Everything inside the ring and outside it is fully transparent: an empty hole, no picture, no background, no shadow. No text, no ornament other than the bead."
+}
