@@ -13,23 +13,36 @@ ok('the Act III map has 2 elites from the Act III pool',R('G.web.nodes.filter(n=
 ok('Act III fights use the Act III ramp (SCL 8+)',R('SCL.length')>=12&&R("(()=>{G.fi=0;G.rt[0]=0;G.elt=0;G.boss=0;fight();return G.e.max})()")==R('A3.en[0].l+SCL[8][0]+A3H.ody[0]'));
 R('G.fi=4;otgOffer()');ok('the altar offers 2 of the 3 generals',R('G.phase')=='bossp'&&R('G.bs.length')==2&&R('G.bs.every(i=>A3.bo.includes(i))'));
 // --- regular decks ---
-A3();reg('Legion');R("enter(G.e,mk('xlgn'))");ok('Legion: a 1-cost Legionnaire comes alone',R("G.e.bf.filter(x=>x.id=='xpos').length")==0);R("enter(G.e,mk('xger'))");ok('Legion: a Possessed joins a Gerasene Demon',R("G.e.bf.filter(x=>x.id=='xpos').length")==1);
-R("enter(G.e,mk('xpos'))");ok('Legion: Possessed bring no one',R("G.e.bf.filter(x=>x.id=='xpos').length")==2);
-R("G.e.bf=G.e.bf.filter(x=>!isC(x));enter(G.e,mk('xger'))");ok('Legion: only army members costing 2+ bring a Possessed',R("G.e.bf.filter(x=>x.id=='xpos').length")==1);
+A3();reg('Legion');R("G.p.bf=[];enter(G.p,mk('spear'));enter(G.p,mk('charon'));egUp(G.e,G.p)");ok('Legion: the demons possess your cheapest army member',R("G.e.bf.some(x=>x.id=='spear'&&x.poss)")&&R("G.p.bf.some(x=>x.id=='charon')"));
+R("enter(G.e,mk('xswn'));const q=G.e.bf.find(x=>x.poss);q.dmg=9;sweep()");ok('Legion: a possessed unit dies into your graveyard and the Swine grow',R("G.p.gy.some(x=>x.id=='spear')")&&R("G.e.bf.find(x=>x.id=='xswn').pd")==1);
+R("const w=mk('hopl');enter(G.p,w);egUp(G.e,G.p);const sw=G.e.bf.find(x=>x.id=='xswn');sw.dmg=99;sweep()");ok('Legion: the Herd drowns and frees the possessed',!R("G.e.bf.some(x=>x.poss)")&&R("G.p.bf.some(x=>x.id=='hopl')"));
 A3();reg('The Watchers');R("G.e.wd=0;G.p.mana=9");const h0=R('G.e.hand.length');for(let i=0;i<3;i++)R("cast(mk('spearc'),G.e.bf.find(x=>isC(x))||G.e)");ok('Watchers: they draw for your spells, at most 2 a turn',R('G.e.hand.length')-h0==2);
 A3();reg('The Nephilim');R("ETB.xneph(G.e,G.p)");ok('Nephilim: their army members costing 3+ cost 1 less, the small ones do not',R("G.e.deck.filter(c=>isC(c)&&D[c.id][1]>=3).every(c=>c.disc>=1)&&G.e.deck.filter(c=>isC(c)&&D[c.id][1]<3).every(c=>!c.disc)"));
 A3();reg('The Prophets of Baal');R("enter(G.e,mk('xcult'));enter(G.e,mk('xfire'))");const p0=R("pwr(G.e.bf.find(x=>x.id=='xcult'))");R("const v=G.e.bf.find(x=>x.id=='xfire');v.dmg=9;sweep()");ok('Baal: a death makes the others stronger',R("pwr(G.e.bf.find(x=>x.id=='xcult'))")==p0+1);
 A3();reg('The Builders of Babel');R("G.p.hand=[mk('spear'),mk('hopl'),mk('charon')]");const c0=R("G.p.hand.map(cost).sort().join()");R('a3Up(G.e,G.p)');ok('Babel: hand costs are shuffled, not changed',R("G.p.hand.map(cost).sort().join()")==c0);
-A3();reg("Mastema's Spirits");R("const a=mk('hopl');enter(G.p,a);a.att=1;const b=mk('spear');enter(G.p,b)");R('a3Up(G.e,G.p)');ok('Mastema: only the attacker takes 1 damage',R("G.p.bf.find(x=>x.id=='hopl').dmg")==1&&R("G.p.bf.find(x=>x.id=='spear').dmg")==0);
-A3();reg("Mammon's Hoard");R("enter(G.e,mk('xhoard'));G.p.mana=2;thEnd(G.p);a3Up(G.e,G.p)");ok('Mammon: 2 unspent mana = +2/+0 next turn',R("G.e.bf.find(x=>x.id=='xhoard').ta")==2);
-A3();reg("King Paimon's Procession");R("enter(G.e,mk('xlegs'))");const pp=R("pwr(G.e.bf.find(x=>x.id=='xlegs'))");R("enter(G.e,mk('xher'))");ok('Paimon: a Herald gives his army +1/+0',R("pwr(G.e.bf.find(x=>x.id=='xlegs'))")==pp+1);
-A3();reg('The Pairikas');R("enter(G.p,mk('hopl'));G.p.bf.forEach(c=>c.tap=0);a3Up(G.e,G.p)");ok('Pairikas: one of your army members is tapped',R("G.p.bf.find(x=>x.id=='hopl').tap")==1);
-A3();reg('Sons of Darkness');R("enter(G.e,mk('xline'));G.turn=3;a3Up(G.e,G.p)");ok('Sons of Darkness: +2/+0 on every third turn',R("G.e.bf.find(x=>x.id=='xline').ta")==2);
+A3();reg("Mastema's Spirits");R("G.e.ledger=0;G.p.life=20;G.e.bf=G.e.bf.filter(x=>!isC(x));const a=mk('hopl');enter(G.p,a);a.sick=0;G.cmb=launch(G.p,[a],{});resolve();G.cmb=null");ok('Mastema: the damage your army deals is written in the ledger',R('G.e.ledger')>=1);
+R("G.e.ledger=7;G.p.life=20;egUp(G.e,G.p)");ok('Mastema: the ledger charges 1 life per 3 and clears',R('G.p.life')==18&&R('G.e.ledger')==0);
+A3();reg("Mammon's Hoard");R("enter(G.e,mk('xhoard'));G.p.life=20;G.p.mana=2;thEnd(G.p)");ok('Mammon: 2 unspent mana costs 2 life',R('G.p.life')==18);R("G.e.bf=G.e.bf.filter(x=>!isC(x));const hd=mk('xhoard');enter(G.e,hd);G.p.mana=0;egUp(G.p,G.e);G.p.mana-=1;thEnd(G.p)");ok('Mammon: each gold you spend buys his army +1/+1',R("G.e.bf.find(x=>x.id=='xhoard').pa")==1);
+A3();reg("King Paimon's Procession");R("enter(G.e,mk('xlegs'))");const pp=R("pwr(G.e.bf.find(x=>x.id=='xlegs'))");R("enter(G.e,mk('xher'))");ok('Paimon: a Herald gives his army +1/+0 (and may teach a keyword)',R("pwr(G.e.bf.find(x=>x.id=='xlegs'))")>=pp+1);
+A3();reg('The Pairikas');R("enter(G.e,mk('xench'))");ok('Pairikas: the Enchantress takes your next draw',R('G.p.lostDraw')==1);R("const st=mk('xstar');enter(G.e,st);const pk=mk('hopl');G.p.hand.push(pk);offer(G.p,pk)");ok('Pairikas: your offering brings the rain that hurts them',R("G.e.bf.filter(x=>D[x.id]&&FOE[x.id]&&FOE[x.id].tag=='pair').every(x=>x.dmg>=1)"));
+A3();reg('Sons of Darkness');R("enter(G.e,mk('xline'));G.e.wr=1;egUp(G.e,G.p)");ok('Sons of Darkness: Belial prevails on the second engagement (+2/+0)',R("G.e.bf.find(x=>x.id=='xline').ta")==2);
 // --- elites ---
-A3();elite('Beelzebub, Lord of the Flies');R("const c=mk('xbaal');enter(G.e,c);c.dmg=9;sweep()");ok('Beelzebub: a Fly takes the place of the fallen',R("G.e.bf.filter(x=>x.id=='xfly').length")==1);
-A3();elite('Asmodeus');R("G.p.asm=0;enter(G.p,mk('hopl'));enter(G.p,mk('spear'))");ok('Asmodeus: only the first army member each turn takes 2',R("G.p.bf.find(x=>x.id=='hopl').dmg")==2&&R("G.p.bf.find(x=>x.id=='spear').dmg")==0);
+A3();elite('Beelzebub, Lord of the Flies');R("G.e.bf=G.e.bf.filter(x=>!isC(x));const b1=mk('xbaal');enter(G.e,b1);const f1=mk('xfly');enter(G.e,f1);const f2=mk('xfly');enter(G.e,f2);const sp=mk('hopl');G.p.bf.push(sp);G.cmb={side:'p'};globalThis.dd=dAdj(b1,3,sp);G.cmb=null");ok('Beelzebub: damage to one is shared by the flies first',R('dd')==-2&&R('f1.dmg+f2.dmg')==2);
+R("G.e.bf=G.e.bf.filter(x=>!isC(x));const b2=mk('xbaal');enter(G.e,b2);G.cmb={side:'p'};globalThis.d2=dAdj(b2,3,sp);G.cmb=null");ok('Beelzebub: a house divided takes double',R('d2')==3);
+A3();elite('Asmodeus');R("G.p.bf=[];const h1=mk('hopl');enter(G.p,h1);const h2=mk('hopl');enter(G.p,h2);const s1=mk('thess');enter(G.p,s1);egUp(G.e,G.p)");ok('Asmodeus: the newer of a same-cost pair takes 2, the lone one is spared',R('h2.dmg')==2&&R('h1.dmg')==0&&R('s1.dmg')==0);
 A3();elite('Lilith');R("G.e.life=5;const c=mk('spear');enter(G.p,c);c.dmg=9;sweep()");ok('Lilith: she gains 2 when your army member dies',R('G.e.life')==7);
 A3();elite('Azazel, the Scapegoat');R("const a=mk('hopl');enter(G.p,a);const c=mk('xsmith');enter(G.e,c);c.dmg=9;sweep()");ok('Azazel: his losses fall on your strongest',R("G.p.bf.find(x=>x.id=='hopl').dmg")==2);
+
+// --- v2 elite pools ---
+A3();elite('Beelzebub, Lord of the Flies');R("G.e.bf=G.e.bf.filter(x=>!isC(x));var zb=mk('xzebul');enter(G.e,zb);var bp=mk('xbaal');enter(G.e,bp);var sp2=mk('hopl');G.p.bf.push(sp2);G.cmb={side:'p'};globalThis.dz=dAdj(bp,3,sp2);G.cmb=null");ok('High House: shared damage never lands on it',R('zb.dmg')==0&&R('dz')==0);
+R("G.e.bf=G.e.bf.filter(x=>!isC(x));enter(G.e,mk('xpraer'))");ok('Prince of the Air brings two Flies',R("G.e.bf.filter(x=>x.id=='xfly').length")==2);
+R("G.e.bf.push(mk('xdung'));var of=mk('spear');G.p.hand.push(of);offer(G.p,of)");ok('Dung-Heap: your offering brings a Fly',R("G.e.bf.filter(x=>x.id=='xfly').length")==3);
+A3();elite('Azazel, the Scapegoat');R("G.e.bf=G.e.bf.filter(x=>!isC(x));var gt=mk('xgoat');enter(G.e,gt);var sm=mk('xsmith');enter(G.e,sm);var at=mk('hopl');G.p.bf.push(at);G.cmb={side:'p'};globalThis.dg=dAdj(sm,3,at);globalThis.dg2=dAdj(sm,3,at);G.cmb=null");ok('The Goat Sent Out takes the first blow each turn',R('gt.dmg')==3&&R('dg')==-3&&R('dg2')==0);
+R("var ss=mk('xsword');const p0=pwr(sm);enter(G.e,ss);globalThis.p0=p0");ok('Swordsmith arms the army',R('pwr(sm)')==R('p0')+1);
+A3();elite('Asmodeus');R("G.e.bf=G.e.bf.filter(x=>!isC(x));G.p.bf=[];var g1=mk('xgroom');enter(G.e,g1);enter(G.p,mk('hopl'));enter(G.p,mk('hopl'));const gp=g1.pa;egUp(G.e,G.p);globalThis.gp=gp");ok('Seven Grooms grow on the wedding night',R('g1.pa')==R('gp')+1);
+R("G.p.bf=[];var q1=mk('spear'),q2=mk('spear');enter(G.p,q1);enter(G.p,q2);FX.xfeast(G.e,G.p)");ok('Wedding Feast strikes every pair',R('q1.dmg')==2&&R('q2.dmg')==2);
+R("G.p.bf=[];enter(G.p,mk('charon'));G.p.hand=[mk('spear')];enter(G.e,mk('xdesire'))");ok('Demon of Desire matches costs',R('cost(G.p.hand[0])')==3);
+A3();elite('Lilith');R("G.p.bf=[];var nb=mk('spear');enter(G.p,nb);FX.xamulet(G.e,G.p,nb);sweep()");ok('Broken Amulet destroys a newborn',!R("G.p.bf.includes(nb)"));
 // --- generals ---
 A3();boss(0);ok('Lucifer starts with the Bargain',R("G.e.bf.some(x=>x.id=='xbarg')"));R("G.phase='main';G.p.mana=2;G.p.barg=0");R("bt('a3barg')");ok('Bargain: +1 mana and Lucifer gains a Fallen Angel',R('G.p.mana')==3&&R("G.e.bf.filter(x=>x.id=='xfang'&&x.barg).length")==1);
 R("bt('a3barg')");ok('Bargain: once per turn',R('G.p.mana')==3);

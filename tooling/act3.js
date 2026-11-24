@@ -25,7 +25,7 @@ xbarg:['The Bargain',0,'E',0,0,'w','Ward. Once each turn you may accept the Barg
 xdrag:['The Tail Sweeps the Stars',0,'E',0,0,'w','Ward. The Red Dragon: three Heads of the Dragon wait in his deck, and every Fallen Angel he gained grew stronger.','🐉','R'],
 xdruj:['The Druj',0,'E',0,0,'w','Ward. At the start of his turn, a Lie is shuffled into your deck.','🗯️','B'],
 xassa:['The Assault',0,'E',0,0,'w','Ward. Whenever one of your army members dies, he gets a 1/1 Khrafstra with Venomous.','🦂','B'],
-xsmoke:['Smoke of the Pit',0,'E',0,0,'w','Ward. Your army members with 3 or more power get -1/+0. At the start of every other turn of his, a Locust rises from the pit.','🌫️','N'],
+xsmoke:['Smoke of the Pit',0,'E',0,0,'w','Ward. Your army members with 3 or more power get -1/+0 (those with Ward bear the seal and are spared). At the start of every other turn of his, a Locust rises from the pit.','🌫️','N'],
 xtorm:['Five Months of Torment',0,'E',0,0,'w','Ward. His Locusts get +1/+1 and Venomous. At the start of your turn, each of your damaged army members takes 1 more damage.','🦂','B'],
 /* the Lie */
 xlie:['The Lie',0,'S',0,0,'','Lose 1 life. Then the Lie is gone.','🗯️','B'],
@@ -124,11 +124,6 @@ Object.assign(DEATH,{xswn:{p:3,fn:(s,o)=>{o.life-=2;log('The Herd of Swine rushe
 const a3Has=(s,id)=>!!(s&&s.bf&&s.bf.some(x=>x.id==id));
 function a3Up(s,o){if(!s||!o||!G.e)return;const E=G.e,P=G.p;
  if(s===E){
-  if(a3Has(s,'xbel')&&G.turn%3==0&&cr(s).length){cr(s).forEach(c=>{c.ta+=2});log('Battle lines: the Sons of Darkness advance (+2/+0 this turn).')}
-  if(a3Has(s,'xmam')&&s.greed){const n=s.greed;s.greed=0;cr(s).forEach(c=>{c.ta+=n});log('Greed: your unspent mana feeds Mammon\'s hoard (+'+n+'/+0 this turn).')}
-  if(a3Has(s,'xmast')){const L=cr(o).filter(c=>c.att);L.forEach(c=>{c.dmg+=1});if(L.length)log('The Accuser: '+L.length+' of your attackers take 1 damage.')}
-  if(a3Has(s,'xpaim'))a3Learn(s,1);
-  if(a3Has(s,'xpair')){const L=cr(o).filter(c=>!c.tap);if(L.length){const t=L[Math.random()*L.length|0];t.tap=1;log('A falling star dazzles '+D[t.id][0]+': it is tapped.')}}
   if(a3Has(s,'xbab')&&o.hand.length>1){const C=o.hand.map(c=>cost(c));sh(C);o.hand.forEach((c,i)=>{c.disc=(c.disc||0)+(cost(c)-C[i])});log('The tongues are confounded: the costs in your hand are shuffled.')}
   if(a3Has(s,'xdruj')){o.deck.splice(Math.random()*(o.deck.length+1)|0,0,mk('xlie'));log('The Druj: a Lie is shuffled into your deck.')}
   if(a3Has(s,'xsmoke')&&G.turn%2==0&&a3Room(s)){enter(s,mk('xloc'));log('A Locust rises from the smoke of the pit.')}
@@ -138,18 +133,16 @@ function a3Up(s,o){if(!s||!o||!G.e)return;const E=G.e,P=G.p;
  if(s===P&&a3Has(o,'xtorm')){const L=cr(s).filter(c=>c.dmg>0);L.forEach(c=>{c.dmg+=1});if(L.length)log('Five months of torment: your damaged army members take 1 more.')}}
 function a3Die(s,c){const o=oppOf(s);if(!o)return;
  if(a3Has(s,'xmol')&&isC(c))a3Moloch(s);
- if(a3Has(s,'xbeel')&&c.id!='xfly'&&isC(c)&&a3Room(s)){enter(s,mk('xfly'));log('A Fly rises from '+D[c.id][0]+'.')}
  if(a3Has(s,'xaza')&&isC(c)){const t=cr(o).sort((a,b)=>ev(b)-ev(a))[0];if(t){t.dmg+=2;log('The Scapegoat: '+D[t.id][0]+' bears the sin (2 damage).')}}
  if(s===G.p&&a3Has(o,'xlil')){o.life=Math.min(o.max,o.life+2);log('Lilith feeds: she gains 2 life.')}
  if(s===G.p&&a3Has(o,'xassa')&&a3Room(o)){enter(o,mk('xkhr'));log('A Khrafstra crawls from the dead.')}}
 function a3Moloch(s){cr(s).forEach(c=>{c.pa++});log('Blood on Carmel: the prophets of Baal grow more frenzied (+1/+0).')}
 function a3Enter(s,c){if(!G||!G.e||!isC(c))return;const o=oppOf(s);
- if(s===G.e&&a3Has(s,'xlegion')&&D[c.id][1]>=2&&a3Room(s)){const t=mk('xpos');t.sick=c.sick;s.bf.push(t);log('A Possessed joins '+D[c.id][0]+'.')}
  if(s===G.e&&c.id=='xloc'&&a3Has(s,'xtorm')&&!c.trm){c.trm=1;c.pa++;c.pd++;if(!c.f.includes('v'))c.f+='v'}
- if(s===G.p&&a3Has(o,'xasm')&&s.asm!==G.turn){s.asm=G.turn;c.dmg+=2;log('Jealousy: '+D[c.id][0]+' takes 2 damage.')}}
+}
 function a3Px(c){const s=sideOf(c);if(!s||!G.e)return 0;const o=oppOf(s);let n=0;
- if(s===G.p&&a3Has(o,'xsmoke')&&pw(c)>=3)n-=1;
- if(s===G.e){if(a3Has(s,'xpaim')&&s.bf.some(x=>x.id=='xher'))n+=1;if(a3Has(s,'xlil')&&actSide()===s)n+=1;if(['xhb','xhd','xhl'].includes(c.id))n+=s.bf.filter(x=>x.id=='xhb'&&x!==c).length}
+ if(s===G.p&&a3Has(o,'xsmoke')&&pw(c)>=3&&!has(c,'w'))n-=1;
+ if(s===G.e){if(a3Has(s,'xlil')&&actSide()===s)n+=1;if(['xhb','xhd','xhl'].includes(c.id))n+=s.bf.filter(x=>x.id=='xhb'&&x!==c).length}
  return n}
 function a3Cast(c){const e=G.e;if(!e||!a3Has(e,'xwatch'))return;if('SI'.includes(D[c.id][2])&&(e.wd||0)<2){e.wd=(e.wd||0)+1;draw(e,1);log('The Watchers learn from your spell: they draw a card.')}}
 {const _u=egUp;egUp=function(s,o){_u(s,o);try{a3Up(s,o)}catch(e){}}}
@@ -161,7 +154,7 @@ function a3Cast(c){const e=G.e;if(!e||!a3Has(e,'xwatch'))return;if('SI'.includes
 const A3ONE=['xbeast','xhb','xhd','xhl'];
 if(typeof thSunder=='function'){const _s=thSunder;thSunder=function(c,by){if(c&&A3ONE.includes(c.id)&&sideOf(c)!==by){log(D[c.id][0]+' can\'t be Sundered: the Beast is one body.');return 0}return _s.apply(this,arguments)}}
 {const _c=cast;cast=function(c,t){const r=_c.apply(this,arguments);try{a3Cast(c)}catch(e){}return r}}
-{const _t=thEnd;thEnd=function(s){try{if(s===G.p&&a3Has(G.e,'xmam'))G.e.greed=Math.min(3,Math.max(0,G.p.mana))}catch(e){}return _t.apply(this,arguments)}}
+
 /* --- the Bargain (Lucifer, phase 1) --- */
 const a3BargOk=()=>!!(G&&G.p&&G.e&&G.phase=='main'&&a3Has(G.e,'xbarg')&&G.p.barg!==G.turn);
 function a3Bargain(){if(!a3BargOk())return;G.p.mana+=1;G.p.barg=G.turn;G.bargN=(G.bargN||0)+1;if(a3Room(G.e)){const t=mk('xfang');t.barg=1;enter(G.e,t)}log('You accept the Bargain: +1 mana, and Lucifer gains a Fallen Angel.');render()}

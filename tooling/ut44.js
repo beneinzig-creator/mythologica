@@ -74,8 +74,8 @@ setup(0);R(`var s3=mk('spd3'),s4=mk('spd3');s3.d=9;s4.d=9;enter(G.e,s3);enter(G.
 // wt
 ok('weight of the mountain cannot be cast (cost 9)',R(`D.wwt[1]==9`));
 // gourd
-setup(0);R(`G.e.bf.push(mk('gourd'));var g1=mk('spd3');g1.d=9;enter(G.e,g1)`);cast('wrod','g1');ok('gourd swallows first targeted spell',R('g1.dmg')==0);
-cast('wrod','g1');ok('second works',R('g1.dmg')==2);
+setup(0);R(`G.e.bf.push(mk('gourd'));var g1=mk('spd3');g1.d=9;enter(G.e,g1);var pc=mk('wmonk');enter(G.p,pc)`);cast('wrod','g1');ok('gourd no longer swallows spells',R('g1.dmg')==2);
+R('egUp(G.e,G.p)');ok('the gourd calls one of your army members by name',R('pc.callT')==R('G.turn+1'));
 setup(0);R(`G.e.bf.push(mk('gourd'));var g2=mk('spd3');g2.d=9;enter(G.e,g2)`);cast('whstorm');ok('gourd ignores non-targeted',R('g2.dmg')==1);
 // decree
 setup(2);R(`G.e.bf.push(mk('decree'));var hh=mk('wmonk'),h2=mk('wmonk');G.p.hand=[hh,h2]`);ok('decree: first creature +1',R(`cost(hh)==D.wmonk[1]+1&&cost(h2)==D.wmonk[1]+1`));

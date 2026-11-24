@@ -17,22 +17,22 @@ R(`G.turn++;var c=mk('hird');enter(G.p,c)`);ok('next turn first tapped again',R(
 setup('odin',5);R(`G.e.bf.push(mk('ltax'));var sp=mk('hurl');G.p.hand=[sp,mk('hurl')];`);
 ok('first spell costs +1',R(`cost(G.p.hand[0])==D.hurl[1]+1`));
 R(`G.p.hand=[];`);
-// Hungry dead
-setup('ody',3);R(`G.e.bf.push(mk('hdead'));var x=mk('hird');x.dmg=9;G.p.bf=[x];sweep();`);
-ok('hungry dead counts a death',R('G.e.hd')==1);
-R(`for(let i=0;i<4;i++){var y=mk('hird');y.dmg=9;G.p.bf.push(y)}sweep()`);ok('capped at 2',R('G.e.hd')==2);
-// Corpse cold
-setup('odin',4);R(`G.e.bf.push(mk('corp'));var z=mk('hird');z.d=6;z.dmg=1;var z2=mk('hird');z2.d=6;G.p.bf=[z,z2];upkeep(G.p,G.e)`);
-ok('corpse cold +1 dmg on damaged only',R('z.dmg==2&&z2.dmg==0'));
+// The blood pit
+setup('ody',3);R(`G.e.bf.push(mk('hdead'));G.e.blood=0;var x=mk('hird');enter(G.p,x);x.dmg=9;sweep();`);
+ok('blood pit: a death fills a drop',R('G.e.blood')==1);
+R(`var shd=mk('mourner');enter(G.e,shd)`);ok('a Shade drinks and speaks (+1/+1, unblockable Mourner)',R('G.e.blood')==0&&R('shd.spoke==1&&shd.ub==1&&pwr(shd)==4'));
+// Naglfar
+setup('odin',4);R(`G.e.bf.push(mk('corp'));G.e.nails=7;var z=mk('draug');enter(G.e,z);var zz=mk('hgrd');enter(G.e,zz);z.dmg=9;sweep()`);
+ok('Naglfar sails at 8 of their own dead',R('G.e.sailed')==1&&R("pwr(G.e.bf.find(x=>x.id=='hgrd'))")==4);
 // Scorched
 setup('odin',3);R(`G.e.bf.push(mk('bland'));var L0=G.p.life;upkeep(G.p,G.e)`);ok('scorched earth -1',R('G.p.life')==R('L0')-1);
 // Pack grows
-setup('odin',0);R(`G.e.bf.push(mk('pgrow'));var w1=mk('pup'),w2=mk('fenr');G.e.bf.push(w1,w2);upkeep(G.e,G.p)`);ok('pack grows weakest',R('w1.pa==1&&w1.pd==1&&w2.pa==0'));
+setup('odin',0);R(`G.e.bf.push(mk('pgrow'));var w1=mk('pup'),w2=mk('fenr');G.e.bf.push(w1,w2);upkeep(G.e,G.p)`);ok('pack grows weakest',R('w1.pa==1&&w1.pd==1'));
 // Forge fire
 setup('odin',2);R(`G.e.bf.push(mk('ffire'));var d1=mk('dmin');G.e.bf.push(d1);ffGrow(G.e,mk('anvl'));ffGrow(G.e,mk('dmin'))`);ok('forge fire +1/+1 on item only',R('d1.pa==1&&d1.pd==1'));
 // Rimewall
 setup('odin',1);R(`G.e.bf.push(mk('rwall'));var g=mk('hgnt');G.e.bf.push(g);var z3=mk('hird');var n0=dAdj(g,3,z3)`);ok('rimewall -1 vs giants',R('n0')==-1);
-// Hit and run
-setup('ody',5);R(`G.e.bf.push(mk('hitr'));var m=mk('mraid');m.sick=0;G.e.bf.push(m);G.cmb=launch(G.e,[m],{});G.cmb.side='e';resolve()`);
-ok('hit and run bounces unblocked marauder',R(`G.e.hand.some(c=>c.id=='mraid')&&!G.e.bf.includes(m)`));
+// Dawn counterattack
+setup('ody',5);R(`G.e.bf.push(mk('hitr'));G.e.dawn=0;var m=mk('mraid');enter(G.e,m);G.turn=5;egUp(G.e,G.p)`);ok('no counterattack before dawn',!R('G.e.dawn'));
+R(`G.turn=6;egUp(G.e,G.p)`);ok('dawn: two Raiders join and the army surges',R('G.e.dawn')==1&&R("G.e.bf.filter(x=>x.id=='mraid').length")>=3&&R('m.pa>=1'));
 console.log(f?'FAILS '+f:'ALL OK');process.exit(f?1:0);

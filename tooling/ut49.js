@@ -16,7 +16,7 @@ ok('Sunder: Name of the Scorpion King in our hand',R(`G.p.hand.some(x=>x.ren&&D[
 // Speak the name: +2 mana
 R('G.p.mana=0');R(`speak(G.p.hand.find(x=>x.ren))`);ok('Speak the name: +2 mana and the Name is gone',R('G.p.mana')==2&&!R('G.p.hand.some(x=>x.ren)'));
 // Write a name: keywords become glyphs
-setup();const t1=put('sking','e',1);const me=put('gpriest','p',1);R(`cast(mk('tsun'),${card(t1)})`);
+setup();const t1=put('snake','e',1);const me=put('gpriest','p',1);R(`cast(mk('tsun'),${card(t1)})`);
 R(`cast(G.p.hand.find(x=>x.ren),${card(me)})`);ok('Name written: Venomous and +1/+1 as glyphs',R(`has(${card(me)},'v')`)&&R(`(${card(me)}).gl.length`)==2);
 // Glyph limit of 3
 R(`['f','w','h','z'].forEach(k=>inscribe(${card(me)},k))`);ok('Glyph limit: never more than 3',R(`(${card(me)}).gl.length`)==3);
