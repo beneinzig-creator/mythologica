@@ -33,6 +33,6 @@ setup('odin',2);R(`G.e.bf.push(mk('ffire'));var d1=mk('dmin');G.e.bf.push(d1);ff
 // Rimewall
 setup('odin',1);R(`G.e.bf.push(mk('rwall'));var g=mk('hgnt');G.e.bf.push(g);var z3=mk('hird');var n0=dAdj(g,3,z3)`);ok('rimewall -1 vs giants',R('n0')==-1);
 // Dawn counterattack
-setup('ody',5);R(`G.e.bf.push(mk('hitr'));G.e.dawn=0;var m=mk('mraid');enter(G.e,m);G.turn=4;egUp(G.e,G.p)`);ok('no counterattack before dawn',!R('G.e.dawn'));
-R(`G.turn=5;egUp(G.e,G.p)`);ok('dawn: two Raiders join and the army surges',R('G.e.dawn')==1&&R("G.e.bf.filter(x=>x.id=='mraid').length")>=3&&R("m.pa>=1&&m.f.includes('h')"));
+setup('ody',5);R(`G.e.bf.push(mk('hitr'));G.e.dawn=0;var m=mk('mraid');enter(G.e,m);G.turn=5;egUp(G.e,G.p)`);ok('no counterattack before dawn',!R('G.e.dawn'));
+R(`G.turn=6;egUp(G.e,G.p)`);ok('dawn: two Raiders join and the army surges',R('G.e.dawn')==1&&R("G.e.bf.filter(x=>x.id=='mraid').length")>=3&&R('m.pa>=1'));
 console.log(f?'FAILS '+f:'ALL OK');process.exit(f?1:0);

@@ -12,7 +12,7 @@ R(`G.p.deck.push(mk('wmonk'));egUp(G.e,G.p)`);ok('macaque steals the top card of
 cast('wacro');ok('macaque no longer mimics what you play',R(`G.e.bf.filter(c=>c.id=='wacro').length`)==0);
 setupB(1);R(`G.e.bf.push(mk('bgrd'));cr(G.e)[0].sick=0`);R('bossStart()');ok('bull fury +2 power',R(`pwr(cr(G.e)[0])`)==3);
 setupB(2);R(`G.p.cp=4;var h=mk('wdart');G.p.hand.push(h)`);ok('palm taxes the 5th card',R('cost(h)')==2);
-R(`G.p.cp=3`);ok('palm: fourth card free',R('cost(h)')==0);
+R(`G.p.cp=3`);ok('palm taxes the 4th card',R('cost(h)')==2);R(`G.p.cp=2`);ok('palm: third card free',R('cost(h)')==0);
 R(`enter(G.e,mk('pfin'))`);ok('a Finger lowers the limit by one',R('cost(h)')==2);
 R(`setChar('wukong');newRun();for(let i=0;i<11;i++)pickDraft(0);G.elt=ELITES.length;G.boss=0;fight();G.phase='main';G.p.bf=[];G.p.hand=[];G.e.hand=[];enter(G.e,mk('ifan'))`);
 console.log(R('G.e.nm+" "+G.e.bf.map(c=>c.id)+" boss="+G.boss+" elt="+G.elt'));ok('iron fan elite loaded',R(`G.e.bf.some(c=>c.id=='ifan')`));
