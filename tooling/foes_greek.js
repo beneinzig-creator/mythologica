@@ -78,12 +78,12 @@ F('lbow',{c:2,a:1,h:4,f:'a',tag:'lotus',t:'Range. Poppy darts: when it enters, y
 F('titan',{t:'Ruthless. Opportunist. A heavy sleeper: skips its next untap after attacking. +1/+1 for each of your army members that is asleep (tapped, at most +3/+3).',self:c=>{const o=oppOf(sideOf(c));const n=o?Math.min(3,fSleepers(o).length):0;return[n,n]}});
 
 /* ---------- Polyphemus: TRAPPED. The boulder seals the cave; you escape beneath the sheep ---------- */
-const fCaveOpen=s=>(s.cave||0)>=2;
-F('mouth',{t:'The boulder seals the cave: while it stands, your army deals no combat damage to them. It rolls away once two of their Cyclopes or Flock Sheep have died: your men escape beneath the sheep. Army members with power 1 or less can\'t attack.',
- allyDie:(s,o,c,x)=>{if(fCaveOpen(s))return;if(x.id=='sheep'||has(x,'g')){s.cave=(s.cave||0)+1;log(fCaveOpen(s)?'The boulder rolls away: the cave is open!':'One step closer to the cave mouth ('+s.cave+' of 2).')}}});
+const fCaveOpen=s=>(s.cave||0)>=2||s.bf.some(x=>x.id=='poly'&&x.tap);
+F('mouth',{t:'The boulder seals the cave: while it stands, your army deals no combat damage to them. Each morning he rolls it aside himself: while Polyphemus is tapped (he has gone out after attacking), your men slip out beneath the sheep and your blows reach them. Once two of their Cyclopes have died, the boulder is gone for good. Army members with power 1 or less can\'t attack.',
+ allyDie:(s,o,c,x)=>{if(fCaveOpen(s))return;if(has(x,'g')){s.cave=(s.cave||0)+1;log(fCaveOpen(s)?'The boulder rolls away: the cave is open!':'One step closer to the cave mouth ('+s.cave+' of 2).')}}});
 {const _r=resolve;resolve=function(){let L=null;try{const e=G.e;if(G.cmb&&G.cmb.side=='p'&&e&&e.bf.some(x=>x.id=='mouth')&&!fCaveOpen(e))L=e.life}catch(e){}const r=_r.apply(this,arguments);try{if(L!=null&&G.e&&G.e.life<L){G.e.life=L;log('The boulder holds: your blows cannot reach the Cyclops.')}}catch(e){}return r}}
-F('sheep',{c:1,a:1,h:3,f:'',tag:'cyc',t:'Under its belly your men escape: when it dies, its controller gains 2 life, and the boulder moves a step.',die:s=>{s.life+=2}});
-DK('Polyphemus',{l:15,hint:'The boulder seals the cave: you can\'t hurt them in combat until two Cyclopes or sheep have died'});
+F('sheep',{c:1,a:1,h:3,f:'',tag:'cyc',t:'His flock: when it dies, its controller gains 2 life.',die:s=>{s.life+=2}});
+DK('Polyphemus',{l:15,hint:'The boulder seals the cave: you can\'t hurt them in combat while Polyphemus stays inside; when he goes out to attack, or two Cyclopes have fallen, the cave opens'});
 
 /* ---------- The Shades of Hades: BLOOD. Only the shades that drink can speak ---------- */
 const fDrink=(s,x)=>{if((s.blood||0)<1||!has(x,'e'))return false;s.blood--;x.pa++;x.pd++;x.spoke=1;if(x.id=='mourner')x.ub=1;log(fNm(x)+' drinks from the pit and speaks.');return true};
