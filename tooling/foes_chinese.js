@@ -33,8 +33,8 @@ F('hsd',{c:1,a:2,h:2,f:'',tag:'host',t:'One of a hundred thousand: when it dies,
 F('hhd',{c:2,a:3,h:3,f:'q',tag:'host',t:'Opportunist. Heaven\'s war-dog: when it enters, your army member with the least health takes 1 damage.',etb:(s,o)=>{const t=cr(o).slice().sort((a,b)=>fHp(a)-fHp(b))[0];if(t)t.dmg+=1}});
 F('hgn',{c:3,a:4,h:4,f:'w',tag:'host',t:'Ward. Commander of the host: their Heavenly Soldiers get +1/+1.',aura:x=>x.id=='hsd'?[1,1]:[0,0]});
 F('hnz',{c:3,a:3,h:3,f:'h',tag:'host',t:'Charge. Three heads and six arms: when it attacks, each of your untapped army members takes 1 damage.',atk:(s,o)=>{cr(o).filter(x=>!x.tap).forEach(x=>{x.dmg+=1})}});
-F('hpg',{c:4,a:3,h:6,f:'z',tag:'host',t:'Resilient. The pagoda traps demons: when it enters, your strongest army member is trapped (tapped, doesn\'t untap next turn). Nezha gets +2/+0 while he keeps him in line.',
- etb:(s,o)=>{const t=fTop(cr(o));if(t){fTap(t,1);log('The golden pagoda traps '+fNm(t)+'.')}},aura:x=>x.id=='hnz'?[2,0]:[0,0]});
+F('hpg',{c:4,a:3,h:6,f:'z',tag:'host',t:'Resilient. The pagoda traps demons: when it enters, your strongest army member is trapped (tapped, doesn\'t untap next turn). It keeps Nezha in line: their Nezha has Ward.',
+ etb:(s,o)=>{const t=fTop(cr(o));if(t){fTap(t,1);log('The golden pagoda traps '+fNm(t)+'.')}s.bf.filter(x=>x.id=='hnz').forEach(x=>fKey(x,'w'))},allyEnter:(s,o,c,x)=>{if(x.id=='hnz')fKey(x,'w')}});
 F('hnet',{c:3,t:'The net of heaven and earth: tap all opposing army members.',
  ai:(s,o)=>{const n=cr(o).filter(x=>!x.tap).length,r=cr(s).filter(canAtk).length;return n>=2&&r>=1?{s:3+n*1.5+r}:null},fx:(s,o)=>{cr(o).forEach(x=>fTap(x))}});
 DK('The Heavenly Host',{d:'hsd:5,hhd:3,hgn:2,hnz,hpg:2,hnet',hint:'Endless soldiers, raised by their generals and bound by decree'});
@@ -78,7 +78,7 @@ DK('Erlang Shen, the Three-Eyed',{d:'eplum:5,ehnd:4,eerl:2,esw:2,hnet',hint:'He 
 F('iwnd',{c:1,a:2,h:1,f:'f',tag:'fan',t:'Flying. A breath of the fan: when it dies, your newest army member is blown back to your hand.',die:(s,o)=>{const t=fNewest(o);if(t&&!has(t,'w')){bounce(t);log('A gust blows '+fNm(t)+' back to your hand.')}}});
 F('imaid',{c:2,a:2,h:3,f:'',tag:'fan',t:'She guards the fan\'s case: while she lives, the fan also blows back army members that cost 2.'});
 F('iguard',{c:3,a:3,h:4,f:'p',tag:'fan',t:'Phalanx. His shield is a palm-leaf the size of a door: their other army members get +0/+1.',aura:()=>[0,1]});
-F('iprin',{c:4,a:4,h:5,f:'z',tag:'fan',t:'Resilient. Forty-nine waves of the fan: when it enters, all your army members that cost 3 or more are blown back to your hand.',
+F('iprin',{c:4,a:4,h:5,f:'z',tag:'fan',t:'Resilient. One wave sends a man 84,000 li: when it enters, all your army members that cost 3 or more are blown back to your hand.',
  etb:(s,o)=>{const L=cr(o).filter(x=>D[x.id][1]>=3&&!has(x,'w'));L.forEach(x=>bounce(x));if(L.length)log('Princess Iron Fan waves the fan forty-nine times.')}});
 {const _u=egUp;egUp=function(s,o){_u(s,o);try{if(s===G.e&&s.bf.some(x=>x.id=='ifan')&&s.bf.some(x=>x.id=='imaid')){const t=cr(o).filter(x=>D[x.id][1]==2&&!has(x,'w')).sort((a,b)=>ev(b)-ev(a))[0];if(t){bounce(t);log('The fan blows '+fNm(t)+' back to your hand too.')}}}catch(e){}}}
 DK('Princess Iron Fan',{d:'iwnd:6,imaid:4,iguard:3,iprin',hint:'Her fan blows your army back to your hand; win with cheap army members and spells'});

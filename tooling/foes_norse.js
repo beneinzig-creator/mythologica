@@ -14,7 +14,7 @@ DK("Fenrir's Brood",{d:'pup:5,wolf:5,hati,skoll,fenr',hint:'A pack that grows ev
 F('ithrl',{c:1,a:2,h:3,f:'c',tag:'giant',t:'Giant. Rime-cold: after it blocks an army member, that army member is frozen (doesn\'t untap next turn).',
  blk:(s,o,c)=>{const cm=G.cmbLast;if(!cm)return;for(const[a,b]of Object.entries(cm.blk||{}))if(b==c.u){const A=o.bf.find(x=>x.u==a);if(A)fTap(A,1)}}});
 F('rimew',{c:2,a:2,h:3,f:'c',tag:'giant',t:'Giant. Giantess sorcery: when it enters, your strongest untapped army member is frozen (tapped, doesn\'t untap next turn).',etb:(s,o)=>{const t=fTop(fTg(o).filter(x=>!x.tap));if(t){fTap(t,1);log('A Rime-Witch freezes '+fNm(t)+'.')}}});
-F('hgnt',{c:2,a:3,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. Old Age wrestles even Thor down: after it blocks an army member, that army member gets -1/-0 permanently.',
+F('hgnt',{c:2,a:3,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. The giants\' endless cold wears down even Thor: after it blocks an army member, that army member gets -1/-0 permanently.',
  blk:(s,o,c)=>{const cm=G.cmbLast;if(!cm)return;for(const[a,b]of Object.entries(cm.blk||{}))if(b==c.u){const A=o.bf.find(x=>x.u==a);if(A)A.pa--}}});
 DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'Giants that freeze whatever they block, and wear down your strongest'});
 
@@ -57,7 +57,7 @@ DK("Loki's Court",{d:'lrav:2,imp:5,skinw:2,lokis,lsnare,lcurse,lgale:2,lokib:2',
 
 /* ---------- The Norns: what is carved happens ---------- */
 F('nspin',{c:1,a:1,h:3,f:'',tag:'norn',t:'She carves a fate: at the start of their turn, your weakest army member is doomed (-1/-1 permanently).',up:(s,o)=>{const t=fLow(cr(o));if(t){t.pa--;t.pd--;log('A Thread-Spinner carves '+fNm(t)+'\'s doom.')}}});
-F('nwarr',{c:2,a:3,h:3,f:'r',tag:'norn',t:'Ruthless. Fated: when it dies, you take 2 damage. No one escapes what is carved.',die:(s,o)=>fHurt(o,2)});
+F('nwarr',{c:2,a:3,h:3,f:'r',tag:'norn',t:'Ruthless. Fated: when it dies, Skuld foretells what comes next: their costliest army member in hand costs 1 less.',die:s=>{const x=s.hand.filter(isC).sort((a,b)=>cost(b)-cost(a))[0];if(x){x.disc=(x.disc||0)+1;log('Skuld foretells: '+fNm(x)+' comes sooner.')}}});
 DK('The Norns',{d:'urd,verd:2,skuld,nspin:5,nwarr:4,ndoom'});
 
 /* ---------- Fáfnir: the hoard grows and the dragon with it ---------- */

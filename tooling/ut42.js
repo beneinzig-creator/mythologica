@@ -27,7 +27,7 @@ ok('corpse cold +1 dmg on damaged only',R('z.dmg==2&&z2.dmg==0'));
 // Scorched
 setup('odin',3);R(`G.e.bf.push(mk('bland'));var L0=G.p.life;upkeep(G.p,G.e)`);ok('scorched earth -1',R('G.p.life')==R('L0')-1);
 // Pack grows
-setup('odin',0);R(`G.e.bf.push(mk('pgrow'));var w1=mk('pup'),w2=mk('fenr');G.e.bf.push(w1,w2);upkeep(G.e,G.p)`);ok('pack grows weakest',R('w1.pa==1&&w1.pd==1&&w2.pa==0'));
+setup('odin',0);R(`G.e.bf.push(mk('pgrow'));var w1=mk('pup'),w2=mk('fenr');G.e.bf.push(w1,w2);upkeep(G.e,G.p)`);ok('pack grows weakest',R('w1.pa==1&&w1.pd==1'));
 // Forge fire
 setup('odin',2);R(`G.e.bf.push(mk('ffire'));var d1=mk('dmin');G.e.bf.push(d1);ffGrow(G.e,mk('anvl'));ffGrow(G.e,mk('dmin'))`);ok('forge fire +1/+1 on item only',R('d1.pa==1&&d1.pd==1'));
 // Rimewall

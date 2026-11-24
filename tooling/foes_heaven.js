@@ -83,8 +83,8 @@ F('xbelg',{c:4,a:4,h:5,f:'',tag:'sons',t:'Hostility: at the start of their turn,
  up:(s,o)=>{const t=fTop(cr(o));if(t){t.pa--;t.pd--;log('Belial condemns '+fNm(t)+' (-1/-1).')}}});
 F('xjav',{c:2,t:'Deal damage to target army member equal to 1 + the number of Sons of Darkness they control (at most 5).',
  ai:(s,o)=>fAiKill(o,Math.min(5,1+fSons(s)),2.5),fx:(s,o,t)=>{if(t)t.dmg+=Math.min(5,1+fSons(s))}});
-F('xbel',{t:'Ward. The seven engagements: on their turns 1, 3 and 5 their army members get +2/+0; on turns 2, 4 and 6, +0/+2; on the seventh, God\'s hand decides and they get -2/-2. Then it begins again.',
- up:(s,o)=>{s.wr=(s.wr||0)+1;const k=((s.wr-1)%7)+1;const L=cr(s);if(k==7){L.forEach(x=>fBuff(x,-2,-2));log('The seventh engagement: God\'s hand decides, and the Sons of Darkness falter (-2/-2).')}else if(k%2){L.forEach(x=>fBuff(x,2,0));log('Engagement '+k+': Belial prevails (+2/+0).')}else{L.forEach(x=>fHold(x,0,2,s));log('Engagement '+k+': the line holds (+0/+2 until their next turn).')}}});
+F('xbel',{t:'Ward. The seven engagements: the Sons of Light prevail first: on their turns 1, 3 and 5 their army members get +0/+2 (the line holds); on turns 2, 4 and 6, +2/+0 (Belial prevails); on the seventh, God\'s hand decides and they get -2/-2. Then it begins again.',
+ up:(s,o)=>{s.wr=(s.wr||0)+1;const k=((s.wr-1)%7)+1;const L=cr(s);if(k==7){L.forEach(x=>fBuff(x,-2,-2));log('The seventh engagement: God\'s hand decides, and the Sons of Darkness falter (-2/-2).')}else if(k%2==0){L.forEach(x=>fBuff(x,2,0));log('Engagement '+k+': Belial prevails (+2/+0).')}else{L.forEach(x=>fHold(x,0,2,s));log('Engagement '+k+': the Sons of Light press, and the line holds (+0/+2 until their next turn).')}}});
 DK('Sons of Darkness',{d:'xline:5,xsling:3,xcapt:3,xbelg,xjav:2',hint:'The War Scroll\'s fixed cycle: they surge, they hold, and on the seventh turn they falter'});
 
 /* ---------- Mammon's Hoard: gold that compounds, hirelings, bribes ---------- */
@@ -150,7 +150,7 @@ F('xwrath',{c:2,a:3,h:2,f:'n',tag:'asm',t:'Can only attack. When it dies, your n
 DK('Asmodeus',{d:'xasmg,xjeal:6,xwrath:6',hint:'Jealous of newcomers: whatever you play last is what he hurts'});
 
 /* ---------- Lilith: the night and the newborn ---------- */
-F('xlilg',{c:4,a:3,h:5,f:'d',tag:'lil',t:'Draining. She preys on the newborn: at the start of their turn, each of your army members that arrived this turn takes 2 damage.',
+F('xlilg',{c:4,a:3,h:5,f:'d',tag:'lil',t:'Draining. She preys on the newborn: at the start of their turn, each of your army members that arrived since their last turn takes 2 damage.',
  up:(s,o)=>{const L=fNew(o);L.forEach(x=>{x.dmg+=2});if(L.length)log('Lilith visits the newborn.')}});
 F('xlilin',{c:2,a:2,h:2,f:'f',tag:'lil',t:'Flying. When it deals combat damage to you, your newest army member takes 2 damage.',hit:(s,o)=>{const t=fNewest(o);if(t){t.dmg+=2;log('A Lilin falls on '+fNm(t)+'.')}}});
 F('xowl',{c:1,a:1,h:2,f:'f',tag:'lil',t:'Flying. Its cry in the night: when it enters, your newest army member is tapped and doesn\'t untap next turn.',etb:(s,o)=>{const t=fNewest(o);if(t)fTap(t,1)}});
@@ -176,13 +176,13 @@ F('xzah',{c:3,a:3,h:3,f:'v',tag:'ahr',t:'Venomous. It must be fed: at the start 
 DK('Ahriman, the Smiling Stranger',{d:'xahri,xdaeva:6,xcook:3,xzah:3'});
 
 /* ---------- Abaddon: the locusts torment; the key opens the pit ---------- */
-F('xloc',{c:1,a:1,h:1,f:'f',tag:'aba',t:'Flying. Torment: when it deals combat damage to you, your weakest army member takes 1 damage.',hit:(s,o)=>{const t=fLow(cr(o));if(t)t.dmg+=1}});
+F('xloc',{c:1,a:1,h:1,f:'f',tag:'aba',t:'Flying. Torment, not death: when it deals combat damage to you, your weakest army member gets -1/-0 permanently.',hit:(s,o)=>{const t=fLow(cr(o).filter(x=>pw(x)>0));if(t){t.pa--;log('A Locust torments '+fNm(t)+'.')}}});
 F('xcharg',{c:2,a:3,h:2,f:'h',tag:'aba',t:'Charge. Like horses prepared for battle: when it attacks, each Locust gets +1/+0 this turn.',atk:s=>{s.bf.filter(x=>x.id=='xloc').forEach(x=>{x.ta++})}});
 F('xkeep',{c:3,a:2,h:4,f:'',tag:'aba',t:'The key of the pit: at the start of their turn, if they have fewer than 3 Locusts, a Locust rises. When it dies, two Locusts rise.',
  up:s=>{if(fCnt(s,'xloc')<3&&fSum(s,'xloc',1))log('A Locust rises from the pit.')},die:s=>{const n=fSum(s,'xloc',2);if(n)log('Two Locusts rise from the pit.')}});
 F('xapol',{c:5,a:5,h:5,f:'f',tag:'aba',t:'Flying. The Destroyer: at the start of their turn, each of your damaged army members takes 1 more damage. Men seek death and do not find it.',
  up:(s,o)=>{const L=cr(o).filter(x=>x.dmg>0);L.forEach(x=>{x.dmg+=1});if(L.length)log('Apollyon torments your wounded.')}});
-F('xsting',{c:2,t:'Destroy target army member that has damage on it.',ai:(s,o)=>{const T=fTop(fTg(o).filter(x=>x.dmg>0));return T&&ev(T)>=3?{s:2+ev(T)*.8,t:T}:null},fx:(s,o,t)=>{if(t)fDestroy(t)}});
+F('xsting',{c:2,t:'The sting: target damaged army member is tormented: -2/-0 permanently, and it can\'t block this turn. Men seek death and do not find it.',ai:(s,o)=>{const T=fTop(fTg(o).filter(x=>x.dmg>0&&pw(x)>=2));return T?{s:2+pw(T)*1.2,t:T}:null},fx:(s,o,t)=>{if(t){t.pa-=2;fTap(t);log(fNm(t)+' is tormented by the sting.')}}});
 DK('Abaddon, the Opened Abyss',{d:'xapol,xkeep:2,xcharg:4,xloc:4,xsting:2'});
 
 /* ---------- The Beast of the Sea and the False Prophet ---------- */

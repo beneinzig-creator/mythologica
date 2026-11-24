@@ -25,7 +25,7 @@ xbarg:['The Bargain',0,'E',0,0,'w','Ward. Once each turn you may accept the Barg
 xdrag:['The Tail Sweeps the Stars',0,'E',0,0,'w','Ward. The Red Dragon: three Heads of the Dragon wait in his deck, and every Fallen Angel he gained grew stronger.','🐉','R'],
 xdruj:['The Druj',0,'E',0,0,'w','Ward. At the start of his turn, a Lie is shuffled into your deck.','🗯️','B'],
 xassa:['The Assault',0,'E',0,0,'w','Ward. Whenever one of your army members dies, he gets a 1/1 Khrafstra with Venomous.','🦂','B'],
-xsmoke:['Smoke of the Pit',0,'E',0,0,'w','Ward. Your army members with 3 or more power get -1/+0. At the start of every other turn of his, a Locust rises from the pit.','🌫️','N'],
+xsmoke:['Smoke of the Pit',0,'E',0,0,'w','Ward. Your army members with 3 or more power get -1/+0 (those with Ward bear the seal and are spared). At the start of every other turn of his, a Locust rises from the pit.','🌫️','N'],
 xtorm:['Five Months of Torment',0,'E',0,0,'w','Ward. His Locusts get +1/+1 and Venomous. At the start of your turn, each of your damaged army members takes 1 more damage.','🦂','B'],
 /* the Lie */
 xlie:['The Lie',0,'S',0,0,'','Lose 1 life. Then the Lie is gone.','🗯️','B'],
@@ -146,7 +146,7 @@ function a3Enter(s,c){if(!G||!G.e||!isC(c))return;const o=oppOf(s);
  if(s===G.e&&c.id=='xloc'&&a3Has(s,'xtorm')&&!c.trm){c.trm=1;c.pa++;c.pd++;if(!c.f.includes('v'))c.f+='v'}
  if(s===G.p&&a3Has(o,'xasm')&&s.asm!==G.turn){s.asm=G.turn;c.dmg+=2;log('Jealousy: '+D[c.id][0]+' takes 2 damage.')}}
 function a3Px(c){const s=sideOf(c);if(!s||!G.e)return 0;const o=oppOf(s);let n=0;
- if(s===G.p&&a3Has(o,'xsmoke')&&pw(c)>=3)n-=1;
+ if(s===G.p&&a3Has(o,'xsmoke')&&pw(c)>=3&&!has(c,'w'))n-=1;
  if(s===G.e){if(a3Has(s,'xpaim')&&s.bf.some(x=>x.id=='xher'))n+=1;if(a3Has(s,'xlil')&&actSide()===s)n+=1;if(['xhb','xhd','xhl'].includes(c.id))n+=s.bf.filter(x=>x.id=='xhb'&&x!==c).length}
  return n}
 function a3Cast(c){const e=G.e;if(!e||!a3Has(e,'xwatch'))return;if('SI'.includes(D[c.id][2])&&(e.wd||0)<2){e.wd=(e.wd||0)+1;draw(e,1);log('The Watchers learn from your spell: they draw a card.')}}
