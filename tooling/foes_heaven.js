@@ -1,18 +1,22 @@
 /* ===== Act III, the War in Heaven: every opponent rebuilt around one theme (lore: tooling/lore/heaven.js + the Lore session's briefs) ===== */
 
-/* ---------- Legion: one body, many inside. Kill the host and the many spill out; the swine destroy themselves ---------- */
-const fPos=s=>s.bf.filter(x=>x.id=='xpos');
-F('xlgn',{c:1,a:1,h:2,f:'',tag:'legion',t:'Gets +1/+0 while their army has 4 or more army members.',self:c=>[cr(sideOf(c)).length>=4?1:0,0]});
-F('xger',{c:2,a:2,h:3,f:'',tag:'legion',t:'Unchainable: at the start of their turn it breaks free (untaps). When it dies, two Possessed spill out of it.',
- up:(s,o,c)=>{if(c.tap||c.frz){c.tap=0;c.frz=0;log('The Gerasene breaks his chains.')}},die:(s,o,c)=>{const n=fSum(s,'xpos',2);if(n)log(n+' Possessed spill out of the Gerasene.')}});
-F('xswn',{c:2,a:2,h:3,f:'',tag:'legion',t:'Whenever a Possessed dies, it gets +1/+0. When it dies, it runs into the sea: the opponent takes damage equal to its power.',
- allyDie:(s,o,c,x)=>{if(x.id=='xpos')c.pa++},die:(s,o,c)=>fHurt(o,pw(c),'The herd runs violently down into the sea. ')});
-F('xlegc',{c:4,a:3,h:3,f:'',tag:'legion',t:'Gets +1/+1 for each Possessed in their army. When it dies, if they have a Possessed, that Possessed dies in its place and Legion returns to their hand.',
- self:c=>{const n=fPos(sideOf(c)).length;return[n,n]},die:(s,o,c)=>{const p=fPos(s)[0];if(!p)return;fDestroy(p);const i=s.gy.indexOf(c);if(i>=0)s.gy.splice(i,1);Object.assign(c,{dmg:0,tap:0,def:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0});s.hand.push(c);log('"We are many": a Possessed dies in Legion\'s place, and Legion returns to their hand.')}});
+/* ---------- Legion: POSSESSION. The demons take your army members; the herd that drowns sets them free ---------- */
+const fPoss=s=>cr(s).filter(x=>x.poss);
+function fPossess(s,o,t,why){if(!t||!o.bf.includes(t)||has(t,'w')||!fRoom(s))return;o.bf.splice(o.bf.indexOf(t),1);t.poss=1;t.sick=1;t.def=0;t.att=0;s.bf.push(t);try{amFall()}catch(e){}log((why||'The demons possess ')+fNm(t)+': it now fights for Legion.')}
+function fFree(s,o){const L=fPoss(s);L.forEach(x=>{s.bf.splice(s.bf.indexOf(x),1);x.poss=0;x.sick=1;x.def=0;o.bf.push(x)});if(L.length)log('The herd drowns, and '+L.length+' of your army member'+(L.length==1?' is':'s are')+' freed, clothed and in their right mind.')}
+F('xlegion',{t:'Ward. Possession: at the start of their turn, the demons possess your cheapest army member (cost 2 or less, not Ward): it fights for them. When a possessed army member dies, it goes to your graveyard.',
+ up:(s,o)=>{const t=cr(o).filter(x=>D[x.id][1]<=2&&!has(x,'w')).sort((a,b)=>D[a.id][1]-D[b.id][1]||ev(a)-ev(b))[0];fPossess(s,o,t)},
+ allyDie:(s,o,c,x)=>{if(!x.poss)return;const i=s.gy.indexOf(x);if(i>=0){s.gy.splice(i,1);x.poss=0;o.gy.push(x)}cr(s).filter(y=>y.id=='xswn').forEach(y=>{y.pa++;y.pd++});if(s.bf.some(y=>y.id=='xswn'))log('The demons leave the dead host and flee into the swine.')}});
+F('xlgn',{c:1,a:1,h:2,f:'',tag:'legion',t:'One of the many: +1/+0 for each possessed army member they control (at most +2).',self:c=>[Math.min(2,fPoss(sideOf(c)).length),0]});
+F('xger',{c:2,a:2,h:3,f:'',tag:'legion',t:'He breaks every chain: at the start of their turn it untaps. When it dies, the demons leave him and possess your weakest army member.',
+ up:(s,o,c)=>{if(c.tap||c.frz){c.tap=0;c.frz=0;log('The Gerasene breaks his chains.')}},die:(s,o)=>{const t=fLow(cr(o).filter(x=>!has(x,'w')));fPossess(s,o,t,'The demons leave the Gerasene and possess ')}});
+F('xswn',{c:2,a:2,h:4,f:'',tag:'legion',t:'Whenever a possessed army member dies, the demons flee into it: +1/+1. When it dies, the herd runs into the sea and drowns: every possessed army member is freed and returns to you.',die:(s,o)=>fFree(s,o)});
+F('xlegc',{c:4,a:3,h:3,f:'',tag:'legion',t:'"My name is Legion, for we are many": when it enters, it possesses your strongest army member that costs 3 or less. +1/+1 for each possessed army member they control.',
+ etb:(s,o)=>{const t=fTop(cr(o).filter(x=>D[x.id][1]<=3&&!has(x,'w')));fPossess(s,o,t,'Legion possesses ')},self:c=>{const n=fPoss(sideOf(c)).length;return[n,n]}});
 F('xpos',{tag:'legion',t:'One of the many.'});
-F('xcast',{c:2,t:'Their dread, turned on you: deal damage to target army member equal to the number of army members they control (at most 5).',
- ai:(s,o)=>fAiKill(o,Math.min(5,cr(s).length),3),fx:(s,o,t)=>{if(t)t.dmg+=Math.min(5,cr(s).length)}});
-DK('Legion',{d:'xlgn:5,xger:3,xswn:2,xlegc,xcast:2',hint:'One body, many inside: kill a host and Possessed spill out of it'});
+F('xcast',{c:2,t:'Their dread, turned on you: deal damage to target army member equal to 2 + the number of possessed army members they control.',
+ ai:(s,o)=>fAiKill(o,2+fPoss(s).length,3),fx:(s,o,t)=>{if(t)t.dmg+=2+fPoss(s).length}});
+DK('Legion',{d:'xlgn:5,xger:3,xswn:3,xlegc,xcast:2',hint:'Possession: each turn they take one of your army members. Kill the Herd of Swine to free them'});
 
 /* ---------- The Watchers: teachers bound by one oath. Knowledge (cards in hand) is their power ---------- */
 F('xwat',{c:2,a:2,h:3,f:'f',tag:'watch',t:'Flying. Gets +1/+0 for each card in their hand beyond 2 (at most +2).',self:c=>[Math.max(0,Math.min(2,sideOf(c).hand.length-2)),0]});
@@ -62,16 +66,18 @@ F('xtong',{c:2,t:'Confusion: shuffle the costs in the opponent\'s hand and tap t
 F('xbab',{t:'Ward. At the start of their turn, the costs of the cards in your hand are shuffled. The tower is never finished: at 12 floors it falls back to 6.'});
 DK('The Builders of Babel',{d:'xbrick:5,xmason:4,xzigg:2,xnim,xtong:2',hint:'Their tower rises every turn and makes them stronger; it is never finished'});
 
-/* ---------- The Pairikas: shooting stars that dazzle, glamour, and drought ---------- */
-F('xstar',{c:1,a:2,h:1,f:'fh',tag:'pair',t:'Flying. Charge. It burns out at the end of their turn. When it dies, it dazzles a random opposing army member (tapped).',
- end:(s,o,c)=>{fDestroy(c)},die:(s,o)=>{const t=fRnd(cr(o).filter(x=>!x.tap));if(t){fTap(t);log('A falling star dazzles '+fNm(t)+'.')}}});
-F('xench',{c:2,a:2,h:3,f:'',tag:'pair',t:'At the start of your turn, your strongest untapped army member is enchanted: it stays tapped this turn.',
- oup:(s,o)=>{const t=fTop(cr(o).filter(x=>!x.tap));if(t){fTap(t);log('A Pairika enchants '+fNm(t)+'.')}}});
-F('xmush',{c:3,a:3,h:3,f:'fh',tag:'pair',t:'Flying. Charge. When it enters, each opposing army member without Flying takes 1 damage.',etb:(s,o)=>{cr(o).filter(x=>!has(x,'f')).forEach(x=>{x.dmg+=1})}});
-F('xdroug',{c:4,a:4,h:4,f:'',tag:'pair',t:'Drought: you get 1 less mana each turn (never below 1).',oup:(s,o)=>{if(o.mana>1){o.mana--;log('Drought: the fields forget to grow (you get 1 less mana).')}}});
+/* ---------- The Pairikas: STARVATION. Drought, stolen draws and the bad year; Tishtrya's rain answers an offering ---------- */
+F('xpair',{t:'Ward. The bad year: on every other turn of yours you draw one card fewer. Tishtrya\'s rain answers worship: whenever you offer an army member, each Pairika takes 1 damage.'});
+{const _s=startP;startP=function(){const r=_s.apply(this,arguments);try{const e=G.e,p=G.p;if(e&&e.bf){let k=0;if(e.bf.some(x=>x.id=='xpair')&&G.turn%2==0)k++;if(p.lostDraw){k+=p.lostDraw;p.lostDraw=0}for(let i=0;i<k&&p.hand.length;i++){const c=p.hand.pop();p.deck.push(c)}if(k)log('The Pairikas starve you: '+k+' fewer card'+(k==1?'':'s')+' this turn.');if(k)render()}}catch(e){}return r}}
+{const _o=offer;offer=function(s,c){const r=_o.apply(this,arguments);try{if(G&&G.e&&s===G.p&&G.e.bf.some(x=>x.id=='xpair')){const L=fTag(G.e,'pair');L.forEach(x=>{x.dmg+=1});if(L.length){log('You make an offering: Tishtrya\'s rain falls, and each Pairika takes 1.');sweep()}}}catch(e){}return r}}
+F('xstar',{c:1,a:2,h:1,f:'fh',tag:'pair',t:'Flying. Charge. It burns out at the end of their turn. When it dies, your next draw is lost.',end:(s,o,c)=>fDestroy(c),die:(s,o)=>{o.lostDraw=(o.lostDraw||0)+1}});
+F('xench',{c:2,a:2,h:3,f:'',tag:'pair',t:'She enchants away your harvest: when it enters, your next draw is lost.',etb:(s,o)=>{o.lostDraw=(o.lostDraw||0)+1;log('A Pairika enchants away your next draw.')}});
+F('xmush',{c:3,a:3,h:3,f:'fh',tag:'pair',t:'Flying. Charge. The comet hides the sun: when it enters, you get 1 less mana on your next turn.',etb:(s,o)=>{o.manaCut=(o.manaCut||0)+1}});
+F('xdroug',{c:4,a:4,h:4,f:'',tag:'pair',t:'Drought: you get 1 less mana each turn (never below 1).',oup:(s,o)=>{if(o.mana>1){o.mana--;log('Drought: the fields forget to grow.')}}});
 F('xglam',{c:2,t:'Glamour: until their next turn, target army member has 0 power.',
  ai:(s,o)=>{const t=fTop(fTg(o).filter(x=>pw(x)>=3));return t?{s:2+pw(t),t}:null},fx:(s,o,t)=>{if(t)fHold(t,-pw(t),0,s)}});
-DK('The Pairikas',{d:'xstar:5,xench:4,xmush:2,xdroug,xglam:2',hint:'Shooting stars that dazzle your army and starve your mana'});
+{const _u=egUp;egUp=function(s,o){_u(s,o);try{if(G&&G.e&&s===G.p&&s.manaCut){s.mana=Math.max(1,s.mana-s.manaCut);s.manaCut=0;log('The comet hides the sun: 1 less mana.')}}catch(e){}}}
+DK('The Pairikas',{d:'xstar:5,xench:4,xmush:2,xdroug,xglam:2',hint:'They starve you of mana and cards; every offering you make brings the rain that hurts them'});
 
 /* ---------- Sons of Darkness: the War Scroll's seven engagements, run by the trumpets ---------- */
 const fSons=(s,ex)=>fTag(s,'sons',ex).length;
@@ -87,54 +93,54 @@ F('xbel',{t:'Ward. The seven engagements: the Sons of Light prevail first: on th
  up:(s,o)=>{s.wr=(s.wr||0)+1;const k=((s.wr-1)%7)+1;const L=cr(s);if(k==7){L.forEach(x=>fBuff(x,-2,-2));log('The seventh engagement: God\'s hand decides, and the Sons of Darkness falter (-2/-2).')}else if(k%2==0){L.forEach(x=>fBuff(x,2,0));log('Engagement '+k+': Belial prevails (+2/+0).')}else{L.forEach(x=>fHold(x,0,2,s));log('Engagement '+k+': the Sons of Light press, and the line holds (+0/+2 until their next turn).')}}});
 DK('Sons of Darkness',{d:'xline:5,xsling:3,xcapt:3,xbelg,xjav:2',hint:'The War Scroll\'s fixed cycle: they surge, they hold, and on the seventh turn they falter'});
 
-/* ---------- Mammon's Hoard: gold that compounds, hirelings, bribes ---------- */
-const fGold=(s,n)=>{s.gold=Math.max(0,(s.gold||0)+n);if(n>0)log('Mammon\'s hoard: '+s.gold+' gold.')};
-F('xcoin',{c:1,a:1,h:2,f:'',tag:'mam',t:'When it enters, they gain 1 gold. (At the start of their turn, every 2 gold is 1 extra mana.)',etb:s=>fGold(s,1)});
-F('xhoard',{c:2,a:2,h:4,f:'',tag:'mam',t:'At the end of their turn, each mana they left unspent becomes 1 gold. Gets +1/+0 for every 2 gold.',
- end:s=>{if(s.mana>0)fGold(s,s.mana)},self:c=>[Math.floor((sideOf(c).gold||0)/2),0]});
-F('xmerc',{c:2,a:3,h:3,f:'h',tag:'mam',t:'Charge. Loyal only while paid: at the start of their turn they pay 1 gold, or it walks off to their hand.',
- up:(s,o,c)=>{if((s.gold||0)>=1){s.gold--;return}s.bf.splice(s.bf.indexOf(c),1);Object.assign(c,{dmg:0,tap:0,def:0,pa:0,pd:0,ta:0,td:0});s.hand.push(c);log('Unpaid, the Mercenary walks off.')}});
-F('xmamg',{c:4,a:3,h:6,f:'',tag:'mam',t:'Gets +1/+1 for each gold (at most +6/+6). At the start of their turn, they gain 1 gold. When it dies, the hoard rots: all their gold is lost.',
- self:c=>{const n=Math.min(6,sideOf(c).gold||0);return[n,n]},up:s=>fGold(s,1),die:s=>{if(s.gold){s.gold=0;log('Moth and rust: Mammon\'s gold is lost.')}}});
-F('xbribe',{c:2,t:'Bribe: return target opposing army member that costs no more than their gold + 1 to its owner\'s hand. They spend that much gold.',
- ai:(s,o)=>{const g=(s.gold||0)+1;const t=fTop(fTg(o).filter(x=>D[x.id][1]<=g&&D[x.id][1]>=2));return t?{s:2+ev(t)*.6,t}:null},fx:(s,o,t)=>{if(!t)return;s.gold=Math.max(0,(s.gold||0)-Math.max(0,D[t.id][1]-1));bounce(t)}});
-F('xmam',{t:'Ward. Each mana you leave unspent at the end of your turn gives their army members +1/+0 during their next turn (up to +3). At the start of their turn, every 2 gold is 1 extra mana.',
- up:s=>{const m=Math.floor((s.gold||0)/2);if(m){s.mana+=m;log('Mammon spends from the hoard (+'+m+' mana).')}}});
-DK("Mammon's Hoard",{d:'xcoin:5,xhoard:4,xmerc:3,xmamg,xbribe:2',hint:'Gold piles up and turns into mana and muscle; kill Mammon and the hoard rots'});
+/* ---------- Mammon's Hoard: RICHES AND RUST. He makes you rich; what you hoard rots and feeds him ---------- */
+F('xmam',{t:'Ward. Mammon\'s gold: at the start of your turn you gain 2 extra mana. Moth and rust: at the end of your turn, you lose 1 life for each mana you left unspent, and his army gets that much +1/+0 on his next turn (up to +3).',
+ oup:(s,o)=>{if(s.noGold)return;const n=2+(o.coin||0)+(o.bribe||0);o.coin=0;o.bribe=0;o.mana+=n;log('Mammon\'s gold: you gain '+n+' extra mana.')},
+ oend:(s,o)=>{const n=Math.max(0,o.mana);s.waste=n;if(n){fHurt(o,n,'Moth and rust corrupt your hoard. ');s.rust=Math.min(3,n);cr(s).filter(x=>x.id=='xmerc'&&n>=2).forEach(x=>{x.pa++;x.pd++});cr(s).filter(x=>x.id=='xmamg').forEach(x=>{x.pa+=n;x.pd+=n})}},
+ up:s=>{if(s.rust){cr(s).forEach(x=>{x.ta+=s.rust});log('Mammon\'s army grows fat on your waste (+'+s.rust+'/+0).');s.rust=0}}});
+F('xcoin',{c:1,a:1,h:2,f:'',tag:'mam',t:'Tribute: when it enters, Mammon gives you 1 more gold next turn.',etb:(s,o)=>{o.coin=(o.coin||0)+1}});
+F('xhoard',{c:2,a:2,h:4,f:'',tag:'mam',t:'Where your treasure is: +1/+1 for each mana you wasted last turn (at most +3/+3).',self:c=>{const n=Math.min(3,sideOf(c).waste||0);return[n,n]}});
+F('xmerc',{c:2,a:3,h:3,f:'h',tag:'mam',t:'Charge. Paid from your waste: whenever you end a turn with 2 or more mana unspent, it gets +1/+1 permanently.'});
+F('xmamg',{c:4,a:3,h:6,f:'',tag:'mam',t:'Wealth itself: +1/+1 permanently for every mana you leave unspent. When he dies, the gold stops: you no longer gain Mammon\'s mana.',die:s=>{s.noGold=1;log('Mammon falls: the gold stops.')}});
+F('xbribe',{c:2,t:'The bribe: return target army member of yours to your hand, and Mammon pays you its cost in gold next turn.',
+ ai:(s,o)=>{const t=fTop(fTg(o).filter(x=>D[x.id][1]>=2));return t&&ev(t)>=4?{s:2+ev(t)*.6,t}:null},fx:(s,o,t)=>{if(!t)return;o.bribe=(o.bribe||0)+D[t.id][1];bounce(t);log('Mammon buys off '+fNm(t)+'.')}});
+DK("Mammon's Hoard",{d:'xcoin:5,xhoard:4,xmerc:3,xmamg,xbribe:2',hint:'He makes you rich, and every mana you hoard rots into damage and feeds his army'});
 
-/* ---------- Mastema's Spirits: the Accuser writes down every blow; a test can be passed ---------- */
-const fAcc=(c,n)=>{c.acc=(c.acc||0)+n};
-F('xacc',{c:1,a:1,h:2,f:'f',tag:'mast',t:'Flying. Whenever one of your army members attacks, it is accused once more.',dfd:(s,o,c,S)=>{S.forEach(x=>fAcc(x,1))}});
-F('xtenth',{c:2,a:2,h:2,f:'',tag:'mast',t:'When it enters, a 1/1 Spirit joins it: the tenth that was left free.',etb:s=>fSum(s,'xspir',1)});
+/* ---------- Mastema's Spirits: THE LEDGER. Every point of damage you deal is written down and charged to you ---------- */
+const fLedger=(s,n,why)=>{if(n<=0)return;s.ledger=(s.ledger||0)+n;if(why)log(why+' Ledger: '+s.ledger+'.')};
+F('xmast',{t:'Ward. The Accuser writes down every point of damage your army deals. At the start of his turn you lose 1 life for every 3 points written (every 2 while Mastema is in play), and the ledger clears.',
+ up:(s,o)=>{const per=s.bf.some(x=>x.id=='xmastg')?2:3;const n=Math.floor((s.ledger||0)/per);if(n)fHurt(o,n,'The Accuser reads out the ledger. ');s.ledger=0}});
+{const _r=resolve;resolve=function(){let pre=null;try{const e=G.e;if(G.cmb&&G.cmb.side=='p'&&e&&e.bf.some(x=>x.id=='xmast'))pre={life:e.life,L:cr(e).map(x=>[x,x.dmg,th(x)])}}catch(e){}const r=_r.apply(this,arguments);
+ try{if(pre&&G.e){let n=Math.max(0,pre.life-G.e.life);for(const[x,d,h]of pre.L)n+=G.e.bf.includes(x)?Math.max(0,x.dmg-d):Math.max(0,h-d);fLedger(G.e,n,'Your blows are written down.')}}catch(e){}return r}}
+F('xacc',{c:1,a:1,h:2,f:'f',tag:'mast',t:'Flying. It accuses: every army member of yours that attacks adds 1 more to the ledger.',dfd:(s,o,c,S)=>fLedger(s,S.length)});
+F('xtenth',{c:2,a:2,h:2,f:'',tag:'mast',t:'When it enters, a 1/1 Spirit joins it, the tenth left free. When it dies, its death is written against you (+3 to the ledger).',etb:s=>fSum(s,'xspir',1),die:s=>fLedger(s,3,'The death of a spirit is written against you.')});
 F('xspir',{tag:'mast',t:'Left free to test the sons of men.'});
-F('xtempt',{c:3,a:3,h:3,f:'',tag:'mast',t:'At the start of your turn, your weakest untapped army member is tempted: it must attack this turn.',
- oup:(s,o)=>{const t=fLow(cr(o).filter(x=>!x.tap&&!has(x,'k')&&pw(x)>0));if(t){t.forced=1;t.def=0;log(fNm(t)+' is tempted: it must attack.')}}});
-F('xmastg',{c:4,a:4,h:4,f:'f',tag:'mast',t:'Flying. Your accused army members get -1/-0 for each accusation.',oaura:(x)=>[-(x.acc||0),0]});
-F('xtest',{c:2,t:'A trial: target opposing army member with no accusations is accused twice; an accused one takes 2 damage for each accusation.',
- ai:(s,o)=>{const k=fTop(fTg(o).filter(x=>x.acc&&fHp(x)<=2*x.acc));if(k)return{s:3+ev(k)*.8,t:k};const t=fTop(fTg(o).filter(x=>!x.acc));return t?{s:2.5,t}:null},
- fx:(s,o,t)=>{if(!t)return;if(t.acc)t.dmg+=2*t.acc;else fAcc(t,2)}});
-F('xmast',{t:'Ward. Each of your army members that attacks is accused. At the start of their turn, each accused army member takes 1 damage per accusation. An army member that stays out of the attack for a whole turn passes the test: its accusations are cleared.',
- dfd:(s,o,c,S)=>{S.forEach(x=>{fAcc(x,1);x.accT=G.turn})},
- up:(s,o)=>{for(const x of cr(o)){if(!x.acc)continue;if(x.accT!==G.turn){x.acc=0;log(fNm(x)+' passes the test: its accusations are cleared.');continue}x.dmg+=x.acc}if(cr(o).some(x=>x.acc))log('The Accuser reads out what he has written.')}});
-DK("Mastema's Spirits",{d:'xacc:5,xtenth:3,xtempt:3,xmastg,xtest:2',hint:'Every army member that attacks is accused, and accusations pile up; holding back clears them'});
+F('xtempt',{c:3,a:3,h:3,f:'',tag:'mast',t:'Temptation: your spells cost 1 less, and each spell you cast adds 2 to the ledger.',tax:c=>'SI'.includes(D[c.id][2])?-1:0,oppCast:s=>fLedger(s,2,'A tempting spell is written down.')});
+F('xmastg',{c:4,a:4,h:4,f:'f',tag:'mast',t:'Flying. The prince of the spirits: while he lives, the ledger charges you 1 life for every 2 points instead of 3.'});
+F('xtest',{c:2,t:'The trial: if the ledger holds 5 or more, destroy target army member of yours. Otherwise it takes 2 damage.',
+ ai:(s,o)=>{if((s.ledger||0)>=5){const T=fTop(fTg(o));return T?{s:3+ev(T)*.8,t:T}:null}return fAiKill(o,2,2.5)},fx:(s,o,t)=>{if(!t)return;if((s.ledger||0)>=5)fDestroy(t);else t.dmg+=2}});
+DK("Mastema's Spirits",{d:'xacc:5,xtenth:3,xtempt:3,xmastg,xtest:2',hint:'Every point of damage you deal is written down and charged back to you'});
 
-/* ---------- King Paimon's Procession: heralds first, then the king who teaches ---------- */
-F('xher',{c:1,a:1,h:2,f:'',tag:'paim',t:'When it enters, one of their army members learns a keyword (Flying, Ward, Charge or Ruthless).',etb:s=>a3Learn(s,1)});
-F('xlegs',{c:2,a:2,h:3,f:'',tag:'paim',t:'Gets +1/+1 for each keyword it has (at most +3/+3).',self:c=>{const n=Math.min(3,c.f.split('').filter(k=>KWT[k]).length);return[n,n]}});
-F('xdrom',{c:3,a:3,h:3,f:'h',tag:'paim',t:'Charge. When it attacks, it learns a keyword.',atk:(s,o,c)=>{const ks='fwr'.split('').filter(k=>!c.f.includes(k));if(ks.length){const k=ks[Math.random()*ks.length|0];fKey(c,k);log('The Dromedary Rider learns '+({f:'Flying',w:'Ward',r:'Ruthless'})[k]+'.')}}});
-F('xpaimon',{c:4,a:4,h:5,f:'',tag:'paim',t:'He roars as he arrives: each of their army members learns a keyword. While a Herald lives, he teaches one more each turn.',
- etb:s=>a3Learn(s,cr(s).length),up:s=>{if(s.bf.some(x=>x.id=='xher'))a3Learn(s,1)}});
-F('xsecr',{c:2,t:'Secret Arts: target opposing army member loses its keywords, and one of their army members learns them.',
- ai:(s,o)=>{const t=fTop(fTg(o).filter(x=>x.f.split('').some(k=>'fwhrvdzbsx'.includes(k))));return t&&cr(s).length?{s:2.5+ev(t)*.4,t}:null},
- fx:(s,o,t)=>{if(!t)return;const ks=t.f.split('').filter(k=>'fwhrvdzbsx'.includes(k));t.f=t.f.split('').filter(k=>!ks.includes(k)).join('');const r=fTop(cr(s));if(r)ks.forEach(k=>fKey(r,k));log('Paimon reveals secret things: '+fNm(t)+' loses its keywords.')}});
-DK("King Paimon's Procession",{d:'xher:5,xlegs:4,xdrom:2,xpaimon,xsecr:2',hint:'Kill the heralds first: while they play, the procession keeps learning'});
+/* ---------- King Paimon's Procession: THE PROCESSION. Heralds come first; the king follows them and grants dignities ---------- */
+F('xpaim',{t:'Ward. The procession: each Herald gives them 1 extra mana at the start of their turn. Once three Heralds have arrived, King Paimon comes from their deck by himself.',
+ up:s=>{const n=fCnt(s,'xher');if(n){s.mana+=n;log('The heralds\' trumpets: +'+n+' mana.')}},
+ allyEnter:(s,o,c,x)=>{if(x.id!='xher')return;s.heralds=(s.heralds||0)+1;if(s.heralds>=3){const k=s.deck.find(y=>y.id=='xpaimon')||s.hand.find(y=>y.id=='xpaimon');if(k&&fRoom(s)){s.deck=s.deck.filter(y=>y!==k);s.hand=s.hand.filter(y=>y!==k);enter(s,k);log('Three heralds have passed: King Paimon arrives on his dromedary, roaring.')}}}});
+F('xher',{c:1,a:1,h:2,f:'',tag:'paim',t:'His trumpet goes before the king: each Herald gives them 1 extra mana a turn, and the third to arrive brings King Paimon.'});
+F('xlegs',{c:2,a:2,h:3,f:'',tag:'paim',t:'Of his two hundred legions: +1/+1 for each Herald they control (at most +3/+3).',self:c=>{const n=Math.min(3,fCnt(sideOf(c),'xher'));return[n,n]}});
+F('xdrom',{c:3,a:3,h:3,f:'h',tag:'paim',t:'Charge. The king\'s escort: +2/+2 while King Paimon rides with them.',self:c=>sideOf(c).bf.some(x=>x.id=='xpaimon')?[2,2]:[0,0]});
+F('xpaimon',{c:4,a:4,h:5,f:'',tag:'paim',t:'He gives dignities and confirms them: when he arrives, each of their army members gets +1/+1 permanently.',etb:s=>{cr(s).forEach(x=>{x.pa++;x.pd++})}});
+F('xsecr',{c:2,t:'Paimon reveals secret things: they draw a card for each Herald they control (at most 3).',ai:s=>{const n=Math.min(3,fCnt(s,'xher'));return n?{s:2+n*1.5}:null},fx:s=>draw(s,Math.min(3,fCnt(s,'xher')))});
+DK("King Paimon's Procession",{d:'xher:5,xlegs:4,xdrom:2,xpaimon,xsecr:2',hint:'Heralds bring mana and the king; kill them before the third arrives'});
 
-/* ---------- Beelzebub: the swarm born from every death ---------- */
-F('xbeelg',{c:4,a:4,h:5,f:'f',tag:'fly',t:'Flying. Their Flies get +1/+0. Whenever one of their Flies dies, you take 1 damage.',aura:x=>[x.id=='xfly'?1:0,0],allyDie:(s,o,c,x)=>{if(x.id=='xfly')fHurt(o,1,'The lord of the flies. ')}});
-F('xbaal',{c:2,a:2,h:3,f:'',tag:'fly',t:'The false oracle: at the start of their turn, if they have a Fly, they draw a card.',up:s=>{if(s.bf.some(x=>x.id=='xfly'))draw(s,1)}});
-F('xcarr',{c:1,a:2,h:1,f:'',tag:'fly',t:'Whenever any army member dies, it gets +1/+0 (at most +3).',allyDie:(s,o,c)=>{if(c.pa<3)c.pa++},oppDie:(s,o,c)=>{if(c.pa<3)c.pa++}});
-F('xfly',{tag:'fly',t:'Flying. Nothing that dies near him stays empty for long.'});
-DK('Beelzebub, Lord of the Flies',{d:'xbeelg,xbaal:6,xcarr:6',hint:'Every army member of his that dies leaves a Fly behind, and the flies feed his oracle'});
+/* ---------- Beelzebub: THE HOUSE UNITED. Damage to one is shared by all, the flies first; a house divided cannot stand ---------- */
+const fHouse=['xbeelg','xbaal','xcarr','xfly'];
+function fShare(t,n,src){const s=sideOf(t);if(!s||!src||sideOf(src)===s||n<=0)return 0;const L=cr(s).filter(x=>x!==t);if(!L.length)return n;let k=0;const order=L.slice().sort((a,b)=>(b.id=='xfly')-(a.id=='xfly'));for(const x of order){if(k>=n-1)break;x.dmg+=1;k++}return -k}
+F('xbeel',{t:'Ward. The house united: combat damage dealt to one of his army members is shared, 1 point to each of his others (the Flies first) before the rest lands. A house divided cannot stand: if he has only one army member, it takes double damage.'});
+F('xbeelg',{c:4,a:4,h:5,f:'f',tag:'fly',t:'Flying. The prince of demons: their Flies get +1/+0. Whenever one of their Flies dies, you take 1.',aura:x=>[x.id=='xfly'?1:0,0],allyDie:(s,o,c,x)=>{if(x.id=='xfly')fHurt(o,1)},dmgIn:(t,n,src)=>fShare(t,n,src)});
+F('xbaal',{c:2,a:2,h:3,f:'',tag:'fly',t:'The false oracle of Ekron: at the start of their turn, a Fly comes to the offerings and joins them.',up:s=>{if(fSum(s,'xfly',1))log('Flies gather at the oracle of Ekron.')},dmgIn:(t,n,src)=>fShare(t,n,src)});
+F('xcarr',{c:1,a:2,h:1,f:'',tag:'fly',t:'It goes where death has been: whenever any army member dies, +1/+0 (at most +3).',allyDie:(s,o,c)=>{if(c.pa<3)c.pa++},oppDie:(s,o,c)=>{if(c.pa<3)c.pa++},dmgIn:(t,n,src)=>fShare(t,n,src)});
+F('xfly',{tag:'fly',t:'Flying. One of the swarm that holds the house together.',dmgIn:(t,n,src)=>fShare(t,n,src)});
+DK('Beelzebub, Lord of the Flies',{d:'xbeelg,xbaal:6,xcarr:6',hint:'The house united: damage to one of his army is shared by all, the flies first. Divide it'});
 
 /* ---------- Azazel: the scapegoat who arms others ---------- */
 F('xazag',{c:4,a:4,h:6,f:'k',tag:'aza',t:'Can only defend: he teaches war rather than waging it. At the start of their turn he arms one of their army members: +2/+0 permanently.',
@@ -142,12 +148,16 @@ F('xazag',{c:4,a:4,h:6,f:'k',tag:'aza',t:'Can only defend: he teaches war rather
 F('xsmith',{c:2,a:2,h:3,f:'',tag:'aza',t:'When it enters, it forges a blade for their strongest other army member: +2/+0 permanently.',etb:(s,o,c)=>{const t=fTop(cr(s).filter(x=>x!==c));if(t){t.pa+=2;log('A Forbidden Smith arms '+fNm(t)+'.')}}});
 DK('Azazel, the Scapegoat',{d:'xazag,xsmith:6,xwat:4,xcurse:2',hint:'He arms his own army, and every loss of his is laid on your strongest army member'});
 
-/* ---------- Asmodeus: jealousy that strikes the newcomer; Aeshma, wrath ---------- */
-F('xasmg',{c:5,a:5,h:5,f:'r',tag:'asm',t:'Ruthless. At the start of their turn, your newest army member takes 2 damage: whatever comes first into his sight, he hates.',
- up:(s,o)=>{const t=fNewest(o);if(t){t.dmg+=2;log('Asmodeus strikes '+fNm(t)+'.')}}});
-F('xjeal',{c:1,a:2,h:1,f:'',tag:'asm',t:'Whenever you play an army member, it gets +1/+0 (at most +3).',oppEnter:(s,o,c)=>{if(c.pa<3)c.pa++}});
-F('xwrath',{c:2,a:3,h:2,f:'n',tag:'asm',t:'Can only attack. When it dies, your newest army member takes 2 damage.',die:(s,o)=>{const t=fNewest(o);if(t){t.dmg+=2;log('Wrath strikes '+fNm(t)+'.')}}});
-DK('Asmodeus',{d:'xasmg,xjeal:6,xwrath:6',hint:'Jealous of newcomers: whatever you play last is what he hurts'});
+/* ---------- Asmodeus: THE WEDDING NIGHT. He kills pairs; the smoke drives him to Egypt ---------- */
+const fPairs=o=>{const by={};cr(o).forEach(x=>{const k=D[x.id][1];(by[k]=by[k]||[]).push(x)});return Object.values(by).filter(L=>L.length>=2)};
+F('xasm',{t:'Ward. The wedding night: at the start of their turn, for each pair of your army members that share a cost, the newer one takes 2 damage.',
+ up:(s,o)=>{for(const L of fPairs(o)){const t=L.slice().sort((a,b)=>(b.eN||0)-(a.eN||0))[0];t.dmg+=2;log('Asmodeus visits the wedding night: '+fNm(t)+' takes 2.')}}});
+F('xasmg',{c:5,a:5,h:5,f:'r',tag:'asm',t:'Ruthless. +1/+0 for each pair of your army members that share a cost. The smoke of the fish\'s heart drives him off: if one of your spells damages him, he flees to Egypt (shuffled into their deck).',
+ self:c=>[fPairs(oppOf(sideOf(c))).length,0]});
+{const _c=cast;cast=function(c,t){let pre=null;try{if(G.e)pre=G.e.bf.filter(x=>x.id=='xasmg').map(x=>[x,x.dmg])}catch(e){}const r=_c.apply(this,arguments);try{if(pre&&'SI'.includes(D[c.id][2]))for(const[x,d]of pre){if(G.e.bf.includes(x)&&x.dmg>d){G.e.bf.splice(G.e.bf.indexOf(x),1);Object.assign(x,{dmg:0,pa:0,pd:0});G.e.deck.splice(Math.random()*(G.e.deck.length+1)|0,0,x);log('The smoke drives Asmodeus off to Egypt.');render()}}}catch(e){}return r}}
+F('xjeal',{c:1,a:2,h:1,f:'',tag:'asm',t:'Whenever you play an army member that shares a cost with one you already have, it gets +1/+1 permanently.',oppEnter:(s,o,c,x)=>{if(cr(o).some(y=>y!==x&&D[y.id][1]==D[x.id][1])){c.pa++;c.pd++}}});
+F('xwrath',{c:2,a:3,h:2,f:'n',tag:'asm',t:'Can only attack. Aeshma, wrath: when it dies, each of your army members that shares a cost with another takes 1.',die:(s,o)=>{fPairs(o).flat().forEach(x=>{x.dmg+=1})}});
+DK('Asmodeus',{d:'xasmg,xjeal:6,xwrath:6',hint:'He hates pairs: army members of yours that share a cost are hurt every turn'});
 
 /* ---------- Lilith: the night and the newborn ---------- */
 F('xlilg',{c:4,a:3,h:5,f:'d',tag:'lil',t:'Draining. She preys on the newborn: at the start of their turn, each of your army members that arrived since their last turn takes 2 damage.',

@@ -21,9 +21,9 @@ R(`G.p.hand=[];`);
 setup('ody',3);R(`G.e.bf.push(mk('hdead'));var x=mk('hird');x.dmg=9;G.p.bf=[x];sweep();`);
 ok('hungry dead counts a death',R('G.e.hd')==1);
 R(`for(let i=0;i<4;i++){var y=mk('hird');y.dmg=9;G.p.bf.push(y)}sweep()`);ok('capped at 2',R('G.e.hd')==2);
-// Corpse cold
-setup('odin',4);R(`G.e.bf.push(mk('corp'));var z=mk('hird');z.d=6;z.dmg=1;var z2=mk('hird');z2.d=6;G.p.bf=[z,z2];upkeep(G.p,G.e)`);
-ok('corpse cold +1 dmg on damaged only',R('z.dmg==2&&z2.dmg==0'));
+// Naglfar
+setup('odin',4);R(`G.e.bf.push(mk('corp'));G.e.nails=7;var z=mk('draug');enter(G.e,z);var zz=mk('hgrd');enter(G.e,zz);z.dmg=9;sweep()`);
+ok('Naglfar sails at 8 of their own dead',R('G.e.sailed')==1&&R("pwr(G.e.bf.find(x=>x.id=='hgrd'))")==4);
 // Scorched
 setup('odin',3);R(`G.e.bf.push(mk('bland'));var L0=G.p.life;upkeep(G.p,G.e)`);ok('scorched earth -1',R('G.p.life')==R('L0')-1);
 // Pack grows

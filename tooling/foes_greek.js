@@ -4,8 +4,8 @@ const fBackToHand=(s,c)=>{const i=s.gy.indexOf(c);if(i>=0){s.gy.splice(i,1);Obje
 
 /* ---------- The Lotus-Eaters: they do not plan your death; they make you forget ---------- */
 F('isl',{c:1,a:2,h:3,f:'q',tag:'lotus',t:'Opportunist. It offers the lotus: when it enters, your weakest untapped army member falls asleep (tapped).',etb:(s,o)=>{const t=fLow(cr(o).filter(x=>!x.tap));if(t){fTap(t);log(fNm(t)+' tastes the lotus and falls asleep.')}}});
-F('lot',{c:2,a:3,h:4,f:'rq',tag:'lotus',t:'Ruthless. Opportunist. Forgetting: when it deals combat damage to you, a random card in your hand is forgotten (costs 1 more).',
- hit:(s,o)=>{const x=fRnd(o.hand);if(x){x.disc=(x.disc||0)-1;log('You forget how to play '+fNm(x)+' (it costs 1 more).')}}});
+F('lot',{c:2,a:3,h:4,f:'rq',tag:'lotus',t:'Ruthless. Opportunist. Forgetting the way home: when it deals combat damage to you, a random card in your hand is forgotten and shuffled back into your deck.',
+ hit:(s,o)=>{const x=fRnd(o.hand);if(x){o.hand=o.hand.filter(y=>y!==x);o.deck.splice(Math.random()*(o.deck.length+1)|0,0,x);log('You forget '+fNm(x)+': it is lost somewhere in your deck.')}}});
 F('reaper',{c:3,a:3,h:4,f:'xq',tag:'lotus',t:'Siege. Opportunist. It keeps the sleepers asleep: an army member it deals combat damage to doesn\'t untap next turn.',dmgOut:(c,n,t)=>{if(t&&n>0&&sideOf(t)!==sideOf(c))t.frz=Math.max(t.frz||0,1);return 0}});
 F('lbow',{c:2,a:1,h:4,f:'a',tag:'lotus',t:'Range. Poppy darts: when it enters, your strongest untapped army member is tapped.',etb:(s,o)=>{const t=fTop(fTg(o).filter(x=>!x.tap));if(t)fTap(t)}});
 

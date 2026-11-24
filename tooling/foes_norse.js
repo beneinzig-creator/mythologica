@@ -10,13 +10,17 @@ F('fenr',{c:5,a:5,h:5,f:'jb',tag:'wolf',t:'Pack. Bulldoze. He keeps growing: at 
  up:(s,o,c)=>{c.pa++;c.pd++;if(G.turn<6){c.sick=1}else if(!c.free6){c.free6=1;log('Gleipnir snaps: Fenrir is loose.')}},etb:(s,o,c)=>{if(G.turn<6)c.sick=1}});
 DK("Fenrir's Brood",{d:'pup:5,wolf:5,hati,skoll,fenr',hint:'A pack that grows every turn; Fenrir breaks free on their sixth turn'});
 
-/* ---------- The Jotnar: rime and endurance ---------- */
-F('ithrl',{c:1,a:2,h:3,f:'c',tag:'giant',t:'Giant. Rime-cold: after it blocks an army member, that army member is frozen (doesn\'t untap next turn).',
- blk:(s,o,c)=>{const cm=G.cmbLast;if(!cm)return;for(const[a,b]of Object.entries(cm.blk||{}))if(b==c.u){const A=o.bf.find(x=>x.u==a);if(A)fTap(A,1)}}});
-F('rimew',{c:2,a:2,h:3,f:'c',tag:'giant',t:'Giant. Giantess sorcery: when it enters, your strongest untapped army member is frozen (tapped, doesn\'t untap next turn).',etb:(s,o)=>{const t=fTop(fTg(o).filter(x=>!x.tap));if(t){fTap(t,1);log('A Rime-Witch freezes '+fNm(t)+'.')}}});
-F('hgnt',{c:2,a:3,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. The giants\' endless cold wears down even Thor: after it blocks an army member, that army member gets -1/-0 permanently.',
- blk:(s,o,c)=>{const cm=G.cmbLast;if(!cm)return;for(const[a,b]of Object.entries(cm.blk||{}))if(b==c.u){const A=o.bf.find(x=>x.u==a);if(A)A.pa--}}});
-DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'Giants that freeze whatever they block, and wear down your strongest'});
+/* ---------- The Jotnar: FIMBULWINTER. Three winters with no summer between; the giants thrive in it ---------- */
+const fWinter=s=>Math.min(3,s.winter||0);
+const fDeepen=(s,n)=>{const w=fWinter(s);s.winter=Math.min(3,(s.winter||0)+n);if(s.winter>w)log('Fimbulwinter deepens: winter '+s.winter+' of 3.')};
+const fGiantHide=(t,n)=>G.cmb&&n>0?-1:0;
+F('rwall',{t:'Ward. Fimbulwinter: at the start of their turn the winter deepens (three winters at most, with no summer between). Your army members get -1/-0 for each winter. Their Giants take 1 less combat damage.',
+ up:s=>fDeepen(s,1),oaura:(x,c)=>[-fWinter(sideOf(c)),0]});
+F('ithrl',{c:1,a:2,h:3,f:'c',dmgIn:fGiantHide,tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
+F('rimew',{c:2,a:2,h:3,f:'c',dmgIn:fGiantHide,tag:'giant',t:'Giant. Giantess sorcery: when it enters, the winter deepens by 1.',etb:s=>fDeepen(s,1)});
+F('hgnt',{c:2,a:3,h:5,f:'cz',dmgIn:fGiantHide,tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
+F('icesp',{c:2,t:'Ice Spear: deal 2 damage plus 1 for each winter to target army member.',ai:(s,o)=>fAiKill(o,2+fWinter(s),2.5),fx:(s,o,t)=>{if(t)t.dmg+=2+fWinter(s)}});
+DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'The winter deepens every turn and saps your army, while the giants grow in it'});
 
 /* ---------- The Dwarven Forge: treasures forged one by one ---------- */
 const fItems=s=>s.bf.filter(x=>!isC(x)&&'A'.includes(D[x.id][2])).length;
@@ -38,13 +42,15 @@ F('surtr',{c:4,a:5,h:5,f:'rhu',tag:'fire',t:'Ruthless. Charge. Freyr had given a
  etb:(s,o)=>{const L=cr(o).filter(x=>pw(x)<=1);L.forEach(fDestroy);if(L.length)log('Surtr\'s sword falls on the unarmed.')},aura:x=>[has(x,'u')?1:0,0]});
 DK('Muspelheim',{d:'ember:3,fraid:3,lava:2,mgnt:2,surtr,fbolt:2,mspear',hint:'A race against fire: they burn your gear, the bridge and themselves'});
 
-/* ---------- Hel's Legion: the dead who will not stay down, and the ship of nails ---------- */
-F('draug',{c:1,a:1,h:3,f:'',tag:'hel',t:'When it dies, it returns to their hand as a Risen Draugr.',die:s=>{s.hand.push(mk('draug2'));log('The Draugr rises from its barrow.')}});
-F('wight',{c:2,a:2,h:2,f:'d',tag:'hel',t:'Draining. The barrow-dead grow heavy: gets +1/+1 for each Draugr in their graveyard (at most +2/+2).',self:c=>{const n=Math.min(2,sideOf(c).gy.filter(x=>x.id=='draug'||x.id=='draug2').length);return[n,n]}});
-F('hgrd',{c:2,a:2,h:4,f:'z',tag:'hel',t:'Resilient. Naglfar is built from the nails of the dead: whenever one of your army members dies, a nail is added. At 6 nails the ship sails, and their army gets +2/+0 permanently.',
- oppDie:s=>{s.nails=(s.nails||0)+1;if(s.nails==6){cr(s).forEach(x=>{x.pa+=2});log('Naglfar sails: the dead of Hel grow fierce (+2/+0).')}else if(s.nails<6)log('A nail for Naglfar ('+s.nails+' of 6).')}});
+/* ---------- Hel's Legion: NAGLFAR. The ship of nails is built from their own dead; the draugr rise again ---------- */
+F('corp',{t:'Ward. Naglfar, the ship of nails: whenever one of their army members dies, a nail is added. At 8 nails Naglfar sails: their army gets +2/+0 and Charge permanently.',
+ allyDie:(s,o,c,x)=>{if(s.sailed)return;s.nails=(s.nails||0)+1;if(s.nails>=8){s.nails=8;s.sailed=1;cr(s).forEach(y=>{y.pa+=2;fKey(y,'h')});log('Naglfar sails from the dead: Hel\'s army surges (+2/+0, Charge).')}else log('A nail for Naglfar ('+s.nails+' of 8).')},
+ allyEnter:(s,o,c,x)=>{if(s.sailed){x.pa+=2;fKey(x,'h')}}});
+F('draug',{c:1,a:1,h:3,f:'',tag:'hel',t:'When it dies, it rises again: a Risen Draugr goes into their hand.',die:s=>{s.hand.push(mk('draug2'));log('The Draugr rises from its barrow.')}});
+F('wight',{c:2,a:2,h:2,f:'d',tag:'hel',t:'Draining. The barrow-dead grow heavy: +1/+1 for each Draugr in their graveyard (at most +2/+2).',self:c=>{const n=Math.min(2,sideOf(c).gy.filter(x=>x.id=='draug'||x.id=='draug2').length);return[n,n]}});
+F('hgrd',{c:2,a:2,h:4,f:'z',tag:'hel',t:'Resilient. A guard of Hel\'s hall: when it dies, it drives two nails into Naglfar instead of one.',die:s=>{if(!s.sailed)s.nails=(s.nails||0)+1}});
 F('nidh',{c:4,a:4,h:5,f:'dv',tag:'hel',t:'Draining. Venomous. It gnaws the corpses: at the start of their turn, it eats a card from your graveyard and gets +1/+1.',up:(s,o,c)=>{if(!o.gy.length)return;const x=o.gy.splice(Math.random()*o.gy.length|0,1)[0];c.pa++;c.pd++;log('Nidhogg gnaws '+fNm(x)+' in your graveyard.')}});
-DK("Hel's Legion",{d:'draug:5,wight:3,hgrd:4,nidh,hgrasp:2',hint:'The dead rise again, and your dead build the ship of nails'});
+DK("Hel's Legion",{d:'draug:5,wight:3,hgrd:4,nidh,hgrasp:2',hint:'Every one of their dead is a nail for Naglfar; at eight, the ship of the dead sails'});
 
 /* ---------- Loki's Court: your own cards turned against you ---------- */
 F('imp',{c:2,a:2,h:2,f:'',tag:'loki',t:'Mischief: when it enters, your strongest army member\'s power and health are swapped.',

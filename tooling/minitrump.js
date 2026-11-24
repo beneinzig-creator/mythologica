@@ -17,7 +17,7 @@ Object.assign(IV,Object.fromEntries(MT.map(k=>[k,40])));
 function mtUp(s,o){const n=id=>s.bf.filter(x=>x.id==id).length;
  if(n('pgrow')){const L=cr(s);if(L.length){const t=L.slice().sort((a,b)=>(pw(a)+th(a))-(pw(b)+th(b)))[0];t.pa++;t.pd++;log('The Pack grows: '+D[t.id][0]+' gets +1/+1.')}}
  if(o&&s===G.p&&o.bf.some(x=>x.id=='bland')){s.life-=1;log('Scorched Earth: you lose 1 life.')}
- if(o&&o.bf.some(x=>x.id=='corp')){const L=cr(s).filter(c=>c.dmg>0);if(L.length){L.forEach(c=>{c.dmg+=1});log('Corpse-Cold: each wounded army member takes 1 more damage.');sweep()}}}
+ /* corp: Naglfar, foes_norse.js */}
 function ltx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;const t=D[c.id][2];if(t!='S'&&t!='I')return 0;if(!G.p.hand.includes(c))return 0;return(G.p.sp===G.turn||!G.e.bf.some(x=>x.id=='ltax'))?0:1}
 function hdDie(){for(const o of[G.p,G.e])if(o&&o.bf&&o.bf.some(x=>x.id=='hdead'))o.hd=Math.min(2,(o.hd||0)+1)}
 function hdb(e){const n=e.hd||0;e.hd=0;if(n)log('The Hungry Dead feed the Shades: +'+n+' mana.');return n}

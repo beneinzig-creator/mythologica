@@ -37,7 +37,7 @@ F('hcap',{c:2,a:2,h:3,f:'',tag:'horn',t:'He carries the gourd: while it lives, t
  die:s=>{const g=s.bf.find(x=>x.id=='gourd');if(g){s.bf.splice(s.bf.indexOf(g),1);log('You trick the carriers: the gourd is yours, and it will call no more names.')}}});
 F('hsil',{c:3,a:3,h:3,f:'r',tag:'horn',t:'Ruthless. When it enters, he calls one more of your army members by name.',etb:(s,o)=>fCall(s,o,1,'The Silver Horn King calls ')});
 F('hgol',{c:4,a:4,h:5,f:'',tag:'horn',t:'Whenever the gourd swallows one of your army members, you take damage equal to its cost.'});
-F('hrope',{c:2,t:'The golden rope: a called army member of yours is bound to answer. It must attack on your next turn.',ai:(s,o)=>{const t=fTop(fCalled(o).filter(x=>!has(x,'k')&&!x.forced));return t?{s:3+ev(t)*.6,t}:null},fx:(s,o,t)=>{if(t){t.forced=1;t.def=0}}});
+F('hrope',{c:2,t:'The golden rope binds the called: every called army member of yours gets -2/-0 until their next turn, and the gourd calls one more name.',ai:(s,o)=>{const n=fCalled(o).length;return n||cr(o).length?{s:2.5+n}:null},fx:(s,o)=>{fCalled(o).forEach(x=>fHold(x,-Math.min(2,pw(x)),0,s));fCall(s,o,1)}});
 F('hbot',{c:3,t:'The jade-purity vase: call target army member of yours by name. If it was already called, the vase swallows it now.',
  ai:(s,o)=>{const k=fTop(fCalled(o).filter(x=>!has(x,'w')));if(k)return{s:3+ev(k)*.9,t:k};const t=fTop(fTg(o).filter(x=>!(x.callT>=G.turn)));return t?{s:2,t}:null},fx:(s,o,t)=>{if(!t)return;if(t.callT>=G.turn)fSwallow(s,o,t);else t.callT=G.turn+1}});
 /* blockers answer too */
