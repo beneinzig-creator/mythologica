@@ -216,11 +216,11 @@ function egUp(s,o){const n=id=>s.bf.filter(x=>x.id==id).length;if(!o)return;
  if(n('setx')){const t=cr(o).filter(x=>!x.part&&D[x.id][1]>=3).sort((a,b)=>ev(b)-ev(a))[0];if(t)thSunder(t,s)}
  if(n('sekh')){cr(s).forEach(c=>{c.pa++});const k=cr(s).length;if(k){s.life-=k;log('The Eye of Ra: her army grows fiercer, and her rage burns her for '+k+'.')}}}
 function egDie(s,c){for(const side of [G.p,G.e]){if(!side||!side.bf)continue;if(side.bf.some(x=>x.id=='anub')){const o=oppOf(side);if(o)o.life-=1}}
- if(s.bf.some(x=>x.id=='ammt')){const t=cr(s).sort((a,b)=>ev(b)-ev(a))[0];if(t){t.pa++;t.pd++}}
+ /* ammt: the weighing now lives in foes_egypt.js */
  if(s.bf.some(x=>x.id=='shab')&&!TOKE.includes(c.id)&&!c.shb&&cr(s).length<AM()){const t=mk('shabt');enter(s,t);log('A Shabti takes the place of '+D[c.id][0]+'.')}}
 function egPx(c){const s=sideOf(c);if(!s)return 0;let n=0;if(!c.def&&s.bf.some(x=>x.id=='sobk')&&G.cmb&&G.cmb.atk.includes(c.u))n+=1;return n}
 const egVen=c=>{if(!c||!c.u||!G||!G.e||c.def)return false;const s=sideOf(c);return!!s&&pw(c)<=1&&s.bf.some(x=>x.id=='serk')};
-function sphCheck(){if(!G||!G.riddle||!G.p||!G.e||!G.e.bf.some(x=>x.id=='sphx'))return;if(!G.rdOk){G.p.life-=2;log('You failed the riddle of the Sphinx: you lose 2 life.')}G.riddle=0}
+function sphCheck(){if(!G||!G.riddle||!G.p||!G.e||!G.e.bf.some(x=>x.id=='sphx'))return;if(!G.rdOk){G.p.life-=2;G.rdFail=(G.rdFail||0)+1;try{cr(G.e).forEach(c=>{if(c.id=='sphs'||c.id=='sphinx2'){c.pa++;c.pd++}})}catch(e){}log('You failed the riddle of the Sphinx: you lose 2 life, and the guardians grow.')}else{draw(G.p,1);log('You answer the riddle: the Sphinx keeps its bargain (you draw a card).')}G.riddle=0}
 function sphPlay(c){if(G&&G.riddle){const t=D[c.id][2];if((G.riddle=='C'&&t=='C')||(G.riddle=='S'&&(t=='S'||t=='I'))||(G.riddle=='A'&&(t=='A'||t=='E')))G.rdOk=1}}
 
 /* ===== the Egyptian realm: regular enemies, elites, bosses ===== */

@@ -124,9 +124,7 @@ Object.assign(DEATH,{xswn:{p:3,fn:(s,o)=>{o.life-=2;log('The Herd of Swine rushe
 const a3Has=(s,id)=>!!(s&&s.bf&&s.bf.some(x=>x.id==id));
 function a3Up(s,o){if(!s||!o||!G.e)return;const E=G.e,P=G.p;
  if(s===E){
-  if(a3Has(s,'xbel')&&G.turn%3==0&&cr(s).length){cr(s).forEach(c=>{c.ta+=2});log('Battle lines: the Sons of Darkness advance (+2/+0 this turn).')}
   if(a3Has(s,'xmam')&&s.greed){const n=s.greed;s.greed=0;cr(s).forEach(c=>{c.ta+=n});log('Greed: your unspent mana feeds Mammon\'s hoard (+'+n+'/+0 this turn).')}
-  if(a3Has(s,'xmast')){const L=cr(o).filter(c=>c.att);L.forEach(c=>{c.dmg+=1});if(L.length)log('The Accuser: '+L.length+' of your attackers take 1 damage.')}
   if(a3Has(s,'xpaim'))a3Learn(s,1);
   if(a3Has(s,'xpair')){const L=cr(o).filter(c=>!c.tap);if(L.length){const t=L[Math.random()*L.length|0];t.tap=1;log('A falling star dazzles '+D[t.id][0]+': it is tapped.')}}
   if(a3Has(s,'xbab')&&o.hand.length>1){const C=o.hand.map(c=>cost(c));sh(C);o.hand.forEach((c,i)=>{c.disc=(c.disc||0)+(cost(c)-C[i])});log('The tongues are confounded: the costs in your hand are shuffled.')}
