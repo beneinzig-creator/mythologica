@@ -1,0 +1,22 @@
+{
+  "id": "fig_scylla",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1536x1024",
+  "created": "2026-11-23 15:02:45",
+  "prompt": "A wide illustration for the pre-fight screen of a mythology card game, showing an enemy in its own scene, made by hand like a 1993 fantasy trading-card or game-book illustration: bold, wobbly black pen-and-ink outlines around every shape, filled with thin, flat, transparent watercolour and gouache washes. Big simple flat shapes of colour with almost no shading or modelling, a little ink cross-hatching in the shadows, blotchy uneven washes with hard dried edges, splatters and visible brush marks, and the rough off-white paper texture and grain clearly showing through the paint. Naive, slightly clumsy, decorative and stylised, like an old printed card with slightly faded, misregistered colour. A limited palette of 4 or 5 colours, dark overall. Absolutely not realistic: no realistic lighting, no glow, no soft gradients, no depth of field, no fine detail or texture rendering, no oil-painting look, no 3D, no digital painting, not modern concept art. Composition: the enemy described below stands in the middle of the scene, full length and large, painted into it with exactly the same outlines, washes, paper grain and palette as everything around it and lit by the scene's own light, so figure and setting are one picture; the setting continues all around it. The bottom strip of the picture stays a little darker and calmer for a name to be written over it. No text, no letters, no border, no frame, no logo, no signature.\n\nSetting: the strait of Scylla from Homer's Odyssey: a sheer, towering cliff along the left edge with a dark cave mouth high up, from which long serpentine necks with snapping dog-like heads coil down; wet rocks and churning foam at the cliff's foot; the narrow strait running away into storm cloud at the right; a small Greek ship far off; a cold, grey, windy sky.\nColour: near-black blue-grey to cold sea green (#08141a to #2f5560) with bone-white foam and a few dark red accents.\n\nIn the scene: Scylla the sea monster: six long serpent necks with snarling dog-like heads rising from a cave in the cliff, rows of teeth, coiling over the water. Greek in every detail, as in Homer. A calm, confident, casual pose, at ease: the body turned three-quarters, the head turned to look straight at the viewer. Not attacking, not shouting.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 518,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 518
+    },
+    "output_tokens": 1372,
+    "output_tokens_details": {
+      "image_tokens": 1372,
+      "text_tokens": 0
+    },
+    "total_tokens": 1890
+  }
+}
