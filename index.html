@@ -4750,6 +4750,16 @@ html:not(.ph) .mapfull .mhd .dsub{color:#3b2a14!important;opacity:1!important;fo
 html:not(.ph) .mapfull .mhd .dsub+.dsub{font-size:clamp(11px,.95vw,14px)!important;font-style:italic;color:#5a3f1c!important;border-top:1px solid #6b4a1f55;padding-top:2px;margin-top:1px}
 html:not(.ph) .mapfull .mhd .b{margin-top:4px}
 `;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_journey: spoiler-free journey, dark mana digits, no enemy mana icon ===== */
+try{const J=JOURNEY,f=t=>J.findIndex(x=>x.t==t);let i=f('Act III');if(i>=0)J.splice(i,1);
+ i=f('A run');if(i>=0)J[i]={t:'A run',m:'A run is a journey in <b>three acts</b>. It begins in your hero\'s home realm, and each act ends with a <b>guardian</b> you must defeat. Win all three acts to win the run. If your life reaches 0, the run ends.'};
+ i=f('Act II');if(i>=0)J[i]={t:'The road ahead',m:'Beat the guardian and the journey goes on into new lands, with the deck you have built and a little healing for the road. Each act is harder than the last, and not every foe will fight the way you expect.'};
+}catch(e){}
+try{const st=document.createElement('style');st.id='pjour';st.textContent=`
+html[data-hero=thoth] #app .me .orb.mj>.dg{color:#140a02!important;filter:drop-shadow(0 0 1px #fff7d6) drop-shadow(0 0 2px #fff7d6) drop-shadow(0 0 4px #fff7d6cc)!important}
+#app>.top .cn>img.ico[alt="◆"]{display:none!important}
+`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>
 
