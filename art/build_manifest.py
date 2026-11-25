@@ -172,18 +172,29 @@ FRAMES = {'ody': {
 NORSE_LOOK = ('Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or '
               'stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with '
               'sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.')
+# Ben (Nov 2026): the first set looked too alike and the Legendary too plain. Each rarity now has its own material
+# and colour and they grow grander: pine and iron, frost-blue runestone, red gold and garnet, blazing Valhalla gold.
+_THIN = (' The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full '
+         'size; ornament keeps to the outer edges.')
 FRAMES['odin'] = {
     'common': 'Common rarity: a plain frame of dark weathered pine boards bound with black iron straps and nail heads, '
-              'a simple thin carved rope-twist border, modest and unornamented. ' + NORSE_LOOK,
-    'uncommon': 'Uncommon rarity: a frame of dark iron and worn silver with a fine border of interlaced knotwork '
-                '(Borre-style ring chain) and small silver rivets at the corners. ' + NORSE_LOOK,
-    'rare': 'Rare rarity: a frame of gilded bronze over dark oak with a border of gripping-beast knotwork in the '
-            'Urnes style, small garnet cloisonne studs at the corners and a carved interlaced beast above the art '
-            'window. ' + NORSE_LOOK,
-    'legendary': 'Legendary rarity: an aged, hand-tooled frame of dull antique gold over dark tarnished iron, worn at '
-                 'the edges, a restrained border of Mammen-style interlace and a single small carved raven head at the '
-                 'top centre, like a weathered grave-goods relic in a museum case; richer than the other rarities but '
-                 'still rustic and understated. ' + NORSE_LOOK,
+              'a simple thin carved rope-twist border, modest and unornamented. Colours: dark brown wood and black '
+              'iron only. ' + NORSE_LOOK + _THIN,
+    'uncommon': 'Uncommon rarity: a frame of pale blue-grey carved runestone glazed with frost and ice, a band of '
+                'carved runes (not readable words) running round it, icicles hanging from the top edge and a small '
+                'carved wolf head at each top corner. Colours: icy pale blue, frost white and slate grey, clearly '
+                'cold and blue, nothing like brown wood. ' + NORSE_LOOK + _THIN,
+    'rare': 'Rare rarity: a frame of red gold and dark oak with a rich border of gripping-beast knotwork in the Urnes '
+            'style set with deep red garnet cloisonne, Odin\'s two ravens Huginn and Muninn perched at the top '
+            'corners with outspread wings, and a gold helmet mask above the art window. Colours: warm red gold, deep '
+            'garnet red and dark oak. Rich and striking. ' + NORSE_LOOK + _THIN,
+    'legendary': 'Legendary rarity, the grandest frame of all, fit for Odin\'s hall Valhalla: blazing burnished gold '
+                 'everywhere, the border built of golden shields like Valhalla\'s roof, the great spear Gungnir running '
+                 'down one side and the world tree Yggdrasil\'s golden roots and branches weaving round the rest, '
+                 'the two ravens and Odin\'s two wolves Geri and Freki in gold at the corners, a band of green and '
+                 'violet aurora across the top and a single glowing eye of Odin at the top centre. Warm golden light '
+                 'seems to shine from the frame itself. Overwhelming and divine, still hand-painted, never glossy or '
+                 '3D-rendered. Norse, Viking Age: no Greek key, no laurel.' + _THIN,
 }
 HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
              'wukong': 'Journey to the West and classical Chinese myth',
