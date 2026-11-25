@@ -806,6 +806,45 @@ FRAMES['tsoul'] = {
 }
 
 
+# Status tokens shown on battlefield cards when an enemy ability affects them (Balancing's request, Nov 2026).
+STATUS_BASE = (
+    'A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a '
+    'thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given '
+    'below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of '
+    'the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted '
+    'gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No '
+    'text, no letters, no numbers.'
+)
+STATUS = {
+    'blind': 'Enamel: amber yellow. Motif: a wide open eye half hidden by a sweeping gust of yellow sand.',
+    'call': 'Enamel: bright orange. Motif: a calabash gourd with its stopper popped off and a swirl coming out.',
+    'burn': 'Enamel: red-orange. Motif: a single bold flame.',
+    'mark': 'Enamel: violet. Motif: a glowing branded sigil, a circle with a cross burned in, seared and smoking.',
+    'poss': 'Enamel: purple. Motif: a black shadowy demon hand with claws gripping from above.',
+    'seal': 'Enamel: gold. Motif: an open golden palm of the Buddha seen from the front, five fingers up.',
+    'curse': 'Enamel: dark red. Motif: an Egyptian cartouche with a jagged crack through it.',
+    'sleep': 'Enamel: deep blue. Motif: a closed eye with long lashes, a small poppy flower below it.',
+    'qry': 'Enamel: crimson. Motif: a stag\'s head with antlers, a hunting arrow stuck through it.',
+    'erase': 'Enamel: stone grey. Motif: an empty cartouche whose inside has been chiselled away, rough and blank.',
+    'silk': 'Enamel: pale grey. Motif: a white spider web.',
+    'cocoon': 'Enamel: pale silver. Motif: a white silk cocoon shaped like a wrapped figure.',
+}
+
+
+def build_status():
+    out = os.path.join(ART, 'manifest.json')
+    old = json.load(open(out, encoding='utf-8'))
+    icons = {f'status_{k}': {'name': f'{k} status token', 'prompt': f'{STATUS_BASE}\n\n{t}',
+                             'output': f'art/icons/status/status_{k}.png', 'size': '1024x1024', 'format': 'png',
+                             'background': 'transparent'} for k, t in STATUS.items()}
+    old.setdefault('heroes', {})['status'] = {'name': 'Status tokens', 'cards': {}, 'opponents': {}, 'tutorial': {},
+                                              'frames': {}, 'icons': icons}
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump(old, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+    print('Wrote status token prompts to art/manifest.json.')
+
+
 def build_frames_only(key, label):
     """Frames for something that isn't a hero in CHARS (Thoth's Body/Spirit/Name): write just its frames."""
     out = os.path.join(ART, 'manifest.json')
@@ -1079,6 +1118,8 @@ def main():
     a = ap.parse_args()
     if a.hero == 'act3':
         return build_act3()
+    if a.hero == 'status':
+        return build_status()
     if a.hero == 'tsoul':
         return build_frames_only('tsoul', 'Body, Spirit and Name')
 
