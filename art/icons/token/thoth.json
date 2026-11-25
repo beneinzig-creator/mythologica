@@ -1,0 +1,7 @@
+{
+ "id": "token_thoth",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1536",
+ "prompt": "A single board-game playing piece, like a carved chess piece, standing upright on a small round base, seen from the front and very slightly above, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, rich antique colours, slightly worn, soft light from the top left), like the painted medallions on an old fantasy map. A bold, simple silhouette that still reads at 40 pixels tall: a tall narrow piece, the whole figure in view, centred, filling most of the height. Fully transparent background, no ground, no table, no cast shadow, no border, no text, no letters.\n\nSubject: Thoth as a game piece carved from black basalt with gold inlay: an ibis-headed Egyptian god standing upright, holding a scribe's palette and reed pen, a small moon disc on his head. Ancient Egyptian, colours of black basalt, gold and lapis blue."
+}
