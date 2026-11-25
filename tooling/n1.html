@@ -6078,5 +6078,18 @@ try{const st=document.createElement('style');st.id='prh';st.textContent=`
 #kdock .rrh.rR,#insp .rrh.rR{color:#8a5a00}#kdock .rrh.rL,#insp .rrh.rL{color:#86208f}
 `;document.body.appendChild(st)}catch(e){}
 try{const st=document.createElement('style');st.id='pb20';st.textContent='\nhtml .ov .lib>.cd,html .ov .lib>div:not(.rmw)>.cd{zoom:1.2}\nhtml .ov .lib>.rmw{zoom:1.2}\nhtml .rmv .lib>.rmw{zoom:1.44}\nhtml.ph .rmv .lib>.rmw{zoom:1.2}\nhtml .ov .lib{max-width:min(1100px,94vw)}\nhtml .dcards .dw .cd{zoom:calc(var(--ds,1.6)*1.2)}\nhtml .cfm .big{padding:86px 0}\nhtml .cfm .big .cd,html .cfm .big .cd:hover{scale:2.4}\nhtml.ph .ov.cfm .big .cd{zoom:1.2!important}\nhtml.ph .ov.cfm .big{padding:0!important}\nhtml.ph .ov.cfm .ovb{overflow-y:auto;justify-content:flex-start;scrollbar-width:none}\nhtml .kc>.cd{zoom:1.2}\n@media(min-width:561px){html:not(.ph) .kc>.cd{zoom:calc(var(--czf,1)*1.2)}}\n';document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_mappaths: dark outline under every map route ===== */
+function mapPaths(){document.querySelectorAll('.tmap svg path.tr').forEach(p=>{const u=p.previousElementSibling;if(u&&u.classList.contains('tru'))return;
+ const b=p.cloneNode(false);b.setAttribute('class',p.getAttribute('class').replace(/\btr\b/,'tru'));p.parentNode.insertBefore(b,p)})}
+{const r1=renderMap;renderMap=function(){const out=r1.apply(this,arguments);try{mapPaths()}catch(e){}return out}}
+try{const st=document.createElement('style');st.id='pmp';st.textContent=`
+.tmap svg path.tru{fill:none;stroke:#1c1006;stroke-linecap:round;stroke-linejoin:round;stroke-width:8;opacity:.42;stroke-dasharray:none;filter:none;pointer-events:none}
+.tmap svg path.tru.av{stroke-width:11;opacity:.62}
+.tmap svg path.tru.dn{stroke-width:10;opacity:.55}
+.tmap svg path.tr{stroke:#efe0b6;stroke-width:4.5;stroke-dasharray:1 10;opacity:.72;filter:none}
+.tmap svg path.tr.av{stroke:#f3c552;stroke-width:6;stroke-dasharray:1 11;opacity:1;filter:drop-shadow(0 0 3px #f3c55288)}
+.tmap svg path.tr.dn{stroke:#d0662f;stroke-width:5.5;stroke-dasharray:11 7;opacity:1;filter:none}
+`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>
