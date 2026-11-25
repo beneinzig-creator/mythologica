@@ -47,7 +47,7 @@ ok('heaven splitting at 1 card = 1',R('G.e.life')==R('el2')-1);
 // drink/hair whirl
 setup(0);R(`G.p.deck=[mk('wdart'),mk('wdart'),mk('wdart'),mk('wdart'),mk('wdart')];G.p.hand=[]`);R(`G.p.cp=5`);cast('wcloudh');ok('hair whirl: cp6 -> draw 3',R('G.p.hand.length')==3);
 // somersault
-setup(0);R(`G.p.gy=[mk('wdart'),mk('wrod'),mk('wrod')];G.p.deck=[]`);cast('wsomer');ok('somersault: gy shuffled, drew 1, vanished',R(`G.p.gy.length==0&&G.p.deck.length==2&&G.p.hand.length==1&&!G.p.gy.some(c=>c.id=='wsomer')`));
+setup(0);R(`G.p.gy=[mk('wdart'),mk('wrod'),mk('wrod')];G.p.deck=[]`);cast('wsomer');ok('somersault: gy shuffled, drew 2, vanished',R(`G.p.gy.length==0&&G.p.deck.length==1&&G.p.hand.length==2&&!G.p.gy.some(c=>c.id=='wsomer')`));ok('somersault costs 1',R("D.wsomer[1]")==1);
 // change
 setup(0);R(`var Qc=mk('spd1');Qc.d=20;enter(G.e,Qc)`);cast('wrod','Qc');cast('wchange');ok('seventy-two changes: 2 rod copies w/ dis',R(`G.p.deck.filter(c=>c.id=='wrod'&&c.dis).length==2`));
 R(`var cp1=G.p.deck.find(c=>c.id=='wrod'&&c.dis);G.p.hand=[cp1];cast(cp1,Qc)`);ok('copy disintegrates',R(`!G.p.gy.includes(cp1)`));
@@ -163,4 +163,12 @@ setup(0);R(`G.e.life=30;G.p.mana=9;G.p.hand=[];['wfeint','wcycle'].forEach(id=>{
 setup(0);ok('starting Hair Dart is now called Spare Hair',R("D.wdart[0]")=='Spare Hair');
 R(`G.e.bf=G.e.bf.filter(x=>!isC(x));var tg2=mk('spear');tg2.d=9;enter(G.e,tg2);G.p.bf.push(mk('wbreath'));var sd=mk('wdart');G.p.hand=[sd];cast(sd,tg2)`);ok('the starting Spare Hair gets the Breath bonus',R('tg2.dmg')==2);
 R(`var vv2=mk('wvolley');G.p.hand=[vv2];var dv=tg2.dmg;cast(vv2,tg2)`);ok('the starting Spare Hair counts for Hair Volley',R('tg2.dmg-dv')==1&&R('G.p.hp')>=1);
+
+// flow pass (patch_wkflow): the first time each turn Momentum reaches WKFLOW (3), draw a card
+setup(0);R(`G.p.deck=[mk('wdart'),mk('wdart'),mk('wdart')];G.p.hand=[];var Qf=mk('spd1');Qf.d=20;enter(G.e,Qf)`);cast('wrod','Qf');cast('wpluck');ok('flow: Momentum 2 draws nothing extra',R('G.p.mo')==2&&R('G.p.hand.length')==2);
+R(`G.p.hand=[]`);cast('wrod','Qf');ok('flow: Momentum 3 draws a card',R('WKFLOW')==3&&R('G.p.mo')==3&&R('G.p.hand.length')==1&&R('G.p.flw')==1);
+R(`G.p.hand=[]`);cast('wpluck');ok('flow: only once per turn (Momentum 4: just the 2 hairs)',R('G.p.mo')==4&&R('G.p.hand.length')==2);
+R('wkUp(G.p)');ok('flow resets each turn',R('G.p.flw')==0);
+ok('somersault, cheaper big cards',R("D.wsomer[1]==1&&D.wbreak[1]==3&&D.wcloudm[1]==2&&D.wnez[1]==3&&D.wgreat[1]==3&&D.wqt[1]==4"));
+ok('Momentum glossary mentions the draw',R("GLX.find(x=>x[1]=='Momentum')[2]").includes('draw a card'));
 console.log(f?('FAILED '+f):'ALL OK');

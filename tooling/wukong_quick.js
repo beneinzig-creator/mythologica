@@ -64,3 +64,6 @@ wkSet('wtypes',null,'Deal damage to target opposing army member equal to the num
 /* --- the starting Hair Dart is a Spare Hair: it counts for every hair synergy, and it stays in your deck (no Disintegrate) --- */
 D.wdart[0]='Spare Hair';wkSet('wdart',null,'Deal 1 damage to target opposing army member or the opponent. It is a Spare Hair, but it stays in your deck.');
 FX.wdart=(s,o,t)=>wkHit(o,t,1+mg()+wkBreath(s));
+
+/* --- Zhu Bajie, the Pig: gluttony --- */
+wkSet('wpig',null,'Gluttony: when it enters, add a Peach to your hand.');ETB.wpig=s=>wkHand(s,'wpeach',1);

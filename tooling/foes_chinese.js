@@ -86,15 +86,17 @@ DK('The White Bone Spirit',{d:'bsk:4,bghl:5,bhag:4,bsp',hint:'Killing her disgui
 /* ---------- The Yellow Wind Ridge: BLINDNESS. The wind blinds your army until the monster that blows it dies ---------- */
 const fBlind=c=>{if(!c||c.blind)return;c.blind=1;fFlagOn(c,'n','bln')};
 const fCure=o=>{cr(o).forEach(x=>{if(x.blind){x.blind=0;fFlagOff(x,'bln')}})};
-F('ywind',{t:'Ward. All their army members have Charge. At the start of their turn, the Samadhi wind blinds one of your army members: blinded army members can\'t block until the wind is fixed.',up:(s,o)=>{const t=fTop(cr(o).filter(x=>!x.blind));if(t){fBlind(t);log('The yellow wind blinds '+fNm(t)+'.')}}});
-F('ybat',{c:1,a:2,h:1,f:'fh',tag:'wind',t:'Flying. Charge. It rides the wind: when it attacks, one more of your army members is blinded.',atk:(s,o)=>{const t=fTop(cr(o).filter(x=>!x.blind));if(t)fBlind(t)}});
+F('ywind',{t:'Ward. All their army members have Charge.'});
+/* blindness is short: it ends at the end of your next turn */
+{const _t=thEnd;thEnd=function(s){try{if(G&&G.e&&s===G.p)cr(G.p).forEach(x=>{if(x.blind){x.blind=0;fFlagOff(x,'bln')}})}catch(e){}return _t.apply(this,arguments)}}
+F('ybat',{c:1,a:2,h:1,f:'fh',tag:'wind',t:'Flying. Charge. When it attacks, one of your army members is blinded (it can\'t block until the end of your next turn).',atk:(s,o)=>{const t=fTop(cr(o).filter(x=>!x.blind));if(t)fBlind(t)}});
 F('ytig',{c:2,a:3,h:2,f:'h',tag:'wind',t:'Charge. It sheds its skin: the first time it dies, you have only struck the empty skin, and it returns to their hand.',
  die:(s,o,c)=>{if(c.skin)return;const i=s.gy.indexOf(c);if(i>=0){s.gy.splice(i,1);Object.assign(c,{dmg:0,tap:0,def:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,skin:1});s.hand.push(c);log('You strike only the Tiger Vanguard\'s empty skin.')}}});
 F('ydef',{c:2,a:2,h:3,f:'h',tag:'wind',t:'Charge. Sand in the eyes: your blinded army members get -1/-0.',oaura:x=>[x.blind?-1:0,0]});
-F('ygen',{c:4,a:4,h:4,f:'fh',tag:'wind',t:'Flying. Charge. When it enters, it blows the Samadhi wind: all your army members are blinded. When it dies, the wind is fixed and all your army members are cured.',
+F('ygen',{c:4,a:4,h:4,f:'fh',tag:'wind',t:'Flying. Charge. When it enters, it blows the Samadhi wind: all your army members are blinded (they can\'t block until the end of your next turn). When it dies, they are all cured.',
  etb:(s,o)=>{cr(o).forEach(fBlind);log('The Yellow Wind Monster blows: your whole army is blinded.')},die:(s,o)=>{fCure(o);log('The wind is fixed: your army can see again.')}});
 F('ygale',{c:2,t:'The wind drives sand into the eyes: each of your blinded army members takes 2 damage.',ai:(s,o)=>{const n=cr(o).filter(x=>x.blind).length;return n>=1?{s:2+n*2}:null},fx:(s,o)=>{cr(o).filter(x=>x.blind).forEach(x=>{x.dmg+=2})}});
-DK('The Yellow Wind Ridge',{d:'ybat:4,ytig:4,ydef:3,ygen,ygale:2',hint:'Everything strikes at once, and the wind blinds your army so it can\'t block. Kill the Yellow Wind Monster to fix the wind'});
+DK('The Yellow Wind Ridge',{d:'ybat:4,ytig:4,ydef:3,ygen,ygale:2',hint:'Everything charges in at once. Their bats and the Yellow Wind Monster blind your army so it can\'t block for a turn'});
 
 /* ---------- Erlang Shen: THE PREDATOR ANSWER. Every army member you play is answered by its predator ---------- */
 function fPredator(s,o,x){const er=s.bf.find(y=>y.id=='eerl');const t=er||fLow(cr(s));if(!t)return;const want=pw(x)+1;if(pw(t)<want)t.pa+=want-pw(t);t.pred=1;
@@ -155,5 +157,9 @@ F('plm',{c:5,a:5,h:9,f:'kz',tag:'palm',t:'Can only defend. Resilient. The mounta
 DK("The Buddha's Palm",{d:'pdis:5,pfin:5,pgrd:2,plm'});
 
 /* silk counters drawn on the card */
-{const _cd=card;card=function(c){let h=_cd.apply(this,arguments);try{if(c&&c.silk>0){const n=Math.min(3,c.silk);const pips='<i class="on"></i>'.repeat(n)+'<i></i>'.repeat(3-n);const tt='Silk '+n+' of 3: -'+n+'/-0'+(c.coc?'. Cocooned: it stays tapped while it has 3 silk. It sheds 1 silk at the end of your turn.':'. At 3 silk it is cocooned (tapped). Sheds 1 silk at the end of any turn it does not attack.');const i=h.indexOf('>');h=h.slice(0,i+1)+'<b class="slk'+(c.coc?' coc':'')+'" title="'+tt+'">'+pips+'</b>'+h.slice(i+1)}}catch(e){}return h}}
-try{if(typeof document!='undefined'&&document.createElement&&document.head){const st=document.createElement('style');st.textContent='.cd .slk{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:6;display:flex;gap:4px;padding:3px 6px;border-radius:10px;background:rgba(20,18,24,.72);box-shadow:0 0 6px rgba(255,255,255,.35);pointer-events:auto}.cd .slk i{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(235,235,245,.85);background:transparent}.cd .slk i.on{background:radial-gradient(circle at 35% 35%,#fff,#d9dbe6 55%,#9aa0b5);box-shadow:0 0 4px #fff}.cd .slk.coc{background:rgba(235,235,245,.9)}.cd .slk.coc i.on{border-color:#666}';document.head.appendChild(st)}}catch(e){}
+{const _cd=card;card=function(c){let h=_cd.apply(this,arguments);try{if(c&&c.silk>0){const n=Math.min(3,c.silk);const key=c.coc?'cocoon':'silk';
+ /* a pile of silk coins, one per silk, each a little lower and to the right of the one beneath; the medallion art is used once it exists */
+ const coins=Array.from({length:n},(_,i)=>'<i class="sc" style="--i:'+i+'"><img src="art/game/icons/status_'+key+'.png" alt="" draggable="false" onerror="this.remove()"></i>').join('');
+ const tt='Silk '+n+' of 3: -'+n+'/-0'+(c.coc?'. Cocooned: it stays tapped while it has 3 silk. It sheds 1 silk at the end of your turn.':'. At 3 silk it is cocooned (tapped). Sheds 1 silk at the end of any turn it does not attack.');
+ const i=h.indexOf('>');h=h.slice(0,i+1)+'<b class="slk'+(c.coc?' coc':'')+'" style="--n:'+n+'" title="'+tt+'">'+coins+'</b>'+h.slice(i+1)}}catch(e){}return h}}
+try{if(typeof document!='undefined'&&document.createElement&&document.head){const st=document.createElement('style');st.textContent='.cd .slk{position:absolute;right:6px;top:24%;z-index:6;width:calc(24px + (var(--n) - 1) * 6px);height:calc(24px + (var(--n) - 1) * 5px);pointer-events:auto}.cd .slk .sc{position:absolute;left:calc(var(--i) * 6px);top:calc(var(--i) * 5px);width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#dcdfe9 45%,#9aa0b5 80%,#6b7086);border:1.5px solid #f4f1e6;box-shadow:0 2px 3px rgba(0,0,0,.6),inset 0 0 0 2px rgba(120,110,90,.55)}.cd .slk.coc .sc{background:radial-gradient(circle at 35% 30%,#fff,#eef0f6 50%,#c7cad6)}.cd .slk .sc img{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border-radius:50%}';document.head.appendChild(st)}}catch(e){}

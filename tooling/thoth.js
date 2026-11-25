@@ -33,7 +33,7 @@ function makeRen(src){const d=D[src.id],nm=d[0].split(',')[0],keys=[...new Set(s
  D[id]=['Name of '+nm,0,'S',0,0,'','Write: target army member you control gains '+what+' (as glyphs). Or speak it (◆+2) for 2 mana.','📜','A'];LORE[id]='A true name';TS[id]='pc';
  FX[id]=(s,o,t)=>{if(!t||typeof t!='object')return;keys.forEach(k=>inscribe(t,k));if(die)inscribe(t,'n:'+die);inscribe(t,'+');log('You write the name of '+nm+' onto '+D[t.id][0]+'.')};
  const c=mk(id);c.ren=1;c.dis=1;return c}
-function thSunder(c,by){const s=sideOf(c);if(!s||!isC(c))return 0;if(s!==by&&has(c,'w'))return 0;if(s!==by&&amOf(c).some(a=>a.id=='ishen'))return 0;
+function thSunder(c,by){const s=sideOf(c);if(!s||!isC(c))return 0;if(c.part)return 0;if(s!==by&&has(c,'w'))return 0;if(s!==by&&amOf(c).some(a=>a.id=='ishen'))return 0;
  const heart=amOf(c).some(a=>a.id=='dheart');s.bf.splice(s.bf.indexOf(c),1);if(G.cmb){G.cmb.atk=G.cmb.atk.filter(u=>u!==c.u);for(const k in G.cmb.blk)if(G.cmb.blk[k]===c.u||k==c.u)delete G.cmb.blk[k]}
  const parts=makeParts(s,c,heart?1:0);log(D[c.id][0]+' is sundered into its Body and Spirit.');
  if(by===G.p){const r=makeRen(c);G.p.hand.push(r);const bk=nOn(G.p,'dbook');for(let i=0;i<bk&&cr(G.p).length<AM();i++){const b=parts.find(x=>x.part=='ba');const id=b?b.id:null;if(id){const t=mk(id);t.src=c.u;t.part='ba';enter(G.p,t)}}}
