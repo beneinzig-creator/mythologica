@@ -3,20 +3,20 @@
   "model": "gpt-image-2.5-sunburst",
   "quality": "high",
   "size": "1024x1536",
-  "created": "2026-11-18 22:03:03",
-  "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nRare rarity: a frame of gilded bronze over dark oak with a border of gripping-beast knotwork in the Urnes style, small garnet cloisonne studs at the corners and a carved interlaced beast above the art window. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
+  "created": "2026-11-25 14:39:16",
+  "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nRare rarity: a frame of red gold and dark oak with a rich border of gripping-beast knotwork in the Urnes style set with deep red garnet cloisonne, Odin's two ravens Huginn and Muninn perched at the top corners with outspread wings, and a gold helmet mask above the art window. Colours: warm red gold, deep garnet red and dark oak. Rich and striking. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel. The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full size; ornament keeps to the outer edges.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
   "revised_prompt": null,
   "usage": {
-    "input_tokens": 401,
+    "input_tokens": 469,
     "input_tokens_details": {
       "image_tokens": 0,
-      "text_tokens": 401
+      "text_tokens": 469
     },
     "output_tokens": 1372,
     "output_tokens_details": {
       "image_tokens": 1372,
       "text_tokens": 0
     },
-    "total_tokens": 1773
+    "total_tokens": 1841
   }
 }
