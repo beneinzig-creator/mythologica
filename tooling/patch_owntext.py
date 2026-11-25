@@ -95,7 +95,8 @@ _b3("cc<d[1]?' style=\"color:#7be08a\"':''", "cc<d[1]?' style=\"color:#7be08a\"'
 
 _JSOWN = r"""
 /* ===== v126 (patch_owntext): owner-side enemy texts, prestige hover box, cost colours ===== */
-{const T=__OWNTX__;for(const k in T)if(D[k]){D[k][6]=T[k];if(TXT[k])TXT[k]=T[k]}}
+/* cards re-texted by the reworked opponents (foes*.js, F() with t:) keep their new rules text */
+{const T=__OWNTX__;for(const k in T)if(D[k]&&!(typeof FOE!='undefined'&&FOE[k]&&FOE[k].t!=null)){D[k][6]=T[k];if(TXT[k])TXT[k]=T[k]}}
 function koTip(o,c){const lab=KO[o]?KO[o][0]:'';const nm=D[c.id][0];
  if(o==6){const s=UPS[c.id]?UPS[c.id](((c.rec&&c.rec.m)||0)+1):'';return'<p><b>Stronger effect</b></p><p>'+nm+"'s effect gets stronger"+(s?': '+s:'')+'. Permanent for this run.</p>'}
  const m=/^Gains (.+)$/.exec(lab);if(m){const nmk=m[1],a=nmk=='flying'?['f']:ABU.find(x=>x[1]==nmk);const k=a&&a[0];
