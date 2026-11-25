@@ -15,4 +15,9 @@ R(`enter(G.e,mk('rimew'));enter(G.e,mk('rimew'))`);ok('Rime-Witches: -1/-0 (not 
 R(`G.e.winter=2`);ok('the winter counter shows on the trump',/Winter: 2 of 3/.test(R("DYN.rwall(G.e.bf.find(x=>x.id=='rwall'))")));
 R(`var cl=mk('spear');cl.callT=G.turn+1;cl.burn=1`);ok('Called and Burning are written on the card',/Called by name/.test(R("kwTx2(cl,'')"))&&/Burning/.test(R("kwTx2(cl,'')")));
 R(`var tk=mk('spear');tk.blind=1;tk.burn=1;tk.cursed=1`);ok('status tokens drawn on the card',/stk-blind/.test(R("card(tk,'p')"))&&/stk-burn/.test(R("card(tk,'p')"))&&/stk-curse/.test(R("card(tk,'p')")));
+setup('thoth',0);R(`G.e.bf=[];var big=mk('spear');enter(G.e,big);thSunder(big,G.p);var part=G.e.bf.find(x=>x.part);var nb=G.e.bf.length`);ok('a Body or Spirit cannot be Sundered again',R('part?thSunder(part,G.p):1')==0&&R('G.e.bf.length')==R('nb'));
+setup('odin',0);R(`G.p.bf=[];var hm=mk('hird');enter(G.p,hm);var p1=pwr(hm),h1=th(hm);G.p.life=8`);ok('Hirdman: +1/+1 while Wounded',R('pwr(hm)')==R('p1')+1&&R('th(hm)')==R('h1')+1);
+R(`var tr=mk('thrl');enter(G.p,tr);G.p.mana=0;offer(G.p,tr)`);ok('Thrall: offering it gives 1 extra mana',R('G.p.mana')>=2);
+setup('thoth',0);R(`G.p.bf=[];G.e.bf=[];var md=mk('tmedj');enter(G.p,md);var ea=mk('spear');ea.d=9;enter(G.e,ea);ea.sick=0;var t0=th(md);G.cmb=launch(G.e,[ea],{});G.cmb.blk[ea.u]=md.u;resolve();G.cmb=null`);ok('Medjay: +0/+2 when it blocks',R('md.td')==2);
+setup('wukong',0);R(`G.p.bf=[];G.p.mana=9;var pg=mk('wpig');G.p.hand=[pg];cast(pg)`);ok('Zhu Bajie adds a Peach to your hand',R("G.p.hand.some(x=>x.id=='wpeach')"));
 console.log(f?('FAILS '+f):'ALL OK');

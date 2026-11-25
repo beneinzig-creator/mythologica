@@ -21,7 +21,7 @@ GLX.push(
  [/\bsealed\b/i,'Sealed','a sealed army member can\'t attack.'],
  [/\bcursed\b/i,'Cursed','a cursed card in your hand costs 1 more for the rest of the fight.'],
  [/\bquarry\b/i,'Quarry','the army member the Wild Hunt is hunting: Hunt riders deal 2 extra damage to it.'],
- [/\bsunder(ed|s)?\b/i,'Sunder','split an army member into its Body and Spirit. If you Sunder it, you also take its Name.'],
+ [/\bsunder(ed|s)?\b/i,'Sunder','split an army member into its Body and Spirit. If you Sunder it, you also take its Name. A Body or Spirit can\'t be Sundered again.'],
  [/\bBod(y|ies)\b/,'Body','the half of a Sundered army member with half its health. It can\'t block, and it Reunites with its Spirit.'],
  [/\bSpirits?\b/,'Spirit','the half of a Sundered army member with half its power and Flying. It Reunites with its Body.'],
  [/(?<!Gourd of )\bNames?\b/,'Name','a spell you take by Sundering: write its keywords onto one of your army members, or speak it for 2 mana.'],

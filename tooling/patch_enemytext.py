@@ -73,9 +73,9 @@ mpill|Marauder. Charge. When it deals combat damage to your opponent, a random c
 chief|Marauder. Charge. Rally. From the fifth turn on, at the start of your turn, a Cicone Raider joins you.
 drums|Your Marauders get +1 power.
 burn|Deal 2 damage to your opponent for each Marauder you control.
-javel|Deal damage to target army member (more in later fights).
+javel|Deal 3 damage to target army member (more in later fights).
 cbow|Marauder. Range. When it enters, your opponent's weakest army member takes 1 damage.
-hitr|Ward. At the start of your sixth turn, two Cicone Raiders join you and your army gets +1/+0 permanently.
+hitr|Ward. At the start of your sixth turn, two Cicone Raiders join you and your army gets +1/+0 permanently (army members that arrive later get it too).
 cwolf|Ruthless. +1/+1 while your opponent has a Swine.
 clion|Ruthless. When it deals combat damage to your opponent, their newest army member gets -1/-1 permanently.
 cmaid|When it enters, restore 2 health to each of your army members.
@@ -87,7 +87,7 @@ cow|Sacred: when it dies, the Sun God's tally grows (unless you offered it).
 bull|Sacred: when it dies, the Sun God's tally grows (unless you offered it).
 lamp|Flying. Whenever one of your cattle dies, it gets +2/+0 permanently.
 neith|Flying. When it enters, restore your cattle to full health.
-scorch|Deal damage to target army member (more in later fights).
+scorch|Deal 4 damage to target army member (more in later fights).
 sacril|Ward.
 hmil|Phalanx. +1/+0 while you control Hector.
 hspr|Phalanx. Range. When it blocks, it deals 1 more damage.
@@ -146,7 +146,7 @@ wight|Draining. +1/+1 for each Draugr in your graveyard (at most +2/+2).
 hgrd|Resilient. When it dies, it drives two nails into Naglfar instead of one.
 nidh|Draining. Venomous. At the start of your turn, it eats a card from your opponent's graveyard and gets +1/+1.
 hgrasp|Destroy target army member that has damage on it.
-corp|Ward. Whenever one of your army members dies, a nail is driven into Naglfar. At 8 nails, your army gets +2/+0 and Charge permanently.
+corp|Ward. Whenever one of your army members dies, a nail is driven into Naglfar. At 8 nails, your army gets +2/+0 and Charge permanently (army members that arrive later get it too).
 lrav|When it enters, draw a card.
 imp|When it enters, swap the power and health of your opponent's strongest army member.
 skinw|When it enters, it copies the power, health and keywords of your opponent's strongest army member.
@@ -168,7 +168,7 @@ fgrd|When it enters, add a Gold to the Hoard.
 fworm|Ruthless. When it attacks, the opposing army member with the least health takes 1 damage.
 regin|When it enters, draw a card. When Fáfnir dies, Regin leaves your army.
 dbrth|Deal 2 damage to each opposing army member.
-fspit|Deal damage to target army member (more in later fights).
+fspit|Deal 4 damage to target army member (more in later fights).
 hoard|Ward.
 jsnk|Venomous. When it dies, it is shuffled into your deck.
 jcrw|Resilient. After it blocks an army member, that army member returns to its owner's hand.
