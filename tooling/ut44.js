@@ -7,7 +7,7 @@ const setup=(i)=>R(`setChar('wukong');newRun();for(let i=0;i<11;i++)pickDraft(0)
 const cast=(id,t)=>R(`(function(){var c=mk('${id}');G.p.hand.push(c);cast(c,${t||'undefined'});return c})()`);
 const en=(id,n)=>R(`(function(){var c=mk('${id}');${n?`c.d=${n};`:''}enter(G.e,c);c.sick=0;return c})()`);
 // character wiring
-ok('pool 80 + 4 staples',R(`CHARS.wukong.pool.length==80&&CHARS.wukong.staples.length==4`));
+ok('pool 81 + 4 staples',R(`CHARS.wukong.pool.length==81&&CHARS.wukong.staples.length==4`));
 ok('6 opponents each with a trump',R(`CHARS.wukong.en.length==6&&CHARS.wukong.en.every(e=>e.mt&&MT.includes(e.mt))`));
 for(let i=0;i<4;i++){setup(i);ok('opp '+i+' trump in hand not on field, hand 4',R(`G.e.hand.length==4`)||true)}
 setup(0);
@@ -24,7 +24,7 @@ setup(0);R(`var dd=mk('wdart');G.p.hand=[dd];var X2=mk('spd1');X2.d=9;enter(G.e,
 // peach
 setup(0);R(`var pe=mk('wpeach');G.p.hand=[pe];G.p.mana=0;cast(pe)`);ok('peach +1 mana, vanishes',R(`G.p.mana==1&&!G.p.gy.some(c=>c.id=='wpeach')`));
 // volley half cards
-setup(0);R(`var V=mk('spd1');V.d=20;enter(G.e,V);G.p.cp=3;var vv=mk('wvolley');G.p.hand=[vv];cast(vv,V)`);ok('volley: cp 4 -> 2 dmg',R('V.dmg==2'));
+setup(0);R(`var V=mk('spd1');V.d=20;enter(G.e,V);G.p.hp=2;var vv=mk('wvolley');G.p.hand=[vv];cast(vv,V)`);ok('volley: 2 hairs played -> 2 dmg',R('V.dmg==2'));
 // order cards
 setup(0);R(`G.p.deck=[mk('wdart'),mk('wdart'),mk('wdart')];var Q=mk('spd1');Q.d=20;enter(G.e,Q)`);
 cast('wrod','Q');var d0=R('G.p.hand.length');cast('wfeint');ok('feint after strike draws',R('G.p.hand.length')==d0+1-0 || R('G.p.hand.length')>=d0);
@@ -86,11 +86,11 @@ ok('cobweb freezes strongest attacker',R(`a1.frz==1&&a1.tap==1&&a2.frz==0`));
 // samadhi fire
 setup(3);R(`G.e.bf.push(mk('sfire'));var at=mk('rimp');enter(G.e,at);var bk=mk('wpig');enter(G.p,bk);var cmb={side:'e',atk:[at.u],blk:{},tg:{}};cmb.blk[at.u]=bk.u;G.cmb=cmb;sFire(cmb)`);ok('samadhi fire: blocker takes 1',R('bk.dmg')==1);
 // army
-setup(0);R(`var kc=mk('wclone');enter(G.p,kc);kc.dmg=9;sweep()`);ok('clone dies -> spare hair in deck',R(`G.p.deck.some(c=>c.id=='whair')`));
+setup(0);R(`var kc=mk('wclone');enter(G.p,kc);kc.dmg=9;sweep()`);ok('clone dies -> spare hair in hand',R(`G.p.hand.some(c=>c.id=='whair')`));
 // expansion cards
 setup(0);R(`var tq=mk('spd3');tq.d=20;enter(G.e,tq)`);cast('wrod','tq');cast('wpluck');cast('wtypes','tq');ok('three forms: 2 types = 2 (+2 rod)',R('tq.dmg')==4);
-setup(0);R(`var tp=mk('wtroop');G.p.hand.push(tp);var dk0=G.p.deck.length`);R('cast(tp)');ok('troop shuffles a hair',R(`G.p.deck.length`)>=R('dk0')+1&&R(`G.p.deck.some(c=>c.id=='whair')`));
-setup(0);cast('wpluck');cast('wpluck');R('var d0=G.p.deck.filter(c=>c.id=="wpeach").length');cast('worchard');ok('orchard: 3 played -> 1 peach',R(`G.p.deck.filter(c=>c.id=="wpeach").length`)==R('d0')+1);
+setup(0);R(`var tp=mk('wtroop');G.p.hand.push(tp);var dk0=G.p.deck.length`);R('cast(tp)');ok('troop adds a hair to hand',R(`G.p.hand.some(c=>c.id=='whair')`));
+setup(0);cast('wpluck');cast('wpluck');R('var d0=G.p.hand.filter(c=>c.id=="wpeach").length');cast('worchard');ok('orchard: a peach to hand',R(`G.p.hand.filter(c=>c.id=="wpeach").length`)==R('d0')+1);
 setup(0);R('G.p.mana=0');cast('wdart',R(`(function(){var z=mk('spd3');z.d=20;enter(G.e,z);return 'z'})()`)&&'G.e.bf[G.e.bf.length-1]');
 setup(0);R('G.p.mana=0;wkUp(G.p)');R(`G.p.cp=2`);cast('wfoot');ok('footwork: 3rd card gives mana',R('G.p.mana')==1);
 setup(0);R('G.p.mana=0;wkUp(G.p)');cast('wfoot');ok('footwork: 1st card no mana',R('G.p.mana')==0);
@@ -106,11 +106,11 @@ setup(0);R(`var fr=mk('wrod');G.p.hand.push(fr);var lg=G.e.life;hd('h:'+fr.u);hd
 setup(0);R(`var wd=mk('spd2');enter(G.e,wd);var fh=mk('wdart');G.p.hand.push(fh);hd('h:'+fh.u);hd('e:'+wd.u)`);ok('warded spiders cannot be targeted but dart still resolves face',R('wd.dmg')==0);
 ok('dart is a quick spell',R(`D.wdart[2]=='I'`));
 // new army members
-setup(0);cast('wlegion');ok('legion shuffles 2 hairs',R(`G.p.deck.filter(c=>c.id=='whair').length`)>=2);
+setup(0);cast('wlegion');ok('legion adds 2 hairs to hand',R(`G.p.hand.filter(c=>c.id=='whair').length`)>=2);
 setup(0);R(`G.p.mo=5`);R(`var e0=G.e.life`);cast('wbear');ok('bearer hits for momentum capped 3',R('e0')-R('G.e.life')==3);
 setup(0);en('spd1');R(`G.p.mo=2`);cast('wbreak');ok('breaker hits all army members for 2',R(`G.e.bf.filter(c=>c.id=='spd1').length==0||G.e.bf.find(c=>c.id=='spd1').dmg>=2`));
 setup(0);R(`G.p.mo=0;var u=mk('wdrum');G.p.hand.push(u)`);R('cast(u)');ok('drummer raises momentum',R('G.p.mo')>=1);
-setup(0);cast('wpeachk');ok('keeper shuffles a peach',R(`G.p.deck.some(c=>c.id=='wpeach')`));
+setup(0);cast('wpeachk');ok('keeper adds a peach to hand',R(`G.p.hand.some(c=>c.id=='wpeach')`));
 setup(0);cast('wjug');R(`var l1=G.e.life;wkMom(G.p)`);ok('juggler pings on momentum',R('l1')-R('G.e.life')==1);
 setup(0);cast('wvang');R(`wkMom(G.p)`);ok('vanguard gets +1 on momentum',R(`G.p.bf.find(c=>c.id=='wvang').ta`)==1);
 setup(0);cast('wdisc');R(`G.p.cp=2;wkPlay(G.p,mk('wmonk'))`);ok('disciple +2 on third card',R(`G.p.bf.find(c=>c.id=='wdisc').ta`)==2);
@@ -145,4 +145,13 @@ R(`thEnd(G.p)`);ok('end of turn without attacking: sheds 1 and the cocoon opens'
 R(`var at=mk('hopl');enter(G.p,at);at.sick=0;fSilk(at,1);at.lastAtk=G.turn;thEnd(G.p)`);ok('a unit that attacked keeps its silk',R('at.silk')==1);
 R(`G.turn++;thEnd(G.p)`);ok('a unit that sat out sheds 1 silk',R('at.silk')==0);
 R(`fSilk(at,2)`);ok('silk counters drawn on the card',/class="slk/.test(R("card(at,'p')")));
+
+// Quick and many (Wukong pass)
+setup(0);R(`G.p.hand=[];G.p.mana=9;var pl=mk('wpluck');G.p.hand.push(pl);cast(pl)`);ok('Pluck a Hair adds 2 Spare Hairs to your hand',R("G.p.hand.filter(x=>x.id=='whair').length")==2);
+R(`G.e.bf=G.e.bf.filter(x=>!isC(x));var tgt=mk('spear');tgt.d=9;enter(G.e,tgt);G.p.bf.push(mk('wbreath'));var h1=G.p.hand.find(x=>x.id=='whair');cast(h1,tgt)`);ok('Breath of Transformation: hairs deal 2',R('tgt.dmg')==2);
+R(`var vo=mk('wvolley');G.p.hand.push(vo);var d0=tgt.dmg;cast(vo,tgt)`);ok('Hair Volley: 1 per hair played (at least 1)',R('tgt.dmg-d0')==1);
+R(`G.p.hand=[];var fe=mk('wfeint');G.p.hand.push(fe);var sp=mk('wspin');G.p.hand.push(sp);var c0=cost(sp);cast(fe)`);ok('Feint: the next card costs 1 less',R('cost(sp)')==R('c0')-1);
+R(`G.p.hand=[];var oc=mk('worchard');G.p.hand.push(oc);cast(oc)`);ok('Orchard adds a Peach to your hand',R("G.p.hand.some(x=>x.id=='wpeach')"));
+R(`G.p.hand=[];var tr=mk('wtroop');G.p.hand.push(tr);cast(tr)`);ok('Hair-Born Troop adds a Spare Hair to your hand',R("G.p.hand.some(x=>x.id=='whair')"));
+ok('cost curve: 40+ cards cost 0-1, few cost 3+',R(`(()=>{const P=[...new Set(CHARS.wukong.pool)];return P.filter(k=>D[k][1]<=1).length>=40&&P.filter(k=>D[k][1]>=3).length<=11})()`));
 console.log(f?('FAILED '+f):'ALL OK');
