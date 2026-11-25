@@ -59,12 +59,12 @@ MANUAL = {'ody': {
     'legendary': {'name': (132, 120, 815, 188), 'cost': (828, 110, 918, 195), 'type': (130, 850, 900, 915),
                   'text': (130, 950, 895, 1335), 'pt': (775, 1290, 925, 1360)},
 }, 'act3': {
-    # Act III (shared by every hero), read from the frames by eye (Nov 2026). The Uncommon has no power plaque,
-    # so its power/health sits in the bottom-right corner of the rules box.
+    # Act III (shared by every hero), read from the frames by eye (Nov 2026). The Uncommon was generated without its
+    # power plaque; one was painted in with a masked edit (uncommon.png) and measured here.
     'common':    {'name': (115, 62, 856, 135),  'cost': (866, 48, 972, 150),  'type': (138, 822, 886, 895),
                   'text': (80, 925, 948, 1375), 'pt': (762, 1340, 970, 1428)},
     'uncommon':  {'name': (115, 78, 818, 152),  'cost': (832, 62, 932, 162),  'type': (120, 842, 902, 912),
-                  'text': (127, 940, 898, 1315), 'pt': (770, 1250, 898, 1312)},
+                  'text': (127, 940, 898, 1315), 'pt': (690, 1282, 920, 1365)},
     'rare':      {'name': (98, 138, 830, 205),  'cost': (838, 118, 938, 218), 'type': (128, 870, 898, 932),
                   'text': (132, 950, 893, 1388), 'pt': (735, 1335, 925, 1408)},
     'legendary': {'name': (90, 170, 862, 238),  'cost': (868, 160, 955, 245), 'type': (88, 858, 938, 930),
@@ -160,6 +160,8 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         for r in MANUAL[hero]:
             src = os.path.join(FR, f'{r}.webp')
+            if os.path.exists(src[:-5] + '.png'):  # a frame touched up locally is kept as PNG (no webp encoder here)
+                src = src[:-5] + '.png'
             if not os.path.exists(src):
                 print(f'skip {r}: no frame image yet')
                 continue

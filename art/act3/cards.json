@@ -543,5 +543,85 @@
   "frame": "common",
   "name": "Ziggurat Guard",
   "type": "Army member"
+ },
+ "xzebul": {
+  "frame": "uncommon",
+  "name": "Lord of the High House",
+  "type": "Army member"
+ },
+ "xpraer": {
+  "frame": "uncommon",
+  "name": "Prince of the Air",
+  "type": "Army member"
+ },
+ "xdung": {
+  "frame": "uncommon",
+  "name": "Dung-Heap of Ekron",
+  "type": "Item"
+ },
+ "xplague": {
+  "frame": "uncommon",
+  "name": "Plague of Flies",
+  "type": "Spell"
+ },
+ "xgoat": {
+  "frame": "uncommon",
+  "name": "The Goat Sent Out",
+  "type": "Army member"
+ },
+ "xadorn": {
+  "frame": "uncommon",
+  "name": "Teacher of Adornment",
+  "type": "Army member"
+ },
+ "xsword": {
+  "frame": "uncommon",
+  "name": "Swordsmith of the Earth",
+  "type": "Army member"
+ },
+ "xdudael": {
+  "frame": "uncommon",
+  "name": "Bound in Dudael",
+  "type": "Spell"
+ },
+ "xdesire": {
+  "frame": "uncommon",
+  "name": "Demon of Desire",
+  "type": "Army member"
+ },
+ "xgroom": {
+  "frame": "uncommon",
+  "name": "Seven Grooms",
+  "type": "Army member"
+ },
+ "xfeast": {
+  "frame": "uncommon",
+  "name": "The Wedding Feast",
+  "type": "Spell"
+ },
+ "xashm": {
+  "frame": "uncommon",
+  "name": "Ashmedai, King of Demons",
+  "type": "Army member"
+ },
+ "xdemon": {
+  "frame": "uncommon",
+  "name": "Night Demoness",
+  "type": "Army member"
+ },
+ "xcradle": {
+  "frame": "uncommon",
+  "name": "Cradle-Robber",
+  "type": "Army member"
+ },
+ "xnight": {
+  "frame": "uncommon",
+  "name": "The Long Night",
+  "type": "Modifier"
+ },
+ "xamulet": {
+  "frame": "uncommon",
+  "name": "Broken Amulet",
+  "type": "Spell"
  }
 }
