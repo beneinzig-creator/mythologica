@@ -4,12 +4,12 @@
   "quality": "high",
   "prompt": "Remove the small empty plaque in the bottom-right corner of this card frame. Continue the parchment text box, its border and the outer frame exactly as they look elsewhere on the card, so the text box is a clean rectangle with an ordinary border and corner at the bottom right. Keep the same worn, rustic texture. Change nothing else; leave the black art window solid black.",
   "mask_box": [
-    758,
-    1344,
-    986,
-    1482
+    744,
+    1368,
+    976,
+    1468
   ],
-  "created": "2026-11-19 06:56:14",
+  "created": "2026-11-25 14:41:16",
   "usage": {
     "input_tokens": 1627,
     "input_tokens_details": {
