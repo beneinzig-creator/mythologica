@@ -1,0 +1,7 @@
+{
+ "id": "token_ody",
+ "model": "gpt-image-2.5-sunburst",
+ "quality": "high",
+ "size": "1024x1536",
+ "prompt": "A single board-game playing piece, like a carved chess piece, standing upright on a small round base, seen from the front and very slightly above, painted in a rustic 1990s hand-painted trading-card style (gouache and ink, rich antique colours, slightly worn, soft light from the top left), like the painted medallions on an old fantasy map. A bold, simple silhouette that still reads at 40 pixels tall: a tall narrow piece, the whole figure in view, centred, filling most of the height. Fully transparent background, no ground, no table, no cast shadow, no border, no text, no letters.\n\nSubject: Odysseus as a game piece carved from weathered bronze with white marble details: a Greek hero in a crested Corinthian helmet holding a spear upright, a small curved ship's prow carved into the front of the base. Greek, colours of bronze, marble white and wine-dark blue."
+}
