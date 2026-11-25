@@ -5805,5 +5805,25 @@ function padFly(k,list){const g=G;list.slice(0,8).forEach(([c,r,from],i)=>{let e
   requestAnimationFrame(step)}catch(e){done()}})})}
 {const _R=render;render=function(){let P=null;try{P=padPre()}catch(e){}const out=_R.apply(this,arguments);
  try{if(FXH.on&&FXH.shown&&!document.getElementById('fxin'))fxRelease(0)}catch(e){}try{padPost(P)}catch(e){}return out}}
+
+/* ===== patch_lanefit: keep the enemy's and player's front rows apart ===== */
+let LFDONE=false;
+function laneFit(){try{if(document.documentElement.classList.contains('ph'))return;
+ const cs=[...document.querySelectorAll('#app .fld .lys .cd')];if(!cs.length)return;
+ cs.forEach(x=>{const cur=x.style.top||'0px';if(x.dataset.lt!==cur)x.dataset.l0=parseFloat(cur)||0});
+ const set=K=>cs.forEach(x=>{const v=(+x.dataset.l0*K).toFixed(1)+'px';x.style.top=v;x.dataset.lt=v});
+ const lim=(typeof RK=='number'?RK:34)+1,nc=x=>Math.abs(+x.dataset.l0)<=lim,
+  E=cs.filter(x=>nc(x)&&x.closest('.fe')),P=cs.filter(x=>nc(x)&&x.closest('.fp'));
+ if(!E.length||!P.length){set(1);return}
+ const gap=()=>Math.min(...P.map(x=>x.getBoundingClientRect().top))-Math.max(...E.map(x=>x.getBoundingClientRect().bottom)),want=10;
+ set(0);const g0=gap();set(1);const g1=gap();
+ let K=1;if(g1<want&&g0>g1)K=Math.max(0,Math.min(1,(g0-want)/(g0-g1)));set(K);
+ if(!G.cmb){const eB=Math.max(...E.map(x=>x.getBoundingClientRect().bottom)),pT=Math.min(...P.map(x=>x.getBoundingClientRect().top));
+  cs.filter(x=>!nc(x)).forEach(x=>{const pl=!!x.closest('.fp'),edge=()=>{const r=x.getBoundingClientRect();return pl?r.top-eB:pT-r.bottom},v1=+x.dataset.l0*K,
+   d1=edge();if(d1>=want)return;x.style.top='0px';const d0=edge();const f=d0>d1?Math.max(0,Math.min(1,(d0-want)/(d0-d1))):1,v=(v1*f).toFixed(1)+'px';x.style.top=v;x.dataset.lt=v})}
+ }catch(e){}}
+{const c0=cardMoves;cardMoves=function(){laneFit();LFDONE=true;return c0.apply(this,arguments)}}
+{const r0=render;render=function(){LFDONE=false;const o=r0.apply(this,arguments);if(!LFDONE)laneFit();return o}}
+try{addEventListener('resize',()=>setTimeout(laneFit,60))}catch(e){}
 showChars();
 </script>
