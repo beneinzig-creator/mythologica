@@ -5083,18 +5083,20 @@ const fFlagOn=(c,k,tag)=>{if(!c.f.includes(k)){c.f+=k;c[tag]=(c[tag]||'')+k}};
 const fFlagOff=(c,tag)=>{if(c[tag]){for(const k of c[tag])c.f=c.f.replace(k,'');c[tag]=''}};
 
 /* ---------- The Spider Cave: SILK. Silk piles up on your army; three silk is a cocoon, and the Matron eats what is cocooned ---------- */
-const fSilk=(c,n)=>{if(!c)return;c.silk=Math.max(0,(c.silk||0)+n);if(c.silk>=3){fFlagOn(c,'k','coc');fFlagOn(c,'n','coc')}else fFlagOff(c,'coc')};
-const fCocooned=o=>cr(o).filter(x=>(x.silk||0)>=3);
-F('cweb',{t:'Ward. Silk: each silk on one of your army members gives it -1/-0; at 3 silk it is cocooned and can\'t attack or block. Whenever one of your army members attacks, it gets 1 silk. An army member that sits out a whole turn sheds 1 silk.',
- oaura:x=>[-Math.min(3,x.silk||0),0],dfd:(s,o,c,S)=>{S.forEach(x=>fSilk(x,1))},
- oup:(s,o)=>{cr(o).forEach(x=>{if(x.silk&&x.lastAtk!==G.turn-1){fSilk(x,-1)}})}});
+const fSilk=(c,n)=>{if(!c)return;c.silk=Math.max(0,Math.min(3,(c.silk||0)+n));if(c.silk>=3&&!c.coc){c.coc=1;c.tap=1;c.frz=Math.max(c.frz||0,1);log(fNm(c)+' is wrapped in a cocoon (3 silk): it is tapped until the silk is shed.')}if(!c.silk&&c.coc){c.coc=0;c.frz=0;c.tap=0;log(fNm(c)+' breaks free of the cocoon.')}};
+const fCocooned=o=>cr(o).filter(x=>x.coc);
+/* silk's -1/-0 per counter never takes power below 0 */
+{const _p=px;px=function(c){let r=_p.apply(this,arguments);try{if(c&&c.silk){const base=pw(c)+r;r-=Math.min(c.silk,Math.max(0,base))}}catch(e){}return r}}
+F('cweb',{t:'Ward. Silk: each silk on one of your army members gives it -1/-0 (never below 0 power). At 3 silk it is cocooned: it taps and stays tapped. At the start of your turn, each of your army members that was tapped sheds 1 silk; a cocoon opens when its last silk is shed.',
+ end:(s,o)=>{cr(o).forEach(x=>{x.stp=x.tap?1:0})},
+ oup:(s,o)=>{cr(o).forEach(x=>{if(!x.silk)return;if(x.coc){x.tap=1;fSilk(x,-1);if(x.coc)x.frz=Math.max(x.frz||0,1);else{x.tap=0;x.frz=0}}else if(x.stp){fSilk(x,-1)}x.stp=0})}});
 F('spd1',{c:1,a:2,h:1,f:'f',tag:'spider',t:'Flying. One of the brood: when it enters, it spins 1 silk onto your strongest army member.',etb:(s,o)=>{const t=fTop(cr(o));if(t){fSilk(t,1);log('A Spiderling spins silk onto '+fNm(t)+'.')}}});
-F('spd2',{c:2,a:3,h:4,f:'w',tag:'spider',t:'Ward. Silk from the navel: at the start of their turn, it spins 2 silk onto your army member with the most power.',up:(s,o)=>{const t=cr(o).filter(x=>(x.silk||0)<3).sort((a,b)=>pw(b)-pw(a))[0];if(t){fSilk(t,2);log('Silk pours over '+fNm(t)+'.')}}});
+F('spd2',{c:2,a:3,h:4,f:'w',tag:'spider',t:'Ward. Silk from the navel: at the start of their turn, it spins 2 silk onto your army member with the most power that is not cocooned.',up:(s,o)=>{const t=cr(o).filter(x=>!x.coc).sort((a,b)=>pw(b)-pw(a))[0];if(t){fSilk(t,2);log('Silk pours over '+fNm(t)+'.')}}});
 F('spd3',{c:3,a:4,h:3,f:'r',tag:'spider',t:'Ruthless. Spins the cave shut: their army members get +1/+0 for each of your cocooned army members (at most +2).',aura:(x,c)=>[Math.min(2,fCocooned(oppOf(sideOf(c))).length),0],self:c=>[Math.min(2,fCocooned(oppOf(sideOf(c))).length),0]});
 F('spdq',{c:4,a:4,h:4,f:'',tag:'spider',t:'The eldest sister: at the start of their turn she eats one of your cocooned army members and gets +2/+2. They meant to steam the monk and eat him.',
  up:(s,o,c)=>{const t=fTop(fCocooned(o));if(t){fDestroy(t);c.pa+=2;c.pd+=2;log('The Spider-Spirit Matron feeds on '+fNm(t)+'.')}}});
-F('cocn',{c:2,t:'Wrapped in silk: target army member gets 3 silk (cocooned).',ai:(s,o)=>{const T=fTop(cr(o).filter(x=>(x.silk||0)<3&&!has(x,'w')));return T?{s:3+ev(T)*.7,t:T}:null},fx:(s,o,t)=>{if(t)fSilk(t,3)}});
-DK('The Spider Cave',{d:'spd1:5,spd2:3,spd3:2,spdq:2,cocn:2',hint:'Silk piles up on your army; three silk is a cocoon, and the Matron eats what is cocooned'});
+F('cocn',{c:2,t:'Wrapped in silk: target army member of yours gets 3 silk and is cocooned (tapped until the silk is shed).',ai:(s,o)=>{const T=fTop(cr(o).filter(x=>!x.coc&&!has(x,'w')));return T?{s:3+ev(T)*.7,t:T}:null},fx:(s,o,t)=>{if(t)fSilk(t,3)}});
+DK('The Spider Cave',{d:'spd1:5,spd2:3,spd3:2,spdq:2,cocn:2',hint:'Silk weakens your army (-1/-0 each); three silk is a cocoon that keeps it tapped, and the Matron eats what is cocooned'});
 
 /* ---------- The Gold and Silver Horn Kings: THE NAME CALL. The gourd calls one of your army members; if it answers (attacks or blocks), it is swallowed ---------- */
 const fCalled=o=>cr(o).filter(x=>x.callT>=G.turn);
@@ -5225,6 +5227,10 @@ F('pgrd',{c:3,a:3,h:6,f:'',tag:'palm',t:'The talisman, om mani padme hum: while 
 F('plm',{c:5,a:5,h:9,f:'kz',tag:'palm',t:'Can only defend. Resilient. The mountain presses down: at the start of their turn, if all your army members are tapped, you take 3 damage.',
  up:(s,o)=>{const L=cr(o);if(!L.length||L.every(x=>x.tap))fHurt(o,3,'The Five Elements Mountain presses down. ')}});
 DK("The Buddha's Palm",{d:'pdis:5,pfin:5,pgrd:2,plm'});
+
+/* silk counters drawn on the card */
+{const _cd=card;card=function(c){let h=_cd.apply(this,arguments);try{if(c&&c.silk>0){const n=Math.min(3,c.silk);const pips='<i class="on"></i>'.repeat(n)+'<i></i>'.repeat(3-n);const tt='Silk '+n+' of 3: -'+n+'/-0'+(c.coc?'. Cocooned: tapped until all silk is shed (1 per turn).':'. At 3 silk it is cocooned. Sheds 1 silk each turn it starts tapped.');const i=h.indexOf('>');h=h.slice(0,i+1)+'<b class="slk'+(c.coc?' coc':'')+'" title="'+tt+'">'+pips+'</b>'+h.slice(i+1)}}catch(e){}return h}}
+try{if(typeof document!='undefined'&&document.createElement&&document.head){const st=document.createElement('style');st.textContent='.cd .slk{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:6;display:flex;gap:4px;padding:3px 6px;border-radius:10px;background:rgba(20,18,24,.72);box-shadow:0 0 6px rgba(255,255,255,.35);pointer-events:auto}.cd .slk i{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(235,235,245,.85);background:transparent}.cd .slk i.on{background:radial-gradient(circle at 35% 35%,#fff,#d9dbe6 55%,#9aa0b5);box-shadow:0 0 4px #fff}.cd .slk.coc{background:rgba(235,235,245,.9)}.cd .slk.coc i.on{border-color:#666}';document.head.appendChild(st)}}catch(e){}
 
 /* ===== Thoth's realm, the Two Lands: every opponent rebuilt around one theme (lore: tooling/lore/egyptian.js + the Lore session's briefs) ===== */
 const fOut=(s,o)=>cr(s).length>cr(o).length;

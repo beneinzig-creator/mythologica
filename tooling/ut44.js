@@ -135,4 +135,14 @@ setup(0);cast('wtree');R(`G.p.life=10;G.p.bf.push;wkUp(G.p)`);ok('tree heals at 
 ok('start screen lists 4 characters',R(`Object.keys(CHARS).length==4`));
 R(`G.phase='char';G.cv='wukong'`);try{R('render0()');ok('char screen renders',true)}catch(e){ok('char screen renders '+e.message,false)}
 setup(0);try{R('render0()');ok('fight screen renders',true)}catch(e){ok('fight screen renders '+e.message,false)}
+
+// Spider Cave silk (v2): -1/-0 per silk, floor 0; 3 silk cocoons (tapped) and sheds 1 a turn
+setup(0);R(`G.e.bf.push(mk('cweb'));var sk=mk('spear');enter(G.p,sk);sk.sick=0;var p0=pwr(sk);fSilk(sk,1)`);ok('silk: -1/-0 per counter',R('pwr(sk)')==R('Math.max(0,p0-1)'));
+R(`fSilk(sk,1)`);ok('silk never makes power negative',R('pwr(sk)')>=0);
+R(`var big=mk('hopl');enter(G.p,big);big.sick=0;fSilk(big,3)`);ok('3 silk cocoons: tapped',R('big.coc==1&&big.tap==1'));
+R(`endE&&0;FOE.cweb.end(G.e,G.p);startP()`);ok('cocoon stays tapped next turn and sheds 1',R('big.tap==1&&big.silk==2'));
+R(`FOE.cweb.end(G.e,G.p);startP();FOE.cweb.end(G.e,G.p);startP()`);ok('cocoon opens when the last silk is shed',R('big.silk==0&&big.coc==0&&big.tap==0'));
+R(`var pp=mk('spear');enter(G.p,pp);pp.sick=0;fSilk(pp,1);pp.tap=0;FOE.cweb.end(G.e,G.p);startP()`);ok('an untapped unit keeps its silk',R('pp.silk==1'));
+R(`pp.tap=1;FOE.cweb.end(G.e,G.p);startP()`);ok('a unit that ended tapped sheds 1 silk',R('pp.silk==0'));
+R(`fSilk(pp,2)`);ok('silk counters drawn on the card',/class="slk/.test(R("card(pp,'p')")));
 console.log(f?('FAILED '+f):'ALL OK');
