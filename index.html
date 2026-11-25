@@ -6109,6 +6109,12 @@ try{const st=document.createElement('style');st.id='pmp';st.textContent=`
 .tmap svg path.tr.av{stroke:#f3c552;stroke-width:6;stroke-dasharray:1 11;opacity:1;filter:drop-shadow(0 0 3px #f3c55288)}
 .tmap svg path.tr.dn{stroke:#d0662f;stroke-width:5.5;stroke-dasharray:11 7;opacity:1;filter:none}
 `;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_prestigefit: nothing covers the prestige upgrade buttons ===== */
+try{const st=document.createElement('style');st.id='ppf';st.textContent=`
+#app:has(.kc) .hand,#app:has(.kc) .hand *{visibility:hidden!important;pointer-events:none!important}
+html.ph #app:has(.kc) .fld.fp{overflow-y:auto;overflow-x:hidden;align-content:flex-start;align-content:safe center;justify-content:safe center;overscroll-behavior:contain}
+`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>
 
