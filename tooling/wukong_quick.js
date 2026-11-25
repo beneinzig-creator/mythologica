@@ -45,3 +45,8 @@ wkSet('wfoot',0,'If you have played 2 or more other cards this turn, gain 1 mana
 [['wsent',1],['wacro',1],['wdrum',1],['wchange',1],['wheist',1],['wgate',2],['wdisc',2]].forEach(([k,c])=>wkSet(k,c));
 wkSet('wsent',null,'Can only defend. A sentry that never sleeps.');
 CHARS.wukong.play='Play many cheap cards in a turn: chain Strikes, Tricks and Leaps to build Momentum. Spare Hairs and Peaches come straight to your hand to keep the chain going, and Disintegrated cards vanish for good. A swarm of small monkeys and a hand full of spells. 20 life.';
+
+/* --- Peach-Pit Augury: read the pits in your hand --- */
+wkSet('waugury',0,'Read the pits: your Momentum rises by 1 for each Spare Hair and Peach in your hand (at most 3).');
+FX.waugury=s=>{const n=Math.min(3+mg(),s.hand.filter(x=>x.id=='whair'||x.id=='wpeach').length);for(let i=0;i<n;i++){s.mo=(s.mo||0)+1;wkMom(s)}if(n)log('The peach pits foretell: your Momentum rises by '+n+'.')};
+UPS.waugury=n=>`At most ${3+n}`;

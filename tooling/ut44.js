@@ -97,7 +97,6 @@ setup(0);R('G.p.mana=0;wkUp(G.p)');cast('wfoot');ok('footwork: 1st card no mana'
 setup(0);R(`var m1=mk('spd3'),m2=mk('spd3');m1.d=9;m2.d=9;enter(G.e,m1);enter(G.e,m2);var l9=G.e.life`);cast('wmyriad');ok('myriad: 1 to face and each',R('m1.dmg==1&&m2.dmg==1&&G.e.life==l9-1'));
 setup(0);R(`var wm=mk('wwind');G.p.hand.push(wm);G.p.mo=2;var h0=G.p.hand.length;G.p.deck.push(mk('wmonk'))`);R('cast(wm)');ok('windborne draws at momentum 2',R('G.p.hand.length')>=R('h0'));
 setup(0);R(`var sl=mk('spd3');sl.d=20;enter(G.e,sl)`);cast('wseal','sl');ok('seal taps and freezes',R('sl.tap==1&&sl.frz==1'));
-setup(0);R(`G.p.deck.push(mk('whair'));var hh=G.p.hand.length`);cast('waugury');ok('augury draws 2 on hair top',R('G.p.hand.length')>=R('hh')+1);
 setup(0);R(`G.p.deck.push(mk('wmonk'),mk('wmonk'),mk('wmonk'))`);cast('wwine');R('var hq=G.p.hand.length');cast('wecho');ok('afterimage re-draws',R('G.p.hand.length')>=R('hq')+1);
 setup(0);R(`var tg1=mk('wtang');enter(G.p,tg1);G.p.deck.push(mk('wmonk'),mk('wmonk'),mk('wmonk'));var ht=G.p.hand.length`);cast('wpluck');cast('wstep',R(`(function(){var m=mk('wmonk');enter(G.p,m);return 'G.p.bf[G.p.bf.length-1]'})()`) && 'G.p.bf[G.p.bf.length-1]');R('var hu=G.p.hand.length');cast('wwine');ok('tang draws on 3rd card',R('G.p.hand.length')>=R('hu')+2);
 // face targeting
@@ -154,4 +153,7 @@ R(`G.p.hand=[];var fe=mk('wfeint');G.p.hand.push(fe);var sp=mk('wspin');G.p.hand
 R(`G.p.hand=[];var oc=mk('worchard');G.p.hand.push(oc);cast(oc)`);ok('Orchard adds a Peach to your hand',R("G.p.hand.some(x=>x.id=='wpeach')"));
 R(`G.p.hand=[];var tr=mk('wtroop');G.p.hand.push(tr);cast(tr)`);ok('Hair-Born Troop adds a Spare Hair to your hand',R("G.p.hand.some(x=>x.id=='whair')"));
 ok('cost curve: 40+ cards cost 0-1, few cost 3+',R(`(()=>{const P=[...new Set(CHARS.wukong.pool)];return P.filter(k=>D[k][1]<=1).length>=40&&P.filter(k=>D[k][1]>=3).length<=11})()`));
+
+setup(0);R(`G.p.hand=[mk('whair'),mk('whair'),mk('wpeach')];G.p.mo=0;G.p.lt='tr';var au=mk('waugury');G.p.hand.push(au);cast(au)`);ok('Peach-Pit Augury: Momentum +1 per hair/peach in hand (max 3)',R('G.p.mo')==3);
+R(`G.p.hand=[mk('whair'),mk('whair'),mk('whair'),mk('wpeach'),mk('wpeach')];G.p.mo=0;G.p.lt='tr';var au2=mk('waugury');G.p.hand.push(au2);cast(au2)`);ok('Augury caps at 3',R('G.p.mo')==3);
 console.log(f?('FAILED '+f):'ALL OK');
