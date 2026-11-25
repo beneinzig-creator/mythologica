@@ -159,4 +159,8 @@ R(`G.p.hand=[mk('whair'),mk('whair'),mk('whair'),mk('wpeach'),mk('wpeach')];G.p.
 
 setup(0);R(`G.e.life=30;G.p.mana=9;G.p.hand=[];['wfeint','wskin','wcycle'].forEach(id=>{const c=mk(id);G.p.hand.push(c);cast(c)})`);ok('Full Circle: Trick, wild, Full Circle triggers',R('G.e.life')==26);
 setup(0);R(`G.e.life=30;G.p.mana=9;G.p.hand=[];['wfeint','wcycle'].forEach(id=>{const c=mk(id);G.p.hand.push(c);cast(c)})`);ok('Full Circle: Trick + Strike alone does not',R('G.e.life')==30);
+
+setup(0);ok('starting Hair Dart is now called Spare Hair',R("D.wdart[0]")=='Spare Hair');
+R(`G.e.bf=G.e.bf.filter(x=>!isC(x));var tg2=mk('spear');tg2.d=9;enter(G.e,tg2);G.p.bf.push(mk('wbreath'));var sd=mk('wdart');G.p.hand=[sd];cast(sd,tg2)`);ok('the starting Spare Hair gets the Breath bonus',R('tg2.dmg')==2);
+R(`var vv2=mk('wvolley');G.p.hand=[vv2];var dv=tg2.dmg;cast(vv2,tg2)`);ok('the starting Spare Hair counts for Hair Volley',R('tg2.dmg-dv')==1&&R('G.p.hp')>=1);
 console.log(f?('FAILED '+f):'ALL OK');

@@ -11,7 +11,8 @@ if(!CHARS.wukong.pool.includes('wbreath'))CHARS.wukong.pool.push('wbreath');
 /* --- Spare Hairs: damage grows with the Breath; count them for the hair payoffs --- */
 FX.whair=(s,o,t)=>wkHit(o,t,1+wkBreath(s));
 wkSet('whair',null,'Deal 1 damage to target opposing army member or the opponent. Disintegrate.');
-{const _p=wkPlay;wkPlay=function(p,c){const r=_p.apply(this,arguments);try{if(c&&c.id=='whair')p.hp=(p.hp||0)+1}catch(e){}return r}}
+const wkIsHair=c=>!!c&&(c.id=='whair'||c.id=='wdart');
+{const _p=wkPlay;wkPlay=function(p,c){const r=_p.apply(this,arguments);try{if(wkIsHair(c))p.hp=(p.hp||0)+1}catch(e){}return r}}
 {const _u=wkUp;wkUp=function(s){const r=_u.apply(this,arguments);try{if(s===G.p){s.hp=0;s.hb=0;s.fcp=-1}}catch(e){}return r}}
 
 /* --- hair makers: straight into your hand --- */
@@ -48,7 +49,7 @@ CHARS.wukong.play='Play many cheap cards in a turn: chain Strikes, Tricks and Le
 
 /* --- Peach-Pit Augury: read the pits in your hand --- */
 wkSet('waugury',0,'Read the pits: your Momentum rises by 1 for each Spare Hair and Peach in your hand (at most 3).');
-FX.waugury=s=>{const n=Math.min(3+mg(),s.hand.filter(x=>x.id=='whair'||x.id=='wpeach').length);for(let i=0;i<n;i++){s.mo=(s.mo||0)+1;wkMom(s)}if(n)log('The peach pits foretell: your Momentum rises by '+n+'.')};
+FX.waugury=s=>{const n=Math.min(3+mg(),s.hand.filter(x=>wkIsHair(x)||x.id=='wpeach').length);for(let i=0;i<n;i++){s.mo=(s.mo||0)+1;wkMom(s)}if(n)log('The peach pits foretell: your Momentum rises by '+n+'.')};
 UPS.waugury=n=>`At most ${3+n}`;
 
 /* --- "Counts as any type" cards are true wildcards for Full Circle and Three Forms: they fill whichever type is missing --- */
@@ -59,3 +60,7 @@ FX.wcycle=(s,o)=>{if(wkTypesN(s)>=3){const d=4+mg();o.life-=d;log('Full Circle: 
 FX.wtypes=(s,o,t)=>{t.dmg+=wkTypesN(s)+mg()};
 wkSet('wcycle',null,'If you have played a Strike, a Trick and a Leap this turn (including this card), deal 4 damage to the opponent. Cards that count as any type fill in a missing one.');
 wkSet('wtypes',null,'Deal damage to target opposing army member equal to the number of different types (Strike, Trick, Leap) you have played this turn. Cards that count as any type fill in a missing one.');
+
+/* --- the starting Hair Dart is a Spare Hair: it counts for every hair synergy, and it stays in your deck (no Disintegrate) --- */
+D.wdart[0]='Spare Hair';wkSet('wdart',null,'Deal 1 damage to target opposing army member or the opponent. It is a Spare Hair, but it stays in your deck.');
+FX.wdart=(s,o,t)=>wkHit(o,t,1+mg()+wkBreath(s));
