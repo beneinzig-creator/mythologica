@@ -221,7 +221,7 @@ const GLS=()=>[...GLX,[/\brange\b/i,'Range',KWL.a],[/\bresilient\b/i,'Resilient'
 function GL(c,L){const d=D[c.id],tx=(TXT[c.id]||d[6]||'')+' '+(isC(c)?'':'');const seen=L.join(' ');for(const[re,nm,df]of GLS()){if(re.test(tx)&&!seen.includes(nm+':')&&!seen.includes(df)){L.push('<b>'+nm+'</b>: '+df.replace(/^[A-Za-z ]+: /,m=>m.startsWith(nm)?'':m))}}}
 const RSO={C:0,U:1,R:2,L:3},rsort=(a,b)=>(RSO[RAR[a.id]]||0)-(RSO[RAR[b.id]]||0)||cost(a)-cost(b)||D[a.id][0].localeCompare(D[b.id][0]);
 const prest=c=>{const r=c.rec;if(!r)return'';const nm=f=>(ABU.find(a=>a[0]==f)||[0,f])[1],P=[r.a&&'+'+r.a+' power',r.d&&'+'+r.d+' health',r.c&&'costs '+r.c+' less',r.s&&'+'+r.s+' offering value',r.fl&&'flying',r.ab&&[...new Set(r.ab)].map(nm).join(', '),r.m&&(UPS[c.id]?UPS[c.id](r.m):'stronger effect (+'+r.m+')'),r.dr&&'draws a card when cast'].filter(Boolean);return P.length?'<b>Prestige</b>: '+P.join(', ')+'.':''};
-const fxp=(c,t)=>{if(t=='k')return'';const d=D[c.id],x=TYX[d[2]],L=['<b>'+x[0]+'</b>: '+x[1]];L.push(...atkLines(c,t));if(TAG[c.id])L.push('<b>Archetype</b>: '+ARCH[TAG[c.id]]+'.');
+const fxp=(c,t)=>{if(t=='k')return'';const d=D[c.id],x=TYX[d[2]],L=['<b>'+x[0]+'</b>: '+x[1]];if(RAR[c.id])L.push('<b>Rarity</b>: <span class="rrh r'+RAR[c.id]+'">'+RARN[RAR[c.id]]+'</span>');L.push(...atkLines(c,t));if(TAG[c.id])L.push('<b>Archetype</b>: '+ARCH[TAG[c.id]]+'.');
 if(isC(c)){L.push('Offering it gives '+sv(c)+' mana.');if(has(c,'f'))L.push('Flying: only flying army members can block it.');
 if(c.def)L.push('Defense form: +2 health and cannot attack.'+(has(c,'p')?' Phalanx: +2 power.':''));if(ramp(c))L.push('Rampart of Troy: +1 more health in defense form.');
 for(const k of c.f)if(KWL[k])L.push(KWL[k]+(k=='z'&&c.rs?' (already used)':''));if(has(c,'w')&&!c.f.includes('w'))L.push(KWL.w+' (from The Black Ship)');if(SELF[c.id])L.push(SELF[c.id]);if(c.sick&&t!='h'&&t!='d'&&t!='v'&&t!='k')L.push('Fatigue: cannot attack yet.');
@@ -6070,5 +6070,12 @@ UPS.wsomer=n=>`Draw ${2+n}`;
 [['wbreak',3,2,4],['wcloudm',2,2,2],['wnez',3,3,3],['wgreat',3,2,5],['wqt',4,3,5]].forEach(([k,c,a,d])=>{const x=D[k];if(!x)return;x[1]=c;x[3]=a;x[4]=d});
 
 
+
+/* ===== patch_rarityhover: rarity colours that read on the parchment hover box ===== */
+try{const st=document.createElement('style');st.id='prh';st.textContent=`
+.rrh{font-weight:700;text-shadow:none!important}
+#kdock .rrh.rC,#insp .rrh.rC{color:#4d4434}#kdock .rrh.rU,#insp .rrh.rU{color:#1d5a8c}
+#kdock .rrh.rR,#insp .rrh.rR{color:#8a5a00}#kdock .rrh.rL,#insp .rrh.rL{color:#86208f}
+`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>
