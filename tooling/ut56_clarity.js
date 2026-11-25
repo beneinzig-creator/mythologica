@@ -15,4 +15,5 @@ R(`enter(G.e,mk('rimew'));enter(G.e,mk('rimew'))`);ok('Rime-Witches: -1/-0 (not 
 R(`G.e.winter=2`);ok('the winter counter shows on the trump',/Winter: 2 of 3/.test(R("DYN.rwall(G.e.bf.find(x=>x.id=='rwall'))")));
 R(`var cl=mk('spear');cl.callT=G.turn+1;cl.burn=1`);ok('Called and Burning are written on the card',/Called by name/.test(R("kwTx2(cl,'')"))&&/Burning/.test(R("kwTx2(cl,'')")));
 R(`var tk=mk('spear');tk.blind=1;tk.burn=1;tk.cursed=1`);ok('status tokens drawn on the card',/stk-blind/.test(R("card(tk,'p')"))&&/stk-burn/.test(R("card(tk,'p')"))&&/stk-curse/.test(R("card(tk,'p')")));
+setup('thoth',0);R(`G.e.bf=[];var big=mk('spear');enter(G.e,big);thSunder(big,G.p);var part=G.e.bf.find(x=>x.part);var nb=G.e.bf.length`);ok('a Body or Spirit cannot be Sundered again',R('part?thSunder(part,G.p):1')==0&&R('G.e.bf.length')==R('nb'));
 console.log(f?('FAILS '+f):'ALL OK');
