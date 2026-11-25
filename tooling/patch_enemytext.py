@@ -18,9 +18,9 @@ def _t(block):
 _t(r"""
 isl|Opportunist. When it enters, your opponent's weakest untapped army member falls asleep (tapped; it doesn't untap next turn).
 lot|Ruthless. Opportunist. When it deals combat damage to your opponent, a random card from their hand is shuffled back into their deck.
-priest|When it enters, tap target opposing army member.
+priest|Opportunist. When it enters, your opponent's strongest untapped army member falls asleep: it is tapped and doesn't untap next turn.
 reaper|Siege. Opportunist. An army member it deals combat damage to doesn't untap next turn.
-titan|Ruthless. Opportunist. It skips its next untap after attacking. +1/+1 for each sleeping opposing army member (tapped; at most +3/+3).
+titan|Ruthless. Opportunist. It skips its next untap after attacking. At the end of your opponent's turn, they lose 1 life for each of their army members asleep (tapped without having attacked; at most 2).
 sip|Tap target opposing army member; it doesn't untap next turn.
 dream|Tap all opposing army members. They don't untap next turn.
 censer|At the start of your turn, tap your opponent's strongest untapped army member.
@@ -29,7 +29,7 @@ fog|Tap all untapped opposing army members.
 breeze|Gain 3 life.
 lbow|Range. When it enters, your opponent's strongest untapped army member falls asleep (tapped; it doesn't untap next turn).
 nshade|Deal 4 damage to target army member (more in later fights).
-lhz|Ward. The first army member your opponent plays each turn enters tapped. At the end of their turn, they lose 1 life per sleeping army member (tapped without attacking; at most 2). When one of theirs attacks, a sleeper untaps.
+lhz|Ward. The first army member your opponent plays each turn enters tapped.
 scout|Flying. When it enters, your opponent's weakest army member must attack on their next turn.
 song|Flying. When it enters, draw a card.
 siren|Flying. At the start of your turn, if your opponent did not attack on their last turn, it takes 2 damage.
@@ -46,7 +46,7 @@ cscout|Ruthless. Cyclops. When it enters, it eats an opposing army member with p
 cave|Phalanx. Cyclops. When it enters, your opponent's strongest army member is tapped and doesn't untap next turn.
 brute|Ruthless. Cyclops. When it enters, your opponent's two weakest army members take 1 damage each.
 elder|Resilient. Cyclops. When it dies, your opponent takes 3 damage.
-poly|Attacks each turn if able.
+poly|Attacks each turn if able. While it is untapped, opposing army members deal no combat damage to you.
 hurl|Deal 4 damage to target opposing army member.
 club|Your army members with power 3 or more have Bulldoze.
 mouth|Opposing army members with power 1 or less can't attack.
@@ -119,10 +119,10 @@ skoll|Pack. Charge. +2/+0 while you control Hati.
 fenr|Pack. Bulldoze. At the start of your turn, +1/+1 permanently. It can't attack before your sixth turn.
 pgrow|Ward. At the start of your turn, your weakest army member gets +1/+1 permanently.
 ithrl|Giant. When it dies, the winter deepens by 1.
-rimew|Giant. When it enters, your opponent's weakest army member takes 1 damage for each winter. When it dies, the winter eases by 1.
+rimew|Giant. While any Rime-Witch lives, opposing army members get -1/-0. When it enters, your opponent's weakest army member takes 1 damage for each winter. When it dies, the winter eases by 1.
 hgnt|Giant. Resilient. +1/+1 for each winter.
 icesp|Deal 2 damage plus 1 for each winter to target army member.
-rwall|Ward. On every second turn of yours, the winter deepens (at most 3). Opposing army members get -1/-0 for each winter. Whenever a Rime-Witch dies, the winter eases by 1.
+rwall|Ward. On every second turn of yours, the winter deepens (at most 3). Your Hill Giants and Ice Spears grow stronger with each winter. Whenever a Rime-Witch dies, the winter eases by 1.
 dmin|Forged. When it dies, draw a card.
 dsmith|Forged. At the start of your turn, if you have an item, your weakest army member gets +1/+1 permanently.
 dxbow|Forged. Range. When it enters, target opposing army member takes 1 damage for each item you have (at most 3).
@@ -159,7 +159,7 @@ ltax|Ward. The first spell your opponent casts each turn costs 1 more.
 urd|When it enters, return a random army member from your graveyard to your hand.
 verd|When it enters, tap the strongest opposing army member.
 skuld|When it enters, draw a card.
-nspin|At the start of your turn, your opponent's weakest army member gets -1/-1 permanently (once a turn, however many Spinners you have).
+nspin|When it enters, your opponent's weakest army member is doomed (-1/-1 permanently).
 nwarr|Ruthless. When it dies, the costliest army member in your hand costs 1 less.
 ndoom|Deal 4 damage to target army member (more in later fights).
 fate|Ward.
@@ -196,7 +196,7 @@ spd1|Flying. When it enters, put 1 silk on your opponent's strongest army member
 spd2|Ward. At the start of your turn, put 2 silk on the opposing army member with the most power that is not cocooned.
 spd3|Ruthless. Your army members get +1/+0 for each cocooned opposing army member (at most +2).
 spdq|At the start of your turn, it eats a cocooned opposing army member and gets +2/+2.
-cocn|Target opposing army member gets 3 silk and is cocooned.
+cocn|Target opposing army member gets 3 silk and is cocooned: it stays tapped while it has 3 silk.
 cweb|Ward. Each silk gives -1/-0 (never below 0 power; at most 3 silk). At 3 silk an army member is cocooned and stays tapped. At the end of your opponent's turn, each of their silked army members that didn't attack sheds 1 silk.
 hsol|Whenever the gourd swallows an opposing army member, this gets +1/+1 permanently.
 hcap|While it lives, the gourd calls one more name each turn. When it dies, your Gourd of Names is destroyed.
@@ -214,7 +214,7 @@ hnet|Tap an opposing army member for each Heavenly Soldier you control.
 decree|Ward. The first army member that costs 2 or less your opponent plays each turn costs 1 more. When one of your officers dies, a Heavenly Soldier is promoted into its place.
 rimp|Charge. Fire-cart: each one makes Red Boy's breath and the Fire-Cloud Blast deal 1 more.
 rgrd|Whenever a fire-cart dies, a new Fire-Wheel Imp is shuffled into your deck.
-rspr|Ruthless. An army member it deals combat damage to keeps burning.
+rspr|Ruthless. An army member it deals combat damage to is set burning: it takes 1 damage at the start of each of your turns.
 rboy|Charge. Ward on the turn it arrives. At the start of your turn, your opponent's strongest army member takes 1 damage plus 1 for each fire-cart.
 rflm|Deal 2 damage plus 1 for each fire-cart to target army member.
 sfire|Ward. At the start of your turn, your opponent takes twice the life they gained since your last turn. Army members that block yours take 1 damage first.
@@ -223,12 +223,12 @@ bghl|When it dies, your opponent gets 1 guilt.
 bhag|When it dies, your opponent gets 2 guilt.
 bsp|The first two times it dies, it returns to your hand and a Wandering Corpse takes its place. The third death is final.
 bone|Ward. Killing your disguises gives your opponent guilt. At 3 guilt, their strongest army member is shuffled into their deck and the guilt clears.
-ybat|Flying. Charge. When it attacks, another opposing army member is blinded.
+ybat|Flying. Charge. When it attacks, an opposing army member is blinded: it can't block until the end of their next turn.
 ytig|Charge. The first time it dies, it returns to your hand.
 ydef|Charge. Blinded opposing army members get -1/-0.
-ygen|Flying. Charge. When it enters, all opposing army members are blinded. When it dies, they are all cured.
+ygen|Flying. Charge. When it enters, all opposing army members are blinded: they can't block until the end of their next turn. When it dies, they are all cured.
 ygale|Each blinded opposing army member takes 2 damage.
-ywind|Ward. Your army members have Charge. At the start of your turn, an opposing army member is blinded.
+ywind|Ward. Your army members have Charge.
 eplum|When it becomes a predator, it also gains Flying.
 ehnd|Opportunist. After it blocks an army member, that army member doesn't untap on its controller's next turn.
 eerl|Resilient. While it lives, it becomes the predator of each army member your opponent plays, and also takes that army member's keywords.
@@ -288,7 +288,7 @@ jguard|Whenever you claim a dead opposing army member, this gets +1/+1 permanent
 wepw|Ruthless. When it attacks, the other attackers can't be blocked this turn.
 jpack|When it enters, and at the start of your turn, lead one claimed soul into the Hall for good: your Jackals get +1/+1 permanently.
 anub|Ward. When an opposing army member dies, you claim it: it goes to your graveyard, not theirs.
-hekp|When it enters, a random card in your opponent's hand is cursed.
+hekp|When it enters, a random card in your opponent's hand is cursed: it costs 1 more for the rest of the fight.
 snake|Venomous. Whenever your opponent plays a cursed card, they take 2 damage.
 hekmag|When it enters, destroy a cursed card in your opponent's hand.
 hekhigh|Ward. At the start of your turn, another card in your opponent's hand is cursed.
@@ -298,14 +298,14 @@ ammit|Can only defend. Each heart it eats gives it +2/+2.
 soulw|When it dies, the feather becomes 1 lighter (at most 2 lighter).
 unwor|When it deals combat damage to your opponent, their strongest army member gets +1/+0 permanently (a heavier heart).
 hguard2|The feather is 1 lighter while it lives.
-ammt|Ward. At the start of your turn, your opponent's army member with the most power is weighed against the feather. If it is heavier, Ammit eats it (gone for good).
+ammt|Ward. At the start of your turn, your opponent's army member with the most power is weighed against the feather (power 4, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it (gone for good).
 sphinx2|It can only defend until your opponent fails a riddle. Each failed riddle gives it +1/+1.
 sphg|Flying. Your other army members get +0/+1.
 sphs|Can only defend. Each riddle your opponent fails gives it +1/+1.
 sphx|Ward. At the start of your turn, the Sphinx names a card type. At the end of your opponent's turn, if they played that type, they draw a card; if not, they lose 2 life.
 apepx|Venomous. When it enters, opposing army members are tapped and don't untap next turn. When it dies, it is shuffled into your deck.
 apsp|When it dies, a new Spawn of Apophis is shuffled into your deck.
-apcoil|After it blocks an army member, that army member is Erased.
+apcoil|After it blocks an army member, that army member is Erased: it loses its name, keywords and abilities.
 setg|Ruthless. When it attacks, it first fights your opponent's strongest army member: each deals damage equal to its power to the other.
 setb|Charge. When it deals combat damage to your opponent, their weakest army member is Sundered (they get no Name).
 setst|At the start of your turn, each opposing Body and Spirit takes 1 damage.
@@ -318,11 +318,11 @@ plague|When it enters, each opposing army member takes 1 damage. At the start of
 # ---------------- Act III ----------------
 _t(r"""
 xlgn|+1/+0 for each possessed army member you control (at most +2).
-xger|At the start of your turn, it untaps. When it dies, your opponent's weakest army member is possessed.
+xger|At the start of your turn, your opponent's cheapest army member (cost 2 or less, not Ward) is possessed and fights for you. Only one is possessed each turn, however many Gerasenes you have.
 xswn|Whenever a possessed army member dies, +1/+1. When it dies, every possessed army member is freed and returns to its owner.
 xlegc|When it enters, possess your opponent's strongest army member that costs 3 or less. +1/+1 for each possessed army member you control.
 xcast|Deal damage to target army member equal to 2 + the number of possessed army members you control.
-xlegion|Ward. At the start of your turn, possess your opponent's cheapest army member (cost 2 or less, not Ward): it fights for you. A possessed army member that dies goes to its owner's graveyard.
+xlegion|Ward. Possessed army members fight for you. When a possessed army member dies, it goes to its owner's graveyard. The Herd of Swine can free them.
 xwat|Flying. +1/+0 for each card in your hand beyond 2 (at most +2).
 xchrm|At the start of your turn, one of your army members gains Flying or Venomous.
 xkok|Flying. When it enters, draw 2 cards.
@@ -347,13 +347,13 @@ xmason|When it enters, the tower rises by 2. +1/+1 for every 3 floors of the tow
 xzigg|Can only defend. Whenever another of your army members dies, the tower rises by 1.
 xnim|Ruthless. At the start of your turn, your opponent takes 1 damage for every 3 floors of the tower.
 xtong|Shuffle the costs of the cards in your opponent's hand and tap their strongest army member. The tower falls by 1.
-xbab|Ward. At the start of your turn, the costs of the cards in your opponent's hand are shuffled. At 12 floors, the tower falls back to 6.
+xbab|Ward. At the start of your turn, the tower rises by 1. At 12 floors, it falls back to 6.
 xstar|Flying. Charge. It dies at the end of your turn. When it dies, your opponent's next draw is lost.
 xench|When it enters, your opponent's next draw is lost.
 xmush|Flying. Charge. When it enters, your opponent gets 1 less mana on their next turn.
 xdroug|Your opponent gets 1 less mana each turn (never below 1).
 xglam|Until your next turn, target army member has 0 power.
-xpair|Ward. On every other turn, your opponent draws one card fewer. Whenever they offer an army member, each Pairika takes 1 damage.
+xpair|Ward. Whenever your opponent offers an army member, each Pairika takes 1 damage.
 xline|+0/+1 for each other Son of Darkness (at most +3).
 xsling|Range. When it enters, target opposing army member takes 1 damage for each Son of Darkness you control (at most 3).
 xcapt|Your other Sons of Darkness get +1/+0.
@@ -431,7 +431,7 @@ xhb|Your other Heads get +1/+0. Can't be Sundered.
 xhd|Ward. Can't be Sundered. Your opponent's spells cost 1 more while it lives.
 xhl|Ruthless. Can't be Sundered. When it dies, your other Heads get +1/+1.
 ximg|At the start of your turn, if no opposing army member is marked, your opponent takes 2 damage.
-xfheav|Deal 2 damage to target army member and mark it.
+xfheav|Deal 2 damage to target army member and mark it: it can't attack during its owner's next turn.
 xdhead|When it enters, each opposing army member takes 1 damage.
 shabt|Token.
 xpos|Token.

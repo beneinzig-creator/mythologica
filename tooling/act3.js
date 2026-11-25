@@ -124,7 +124,7 @@ Object.assign(DEATH,{xswn:{p:3,fn:(s,o)=>{o.life-=2;log('The Herd of Swine rushe
 const a3Has=(s,id)=>!!(s&&s.bf&&s.bf.some(x=>x.id==id));
 function a3Up(s,o){if(!s||!o||!G.e)return;const E=G.e,P=G.p;
  if(s===E){
-  if(a3Has(s,'xbab')&&o.hand.length>1){const C=o.hand.map(c=>cost(c));sh(C);o.hand.forEach((c,i)=>{c.disc=(c.disc||0)+(cost(c)-C[i])});log('The tongues are confounded: the costs in your hand are shuffled.')}
+  /* xbab: the cost shuffle now lives on the Babble spell (foes_heaven.js) */
   if(a3Has(s,'xdruj')){o.deck.splice(Math.random()*(o.deck.length+1)|0,0,mk('xlie'));log('The Druj: a Lie is shuffled into your deck.')}
   if(a3Has(s,'xsmoke')&&G.turn%2==0&&a3Room(s)){enter(s,mk('xloc'));log('A Locust rises from the smoke of the pit.')}
   if(a3Has(s,'xproph'))a3Mark(o);
