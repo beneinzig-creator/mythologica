@@ -1,0 +1,113 @@
+<title>Wukong Flow Pass</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column, scroll-paper ink and cinnabar seal accents; tables in their own scroll boxes */
+:root{--bg:#f7f3ea;--ink:#231d16;--mute:#6d6255;--line:#d9cfbd;--seal:#a8321e;--jade:#2f6b55;--panel:#efe8da;
+--disp:'Cormorant Garamond',Georgia,serif;--body:'Source Sans 3',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17130f;--ink:#ece3d2;--mute:#a89a86;--line:#3a3128;--seal:#e0674d;--jade:#6cc3a0;--panel:#211b15;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17130f;--ink:#ece3d2;--mute:#a89a86;--line:#3a3128;--seal:#e0674d;--jade:#6cc3a0;--panel:#211b15;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+main{max-width:46rem;margin:0 auto;padding-block:2.5rem 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:1.6rem}
+h1{font:700 2.6rem/1.1 var(--disp);margin:0;text-wrap:balance}
+h2{font:700 1.6rem/1.2 var(--disp);margin:0;text-wrap:balance;border-bottom:1px solid var(--line);padding-bottom:.3rem}
+.eyebrow{font:600 .75rem var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--seal)}
+p,li{max-width:65ch;margin:0}
+section{display:flex;flex-direction:column;gap:.8rem}
+ul,ol{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font:14px/1.4 var(--body);font-variant-numeric:tabular-nums}
+th,td{padding:.45rem .6rem;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--panel);font-weight:600}
+tr.pick td{color:var(--jade);font-weight:600}
+code{font:13px var(--mono);background:var(--panel);padding:.05rem .3rem;border-radius:3px}
+.rec{border-left:3px solid var(--seal);padding:.2rem 0 .2rem 1rem}
+.note{color:var(--mute);font-size:.9rem}
+</style>
+<main>
+<div><div class="eyebrow">Mythologica · Sun Wukong balance</div><h1>Wukong Flow Pass</h1></div>
+<p>Ben wants Sun Wukong to flow and feel strong. This pass measures where his turns stall, tests about 40 variations in the bot simulator, and recommends one set that makes his turns smoother. It changes only Wukong's own cards.</p>
+
+<section><h2>What felt clunky by hand</h2>
+<p>Two hand-played fights (Gold and Silver Horn Kings, lost; Spider Cave, won) with a drafted deck and a Staff deck:</p>
+<ul>
+<li><b>One big turn, then nothing.</b> Turn 1 went Monkey, Pluck, Augury, Footwork, Augury, two Spare Hairs: Momentum 9, seven cards, 2 damage. Turns 3–5 then had one or two cards and 2 mana with nothing worth casting.</li>
+<li><b>Momentum with nowhere to go.</b> Without a payoff in hand, Momentum 9 does nothing. With payoffs in hand (Staff Spin, Heaven-Splitting Blow), they cost 2, so with 2 mana they get cast first, at Momentum 1.</li>
+<li><b>Cloud Somersault sits in hand.</b> It's a starting card and costs 2 for one card.</li>
+<li><b>Small bodies.</b> 1/1 and 1/2 monkeys lose to the enemy's 2/3s, and 4-mana cards (Great Wall Monkey) need two monkeys offered to cast.</li>
+</ul></section>
+
+<section><h2>What the numbers said</h2>
+<p>Bot runs (<code>tooling/wkx.py</code> with the new <code>wkm.js</code> metrics), current build:</p>
+<ul>
+<li>1.8 cards played per turn; <b>54% of turns play 0 or 1 card</b>, with 3.8 cards in hand at the start of the turn.</li>
+<li>Momentum reaches 2 on 36% of turns and 3 on 13%. Momentum payoffs are cast at Momentum 1.2 on average (Spin 1.15, Split 1.15, Staff-Bearer 1.29).</li>
+<li>Cards that sit in hand (turns held per cast): Cloud Somersault 11, Heaven-Breaker 21, Nezha 14, Cloud Rider 7, Great Wall 41, Full Circle 8, Heaven-Splitting Blow 4.4.</li>
+<li>The bot never cast Breath of Transformation and wasted Feint's discount on 0-cost cards. Fixing that alone raised his regular-fight win rate from about 37% to 41%.</li>
+<li>Damage: about half comes from spells (Spare Hairs 20%, Iron Rod 9%, Burn the Ledger 7%), half from creatures in combat.</li>
+</ul>
+<p>Same bot and runs for the other heroes, Act I: Odysseus 27% regular fights / 18% guardian, Odin 25% / 13%, Thoth 33% / 26%, Wukong 41% / 46%. By the bot, Wukong already looks like the strongest hero. Hand play says otherwise, and the gap has a clear cause: the bot mostly throws Spare Hairs and Iron Rod at the opponent's face, which wins fast against low-life opponents, and it rarely builds Momentum (2+ on only 36% of turns). It never runs into the stalls a person chaining for Momentum does. So the bot's win rates overrate him, and this pass trusts the playtest over them.</p>
+</section>
+
+<section><h2>What was tried</h2>
+<p>Act I full runs, 400–800 runs per row, losses continue. "Reg" is regular-fight win rate; dead turns are turns with 0–1 cards played.</p>
+<div class="tw"><table>
+<thead><tr><th>Variant</th><th>Reg %</th><th>Guardian %</th><th>Cards/turn</th><th>Dead turns</th></tr></thead>
+<tbody>
+<tr><td>Current build (bot fixed)</td><td>41</td><td>47</td><td>1.83</td><td>53%</td></tr>
+<tr><td>+1 mana at Momentum 2</td><td>51</td><td>60</td><td>1.89</td><td>56%</td></tr>
+<tr><td>3 mana a turn</td><td>67</td><td>77</td><td>2.11</td><td>47%</td></tr>
+<tr><td>+1 draw every turn</td><td>71</td><td>80</td><td>2.51</td><td>33%</td></tr>
+<tr><td>Draw up to 4 at turn start</td><td>57</td><td>61</td><td>2.12</td><td>43%</td></tr>
+<tr><td>Draw at Momentum 2</td><td>62</td><td>68</td><td>2.23</td><td>46%</td></tr>
+<tr><td>Draw at Momentum 3</td><td>52</td><td>57</td><td>1.92</td><td>52%</td></tr>
+<tr><td>2 damage at Momentum 4</td><td>44</td><td>54</td><td>1.83</td><td>52%</td></tr>
+<tr><td>Somersault 1 mana, draw 2</td><td>43</td><td>49</td><td>1.91</td><td>51%</td></tr>
+<tr><td>Payoffs (Split/Spin/Myriad) cost 1</td><td>35</td><td>45</td><td>1.82</td><td>53%</td></tr>
+<tr><td>3–5 mana cards one cheaper</td><td>52</td><td>65</td><td>1.89</td><td>52%</td></tr>
+<tr><td>Draw at Mom. 2 + Somersault + cheaper bigs</td><td>71</td><td>76</td><td>2.47</td><td>41%</td></tr>
+<tr><td>Wukong life 15 (with draw at 2)</td><td>54</td><td>56</td><td>2.22</td><td>46%</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Flow buys power almost one-for-one:</b> about 0.02 extra cards a turn per point of win rate, whichever lever you use. Mana alone doesn't help: the bot has nothing castable for it. Extra cards help.</li>
+<li><b>The bot chains less than a person.</b> It reaches Momentum 2 on only about 40% of turns. A player who chains on purpose would trigger "draw at 2" almost every turn, close to the "+1 draw every turn" row (71%). So the trigger is set at Momentum 3, which a person will hit often and the bot hits on about 15% of turns.</li>
+</ul></section>
+
+<section><h2>Recommendation (implemented in the PR)</h2>
+<div class="rec"><ol>
+<li><b>Flow:</b> the first time each turn your Momentum reaches 3, draw a card. Shown in the Momentum bar ("draw at 3" / "drew") and in the Momentum tooltip.</li>
+<li><b>Cloud Somersault</b> (starting card): costs 1, shuffles your graveyard into your deck, then draws 2. Still Disintegrates.</li>
+<li><b>The 3–5 mana cards cost 1 less, with smaller bodies:</b> Heaven-Breaker 3 mana 2/4, Cloud Rider 2 mana 2/2, Nezha 3 mana 3/3, Great Wall Monkey 3 mana 2/5, Equal to Heaven 4 mana 3/5.</li>
+<li><b>Bot fixes</b> (tooling only): Breath of Transformation, Feint's discount, Volley and Augury counting hairs.</li>
+</ol></div>
+<div class="tw"><table>
+<thead><tr><th>Wukong</th><th>Act I reg</th><th>Act I elite</th><th>Act I guardian</th><th>Act II reg</th><th>Act II elite</th><th>Act II guardian</th><th>Cards/turn</th><th>Dead turns</th></tr></thead>
+<tbody>
+<tr><td>Current build</td><td>40.0</td><td>43.0</td><td>33.1</td><td>19.9</td><td>35.1</td><td>37.0</td><td>1.83</td><td>53%</td></tr>
+<tr class="pick"><td>Recommended set</td><td>51.7</td><td>63.2</td><td>48.9</td><td>37.1</td><td>47.0</td><td>55.2</td><td>2.17</td><td>45%</td></tr>
+</tbody></table></div>
+<p class="note">Bot win rates, 600 runs each, Acts I and II played through. Act III with decks banked from runs that reached it (about 175 decks each):</p>
+<div class="tw"><table>
+<thead><tr><th>Wukong, Act III</th><th>Regular</th><th>Elite</th><th>General</th><th>Beast</th></tr></thead>
+<tbody>
+<tr><td>Current build</td><td>28.5</td><td>28.2</td><td>41.4</td><td>29.5</td></tr>
+<tr class="pick"><td>Recommended set</td><td>46.1</td><td>47.2</td><td>55.4</td><td>54.4</td></tr>
+</tbody></table></div>
+<p class="note">The bot numbers rise everywhere. Given how the bot overrates Wukong, read that as a ceiling, not the expected result for a person. The hidden per-hero tables (<code>A3H</code>, <code>A3HB</code>, <code>XADJ</code>) are untouched. If playtesting shows him too strong in Act III, his Beast and general entries there are the place to nudge.</p>
+</section>
+
+<section><h2>Worth playtesting by hand</h2>
+<ol>
+<li><b>The Momentum 3 draw.</b> This is the change you'll feel most, and the one the bot can't judge. If it rarely fires, the trigger is one number (<code>WKFLOW</code> in <code>wukong_flow.js</code>) and can drop to 2.</li>
+<li><b>Cloud Somersault at 1 mana.</b> It's in every deck, so check that it now earns its slot.</li>
+<li><b>The cheaper big cards</b>, if you draft them: Heaven-Breaker and Great Wall Monkey should now come down without offering two monkeys.</li>
+</ol></section>
+
+<section><h2>Not changed, possible follow-ups</h2>
+<ul>
+<li>Heaven-Splitting Blow, Staff Spin and Full Circle still fire at low Momentum. The new draw should raise Momentum, but they may want their own pass.</li>
+<li>The bot's Wukong planner could learn to build Momentum before cashing in, so the sims judge him closer to how a person plays.</li>
+</ul></section>
+<p class="note">Tools added: <code>tooling/wkm.js</code> (flow metrics), <code>tooling/wkx.py</code> (variant runner), PATCH support in <code>a3sim.js</code>.</p>
+</main>
