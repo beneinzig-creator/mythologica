@@ -159,6 +159,8 @@ def main():
     for code, name in FRAME_NAME.items():
         for suffix, tag in (('', ''), ('s', '_spell')):
             src = os.path.join(fr, f'{name}{tag}.webp')
+            if os.path.exists(src[:-5] + '.png'):  # a frame touched up locally is kept as PNG
+                src = src[:-5] + '.png'
             if os.path.exists(src):
                 made += shrink(src, os.path.join(GAME, 'frames', f'{CODE_PREFIX.get(a.hero, "")}{code}{suffix}.jpg'), 640, quality='82')
     # every painted icon for this hero (interface, map, opponent medallions)

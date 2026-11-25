@@ -18,5 +18,11 @@
       "text_tokens": 0
     },
     "total_tokens": 1803
+  },
+  "plaque_edit": {
+    "note": "The original had no power/health plaque. A plaque was painted in with a masked image edit and only that region (x 655-983, y 1228-1436) was copied into the original, saved as uncommon.png.",
+    "model": "gpt-image-2.5-sunburst",
+    "quality": "high",
+    "prompt": "Add a small empty power/health plaque at the bottom right of this trading-card frame, overlapping the bottom-right corner of the parchment text box, in exactly the same style as the frame: a small rounded rectangular plaque of tarnished dark bronze with a thin gold bead edge and a pale aged-parchment centre, about one fifth of the card width wide. Keep the rest of the frame exactly as it is. The plaque is completely blank: no text, no numbers, no symbols."
   }
 }
