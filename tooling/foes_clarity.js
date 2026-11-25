@@ -24,3 +24,19 @@ if(typeof kwTx2=='function'){const _k=kwTx2;kwTx2=function(c,b){let t=_k.apply(t
 
 /* the live hover lines follow the new rules */
 if(typeof stFxp=='function'){const _s=stFxp;stFxp=function(c,L){const r=_s.apply(this,arguments);try{for(let i=0;i<L.length;i++){if(/^<b>Blinded<\/b>/.test(L[i]))L[i]='<b>Blinded</b>: it can\'t block until the end of its owner\'s next turn.';if(/^<b>Possessed<\/b>/.test(L[i]))L[i]='<b>Possessed</b>: it fights for the demons. Killing the Herd of Swine frees it; if it dies, it goes to its owner\'s graveyard.'}if(c&&c.frz&&c.tap&&G&&G.e&&G.e.bf.some(x=>x.id=='lhz'||x.id=='titan')&&!L.some(y=>/Asleep/.test(y)))L.push('<b>Asleep</b>: tapped, and it doesn\'t untap next turn.')}catch(e){}return r}}
+
+/* status tokens on the card (like the silk pips): one labelled token per status, with its rule on hover */
+const STOK=[
+ ['blind','Blind','#e8c34a',c=>c.blind,'Blinded: it can\'t block until the end of its owner\'s next turn.'],
+ ['call','Called','#d9822b',c=>c.callT&&G&&c.callT>=G.turn,'Called by the gourd: if it attacks or blocks before their next turn, it is swallowed.'],
+ ['burn','Burning','#e0502d',c=>c.burn,'Burning: it takes 1 damage at the start of each of its controller\'s turns.'],
+ ['mark','Marked','#b04ad9',c=>c.mk,'Marked: it can\'t attack on its controller\'s next turn.'],
+ ['poss','Possessed','#8a3bd0',c=>c.poss,'Possessed: it fights for the demons. Killing the Herd of Swine frees it; if it dies, it goes to its owner\'s graveyard.'],
+ ['seal','Sealed','#c9a44a',c=>c.seal,'Sealed by the talisman: it can\'t attack while the Mountain Warden lives.'],
+ ['curse','Cursed','#7a2a2a',c=>c.cursed,'Cursed: it costs 1 more for the rest of the fight.'],
+ ['sleep','Asleep','#5a8ad8',c=>c.tap&&c.frz,'Asleep / frozen: it is tapped and doesn\'t untap next turn.'],
+ ['qry','Quarry','#c23b3b',c=>c.qy,'Quarry: the Wild Hunt is hunting it. Hunt riders deal 2 extra damage to it.'],
+ ['erase','Erased','#6e6e6e',c=>LORE[c.id]=='Erased','Erased: it has lost its name, keywords and abilities.']
+];
+{const _cd=card;card=function(c){let h=_cd.apply(this,arguments);try{if(c&&G){const T=STOK.filter(x=>{try{return x[3](c)}catch(e){return false}});if(T.length){const tok=T.map(x=>'<i class="stk stk-'+x[0]+'" style="--sc:'+x[2]+'" title="'+x[4].replace(/"/g,'&quot;')+'">'+x[1]+'</i>').join('');const i=h.indexOf('>');h=h.slice(0,i+1)+'<b class="stks">'+tok+'</b>'+h.slice(i+1)}}}catch(e){}return h}}
+try{if(typeof document!='undefined'&&document.createElement&&document.head){const st=document.createElement('style');st.textContent='.cd .stks{position:absolute;left:4px;top:24%;z-index:7;display:flex;flex-direction:column;gap:3px;pointer-events:auto}.cd .stk{font:600 9px/1 Georgia,serif;font-style:normal;letter-spacing:.02em;color:#fff;padding:3px 6px;border-radius:9px;background:rgba(18,14,20,.82);border:1.5px solid var(--sc);box-shadow:0 0 5px var(--sc);text-shadow:0 1px 1px #000;white-space:nowrap}';document.head.appendChild(st)}}catch(e){}
