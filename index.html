@@ -5997,6 +5997,12 @@ function laneFit(){try{if(document.documentElement.classList.contains('ph'))retu
 {const r0=render;render=function(){LFDONE=false;const o=r0.apply(this,arguments);if(!LFDONE)laneFit();return o}}
 try{addEventListener('resize',()=>setTimeout(laneFit,60))}catch(e){}
 {const _rD=render;let dfp='';render=function(){const x=_rD.apply(this,arguments);try{if(G&&G.e&&G.phase=='main'&&typeof ldPre=='function'){const r=RLM(),h=CH,u='art/game/icons/'+(r=='act3'?'act3/':({ody:'',odin:'odin/',wukong:'wukong/',thoth:'thoth/'})[h]||'')+'defeat2.jpg';if(u!==dfp){dfp=u;ldPre([u])}}}catch(e){}return x}}
+
+/* ===== patch_prestigefit: nothing covers the prestige upgrade buttons ===== */
+try{const st=document.createElement('style');st.id='ppf';st.textContent=`
+#app:has(.kc) .hand,#app:has(.kc) .hand *{visibility:hidden!important;pointer-events:none!important}
+html.ph #app:has(.kc) .fld.fp{overflow-y:auto;overflow-x:hidden;align-content:flex-start;align-content:safe center;justify-content:safe center;overscroll-behavior:contain}
+`;document.body.appendChild(st)}catch(e){}
 showChars();
 </script>
 
