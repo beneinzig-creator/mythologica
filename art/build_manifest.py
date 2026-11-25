@@ -172,18 +172,29 @@ FRAMES = {'ody': {
 NORSE_LOOK = ('Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or '
               'stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with '
               'sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.')
+# Ben (Nov 2026): the first set looked too alike and the Legendary too plain. Each rarity now has its own material
+# and colour and they grow grander: pine and iron, frost-blue runestone, red gold and garnet, blazing Valhalla gold.
+_THIN = (' The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full '
+         'size; ornament keeps to the outer edges.')
 FRAMES['odin'] = {
     'common': 'Common rarity: a plain frame of dark weathered pine boards bound with black iron straps and nail heads, '
-              'a simple thin carved rope-twist border, modest and unornamented. ' + NORSE_LOOK,
-    'uncommon': 'Uncommon rarity: a frame of dark iron and worn silver with a fine border of interlaced knotwork '
-                '(Borre-style ring chain) and small silver rivets at the corners. ' + NORSE_LOOK,
-    'rare': 'Rare rarity: a frame of gilded bronze over dark oak with a border of gripping-beast knotwork in the '
-            'Urnes style, small garnet cloisonne studs at the corners and a carved interlaced beast above the art '
-            'window. ' + NORSE_LOOK,
-    'legendary': 'Legendary rarity: an aged, hand-tooled frame of dull antique gold over dark tarnished iron, worn at '
-                 'the edges, a restrained border of Mammen-style interlace and a single small carved raven head at the '
-                 'top centre, like a weathered grave-goods relic in a museum case; richer than the other rarities but '
-                 'still rustic and understated. ' + NORSE_LOOK,
+              'a simple thin carved rope-twist border, modest and unornamented. Colours: dark brown wood and black '
+              'iron only. ' + NORSE_LOOK + _THIN,
+    'uncommon': 'Uncommon rarity: a frame of pale blue-grey carved runestone glazed with frost and ice, a band of '
+                'carved runes (not readable words) running round it, icicles hanging from the top edge and a small '
+                'carved wolf head at each top corner. Colours: icy pale blue, frost white and slate grey, clearly '
+                'cold and blue, nothing like brown wood. ' + NORSE_LOOK + _THIN,
+    'rare': 'Rare rarity: a frame of red gold and dark oak with a rich border of gripping-beast knotwork in the Urnes '
+            'style set with deep red garnet cloisonne, Odin\'s two ravens Huginn and Muninn perched at the top '
+            'corners with outspread wings, and a gold helmet mask above the art window. Colours: warm red gold, deep '
+            'garnet red and dark oak. Rich and striking. ' + NORSE_LOOK + _THIN,
+    'legendary': 'Legendary rarity, the grandest frame of all, fit for Odin\'s hall Valhalla: blazing burnished gold '
+                 'everywhere, the border built of golden shields like Valhalla\'s roof, the great spear Gungnir running '
+                 'down one side and the world tree Yggdrasil\'s golden roots and branches weaving round the rest, '
+                 'the two ravens and Odin\'s two wolves Geri and Freki in gold at the corners, a band of green and '
+                 'violet aurora across the top and a single glowing eye of Odin at the top centre. Warm golden light '
+                 'seems to shine from the frame itself. Overwhelming and divine, still hand-painted, never glossy or '
+                 '3D-rendered. Norse, Viking Age: no Greek key, no laurel.' + _THIN,
 }
 HERO_MYTH = {'ody': 'the Odyssey and Greek myth', 'odin': 'the Norse Eddas and sagas',
              'wukong': 'Journey to the West and classical Chinese myth',
@@ -806,6 +817,45 @@ FRAMES['tsoul'] = {
 }
 
 
+# Status tokens shown on battlefield cards when an enemy ability affects them (Balancing's request, Nov 2026).
+STATUS_BASE = (
+    'A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a '
+    'thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given '
+    'below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of '
+    'the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted '
+    'gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No '
+    'text, no letters, no numbers.'
+)
+STATUS = {
+    'blind': 'Enamel: amber yellow. Motif: a wide open eye half hidden by a sweeping gust of yellow sand.',
+    'call': 'Enamel: bright orange. Motif: a calabash gourd with its stopper popped off and a swirl coming out.',
+    'burn': 'Enamel: red-orange. Motif: a single bold flame.',
+    'mark': 'Enamel: violet. Motif: a glowing branded sigil, a circle with a cross burned in, seared and smoking.',
+    'poss': 'Enamel: purple. Motif: a black shadowy demon hand with claws gripping from above.',
+    'seal': 'Enamel: gold. Motif: an open golden palm of the Buddha seen from the front, five fingers up.',
+    'curse': 'Enamel: dark red. Motif: an Egyptian cartouche with a jagged crack through it.',
+    'sleep': 'Enamel: deep blue. Motif: a closed eye with long lashes, a small poppy flower below it.',
+    'qry': 'Enamel: crimson. Motif: a stag\'s head with antlers, a hunting arrow stuck through it.',
+    'erase': 'Enamel: stone grey. Motif: an empty cartouche whose inside has been chiselled away, rough and blank.',
+    'silk': 'Enamel: pale grey. Motif: a white spider web.',
+    'cocoon': 'Enamel: pale silver. Motif: a white silk cocoon shaped like a wrapped figure.',
+}
+
+
+def build_status():
+    out = os.path.join(ART, 'manifest.json')
+    old = json.load(open(out, encoding='utf-8'))
+    icons = {f'status_{k}': {'name': f'{k} status token', 'prompt': f'{STATUS_BASE}\n\n{t}',
+                             'output': f'art/icons/status/status_{k}.png', 'size': '1024x1024', 'format': 'png',
+                             'background': 'transparent'} for k, t in STATUS.items()}
+    old.setdefault('heroes', {})['status'] = {'name': 'Status tokens', 'cards': {}, 'opponents': {}, 'tutorial': {},
+                                              'frames': {}, 'icons': icons}
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump(old, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+    print('Wrote status token prompts to art/manifest.json.')
+
+
 def build_frames_only(key, label):
     """Frames for something that isn't a hero in CHARS (Thoth's Body/Spirit/Name): write just its frames."""
     out = os.path.join(ART, 'manifest.json')
@@ -1079,6 +1129,8 @@ def main():
     a = ap.parse_args()
     if a.hero == 'act3':
         return build_act3()
+    if a.hero == 'status':
+        return build_status()
     if a.hero == 'tsoul':
         return build_frames_only('tsoul', 'Body, Spirit and Name')
 

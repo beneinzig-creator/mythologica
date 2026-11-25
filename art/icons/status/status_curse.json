@@ -1,0 +1,22 @@
+{
+  "id": "status_curse",
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "high",
+  "size": "1024x1024",
+  "created": "2026-11-25 09:50:02",
+  "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: dark red. Motif: an Egyptian cartouche with a jagged crack through it.",
+  "revised_prompt": null,
+  "usage": {
+    "input_tokens": 157,
+    "input_tokens_details": {
+      "image_tokens": 0,
+      "text_tokens": 157
+    },
+    "output_tokens": 1756,
+    "output_tokens_details": {
+      "image_tokens": 1756,
+      "text_tokens": 0
+    },
+    "total_tokens": 1913
+  }
+}
