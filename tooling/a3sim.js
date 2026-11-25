@@ -6,7 +6,7 @@ const [html,bankf,Ns]=process.argv.slice(2);const N=+Ns||50;
 let src=fs.readFileSync(html,'utf8').match(/<script>([\s\S]*)<\/script>/)[1];
 src=src.replace("const wait=ms=>new Promise(r=>setTimeout(r,ms));","const wait=ms=>Promise.resolve();").replace("const reveal=c=>new Promise(res=>{G.rv={c,res};render()});","const reveal=c=>Promise.resolve(1);");
 const ctx=vm.createContext({console,setTimeout:()=>{},requestAnimationFrame:()=>{},innerWidth:1400,innerHeight:900,localStorage:{getItem:()=>null,setItem:()=>{}},document:{getElementById:()=>({}),querySelector:()=>null,querySelectorAll:()=>[]}});
-vm.runInContext(src,ctx);vm.runInContext(fs.readFileSync(path.join(__dirname,'bot.js'),'utf8'),ctx);const R=e=>vm.runInContext(e,ctx);
+vm.runInContext(src,ctx);vm.runInContext(fs.readFileSync(path.join(__dirname,'bot.js'),'utf8'),ctx);const R=e=>vm.runInContext(e,ctx);if(process.env.PATCH)R(process.env.PATCH);
 const BANK=fs.readFileSync(bankf,'utf8').split('\n').filter(Boolean).map(l=>JSON.parse(l));
 const OPP=process.env.OPP!=null?+process.env.OPP:-1;R('var FOPP='+OPP+';FOSET=0');
 const tick=()=>new Promise(r=>setImmediate(r));

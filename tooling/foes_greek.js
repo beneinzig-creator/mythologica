@@ -69,21 +69,20 @@ FOE.fafn=Object.assign(FOE.fafn||{},{dmgIn:(t,n,src)=>G.cmb&&G.cmb.side=='e'&&sr
 /* ===== Odysseus's realm, unique cores ===== */
 /* ---------- The Lotus-Eaters: STAYING. They never plan your death; your sleeping crew forgets the way home ---------- */
 const fSleepers=o=>cr(o).filter(x=>x.tap&&x.lastAtk!==G.turn&&!has(x,'s'));
-F('lhz',{t:'Ward. The lotus haze: the first army member you play each turn enters tapped. They do not plan your death: at the end of your turn, you lose 1 life for each of your army members still asleep (tapped without having attacked; at most 2). Drag them to the ships: whenever one of your army members attacks, one of your sleepers wakes and untaps.',
- oend:(s,o)=>{const n=Math.min(2,fSleepers(o).length);if(n)fHurt(o,n,'Your sleeping crew forget the way home. ')}});
-{const _l=launch;launch=function(s,S){const r=_l.apply(this,arguments);try{if(G.e&&s===G.p&&G.e.bf.some(x=>x.id=='lhz')){let k=0;for(const a of S){const z=fSleepers(s).find(x=>!S.includes(x));if(z){z.frz=0;z.tap=0;k++}}if(k)log('You drag '+k+' of your sleepers weeping to the ships.')}}catch(e){}return r}}
+F('lhz',{t:'Ward. The lotus haze: the first army member you play each turn enters tapped.'});
 F('isl',{c:1,a:2,h:3,f:'q',tag:'lotus',t:'Opportunist. It offers the lotus: when it enters, your weakest untapped army member falls asleep (tapped, and it doesn\'t untap next turn).',etb:(s,o)=>{const t=fLow(cr(o).filter(x=>!x.tap));if(t){fTap(t,1);log(fNm(t)+' tastes the lotus and falls asleep.')}}});
 F('priest',{c:2,a:1,h:4,f:'q',tag:'lotus',t:'Opportunist. The poppy rite: when it enters, your strongest untapped army member falls asleep (tapped, and it doesn\'t untap next turn).',etb:(s,o)=>{const t=fTop(fTg(o).filter(x=>!x.tap));if(t){fTap(t,1);log(fNm(t)+' breathes the poppy smoke and sleeps.')}}});
 F('lbow',{c:2,a:1,h:4,f:'a',tag:'lotus',t:'Range. Poppy darts: when it enters, your strongest untapped army member falls asleep (tapped, and it doesn\'t untap next turn).',etb:(s,o)=>{const t=fTop(fTg(o).filter(x=>!x.tap));if(t)fTap(t,1)}});
-F('titan',{t:'Ruthless. Opportunist. A heavy sleeper: skips its next untap after attacking. +1/+1 for each of your army members that is asleep (tapped, at most +3/+3).',self:c=>{const o=oppOf(sideOf(c));const n=o?Math.min(3,fSleepers(o).length):0;return[n,n]}});
+F('titan',{t:'Ruthless. Opportunist. A heavy sleeper: skips its next untap after attacking. They do not plan your death: at the end of your turn, you lose 1 life for each of your army members still asleep (tapped without having attacked; at most 2).',
+ oend:(s,o)=>{const n=Math.min(2,fSleepers(o).length);if(n)fHurt(o,n,'Your sleeping crew forget the way home. ')}});
 
 /* ---------- Polyphemus: TRAPPED. The boulder seals the cave; you escape beneath the sheep ---------- */
-const fCaveOpen=s=>(s.cave||0)>=2||s.bf.some(x=>x.id=='poly'&&x.tap);
-F('mouth',{t:'The boulder seals the cave: while it stands, your army deals no combat damage to them. Each morning he rolls it aside himself: while Polyphemus is tapped (he has gone out after attacking), your men slip out beneath the sheep and your blows reach them. Once two of their Cyclopes have died, the boulder is gone for good. Army members with power 1 or less can\'t attack.',
- allyDie:(s,o,c,x)=>{if(fCaveOpen(s))return;if(has(x,'g')){s.cave=(s.cave||0)+1;log(fCaveOpen(s)?'The boulder rolls away: the cave is open!':'One step closer to the cave mouth ('+s.cave+' of 2).')}}});
-{const _r=resolve;resolve=function(){let L=null;try{const e=G.e;if(G.cmb&&G.cmb.side=='p'&&e&&e.bf.some(x=>x.id=='mouth')&&!fCaveOpen(e))L=e.life}catch(e){}const r=_r.apply(this,arguments);try{if(L!=null&&G.e&&G.e.life<L){G.e.life=L;log('The boulder holds: your blows cannot reach the Cyclops.')}}catch(e){}return r}}
+/* the boulder now lives on Polyphemus himself: while he is untapped (inside the cave), your army's combat damage can't reach them */
+F('mouth',{t:'Army members with power 1 or less can\'t attack.'});
+F('poly',{t:'Attacks each turn if able. The boulder: while it is untapped, opposing army members deal no combat damage to you.'});
+{const _r=resolve;resolve=function(){let L=null;try{const e=G.e;if(G.cmb&&G.cmb.side=='p'&&e&&e.bf.some(x=>x.id=='poly'&&!x.tap))L=e.life}catch(e){}const r=_r.apply(this,arguments);try{if(L!=null&&G.e&&G.e.life<L){G.e.life=L;log('The boulder holds: while Polyphemus is in the cave, your blows cannot reach them.')}}catch(e){}return r}}
 F('sheep',{c:1,a:1,h:3,f:'',tag:'cyc',t:'His flock: when it dies, its controller gains 2 life.',die:s=>{s.life+=2}});
-DK('Polyphemus',{l:15,hint:'The boulder seals the cave: you can\'t hurt them in combat while Polyphemus stays inside; when he goes out to attack, or two Cyclopes have fallen, the cave opens'});
+DK('Polyphemus',{l:15,hint:'While Polyphemus sits untapped in his cave, your blows can\'t reach them. Strike after he goes out to attack, or kill him'});
 
 /* ---------- The Shades of Hades: BLOOD. Only the shades that drink can speak ---------- */
 const fDrink=(s,x)=>{if((s.blood||0)<1||!has(x,'e'))return false;s.blood--;x.pa++;x.pd++;x.spoke=1;if(x.id=='mourner')x.ub=1;log(fNm(x)+' drinks from the pit and speaks.');return true};

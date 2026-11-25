@@ -12,11 +12,11 @@ _JSGL = r"""
 /* ===== v127 (patch_glossary): glossary lines for every mechanic, live status lines, hover box fit ===== */
 {const f=GLX.find(x=>x[1]=='Fallen');if(f)f[0]=/\bfallen\b(?! angel)|have died this fight/i}
 GLX.push(
- [/\bblind(ed|s)?\b/i,'Blinded','a blinded army member can\'t block. Killing the Yellow Wind Monster cures every blinded army member.'],
+ [/\bblind(ed|s)?\b/i,'Blinded','a blinded army member can\'t block. It wears off at the end of its owner\'s next turn, or when the Yellow Wind Monster dies.'],
  [/\bsilk\b/i,'Silk','each silk gives -1 power (never below 0). At 3 silk the army member is Cocooned.'],
  [/\bcocoon(ed|s)?\b/i,'Cocooned','an army member with 3 silk is wrapped up: it stays tapped while it has 3 silk.'],
  [/keeps burning|\bburning\b/i,'Burning','it takes 1 damage at the start of each of its controller\'s turns.'],
- [/\bpossess(ed|es)?\b/i,'Possessed','the demons have taken it: it fights for them until the Herd of Swine dies, then returns to its owner.'],
+ [/\bpossess(ed|es)?\b/i,'Possessed','the demons have taken it: it fights for them. Killing the Herd of Swine frees it; if it dies, it goes to its owner\'s graveyard.'],
  [/\b(mark|marked)\b/i,'Marked','a marked army member can\'t attack on its controller\'s next turn.'],
  [/\bsealed\b/i,'Sealed','a sealed army member can\'t attack.'],
  [/\bcursed\b/i,'Cursed','a cursed card in your hand costs 1 more for the rest of the fight.'],

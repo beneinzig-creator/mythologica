@@ -7841,25 +7841,25 @@
       "frames": {
         "common": {
           "name": "Common frame",
-          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nCommon rarity: a plain frame of dark weathered pine boards bound with black iron straps and nail heads, a simple thin carved rope-twist border, modest and unornamented. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.\nHeavily played condition: whitened, rounded and slightly dog-eared corners, frayed edges, a soft crease or two across the frame, small scuffs and scratches, light grime and faded ink, like a much-loved card shuffled hundreds of times. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nCommon rarity: a plain frame of dark weathered pine boards bound with black iron straps and nail heads, a simple thin carved rope-twist border, modest and unornamented. Colours: dark brown wood and black iron only. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel. The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full size; ornament keeps to the outer edges.\nHeavily played condition: whitened, rounded and slightly dog-eared corners, frayed edges, a soft crease or two across the frame, small scuffs and scratches, light grime and faded ink, like a much-loved card shuffled hundreds of times. The wear is on the frame only; the black art window stays solid, untouched black.",
           "output": "art/frames/odin/common.webp",
           "size": "1024x1536"
         },
         "uncommon": {
           "name": "Uncommon frame",
-          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nUncommon rarity: a frame of dark iron and worn silver with a fine border of interlaced knotwork (Borre-style ring chain) and small silver rivets at the corners. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.\nModerately played condition: whitened corners, light wear along the edges, a few small scuffs, slightly faded ink. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nUncommon rarity: a frame of pale blue-grey carved runestone glazed with frost and ice, a band of carved runes (not readable words) running round it, icicles hanging from the top edge and a small carved wolf head at each top corner. Colours: icy pale blue, frost white and slate grey, clearly cold and blue, nothing like brown wood. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel. The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full size; ornament keeps to the outer edges.\nModerately played condition: whitened corners, light wear along the edges, a few small scuffs, slightly faded ink. The wear is on the frame only; the black art window stays solid, untouched black.",
           "output": "art/frames/odin/uncommon.webp",
           "size": "1024x1536"
         },
         "rare": {
           "name": "Rare frame",
-          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nRare rarity: a frame of gilded bronze over dark oak with a border of gripping-beast knotwork in the Urnes style, small garnet cloisonne studs at the corners and a carved interlaced beast above the art window. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nRare rarity: a frame of red gold and dark oak with a rich border of gripping-beast knotwork in the Urnes style set with deep red garnet cloisonne, Odin's two ravens Huginn and Muninn perched at the top corners with outspread wings, and a gold helmet mask above the art window. Colours: warm red gold, deep garnet red and dark oak. Rich and striking. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel. The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full size; ornament keeps to the outer edges.\nLightly played condition: faint whitening on the corners and a few tiny nicks along the edges. The wear is on the frame only; the black art window stays solid, untouched black.",
           "output": "art/frames/odin/rare.webp",
           "size": "1024x1536"
         },
         "legendary": {
           "name": "Legendary frame",
-          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nLegendary rarity: an aged, hand-tooled frame of dull antique gold over dark tarnished iron, worn at the edges, a restrained border of Mammen-style interlace and a single small carved raven head at the top centre, like a weathered grave-goods relic in a museum case; richer than the other rarities but still rustic and understated. Norse, Viking Age look, colder and harder than the Greek set: heavy, rough carved lines like wood or stone cut with a knife, a northern palette of iron grey, slate blue, dark pine and bone white with sparing tarnished gold or blood red; no warm Mediterranean light, no glow, no Greek key, no laurel.\nNear-mint condition: aged and antique, but no play wear, creases or scuffs. The wear is on the frame only; the black art window stays solid, untouched black.",
+          "prompt": "A blank, empty trading-card frame template for a card game based on the Norse Eddas and sagas, seen perfectly flat and straight-on, filling the whole image edge to edge, portrait orientation. Layout from top to bottom: a narrow horizontal title bar across the top with a round empty medallion at its right end; below it a large rectangular art window taking up about the upper half of the card, filled with solid flat pure black (#000000) with crisp straight edges; below that a thin horizontal type bar; below that a large empty rectangular text box of pale aged parchment; at the bottom right a small empty plaque overlapping the corner of the text box. The title bar, medallion, type bar, text box and plaque are completely blank. Style: a rustic, retro 1990s hand-painted trading-card frame, gouache and ink texture, worn and weathered like an old printed card, muted colours, matte with no glossy highlights, no glow, no light rays, no sky, symmetrical with clean edges. Absolutely no text, no letters, no numbers, no symbols, no logo, no watermark, and nothing inside the black window.\n\nLegendary rarity, the grandest frame of all, fit for Odin's hall Valhalla: blazing burnished gold everywhere, the border built of golden shields like Valhalla's roof, the great spear Gungnir running down one side and the world tree Yggdrasil's golden roots and branches weaving round the rest, the two ravens and Odin's two wolves Geri and Freki in gold at the corners, a band of green and violet aurora across the top and a single glowing eye of Odin at the top centre. Warm golden light seems to shine from the frame itself. Overwhelming and divine, still hand-painted, never glossy or 3D-rendered. Norse, Viking Age: no Greek key, no laurel. The border is as thin as on an ordinary card frame, so the title bar, art window and text box stay full size; ornament keeps to the outer edges.\nNear-mint condition: aged and antique, but no play wear, creases or scuffs. The wear is on the frame only; the black art window stays solid, untouched black.",
           "output": "art/frames/odin/legendary.webp",
           "size": "1024x1536"
         }
@@ -16828,6 +16828,111 @@
         }
       },
       "icons": {}
+    },
+    "status": {
+      "name": "Status tokens",
+      "cards": {},
+      "opponents": {},
+      "tutorial": {},
+      "frames": {},
+      "icons": {
+        "status_blind": {
+          "name": "blind status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: amber yellow. Motif: a wide open eye half hidden by a sweeping gust of yellow sand.",
+          "output": "art/icons/status/status_blind.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_call": {
+          "name": "call status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: bright orange. Motif: a calabash gourd with its stopper popped off and a swirl coming out.",
+          "output": "art/icons/status/status_call.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_burn": {
+          "name": "burn status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: red-orange. Motif: a single bold flame.",
+          "output": "art/icons/status/status_burn.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_mark": {
+          "name": "mark status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: violet. Motif: a glowing branded sigil, a circle with a cross burned in, seared and smoking.",
+          "output": "art/icons/status/status_mark.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_poss": {
+          "name": "poss status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: purple. Motif: a black shadowy demon hand with claws gripping from above.",
+          "output": "art/icons/status/status_poss.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_seal": {
+          "name": "seal status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: gold. Motif: an open golden palm of the Buddha seen from the front, five fingers up.",
+          "output": "art/icons/status/status_seal.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_curse": {
+          "name": "curse status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: dark red. Motif: an Egyptian cartouche with a jagged crack through it.",
+          "output": "art/icons/status/status_curse.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_sleep": {
+          "name": "sleep status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: deep blue. Motif: a closed eye with long lashes, a small poppy flower below it.",
+          "output": "art/icons/status/status_sleep.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_qry": {
+          "name": "qry status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: crimson. Motif: a stag's head with antlers, a hunting arrow stuck through it.",
+          "output": "art/icons/status/status_qry.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_erase": {
+          "name": "erase status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: stone grey. Motif: an empty cartouche whose inside has been chiselled away, rough and blank.",
+          "output": "art/icons/status/status_erase.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_silk": {
+          "name": "silk status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: pale grey. Motif: a white spider web.",
+          "output": "art/icons/status/status_silk.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        },
+        "status_cocoon": {
+          "name": "cocoon status token",
+          "prompt": "A tiny round status token for a card game, like a small worn gilded coin: one shared rim for the whole set, a thick rim of tarnished antique gold with a fine beaded edge, around a disc of coloured enamel (colour given below). In the middle a single bold, simple motif with a strong dark outline and silhouette, filling most of the disc, so it reads clearly at 24 pixels: no small detail, no background scenery. Rustic 1990s hand-painted gouache, matte. Seen perfectly straight-on, the coin filling the frame, on a fully transparent background. No text, no letters, no numbers.\n\nEnamel: pale silver. Motif: a white silk cocoon shaped like a wrapped figure.",
+          "output": "art/icons/status/status_cocoon.png",
+          "size": "1024x1024",
+          "format": "png",
+          "background": "transparent"
+        }
+      }
     }
   },
   "_note": "Generated by art/build_manifest.py from tooling/n1.html. Do not edit by hand: change art/subjects.json or the script, then re-run it.",

@@ -4,19 +4,18 @@
 const fPoss=s=>cr(s).filter(x=>x.poss);
 function fPossess(s,o,t,why){if(!t||!o.bf.includes(t)||has(t,'w')||!fRoom(s))return;o.bf.splice(o.bf.indexOf(t),1);t.poss=1;t.sick=1;t.def=0;t.att=0;s.bf.push(t);try{amFall()}catch(e){}log((why||'The demons possess ')+fNm(t)+': it now fights for Legion.')}
 function fFree(s,o){const L=fPoss(s);L.forEach(x=>{s.bf.splice(s.bf.indexOf(x),1);x.poss=0;x.sick=1;x.def=0;o.bf.push(x)});if(L.length)log('The herd drowns, and '+L.length+' of your army member'+(L.length==1?' is':'s are')+' freed, clothed and in their right mind.')}
-F('xlegion',{t:'Ward. Possession: at the start of their turn, the demons possess your cheapest army member (cost 2 or less, not Ward): it fights for them. When a possessed army member dies, it goes to your graveyard.',
- up:(s,o)=>{const t=cr(o).filter(x=>D[x.id][1]<=2&&!has(x,'w')).sort((a,b)=>D[a.id][1]-D[b.id][1]||ev(a)-ev(b))[0];fPossess(s,o,t)},
+F('xlegion',{t:'Ward. Possessed army members fight for them. When a possessed army member dies, it goes to your graveyard. The Herd of Swine can free them.',
  allyDie:(s,o,c,x)=>{if(!x.poss)return;const i=s.gy.indexOf(x);if(i>=0){s.gy.splice(i,1);x.poss=0;o.gy.push(x)}cr(s).filter(y=>y.id=='xswn').forEach(y=>{y.pa++;y.pd++});if(s.bf.some(y=>y.id=='xswn'))log('The demons leave the dead host and flee into the swine.')}});
 F('xlgn',{c:1,a:1,h:2,f:'',tag:'legion',t:'One of the many: +1/+0 for each possessed army member they control (at most +2).',self:c=>[Math.min(2,fPoss(sideOf(c)).length),0]});
-F('xger',{c:2,a:2,h:3,f:'',tag:'legion',t:'He breaks every chain: at the start of their turn it untaps. When it dies, the demons leave him and possess your weakest army member.',
- up:(s,o,c)=>{if(c.tap||c.frz){c.tap=0;c.frz=0;log('The Gerasene breaks his chains.')}},die:(s,o)=>{const t=fLow(cr(o).filter(x=>!has(x,'w')));fPossess(s,o,t,'The demons leave the Gerasene and possess ')}});
+F('xger',{c:2,a:2,h:3,f:'',tag:'legion',t:'The demons go out from him: at the start of their turn, they possess your cheapest army member (cost 2 or less, not Ward); only one is possessed each turn, however many Gerasenes there are.',
+ up:(s,o)=>{if(s.possT===G.turn)return;const t=cr(o).filter(x=>D[x.id][1]<=2&&!has(x,'w')).sort((a,b)=>D[a.id][1]-D[b.id][1]||ev(a)-ev(b))[0];if(t){s.possT=G.turn;fPossess(s,o,t,'The demons go out of the Gerasene and possess ')}}});
 F('xswn',{c:2,a:2,h:4,f:'',tag:'legion',t:'Whenever a possessed army member dies, the demons flee into it: +1/+1. When it dies, the herd runs into the sea and drowns: every possessed army member is freed and returns to you.',die:(s,o)=>fFree(s,o)});
 F('xlegc',{c:4,a:3,h:3,f:'',tag:'legion',t:'"My name is Legion, for we are many": when it enters, it possesses your strongest army member that costs 3 or less. +1/+1 for each possessed army member they control.',
  etb:(s,o)=>{const t=fTop(cr(o).filter(x=>D[x.id][1]<=3&&!has(x,'w')));fPossess(s,o,t,'Legion possesses ')},self:c=>{const n=fPoss(sideOf(c)).length;return[n,n]}});
 F('xpos',{tag:'legion',t:'One of the many.'});
 F('xcast',{c:2,t:'Their dread, turned on you: deal damage to target army member equal to 2 + the number of possessed army members they control.',
  ai:(s,o)=>fAiKill(o,2+fPoss(s).length,3),fx:(s,o,t)=>{if(t)t.dmg+=2+fPoss(s).length}});
-DK('Legion',{d:'xlgn:5,xger:3,xswn:3,xlegc,xcast:2',hint:'Possession: each turn they take one of your army members. Kill the Herd of Swine to free them'});
+DK('Legion',{d:'xlgn:5,xger:3,xswn:3,xlegc,xcast:2',hint:'While a Gerasene Demon lives, each turn they possess one of your cheap army members. Kill the Gerasenes, or the Herd of Swine to free them'});
 
 /* ---------- The Watchers: teachers bound by one oath. Knowledge (cards in hand) is their power ---------- */
 F('xwat',{c:2,a:2,h:3,f:'f',tag:'watch',t:'Flying. Gets +1/+0 for each card in their hand beyond 2 (at most +2).',self:c=>[Math.max(0,Math.min(2,sideOf(c).hand.length-2)),0]});
@@ -64,12 +63,12 @@ F('xnim',{c:4,a:4,h:4,f:'r',tag:'babel',t:'Ruthless. He shoots at heaven: at the
  up:(s,o)=>fHurt(o,Math.floor((s.tower||0)/3),'Nimrod looses an arrow at heaven. ')});
 F('xtong',{c:2,t:'Confusion: shuffle the costs in the opponent\'s hand and tap their strongest army member. It costs them too: the tower falls by 1.',
  ai:(s,o)=>{const t=fTop(cr(o).filter(x=>!x.tap));return t?{s:3+pw(t)*.6}:null},fx:(s,o)=>{if(o.hand.length>1){const C=o.hand.map(c=>cost(c));sh(C);o.hand.forEach((c,i)=>{c.disc=(c.disc||0)+(cost(c)-C[i])})}const t=fTop(cr(o).filter(x=>!x.tap));if(t)fTap(t);fTower(s,-1)}});
-F('xbab',{t:'Ward. At the start of their turn, the costs of the cards in your hand are shuffled. The tower is never finished: at 12 floors it falls back to 6.'});
+F('xbab',{t:'Ward. The tower: at the start of their turn it rises by 1. It is never finished: at 12 floors it falls back to 6.',up:s=>fTower(s,1)});
 DK('The Builders of Babel',{d:'xbrick:5,xmason:4,xzigg:2,xnim,xtong:2',hint:'Their tower rises every turn and makes them stronger; it is never finished'});
 
 /* ---------- The Pairikas: STARVATION. Drought, stolen draws and the bad year; Tishtrya's rain answers an offering ---------- */
-F('xpair',{t:'Ward. The bad year: on every other turn of yours you draw one card fewer. Tishtrya\'s rain answers worship: whenever you offer an army member, each Pairika takes 1 damage.'});
-{const _s=startP;startP=function(){const r=_s.apply(this,arguments);try{const e=G.e,p=G.p;if(e&&e.bf){let k=0;if(e.bf.some(x=>x.id=='xpair')&&G.turn%2==0)k++;if(p.lostDraw){k+=p.lostDraw;p.lostDraw=0}for(let i=0;i<k&&p.hand.length;i++){const c=p.hand.pop();p.deck.push(c)}if(k)log('The Pairikas starve you: '+k+' fewer card'+(k==1?'':'s')+' this turn.');if(k)render()}}catch(e){}return r}}
+F('xpair',{t:'Ward. Tishtrya\'s rain answers worship: whenever you offer an army member, each Pairika takes 1 damage.'});
+{const _s=startP;startP=function(){const r=_s.apply(this,arguments);try{const e=G.e,p=G.p;if(e&&e.bf){let k=0;if(p.lostDraw){k+=p.lostDraw;p.lostDraw=0}for(let i=0;i<k&&p.hand.length;i++){const c=p.hand.pop();p.deck.push(c)}if(k)log('The Pairikas starve you: '+k+' fewer card'+(k==1?'':'s')+' this turn.');if(k)render()}}catch(e){}return r}}
 {const _o=offer;offer=function(s,c){const r=_o.apply(this,arguments);try{if(G&&G.e&&s===G.p&&G.e.bf.some(x=>x.id=='xpair')){const L=fTag(G.e,'pair');L.forEach(x=>{x.dmg+=1});if(L.length){log('You make an offering: Tishtrya\'s rain falls, and each Pairika takes 1.');sweep()}}}catch(e){}return r}}
 F('xstar',{c:1,a:2,h:1,f:'fh',tag:'pair',t:'Flying. Charge. It burns out at the end of their turn. When it dies, your next draw is lost.',end:(s,o,c)=>fDestroy(c),die:(s,o)=>{o.lostDraw=(o.lostDraw||0)+1}});
 F('xench',{c:2,a:2,h:3,f:'',tag:'pair',t:'She enchants away your harvest: when it enters, your next draw is lost.',etb:(s,o)=>{o.lostDraw=(o.lostDraw||0)+1;log('A Pairika enchants away your next draw.')}});

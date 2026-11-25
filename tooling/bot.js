@@ -309,3 +309,13 @@ Object.assign(RATE,{tscr:5,tsun:7,tscar:5,tpen:4,dsk:4,dbal:4,dcut:5,dpart:6,dem
  dakh:7,dsplit:7,dren:6,dsoul:6,dduat:5,dmum:7,dosir:8,dammit:8,dbook:6,iink:5,iscribe:5,ichisel:4,iword:5,iglyph:5,iwas:5,ireed:5,itut:5,isac:6,iliv:6,ierase:7,ishen:4,idjed:5,
  ikhem:5,iunwr:4,iseshat:7,ihekau:7,ieye:7,iobel:6,ianx:7,inarm:6,ithoth:7,iweret:8,iname:8,yibis:5,yread:5,yclerk:5,ywatch:5,ywarn:4,ybab:6,yledger:4,yprep:5,ypre:5,yrecall:5,
  ysage:6,ystar:5,yfore:6,ycopy:5,ytrap:5,yhall:6,ycount:6,ykhon:7,yvizier:6,yechoes:6,yjudge:7,ysenet:8,ytruth:7,yall:8,gscroll:3,gfeather:5,gpriest:6,gnile:5,gcanop:5,gweigh:6});
+
+/* ===== Wukong bot fixes (flow pass, Nov 2026): Breath of Transformation, Feint's discount, hair-counting Volley and Augury ===== */
+{const _pw=planWk;planWk=function(c,p,e,E,M){const id=c.id;
+ if(id==='wbreath')return p.bf.filter(x=>x.id==='wbreath').length<2?{}:null;
+ if(id==='wfeint'){const ok=p.hand.some(x=>x!==c&&x.id!=='wfeint'&&cost(x)>=1&&cost(x)-1<=p.mana-cost(c)&&plan(x));return ok?{}:null}
+ if(id==='wvolley'){const open=E.filter(x=>!has(x,'w')),d=Math.max(1,p.hp||0)+(WT[id]?0:0);const k=open.filter(x=>th(x)-x.dmg<=d).sort((a,b)=>val(b)-val(a))[0];const w=open.slice().sort((a,b)=>(th(a)-a.dmg)-(th(b)-b.dmg))[0];const t=k||((p.hand.length>=4||WKLR)?w:null);return t?{t:'e:'+t.u}:null}
+ if(id==='waugury'){const n=p.hand.filter(x=>x!==c&&(x.id==='whair'||x.id==='wdart'||x.id==='wpeach')).length;return n>=1||WKLR?{}:null}
+ return _pw.apply(this,arguments)}}
+{const _oh=orderHand;orderHand=function(p){const h=_oh(p);if(G.ch!=='wukong')return h;if(p.fcp>=0&&(p.cp||0)===p.fcp){return h.slice().sort((a,b)=>cost(b)-cost(a))}return h}}
+Object.assign(WKP,{wbreath:7,waugury:4.5});
