@@ -50,3 +50,12 @@ CHARS.wukong.play='Play many cheap cards in a turn: chain Strikes, Tricks and Le
 wkSet('waugury',0,'Read the pits: your Momentum rises by 1 for each Spare Hair and Peach in your hand (at most 3).');
 FX.waugury=s=>{const n=Math.min(3+mg(),s.hand.filter(x=>x.id=='whair'||x.id=='wpeach').length);for(let i=0;i<n;i++){s.mo=(s.mo||0)+1;wkMom(s)}if(n)log('The peach pits foretell: your Momentum rises by '+n+'.')};
 UPS.waugury=n=>`At most ${3+n}`;
+
+/* --- "Counts as any type" cards are true wildcards for Full Circle and Three Forms: they fill whichever type is missing --- */
+{const _p=wkPlay;wkPlay=function(p,c){const r=_p.apply(this,arguments);try{if(c){const t=WT[c.id];if(t==='any')p.wild=(p.wild||0)+1;else if(t){(p.rty=p.rty||{})[t]=1}}}catch(e){}return r}}
+{const _u=wkUp;wkUp=function(s){const r=_u.apply(this,arguments);try{if(s===G.p){s.wild=0;s.rty={}}}catch(e){}return r}}
+const wkTypesN=s=>Math.min(3,Object.keys(s.rty||{}).length+(s.wild||0));
+FX.wcycle=(s,o)=>{if(wkTypesN(s)>=3){const d=4+mg();o.life-=d;log('Full Circle: '+d+' damage to the opponent.')}};
+FX.wtypes=(s,o,t)=>{t.dmg+=wkTypesN(s)+mg()};
+wkSet('wcycle',null,'If you have played a Strike, a Trick and a Leap this turn (including this card), deal 4 damage to the opponent. Cards that count as any type fill in a missing one.');
+wkSet('wtypes',null,'Deal damage to target opposing army member equal to the number of different types (Strike, Trick, Leap) you have played this turn. Cards that count as any type fill in a missing one.');

@@ -155,5 +155,8 @@ R(`G.p.hand=[];var tr=mk('wtroop');G.p.hand.push(tr);cast(tr)`);ok('Hair-Born Tr
 ok('cost curve: 40+ cards cost 0-1, few cost 3+',R(`(()=>{const P=[...new Set(CHARS.wukong.pool)];return P.filter(k=>D[k][1]<=1).length>=40&&P.filter(k=>D[k][1]>=3).length<=11})()`));
 
 setup(0);R(`G.p.hand=[mk('whair'),mk('whair'),mk('wpeach')];G.p.mo=0;G.p.lt='tr';var au=mk('waugury');G.p.hand.push(au);cast(au)`);ok('Peach-Pit Augury: Momentum +1 per hair/peach in hand (max 3)',R('G.p.mo')==3);
-R(`G.p.hand=[mk('whair'),mk('whair'),mk('whair'),mk('wpeach'),mk('wpeach')];G.p.mo=0;G.p.lt='tr';var au2=mk('waugury');G.p.hand.push(au2);cast(au2)`);ok('Augury caps at 3',R('G.p.mo')==3);
+R(`G.p.hand=[mk('whair'),mk('whair'),mk('whair'),mk('wpeach'),mk('wpeach')];G.p.mo=0;G.p.lt='tr';var augC=mk('waugury');G.p.hand.push(augC);cast(augC)`);ok('Augury caps at 3',R('G.p.mo')==3);
+
+setup(0);R(`G.e.life=30;G.p.mana=9;G.p.hand=[];['wfeint','wskin','wcycle'].forEach(id=>{const c=mk(id);G.p.hand.push(c);cast(c)})`);ok('Full Circle: Trick, wild, Full Circle triggers',R('G.e.life')==26);
+setup(0);R(`G.e.life=30;G.p.mana=9;G.p.hand=[];['wfeint','wcycle'].forEach(id=>{const c=mk(id);G.p.hand.push(c);cast(c)})`);ok('Full Circle: Trick + Strike alone does not',R('G.e.life')==30);
 console.log(f?('FAILED '+f):'ALL OK');
