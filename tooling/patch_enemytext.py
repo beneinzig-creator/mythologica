@@ -254,7 +254,7 @@ pdis|At the start of your turn, +0/+1 permanently (at most +3).
 pfin|Can only defend. Phalanx. While it lives, the Five-Finger Mountain's extra cost is 1 higher. At the start of your turn, this Finger takes 1 damage.
 pgrd|While it lives, opposing army members that cost 4 or more are sealed and can't attack, and the Five-Finger Mountain's extra cost falls on the third card your opponent plays each turn instead of the fourth.
 plm|Can only defend. Resilient. At the start of your turn, your opponent takes 3 damage.
-palm|Ward. The fourth card your opponent plays each turn costs 2 more, plus 1 more for each Finger of the Mountain. Cards after it cost their normal amount. At the start of your fifth turn, The Buddha's Palm comes into play (from your hand or deck).
+palm|Ward. The fourth card your opponent plays each turn costs 2 more, plus 1 more for each Finger of the Mountain. Cards after it cost their normal amount. At the start of your fifth turn, The Buddha's Palm comes into play from your hand or deck. If your army is full, you first offer your weakest army member.
 """)
 
 # ---------------- Thoth's road ----------------
