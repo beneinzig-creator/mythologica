@@ -1831,7 +1831,7 @@ wgreat:['Great Wall Monkey',4,'C',2,6,'z','When it enters, gain 3 life.','🧱',
 wbanq:['Peach Banquet',2,'S',0,0,'','Gain 2 life for each card you have played this turn (including this one).','🍑','G'],
 wmist:['Mist Veil',2,'I',0,0,'','Tap all opposing army members.','🌫️','U'],
 wgust:['Iron Fan Gust',2,'I',0,0,'',"Return target opposing army member to its owner's hand.",'🌬️','U'],
-wunward:['Reveal the True Form',1,'S',0,0,'','Opposing army members lose Ward for the rest of the fight.','🔍','R'],
+wunward:['Reveal the True Form',1,'E',0,0,'','Opposing army members lose Ward for the rest of the fight.','🔍','R'],
 wrally:['Rally the Troops',2,'S',0,0,'','Each army member you control gets +1/+1 until end of turn (+2/+2 if you control 4 or more).','📣','W'],
 wmillion:['Million Monkeys',5,'S',0,0,'','Put Clones of the Great Sage into play until your army is full (at most 3).','🐒','R'],
 wqt:['Equal to Heaven',5,'C',4,6,'h','Whenever you play a card, it gets +1/+0 until end of turn.','👑','R',3],
@@ -1840,7 +1840,7 @@ wsandy:['Sha Wujing, the Sand Monk',3,'C',2,5,'p','Whenever your Momentum rises,
 wpeachg:["Queen Mother's Banquet",4,'S',0,0,'','Gain 6 life. Shuffle 3 Peaches into your deck. Draw 2 cards.','🍑','G'],
 wbigstaff:['Staff of Ten Thousand Jin',5,'S',0,0,'','Deal damage to the opponent equal to 4 plus your Momentum, and 3 damage to each opposing army member.','🦯','R']
 });
-[['any','wskin wchamel'],['tr','wpyre wtree wnull wbanq wunward wmillion wsandy wpeachg'],['st','wburn wunravel wrally wqt wbigstaff'],['lp','wgate wgreat wmist wgust wnez']].forEach(([t,x])=>x.split(' ').forEach(i=>{WT[i]=t;LORE[i]=(t=='any'?'Any type':WTN[t])+' · '+(({wnull:'Monk',wchamel:'Monkey',wgate:'Guard',wgreat:'Monkey',wqt:'Monkey king',wnez:'Prince',wsandy:'Pilgrim',wpyre:'Modifier',wtree:'Modifier'})[i]||'Spell')}));
+[['any','wskin wchamel'],['tr','wpyre wtree wnull wbanq wunward wmillion wsandy wpeachg'],['st','wburn wunravel wrally wqt wbigstaff'],['lp','wgate wgreat wmist wgust wnez']].forEach(([t,x])=>x.split(' ').forEach(i=>{WT[i]=t;LORE[i]=(t=='any'?'Any type':WTN[t])+' · '+(({wnull:'Monk',wchamel:'Monkey',wgate:'Guard',wgreat:'Monkey',wqt:'Monkey king',wnez:'Prince',wsandy:'Pilgrim',wpyre:'Modifier',wtree:'Modifier',wunward:'Modifier'})[i]||'Spell')}));
 LORE.wmist='Leap · Quick spell';LORE.wgust='Leap · Quick spell';
 {const R={C:'wblock wclone wcounter wdance wdodge wdrink wfeint wfoot wgrow wpierce wpluck wvolley wwine wslip wspin wsent waugury wgate wstep wchamel',
 U:'wlegion wmirm wcloudr whstorm wcloudh worchard wpeachc wpocket wseal wwind wtroop wacro wvang wrally wmist wgust wbear wpeachk wdrum wnull',
@@ -1858,12 +1858,12 @@ wskin:s=>{wkShuffle(s,'whair',1);draw(s,1+mg())},
 wbanq:s=>{s.life+=2*Math.max(1,wkCp(s))+mg()},
 wmist:(s,o)=>FX.fog(s,o),
 wgust:(s,o,t)=>FX.gale(s,o,t),
-wunward:(s,o)=>{cr(o).forEach(c=>{c.f=c.f.replace('w','')});log('The true forms are revealed: their army loses Ward.')},
 wrally:s=>{const n=cr(s).length>=4?2:1;cr(s).forEach(c=>{c.ta=(c.ta||0)+n;c.td=(c.td||0)+n})},
 wmillion:s=>{for(let i=0;i<3&&cr(s).length<AM();i++){const c=mk('wclone');enter(s,c);c.sick=0}},
 wpeachg:s=>{s.life+=6+mg();wkShuffle(s,'wpeach',3);draw(s,2)},
 wbigstaff:(s,o)=>{const d=4+wkMo(s)+mg();o.life-=d;tg(o).forEach(c=>{c.dmg+=3});log('The Staff falls: '+d+' damage to the opponent, 3 to each of their army members.')}});
-Object.assign(ETB,{wgreat:s=>{s.life+=3}});
+Object.assign(ETB,{wgreat:s=>{s.life+=3},wunward:(s,o)=>{cr(o).forEach(c=>{c.f=c.f.replace('w','')});log('The true forms are revealed: their army loses Ward.')}});
+{const oe=enter;enter=function(s,c){const r=oe.apply(this,arguments);if(c&&isC(c)&&oppOf(s).bf.some(x=>x.id=='wunward'))c.f=c.f.replace('w','');return r}}
 Object.assign(DEATH,{wnez:{p:3,fn:s=>{s.hand.push(mk('wnez'));log('Nezha is reborn from the lotus and returns to your hand.')}}});
 {const om=wkMom;wkMom=function(p){om(p);cr(p).forEach(c=>{if(c.id=='wsandy')p.life+=1})}}
 {const op=wkPlay;wkPlay=function(p,c){op(p,c);cr(p).forEach(x=>{if(x.id=='wqt'&&x!==c)x.ta=(x.ta||0)+1})}}
@@ -6074,7 +6074,22 @@ try{addEventListener('resize',()=>setTimeout(laneFit,60))}catch(e){}
 var WKFLOW=3;
 {const _m=wkMom;wkMom=function(p){const r=_m.apply(this,arguments);try{if(p===G.p&&G.ch==='wukong'&&!G.tut&&!p.flw&&(p.mo||0)>=WKFLOW){p.flw=1;draw(p,1);log('Flow: your Momentum reaches '+WKFLOW+', and you draw a card.')}}catch(e){}return r}}
 {const _u=wkUp;wkUp=function(s){const r=_u.apply(this,arguments);try{if(s===G.p)s.flw=0}catch(e){}return r}}
-wkBar=function(){const p=G.p;if(!p||G.ch!='wukong')return'';return`<span class="cn" title="Momentum rises each time you play a card of a different type (Strike, Trick, Leap) than the card before it. The first time each turn it reaches ${WKFLOW}, you draw a card. It resets every turn."><img class="tki" src="art/game/icons/wukong/momentum.png" alt="Momentum" title="Momentum" draggable="false"> Momentum ${p.mo||0}${p.flw?' · drew':' · draw at '+WKFLOW} · ${p.cp||0} played${p.lt?' · last: '+WTN[p.lt]:''}</span>`};
+wkBar=function(){const p=G.p;if(!p||G.ch!='wukong')return'';const mo=p.mo||0,fl=!!p.flw;let pips='';for(let i=1;i<=WKFLOW;i++)pips+=`<i class="${fl||mo>=i?'on':''}"></i>`;return`<span class="cn wkb${fl?' fl':''}" title="Momentum rises each time you play a card of a different type (Strike, Trick, Leap) than the card before it. The first time each turn it reaches ${WKFLOW}, you draw a card. It resets every turn."><span class="wkm"><img class="tki" src="art/game/icons/wukong/momentum.png" alt="Momentum" title="Momentum" draggable="false">Momentum <b>${mo}</b><span class="wkp">${pips}</span></span><span class="wks"><span>${fl?'Card drawn':'Draw at '+WKFLOW}</span><span>${p.cp||0} played</span>${p.lt?`<span>Last: ${WTN[p.lt]}</span>`:''}</span></span>`};
+try{const st=document.createElement('style');st.id='wkhud';st.textContent=`
+.me .wkb{display:flex!important;flex-direction:column;align-items:center;gap:3px;white-space:normal!important;max-width:100%;text-align:center;line-height:1.2}
+.me .wkb .wkm{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.me .wkb .wkm b{font-size:1.3em;color:#ffd27a;margin-left:-1px}
+.me .wkb .wkp{display:inline-flex;gap:3px;margin-left:3px}
+.me .wkb .wkp i{width:.7em;height:.7em;border-radius:50%;border:1px solid #ffd27aaa;box-sizing:border-box}
+.me .wkb .wkp i.on{background:#ffd27a;box-shadow:0 0 4px #ffd27a99}
+.me .wkb.fl .wkp i{background:#9fe08a;border-color:#9fe08a;box-shadow:0 0 4px #9fe08a99}
+.me .wkb .wks{display:flex;flex-wrap:wrap;justify-content:center;opacity:.85;font-size:.92em}
+.me .wkb .wks>span{white-space:nowrap}
+.me .wkb .wks>span+span::before{content:'·';margin:0 .45em;opacity:.7}
+.me .wkb.fl .wks>span:first-child{color:#9fe08a}
+html:not(.ph) .me:has(.wkb){max-width:156px;box-sizing:border-box}
+html:not(.ph) body:has(.me .wkb) .hand{padding-left:calc(168px * var(--zu,1.4) / var(--zc,1.25) + 10px)}
+`;document.head.appendChild(st)}catch(e){}
 {const g=GLX.find(x=>x[1]=='Momentum');if(g)g[2]='Rises by 1 each time you play a card of a different type (Strike, Trick or Leap) than the card you played just before it. The first time each turn it reaches '+WKFLOW+', you draw a card. It resets at the start of each of your turns.'}
 TURNM.wukong='play different card types in a row (Strike, Trick, Leap) to build Momentum; at Momentum '+WKFLOW+' you draw a card.';
 CHARS.wukong.play='Play many cheap cards in a turn: chain Strikes, Tricks and Leaps to build Momentum, and the first time each turn it reaches '+WKFLOW+' you draw a card to keep the chain going. Spare Hairs and Peaches come straight to your hand, and Disintegrated cards vanish for good. A swarm of small monkeys and a hand full of spells. 20 life.';
@@ -6115,6 +6130,24 @@ try{const st=document.createElement('style');st.id='ppf';st.textContent=`
 #app:has(.kc) .hand,#app:has(.kc) .hand *{visibility:hidden!important;pointer-events:none!important}
 html.ph #app:has(.kc) .fld.fp{overflow-y:auto;overflow-x:hidden;align-content:flex-start;align-content:safe center;justify-content:safe center;overscroll-behavior:contain}
 `;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_maptipedge: map hover box stays on screen ===== */
+(function(){const M=8;
+ function clipRect(el){let L=0,T=0,R=innerWidth,B=innerHeight;for(let p=el.parentElement;p&&p!==document.body;p=p.parentElement){const cs=getComputedStyle(p);
+  if(/(hidden|auto|scroll|clip)/.test(cs.overflow+cs.overflowX+cs.overflowY)){const r=p.getBoundingClientRect();L=Math.max(L,r.left);T=Math.max(T,r.top);R=Math.min(R,r.right);B=Math.min(B,r.bottom)}}
+  return {L,T,R,B}}
+ function place(wn){const t=wn.querySelector('.tipx');if(!t)return;
+  t.style.removeProperty('transform');t.style.removeProperty('top');t.style.removeProperty('bottom');
+  let r=t.getBoundingClientRect();if(!r.width)return;
+  const sc=r.width/(t.offsetWidth||r.width)||1,c=clipRect(t);
+  const below=t.classList.contains('dn');
+  if(!below&&r.top<c.T+M){t.style.setProperty('bottom','auto','important');t.style.setProperty('top','62px','important')}
+  else if(below&&r.bottom>c.B-M){t.style.setProperty('top','auto','important');t.style.setProperty('bottom','62px','important')}
+  r=t.getBoundingClientRect();
+  let dx=0;if(r.width>c.R-c.L-2*M)dx=c.L+M-r.left;else if(r.left<c.L+M)dx=c.L+M-r.left;else if(r.right>c.R-M)dx=c.R-M-r.right;
+  if(dx)t.style.setProperty('transform','translateX(calc(-50% + '+(dx/sc).toFixed(1)+'px))','important')}
+ document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
+})();
 
 /* ===== patch_libloader: Ouroboros loader until a card library is fully painted ===== */
 (function(){const LIBSEL='.ov,.dcards,.kc',CAP=20000;let wait=0;

@@ -553,7 +553,7 @@ Trickster (36):
 - Peach Banquet `wbanq` — 2 mana, Spell [Rare]. Gain 2 life for each card you have played this turn (including this one).
 - Mist Veil `wmist` — 2 mana, Quick spell [Uncommon]. Tap all opposing army members.
 - Iron Fan Gust `wgust` — 2 mana, Quick spell [Uncommon]. Return target opposing army member to its owner's hand.
-- Reveal the True Form `wunward` — 1 mana, Spell [Rare]. Opposing army members lose Ward for the rest of the fight.
+- Reveal the True Form `wunward` — 1 mana, Modifier [Rare]. While in play, opposing army members lose Ward (including ones that enter later).
 - Million Monkeys `wmillion` — 5 mana, Spell [Legendary]. Put Clones of the Great Sage into play until your army is full (at most 3).
 - Nezha, the Lotus Prince `wnez` — 4 mana, Army 4/3 💀3 [Legendary]. Flying. When it dies, return it to your hand.
 - Sha Wujing, the Sand Monk `wsandy` — 3 mana, Army 2/5 💀2 [Legendary]. Phalanx. Whenever your Momentum rises, gain 1 life.
