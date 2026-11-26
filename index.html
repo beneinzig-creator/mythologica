@@ -6130,6 +6130,24 @@ try{const st=document.createElement('style');st.id='ppf';st.textContent=`
 #app:has(.kc) .hand,#app:has(.kc) .hand *{visibility:hidden!important;pointer-events:none!important}
 html.ph #app:has(.kc) .fld.fp{overflow-y:auto;overflow-x:hidden;align-content:flex-start;align-content:safe center;justify-content:safe center;overscroll-behavior:contain}
 `;document.body.appendChild(st)}catch(e){}
+
+/* ===== patch_maptipedge: map hover box stays on screen ===== */
+(function(){const M=8;
+ function clipRect(el){let L=0,T=0,R=innerWidth,B=innerHeight;for(let p=el.parentElement;p&&p!==document.body;p=p.parentElement){const cs=getComputedStyle(p);
+  if(/(hidden|auto|scroll|clip)/.test(cs.overflow+cs.overflowX+cs.overflowY)){const r=p.getBoundingClientRect();L=Math.max(L,r.left);T=Math.max(T,r.top);R=Math.min(R,r.right);B=Math.min(B,r.bottom)}}
+  return {L,T,R,B}}
+ function place(wn){const t=wn.querySelector('.tipx');if(!t)return;
+  t.style.removeProperty('transform');t.style.removeProperty('top');t.style.removeProperty('bottom');
+  let r=t.getBoundingClientRect();if(!r.width)return;
+  const sc=r.width/(t.offsetWidth||r.width)||1,c=clipRect(t);
+  const below=t.classList.contains('dn');
+  if(!below&&r.top<c.T+M){t.style.setProperty('bottom','auto','important');t.style.setProperty('top','62px','important')}
+  else if(below&&r.bottom>c.B-M){t.style.setProperty('top','auto','important');t.style.setProperty('bottom','62px','important')}
+  r=t.getBoundingClientRect();
+  let dx=0;if(r.width>c.R-c.L-2*M)dx=c.L+M-r.left;else if(r.left<c.L+M)dx=c.L+M-r.left;else if(r.right>c.R-M)dx=c.R-M-r.right;
+  if(dx)t.style.setProperty('transform','translateX(calc(-50% + '+(dx/sc).toFixed(1)+'px))','important')}
+ document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
+})();
 showChars();
 </script>
 
