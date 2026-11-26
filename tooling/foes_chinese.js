@@ -146,14 +146,15 @@ F('bdk',{c:5,a:6,h:7,f:'z',tag:'bull',t:'Resilient. At 6 rage he becomes a white
 DK('The Bull Demon King',{d:'bgrd:5,bcap:5,bhrn:3,bdk'});
 
 /* ---------- The Buddha's Palm: LIMITS. However far you go, you are still inside the hand ---------- */
-F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the third in a turn costs 2 more. Each Finger of the Mountain lowers that limit by one (never below 1). The hand closes: at the start of their turn, you take 1 damage for each Finger of the Mountain they have beyond the first.',up:(s,o)=>{const n=fCnt(s,'pfin')-1;if(n>0)fHurt(o,n,'The hand closes around you. ')}});
+F('palm',{t:'Ward. Every step outward is still inside the hand: the fourth card you play each turn costs 2 more, plus 1 more for each Finger of the Mountain. Cards after it cost their normal amount. The hand comes down: at the start of your fifth turn, The Buddha\'s Palm comes into play from wherever it is (if your army is full, you offer your weakest army member to make room).',
+ up:(s,o,c)=>{c.pt=(c.pt||0)+1;if(c.pt==4&&!s.bf.some(x=>x.id=='plm')){let x=null,i=s.hand.findIndex(y=>y.id=='plm');if(i>=0)x=s.hand.splice(i,1)[0];else{i=s.deck.findIndex(y=>y.id=='plm');if(i>=0)x=s.deck.splice(i,1)[0]}if(!x)x=mk('plm');if(cr(s).length>=5){const w=cr(s).sort((a,b)=>ev(a)-ev(b))[0];offer(s,w)}enter(s,x);log('The hand comes down: The Buddha\'s Palm comes into play.')}}});
 F('pdis',{c:1,a:1,h:3,f:'',tag:'palm',t:'He sat so still he became the mountain: at the start of their turn, +0/+1 permanently (at most +3).',up:(s,o,c)=>{if((c.grow||0)<3){c.grow=(c.grow||0)+1;c.pd++}}});
-F('pfin',{c:2,a:2,h:5,f:'kp',tag:'palm',t:'Can only defend. Phalanx. One of the five pillars at the end of the world: while it lives, the palm\'s limit is one card lower.'});
-F('pgrd',{c:3,a:3,h:6,f:'',tag:'palm',t:'The talisman, om mani padme hum: while it lives, your army members that cost 4 or more are sealed and can\'t attack.',
+F('pfin',{c:2,a:2,h:6,f:'kp',tag:'palm',t:'Can only defend. Phalanx. One of the five pillars at the end of the world: while it lives, the Five-Finger Mountain\'s extra cost is 1 higher. The Sage writes his name on it: at the start of their turn, it takes 1 damage.',up:(s,o,c)=>{c.dmg+=1}});
+F('pgrd',{c:3,a:3,h:6,f:'',tag:'palm',t:'The talisman, om mani padme hum: while it lives, your army members that cost 4 or more are sealed and can\'t attack, and the Five-Finger Mountain\'s extra cost falls on the third card you play each turn instead of the fourth.',
  oup:(s,o)=>{cr(o).forEach(x=>{if(D[x.id][1]>=4)fFlagOn(x,'k','seal')})}});
 {const _u=egUp;egUp=function(s,o){try{if(G&&G.e&&s===G.p&&!G.e.bf.some(x=>x.id=='pgrd'))cr(s).forEach(x=>fFlagOff(x,'seal'))}catch(e){}return _u.apply(this,arguments)}}
-F('plm',{c:5,a:5,h:9,f:'kz',tag:'palm',t:'Can only defend. Resilient. The mountain presses down: at the start of their turn, if all your army members are tapped, you take 3 damage.',
- up:(s,o)=>{const L=cr(o);if(!L.length||L.every(x=>x.tap))fHurt(o,3,'The Five Elements Mountain presses down. ')}});
+F('plm',{c:4,a:5,h:9,f:'kz',tag:'palm',t:'Can only defend. Resilient. The mountain presses down: at the start of their turn, you take 3 damage.',
+ up:(s,o)=>{fHurt(o,3,'The Five Elements Mountain presses down. ')}});
 DK("The Buddha's Palm",{d:'pdis:5,pfin:5,pgrd:2,plm'});
 
 /* silk counters drawn on the card */
@@ -163,3 +164,4 @@ DK("The Buddha's Palm",{d:'pdis:5,pfin:5,pgrd:2,plm'});
  const tt='Silk '+n+' of 3: -'+n+'/-0'+(c.coc?'. Cocooned: it stays tapped while it has 3 silk. It sheds 1 silk at the end of your turn.':'. At 3 silk it is cocooned (tapped). Sheds 1 silk at the end of any turn it does not attack.');
  const i=h.indexOf('>');h=h.slice(0,i+1)+'<b class="slk'+(c.coc?' coc':'')+'" style="--n:'+n+'" title="'+tt+'">'+coins+'</b>'+h.slice(i+1)}}catch(e){}return h}}
 try{if(typeof document!='undefined'&&document.createElement&&document.head){const st=document.createElement('style');st.textContent='.cd .slk{position:absolute;right:6px;top:24%;z-index:6;width:calc(24px + (var(--n) - 1) * 6px);height:calc(24px + (var(--n) - 1) * 5px);pointer-events:auto}.cd .slk .sc{position:absolute;left:calc(var(--i) * 6px);top:calc(var(--i) * 5px);width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#dcdfe9 45%,#9aa0b5 80%,#6b7086);border:1.5px solid #f4f1e6;box-shadow:0 2px 3px rgba(0,0,0,.6),inset 0 0 0 2px rgba(120,110,90,.55)}.cd .slk.coc .sc{background:radial-gradient(circle at 35% 30%,#fff,#eef0f6 50%,#c7cad6)}.cd .slk .sc img{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);border-radius:50%}';document.head.appendChild(st)}}catch(e){}
+
