@@ -1831,7 +1831,7 @@ wgreat:['Great Wall Monkey',4,'C',2,6,'z','When it enters, gain 3 life.','🧱',
 wbanq:['Peach Banquet',2,'S',0,0,'','Gain 2 life for each card you have played this turn (including this one).','🍑','G'],
 wmist:['Mist Veil',2,'I',0,0,'','Tap all opposing army members.','🌫️','U'],
 wgust:['Iron Fan Gust',2,'I',0,0,'',"Return target opposing army member to its owner's hand.",'🌬️','U'],
-wunward:['Reveal the True Form',1,'S',0,0,'','Opposing army members lose Ward for the rest of the fight.','🔍','R'],
+wunward:['Reveal the True Form',1,'E',0,0,'','Opposing army members lose Ward for the rest of the fight.','🔍','R'],
 wrally:['Rally the Troops',2,'S',0,0,'','Each army member you control gets +1/+1 until end of turn (+2/+2 if you control 4 or more).','📣','W'],
 wmillion:['Million Monkeys',5,'S',0,0,'','Put Clones of the Great Sage into play until your army is full (at most 3).','🐒','R'],
 wqt:['Equal to Heaven',5,'C',4,6,'h','Whenever you play a card, it gets +1/+0 until end of turn.','👑','R',3],
@@ -1840,7 +1840,7 @@ wsandy:['Sha Wujing, the Sand Monk',3,'C',2,5,'p','Whenever your Momentum rises,
 wpeachg:["Queen Mother's Banquet",4,'S',0,0,'','Gain 6 life. Shuffle 3 Peaches into your deck. Draw 2 cards.','🍑','G'],
 wbigstaff:['Staff of Ten Thousand Jin',5,'S',0,0,'','Deal damage to the opponent equal to 4 plus your Momentum, and 3 damage to each opposing army member.','🦯','R']
 });
-[['any','wskin wchamel'],['tr','wpyre wtree wnull wbanq wunward wmillion wsandy wpeachg'],['st','wburn wunravel wrally wqt wbigstaff'],['lp','wgate wgreat wmist wgust wnez']].forEach(([t,x])=>x.split(' ').forEach(i=>{WT[i]=t;LORE[i]=(t=='any'?'Any type':WTN[t])+' · '+(({wnull:'Monk',wchamel:'Monkey',wgate:'Guard',wgreat:'Monkey',wqt:'Monkey king',wnez:'Prince',wsandy:'Pilgrim',wpyre:'Modifier',wtree:'Modifier'})[i]||'Spell')}));
+[['any','wskin wchamel'],['tr','wpyre wtree wnull wbanq wunward wmillion wsandy wpeachg'],['st','wburn wunravel wrally wqt wbigstaff'],['lp','wgate wgreat wmist wgust wnez']].forEach(([t,x])=>x.split(' ').forEach(i=>{WT[i]=t;LORE[i]=(t=='any'?'Any type':WTN[t])+' · '+(({wnull:'Monk',wchamel:'Monkey',wgate:'Guard',wgreat:'Monkey',wqt:'Monkey king',wnez:'Prince',wsandy:'Pilgrim',wpyre:'Modifier',wtree:'Modifier',wunward:'Modifier'})[i]||'Spell')}));
 LORE.wmist='Leap · Quick spell';LORE.wgust='Leap · Quick spell';
 {const R={C:'wblock wclone wcounter wdance wdodge wdrink wfeint wfoot wgrow wpierce wpluck wvolley wwine wslip wspin wsent waugury wgate wstep wchamel',
 U:'wlegion wmirm wcloudr whstorm wcloudh worchard wpeachc wpocket wseal wwind wtroop wacro wvang wrally wmist wgust wbear wpeachk wdrum wnull',
@@ -1858,12 +1858,12 @@ wskin:s=>{wkShuffle(s,'whair',1);draw(s,1+mg())},
 wbanq:s=>{s.life+=2*Math.max(1,wkCp(s))+mg()},
 wmist:(s,o)=>FX.fog(s,o),
 wgust:(s,o,t)=>FX.gale(s,o,t),
-wunward:(s,o)=>{cr(o).forEach(c=>{c.f=c.f.replace('w','')});log('The true forms are revealed: their army loses Ward.')},
 wrally:s=>{const n=cr(s).length>=4?2:1;cr(s).forEach(c=>{c.ta=(c.ta||0)+n;c.td=(c.td||0)+n})},
 wmillion:s=>{for(let i=0;i<3&&cr(s).length<AM();i++){const c=mk('wclone');enter(s,c);c.sick=0}},
 wpeachg:s=>{s.life+=6+mg();wkShuffle(s,'wpeach',3);draw(s,2)},
 wbigstaff:(s,o)=>{const d=4+wkMo(s)+mg();o.life-=d;tg(o).forEach(c=>{c.dmg+=3});log('The Staff falls: '+d+' damage to the opponent, 3 to each of their army members.')}});
-Object.assign(ETB,{wgreat:s=>{s.life+=3}});
+Object.assign(ETB,{wgreat:s=>{s.life+=3},wunward:(s,o)=>{cr(o).forEach(c=>{c.f=c.f.replace('w','')});log('The true forms are revealed: their army loses Ward.')}});
+{const oe=enter;enter=function(s,c){const r=oe.apply(this,arguments);if(c&&isC(c)&&oppOf(s).bf.some(x=>x.id=='wunward'))c.f=c.f.replace('w','');return r}}
 Object.assign(DEATH,{wnez:{p:3,fn:s=>{s.hand.push(mk('wnez'));log('Nezha is reborn from the lotus and returns to your hand.')}}});
 {const om=wkMom;wkMom=function(p){om(p);cr(p).forEach(c=>{if(c.id=='wsandy')p.life+=1})}}
 {const op=wkPlay;wkPlay=function(p,c){op(p,c);cr(p).forEach(x=>{if(x.id=='wqt'&&x!==c)x.ta=(x.ta||0)+1})}}
