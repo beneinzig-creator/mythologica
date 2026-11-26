@@ -578,7 +578,7 @@ BOSS.push(
 CHARS.wukong.bo=[b0,b0+1,b0+2]}
 ELITES.push({n:'Princess Iron Fan',l:17,ic:'🪭',hint:'Her fan blows your priciest army member back to your hand every turn: win with cheap bodies and spells',bg:['#1c1226','#b88ad0'],d:ids('iwnd:2,imaid:3,iguard:2,iprin,hnet'),mt:'ifan'});
 CHARS.wukong.el.push(ELITES.length-1);
-function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(!G.e.bf.some(x=>x.id=='palm')||!G.p.hand.includes(c))return 0;const lim=Math.max(1,3-G.e.bf.filter(x=>x.id=='pfin').length);return (G.p.cp||0)>=lim?2:0}
+function pcx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;if(!G.e.bf.some(x=>x.id=='palm')||!G.p.hand.includes(c))return 0;return (G.p.cp||0)>=3?Math.min(3,1+G.e.bf.filter(x=>x.id=='pfin').length):0}
 function bossStart(){const e=G.e,p=G.p;if(!e||!e.bf||!p)return;
  if(e.bf.some(x=>x.id=='bfury')){cr(e).forEach(c=>{c.ta=(c.ta||0)+1});if(cr(e).length)log("The Bull Demon King's fury surges: their army members get +1/+0 until end of turn.")}
  if(e.bf.some(x=>x.id=='ifan')){const L=cr(p).filter(x=>D[x.id][1]>=2).sort((a,b)=>D[b.id][1]-D[a.id][1]||pwr(b)-pwr(a));if(L.length){log('The Iron Fan gusts: '+D[L[0].id][0]+' is blown back to your hand.');bounce(L[0])}}}

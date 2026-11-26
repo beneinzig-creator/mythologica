@@ -3,7 +3,7 @@ const html=fs.readFileSync(process.argv[2],'utf8'),N=+process.argv[3]||200;
 let src=html.match(/<script>([\s\S]*)<\/script>/)[1];
 src=src.replace("const wait=ms=>new Promise(r=>setTimeout(r,ms));","const wait=ms=>Promise.resolve();").replace("const reveal=c=>new Promise(res=>{G.rv={c,res};render()});","const reveal=c=>Promise.resolve(1);");
 if(process.env.TRACE)src=src.replace("const log=m=>{G.log.push(m);","const log=m=>{console.log('   | '+m);G.log.push(m);");
-const ctx=vm.createContext({console,setTimeout:()=>{},requestAnimationFrame:()=>{},document:{getElementById:()=>({}),querySelector:()=>null}});
+const ctx=vm.createContext({console,setTimeout:()=>{},requestAnimationFrame:()=>{},document:{getElementById:()=>({}),querySelector:()=>null,querySelectorAll:()=>[],addEventListener:()=>{},createElement:()=>({style:{},classList:{add(){},remove(){}},appendChild(){},setAttribute(){}}),head:{appendChild(){}},body:{appendChild(){},classList:{add(){},remove(){},contains:()=>false}},documentElement:{classList:{add(){},remove(){},contains:()=>false},style:{setProperty(){}}}}});
 vm.runInContext(src,ctx);vm.runInContext(fs.readFileSync(path.join(__dirname,'bot.js'),'utf8'),ctx);
 if(process.env.CHAR)vm.runInContext("setChar('"+process.env.CHAR+"')",ctx);if(process.env.REALM)vm.runInContext("EN.length=0;EN.push(...CHARS['"+process.env.REALM+"'].en)",ctx);
 if(process.env.PATCH)vm.runInContext(process.env.PATCH,ctx);if(process.env.BANKFILE){const st=process.env.BANK;const B=fs.readFileSync(process.env.BANKFILE,'utf8').split('\n').filter(Boolean).map(l=>JSON.parse(l)).filter(b=>st=='boss'?b.boss:(!b.boss&&b.fi>=1&&b.fi<=3)).map(b=>({fi:b.fi,life:b.life,max:b.max,recs:b.recs}));

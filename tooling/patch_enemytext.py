@@ -251,10 +251,10 @@ bhrn|Charge. Can only attack. +2/+0 while the Bull Demon King is the white bull.
 bdk|Resilient. At 6 rage it becomes the white bull: +4/+4 and Bulldoze. If the rage is already full, it arrives as the bull.
 bfury|Ward. When one of your army members survives combat damage, rage grows by 1. At 6 rage, the Bull Demon King becomes the white bull. At the start of your turn, your army members get +1/+0 until end of turn.
 pdis|At the start of your turn, +0/+1 permanently (at most +3).
-pfin|Can only defend. Phalanx. While it lives, the palm's limit is one card lower.
+pfin|Can only defend. Phalanx. While it lives, each card your opponent plays after the third in a turn costs 1 more. At the start of your turn, this Finger takes 1 damage.
 pgrd|While it lives, opposing army members that cost 4 or more are sealed and can't attack.
 plm|Can only defend. Resilient. At the start of your turn, if all opposing army members are tapped, your opponent takes 3 damage.
-palm|Ward. Each card your opponent plays after the third in a turn costs 2 more (each Finger of the Mountain lowers the limit by 1). At the start of your turn, they take 1 damage per Finger beyond the first.
+palm|Ward. Each card your opponent plays after the third in a turn costs 1 more, plus 1 more for each Finger of the Mountain (at most 3 more). At the start of your turn, your opponent takes 1 damage for each Finger beyond the first.
 """)
 
 # ---------------- Thoth's road ----------------

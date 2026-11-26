@@ -146,9 +146,9 @@ F('bdk',{c:5,a:6,h:7,f:'z',tag:'bull',t:'Resilient. At 6 rage he becomes a white
 DK('The Bull Demon King',{d:'bgrd:5,bcap:5,bhrn:3,bdk'});
 
 /* ---------- The Buddha's Palm: LIMITS. However far you go, you are still inside the hand ---------- */
-F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the third in a turn costs 2 more. Each Finger of the Mountain lowers that limit by one (never below 1). The hand closes: at the start of their turn, you take 1 damage for each Finger of the Mountain they have beyond the first.',up:(s,o)=>{const n=fCnt(s,'pfin')-1;if(n>0)fHurt(o,n,'The hand closes around you. ')}});
+F('palm',{t:'Ward. Every step outward is still inside the hand: each card you play after the third in a turn costs 1 more, plus 1 more for each Finger of the Mountain (at most 3 more). The hand closes: at the start of their turn, you take 1 damage for each Finger of the Mountain beyond the first.',up:(s,o)=>{const n=fCnt(s,'pfin')-1;if(n>0)fHurt(o,n,'The hand closes around you. ')}});
 F('pdis',{c:1,a:1,h:3,f:'',tag:'palm',t:'He sat so still he became the mountain: at the start of their turn, +0/+1 permanently (at most +3).',up:(s,o,c)=>{if((c.grow||0)<3){c.grow=(c.grow||0)+1;c.pd++}}});
-F('pfin',{c:2,a:2,h:5,f:'kp',tag:'palm',t:'Can only defend. Phalanx. One of the five pillars at the end of the world: while it lives, the palm\'s limit is one card lower.'});
+F('pfin',{c:2,a:2,h:6,f:'kp',tag:'palm',t:'Can only defend. Phalanx. One of the five pillars at the end of the world: while it lives, the cards you play after the third in a turn cost 1 more. The Sage writes his name on it: at the start of their turn, it takes 1 damage.',up:(s,o,c)=>{c.dmg+=1}});
 F('pgrd',{c:3,a:3,h:6,f:'',tag:'palm',t:'The talisman, om mani padme hum: while it lives, your army members that cost 4 or more are sealed and can\'t attack.',
  oup:(s,o)=>{cr(o).forEach(x=>{if(D[x.id][1]>=4)fFlagOn(x,'k','seal')})}});
 {const _u=egUp;egUp=function(s,o){try{if(G&&G.e&&s===G.p&&!G.e.bf.some(x=>x.id=='pgrd'))cr(s).forEach(x=>fFlagOff(x,'seal'))}catch(e){}return _u.apply(this,arguments)}}
