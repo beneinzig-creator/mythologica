@@ -6148,6 +6148,21 @@ html.ph #app:has(.kc) .fld.fp{overflow-y:auto;overflow-x:hidden;align-content:fl
   if(dx)t.style.setProperty('transform','translateX(calc(-50% + '+(dx/sc).toFixed(1)+'px))','important')}
  document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
 })();
+
+/* ===== patch_libloader: Ouroboros loader until a card library is fully painted ===== */
+(function(){const LIBSEL='.ov,.dcards,.kc',CAP=20000;let wait=0;
+ const _show=ldShow;ldShow=function(on){if(!on&&wait>0)return;return _show(on)};
+ function gate(root){const S=new Set();
+  root.querySelectorAll('.cd.af').forEach(cd=>{if(cd.closest('.tip,#insp,#tip')||!cd.closest(LIBSEL))return;ldCardUrls(cd).forEach(u=>{if(u&&!LD.ok.has(u)&&!LD.bad.has(u))S.add(u)})});
+  if(!S.size)return;wait++;let done=false;const tm=setTimeout(()=>{if(!done)_show(true)},140);
+  Promise.race([Promise.all([...S].map(u=>ldUrl(u))),new Promise(r=>setTimeout(r,CAP))]).then(()=>{done=true;clearTimeout(tm);wait--;
+   if(wait<=0){wait=0;if(!document.querySelector('.fxin.ldw')&&!ldUrls().length)_show(false);else ldGate(false)}})}
+ let pend=null;
+ try{new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes){if(n.nodeType!=1)continue;
+   const hit=(n.matches&&n.matches('.cd.af'))||(n.querySelector&&n.querySelector('.cd.af'));if(!hit)continue;
+   const root=n.closest&&n.closest(LIBSEL)||n;if(!pend)pend=new Set();pend.add(root)}
+  if(pend){const P=pend;pend=null;P.forEach(r=>{try{if(r.isConnected)gate(r)}catch(e){}})}}).observe(document.body,{childList:true,subtree:true})}catch(e){}
+})();
 showChars();
 </script>
 
