@@ -55,6 +55,14 @@ html .ov.sbx .sbxd .lib>div.sbw>.cd{zoom:.7!important}
 .sbx .sbres.w{border-color:#8ad86a;color:#d8f7c8}
 .sbx .sbres.l{border-color:#d86a5a;color:#f7d0c8}
 .ov.sbxo{z-index:120}
+.ov.sbxv{z-index:120}
+.sbx .sbxd>.sbxph{position:relative;z-index:20}
+.sbx .sbxdh{display:flex;align-items:center;gap:10px}
+.sbx .sbxlw{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sbx .sbxlw small{opacity:.7;letter-spacing:.08em;font-size:10px;font-family:var(--fb);font-weight:400}
+html .sbx .sbxlw .pile.dlib{width:40px!important;height:56px!important;margin:0!important;display:grid}
+html .sbx .sbxlw .pile.dlib .gyn{font-size:11px;right:auto;bottom:3px}
+html .sbx .sbxlw .tip{left:0;right:auto;top:calc(100% + 8px);bottom:auto;transform:none;white-space:normal;width:270px;line-height:1.5;z-index:60;font-family:var(--fb);font-weight:400;letter-spacing:0;text-align:left}
 .ov.sbxo .ovb{zoom:1;max-height:calc(var(--vh,100vh) - 24px);overflow-y:auto;width:min(1200px,96vw);padding:12px;box-sizing:border-box;background:#0b1820ee;border:1px solid #d8b45a66;border-radius:14px;gap:10px;justify-content:flex-start}
 .sbxo .sbg{width:100%}
 .sbxo .sbg h3{font-family:var(--fd);color:var(--gold);margin:8px 0 2px;font-size:19px;letter-spacing:.05em}
@@ -75,16 +83,16 @@ _JSSBX = r"""
 /* ===== patch_sandbox: Sandbox mode (hand-built decks vs any opponent; separate from normal runs) ===== */
 const SBXK='mythologica_sandbox_v1',SBXMIN=5,SBXPOST=['kleos','victory','a3front','lost'];
 const SBXRN={ody:'Greek realm',odin:'Norse realm',wukong:'Chinese realm',thoth:'Egyptian realm'};
-const SBX={on:0,hero:'ody',decks:{},pool:10,foe:'',fi:0,loaded:'',view:'',up:-1,ren:'',del:'',clr:0,msg:'',res:null};
+const SBX={on:0,hero:'ody',decks:{},pool:10,foe:'',fi:0,loaded:'',sort:'rar',view:'',up:-1,ren:'',del:'',clr:0,msg:'',res:null};
 const sbxH=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const sbxClone=o=>JSON.parse(JSON.stringify(o));
 function sbxRead(){let o=null;try{o=JSON.parse(localStorage.getItem(SBXK))}catch(e){}if(!o||o.v!=1)o={v:1,lib:[],cur:null};if(!Array.isArray(o.lib))o.lib=[];
  o.lib=o.lib.filter(d=>d&&d.id&&CHARS[d.hero]&&Array.isArray(d.recs));o.lib.forEach(d=>{d.recs=d.recs.filter(r=>r&&D[r.id])});return o}
 function sbxWrite(o){try{localStorage.setItem(SBXK,JSON.stringify(o));return 1}catch(e){return 0}}
-function sbxStore(){const o=sbxRead();o.cur={hero:SBX.hero,decks:SBX.decks,pool:SBX.pool,foe:SBX.foe,fi:SBX.fi,loaded:SBX.loaded};return sbxWrite(o)}
+function sbxStore(){const o=sbxRead();o.cur={hero:SBX.hero,decks:SBX.decks,pool:SBX.pool,foe:SBX.foe,fi:SBX.fi,loaded:SBX.loaded,sort:SBX.sort};return sbxWrite(o)}
 function sbxRestore(){const o=sbxRead(),c=o.cur;SBX.decks={};Object.keys(CHARS).forEach(k=>SBX.decks[k]=[]);
  if(c){if(CHARS[c.hero])SBX.hero=c.hero;Object.keys(CHARS).forEach(k=>{const d=c.decks&&c.decks[k];if(Array.isArray(d))SBX.decks[k]=d.filter(r=>r&&D[r.id])});
-  if(c.pool>=0)SBX.pool=c.pool|0;SBX.foe=c.foe||'';SBX.fi=c.fi|0;SBX.loaded=c.loaded||''}
+  if(c.pool>=0)SBX.pool=c.pool|0;SBX.foe=c.foe||'';SBX.fi=c.fi|0;SBX.loaded=c.loaded||'';SBX.sort=c.sort=='cost'?'cost':'rar'}
  if(SBX.loaded&&!o.lib.some(d=>d.id==SBX.loaded))SBX.loaded=''}
 const sbxDeck=()=>SBX.decks[SBX.hero]||(SBX.decks[SBX.hero]=[]);
 const sbxSpent=recs=>(recs||[]).reduce((n,r)=>n+(r.k|0),0);
@@ -125,7 +133,7 @@ function sbxStartFight(){const F=sbxFoe(SBX.foe),h=SBX.hero,recs=sbxDeck();if(!F
  const fi=Math.max(0,Math.min(FLOORS-1,SBX.fi|0));
  if(F.t=='Regular'){G.fi=fi;G.rt[fi]=F.i}else if(F.t=='Elite'){G.fi=fi;G.elt=F.i+1}else{G.fi=FLOORS;G.boss=1;G.bi=F.i;if(F.t=='The Beast')G.fin=1}
  SBX.res=null;SBX.view='';sbxStore();try{document.querySelectorAll('.fxrays').forEach(o=>{try{gsap.killTweensOf(o);gsap.killTweensOf(o.querySelectorAll('*'))}catch(e){}o.remove()})}catch(e){}fight();return 1}
-function sbxScreen(){G={phase:'sbx',sbx:1,lib:0,log:[],fi:0,sel:[],tg:{},p:side([],20)};try{setChar(SBX.hero)}catch(e){}
+function sbxScreen(){G={phase:'sbx',sbx:1,ch:SBX.hero,lib:0,log:[],fi:0,sel:[],tg:{},p:side([],20)};try{setChar(SBX.hero)}catch(e){}
  try{document.documentElement.classList.remove('fxhold','phlost')}catch(e){}}
 function sbxFinish(){const won=G.phase!='lost',nm=(G.e&&G.e.nm)||'';
  SBX.res={won,nm,turn:G.turn|0,life:Math.max(0,(G.p&&G.p.life)|0),max:(G.p&&G.p.max)|0};
@@ -137,9 +145,12 @@ function sbxOpen(){SBX.on=1;sbxRestore();SBX.view='';SBX.up=-1;SBX.ren='';SBX.de
 function sbxExit(){SBX.on=0;SBX.view='';showChars()}
 function sbxLeaveFight(){SBX.res={left:1,nm:(G&&G.e&&G.e.nm)||''};sbxScreen();render()}
 /* ---- the screen ---- */
-function sbxPoolCards(h){const C=CHARS[h];return [...new Set([...C.staples,...C.pool])].filter(id=>D[id]).map(id=>mk(id)).sort((a,b)=>(RSO[RAR[a.id]]||0)-(RSO[RAR[b.id]]||0)||D[a.id][1]-D[b.id][1]||(TAG[a.id]||'~').localeCompare(TAG[b.id]||'~')||D[a.id][0].localeCompare(D[b.id][0]))}
+function sbxPoolCards(h){const C=CHARS[h];return [...new Set([...C.staples,...C.pool])].filter(id=>D[id]).map(id=>mk(id)).sort(sbxCmp)}
+/* sort order for both panes: by rarity (then cost), or by cost (then rarity); SBX.sort = 'rar' | 'cost' */
+function sbxCmp(a,b){const r=(RSO[RAR[a.id]]||0)-(RSO[RAR[b.id]]||0),c=cost(a)-cost(b),t=(TAG[a.id]||'~').localeCompare(TAG[b.id]||'~')||D[a.id][0].localeCompare(D[b.id][0]);return (SBX.sort=='cost'?(c||r):(r||c))||t}
+const sbxSortBtns=()=>`<span>Sort by: ${[['rar','Rarity'],['cost','Cost']].map(([k,l])=>`<button class="b gh${SBX.sort==k?' on':''}" data-sx="sort:${k}">${l}</button>`).join('')}</span>`;
 function sbxGroups(recs){const M=new Map();recs.forEach((r,i)=>{const k=JSON.stringify(r);if(!M.has(k))M.set(k,{r,ix:[]});M.get(k).ix.push(i)});
- return [...M.values()].map(g=>(g.c=mk(g.r.id,g.r),g)).sort((a,b)=>rsort(a.c,b.c)||(a.r.k|0)-(b.r.k|0))}
+ return [...M.values()].map(g=>(g.c=mk(g.r.id,g.r),g)).sort((a,b)=>sbxCmp(a.c,b.c)||(a.r.k|0)-(b.r.k|0))}
 function sbxRender(){try{const R=document.documentElement.style;R.setProperty('--b1','#0b1820');R.setProperty('--b2','#1d4452')}catch(e){}
  const h=SBX.hero,C=CHARS[h],recs=sbxDeck(),spent=sbxSpent(recs),left=SBX.pool-spent,F=sbxFoe(SBX.foe),cnt={};recs.forEach(r=>cnt[r.id]=(cnt[r.id]||0)+1);
  const pool=sbxPoolCards(h),grp=sbxGroups(recs),ld=SBX.loaded&&sbxRead().lib.find(d=>d.id==SBX.loaded);
@@ -154,8 +165,8 @@ function sbxRender(){try{const R=document.documentElement.style;R.setProperty('-
  const clr=SBX.clr?`<span>Remove all ${recs.length} cards? <button class="b gh" data-sx="clryes">Yes</button><button class="b gh" data-sx="clrno">No</button></span>`:`<span><button class="b gh" data-sx="staples">Add starting cards</button>${recs.length?'<button class="b gh" data-sx="clr">Clear deck</button>':''}</span>`;
  let html=`<div class="ov ovlib sbx"><div class="ovb sbxb"><div class="sbxt"><div class="ovt">Sandbox</div><div class="sbxh">${heroes}</div><button class="b gh" data-sx="home">Back to home</button></div>
 <div class="sbxs">Build any deck and fight any opponent. Nothing here touches your saved run. A normal run starts with ${C.staples.length+ROUNDS} cards.</div>${res}${bar}${bar2}
-<div class="sbxm"><div class="sbxp"><div class="sbxph"><span>${sbxH(C.n)}'s card pool (${pool.length}) · click a card to add it</span></div><div class="lib">${pcards}</div></div>
-<div class="sbxd"><div class="sbxph"><span>Your deck: ${recs.length} card${recs.length==1?'':'s'}</span>${clr}</div><div class="lib">${dcards||'<div class="dsub">Click cards on the left to add them.</div>'}</div></div></div></div></div>`;
+<div class="sbxm"><div class="sbxp"><div class="sbxph"><span>${sbxH(C.n)}'s card pool (${pool.length}) · click a card to add it</span>${sbxSortBtns()}</div><div class="lib">${pcards}</div></div>
+<div class="sbxd"><div class="sbxph"><span class="sbxdh"><span class="sbxlw"><span class="cb pile mine dlib" data-sx="view:deck" title=""><span class="gyn">${recs.length}</span><span class="tip">${libStats(recs.map(r=>mk(r.id,r)))}</span></span><small>Library</small></span>Your deck: ${recs.length} card${recs.length==1?'':'s'}</span>${clr}</div><div class="lib">${dcards||'<div class="dsub">Click cards on the left to add them.</div>'}</div></div></div></div></div>`;
  html+=sbxOverlay();
  document.getElementById('app').innerHTML=html;sbxFit()}
 /* the card pool shows exactly SBXCOLS cards per row, whatever the window width */
@@ -166,6 +177,8 @@ if(typeof addEventListener=='function')addEventListener('resize',()=>{if(SBX.on&
 function sbxOverlay(){const h=SBX.hero,recs=sbxDeck();
  if(SBX.view=='upg'&&recs[SBX.up]){const r=recs[SBX.up],X=mk(r.id,r),O=sbxOpts(r),left=sbxLeft();
   return `<div class="ov cfm sbxu" style="z-index:120"><div class="ovb"><div class="ovt">Upgrade ${sbxH(D[X.id][0])}${r.k?' (+'+r.k+')':''}</div><div class="big">${card(X,'v:0')}</div><div class="ovt" style="font-size:18px">${left>0?`Choose an upgrade · ${left} point${left==1?'':'s'} left`:'No upgrade points left'}</div><div class="yn">${O.length?O.map(o=>`<button class="b" data-sx="uo:${o}"${left>0?'':' disabled'}>${koLabel(o,X)}</button>`).join(''):'<div class="dsub">This card has no available upgrade.</div>'}</div><div class="yn">${r.k?'<button class="b gh" data-sx="ureset">Undo this card\'s upgrades</button>':''}<button class="b" data-sx="uclose">Done</button></div></div></div>`}
+ if(SBX.view=='deck'){const have=recs.map(r=>mk(r.id,r)).sort(sbxCmp);
+  return `<div class="ov ovlib sbxv"><div class="ovb"><div class="ovt">Your deck: ${have.length} card${have.length==1?'':'s'}, sorted by ${SBX.sort=='cost'?'cost, then rarity':'rarity, then cost'}</div><div class="lib">${have.map(c=>card(c,'v:'+c.u)).join('')||'<p>No cards yet.</p>'}</div><button class="b" data-sx="view:">OK</button></div></div>`}
  if(SBX.view=='foe'){const L=sbxFoes(),grp=[...Object.keys(CHARS),'a3'];
   const sec=g=>{const its=L.filter(x=>x.realm==g),T=[...new Set(its.map(x=>x.t))];
    const ttl=g=='a3'?'The War in Heaven · Act III':`${SBXRN[g]||CHARS[g].n} (${CHARS[g].n}) · ${sbxAct(g,h)} for ${CHARS[h].n}`;
@@ -190,6 +203,7 @@ function sbxDo(a){const i=a.indexOf(':'),c=i<0?a:a.slice(0,i),v=i<0?'':a.slice(i
  else if(c=='uclose'){SBX.view='';SBX.up=-1}
  else if(c=='staples'){CHARS[SBX.hero].staples.forEach(id=>recs.push(sbxNew(id)))}
  else if(c=='clr')SBX.clr=1;else if(c=='clrno')SBX.clr=0;else if(c=='clryes'){recs.length=0;SBX.clr=0;SBX.loaded=''}
+ else if(c=='sort')SBX.sort=v=='cost'?'cost':'rar';
  else if(c=='fi')SBX.fi=Math.max(0,Math.min(3,+v|0));
  else if(c=='view'){SBX.view=v;SBX.ren='';SBX.del=''}
  else if(c=='foe'){if(sbxFoe(v)){SBX.foe=v;SBX.view=''}}
