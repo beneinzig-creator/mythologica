@@ -61,7 +61,7 @@ F('sh4',{c:3,a:3,h:2,f:'v',tag:'scyl',t:'Venomous. A head of the undying monster
 
 /* ---------- Charybdis: three times a day she swallows, and gives back ---------- */
 F('cdro',{c:1,a:1,h:2,f:'',tag:'chary',t:'Swallowed by the whirlpool: when it dies, she spits it back into their hand.',die:fBackToHand});
-F('clev',{c:3,a:4,h:4,f:'z',tag:'chary',t:'Resilient. The whirlpool\'s rhythm: +2/+2 on every third turn.',self:()=>(G.turn||0)%3==0?[2,2]:[0,0]});
+F('clev',{c:3,a:4,h:4,f:'z',tag:'chary',t:'Resilient. The whirlpool\'s rhythm: +2/+2 on every fourth turn.',self:()=>(G.turn||0)%4==0?[2,2]:[0,0]});
 F('eel',{c:2,a:2,h:3,f:'vk',tag:'siren',t:'Venomous. Can only defend: it waits among the rocks below the meadow of bones.'});
 /* Fáfnir: Sigurd strikes him from below, from a pit */
 FOE.fafn=Object.assign(FOE.fafn||{},{dmgIn:(t,n,src)=>G.cmb&&G.cmb.side=='e'&&src&&sideOf(src)===G.p?2:0});D.fafn[6]=(D.fafn[6]||'').replace(/\s*$/,'')+' Struck from below: takes 2 extra damage from army members that block him.';
@@ -79,6 +79,8 @@ F('titan',{t:'Ruthless. Opportunist. A heavy sleeper: skips its next untap after
 /* ---------- Polyphemus: TRAPPED. The boulder seals the cave; you escape beneath the sheep ---------- */
 /* the boulder now lives on Polyphemus himself: while he is untapped (inside the cave), your army's combat damage can't reach them */
 F('mouth',{t:'Army members with power 1 or less can\'t attack.'});
+/* Hector leads from the front (2026-11-27): he attacks each turn if able, so the Trojan wall can't stall the fight forever */
+FOE.hector=Object.assign(FOE.hector||{},{up:(s,o,c)=>{c.forced=1}});
 F('poly',{t:'Attacks each turn if able. The boulder: while it is untapped, opposing army members deal no combat damage to you.'});
 {const _r=resolve;resolve=function(){let L=null;try{const e=G.e;if(G.cmb&&G.cmb.side=='p'&&e&&e.bf.some(x=>x.id=='poly'&&!x.tap))L=e.life}catch(e){}const r=_r.apply(this,arguments);try{if(L!=null&&G.e&&G.e.life<L){G.e.life=L;log('The boulder holds: while Polyphemus is in the cave, your blows cannot reach them.')}}catch(e){}return r}}
 F('sheep',{c:1,a:1,h:3,f:'',tag:'cyc',t:'His flock: when it dies, its controller gains 2 life.',die:s=>{s.life+=2}});

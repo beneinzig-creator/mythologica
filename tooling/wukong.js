@@ -95,7 +95,7 @@ function wkMom(p){cr(p).forEach(c=>{if(c.id=='wacro')c.ta++;if(c.id=='wking'){c.
 function wkPlay(p,c){p.cp=(p.cp||0)+1;p.pid=p.lid||'';p.lid=c.id;p.pl=p.lt||'';let t=WT[c.id];if(t==='any'){const oo=['st','tr','lp'].filter(x=>x!==p.lt);t=oo.find(x=>!(p.tys&&p.tys[x]))||oo[0]}
  if(D[c.id][2]=='C')p.ep=G.turn;
  if(t){p.tys=p.tys||{};p.tys[t]=1;if(t!==p.lt){p.mo=(p.mo||0)+1;wkMom(p)}p.lt=t}
- if(p.cp===3&&p.bf.some(x=>x.id=='wtang'))draw(p,1);
+ if(p.cp===2&&p.bf.some(x=>x.id=='wtang'))draw(p,1);
  if(p.cp%3===0&&p.bf.some(x=>x.id=='wruyi')){const d=Math.max(1,p.mo||0);G.e.life-=d;log('The Ruyi Jingu Bang strikes for '+d+'.')}}
 function wkUp(s){if(s!==G.p)return;s.cp=0;s.mo=0;s.lt='';s.pl='';s.pid='';s.lid='';s.tys={};s.mir=0;cr(s).forEach(c=>{c.ub=0});if(s.bf.some(x=>x.id=='wtree')){s.life+=2;wkShuffle(s,'wpeach',1);log('The Peach Tree blooms: you gain 2 life.')}}
 function wkCopy(t,src){const n=mk(src.id);t.id=n.id;t.a=n.a+(t.rec?t.rec.a:0);t.d=n.d+(t.rec?t.rec.d:0);t.f=n.f;t.pa=t.pd=t.ta=t.td=0;t.vn=0;t.def=has(t,'k')?1:0}

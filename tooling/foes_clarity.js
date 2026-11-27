@@ -5,7 +5,7 @@ const TRC={
  corp:s=>s.sailed?'Naglfar has sailed.':'Nails: '+(s.nails||0)+' of 8.',
  serk:s=>'Venom: '+Math.min(5,s.venom||0)+' of 5.',
  bone:(s,o)=>'Your guilt: '+Math.min(2,o.guilt||0)+' of 2.',
- bfury:s=>s.white?'The white bull is loose.':'Rage: '+Math.min(6,s.rage||0)+' of 6.',
+ bfury:s=>s.white?'The white bull is loose.':'Rage: '+Math.min(4,s.rage||0)+' of 4.',
  xbab:s=>'Tower: '+(s.tower||0)+' floors.',
  hdead:s=>'Blood in the pit: '+Math.min(4,s.blood||0)+' of 4.',
  xmast:s=>'Ledger: '+(s.ledger||0)+' points (charges '+Math.floor((s.ledger||0)/(s.bf.some(x=>x.id=='xmastg')?2:3))+' life).',

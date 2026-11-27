@@ -81,8 +81,8 @@ F('curse2',{c:2,t:'Target army member gets -2/-2, or -3/-3 if you hold a cursed 
 DK('The Priests of Heka',{d:'hekp:4,snake:4,hekmag:2,hekhigh,curse2:3',hint:'They curse the cards in your hand by name, and cursed cards hurt you to play'});
 
 /* ---------- Ammit: the weighing of the heart ---------- */
-const fFeather=s=>Math.max(2,4-fCnt(s,'hguard2')-(s.light||0));
-F('ammt',{t:'Ward. The weighing: at the start of their turn, your army member with the most power is weighed against the feather (power 4, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it: it is gone for good.',
+const fFeather=s=>Math.max(2,5-fCnt(s,'hguard2')-(s.light||0));
+F('ammt',{t:'Ward. The weighing: at the start of their turn, your army member with the most power is weighed against the feather (power 5, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it: it is gone for good.',
  up:(s,o)=>{const t=cr(o).filter(x=>pw(x)>=fFeather(s)).sort((a,b)=>pw(b)-pw(a))[0];if(!t)return;o.bf.splice(o.bf.indexOf(t),1);log('The heart of '+fNm(t)+' is heavier than the feather: Ammit eats it.');cr(s).filter(x=>x.id=='ammit').forEach(a=>{a.pa+=2;a.pd+=2});try{amFall()}catch(e){}}});
 F('ammit',{c:4,a:4,h:6,f:'k',tag:'ammit',t:'Can only defend: she waits by the scales. Every heart she eats gives her +2/+2.'});
 F('soulw',{c:1,a:2,h:2,f:'',tag:'ammit',t:'It knows the weight of its heart: when it dies, the feather becomes 1 lighter (at most 2 lighter).',die:s=>{if((s.light||0)<2){s.light=(s.light||0)+1;log('The feather grows lighter.')}}});

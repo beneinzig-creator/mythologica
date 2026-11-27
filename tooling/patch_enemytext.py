@@ -93,7 +93,7 @@ hmil|Phalanx. +1/+0 while you control Hector.
 hspr|Phalanx. Range. When it blocks, it deals 1 more damage.
 hgua|Phalanx. Your other Phalanx army members get +0/+1.
 hchar|Charge. When it enters, your opponent's weakest army member takes 1 damage.
-hector|When it enters, your other Phalanx army members get +1/+1 permanently.
+hector|Attacks each turn if able. When it enters, your other Phalanx army members get +1/+1 permanently.
 priam|When it enters, gain 4 life.
 sh1|Ruthless. When it dies, it is shuffled back into your deck.
 sh2|Ruthless. +1/+0 for each other Head.
@@ -104,7 +104,7 @@ curse|Target army member gets -2/-2.
 cdro|When it dies, it returns to your hand.
 cspa|When it enters, tap target opposing army member.
 ceel|When it enters, draw a card.
-clev|Resilient. +2/+2 on every third turn.
+clev|Resilient. +2/+2 on every fourth turn.
 chary|When it enters, tap all opposing army members.
 undertow|Tap target opposing army member.
 honey|Tap target opposing army member; it doesn't untap next turn.
@@ -193,7 +193,7 @@ hmead|Gain 4 life. Restore 2 health to each of your army members.
 # ---------------- Wukong's road ----------------
 _t(r"""
 spd1|Flying. When it enters, put 1 silk on your opponent's strongest army member.
-spd2|Ward. At the start of your turn, put 2 silk on the opposing army member with the most power that is not cocooned.
+spd2|Ward. At the start of your turn, put 1 silk on the opposing army member with the most power that is not cocooned.
 spd3|Ruthless. Your army members get +1/+0 for each cocooned opposing army member (at most +2).
 spdq|At the start of your turn, it eats a cocooned opposing army member and gets +2/+2.
 cocn|Target opposing army member gets 3 silk and is cocooned: it stays tapped while it has 3 silk.
@@ -238,7 +238,7 @@ iwnd|Flying. When it dies, your opponent's newest army member is blown away if i
 imaid|While it lives, the fan also blows away army members that cost 2.
 iguard|Phalanx. While it lives, army members the fan blows away cost 1 more to play again.
 iprin|Resilient. When it enters, it blows away your opponent's two most expensive army members that cost 3 or more.
-ifan|Ward. On your first, third, fifth… turn, the fan blows away your opponent's most expensive army member that costs 3 or more: to the top of their deck, or three cards down if it costs 4 or more.
+ifan|Ward. On your first, third, fifth… turn, the fan blows away your opponent's most expensive army member that costs 4 or more: three cards down in their deck.
 mmon|When it enters, it copies the power and health of your opponent's newest army member.
 mape|Opportunist. Whenever your opponent casts a spell, it gets +1/+1 permanently.
 mear|When it enters, steal the top 2 cards of your opponent's deck.
@@ -248,8 +248,8 @@ mtrump|Ward. At the start of your turn, take the top card of your opponent's dec
 bgrd|When it is damaged in combat and survives, it adds 2 rage instead of 1.
 bcap|Ruthless. Bulldoze. +1/+0 for every 2 rage (at most +3).
 bhrn|Charge. Can only attack. +2/+0 while the Bull Demon King is the white bull.
-bdk|Resilient. At 6 rage it becomes the white bull: +4/+4 and Bulldoze. If the rage is already full, it arrives as the bull.
-bfury|Ward. When one of your army members survives combat damage, rage grows by 1. At 6 rage, the Bull Demon King becomes the white bull. At the start of your turn, your army members get +1/+0 until end of turn.
+bdk|Resilient. At 4 rage it becomes the white bull: +4/+4 and Bulldoze. If the rage is already full, it arrives as the bull.
+bfury|Ward. When one of your army members survives combat damage, rage grows by 1. At 4 rage, the Bull Demon King becomes the white bull. At the start of your turn, your army members get +1/+0 until end of turn.
 pdis|At the start of your turn, +0/+1 permanently (at most +3).
 pfin|Can only defend. While it lives, the Five-Finger Mountain's extra cost is 1 higher. At the start of your turn, this Finger takes 1 damage.
 pgrd|While it lives, opposing army members that cost 4 or more are sealed and can't attack, and the Five-Finger Mountain's extra cost falls on the third card your opponent plays each turn instead of the fourth.
@@ -298,7 +298,7 @@ ammit|Can only defend. Each heart it eats gives it +2/+2.
 soulw|When it dies, the feather becomes 1 lighter (at most 2 lighter).
 unwor|When it deals combat damage to your opponent, their strongest army member gets +1/+0 permanently (a heavier heart).
 hguard2|The feather is 1 lighter while it lives.
-ammt|Ward. At the start of your turn, your opponent's army member with the most power is weighed against the feather (power 4, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it (gone for good).
+ammt|Ward. At the start of your turn, your opponent's army member with the most power is weighed against the feather (power 5, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it (gone for good).
 sphinx2|It can only defend until your opponent fails a riddle. Each failed riddle gives it +1/+1.
 sphg|Flying. Your other army members get +0/+1.
 sphs|Can only defend. Each riddle your opponent fails gives it +1/+1.

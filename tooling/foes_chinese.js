@@ -17,7 +17,7 @@ const fCocooned=o=>cr(o).filter(x=>x.coc);
 F('cweb',{t:'Ward. Silk: each silk on one of your army members gives it -1/-0 (never below 0 power); an army member holds at most 3. At 3 silk it is cocooned: it stays tapped. At the end of your turn, each of your army members with silk that did not attack sheds 1 silk.',
  oend:(s,o)=>{cr(o).forEach(x=>{if(x.silk&&x.lastAtk!==G.turn)fSilk(x,-1)})}});
 F('spd1',{c:1,a:2,h:1,f:'f',tag:'spider',t:'Flying. One of the brood: when it enters, it spins 1 silk onto your strongest army member.',etb:(s,o)=>{const t=fTop(cr(o));if(t){fSilk(t,1);log('A Spiderling spins silk onto '+fNm(t)+'.')}}});
-F('spd2',{c:2,a:3,h:4,f:'w',tag:'spider',t:'Ward. Silk from the navel: at the start of their turn, it spins 2 silk onto your army member with the most power that is not cocooned.',up:(s,o)=>{const t=cr(o).filter(x=>!x.coc).sort((a,b)=>pw(b)-pw(a))[0];if(t){fSilk(t,2);log('Silk pours over '+fNm(t)+'.')}}});
+F('spd2',{c:2,a:3,h:4,f:'w',tag:'spider',t:'Ward. Silk from the navel: at the start of their turn, it spins 1 silk onto your army member with the most power that is not cocooned.',up:(s,o)=>{const t=cr(o).filter(x=>!x.coc).sort((a,b)=>pw(b)-pw(a))[0];if(t){fSilk(t,1);log('Silk pours over '+fNm(t)+'.')}}});
 F('spd3',{c:3,a:4,h:3,f:'r',tag:'spider',t:'Ruthless. Spins the cave shut: their army members get +1/+0 for each of your cocooned army members (at most +2).',aura:(x,c)=>[Math.min(2,fCocooned(oppOf(sideOf(c))).length),0],self:c=>[Math.min(2,fCocooned(oppOf(sideOf(c))).length),0]});
 F('spdq',{c:4,a:4,h:4,f:'',tag:'spider',t:'The eldest sister: at the start of their turn she eats one of your cocooned army members and gets +2/+2. They meant to steam the monk and eat him.',
  up:(s,o,c)=>{const t=fTop(fCocooned(o));if(t){fDestroy(t);c.pa+=2;c.pd+=2;log('The Spider-Spirit Matron feeds on '+fNm(t)+'.')}}});
@@ -113,8 +113,8 @@ DK('Erlang Shen, the Three-Eyed',{d:'eplum:5,ehnd:4,eerl:2,esw:3',hint:'Every ar
 /* ---------- Princess Iron Fan: BLOWN AWAY BY WEIGHT. Light things blow a little way; heavy ones 84,000 li ---------- */
 function fBlow(o,t,why){if(!t||!o.bf.includes(t)||has(t,'w'))return;o.bf.splice(o.bf.indexOf(t),1);Object.assign(t,{dmg:0,tap:0,def:0,att:0,sw:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0,forced:0});
  if(G.e.bf.some(x=>x.id=='iguard'))t.disc=(t.disc||0)-1;const far=D[t.id][1]>=4;if(far)o.deck.splice(Math.max(0,o.deck.length-3),0,t);else o.deck.push(t);try{amFall()}catch(e){}log((why||'The fan blows ')+fNm(t)+(far?' 84,000 li away: it lands three cards down in your deck.':' back onto the top of your deck.'))}
-F('ifan',{t:'Ward. Every other turn (on their first, third, fifth…), the fan blows away your most expensive army member that costs 3 or more: to the top of your deck, or, if it costs 4 or more, 84,000 li away: three cards down in your deck.',
- up:(s,o)=>{s.waves=(s.waves||0)+1;if(s.waves%2==0)return;const min=s.bf.some(x=>x.id=='imaid')?2:3;const t=cr(o).filter(x=>D[x.id][1]>=min&&!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)fBlow(o,t)}});
+F('ifan',{t:'Ward. Every other turn (on their first, third, fifth…), the fan blows away your most expensive army member that costs 4 or more, 84,000 li away: three cards down in your deck.',
+ up:(s,o)=>{s.waves=(s.waves||0)+1;if(s.waves%2==0)return;const min=s.bf.some(x=>x.id=='imaid')?3:4;const t=cr(o).filter(x=>D[x.id][1]>=min&&!has(x,'w')).sort((a,b)=>D[b.id][1]-D[a.id][1]||ev(b)-ev(a))[0];if(t)fBlow(o,t)}});
 F('iwnd',{c:1,a:2,h:1,f:'f',tag:'fan',t:'Flying. A breath of the fan: when it dies, your newest army member is blown away if it costs 2 or less.',die:(s,o)=>{const t=fNewest(o);if(t&&D[t.id][1]<=2)fBlow(o,t,'A last gust blows ')}});
 F('imaid',{c:2,a:2,h:3,f:'',tag:'fan',t:'She guards the fan\'s case: while she lives, the fan also blows away army members that cost 2.'});
 F('iguard',{c:3,a:3,h:4,f:'p',tag:'fan',t:'Phalanx. The false fan: while it lives, army members the fan blows away cost 1 more to play again.'});
@@ -136,13 +136,13 @@ DK('The Six-Eared Macaque',{d:'mmon:5,mape:4,mear:2,mac6,mecho:2'});
 
 /* ---------- The Bull Demon King: RAGE FROM BEING HIT. Every wound makes the bull angrier ---------- */
 function fWhite(c){if(c.white)return;c.white=1;c.pa+=4;c.pd+=4;fKey(c,'b');log('The Bull Demon King becomes a white bull a thousand zhang long!')}
-const fRage=(s,n)=>{s.rage=(s.rage||0)+n;log('The Bull Demon King\'s rage grows ('+Math.min(6,s.rage)+' of 6).');if(s.rage>=6)cr(s).filter(x=>x.id=='bdk').forEach(fWhite)};
-F('bfury',{t:'Ward. Rage: whenever one of their army members is damaged in combat and survives, his rage grows. At 6 rage, the Bull Demon King becomes the white bull. At the start of their turn, each of their army members gets +1/+0 until end of turn.',
+const fRage=(s,n)=>{s.rage=(s.rage||0)+n;log('The Bull Demon King\'s rage grows ('+Math.min(4,s.rage)+' of 4).');if(s.rage>=4)cr(s).filter(x=>x.id=='bdk').forEach(fWhite)};
+F('bfury',{t:'Ward. Rage: whenever one of their army members is damaged in combat and survives, his rage grows. At 4 rage, the Bull Demon King becomes the white bull. At the start of their turn, each of their army members gets +1/+0 until end of turn.',
  post:(s,o,c,hurt)=>{const n=hurt.length+hurt.filter(x=>x.id=='bgrd').length;if(n)fRage(s,n)}});
 F('bgrd',{c:2,a:2,h:4,f:'',tag:'bull',t:'A temper like dry grass: when it is damaged in combat and survives, it adds 2 rage instead of 1.'});
 F('bcap',{c:3,a:4,h:4,f:'rb',tag:'bull',t:'Ruthless. Bulldoze. Gets +1/+0 for every 2 rage (at most +3).',self:c=>[Math.min(3,Math.floor((sideOf(c).rage||0)/2)),0]});
 F('bhrn',{c:4,a:5,h:4,f:'hn',tag:'bull',t:'Charge. Can only attack. Gets +2/+0 while the Bull Demon King is the white bull.',self:c=>[sideOf(c).bf.some(x=>x.white)?2:0,0]});
-F('bdk',{c:5,a:6,h:7,f:'z',tag:'bull',t:'Resilient. At 6 rage he becomes a white bull a thousand zhang long: +4/+4 and Bulldoze. If he arrives after the rage is full, he arrives as the bull.',etb:(s,o,c)=>{if((s.rage||0)>=6)fWhite(c)}});
+F('bdk',{c:5,a:6,h:7,f:'z',tag:'bull',t:'Resilient. At 4 rage he becomes a white bull a thousand zhang long: +4/+4 and Bulldoze. If he arrives after the rage is full, he arrives as the bull.',etb:(s,o,c)=>{if((s.rage||0)>=4)fWhite(c)}});
 DK('The Bull Demon King',{d:'bgrd:5,bcap:5,bhrn:3,bdk'});
 
 /* ---------- The Buddha's Palm: LIMITS. However far you go, you are still inside the hand ---------- */

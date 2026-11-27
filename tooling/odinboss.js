@@ -1,7 +1,7 @@
 /* ===== v80: Odin's bosses: Jormungandr, the Wild Hunt, Hrungnir ===== */
 const HUNT=['hhnd','hrdr','hwld','hmst'];
 let QK=[];
-const duelOn=()=>!!(G&&G.e&&G.e.bf&&G.e.bf.some(x=>x.id=='holm'));
+const duelOn=()=>!!(G&&G.e&&G.e.bf&&G.e.bf.some(x=>x.id=='holm')&&(G.turn||0)<=8);
 const AM=()=>duelOn()?2:5;
 const qB=(t,src)=>(t&&t.qy&&src&&HUNT.includes(src.id))?3:0;
 const RWORD=()=>((G&&G.ch)||'ody')=='odin'?'the Nine Worlds':'the strait';
@@ -28,7 +28,7 @@ hrung:['Hrungnir, the Stone-Hearted',4,'C',5,6,'z','Stone shield: takes 2 less c
 hmokk:['Mökkurkálfi, the Clay Giant',4,'C',3,8,'k','Clay: takes 2 extra combat damage. It can only defend.','🏺','A',2],
 hwhet:['Whetstone',3,'S',0,0,'','Deal 4 damage to target army member (more in later fights).','🪨','A'],
 hmead:["Giant's Mead",2,'S',0,0,'','Gain 4 life. Restore 2 health to each of your army members.','🍺','A'],
-holm:['The Holmgang',0,'E',0,0,'w','Ward. A duel: each side may have only 2 army members in play (one to attack, one to defend), and may attack with only one and block with only one.','⚔️','A']
+holm:['The Holmgang',0,'E',0,0,'w','Ward. A duel: each side may have only 2 army members in play (one to attack, one to defend), and may attack with only one and block with only one. The duel ends after your 8th turn.','⚔️','A']
 });
 Object.assign(LORE,{jsnk:'Child of the serpent',jcrw:'Sea beast',jorm:'The World Serpent',ouro:'Boss trump',hhnd:'Hound of the Hunt',hrdr:'Pale rider',hwld:'Rider of the Hunt',hmst:'Leader of the Wild Hunt',hunt:'Boss trump',htrl:'Hill giant',hgrt:'Hill giant',hrung:'Strongest of the giants',hmokk:'Giant of clay',holm:'Boss trump'});
 Object.assign(SPA,{jbck:'gale',jgrp:'honey',jspt:'javel',hhrn:'honey',hhbt:'javel',hwhet:'hurl',hmead:'gift'});

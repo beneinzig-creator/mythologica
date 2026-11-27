@@ -173,7 +173,7 @@ ammt:['Devour the Unworthy',1,'E',0,0,'w','Ward. Whenever one of your army membe
 sphx:['Riddle of the Sphinx',0,'E',0,0,'w','Ward. At the start of their turn, the Sphinx names a card type. At the end of your turn, if you did not play a card of that type, you lose 2 life.','🦁','W'],
 /* boss trumps */
 apep:['The Unmaking',0,'E',0,0,'w','Ward. At the start of its turn, your strongest army member is Erased: it loses its name, keywords and abilities.','🐍','B'],
-setx:['The Dismemberment',0,'E',0,0,'w','Ward. At the start of its turn, your strongest army member that costs 3 or more is Sundered: its Body and Spirit stay with you, but its Name is lost.','🌪️','R'],
+setx:['The Dismemberment',0,'E',0,0,'w','Ward. At the start of its turn, your strongest army member that costs 2 or more is Sundered: its Body and Spirit stay with you, but its Name is lost.','🌪️','R'],
 sekh:['The Eye of Ra',0,'E',0,0,'w','Ward. At the start of her turn, each of her army members gets +1/+0 permanently, and her rage burns her for 1 per army member she controls.','☀️','R'],
 /* tokens and army members */
 shabt:['Shabti',0,'C',1,1,'','Token.','🗿','N',1],
@@ -213,7 +213,7 @@ function egUp(s,o){const n=id=>s.bf.filter(x=>x.id==id).length;if(!o)return;
  if(n('heka')&&o.hand.length){const x=o.hand[Math.random()*o.hand.length|0];x.disc=(x.disc||0)-1;log('Execration: '+D[x.id][0]+' is cursed (costs 1 more).')}
  if(n('sphx')){const T=['C','S','A'];G.riddle=T[Math.random()*3|0];G.rdOk=0;log('The Sphinx asks its riddle: play '+({C:'an army member',S:'a spell',A:'an item or modifier'})[G.riddle]+' this turn, or lose 2 life.')}
  if(n('apep')){const t=cr(o).filter(x=>!x.id.startsWith('nm')).sort((a,b)=>ev(b)-ev(a))[0];if(t)thErase(t,s)}
- if(n('setx')){const t=cr(o).filter(x=>!x.part&&D[x.id][1]>=3).sort((a,b)=>ev(b)-ev(a))[0];if(t)thSunder(t,s)}
+ if(n('setx')){const t=cr(o).filter(x=>!x.part&&D[x.id][1]>=2).sort((a,b)=>ev(b)-ev(a))[0];if(t)thSunder(t,s)}
  if(n('sekh')){cr(s).forEach(c=>{c.pa++});const k=cr(s).length;if(k){s.life-=k;log('The Eye of Ra: her army grows fiercer, and her rage burns her for '+k+'.')}}}
 function egDie(s,c){/* anub: claiming the dead, foes_egypt.js */
  /* ammt: the weighing now lives in foes_egypt.js */

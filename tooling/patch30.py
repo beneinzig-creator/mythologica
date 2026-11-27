@@ -34,7 +34,7 @@ _b3("G.phase='enemy';e.mana=2;G.sel=[];","G.phase='enemy';e.mana=G.boss&&BOSS[G.
 _b3("try{menuVis()}catch(e){}try{persist()}catch(e){}}","try{menuVis()}catch(e){}try{persist()}catch(e){}try{vicVis()}catch(e){}}")
 _b3("if(b=='cont')return loadRun();","if(b=='vnew')return showChars();if(b=='cont')return loadRun();")
 _b3("function menuVis(){","""let EDI=0;
-const WFREE=0,WHIRL=3,WHDMG=2;
+const WFREE=0,WHIRL=4,WHDMG=2;
 const wallTax=n=>(G&&G.e&&G.e.bf&&G.e.bf.some(x=>x.id=='walls'))?Math.max(0,n-WFREE):0;
 function edict(){const p=G.p,L=cr(p);if(!L.length)return;const t=L.slice().sort((a,b)=>(th(a)-a.dmg)-(th(b)-b.dmg)||pwr(a)-pwr(b))[0];log('The Six Heads drag '+D[t.id][0]+' from your ranks!');offer(p,t);sweep()}
 function whirlpool(){G.p.life-=WHDMG;const L=[...cr(G.p),...cr(G.e)];log('The Whirlpool churns: you lose '+WHDMG+' life'+(L.length?', and every army member is dragged back to its owner\\'s hand!':'.'));L.forEach(c=>bounce(c))}
@@ -43,7 +43,7 @@ function whNote(){const w=G.e&&G.e.bf&&G.e.bf.find(x=>x.id=='whirl');if(!w)retur
 Object.assign(D,{
 walls:['Walls of Troy',0,'E',0,0,'w','Ward. Attacking costs 1 mana per army member you attack with.','🏛️','W'],
 heads:['The Six Heads',0,'E',0,0,'w',`Ward. Each time Scylla's army members deal damage to you, you must offer your weakest army member.`,'🐍','B'],
-whirl:['The Whirlpool',0,'E',0,0,'w',`Ward. At the start of every third turn of yours, you lose 2 life and all army members on both sides return to their owners' hands.`,'🌀','U'],
+whirl:['The Whirlpool',0,'E',0,0,'w',`Ward. At the start of every fourth turn of yours, you lose 2 life and all army members on both sides return to their owners' hands.`,'🌀','U'],
 hmil:['Trojan Militia',1,'C',1,3,'p','','🛡️','W',1],
 hspr:['Trojan Spearman',2,'C',2,4,'p','','🗡️','W',1],
 hgua:['Ilian Guard',3,'C',3,5,'p','','🏯','W',2],
