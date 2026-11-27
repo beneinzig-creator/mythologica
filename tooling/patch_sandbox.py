@@ -40,9 +40,9 @@ html .ov.sbx .ovb.sbxb{zoom:1;width:min(1500px,98vw);height:calc(var(--vh,100vh)
 .sbx .sbxph{font-family:var(--fd);font-weight:700;letter-spacing:.05em;padding:6px 10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between;border-bottom:1px solid #d8b45a33}
 html .ov.sbx .lib{flex:1 1 auto;max-height:none;max-width:none;min-height:0;overflow-y:auto;padding:12px 8px 16px;gap:10px 8px;align-content:flex-start}
 html .ov.sbx .lib>div.sbw>.cd{zoom:.8!important}
-html .ov.sbx .sbxp .lib>div.sbw>.cd{zoom:1.1!important}
+html .ov.sbx .sbxp .lib>div.sbw>.cd{zoom:var(--sbz,1.1)!important}
 html.ph .ov.sbx .lib>div.sbw>.cd{zoom:.6!important}
-html.ph .ov.sbx .sbxp .lib>div.sbw>.cd{zoom:.8!important}
+html.ph .ov.sbx .sbxp .lib>div.sbw>.cd{zoom:var(--sbz,.8)!important}
 .sbx .sbw{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px}
 .sbx .sbw .sbq{position:absolute;top:-6px;right:-6px;z-index:5;background:var(--gold);color:#1d150b;font:700 14px var(--fb);border-radius:12px;padding:1px 8px;box-shadow:0 0 6px #000}
 .sbx .sbw .sbk{position:absolute;top:-6px;left:-6px;z-index:5;background:#4a8a3a;color:#fff;font:700 13px var(--fb);border-radius:12px;padding:1px 7px;box-shadow:0 0 6px #000}
@@ -157,7 +157,12 @@ function sbxRender(){try{const R=document.documentElement.style;R.setProperty('-
 <div class="sbxm"><div class="sbxp"><div class="sbxph"><span>${sbxH(C.n)}'s card pool (${pool.length}) · click a card to add it</span></div><div class="lib">${pcards}</div></div>
 <div class="sbxd"><div class="sbxph"><span>Your deck: ${recs.length} card${recs.length==1?'':'s'}</span>${clr}</div><div class="lib">${dcards||'<div class="dsub">Click cards on the left to add them.</div>'}</div></div></div></div></div>`;
  html+=sbxOverlay();
- document.getElementById('app').innerHTML=html}
+ document.getElementById('app').innerHTML=html;sbxFit()}
+/* the card pool shows exactly SBXCOLS cards per row, whatever the window width */
+const SBXCOLS=5;
+function sbxFit(){try{const L=document.querySelector('.sbx .sbxp .lib'),c=L&&L.querySelector('.sbw>.cd');if(!c)return;const cs=getComputedStyle(L),gap=parseFloat(cs.columnGap)||8,w=L.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight)-gap*(SBXCOLS-1)-2;
+  const z=Math.max(.5,w/SBXCOLS/(c.offsetWidth||104));L.style.setProperty('--sbz',z.toFixed(4))}catch(e){}}
+if(typeof addEventListener=='function')addEventListener('resize',()=>{if(SBX.on&&G&&G.phase=='sbx')sbxFit()});
 function sbxOverlay(){const h=SBX.hero,recs=sbxDeck();
  if(SBX.view=='upg'&&recs[SBX.up]){const r=recs[SBX.up],X=mk(r.id,r),O=sbxOpts(r),left=sbxLeft();
   return `<div class="ov cfm sbxu" style="z-index:120"><div class="ovb"><div class="ovt">Upgrade ${sbxH(D[X.id][0])}${r.k?' (+'+r.k+')':''}</div><div class="big">${card(X,'v:0')}</div><div class="ovt" style="font-size:18px">${left>0?`Choose an upgrade · ${left} point${left==1?'':'s'} left`:'No upgrade points left'}</div><div class="yn">${O.length?O.map(o=>`<button class="b" data-sx="uo:${o}"${left>0?'':' disabled'}>${koLabel(o,X)}</button>`).join(''):'<div class="dsub">This card has no available upgrade.</div>'}</div><div class="yn">${r.k?'<button class="b gh" data-sx="ureset">Undo this card\'s upgrades</button>':''}<button class="b" data-sx="uclose">Done</button></div></div></div>`}
