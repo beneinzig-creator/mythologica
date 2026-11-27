@@ -152,6 +152,7 @@ exec(open(S+'patch_sandbox.py',encoding='utf-8').read())
 exec(open(S+'patch_juice.py',encoding='utf-8').read())
 exec(open(S+'patch_overheal.py',encoding='utf-8').read())
 exec(open(S+'patch_undocombat.py',encoding='utf-8').read())
+exec(open(S+'patch_anytype.py',encoding='utf-8').read())
 head=head.replace('.pn{font-size:15px','.hub{display:flex;flex-direction:column;gap:12px;align-items:stretch;min-width:280px}.hub .b{font-size:17px}.b[disabled]{opacity:.4;cursor:default;box-shadow:none}.pn{font-size:15px')
 out=head+'\n'+A+'\n'+mid+'\n'+B+'\n'+tail
 exec(open(S+'patch_draftspread.py',encoding='utf-8').read())
