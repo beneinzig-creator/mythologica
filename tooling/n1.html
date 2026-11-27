@@ -873,7 +873,7 @@ function instCap(){const p=G&&G.p;if(!p)return;const d=Object.getOwnPropertyDesc
 let UND=null,UD=0;
 const UNDO_ON=typeof window!=='undefined';
 const USK=new Set(['sel','msg','mode','pend','pc','cur','log','tg','gv','lib','rv','hubMsg','blk','uo','rm']);
-const uOK=()=>!!(G&&G.p&&G.p.recs&&!G.pend&&!G.hq&&!G.rv&&!G.cmb&&G.phase=='main'&&!!G.e);
+const UCB=['blockP','dmgP'];const uOK=()=>!!(G&&G.p&&G.p.recs&&!G.pend&&!G.hq&&!G.rv&&!!G.e&&(G.phase=='main'&&!G.cmb||UCB.includes(G.phase)&&!!G.cmb));
 function snapG(){const fight=G.phase=='main',m=new Map();if(fight)G.p.recs.forEach((r,i)=>m.set(r,i));return JSON.stringify(G,function(k,v){if(fight&&k=='recs'&&this===G.p)return undefined;if(k=='rec'&&v&&m.has(v))return{__r:m.get(v)};return v})}
 function sigG(){return JSON.stringify(G,(k,v)=>USK.has(k)?undefined:v)}
 function unsnap(s,live){const g=JSON.parse(s);if(live){g.p.recs=live;const fix=c=>{if(c&&c.rec&&c.rec.__r!=null)c.rec=live[c.rec.__r]};[g.p,g.e].forEach(S=>S&&['hand','deck','bf','gy'].forEach(z=>(S[z]||[]).forEach(fix)))}return g}
@@ -885,9 +885,9 @@ return r}
 function bt(b){return uAct(()=>bt0(b))}
 function hd(z){if(G&&G.phase=='main'&&G.p&&G.sel){G.sel=G.sel.filter(u=>G.p.bf.some(x=>x.u==u));if(G.cur&&!G.sel.includes(G.cur))G.cur=0;for(const k in(G.tg||{}))if(!G.p.bf.some(x=>x.u==k))delete G.tg[k]}return uAct(()=>hd0(z))}
 function uInv(){if(UND&&G&&(G.turn!=UND.turn||['enemy','kleos','lost','victory','map','loc','remove','draft','char'].includes(G.phase)))UND=null}
-function uValid(){if(!UND||!G||!G.p||!uOK())return false;return G.phase=='main'&&G.turn==UND.turn&&G.fi==UND.fi}
+function uValid(){if(!UND||!G||!G.p||!uOK())return false;return (G.phase=='main'||UCB.includes(G.phase))&&G.phase==UND.ph&&G.turn==UND.turn&&G.fi==UND.fi}
 function undoBtn(){const ok=uValid();return'<button class="b" id="mnu_undo"'+(ok?'':' disabled')+'>Undo last action'+(ok?'':' (none available)')+'</button>'}
-function doUndo(){if(!uValid())return;const g=unsnap(UND.s,UND.fight?G.p.recs:null);UND=null;G=g;if(G.phase=='remove'){G.phase='loc';G.rm=-1;G.uo=0}G.mode=0;G.pend=0;G.pc=0;G.hq=0;G.rv=0;G.cmb=0;G.lib=0;G.gv=0;if(G.phase=='main'){G.sel=G.p.bf.filter(c=>c.forced&&canAtk(c)).map(c=>c.u);G.msg='Undid your last action.'}else G.sel=[];instCap();render()}
+function doUndo(){if(!uValid())return;const g=unsnap(UND.s,UND.fight?G.p.recs:null);UND=null;G=g;if(G.phase=='remove'){G.phase='loc';G.rm=-1;G.uo=0}G.mode=0;G.pend=0;G.pc=0;G.hq=0;G.rv=0;if(!UCB.includes(G.phase))G.cmb=0;G.lib=0;G.gv=0;if(G.phase=='main'){G.sel=G.p.bf.filter(c=>c.forced&&canAtk(c)).map(c=>c.u);G.msg='Undid your last action.'}else if(UCB.includes(G.phase))G.msg='Undid your last action.';else G.sel=[];instCap();render()}
 {const _h=FX.hold;FX.hold=(s,o,t)=>{if(has(t,'n')){log('It can only attack.');return}_h(s,o,t)}}
 /* ===== v72: Odin and the Norse realm ===== */
 const TOKE=['sold','ein'];
