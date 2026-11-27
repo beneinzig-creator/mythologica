@@ -55,6 +55,14 @@ html .ov.sbx .sbxd .lib>div.sbw>.cd{zoom:.7!important}
 .sbx .sbres.w{border-color:#8ad86a;color:#d8f7c8}
 .sbx .sbres.l{border-color:#d86a5a;color:#f7d0c8}
 .ov.sbxo{z-index:120}
+.ov.sbxv{z-index:120}
+.sbx .sbxd>.sbxph{position:relative;z-index:20}
+.sbx .sbxdh{display:flex;align-items:center;gap:10px}
+.sbx .sbxlw{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sbx .sbxlw small{opacity:.7;letter-spacing:.08em;font-size:10px;font-family:var(--fb);font-weight:400}
+html .sbx .sbxlw .pile.dlib{width:40px!important;height:56px!important;margin:0!important;display:grid}
+html .sbx .sbxlw .pile.dlib .gyn{font-size:11px;right:auto;bottom:3px}
+html .sbx .sbxlw .tip{left:0;right:auto;top:calc(100% + 8px);bottom:auto;transform:none;white-space:normal;width:270px;line-height:1.5;z-index:60;font-family:var(--fb);font-weight:400;letter-spacing:0;text-align:left}
 .ov.sbxo .ovb{zoom:1;max-height:calc(var(--vh,100vh) - 24px);overflow-y:auto;width:min(1200px,96vw);padding:12px;box-sizing:border-box;background:#0b1820ee;border:1px solid #d8b45a66;border-radius:14px;gap:10px;justify-content:flex-start}
 .sbxo .sbg{width:100%}
 .sbxo .sbg h3{font-family:var(--fd);color:var(--gold);margin:8px 0 2px;font-size:19px;letter-spacing:.05em}
@@ -125,7 +133,7 @@ function sbxStartFight(){const F=sbxFoe(SBX.foe),h=SBX.hero,recs=sbxDeck();if(!F
  const fi=Math.max(0,Math.min(FLOORS-1,SBX.fi|0));
  if(F.t=='Regular'){G.fi=fi;G.rt[fi]=F.i}else if(F.t=='Elite'){G.fi=fi;G.elt=F.i+1}else{G.fi=FLOORS;G.boss=1;G.bi=F.i;if(F.t=='The Beast')G.fin=1}
  SBX.res=null;SBX.view='';sbxStore();try{document.querySelectorAll('.fxrays').forEach(o=>{try{gsap.killTweensOf(o);gsap.killTweensOf(o.querySelectorAll('*'))}catch(e){}o.remove()})}catch(e){}fight();return 1}
-function sbxScreen(){G={phase:'sbx',sbx:1,lib:0,log:[],fi:0,sel:[],tg:{},p:side([],20)};try{setChar(SBX.hero)}catch(e){}
+function sbxScreen(){G={phase:'sbx',sbx:1,ch:SBX.hero,lib:0,log:[],fi:0,sel:[],tg:{},p:side([],20)};try{setChar(SBX.hero)}catch(e){}
  try{document.documentElement.classList.remove('fxhold','phlost')}catch(e){}}
 function sbxFinish(){const won=G.phase!='lost',nm=(G.e&&G.e.nm)||'';
  SBX.res={won,nm,turn:G.turn|0,life:Math.max(0,(G.p&&G.p.life)|0),max:(G.p&&G.p.max)|0};
@@ -158,7 +166,7 @@ function sbxRender(){try{const R=document.documentElement.style;R.setProperty('-
  let html=`<div class="ov ovlib sbx"><div class="ovb sbxb"><div class="sbxt"><div class="ovt">Sandbox</div><div class="sbxh">${heroes}</div><button class="b gh" data-sx="home">Back to home</button></div>
 <div class="sbxs">Build any deck and fight any opponent. Nothing here touches your saved run. A normal run starts with ${C.staples.length+ROUNDS} cards.</div>${res}${bar}${bar2}
 <div class="sbxm"><div class="sbxp"><div class="sbxph"><span>${sbxH(C.n)}'s card pool (${pool.length}) · click a card to add it</span>${sbxSortBtns()}</div><div class="lib">${pcards}</div></div>
-<div class="sbxd"><div class="sbxph"><span>Your deck: ${recs.length} card${recs.length==1?'':'s'}</span>${clr}</div><div class="lib">${dcards||'<div class="dsub">Click cards on the left to add them.</div>'}</div></div></div></div></div>`;
+<div class="sbxd"><div class="sbxph"><span class="sbxdh"><span class="sbxlw"><span class="cb pile mine dlib" data-sx="view:deck" title=""><span class="gyn">${recs.length}</span><span class="tip">${libStats(recs.map(r=>mk(r.id,r)))}</span></span><small>Library</small></span>Your deck: ${recs.length} card${recs.length==1?'':'s'}</span>${clr}</div><div class="lib">${dcards||'<div class="dsub">Click cards on the left to add them.</div>'}</div></div></div></div></div>`;
  html+=sbxOverlay();
  document.getElementById('app').innerHTML=html;sbxFit()}
 /* the card pool shows exactly SBXCOLS cards per row, whatever the window width */
@@ -169,6 +177,8 @@ if(typeof addEventListener=='function')addEventListener('resize',()=>{if(SBX.on&
 function sbxOverlay(){const h=SBX.hero,recs=sbxDeck();
  if(SBX.view=='upg'&&recs[SBX.up]){const r=recs[SBX.up],X=mk(r.id,r),O=sbxOpts(r),left=sbxLeft();
   return `<div class="ov cfm sbxu" style="z-index:120"><div class="ovb"><div class="ovt">Upgrade ${sbxH(D[X.id][0])}${r.k?' (+'+r.k+')':''}</div><div class="big">${card(X,'v:0')}</div><div class="ovt" style="font-size:18px">${left>0?`Choose an upgrade · ${left} point${left==1?'':'s'} left`:'No upgrade points left'}</div><div class="yn">${O.length?O.map(o=>`<button class="b" data-sx="uo:${o}"${left>0?'':' disabled'}>${koLabel(o,X)}</button>`).join(''):'<div class="dsub">This card has no available upgrade.</div>'}</div><div class="yn">${r.k?'<button class="b gh" data-sx="ureset">Undo this card\'s upgrades</button>':''}<button class="b" data-sx="uclose">Done</button></div></div></div>`}
+ if(SBX.view=='deck'){const have=recs.map(r=>mk(r.id,r)).sort(sbxCmp);
+  return `<div class="ov ovlib sbxv"><div class="ovb"><div class="ovt">Your deck: ${have.length} card${have.length==1?'':'s'}, sorted by ${SBX.sort=='cost'?'cost, then rarity':'rarity, then cost'}</div><div class="lib">${have.map(c=>card(c,'v:'+c.u)).join('')||'<p>No cards yet.</p>'}</div><button class="b" data-sx="view:">OK</button></div></div>`}
  if(SBX.view=='foe'){const L=sbxFoes(),grp=[...Object.keys(CHARS),'a3'];
   const sec=g=>{const its=L.filter(x=>x.realm==g),T=[...new Set(its.map(x=>x.t))];
    const ttl=g=='a3'?'The War in Heaven · Act III':`${SBXRN[g]||CHARS[g].n} (${CHARS[g].n}) · ${sbxAct(g,h)} for ${CHARS[h].n}`;

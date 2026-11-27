@@ -45,6 +45,11 @@ ok('deck sorts by cost too',R(`(()=>{const g=sbxGroups(sbxDeck());return g.every
 ok('the sort choice is remembered',JSON.parse(store.mythologica_sandbox_v1).cur.sort=='cost');
 R(`sbxScreen();render()`);ok('sort buttons show on the screen',/data-sx="sort:rar"/.test(app.innerHTML)&&/data-sx="sort:cost"/.test(app.innerHTML));
 R(`sbxDo('sort:rar')`);
+// the library pile (as in the draft): count, stats on hover, click to see every card
+ok('the deck pane has a library pile with the card count',/data-sx="view:deck"/.test(app.innerHTML)&&new RegExp('<span class="gyn">'+R('sbxDeck().length')+'<').test(app.innerHTML));
+ok('hovering it shows the library stats',/Average mana cost/.test(app.innerHTML));
+R(`sbxDo('view:deck')`);ok('clicking it lists every card in the deck',/Your deck: \d+ cards?, sorted by rarity/.test(app.innerHTML)&&(app.innerHTML.match(/data-z="v:/g)||[]).length>=R('sbxDeck().length'));
+R(`sbxDo('view:')`);
 // grouping in the deck view
 ok('identical cards group together, upgraded copies apart',R(`sbxGroups(sbxDeck()).filter(g=>g.r.id=='hopl').map(g=>g.ix.length).sort().join(',')`)=='1,5');
 // library
