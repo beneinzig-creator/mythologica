@@ -1420,12 +1420,12 @@ var WKD=0;const wkDraw=()=>G.ch=='wukong'?WKD:0;
 const wkMo=s=>s.mo||0,wkCp=s=>s.cp||0;
 function wkShuffle(s,id,n,o){for(let i=0;i<n;i++){const c=mk(id);if(o)Object.assign(c,o);s.deck.splice(Math.random()*(s.deck.length+1)|0,0,c)}}
 function wkMom(p){cr(p).forEach(c=>{if(c.id=='wacro')c.ta++;if(c.id=='wking'){c.ta++;c.td++}})}
-function wkPlay(p,c){p.cp=(p.cp||0)+1;p.pid=p.lid||'';p.lid=c.id;p.pl=p.lt||'';let t=WT[c.id];if(t==='any'){const oo=['st','tr','lp'].filter(x=>x!==p.lt);t=oo.find(x=>!(p.tys&&p.tys[x]))||oo[0]}
+function wkPlay(p,c){p.cp=(p.cp||0)+1;p.pid=p.lid||'';p.lid=c.id;p.pl=p.lt||'';p.pla=!!p.lta;p.lta=WT[c.id]==='any';let t=WT[c.id];if(t==='any'){const oo=['st','tr','lp'].filter(x=>x!==p.lt);t=oo.find(x=>!(p.tys&&p.tys[x]))||oo[0]}
  if(D[c.id][2]=='C')p.ep=G.turn;
  if(t){p.tys=p.tys||{};p.tys[t]=1;if(t!==p.lt){p.mo=(p.mo||0)+1;wkMom(p)}p.lt=t}
  if(p.cp===3&&p.bf.some(x=>x.id=='wtang'))draw(p,1);
  if(p.cp%3===0&&p.bf.some(x=>x.id=='wruyi')){const d=Math.max(1,p.mo||0);G.e.life-=d;log('The Ruyi Jingu Bang strikes for '+d+'.')}}
-function wkUp(s){if(s!==G.p)return;s.cp=0;s.mo=0;s.lt='';s.pl='';s.pid='';s.lid='';s.tys={};s.mir=0;cr(s).forEach(c=>{c.ub=0});if(s.bf.some(x=>x.id=='wtree')){s.life+=2;wkShuffle(s,'wpeach',1);log('The Peach Tree blooms: you gain 2 life.')}}
+function wkUp(s){if(s!==G.p)return;s.cp=0;s.mo=0;s.lt='';s.pl='';s.pla=false;s.lta=false;s.pid='';s.lid='';s.tys={};s.mir=0;cr(s).forEach(c=>{c.ub=0});if(s.bf.some(x=>x.id=='wtree')){s.life+=2;wkShuffle(s,'wpeach',1);log('The Peach Tree blooms: you gain 2 life.')}}
 function wkCopy(t,src){const n=mk(src.id);t.id=n.id;t.a=n.a+(t.rec?t.rec.a:0);t.d=n.d+(t.rec?t.rec.d:0);t.f=n.f;t.pa=t.pd=t.ta=t.td=0;t.vn=0;t.def=has(t,'k')?1:0}
 function fxRun(p,c,t){
  /* gourd: the name call now lives in foes_chinese.js */
@@ -1468,8 +1468,8 @@ wdrink:s=>{s.life+=3;draw(s,(wkMo(s)>=3?2:1)+mg())},
 wdance:(s,o,t)=>{t.tap=1},
 wfan:(s,o)=>{cr(o).slice().forEach(c=>bounce(c));log('The Banana-Leaf Fan blows their army away.')},
 wfeint:s=>{draw(s,1+mg());if(s.pl=='st')draw(s,1)},
-wslip:s=>{draw(s,1);if(s.pl=='tr')s.mana+=1+mg()},
-wcounter:(s,o,t)=>{t.dmg+=(s.pl=='lp'?3:1)+mg()},
+wslip:s=>{draw(s,1);if(s.pl=='tr'||s.pla)s.mana+=1+mg()},
+wcounter:(s,o,t)=>{t.dmg+=(s.pl=='lp'||s.pla?3:1)+mg()},
 wcycle:(s,o)=>{const y=s.tys||{};if(y.st&&y.tr&&y.lp){const d=4+mg();o.life-=d;log('Full Circle: '+d+' damage to the opponent.')}},
 wdodge:(s,o,t)=>{t.td+=3+mg()},
 wwine:s=>draw(s,1+mg()),
