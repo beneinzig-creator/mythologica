@@ -454,10 +454,10 @@ if(G.ch!='wukong'&&!off.some(x=>D[x][2]=='C')){const cs=POOL.filter(x=>D[x][2]==
 off.filter(x=>D[x][2]=='C').forEach(x=>{G.cs=(G.cs||0)+D[x][1];G.cn=(G.cn||0)+1});G.dr.off=off.map(id=>mk(id))}
 function pickDraft(j){const dr=G.dr;dr.picks.push(dr.off[j].id);dr.n++;dr.off=[];if(dr.n>=dr.rounds)finishDraft();else dealDraft()}
 function finishDraft(){const dr=G.dr,nr=id=>({id,a:0,d:0,c:0,s:0,k:0,fl:0});G.lib=0;if(dr.mode=='reward'){dr.picks.forEach(id=>G.p.recs.push(nr(id)));if(dr.elite){G.phase='map'}else{G.act--;G.phase='loc'}G.dr=0;return render()}G.p.recs=[...STAPLES,...dr.picks].map(nr);G.start=dr.picks.slice();G.hist=[];G.phase='map';render()}
-const ODH=4;function startReward(){if(G.ch=='odin'&&G.p)G.p.life=Math.min(G.p.max,G.p.life+ODH);{const cn=G.web.nodes[G.pos];cn.cleared=1;G.web.nodes.forEach(n=>{if(n.t=='fight'&&n.o==cn.o&&!n.cleared){n.cleared=1;n.neutral=1}})}G.fi++;G.act+=2+(G.elt?1:0);if(G.fi>=FLOORS&&!G.gift){G.gift=1;G.act+=2;G.web.nodes.forEach(n=>{if(n.t=='fight'&&!n.cleared){n.cleared=1;n.neutral=1;n.closed=1}})}G.hubMsg='';G.phase='map';G.lib=0;if(G.elt){G.elt=0;G.dr={mode:'reward',elite:1,rounds:1,n:0,picks:[],off:[],busy:0,pause:0};G.phase='draft';dealDraft()}render()}
+const ODH=4;function startReward(){if(G.ch=='odin'&&G.p)G.p.life=Math.min(healCapX(G.p),G.p.life+ODH);{const cn=G.web.nodes[G.pos];cn.cleared=1;G.web.nodes.forEach(n=>{if(n.t=='fight'&&n.o==cn.o&&!n.cleared){n.cleared=1;n.neutral=1}})}G.fi++;G.act+=2+(G.elt?1:0);if(G.fi>=FLOORS&&!G.gift){G.gift=1;G.act+=2;G.web.nodes.forEach(n=>{if(n.t=='fight'&&!n.cleared){n.cleared=1;n.neutral=1;n.closed=1}})}G.hubMsg='';G.phase='map';G.lib=0;if(G.elt){G.elt=0;G.dr={mode:'reward',elite:1,rounds:1,n:0,picks:[],off:[],busy:0,pause:0};G.phase='draft';dealDraft()}render()}
 function hubNext(){if(G.act<=0){G.fi++;G.phase='map'}render()}
 function renderHub(){const p=G.p,n=G.act,u=G.used;document.getElementById('app').innerHTML=`<div class="dft"><div class="ovt" style="font-size:28px">Spoils of victory</div><div class="dsub">${n} action${n==1?'':'s'} remaining · ${CHN()} ❤ ${p.life}/${p.max} · ${p.recs.length} cards in your library</div><div class="hub">
-<button class="b" data-b="hheal"${u.h||p.life>=p.max?' disabled':''}>Heal 6 life${u.h?' (used)':' (once)'}</button>
+<button class="b" data-b="hheal"${u.h?' disabled':''}>Heal 6 life${u.h?' (used)':' (once)'}</button>
 <button class="b" data-b="hdraft">Draft a card</button>
 <button class="b" data-b="hrem">Remove a card</button>
 <button class="b" data-b="hdup"${u.d?' disabled':''}>Duplicate a card${u.d?' (used)':' (once)'}</button>
@@ -603,7 +603,7 @@ function hqd(u){const p=G.p,c=p.hand.find(x=>x.u==u);if(!c||!G.hdisc)return;p.ha
 function bt0(b){if(typeof tutBt=='function'&&tutBt(b))return;const p=G.p;if(b=='bp')return bloodPrice();if(G.hq&&b=='hqy'&&!G.hdisc){if(p.deck.length){draw(p,1);G.hdisc=1}else G.hq--;return render()}if(G.hq&&b=='hqn'&&!G.hdisc){G.hq--;return render()}
 if(b.startsWith('go')&&b!='go'){return goNode(+b.slice(2))}
 if(G.phase=='loc'||G.phase=='remove'||G.phase=='draft'){const nd=G.web&&G.web.nodes[G.pos],u=nd&&(nd.used||(nd.used={}));
-if(b=='hheal'&&G.phase=='loc'){if(nd.t!='camp'||G.act<1||(u.h||0)>=2||p.life>=p.max)return;p.life=Math.min(p.max,p.life+6);u.h=(u.h||0)+1;G.act--;return render()}
+if(b=='hheal'&&G.phase=='loc'){if(nd.t!='camp'||G.act<1||(u.h||0)>=2)return;p.life=Math.min(healCapX(p),p.life+6);u.h=(u.h||0)+1;G.act--;return render()}
 if(b=='hdraft'&&G.phase=='loc'){if(nd.t!='craft'||G.act<1)return;G.dr={mode:'reward',rounds:1,n:0,picks:[],off:[],busy:0,pause:0};G.phase='draft';G.lib=0;dealDraft();return render()}
 if(b=='hrem'&&G.phase=='loc'){if(nd.t!='craft'||G.act<1)return;if(p.recs.length<=5){G.hubMsg='Your library is too small to remove from.';return render()}G.rmMode='rem';G.phase='remove';G.rm=-1;G.hubMsg='';return render()}
 if(b=='hdup'&&G.phase=='loc'){if(nd.t!='altar'||u.d||G.act<1)return;G.rmMode='dup';G.phase='remove';G.rm=-1;G.hubMsg='';return render()}
@@ -616,7 +616,7 @@ if(b.startsWith('hsel:')){const k=b.slice(5);G.hs=G.hs==k?'':k;return render()}i
 if(b=='new')return showChars();
 if(b=='next')return startReward();
 if(b.startsWith('node')){const l=+b.slice(4);if(G.phase!='map'||!mapOk(l))return;G.rt[G.fi]=G.map[G.fi][l];G.lanes[G.fi]=l;G.hubMsg='';return fight()}
-if(b=='hheal'){if(G.used.h||p.life>=p.max)return;p.life=Math.min(p.max,p.life+6);G.used.h=1;G.act--;return hubNext()}
+if(b=='hheal'){if(G.used.h)return;p.life=Math.min(healCapX(p),p.life+6);G.used.h=1;G.act--;return hubNext()}
 if(b=='hdraft'){G.dr={mode:'reward',rounds:1,n:0,picks:[],off:[],busy:0,pause:0};G.phase='draft';G.lib=0;dealDraft();return render()}
 if(b=='hrem'){if(p.recs.length<=5){G.hubMsg='Your library is too small to remove from.';return render()}G.rmMode='rem';G.phase='remove';G.rm=-1;return render()}
 if(b=='hdup'){if(G.used.d)return;G.rmMode='dup';G.phase='remove';G.rm=-1;return render()}
@@ -707,7 +707,7 @@ nd+=`<button class="wn${n.t=='start'&&G.fi>=FLOORS&&!G.spent?' oto':''}${n.el?' 
 const iw=typeof innerWidth=="undefined"?1400:innerWidth,ih=typeof innerHeight=="undefined"?900:innerHeight,s=(typeof PHON!="undefined"&&PHON)?Math.max(.3,Math.min((iw-236)/WEBW,(ih-12)/WEBH)):Math.max(.3,Math.min(1.25,(iw-24)/WEBW,(ih-300)/WEBH));
 document.getElementById('app').innerHTML=`<div class="dft mapscr"><div class="ovt" style="font-size:28px">${G.a3?'Act III · ':G.a2?'Act II · ':''}Chart your course</div><div class="dsub" style="font-size:20px;opacity:1">⚡ ${G.act} action point${G.act==1?'':'s'} · 🏆 ${G.fi}/${FLOORS} victory points · ❤ ${p.life}/${p.max} · ${p.recs.length} cards</div>${G.fi>=FLOORS&&!G.spent?GIFTB:`<div class="dsub" style="opacity:.8">Next opponent: ${s0[0]>=0?'+':''}${s0[0]} ❤, +${s0[1]}/+${s0[2]} on army members</div>`}<div class="tmap" style="width:${WEBW}px;height:${WEBH}px;zoom:${s.toFixed(3)}"><svg width="${WEBW}" height="${WEBH}"><g transform="translate(${WEBW-52},${WEBH-50})"><circle r="26" fill="none" stroke="#6b4a1f" stroke-width="1.5"/><path d="M0-32L6-6 32 0 6 6 0 32-6 6-32 0-6-6Z" fill="#8b5a24" opacity=".75"/><path d="M0-32L6-6 0 0Z M32 0L6 6 0 0Z M0 32L-6 6 0 0Z M-32 0L-6-6 0 0Z" fill="#3b2a14"/><text y="-37" text-anchor="middle" font-size="12" fill="#3b2a14" font-family="var(--fb)">N</text></g>${ln}</svg>${nd}</div></div>`}
 function renderLoc(){const p=G.p,n=G.act,nd=G.web.nodes[G.pos],u=nd.used||(nd.used={}),t=nd.t,no=n<1?' disabled':'';let h='',ttl='';
-if(t=='camp'){ttl='🔥 Campfire';h=`<button class="b" data-b="hheal"${no||(u.h||0)>=2||p.life>=p.max?' disabled':''}>Rest: heal 6 life (1 action) · used ${u.h||0}/2</button>`}
+if(t=='camp'){ttl='🔥 Campfire';h=`<button class="b" data-b="hheal"${no||(u.h||0)>=2?' disabled':''}>Rest: heal 6 life (1 action) · used ${u.h||0}/2</button>`}
 else if(t=='altar'){ttl='🏛️ Altar';h=`<button class="b" data-b="hdup"${no||u.d?' disabled':''}>Duplicate a card (1 action; costs 2 action points to duplicate a rare)${u.d?' · used':''}</button><button class="b" data-b="hupg"${no||u.u?' disabled':''}>Upgrade a card (1 action)${u.u?' · used':''}</button><div class="dsub">Legendary cards cannot be duplicated or upgraded here. Legendary army members can still be upgraded after surviving a fight.</div>`}
 else{ttl='🔨 Crafting table';h=`<button class="b" data-b="hdraft"${no}>Draft a card (1 action)</button><button class="b" data-b="hrem"${no}>Remove a card (1 action)</button>`}
 document.getElementById('app').innerHTML=`<div class="dft locscr loc-${t}"><div class="ovt locttl" style="font-size:28px">${ttl}</div><div class="dsub">⚡ ${n} action point${n==1?'':'s'} · 🏆 ${G.fi}/${FLOORS} · ❤ ${p.life}/${p.max} · ${p.recs.length} cards in your library</div><div class="hub">${h}<button class="b" data-b="hdone" style="background:#555;color:#efe6cf;box-shadow:none">Leave (this place can't be used again)</button></div><div class="dsub">${G.hubMsg||(n<1?'You have no action points. Defeat enemies to earn more.':'')}</div></div>`}
@@ -1047,14 +1047,14 @@ const hcap=(s,n)=>Math.max(0,Math.min(n,Math.floor(s.max/2)-s.life));const BPB=1
 const bpc=()=>Math.max(1,Math.min(BPCAP,BPB+((G.e&&G.e.bpn)||0)+1)-bpOwn('blot'));const bpMax=()=>1+(bpOwn('hgod')?1:0);
 function bloodPrice(){const p=G.p;if(G.ch!='odin'||!['main','blockP','dmgP'].includes(G.phase))return;if((p.bp||0)>=bpMax())return msg('Blood price: at most '+bpMax()+' per turn.');const c=bpc();if(p.life<=c)return msg('You cannot spare any more life.');p.life-=c;G.e.bpn=(G.e.bpn||0)+1;p.mana+=1;p.bp=(p.bp||0)+1;log('Blood price: you pay '+c+' life for 1 mana.');bpHooks(p);chk();render()}
 function bpHooks(p){cr(p).filter(x=>x.id=='bdrunk').forEach(x=>{x.pa++;x.pd++;log('The Blood-Drunk Berserker grows: +1/+1.')});
- if(bpOwn('tithe')&&p.tth!==G.turn){p.tth=G.turn;const g=(p.fl||0)>=3?2:1;p.life=Math.min(p.max,p.life+g);log('Tithe of the Slain: you gain '+g+' life back.')}}
+ if(bpOwn('tithe')&&p.tth!==G.turn){p.tth=G.turn;const g=(p.fl||0)>=3?2:1;p.life=Math.min(healCapX(p),p.life+g);log('Tithe of the Slain: you gain '+g+' life back.')}}
 const bpBtn=()=>G.ch=='odin'&&G.p?`<button class="b" data-b="bp" title="Pay ${bpc()} life to gain 1 mana (the price rises by 1 each time this fight, up to ${BPCAP}) (up to ${bpMax()} times per turn)"${(G.p.bp||0)>=bpMax()||G.p.life<=bpc()?' disabled':''}>Blood price ${bpc()}❤→◆ (${G.p.bp||0}/${bpMax()})</button>`:'';
 function upk2(s,o){const n=id=>s.bf.filter(x=>x.id==id).length;mtUp(s,o);thUp(s,o);eliteUp(s,o);wkUp(s);
  if(n('fehu')){s.mana+=n('fehu');log('Fehu grants extra mana.')}
  if(n('drpn')){s.mana+=n('drpn');log('Draupnir grants extra mana.')}
  if(n('ansu')&&s.hand.length<=2){draw(s,n('ansu'));log('Ansuz whispers: you draw a card.')}
  if(n('mimr')){if(!wnd(s))s.life-=n('mimr');draw(s,n('mimr'));log("Mimir's Well: a card, at a cost in blood.")}
- if(n('othala')){draw(s,n('othala'));s.life=Math.min(s.max,s.life+n('othala'));log('Othala: a card and 1 life from your ancestors.')}
+ if(n('othala')){draw(s,n('othala'));s.life=Math.min(healCapX(s),s.life+n('othala'));log('Othala: a card and 1 life from your ancestors.')}
  if(n('ygg')){s.life+=hcap(s,n('ygg'));log('Yggdrasil restores 1 life.')}
  if(n('idun')&&cr(s).some(c=>c.dmg>0)){cr(s).forEach(c=>heal(c,n('idun')));log("Idunn's Apples mend the army.")}}
 /* ---- Norse opponents ---- */
@@ -1573,7 +1573,7 @@ var A2R='';
 function applyRealm(r){EN.length=0;EN.push(...CHARS[r].en)}
 const A2INTRO={odin:'Act II: you cross the rainbow bridge into the Nine Worlds. Wolves, giants and the dead of Helheim wait beyond the frost.',ody:'Act II: your ship leaves the shore for the wine-dark sea. Sirens, cyclopes and the shades of the underworld wait beyond the strait.',wukong:'Act II: you set out on the road to the Western Heaven. Spirits, demon kings and the host of Heaven itself bar the way.'};
 function a2Realm(){const me=G.ch||'ody',O=Object.keys(CHARS).filter(k=>k!=me&&CHARS[k].en&&CHARS[k].en.length);return O[Math.random()*O.length|0]}
-function startAct2(){const p=G.p,r=a2Realm();G.a2=r;A2R=r;applyRealm(r);G.web=genWeb();Object.assign(G,{pos:0,fi:0,rt:[],lanes:[],trail:{},act:2,spent:0,gift:0,boss:0,elt:0,bi:0,bs:0,dr:0,rep:0,hubMsg:'',msg:'',lib:0,mode:0,pend:0,phase:'map',hubMsg:A2INTRO[r]||'',msg:A2INTRO[r]||''});p.life=Math.min(p.max,p.life+10);try{vicVis()}catch(e){}render()}
+function startAct2(){const p=G.p,r=a2Realm();G.a2=r;A2R=r;applyRealm(r);G.web=genWeb();Object.assign(G,{pos:0,fi:0,rt:[],lanes:[],trail:{},act:2,spent:0,gift:0,boss:0,elt:0,bi:0,bs:0,dr:0,rep:0,hubMsg:'',msg:'',lib:0,mode:0,pend:0,phase:'map',hubMsg:A2INTRO[r]||'',msg:A2INTRO[r]||''});p.life=Math.min(healCapX(p),p.life+10);try{vicVis()}catch(e){}render()}
 
 /* ===== Wukong army expansion (10 army members) ===== */
 Object.assign(D,{
@@ -2435,7 +2435,7 @@ function thHook(ev,c){const p=G.p,e=G.e;if(!p||!e)return;
  if(ev=='insc'){if(nOn(p,'iseshat')&&p.ses!==G.turn){p.ses=G.turn;draw(p,1);log('Seshat records your glyph: you draw a card.')}}
  if(ev=='sunMine'){cr(p).filter(x=>x.id=='dshade').forEach(x=>{x.pa++;x.pd++});if(nOn(p,'gcanop'))p.mana+=nOn(p,'gcanop')}
  if(ev=='sunTheirs'){if(nOn(p,'dsoul'))draw(p,nOn(p,'dsoul'));if(nOn(p,'gcanop'))p.mana+=nOn(p,'gcanop')}
- if(ev=='fsPlay'){const n1=nOn(p,'yfore');if(n1){e.life-=2*n1;log('Foreknowledge: they take '+(2*n1)+'.')}const n2=nOn(p,'yclerk');if(n2){e.life-=n2;p.life=Math.min(p.max,p.life+n2)}
+ if(ev=='fsPlay'){const n1=nOn(p,'yfore');if(n1){e.life-=2*n1;log('Foreknowledge: they take '+(2*n1)+'.')}const n2=nOn(p,'yclerk');if(n2){e.life-=n2;p.life=Math.min(healCapX(p),p.life+n2)}
   const n3=nOn(p,'yjudge');if(n3)tg(e).forEach(x=>{x.dmg+=n3})}}
 function thDie(s,c){const p=G.p,e=G.e;if(!p)return;if(c.part&&s===p){const n=nOn(p,'dduat');if(n){e.life-=n;log('The Gate of the Duat: they take '+n+'.')}}}
 function thUp(s,o){const p=G.p;if(s!==p)return;
@@ -2587,7 +2587,7 @@ Object.assign(FX,{
  yechoes:(s,o)=>{const L=(G.thPlayed||[]).filter(id=>D[id]&&D[id][2]=='C'&&!TOKE.includes(id));const id=L[L.length-1];if(id&&cr(s).length<AM()){const c=mk(id);c.dis=1;enter(s,c);log('An echo of '+D[id][0]+' joins your army.')}},
  ysenet:(s,o)=>{s.xt=1;if(CUR)CUR.dis=1;log('You win five days from the moon: you will take an extra turn.')},
  gscroll:(s,o,t)=>{if(t&&typeof t=='object'){t.ta+=2;t.td+=2}},
- gnile:(s,o)=>{s.life=Math.min(s.max,s.life+4);draw(s,1)},
+ gnile:(s,o)=>{s.life=Math.min(healCapX(s),s.life+4);draw(s,1)},
  gweigh:(s,o)=>{for(const x of [...cr(s),...cr(o)]){if(D[x.id][1]>glyphsOn(x)+amOf(x).length)x.dmg=99}log('The hearts are weighed against the feather.')}
 });
 const kaOnly=(s,src)=>{if(cr(s).length>=AM())return;const d=D[src.id],ki='ka'+(++THN);D[ki]=['Body of '+d[0].split(',')[0],0,'C',0,2,'n','Body: it cannot block.','🗿',d[8],1];LORE[ki]='The body';TOKE.push(ki);const t=mk(ki);t.part='ka';enter(s,t)};
@@ -3341,7 +3341,7 @@ function a3Up(s,o){if(!s||!o||!G.e)return;const E=G.e,P=G.p;
 function a3Die(s,c){const o=oppOf(s);if(!o)return;
  if(a3Has(s,'xmol')&&isC(c))a3Moloch(s);
  if(a3Has(s,'xaza')&&isC(c)){const t=cr(o).sort((a,b)=>ev(b)-ev(a))[0];if(t){t.dmg+=2;log('The Scapegoat: '+D[t.id][0]+' bears the sin (2 damage).')}}
- if(s===G.p&&a3Has(o,'xlil')){o.life=Math.min(o.max,o.life+2);log('Lilith feeds: she gains 2 life.')}
+ if(s===G.p&&a3Has(o,'xlil')){o.life=Math.min(healCapX(o),o.life+2);log('Lilith feeds: she gains 2 life.')}
  if(s===G.p&&a3Has(o,'xassa')&&a3Room(o)){enter(o,mk('xkhr'));log('A Khrafstra crawls from the dead.')}}
 function a3Moloch(s){cr(s).forEach(c=>{c.pa++});log('Blood on Carmel: the prophets of Baal grow more frenzied (+1/+0).')}
 function a3Enter(s,c){if(!G||!G.e||!isC(c))return;const o=oppOf(s);
@@ -3425,8 +3425,8 @@ function a3Phase(){if(!G||!G.boss||!G.e||G.phase=='victory')return;const f=BOSS[
 {const _k=chk;chk=function(){try{a3Phase()}catch(e){}const r=_k.apply(this,arguments);if(G&&G.a3&&G.phase=='victory'&&!G.fin){G.phase='a3front';G.front=BOSS[G.bi].champ;try{vicVis()}catch(e){}}return r}}
 /* --- run flow --- */
 function applyA3(){EN.length=0;EN.push(...A3.en)}
-function startAct3(){const p=G.p;G.a3=1;applyA3();G.web=genWeb();Object.assign(G,{pos:0,fi:0,rt:[],lanes:[],trail:{},act:2,spent:0,gift:0,boss:0,elt:0,bi:0,bs:0,dr:0,rep:0,fin:0,ph2:0,rose:0,front:0,lib:0,mode:0,pend:0,phase:'map',hubMsg:A3INTRO,msg:A3INTRO});p.life=Math.min(p.max,p.life+10);try{vicVis()}catch(e){}render()}
-function startFinale(){if(!G||G.phase!='a3front')return;G.p.life=Math.min(G.p.max,G.p.life+10);G.fin=1;G.boss=1;G.bi=A3.fin;G.elt=0;G.ph2=0;G.rose=0;G.phase='main';fight()}
+function startAct3(){const p=G.p;G.a3=1;applyA3();G.web=genWeb();Object.assign(G,{pos:0,fi:0,rt:[],lanes:[],trail:{},act:2,spent:0,gift:0,boss:0,elt:0,bi:0,bs:0,dr:0,rep:0,fin:0,ph2:0,rose:0,front:0,lib:0,mode:0,pend:0,phase:'map',hubMsg:A3INTRO,msg:A3INTRO});p.life=Math.min(healCapX(p),p.life+10);try{vicVis()}catch(e){}render()}
+function startFinale(){if(!G||G.phase!='a3front')return;G.p.life=Math.min(healCapX(G.p),G.p.life+10);G.fin=1;G.boss=1;G.bi=A3.fin;G.elt=0;G.ph2=0;G.rose=0;G.phase='main';fight()}
 function renderA3Front(){try{const R=document.documentElement.style;R.setProperty('--b1','#0c0a14');R.setProperty('--b2','#4a3a20')}catch(e){}
  const mine=G.front,others=['Michael','Sraosha','Uriel'].filter(k=>k!==mine);
  document.getElementById('app').innerHTML=`<div class="dft"><div class="ovt" style="font-size:30px">The other fronts</div><div class="dsub" style="font-size:17px;max-width:620px;text-align:center;line-height:1.6">Your general has fallen. ${others.map(k=>A3FRONT[k]).join(' ')}<span style="display:block;margin-top:12px;font-size:16px;opacity:.85">The generals are beaten, but the kings of the earth gather at Armageddon behind the Beast of the Sea, and the False Prophet calls fire from the sky. You rest before the battle and recover 10 life.</span></div><div class="hbt" style="margin-top:10px"><button class="b" data-b="a3fin">March to Armageddon</button></div></div>`}
@@ -4819,7 +4819,7 @@ const fRnd=L=>L.length?L[Math.random()*L.length|0]:null;
 const fNm=c=>D[c.id][0];
 const fHp=c=>th(c)-c.dmg;
 function fHurt(o,n,why){if(n<=0)return;o.life-=n;log((why||'')+(o===G.p?'You take ':G.e.nm+' takes ')+n+'.')}
-function fGain(s,n,why){if(n<=0)return;s.life=Math.min(s.max+((s.ovr)||0),s.life+n);if(why)log(why)}
+function fGain(s,n,why){if(n<=0)return;s.life=Math.min(healCapX(s)+((s.ovr)||0),s.life+n);if(why)log(why)}
 function fSum(s,id,n,mods){let k=0;for(let i=0;i<(n||1)&&fRoom(s);i++){const t=mk(id);if(mods)Object.assign(t,mods);enter(s,t);k++}return k}
 function fBuff(c,a,h,perm){if(perm){c.pa+=a;c.pd+=h}else{c.ta+=a;c.td+=h}}
 function fKey(c,k){if(!c.f.includes(k))c.f+=k;if(k=='h')c.sick=0}
@@ -6147,7 +6147,7 @@ html.ph #app:has(.kc) .fld.fp{overflow-y:auto;overflow-x:hidden;align-content:fl
   r=t.getBoundingClientRect();
   let dx=0;if(r.width>c.R-c.L-2*M)dx=c.L+M-r.left;else if(r.left<c.L+M)dx=c.L+M-r.left;else if(r.right>c.R-M)dx=c.R-M-r.right;
   if(dx)t.style.setProperty('transform','translateX(calc(-50% + '+(dx/sc).toFixed(1)+'px))','important')}
- document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
+ if(typeof document.addEventListener=='function')document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
 })();
 
 /* ===== patch_libloader: Ouroboros loader until a card library is fully painted ===== */
@@ -6323,5 +6323,7 @@ if(typeof document!='undefined'&&typeof document.addEventListener=='function'){
  document.addEventListener('change',ev=>{if(!SBX.on||!ev.target||ev.target.id!='sbxpts')return;const n=Math.max(0,Math.min(999,parseInt(ev.target.value,10)||0));SBX.pool=n;sbxStore();render()},true);
  document.addEventListener('keydown',ev=>{if(!SBX.on||ev.key!='Enter'||!ev.target)return;const id=ev.target.id;if(id=='sbxren'&&SBX.ren){ev.preventDefault();sbxDo('renok:'+SBX.ren)}else if(id=='sbxnm'){ev.preventDefault();sbxDo(SBX.loaded?'savecur':'savenew')}else if(id=='sbxpts'){ev.target.blur()}},true)}
 try{const st=document.createElement('style');st.id='psbx';st.textContent=SBXCSS;document.body.appendChild(st)}catch(e){}
+/* ===== patch_overheal ===== */
+function healCapX(s){return (typeof G!='undefined'&&G&&s===G.p)?Infinity:s.max}
 showChars();
 </script>
