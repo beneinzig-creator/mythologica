@@ -12,7 +12,7 @@ setup('ody',2);R(`G.e.bf=[mk('mouth')];var py=mk('poly');enter(G.e,py);py.tap=0;
 R(`py.tap=1;at.tap=0;G.cmb=launch(G.p,[at],{});resolve();G.cmb=null`);ok('Polyphemus out of the cave: your blows land',R('G.e.life')<15);
 setup('odin',1);R(`G.e.bf=[mk('rwall')];var ww=mk('hopl');enter(G.p,ww);var pw0=pwr(ww)`);ok('no Rime-Witch: no winter weakness',R('pwr(ww)')==R('pw0'));
 R(`enter(G.e,mk('rimew'));enter(G.e,mk('rimew'))`);ok('Rime-Witches: -1/-0 (not stacking)',R('pwr(ww)')==R('pw0')-1);
-R(`G.e.winter=2`);ok('the winter counter shows on the trump',/Winter: 2 of 3/.test(R("DYN.rwall(G.e.bf.find(x=>x.id=='rwall'))")));
+R(`G.e.winter=2`);ok('the winter counter shows on the trump',/Winter: 2 of 2/.test(R("DYN.rwall(G.e.bf.find(x=>x.id=='rwall'))")));
 R(`var cl=mk('spear');cl.callT=G.turn+1;cl.burn=1`);ok('Called and Burning are written on the card',/Called by name/.test(R("kwTx2(cl,'')"))&&/Burning/.test(R("kwTx2(cl,'')")));
 R(`var tk=mk('spear');tk.blind=1;tk.burn=1;tk.cursed=1`);ok('status tokens drawn on the card',/stk-blind/.test(R("card(tk,'p')"))&&/stk-burn/.test(R("card(tk,'p')"))&&/stk-curse/.test(R("card(tk,'p')")));
 setup('thoth',0);R(`G.e.bf=[];var big=mk('spear');enter(G.e,big);thSunder(big,G.p);var part=G.e.bf.find(x=>x.part);var nb=G.e.bf.length`);ok('a Body or Spirit cannot be Sundered again',R('part?thSunder(part,G.p):1')==0&&R('G.e.bf.length')==R('nb'));

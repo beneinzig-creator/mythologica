@@ -10,14 +10,14 @@ F('fenr',{c:5,a:5,h:5,f:'jb',tag:'wolf',t:'Pack. Bulldoze. He keeps growing: at 
  up:(s,o,c)=>{c.pa++;c.pd++;if(G.turn<6){c.sick=1}else if(!c.free6){c.free6=1;log('Gleipnir snaps: Fenrir is loose.')}},etb:(s,o,c)=>{if(G.turn<6)c.sick=1}});
 DK("Fenrir's Brood",{d:'pup:5,wolf:5,hati,skoll,fenr',hint:'A pack that grows every turn; Fenrir breaks free on their sixth turn'});
 
-/* ---------- The Jotnar: FIMBULWINTER. Three winters with no summer between; the giants thrive in it ---------- */
-const fWinter=s=>Math.min(3,s.winter||0);
-const fDeepen=(s,n)=>{const w=fWinter(s);s.winter=Math.min(3,(s.winter||0)+n);if(s.winter>w)log('Fimbulwinter deepens: winter '+s.winter+' of 3.')};
-F('rwall',{t:'Ward. Fimbulwinter: on every second turn of theirs the winter deepens (three winters at most). Their Hill Giants and Ice Spears grow stronger with each winter. Whenever a Rime-Witch dies, the winter eases by 1.',
+/* ---------- The Jotnar: FIMBULWINTER. Winters with no summer between (two at most since the 2026-11-27 open tuning); the giants thrive in it ---------- */
+const fWinter=s=>Math.min(2,s.winter||0);
+const fDeepen=(s,n)=>{const w=fWinter(s);s.winter=Math.min(2,(s.winter||0)+n);if(s.winter>w)log('Fimbulwinter deepens: winter '+s.winter+' of 2.')};
+F('rwall',{t:'Ward. Fimbulwinter: on every second turn of theirs the winter deepens (two winters at most). Their Hill Giants and Ice Spears grow stronger with each winter. Whenever a Rime-Witch dies, the winter eases by 1.',
  up:s=>{s.wt=(s.wt||0)+1;if(s.wt%2==0)fDeepen(s,1)}});
-F('ithrl',{c:1,a:2,h:3,f:'c',tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
+F('ithrl',{c:1,a:1,h:3,f:'c',tag:'giant',t:'Giant. When it dies, the winter deepens by 1.',die:s=>fDeepen(s,1)});
 F('rimew',{c:2,a:2,h:3,f:'c',tag:'giant',t:'Giant. Rime-sorcery: while any Rime-Witch lives, your army members get -1/-0. When it enters, your weakest army member takes 1 damage for each winter. When it dies, the winter eases by 1.',oaura:(x,c)=>{const s=sideOf(c);return[s&&s.bf.find(y=>y.id=='rimew')===c?-1:0,0]},etb:(s,o)=>{const t=fLow(cr(o)),n=fWinter(s);if(t&&n){t.dmg+=n;log('Rime-sorcery: '+fNm(t)+' takes '+n+'.')}},die:s=>{if(s.winter>0){s.winter=Math.min(3,s.winter)-1;log('The witch falls: the winter eases ('+s.winter+' of 3).')}}});
-F('hgnt',{c:2,a:3,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
+F('hgnt',{c:2,a:2,h:5,f:'cz',tag:'giant',t:'Giant. Resilient. Born of the frost: +1/+1 for each winter.',self:c=>{const n=fWinter(sideOf(c));return[n,n]}});
 F('icesp',{c:2,t:'Ice Spear: deal 2 damage plus 1 for each winter to target army member.',ai:(s,o)=>fAiKill(o,2+fWinter(s),2.5),fx:(s,o,t)=>{if(t)t.dmg+=2+fWinter(s)}});
 DK('The Jotnar',{d:'ithrl:5,rimew:5,hgnt:3,icesp:2',hint:'The winter deepens and the giants grow in it; while a Rime-Witch lives your army is weakened. Kill the witches'});
 
@@ -52,7 +52,7 @@ F('nidh',{c:4,a:4,h:5,f:'dv',tag:'hel',t:'Draining. Venomous. It gnaws the corps
 DK("Hel's Legion",{d:'draug:5,wight:3,hgrd:4,nidh,hgrasp:2',hint:'Every one of their dead is a nail for Naglfar; at eight, the ship of the dead sails'});
 
 /* ---------- Loki's Court: your own cards turned against you ---------- */
-F('imp',{c:2,a:2,h:2,f:'',tag:'loki',t:'Mischief: when it enters, your strongest army member\'s power and health are swapped.',
+F('imp',{c:2,a:2,h:3,f:'',tag:'loki',t:'Mischief: when it enters, your strongest army member\'s power and health are swapped.',
  etb:(s,o)=>{const t=fTop(fTg(o));if(!t)return;const p=pw(t),h=Math.max(1,fHp(t));t.pa+=h-p;t.pd+=p-h;t.dmg=Math.min(t.dmg,Math.max(0,th(t)-1));log('A Sly Imp swaps '+fNm(t)+'\'s power and health.')}});
 F('lokis',{c:5,a:4,h:5,f:'',tag:'loki',t:'Höðr\'s hand: when it enters, your strongest army member strikes another of yours for damage equal to its power, then returns to your hand. They draw a card.',
  etb:(s,o)=>{const L=cr(o).slice().sort((a,b)=>pw(b)-pw(a));const a=L[0],b=L.find(x=>x!==a&&!has(x,'w'));if(a&&b){b.dmg+=pw(a);log('Loki puts the mistletoe in '+fNm(a)+'\'s hand: it strikes '+fNm(b)+'.')}if(a&&!has(a,'w'))bounce(a);draw(s,1)}});

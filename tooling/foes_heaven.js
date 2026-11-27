@@ -19,8 +19,8 @@ DK('Legion',{d:'xlgn:5,xger:3,xswn:3,xlegc,xcast:2',hint:'While a Gerasene Demon
 
 /* ---------- The Watchers: teachers bound by one oath. Knowledge (cards in hand) is their power ---------- */
 F('xwat',{c:2,a:2,h:3,f:'f',tag:'watch',t:'Flying. Gets +1/+0 for each card in their hand beyond 2 (at most +2).',self:c=>[Math.max(0,Math.min(2,sideOf(c).hand.length-2)),0]});
-F('xchrm',{c:1,a:1,h:3,f:'',tag:'watch',t:'At the start of their turn it teaches one of their army members a lesson: Flying or Venomous.',
- up:(s,o,c)=>{const L=cr(s).filter(x=>!x.f.includes('f')||!x.f.includes('v'));const t=fRnd(L);if(!t)return;const k=!t.f.includes('f')?'f':'v';fKey(t,k);log('The Teacher of Charms teaches '+fNm(t)+' '+(k=='f'?'Flying':'Venomous')+'.')}});
+F('xchrm',{c:1,a:1,h:3,f:'',tag:'watch',t:'At the start of their turn it teaches one of their army members a lesson: Flying.',
+ up:(s,o,c)=>{const L=cr(s).filter(x=>!x.f.includes('f'));const t=fRnd(L);if(!t)return;const k='f';fKey(t,k);log('The Teacher of Charms teaches '+fNm(t)+' '+(k=='f'?'Flying':'Venomous')+'.')}});
 F('xkok',{c:3,a:3,h:3,f:'f',tag:'watch',t:'Flying. When it enters, they draw 2 cards (the signs of the stars).',etb:s=>draw(s,2)});
 F('xsemj',{c:4,a:4,h:4,f:'f',tag:'watch',t:'Flying. The oath: whenever another of their army members dies, each other army member they control gets +1/+1.',
  allyDie:(s,o,c,x)=>{cr(s).forEach(y=>{y.pa++;y.pd++});log('The oath binds them: the Watchers grow stronger.')}});
@@ -43,10 +43,10 @@ F('xclub',{c:3,t:'Deal damage to target army member equal to the power of their 
 DK('The Nephilim',{d:'xyneph:4,xnep:3,xgib:2,xog,xroar:2,xclub:2',hint:'Their hunger eats your hand, then each other'});
 
 /* ---------- The Prophets of Baal: they cut themselves for a god who never answers ---------- */
-/* a prophet's own blade never kills him: the cut stops at 1 health */
-const fCut=(c,n,a,perm)=>{if(perm)c.pa+=a;else c.ta+=a;c.dmg=Math.max(c.dmg,Math.min(c.dmg+n,th(c)-1))};
-F('xfire',{c:1,a:1,h:2,f:'',tag:'baal',t:'At the start of their turn it cuts itself: 1 damage to itself, +2/+0 permanently.',up:(s,o,c)=>{fCut(c,1,2,1);log('A prophet of Baal cuts himself and cries louder.')}});
-F('xcult',{c:2,a:2,h:3,f:'',tag:'baal',t:'When it attacks, it cuts itself: 1 damage to itself and +2/+0 this turn.',atk:(s,o,c)=>fCut(c,1,2,0)});
+/* a prophet's own blade never kills him: the cut stops at 2 health (open tuning 2026-11-27: was 1, which left the whole army dying to any ping) */
+const fCut=(c,n,a,perm)=>{if(perm)c.pa+=a;else c.ta+=a;c.dmg=Math.max(c.dmg,Math.min(c.dmg+n,th(c)-2))};
+F('xfire',{c:1,a:1,h:3,f:'',tag:'baal',t:'At the start of their turn it cuts itself: 1 damage to itself, +2/+0 permanently.',up:(s,o,c)=>{fCut(c,1,2,1);log('A prophet of Baal cuts himself and cries louder.')}});
+F('xcult',{c:2,a:2,h:4,f:'',tag:'baal',t:'When it attacks, it cuts itself: 1 damage to itself and +2/+0 this turn.',atk:(s,o,c)=>fCut(c,1,2,0)});
 F('xidol',{c:3,a:2,h:6,f:'k',tag:'baal',t:'Can only defend. The bull lies on the wood: at the start of their turn, each other army member they control takes 1 damage and gets +1/+0 permanently. No fire comes.',
  up:(s,o,c)=>{const L=cr(s).filter(x=>x!==c);L.forEach(x=>fCut(x,1,1,1));if(L.length)log('They limp around the altar and cut themselves. No fire comes.')}});
 F('xmolp',{c:3,a:3,h:3,f:'r',tag:'baal',t:'Ruthless. "Cry aloud": whenever another of their army members dies, they draw a card and their army gets +1/+0 permanently.',allyDie:(s,o,c)=>{draw(s,1);cr(s).forEach(x=>{x.pa++})}});

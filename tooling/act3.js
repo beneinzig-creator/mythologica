@@ -6,7 +6,7 @@ MT.push('xlegion','xwatch','xneph','xmol','xbab','xpair','xbel','xmam','xmast','
 Object.assign(D,{
 /* opening trumps (regular decks) */
 xlegion:['We Are Many',0,'E',0,0,'w','Ward. Whenever they play an army member that costs 2 or more, a 1/1 Possessed joins it (if there is room).','👥','B'],
-xwatch:['Forbidden Arts',1,'E',0,0,'w','Ward. Whenever you cast a spell, they draw a card (at most 2 a turn).','📜','B'],
+xwatch:['Forbidden Arts',1,'E',0,0,'w','Ward. Whenever you cast a spell, they draw a card (at most 1 a turn).','📜','B'],
 xneph:['Giants in the Earth',1,'E',0,0,'w','Ward. Their army members that cost 3 or more cost 1 less.','🗿','N'],
 xmol:['Blood on Carmel',1,'E',0,0,'w','Ward. Whenever one of their army members dies or is offered, their other army members get +1/+0 permanently.','🩸','R'],
 xbab:['Confusion of Tongues',1,'E',0,0,'w','Ward. At the start of their turn, the costs of the cards in your hand are shuffled among them.','🗼','N'],
@@ -144,7 +144,7 @@ function a3Px(c){const s=sideOf(c);if(!s||!G.e)return 0;const o=oppOf(s);let n=0
  if(s===G.p&&a3Has(o,'xsmoke')&&pw(c)>=3&&!has(c,'w'))n-=1;
  if(s===G.e){if(a3Has(s,'xlil')&&actSide()===s)n+=1;if(['xhb','xhd','xhl'].includes(c.id))n+=s.bf.filter(x=>x.id=='xhb'&&x!==c).length}
  return n}
-function a3Cast(c){const e=G.e;if(!e||!a3Has(e,'xwatch'))return;if('SI'.includes(D[c.id][2])&&(e.wd||0)<2){e.wd=(e.wd||0)+1;draw(e,1);log('The Watchers learn from your spell: they draw a card.')}}
+function a3Cast(c){const e=G.e;if(!e||!a3Has(e,'xwatch'))return;if('SI'.includes(D[c.id][2])&&(e.wd||0)<1){e.wd=(e.wd||0)+1;draw(e,1);log('The Watchers learn from your spell: they draw a card.')}}
 {const _u=egUp;egUp=function(s,o){_u(s,o);try{a3Up(s,o)}catch(e){}}}
 {const _d=egDie;egDie=function(s,c){_d(s,c);try{a3Die(s,c)}catch(e){}}}
 {const _p=egPx;egPx=function(c){return _p(c)+a3Px(c)}}
@@ -195,14 +195,15 @@ BOSS.push(
 A3.bo=[b0,b0+1,b0+2];A3.fin=b0+3}
 const A3FRONT={Michael:'In Heaven, Michael and his angels fight the dragon, and the dragon is cast down.',Sraosha:'In the east, Sraosha and the saviour Saoshyant drive Ahriman out of creation, and the darkness breaks.',Uriel:'Below, Uriel turns the key of the Abyss, and the Destroyer is sealed in the pit.'};
 /* hidden per-hero adjustment for every Act III fight (life), like Act II's XADJ: from the proven-deck matrix */
-const A3H={ody:[6,1,0],odin:[-3,0,0],wukong:[2,0,0],thoth:[6,0,0]};
-const A3HB={wukong:-6,odin:6,ody:6};
+/* open tuning 2026-11-27: the hidden per-hero Act III tables are gone (were A3H/A3HB/A3HG); their average (+3 life) is in the shared Act III ramp and A3BS */
+const A3H={};
+const A3HB={};
 /* extra life per hero against each general (0 Lucifer, 1 Ahriman, 2 Abaddon), like Act II's per-pair table */
-const A3HG={'odin:0':-7,'odin:2':-9,'wukong:0':10,'wukong:1':-4,'wukong:2':-4,'thoth:0':8,'thoth:2':7,'ody:1':3,'ody:2':2};/* extra life for the Beast only (Thoth's Sunder halves it) */
+const A3HG={};/* extra life for the Beast only (Thoth's Sunder halves it) */
 TIPS.a3='<b>Act III.</b> Every hero ends here, in the War in Heaven. At 4 victory points two generals of the rebellion answer: beat one, and the Last Battle against the Beast of the Sea follows. Act III bosses change form at half life.';
 JOURNEY.splice(JOURNEY.length-1,0,{t:'Act III',m:'Beat the Act II guardian and every hero enters the same last realm: the War in Heaven. Defeat one of the rebellion\'s generals, then the Beast of the Sea at Armageddon, to win the run.'});
 const A3INTRO='Act III: the sky splits. Above the last realm of men, Heaven and the Abyss are at war, and the war has reached the earth. A voice like many waters calls you to stand with the host.';
-SCL.push([4,1,0],[6,1,0],[8,1,1],[10,1,1]);
+SCL.push([7,1,0],[9,1,0],[11,1,1],[13,1,1]);
 RLMC.heaven=['#0c0a14','#4a3a20'];
 /* --- generals' phases and the Beast's wound --- */
 function a3Phase(){if(!G||!G.boss||!G.e||G.phase=='victory')return;const f=BOSS[G.bi];if(!f||!f.a3)return;const e=G.e,p=G.p;

@@ -73,15 +73,15 @@ F('rflm',{c:2,t:'Fire from the five carts: deal 2 damage plus 1 for each fire-ca
 {const _u=egUp;egUp=function(s,o){_u(s,o);try{if(G&&G.e&&s===G.p){const L=cr(s).filter(x=>x.burn);L.forEach(x=>{x.dmg+=1});if(L.length)log('The spear-fire still burns.')}}catch(e){}}}
 DK('Red Boy',{d:'rimp:5,rgrd:4,rspr:3,rboy,rflm:2',hint:'Healing feeds his fire, and every fire-cart makes his breath hotter'});
 
-/* ---------- The White Bone Spirit: GUILT. Killing her disguises shames you; three guilt and the monk punishes you ---------- */
-function fGuilt(o,n,why){o.guilt=(o.guilt||0)+n;log(why+' Guilt: '+Math.min(3,o.guilt)+' of 3.');if(o.guilt>=3){o.guilt=0;const t=fTop(cr(o));if(t){o.bf.splice(o.bf.indexOf(t),1);Object.assign(t,{dmg:0,tap:0,def:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0});o.deck.splice(Math.random()*(o.deck.length+1)|0,0,t);try{amFall()}catch(e){}log('The monk recites the tight-fillet spell: '+fNm(t)+' is banished into your deck.')}}}
-F('bone',{t:'Ward. Her disguises fool the monk: killing one gives you guilt. At 3 guilt, the monk recites the tight-fillet spell: your strongest army member is banished into your deck, and your guilt clears.'});
+/* ---------- The White Bone Spirit: GUILT. Killing her disguises shames you; two guilt and the monk punishes you ---------- */
+function fGuilt(o,n,why){o.guilt=(o.guilt||0)+n;log(why+' Guilt: '+Math.min(2,o.guilt)+' of 2.');if(o.guilt>=2){o.guilt=0;const t=fTop(cr(o));if(t){o.bf.splice(o.bf.indexOf(t),1);Object.assign(t,{dmg:0,tap:0,def:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0});o.deck.splice(Math.random()*(o.deck.length+1)|0,0,t);try{amFall()}catch(e){}log('The monk recites the tight-fillet spell: '+fNm(t)+' is banished into your deck.')}}}
+F('bone',{t:'Ward. Her disguises fool the monk: killing one gives you guilt. At 2 guilt, the monk recites the tight-fillet spell: your strongest army member is banished into your deck, and your guilt clears.'});
 F('bsk',{c:1,a:2,h:2,f:'',tag:'bone',t:'Her third disguise, the old father: killing it gives you 1 guilt, and she sheds a new disguise (a Wandering Corpse is shuffled into their deck).',die:(s,o)=>{fShuffle(s,'bghl',1);fGuilt(o,1,'You struck down an old man.')}});
-F('bghl',{c:2,a:2,h:3,f:'',tag:'bone',t:'Disguise, the young girl with a basket of food: killing it gives you 1 guilt.',die:(s,o)=>fGuilt(o,1,'You struck down a young girl.')});
+F('bghl',{c:2,a:3,h:3,f:'',tag:'bone',t:'Disguise, the young girl with a basket of food: killing it gives you 1 guilt.',die:(s,o)=>fGuilt(o,1,'You struck down a young girl.')});
 F('bhag',{c:3,a:3,h:4,f:'',tag:'bone',t:'Disguise, the grieving mother: killing it gives you 2 guilt.',die:(s,o)=>fGuilt(o,2,'You struck down an old woman.')});
 F('bsp',{c:4,a:4,h:5,f:'',tag:'bone',t:'The true spirit: twice she sheds her corpse, returns to their hand and leaves a Wandering Corpse in her place. The third death is final.',
  die:(s,o,c)=>{c.kills=(c.kills||0)+1;if(c.kills>=3){log('The third blow: the White Bone Spirit is struck down for good.');return}const i=s.gy.indexOf(c);if(i>=0){s.gy.splice(i,1);Object.assign(c,{dmg:0,tap:0,def:0,pa:0,pd:0,ta:0,td:0,vn:0,rs:0});s.hand.push(c);fSum(s,'bghl',1);log('She sheds her corpse and escapes ('+c.kills+' of 3).')}}});
-DK('The White Bone Spirit',{d:'bsk:4,bghl:5,bhag:4,bsp',hint:'Killing her disguises fills you with guilt; at three guilt the monk banishes your strongest. She herself must die three times'});
+DK('The White Bone Spirit',{d:'bsk:4,bghl:5,bhag:4,bsp',hint:'Killing her disguises fills you with guilt; at two guilt the monk banishes your strongest. She herself must die three times'});
 
 /* ---------- The Yellow Wind Ridge: BLINDNESS. The wind blinds your army until the monster that blows it dies ---------- */
 const fBlind=c=>{if(!c||c.blind)return;c.blind=1;fFlagOn(c,'n','bln')};

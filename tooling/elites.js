@@ -81,7 +81,8 @@ const ELITES=[
 CHARS.ody.el=[0,1];CHARS.odin.el=[2,3];
 
 /* --- cross-realm balance: adjustments when a realm's enemies face the other character (player:realm) --- */
-const XADJ={'ody:odin':[0,-1,0],'odin:ody':[5,1,0],'odin:wukong':[6,0,0],'ody:wukong':[-2,0,0],'wukong:odin':[-3,0,0],'wukong:ody':[4,0,0]};
-SCL.push([0,0,0],[3,0,0],[6,0,0],[8,1,0]);/* Act 2 (other realm) proxy table: bot data show +1 power costs ~15 points, +3 life ~4 */
+/* open tuning 2026-11-27: no hidden per-hero:realm adjustments any more (was XADJ); every hero meets the same Act II enemies */
+const XADJ={};
+SCL.push([7,0,0],[10,0,0],[13,0,0],[15,1,0]);/* open tuning 2026-11-27: +7 life, the average of the removed hidden XADJ table *//* Act 2 (other realm) proxy table: bot data show +1 power costs ~15 points, +3 life ~4 */
 function realmOf(f){for(const k of Object.keys(CHARS)){const C=CHARS[k];if(C.en.includes(f)||(C.el||[]).some(i=>ELITES[i]===f))return k}return''}
 function xAdj(f){const c=(G&&G.ch)||CH,r=realmOf(f);return r&&r!==c?XADJ[c+':'+r]:0}

@@ -1,10 +1,10 @@
 /* ===== Clarity: every hidden counter is shown on its trump card, and every status is written on the card it affects ===== */
 /* counters on the trump: the trump's own text, then a live line. s = the trump's side, o = the other side */
 const TRC={
- rwall:s=>'Winter: '+Math.min(3,s.winter||0)+' of 3.',
+ rwall:s=>'Winter: '+Math.min(2,s.winter||0)+' of 2.',
  corp:s=>s.sailed?'Naglfar has sailed.':'Nails: '+(s.nails||0)+' of 8.',
- serk:s=>'Venom: '+Math.min(7,s.venom||0)+' of 7.',
- bone:(s,o)=>'Your guilt: '+Math.min(3,o.guilt||0)+' of 3.',
+ serk:s=>'Venom: '+Math.min(5,s.venom||0)+' of 5.',
+ bone:(s,o)=>'Your guilt: '+Math.min(2,o.guilt||0)+' of 2.',
  bfury:s=>s.white?'The white bull is loose.':'Rage: '+Math.min(6,s.rage||0)+' of 6.',
  xbab:s=>'Tower: '+(s.tower||0)+' floors.',
  hdead:s=>'Blood in the pit: '+Math.min(4,s.blood||0)+' of 4.',
