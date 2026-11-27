@@ -6169,16 +6169,16 @@ const SBXCSS='\nhtml .ov.sbx{z-index:90}\nhtml .ov.sbx .ovb.sbxb{zoom:1;width:mi
 /* ===== patch_sandbox: Sandbox mode (hand-built decks vs any opponent; separate from normal runs) ===== */
 const SBXK='mythologica_sandbox_v1',SBXMIN=5,SBXPOST=['kleos','victory','a3front','lost'];
 const SBXRN={ody:'Greek realm',odin:'Norse realm',wukong:'Chinese realm',thoth:'Egyptian realm'};
-const SBX={on:0,hero:'ody',decks:{},pool:10,foe:'',fi:0,loaded:'',view:'',up:-1,ren:'',del:'',clr:0,msg:'',res:null};
+const SBX={on:0,hero:'ody',decks:{},pool:10,foe:'',fi:0,loaded:'',sort:'rar',view:'',up:-1,ren:'',del:'',clr:0,msg:'',res:null};
 const sbxH=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const sbxClone=o=>JSON.parse(JSON.stringify(o));
 function sbxRead(){let o=null;try{o=JSON.parse(localStorage.getItem(SBXK))}catch(e){}if(!o||o.v!=1)o={v:1,lib:[],cur:null};if(!Array.isArray(o.lib))o.lib=[];
  o.lib=o.lib.filter(d=>d&&d.id&&CHARS[d.hero]&&Array.isArray(d.recs));o.lib.forEach(d=>{d.recs=d.recs.filter(r=>r&&D[r.id])});return o}
 function sbxWrite(o){try{localStorage.setItem(SBXK,JSON.stringify(o));return 1}catch(e){return 0}}
-function sbxStore(){const o=sbxRead();o.cur={hero:SBX.hero,decks:SBX.decks,pool:SBX.pool,foe:SBX.foe,fi:SBX.fi,loaded:SBX.loaded};return sbxWrite(o)}
+function sbxStore(){const o=sbxRead();o.cur={hero:SBX.hero,decks:SBX.decks,pool:SBX.pool,foe:SBX.foe,fi:SBX.fi,loaded:SBX.loaded,sort:SBX.sort};return sbxWrite(o)}
 function sbxRestore(){const o=sbxRead(),c=o.cur;SBX.decks={};Object.keys(CHARS).forEach(k=>SBX.decks[k]=[]);
  if(c){if(CHARS[c.hero])SBX.hero=c.hero;Object.keys(CHARS).forEach(k=>{const d=c.decks&&c.decks[k];if(Array.isArray(d))SBX.decks[k]=d.filter(r=>r&&D[r.id])});
-  if(c.pool>=0)SBX.pool=c.pool|0;SBX.foe=c.foe||'';SBX.fi=c.fi|0;SBX.loaded=c.loaded||''}
+  if(c.pool>=0)SBX.pool=c.pool|0;SBX.foe=c.foe||'';SBX.fi=c.fi|0;SBX.loaded=c.loaded||'';SBX.sort=c.sort=='cost'?'cost':'rar'}
  if(SBX.loaded&&!o.lib.some(d=>d.id==SBX.loaded))SBX.loaded=''}
 const sbxDeck=()=>SBX.decks[SBX.hero]||(SBX.decks[SBX.hero]=[]);
 const sbxSpent=recs=>(recs||[]).reduce((n,r)=>n+(r.k|0),0);
@@ -6231,9 +6231,12 @@ function sbxOpen(){SBX.on=1;sbxRestore();SBX.view='';SBX.up=-1;SBX.ren='';SBX.de
 function sbxExit(){SBX.on=0;SBX.view='';showChars()}
 function sbxLeaveFight(){SBX.res={left:1,nm:(G&&G.e&&G.e.nm)||''};sbxScreen();render()}
 /* ---- the screen ---- */
-function sbxPoolCards(h){const C=CHARS[h];return [...new Set([...C.staples,...C.pool])].filter(id=>D[id]).map(id=>mk(id)).sort((a,b)=>(RSO[RAR[a.id]]||0)-(RSO[RAR[b.id]]||0)||D[a.id][1]-D[b.id][1]||(TAG[a.id]||'~').localeCompare(TAG[b.id]||'~')||D[a.id][0].localeCompare(D[b.id][0]))}
+function sbxPoolCards(h){const C=CHARS[h];return [...new Set([...C.staples,...C.pool])].filter(id=>D[id]).map(id=>mk(id)).sort(sbxCmp)}
+/* sort order for both panes: by rarity (then cost), or by cost (then rarity); SBX.sort = 'rar' | 'cost' */
+function sbxCmp(a,b){const r=(RSO[RAR[a.id]]||0)-(RSO[RAR[b.id]]||0),c=cost(a)-cost(b),t=(TAG[a.id]||'~').localeCompare(TAG[b.id]||'~')||D[a.id][0].localeCompare(D[b.id][0]);return (SBX.sort=='cost'?(c||r):(r||c))||t}
+const sbxSortBtns=()=>`<span>Sort by: ${[['rar','Rarity'],['cost','Cost']].map(([k,l])=>`<button class="b gh${SBX.sort==k?' on':''}" data-sx="sort:${k}">${l}</button>`).join('')}</span>`;
 function sbxGroups(recs){const M=new Map();recs.forEach((r,i)=>{const k=JSON.stringify(r);if(!M.has(k))M.set(k,{r,ix:[]});M.get(k).ix.push(i)});
- return [...M.values()].map(g=>(g.c=mk(g.r.id,g.r),g)).sort((a,b)=>rsort(a.c,b.c)||(a.r.k|0)-(b.r.k|0))}
+ return [...M.values()].map(g=>(g.c=mk(g.r.id,g.r),g)).sort((a,b)=>sbxCmp(a.c,b.c)||(a.r.k|0)-(b.r.k|0))}
 function sbxRender(){try{const R=document.documentElement.style;R.setProperty('--b1','#0b1820');R.setProperty('--b2','#1d4452')}catch(e){}
  const h=SBX.hero,C=CHARS[h],recs=sbxDeck(),spent=sbxSpent(recs),left=SBX.pool-spent,F=sbxFoe(SBX.foe),cnt={};recs.forEach(r=>cnt[r.id]=(cnt[r.id]||0)+1);
  const pool=sbxPoolCards(h),grp=sbxGroups(recs),ld=SBX.loaded&&sbxRead().lib.find(d=>d.id==SBX.loaded);
@@ -6248,7 +6251,7 @@ function sbxRender(){try{const R=document.documentElement.style;R.setProperty('-
  const clr=SBX.clr?`<span>Remove all ${recs.length} cards? <button class="b gh" data-sx="clryes">Yes</button><button class="b gh" data-sx="clrno">No</button></span>`:`<span><button class="b gh" data-sx="staples">Add starting cards</button>${recs.length?'<button class="b gh" data-sx="clr">Clear deck</button>':''}</span>`;
  let html=`<div class="ov ovlib sbx"><div class="ovb sbxb"><div class="sbxt"><div class="ovt">Sandbox</div><div class="sbxh">${heroes}</div><button class="b gh" data-sx="home">Back to home</button></div>
 <div class="sbxs">Build any deck and fight any opponent. Nothing here touches your saved run. A normal run starts with ${C.staples.length+ROUNDS} cards.</div>${res}${bar}${bar2}
-<div class="sbxm"><div class="sbxp"><div class="sbxph"><span>${sbxH(C.n)}'s card pool (${pool.length}) · click a card to add it</span></div><div class="lib">${pcards}</div></div>
+<div class="sbxm"><div class="sbxp"><div class="sbxph"><span>${sbxH(C.n)}'s card pool (${pool.length}) · click a card to add it</span>${sbxSortBtns()}</div><div class="lib">${pcards}</div></div>
 <div class="sbxd"><div class="sbxph"><span>Your deck: ${recs.length} card${recs.length==1?'':'s'}</span>${clr}</div><div class="lib">${dcards||'<div class="dsub">Click cards on the left to add them.</div>'}</div></div></div></div></div>`;
  html+=sbxOverlay();
  document.getElementById('app').innerHTML=html;sbxFit()}
@@ -6284,6 +6287,7 @@ function sbxDo(a){const i=a.indexOf(':'),c=i<0?a:a.slice(0,i),v=i<0?'':a.slice(i
  else if(c=='uclose'){SBX.view='';SBX.up=-1}
  else if(c=='staples'){CHARS[SBX.hero].staples.forEach(id=>recs.push(sbxNew(id)))}
  else if(c=='clr')SBX.clr=1;else if(c=='clrno')SBX.clr=0;else if(c=='clryes'){recs.length=0;SBX.clr=0;SBX.loaded=''}
+ else if(c=='sort')SBX.sort=v=='cost'?'cost':'rar';
  else if(c=='fi')SBX.fi=Math.max(0,Math.min(3,+v|0));
  else if(c=='view'){SBX.view=v;SBX.ren='';SBX.del=''}
  else if(c=='foe'){if(sbxFoe(v)){SBX.foe=v;SBX.view=''}}

@@ -36,6 +36,15 @@ ok('legendary cards cannot be upgraded',!leg||R(`sbxOpts(sbxNew('${leg}')).lengt
 const spl=R(`CHARS.ody.pool.find(id=>D[id]&&D[id][2]=='S'&&UPS[id])`);
 ok('spells get spell upgrades (Stronger effect)',R(`sbxOpts(sbxNew('${spl}')).includes(6)`));
 R(`sbxResetCard(sbxDeck(),hi)`);ok('undoing a card\'s upgrades refunds its points',R('sbxSpent(sbxDeck())')==1);
+// sorting: by rarity (default) or by cost, for the pool and the deck
+const ordered=(key)=>R(`(()=>{const L=sbxPoolCards('ody');for(let i=1;i<L.length;i++){const a=L[i-1],b=L[i];if(${key})return false}return true})()`);
+ok('pool sorts by rarity by default',R('SBX.sort')=='rar'&&ordered("(RSO[RAR[a.id]]||0)>(RSO[RAR[b.id]]||0)"));
+R(`sbxDo('sort:cost')`);
+ok('pool sorts by cost',R('SBX.sort')=='cost'&&ordered("cost(a)>cost(b)")&&!ordered("(RSO[RAR[a.id]]||0)>(RSO[RAR[b.id]]||0)"));
+ok('deck sorts by cost too',R(`(()=>{const g=sbxGroups(sbxDeck());return g.every((x,i)=>!i||cost(g[i-1].c)<=cost(x.c))})()`));
+ok('the sort choice is remembered',JSON.parse(store.mythologica_sandbox_v1).cur.sort=='cost');
+R(`sbxScreen();render()`);ok('sort buttons show on the screen',/data-sx="sort:rar"/.test(app.innerHTML)&&/data-sx="sort:cost"/.test(app.innerHTML));
+R(`sbxDo('sort:rar')`);
 // grouping in the deck view
 ok('identical cards group together, upgraded copies apart',R(`sbxGroups(sbxDeck()).filter(g=>g.r.id=='hopl').map(g=>g.ix.length).sort().join(',')`)=='1,5');
 // library
