@@ -23,7 +23,7 @@ _JSMTE = r"""
   r=t.getBoundingClientRect();
   let dx=0;if(r.width>c.R-c.L-2*M)dx=c.L+M-r.left;else if(r.left<c.L+M)dx=c.L+M-r.left;else if(r.right>c.R-M)dx=c.R-M-r.right;
   if(dx)t.style.setProperty('transform','translateX(calc(-50% + '+(dx/sc).toFixed(1)+'px))','important')}
- document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
+ if(typeof document.addEventListener=='function')document.addEventListener('mouseover',e=>{const wn=e.target&&e.target.closest&&e.target.closest('.wn');if(!wn||wn.contains(e.relatedTarget))return;try{place(wn)}catch(err){}},true);
 })();
 """
 _b3("showChars();\n</script>", _JSMTE + "showChars();\n</script>")
