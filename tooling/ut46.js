@@ -16,5 +16,5 @@ R(`G.p.cp=3`);ok('palm taxes the 4th card',R('cost(h)')==2);R(`G.p.cp=2`);ok('pa
 R(`enter(G.e,mk('pfin'))`);ok('a Finger lowers the limit by one',R('cost(h)')==2);
 R(`setChar('wukong');newRun();for(let i=0;i<11;i++)pickDraft(0);G.elt=ELITES.length;G.boss=0;fight();G.phase='main';G.p.bf=[];G.p.hand=[];G.e.hand=[];enter(G.e,mk('ifan'))`);
 console.log(R('G.e.nm+" "+G.e.bf.map(c=>c.id)+" boss="+G.boss+" elt="+G.elt'));ok('iron fan elite loaded',R(`G.e.bf.some(c=>c.id=='ifan')`));
-R(`var c1=mk('hopl');G.p.bf=[];enter(G.p,c1);var c2=mk('wmonk');enter(G.p,c2);egUp(G.e,G.p)`);ok('fan blows the most expensive army member onto your deck',R(`!G.p.bf.includes(c1)&&(G.p.deck.includes(c1))`)&&R(`G.p.bf.includes(c2)`));
+R(`var c1=mk('ajax');G.p.bf=[];enter(G.p,c1);var c2=mk('wmonk');enter(G.p,c2);egUp(G.e,G.p)`);ok('fan blows the most expensive army member onto your deck',R(`!G.p.bf.includes(c1)&&(G.p.deck.includes(c1))`)&&R(`G.p.bf.includes(c2)`));
 console.log(f?('FAILED '+f):'ALL OK');

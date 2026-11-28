@@ -98,7 +98,7 @@ setup(0);R(`var m1=mk('spd3'),m2=mk('spd3');m1.d=9;m2.d=9;enter(G.e,m1);enter(G.
 setup(0);R(`var wm=mk('wwind');G.p.hand.push(wm);G.p.mo=2;var h0=G.p.hand.length;G.p.deck.push(mk('wmonk'))`);R('cast(wm)');ok('windborne draws at momentum 2',R('G.p.hand.length')>=R('h0'));
 setup(0);R(`var sl=mk('spd3');sl.d=20;enter(G.e,sl)`);cast('wseal','sl');ok('seal taps and freezes',R('sl.tap==1&&sl.frz==1'));
 setup(0);R(`G.p.deck.push(mk('wmonk'),mk('wmonk'),mk('wmonk'))`);cast('wwine');R('var hq=G.p.hand.length');cast('wecho');ok('afterimage re-draws',R('G.p.hand.length')>=R('hq')+1);
-setup(0);R(`var tg1=mk('wtang');enter(G.p,tg1);G.p.deck.push(mk('wmonk'),mk('wmonk'),mk('wmonk'));var ht=G.p.hand.length`);cast('wpluck');cast('wstep',R(`(function(){var m=mk('wmonk');enter(G.p,m);return 'G.p.bf[G.p.bf.length-1]'})()`) && 'G.p.bf[G.p.bf.length-1]');R('var hu=G.p.hand.length');cast('wwine');ok('tang draws on 3rd card',R('G.p.hand.length')>=R('hu')+2);
+setup(0);R(`var tg1=mk('wtang');enter(G.p,tg1);G.p.deck.push(mk('wmonk'),mk('wmonk'),mk('wmonk'));var ht=G.p.hand.length`);cast('wpluck');R('var hu=G.p.hand.length');cast('wwine');ok('tang draws on 2nd card',R('G.p.hand.length')>=R('hu')+1);
 // face targeting
 setup(0);R(`var fd=mk('wdart');G.p.hand.push(fd);var lf=G.e.life;hd('h:'+fd.u)`);ok('dart enters targeting mode',R('!!(G.mode&&G.mode.tgt==="xf")'));R(`hd('ef')`);ok('dart hits opponent for 1',R('G.e.life')==R('lf')-1);
 setup(0);R(`var fr=mk('wrod');G.p.hand.push(fr);var lg=G.e.life;hd('h:'+fr.u);hd('ef')`);ok('rod hits opponent for 2',R('G.e.life')==R('lg')-2);

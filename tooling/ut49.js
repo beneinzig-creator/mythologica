@@ -25,7 +25,7 @@ setup();const e1=put('mthief','e',1);R(`cast(mk('ierase'),${card(e1)})`);
 ok('Erase: loses name and keywords',R(`(${card(e1)}).id.startsWith('nm')`)&&R(`(${card(e1)}).f`)=='');
 // Reunite our own Sundered army member
 setup();const s1=put('gpriest','p',1);R(`cast(mk('dcut'),${card(s1)})`);ok('Ritual Knife: our Body and Spirit',R(`cr(G.p).filter(x=>x.part).length`)==2);
-R(`cast(mk('dreun'))`);ok('Reunion: the Priest returns with +1/+1',R(`cr(G.p).some(x=>x.u==${s1}&&x.pa==1&&x.pd==1)`)&&!R('cr(G.p).some(x=>x.part)'));
+R(`cast(mk('dreun'))`);ok('Reunion: the Priest returns with +2/+2',R(`cr(G.p).some(x=>x.u==${s1}&&x.pa==2&&x.pd==2)`)&&!R('cr(G.p).some(x=>x.part)'));
 // Amulets: attach, bonus, fall, re-equip
 setup();const a1=put('gpriest','p',1);R(`cast(mk('ianx'),${card(a1)})`);const am=R(`G.p.bf.find(x=>x.id=='ianx').u`);
 ok('Ankh equipped: +1/+1 and Draining',R(`has(${card(a1)},'d')`)&&R(`pwr(${card(a1)})`)==R(`D.gpriest[3]`)+1);

@@ -17,7 +17,7 @@ R(`G.p.life=-1;chk()`);ok('Divine Intervention: only once',R('G.phase')=='lost')
 // Bodvar: +3/+3 while Wounded
 setup('odin');put('bodvar');castId('bodvar');const b=R(`G.p.bf.find(x=>x.id=='bodvar')`);
 const p0=R(`pwr(G.p.bf.find(x=>x.id=='bodvar'))`),h0=R(`th(G.p.bf.find(x=>x.id=='bodvar'))`);R('G.p.life=8');
-ok('Bodvar: +3/+3 while Wounded',R(`pwr(G.p.bf.find(x=>x.id=='bodvar'))`)==p0+3&&R(`th(G.p.bf.find(x=>x.id=='bodvar'))`)==h0+3);
+ok('Bodvar: +3/+3 while Wounded (+1 power more in a Frenzy: losing 12 life is 6+ Rage)',R(`pwr(G.p.bf.find(x=>x.id=='bodvar'))`)==p0+4&&R(`th(G.p.bf.find(x=>x.id=='bodvar'))`)==h0+3);
 
 // Myrmidon Shield-Bearer and Close Ranks
 setup('ody');put('hopl');castId('hopl');put('myrsh');castId('myrsh');

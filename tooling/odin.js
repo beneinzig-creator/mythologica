@@ -2,8 +2,8 @@
 const TOKE=['sold','ein'];
 CO.N='#9fb4c8';CO.M='#a58bc4';CO.F='#d4642a';CO.H='#7f9a9a';
 Object.assign(KWT,{u:'Bloodlust.',i:'Battle-rage.',j:'Pack.',t:'Forged.'});
-Object.assign(KWL,{u:'Bloodlust: while it has damage on it, it gets +2 power.',i:'Battle-rage: while its controller is Wounded (at half life or less), it gets +2 power.',j:'Pack: it gets +1 power for each other Pack army member you control (up to +2).',t:'Forged: it gets +1/+1 for each item and modifier you control (up to +3).'});
-const GLX=[[/\bbloodlust\b/i,'Bloodlust',KWL.u],[/battle-rage/i,'Battle-rage',KWL.i],[/\bwounded\b/i,'Wounded','you are Wounded while your life is half of your maximum or less (10 or less with 20 life). Wounded effects switch on and off as your life changes.'],[/\bcarve\b/i,'Carve','an additional cost: pay that much life to cast it. You cannot Carve if it would leave you with no life. Rune-Carver reduces Carve by 1.'],[/\bfallen\b|have died this fight/i,'Fallen','your army members that have died or been offered this fight. Valhalla cards count them.'],[/\bpack\b/i,'Pack',KWL.j],[/\bforged\b/i,'Forged',KWL.t]];
+Object.assign(KWL,{u:'Bloodlust: while it has damage on it, it gets +2 power.',i:'Battle-rage: while its controller is Wounded, it gets +2 power.',j:'Pack: it gets +1 power for each other Pack army member you control (up to +2).',t:'Forged: it gets +1/+1 for each item and modifier you control (up to +3).'});
+const GLX=[[/\bbloodlust\b/i,'Bloodlust',KWL.u],[/battle-rage/i,'Battle-rage',KWL.i],[/\bwounded\b/i,'Wounded','you are Wounded while your Rage is 3 or more. Rage is the life you have lost since the start of your last turn (shown next to your life), so it builds while you bleed and fades a turn after you stop. At 6 Rage your Berserkers are in a Frenzy: +1/+0.'],[/\bcarve\b/i,'Carve','an additional cost: pay that much life to cast it. You cannot Carve if it would leave you with no life. Rune-Carver reduces Carve by 1.'],[/\bfallen\b|have died this fight/i,'Fallen','your army members that have died or been offered this fight. Valhalla cards count them.'],[/\bpack\b/i,'Pack',KWL.j],[/\bforged\b/i,'Forged',KWL.t]];
 Object.assign(ARCH,{B:'Berserkers',V:'Valhalla',H:'Runes'});
 /* ---- Odin cards ---- */
 Object.assign(D,{
@@ -104,7 +104,8 @@ for(const t in TAGX)TAGX[t].split(' ').forEach(x=>TAG[x]=t);
 Object.assign(UPS,{mead:n=>`Draw ${1+n} (${2+n} if Wounded)`,gash:n=>`+${2+n}/+${2+n}`,lstd:n=>`+${2+n}/+${2+n} (+${3+n} if Wounded)`,slst:n=>`Deals ${2+n} to ${6+n}`,hagl:n=>`Deals ${2+n} to each`,mhall:n=>`+${1+n}/+${1+n}`,ruru:n=>`+${1+n}/+0`,alg:n=>`+0/+${2+n}`,ygg:n=>`+${1+n}/+${2+n}`,rfly:n=>`+${1+n}/+${1+n}`,gung:n=>`Deals ${3+n} damage`,oath:n=>`+${3+n}/+${3+n}`,howl:n=>`+${2+n}/+0 (+${3+n} if Wounded)`,rage:n=>`+${3+n}/+0 (+${5+n} if Wounded)`,rend:n=>`Deals ${6+n} damage`,seid:n=>`-${3+n}/-${3+n}`,norn:n=>`Draw 3, gain ${4+2*n} life`,ofr:n=>`Gain ${3+n} life`,vmar:n=>`+${1+n} per fallen (max +${3+n})`});
 /* ---- engine hooks ---- */
 const ENTD={sprm:(s,c)=>{c.dmg=1}};
-const wnd=s=>!!s&&s.life*2<=s.max;
+/* Wounded: for Odin's own side it is set by Rage (hero_flow.js, WNDX); otherwise half life or less */
+const wnd=s=>!!s&&(typeof WNDX=='function'?WNDX(s):s.life*2<=s.max);
 function px(c){const s=sideOf(c);if(!s)return 0;let n=0;
  if(c.dmg>0&&has(c,'u'))n+=2;
  if(has(c,'i')&&wnd(s))n+=2;

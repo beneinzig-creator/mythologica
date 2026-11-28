@@ -4,7 +4,7 @@ Object.assign(D,{
 lhz:['Lotus Haze',0,'E',0,0,'w','Ward. The first army member you play each turn enters tapped.','🪷','G'],
 hdead:['The Hungry Dead',1,'E',0,0,'w','Ward. Whenever an army member dies, the Shades gain 1 extra mana on their next turn (up to 2).','🥀','B'],
 hitr:['Hit and Run',0,'E',0,0,'w','Ward. Marauders that deal combat damage to you return to their owner\'s hand and can be played again for free.','🏃','R'],
-pgrow:['The Pack Grows',1,'E',0,0,'w','Ward. At the start of their turn, their weakest army member gets +1/+1 permanently.','🐾','B'],
+pgrow:['The Pack Grows',1,'E',0,0,'w','Ward. At the start of every second turn of theirs (starting with the first), their weakest army member gets +1/+1 permanently.','🐾','B'],
 rwall:['Rimewall',0,'E',0,0,'w','Ward. Combat damage dealt to their Giants is reduced by 1.','🧊','U'],
 ffire:['The Forge-Fire',1,'E',0,0,'w','Ward. Whenever they play an item or modifier, their strongest army member gets +1/+1 permanently.','🔥','A'],
 bland:['Scorched Earth',1,'E',0,0,'w','Ward. At the start of each of your turns, you lose 1 life.','🌋','F'],
@@ -15,7 +15,7 @@ D.canto[1]=1;D.mouth[1]=1;D.blackship[1]=1;D.lhz[1]=1;
 Object.assign(LORE,Object.fromEntries(MT.map(k=>[k,'Opening trump'])));
 Object.assign(IV,Object.fromEntries(MT.map(k=>[k,40])));
 function mtUp(s,o){const n=id=>s.bf.filter(x=>x.id==id).length;
- if(n('pgrow')){const L=cr(s);if(L.length){const t=L.slice().sort((a,b)=>(pw(a)+th(a))-(pw(b)+th(b)))[0];t.pa++;t.pd++;log('The Pack grows: '+D[t.id][0]+' gets +1/+1.')}}
+ if(n('pgrow')&&(s.pgt=!s.pgt)){const L=cr(s);if(L.length){const t=L.slice().sort((a,b)=>(pw(a)+th(a))-(pw(b)+th(b)))[0];t.pa++;t.pd++;log('The Pack grows: '+D[t.id][0]+' gets +1/+1.')}}
  if(o&&s===G.p&&o.bf.some(x=>x.id=='bland')){s.life-=1;log('Scorched Earth: you lose 1 life.')}
  /* corp: Naglfar, foes_norse.js */}
 function ltx(c){if(!G||!G.e||!G.p||!G.e.bf||!G.p.hand)return 0;const t=D[c.id][2];if(t!='S'&&t!='I')return 0;if(!G.p.hand.includes(c))return 0;return(G.p.sp===G.turn||!G.e.bf.some(x=>x.id=='ltax'))?0:1}

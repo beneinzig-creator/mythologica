@@ -15,17 +15,17 @@ F('torch',{c:2,t:'They set the coffins alight: deal 2 damage to target army memb
 DK('The Tomb Robbers',{d:'grob:5,tdig:3,fence:2,mthief,torch:3',hint:'Cowards in numbers: they steal when they outnumber you and sell what they take'});
 
 /* ---------- The Scorpions of Serket: THE VENOM POOL. Six escorts give their venom to Tefen, who stings ---------- */
-const fPool=(s,n,why)=>{s.venom=(s.venom||0)+n;if(why)log(why+' Venom: '+Math.min(7,s.venom)+' of 7.');if(s.venom>=7){s.venom=0;const o=oppOf(s);const t=fTop(cr(o));if(t){fDestroy(t);log('Tefen stings with the venom of all seven: '+fNm(t)+' dies.')}fHurt(o,3,'The pooled venom burns you too. ');cr(s).filter(x=>x.id=='squeen').forEach(()=>{cr(o).forEach(x=>heal(x,1))})}};
+const fPool=(s,n,why)=>{s.venom=(s.venom||0)+n;if(why)log(why+' Venom: '+Math.min(5,s.venom)+' of 5.');if(s.venom>=5){s.venom=0;const o=oppOf(s);const t=fTop(cr(o));if(t){fDestroy(t);log('Tefen stings with the pooled venom: '+fNm(t)+' dies.')}fHurt(o,3,'The pooled venom burns you too. ');cr(s).filter(x=>x.id=='squeen').forEach(()=>{cr(o).forEach(x=>heal(x,1))})}};
 const fScor=['sbrood','sstalk','squeen','sking'];
-F('serk',{t:'Ward. The venom pool: whenever one of their scorpions dies or deals combat damage to you, the pool fills by 1. At 7, Tefen stings with the venom of all seven: your strongest army member dies, you lose 3 life, and the pool empties.',
+F('serk',{t:'Ward. The venom pool: whenever one of their scorpions dies or deals combat damage to you, the pool fills by 1. At 5, Tefen stings with the pooled venom: your strongest army member dies, you lose 3 life, and the pool empties.',
  allyDie:(s,o,c,x)=>{if(fScor.includes(x.id))fPool(s,x.id=='sbrood'?2:1,'A scorpion\'s venom pools.')}});
-F('sbrood',{c:1,a:1,h:1,f:'h',tag:'scor',t:'Charge. One of the seven escorts: when it dies, it gives its venom to the pool twice over (+2). When it deals combat damage to you, +1.',hit:s=>fPool(s,1,'A sting.')});
+F('sbrood',{c:1,a:1,h:2,f:'h',tag:'scor',t:'Charge. One of the seven escorts: when it dies, it gives its venom to the pool twice over (+2). When it deals combat damage to you, +1.',hit:s=>fPool(s,1,'A sting.')});
 F('sstalk',{c:2,a:3,h:2,f:'',tag:'scor',t:'It waits under the sand: after it blocks, the pool fills by 1.',blk:s=>fPool(s,1,'The Sand Stalker strikes from under the sand.'),hit:s=>fPool(s,1,'A sting.')});
 F('squeen',{c:3,a:3,h:3,f:'',tag:'scor',t:'Serket heals stings as well as causing them: at the start of their turn, restore 2 health to each of their army members. When Tefen stings, Isis\'s mercy: your army members heal 1.',up:s=>cr(s).forEach(x=>heal(x,2))});
 F('sking',{c:4,a:4,h:4,f:'',tag:'scor',t:'The first king, named for the scorpion: gets +1/+1 for every 2 venom in the pool (at most +3/+3).',self:c=>{const n=Math.min(3,Math.floor((sideOf(c).venom||0)/2));return[n,n]},hit:s=>fPool(s,1,'A sting.')});
 F('sting',{c:2,t:'Spend 3 venom from the pool: destroy target army member. With less venom, it only deals 2 damage.',
  ai:(s,o)=>{if((s.venom||0)>=3){const T=fTop(fTg(o));return T&&ev(T)>=4?{s:2+ev(T)*.8,t:T}:null}return fAiKill(o,2,2.5)},fx:(s,o,t)=>{if(!t)return;if((s.venom||0)>=3){s.venom-=3;fDestroy(t)}else t.dmg+=2}});
-DK('The Scorpions of Serket',{d:'sbrood:6,sstalk:3,squeen:2,sking,sting:2',hint:'Every scorpion that dies or stings fills the venom pool; at seven, Tefen stings your strongest army member'});
+DK('The Scorpions of Serket',{d:'sbrood:6,sstalk:3,squeen:2,sking,sting:2',hint:'Every scorpion that dies or stings fills the venom pool; at five, Tefen stings your strongest army member'});
 
 /* ---------- Servants of the Tomb: the shabti answer "Here I am!" and stand in for the dead ---------- */
 F('shbs',{c:1,a:3,h:1,f:'',tag:'shab',t:'"Here I am!": once each turn, when another of their army members dies, this servant dies in its place and that army member returns with 1 health.',
@@ -44,7 +44,7 @@ DK('Servants of the Tomb',{d:'shbs:6,mumw:3,embp:2,tguard,heal2:2',hint:'Shabti 
 const fRiver=s=>(s.river||[]).length;
 function fDrag(s,o,x,why){if(!x||!o.bf.includes(x))return;o.bf.splice(o.bf.indexOf(x),1);Object.assign(x,{dmg:0,tap:0,def:0,att:0,sw:0,ta:0,td:0,vn:0,rs:0,forced:0});(s.river=s.river||[]).push(x);try{amFall()}catch(e){}log((why||'')+fNm(x)+' is dragged into the river ('+fRiver(s)+' held).')}
 F('sobk',{t:'Ward. The river: your army members dragged under are held in the river, not killed. When Sobek dies, he gives back what the water took: they return to your hand.'});
-F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +2/+0 in defense form, and +1/+1 for each army member held in the river (at most +2/+2).',self:c=>{const n=Math.min(2,fRiver(sideOf(c)));return[(c.def?2:0)+n,n]}});
+F('croc',{c:2,a:3,h:3,f:'',tag:'croc',t:'It lies on the bank like a log: +1/+0 (+2/+0 in defense form), and +1/+1 for each army member held in the river (at most +2/+2).',self:c=>{const n=Math.min(2,fRiver(sideOf(c)));return[(c.def?2:1)+n,n]}});
 F('lurk',{c:2,a:3,h:2,f:'',tag:'croc',t:'The death roll: when it blocks an army member that has 3 or less health left, it drags it into the river before it can strike.'});
 F('sobpr',{c:3,a:3,h:4,f:'',tag:'croc',t:'The priests hang the sacred crocodiles with gold: their army members get +1/+0 for each army member held in the river (at most +3).',aura:(x,c)=>[Math.min(3,fRiver(sideOf(c))),0],self:c=>[Math.min(3,fRiver(sideOf(c))),0]});
 F('sobek',{c:5,a:5,h:6,f:'',tag:'croc',t:'When it blocks an army member, it drags it into the river before it can strike. Gets +1/+1 for each army member held in the river. When it dies, the river gives them all back to your hand.',
@@ -81,8 +81,8 @@ F('curse2',{c:2,t:'Target army member gets -2/-2, or -3/-3 if you hold a cursed 
 DK('The Priests of Heka',{d:'hekp:4,snake:4,hekmag:2,hekhigh,curse2:3',hint:'They curse the cards in your hand by name, and cursed cards hurt you to play'});
 
 /* ---------- Ammit: the weighing of the heart ---------- */
-const fFeather=s=>Math.max(2,4-fCnt(s,'hguard2')-(s.light||0));
-F('ammt',{t:'Ward. The weighing: at the start of their turn, your army member with the most power is weighed against the feather (power 4, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it: it is gone for good.',
+const fFeather=s=>Math.max(2,5-fCnt(s,'hguard2')-(s.light||0));
+F('ammt',{t:'Ward. The weighing: at the start of their turn, your army member with the most power is weighed against the feather (power 5, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it: it is gone for good.',
  up:(s,o)=>{const t=cr(o).filter(x=>pw(x)>=fFeather(s)).sort((a,b)=>pw(b)-pw(a))[0];if(!t)return;o.bf.splice(o.bf.indexOf(t),1);log('The heart of '+fNm(t)+' is heavier than the feather: Ammit eats it.');cr(s).filter(x=>x.id=='ammit').forEach(a=>{a.pa+=2;a.pd+=2});try{amFall()}catch(e){}}});
 F('ammit',{c:4,a:4,h:6,f:'k',tag:'ammit',t:'Can only defend: she waits by the scales. Every heart she eats gives her +2/+2.'});
 F('soulw',{c:1,a:2,h:2,f:'',tag:'ammit',t:'It knows the weight of its heart: when it dies, the feather becomes 1 lighter (at most 2 lighter).',die:s=>{if((s.light||0)<2){s.light=(s.light||0)+1;log('The feather grows lighter.')}}});

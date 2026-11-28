@@ -93,7 +93,7 @@ hmil|Phalanx. +1/+0 while you control Hector.
 hspr|Phalanx. Range. When it blocks, it deals 1 more damage.
 hgua|Phalanx. Your other Phalanx army members get +0/+1.
 hchar|Charge. When it enters, your opponent's weakest army member takes 1 damage.
-hector|When it enters, your other Phalanx army members get +1/+1 permanently.
+hector|Attacks each turn if able. When it enters, your other Phalanx army members get +1/+1 permanently.
 priam|When it enters, gain 4 life.
 sh1|Ruthless. When it dies, it is shuffled back into your deck.
 sh2|Ruthless. +1/+0 for each other Head.
@@ -104,7 +104,7 @@ curse|Target army member gets -2/-2.
 cdro|When it dies, it returns to your hand.
 cspa|When it enters, tap target opposing army member.
 ceel|When it enters, draw a card.
-clev|Resilient. +2/+2 on every third turn.
+clev|Resilient. +2/+2 on every fourth turn.
 chary|When it enters, tap all opposing army members.
 undertow|Tap target opposing army member.
 honey|Tap target opposing army member; it doesn't untap next turn.
@@ -117,12 +117,12 @@ wolf|Pack. When it enters, a Wolf Pup joins you.
 hati|Pack. Range. At the start of your turn, the opposing army member with the least health takes 1 damage.
 skoll|Pack. Charge. +2/+0 while you control Hati.
 fenr|Pack. Bulldoze. At the start of your turn, +1/+1 permanently. It can't attack before your sixth turn.
-pgrow|Ward. At the start of your turn, your weakest army member gets +1/+1 permanently.
+pgrow|Ward. At the start of every second turn of yours (starting with the first), your weakest army member gets +1/+1 permanently.
 ithrl|Giant. When it dies, the winter deepens by 1.
 rimew|Giant. While any Rime-Witch lives, opposing army members get -1/-0. When it enters, your opponent's weakest army member takes 1 damage for each winter. When it dies, the winter eases by 1.
 hgnt|Giant. Resilient. +1/+1 for each winter.
 icesp|Deal 2 damage plus 1 for each winter to target army member.
-rwall|Ward. On every second turn of yours, the winter deepens (at most 3). Your Hill Giants and Ice Spears grow stronger with each winter. Whenever a Rime-Witch dies, the winter eases by 1.
+rwall|Ward. On every second turn of yours, the winter deepens (at most 2). Your Hill Giants and Ice Spears grow stronger with each winter. Whenever a Rime-Witch dies, the winter eases by 1.
 dmin|Forged. When it dies, draw a card.
 dsmith|Forged. At the start of your turn, if you have an item, your weakest army member gets +1/+1 permanently.
 dxbow|Forged. Range. When it enters, target opposing army member takes 1 damage for each item you have (at most 3).
@@ -193,7 +193,7 @@ hmead|Gain 4 life. Restore 2 health to each of your army members.
 # ---------------- Wukong's road ----------------
 _t(r"""
 spd1|Flying. When it enters, put 1 silk on your opponent's strongest army member.
-spd2|Ward. At the start of your turn, put 2 silk on the opposing army member with the most power that is not cocooned.
+spd2|Ward. At the start of your turn, put 1 silk on the opposing army member with the most power that is not cocooned.
 spd3|Ruthless. Your army members get +1/+0 for each cocooned opposing army member (at most +2).
 spdq|At the start of your turn, it eats a cocooned opposing army member and gets +2/+2.
 cocn|Target opposing army member gets 3 silk and is cocooned: it stays tapped while it has 3 silk.
@@ -222,7 +222,7 @@ bsk|When it dies, your opponent gets 1 guilt and a Wandering Corpse is shuffled 
 bghl|When it dies, your opponent gets 1 guilt.
 bhag|When it dies, your opponent gets 2 guilt.
 bsp|The first two times it dies, it returns to your hand and a Wandering Corpse takes its place. The third death is final.
-bone|Ward. Killing your disguises gives your opponent guilt. At 3 guilt, their strongest army member is shuffled into their deck and the guilt clears.
+bone|Ward. Killing your disguises gives your opponent guilt. At 2 guilt, their strongest army member is shuffled into their deck and the guilt clears.
 ybat|Flying. Charge. When it attacks, an opposing army member is blinded: it can't block until the end of their next turn.
 ytig|Charge. The first time it dies, it returns to your hand.
 ydef|Charge. Blinded opposing army members get -1/-0.
@@ -238,7 +238,7 @@ iwnd|Flying. When it dies, your opponent's newest army member is blown away if i
 imaid|While it lives, the fan also blows away army members that cost 2.
 iguard|Phalanx. While it lives, army members the fan blows away cost 1 more to play again.
 iprin|Resilient. When it enters, it blows away your opponent's two most expensive army members that cost 3 or more.
-ifan|Ward. On your first, third, fifth… turn, the fan blows away your opponent's most expensive army member that costs 3 or more: to the top of their deck, or three cards down if it costs 4 or more.
+ifan|Ward. On your first, third, fifth… turn, the fan blows away your opponent's most expensive army member that costs 4 or more: three cards down in their deck.
 mmon|When it enters, it copies the power and health of your opponent's newest army member.
 mape|Opportunist. Whenever your opponent casts a spell, it gets +1/+1 permanently.
 mear|When it enters, steal the top 2 cards of your opponent's deck.
@@ -248,8 +248,8 @@ mtrump|Ward. At the start of your turn, take the top card of your opponent's dec
 bgrd|When it is damaged in combat and survives, it adds 2 rage instead of 1.
 bcap|Ruthless. Bulldoze. +1/+0 for every 2 rage (at most +3).
 bhrn|Charge. Can only attack. +2/+0 while the Bull Demon King is the white bull.
-bdk|Resilient. At 6 rage it becomes the white bull: +4/+4 and Bulldoze. If the rage is already full, it arrives as the bull.
-bfury|Ward. When one of your army members survives combat damage, rage grows by 1. At 6 rage, the Bull Demon King becomes the white bull. At the start of your turn, your army members get +1/+0 until end of turn.
+bdk|Resilient. At 4 rage it becomes the white bull: +4/+4 and Bulldoze. If the rage is already full, it arrives as the bull.
+bfury|Ward. When one of your army members survives combat damage, rage grows by 1. At 4 rage, the Bull Demon King becomes the white bull. At the start of your turn, your army members get +1/+0 until end of turn.
 pdis|At the start of your turn, +0/+1 permanently (at most +3).
 pfin|Can only defend. While it lives, the Five-Finger Mountain's extra cost is 1 higher. At the start of your turn, this Finger takes 1 damage.
 pgrd|While it lives, opposing army members that cost 4 or more are sealed and can't attack, and the Five-Finger Mountain's extra cost falls on the third card your opponent plays each turn instead of the fourth.
@@ -270,14 +270,14 @@ sstalk|After it blocks, the venom pool fills by 1.
 squeen|At the start of your turn, restore 2 health to each of your army members. When the pool stings, opposing army members heal 1.
 sking|+1/+1 for every 2 venom in the pool (at most +3/+3).
 sting|Spend 3 venom: destroy target army member. With less venom, deal 2 damage to it instead.
-serk|Ward. When one of your scorpions dies or deals combat damage to your opponent, add 1 venom. At 7 venom, your opponent's strongest army member dies, they lose 3 life, and the venom resets.
+serk|Ward. When one of your scorpions dies or deals combat damage to your opponent, add 1 venom. At 5 venom, your opponent's strongest army member dies, they lose 3 life, and the venom resets.
 shbs|Once each turn, when another of your army members dies, this dies instead and that army member returns with 1 health.
 mumw|Resilient. At the start of your turn, restore it to full health.
 embp|When it enters, restore all your army members to full health. Your Shabti get +1/+1 permanently.
 tguard|Your Shabti get +1/+1. At the start of your turn, a Shabti joins you.
 heal2|Gain 4 life. Restore 2 health to each of your army members.
 shab|Ward. The first time each of your non-token army members dies, a 1/1 Shabti takes its place.
-croc|+2/+0 in defense form, and +1/+1 for each army member held in the river (at most +2/+2).
+croc|+1/+0 (+2/+0 in defense form), and +1/+1 for each army member held in the river (at most +2/+2).
 lurk|When it blocks an army member with 3 or less health left, that army member is dragged into the river before it can strike.
 sobpr|Your army members get +1/+0 for each army member held in the river (at most +3).
 sobek|When it blocks an army member, that army member is dragged into the river before it can strike. +1/+1 for each army member held in the river. When it dies, they all return to their owner's hand.
@@ -298,7 +298,7 @@ ammit|Can only defend. Each heart it eats gives it +2/+2.
 soulw|When it dies, the feather becomes 1 lighter (at most 2 lighter).
 unwor|When it deals combat damage to your opponent, their strongest army member gets +1/+0 permanently (a heavier heart).
 hguard2|The feather is 1 lighter while it lives.
-ammt|Ward. At the start of your turn, your opponent's army member with the most power is weighed against the feather (power 4, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it (gone for good).
+ammt|Ward. At the start of your turn, your opponent's army member with the most power is weighed against the feather (power 5, lighter for each Guardian of the Scales). If it is heavier, Ammit eats it (gone for good).
 sphinx2|It can only defend until your opponent fails a riddle. Each failed riddle gives it +1/+1.
 sphg|Flying. Your other army members get +0/+1.
 sphs|Can only defend. Each riddle your opponent fails gives it +1/+1.
@@ -324,11 +324,11 @@ xlegc|When it enters, possess your opponent's strongest army member that costs 3
 xcast|Deal damage to target army member equal to 2 + the number of possessed army members you control.
 xlegion|Ward. Possessed army members fight for you. When a possessed army member dies, it goes to its owner's graveyard. The Herd of Swine can free them.
 xwat|Flying. +1/+0 for each card in your hand beyond 2 (at most +2).
-xchrm|At the start of your turn, one of your army members gains Flying or Venomous.
+xchrm|When it enters, one of your army members gains Flying.
 xkok|Flying. When it enters, draw 2 cards.
 xsemj|Flying. Whenever another of your army members dies, your other army members get +1/+1.
-xcurse|Target army member gets -1/-1 for each card in your hand (at most -4/-4).
-xwatch|Ward. Whenever your opponent casts a spell, draw a card (at most 2 a turn).
+xcurse|Target army member gets -1/-1 for each card in your hand (at most -3/-3).
+xwatch|Ward. Whenever your opponent casts a spell, draw a card (at most 1 a turn).
 xyneph|At the start of your turn, if your opponent holds 3 or more cards, it eats one at random and gets +1/+1.
 xnep|When it enters, it eats your weakest other army member and gains its power and health.
 xgib|Bulldoze. Whenever one of your army members is eaten, this gets +1/+1.
@@ -336,11 +336,11 @@ xog|Resilient. +1/+1 for each Nephilim in your graveyard (at most +4/+4).
 xroar|Tap each opposing army member with power 2 or less. They don't untap next turn.
 xclub|Deal damage to target army member equal to the power of your strongest army member.
 xneph|Ward. Your army members that cost 3 or more cost 1 less.
-xfire|At the start of your turn, it deals 1 damage to itself and gets +2/+0 permanently.
-xcult|When it attacks, it deals 1 damage to itself and gets +2/+0 this turn.
-xidol|Can only defend. At the start of your turn, each of your other army members takes 1 damage and gets +1/+0 permanently.
+xfire|At the start of your turn, it gets +2/+0 permanently.
+xcult|When it attacks, it gets +2/+0 this turn.
+xidol|Can only defend. At the start of your turn, each of your other army members gets +1/+0 permanently, and you lose 1 life.
 xmolp|Ruthless. Whenever another of your army members dies, draw a card and your army gets +1/+0 permanently.
-xflame|Each of your army members takes 1 damage and gets +2/+0 this turn.
+xflame|Each of your army members gets +2/+0 this turn, and you lose 2 life.
 xmol|Ward. Whenever one of your army members dies or is offered, your other army members get +1/+0 permanently.
 xbrick|At the start of your turn, the tower rises by 1.
 xmason|When it enters, the tower rises by 2. +1/+1 for every 3 floors of the tower.

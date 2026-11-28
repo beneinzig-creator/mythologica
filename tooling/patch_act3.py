@@ -14,4 +14,4 @@ _b3("${boss?(G.a2?'Act II guardian':'Guardian of '+RWORD()):'Elite foe'}", "${bo
 _b3("if(ph=='map')return G.a2?'a2':'map';", "if(ph=='map')return G.a3?'a3':G.a2?'a2':'map';")
 _b3("Two guardians answer", "${G.a3?'Two generals answer':'Two guardians answer'}")
 _b3("<button class=\"b\" data-b=\"end\">End turn</button>${bpBtn()}`;", "<button class=\"b\" data-b=\"end\">End turn</button>${bpBtn()}${a3BargBtn()}`;")
-_b3("\nshowChars();\n</script>", "\n" + open(S+'act3.js',encoding='utf-8').read() + "\nconst A3BS=[4,1,0];\nshowChars();\n</script>")
+_b3("\nshowChars();\n</script>", "\n" + open(S+'act3.js',encoding='utf-8').read() + "\nconst A3BS=[7,1,0];\nshowChars();\n</script>")

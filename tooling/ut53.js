@@ -10,13 +10,13 @@ const boss=(k)=>R(`G.boss=1;G.bi=A3.bo[${k}];G.elt=0;fight();{const t=G.e.hand.f
 // --- flow ---
 A3();ok('startAct3: Act III flag, 10 regular decks, life healed by 10',R('G.a3')==1&&R('EN.length')==10&&R('G.p.life')==20&&R('G.phase')=='map');
 ok('the Act III map has 2 elites from the Act III pool',R('G.web.nodes.filter(n=>n.el).length')==2&&R('G.web.nodes.filter(n=>n.el).every(n=>A3.el.includes(n.el-1))'));
-ok('Act III fights use the Act III ramp (SCL 8+)',R('SCL.length')>=12&&R("(()=>{G.fi=0;G.rt[0]=0;G.elt=0;G.boss=0;fight();return G.e.max})()")==R('A3.en[0].l+SCL[8][0]+A3H.ody[0]'));
+ok('Act III fights use the Act III ramp (SCL 8+)',R('SCL.length')>=12&&R("(()=>{G.fi=0;G.rt[0]=0;G.elt=0;G.boss=0;fight();return G.e.max})()")==R('A3.en[0].l+SCL[8][0]'));
 R('G.fi=4;otgOffer()');ok('the altar offers 2 of the 3 generals',R('G.phase')=='bossp'&&R('G.bs.length')==2&&R('G.bs.every(i=>A3.bo.includes(i))'));
 // --- regular decks ---
 A3();reg('Legion');R("G.p.bf=[];enter(G.p,mk('spear'));enter(G.p,mk('charon'));enter(G.e,mk('xger'));egUp(G.e,G.p)");ok('Legion: a Gerasene Demon possesses your cheapest army member',R("G.e.bf.some(x=>x.id=='spear'&&x.poss)")&&R("G.p.bf.some(x=>x.id=='charon')"));
 R("enter(G.e,mk('xswn'));const q=G.e.bf.find(x=>x.poss);q.dmg=9;sweep()");ok('Legion: a possessed unit dies into your graveyard and the Swine grow',R("G.p.gy.some(x=>x.id=='spear')")&&R("G.e.bf.find(x=>x.id=='xswn').pd")==1);
 R("const w=mk('hopl');enter(G.p,w);G.turn++;egUp(G.e,G.p);const sw=G.e.bf.find(x=>x.id=='xswn');sw.dmg=99;sweep()");ok('Legion: the Herd drowns and frees the possessed',!R("G.e.bf.some(x=>x.poss)")&&R("G.p.bf.some(x=>x.id=='hopl')"));
-A3();reg('The Watchers');R("G.e.wd=0;G.p.mana=9");const h0=R('G.e.hand.length');for(let i=0;i<3;i++)R("cast(mk('spearc'),G.e.bf.find(x=>isC(x))||G.e)");ok('Watchers: they draw for your spells, at most 2 a turn',R('G.e.hand.length')-h0==2);
+A3();reg('The Watchers');R("G.e.wd=0;G.p.mana=9");const h0=R('G.e.hand.length');for(let i=0;i<3;i++)R("cast(mk('spearc'),G.e.bf.find(x=>isC(x))||G.e)");ok('Watchers: they draw for your spells, at most 1 a turn',R('G.e.hand.length')-h0==1);
 A3();reg('The Nephilim');R("ETB.xneph(G.e,G.p)");ok('Nephilim: their army members costing 3+ cost 1 less, the small ones do not',R("G.e.deck.filter(c=>isC(c)&&D[c.id][1]>=3).every(c=>c.disc>=1)&&G.e.deck.filter(c=>isC(c)&&D[c.id][1]<3).every(c=>!c.disc)"));
 A3();reg('The Prophets of Baal');R("enter(G.e,mk('xcult'));enter(G.e,mk('xfire'))");const p0=R("pwr(G.e.bf.find(x=>x.id=='xcult'))");R("const v=G.e.bf.find(x=>x.id=='xfire');v.dmg=9;sweep()");ok('Baal: a death makes the others stronger',R("pwr(G.e.bf.find(x=>x.id=='xcult'))")==p0+1);
 A3();reg('The Builders of Babel');R("G.p.hand=[mk('spear'),mk('hopl'),mk('charon')]");const c0=R("G.p.hand.map(cost).sort().join()");R('a3Up(G.e,G.p)');ok('Babel: hand costs are shuffled, not changed',R("G.p.hand.map(cost).sort().join()")==c0);

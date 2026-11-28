@@ -11,6 +11,4 @@ CHARS.odin.en[0].l=8;CHARS.odin.en[1].l=11;CHARS.odin.en[2].l=16;CHARS.odin.en[3
 /* Heavenly Host: steadier deck (the Decree now only taxes army members that cost 2 or less) */
 CHARS.wukong.en[2].d=ids('hsd:3,hhd:2,hgn,hnz,hpg:3,hbot:2');CHARS.wukong.en[2].l=11;
 CHARS.wukong.en[2].l=12;CHARS.wukong.en[3].l=13;CHARS.wukong.en[4].l=19;
-/* Act II: per hero:realm life adjustment (each realm's enemies were tuned for their own hero; target ~30% in the first Act II fight) */
-Object.assign(XADJ,{'odin:ody':[4,1,0],'odin:thoth':[7,0,0],'odin:wukong':[8,0,0],'ody:odin':[13,-1,0],'ody:thoth':[0,0,0],'ody:wukong':[2,0,0],
- 'thoth:odin':[6,0,0],'thoth:ody':[7,0,0],'thoth:wukong':[7,0,0],'wukong:odin':[8,0,0],'wukong:ody':[11,0,0],'wukong:thoth':[14,0,0]});
+/* Act II per hero:realm life adjustment removed (open tuning 2026-11-27); its average is now in the shared Act II ramp (elites.js) */
