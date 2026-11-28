@@ -19,13 +19,13 @@ DK('Legion',{d:'xlgn:5,xger:3,xswn:3,xlegc,xcast:2',hint:'While a Gerasene Demon
 
 /* ---------- The Watchers: teachers bound by one oath. Knowledge (cards in hand) is their power ---------- */
 F('xwat',{c:2,a:2,h:3,f:'f',tag:'watch',t:'Flying. Gets +1/+0 for each card in their hand beyond 2 (at most +2).',self:c=>[Math.max(0,Math.min(2,sideOf(c).hand.length-2)),0]});
-F('xchrm',{c:1,a:1,h:3,f:'',tag:'watch',t:'At the start of their turn it teaches one of their army members a lesson: Flying.',
- up:(s,o,c)=>{const L=cr(s).filter(x=>!x.f.includes('f'));const t=fRnd(L);if(!t)return;const k='f';fKey(t,k);log('The Teacher of Charms teaches '+fNm(t)+' '+(k=='f'?'Flying':'Venomous')+'.')}});
+F('xchrm',{c:1,a:1,h:3,f:'',tag:'watch',t:'When it enters, it teaches one of their army members a lesson: Flying.',
+ etb:(s,o,c)=>{const L=cr(s).filter(x=>!x.f.includes('f'));const t=fRnd(L);if(!t)return;const k='f';fKey(t,k);log('The Teacher of Charms teaches '+fNm(t)+' '+(k=='f'?'Flying':'Venomous')+'.')}});
 F('xkok',{c:3,a:3,h:3,f:'f',tag:'watch',t:'Flying. When it enters, they draw 2 cards (the signs of the stars).',etb:s=>draw(s,2)});
 F('xsemj',{c:4,a:4,h:4,f:'f',tag:'watch',t:'Flying. The oath: whenever another of their army members dies, each other army member they control gets +1/+1.',
  allyDie:(s,o,c,x)=>{cr(s).forEach(y=>{y.pa++;y.pd++});log('The oath binds them: the Watchers grow stronger.')}});
-F('xcurse',{c:2,t:'Target army member gets -1/-1 for each card in their hand (at most -4/-4).',
- ai:(s,o)=>fAiKill(o,Math.min(4,s.hand.length),2.5),fx:(s,o,t)=>{if(!t)return;const n=Math.min(4,s.hand.length);t.pa-=n;t.pd-=n}});
+F('xcurse',{c:2,t:'Target army member gets -1/-1 for each card in their hand (at most -3/-3).',
+ ai:(s,o)=>fAiKill(o,Math.min(3,s.hand.length),2.5),fx:(s,o,t)=>{if(!t)return;const n=Math.min(3,s.hand.length);t.pa-=n;t.pd-=n}});
 DK('The Watchers',{d:'xwat:4,xchrm:4,xkok:2,xsemj,xcurse:3',hint:'Every spell you cast teaches them; their strength is the cards they hold'});
 
 /* ---------- The Nephilim: hunger. They eat your resources, then each other ---------- */
@@ -43,15 +43,17 @@ F('xclub',{c:3,t:'Deal damage to target army member equal to the power of their 
 DK('The Nephilim',{d:'xyneph:4,xnep:3,xgib:2,xog,xroar:2,xclub:2',hint:'Their hunger eats your hand, then each other'});
 
 /* ---------- The Prophets of Baal: they cut themselves for a god who never answers ---------- */
-/* a prophet's own blade never kills him: the cut stops at 2 health (open tuning 2026-11-27: was 1, which left the whole army dying to any ping) */
-const fCut=(c,n,a,perm)=>{if(perm)c.pa+=a;else c.ta+=a;c.dmg=Math.max(c.dmg,Math.min(c.dmg+n,th(c)-2))};
-F('xfire',{c:1,a:1,h:3,f:'',tag:'baal',t:'At the start of their turn it cuts itself: 1 damage to itself, +2/+0 permanently.',up:(s,o,c)=>{fCut(c,1,2,1);log('A prophet of Baal cuts himself and cries louder.')}});
-F('xcult',{c:2,a:2,h:4,f:'',tag:'baal',t:'When it attacks, it cuts itself: 1 damage to itself and +2/+0 this turn.',atk:(s,o,c)=>fCut(c,1,2,0)});
-F('xidol',{c:3,a:2,h:6,f:'k',tag:'baal',t:'Can only defend. The bull lies on the wood: at the start of their turn, each other army member they control takes 1 damage and gets +1/+0 permanently. No fire comes.',
- up:(s,o,c)=>{const L=cr(s).filter(x=>x!==c);L.forEach(x=>fCut(x,1,1,1));if(L.length)log('They limp around the altar and cut themselves. No fire comes.')}});
+/* redesign 2026-11-28: the cuts no longer wound the prophets (that left the whole army at 1-2 health and dying to anything);
+   their power still grows, and the blood is paid from their own life total instead: a race against an escalating army */
+const fCut=(c,n,a,perm)=>{if(perm)c.pa+=a;else c.ta+=a};
+const fBaalBleed=(s,n,why)=>{s.life-=n;log(why+' They lose '+n+' life.')};
+F('xfire',{c:1,a:1,h:3,f:'',tag:'baal',t:'At the start of their turn it cuts itself: +2/+0 permanently.',up:(s,o,c)=>{fCut(c,1,2,1);log('A prophet of Baal cuts himself and cries louder.')}});
+F('xcult',{c:2,a:2,h:3,f:'',tag:'baal',t:'When it attacks, it cuts itself: +2/+0 this turn.',atk:(s,o,c)=>fCut(c,1,2,0)});
+F('xidol',{c:3,a:2,h:6,f:'k',tag:'baal',t:'Can only defend. The bull lies on the wood: at the start of their turn, each other army member they control gets +1/+0 permanently, and they lose 1 life. No fire comes.',
+ up:(s,o,c)=>{const L=cr(s).filter(x=>x!==c);L.forEach(x=>fCut(x,1,1,1));if(L.length)fBaalBleed(s,1,'They limp around the altar and cut themselves. No fire comes.')}});
 F('xmolp',{c:3,a:3,h:3,f:'r',tag:'baal',t:'Ruthless. "Cry aloud": whenever another of their army members dies, they draw a card and their army gets +1/+0 permanently.',allyDie:(s,o,c)=>{draw(s,1);cr(s).forEach(x=>{x.pa++})}});
-F('xflame',{c:3,t:'They call on Baal all day. No fire falls. Each of their army members cuts itself: 1 damage and +2/+0 this turn.',
- ai:(s,o)=>{const n=cr(s).filter(x=>canAtk(x)&&fHp(x)>1).length;return n>=2?{s:3+n*2}:null},fx:s=>{cr(s).forEach(x=>fCut(x,1,2,0));log('There was no voice, nor any that answered.')}});
+F('xflame',{c:3,t:'They call on Baal all day. No fire falls. Each of their army members gets +2/+0 this turn, and they lose 2 life.',
+ ai:(s,o)=>{const n=cr(s).filter(x=>canAtk(x)).length;return n>=2&&s.life>6?{s:3+n*2}:null},fx:s=>{cr(s).forEach(x=>fCut(x,1,2,0));fBaalBleed(s,2,'There was no voice, nor any that answered.')}});
 DK('The Prophets of Baal',{d:'xfire:5,xcult:4,xidol:2,xmolp:2,xflame:2',hint:'They bleed for power; every one that falls makes the rest stronger'});
 
 /* ---------- The Builders of Babel: a tower that rises every turn and is never finished ---------- */

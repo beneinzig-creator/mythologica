@@ -3,7 +3,8 @@
    fodder that comes from play (Camp Followers from Raiders and Phalanx), two bridge cards.
    Thoth: Ink (a counter fed by Foresee), amulets played with no army member equip the next one for free, Sundered/Recorder fixes.
    Sun Wukong: smoother Staff cards and the two weakest defenders. Legendary cards are offered a little more often.
-   Every change is stated on the card. Odin is untouched (Wounded rework under discussion). */
+   Every change is stated on the card.
+   Odin (2026-11-28): Rage replaces the half-life Wounded rule. Rage = life lost since the start of your last turn; Wounded at 3+, Frenzy at 6+. */
 /* --- helpers: add abilities to an existing card without wiping its built-in ones (F() would delete ETB/DEATH entries) --- */
 function HX(id,o){const d=D[id];if(!d){try{console.warn('hero_flow: no card',id)}catch(e){}return}
  if(o.c!=null)d[1]=o.c;if(o.a!=null)d[3]=o.a;if(o.h!=null)d[4]=o.h;if(o.f!=null)d[5]=o.f;if(o.t!=null){d[6]=o.t;try{if(typeof TXT!='undefined')TXT[id]=o.t}catch(e){}}
@@ -95,6 +96,29 @@ HX('wrout',{c:1});
 HX('wbigstaff',{c:4});
 HX('wvang',{h:2});
 HX('wtang',{t:'Whenever you play the 2nd card of a turn, draw a card.'});
+
+
+/* ================= ODIN: RAGE ================= */
+/* Rage is the life you have lost since the start of your last turn (your turn plus their turn), counted as it happens.
+   Wounded while Rage is 3+; at 6+ your Berserkers are in a Frenzy (+1/+0). Healing never lowers Rage; it fades a turn after you stop bleeding. */
+const RAGE_W=3,RAGE_F=6,RAGE_MAX=9;
+function rgSync(p){if(!p||G.ch!='odin')return;if(p.rl==null)p.rl=p.life;if(p.life<p.rl){const d=p.rl-p.life;p.lost=(p.lost||0)+d;p.prev=(p.prev||0);p.rage=Math.min(RAGE_MAX,(p.prev||0)+p.lost)}p.rl=p.life}
+function WNDX(s){if(G&&s===G.p&&G.ch=='odin'){rgSync(s);return (s.rage||0)>=RAGE_W}return s.life*2<=s.max}
+{const _s=startP;startP=function(){try{const p=G.p;if(p&&G.ch=='odin'){rgSync(p);p.prev=p.lost||0;p.lost=0;p.rage=Math.min(RAGE_MAX,p.prev)}}catch(e){}return _s.apply(this,arguments)}}
+{const _f=fight;fight=function(){const r=_f.apply(this,arguments);try{const p=G.p;if(p){p.rage=0;p.lost=0;p.prev=0;p.rl=p.life}}catch(e){}return r}}
+{const _c=chk;chk=function(){try{rgSync(G&&G.p)}catch(e){}return _c.apply(this,arguments)}}
+{const _p=px;px=function(c){let n=_p(c);try{if(G&&G.ch=='odin'&&G.p&&G.p.bf.includes(c)&&TAG[c.id]=='B'){rgSync(G.p);if((G.p.rage||0)>=RAGE_F)n+=1}}catch(e){}return n}}
+function hxRageBar(){if(wkBar.hxRage)return;const _b=wkBar;wkBar=function(){try{if(G&&G.p&&G.ch=='odin'){const p=G.p;rgSync(p);const r=p.rage||0;return`<span class="cn" title="Rage is the life you lost since the start of your last turn. At ${RAGE_W} you are Wounded; at ${RAGE_F} your Berserkers are in a Frenzy (+1/+0). It fades a turn after you stop bleeding.">🩸 Rage ${r}${r>=RAGE_F?' · Frenzy':r>=RAGE_W?' · Wounded':' · Wounded at '+RAGE_W}</span>`}}catch(e){}return _b.apply(this,arguments)};wkBar.hxRage=1}
+{const _f=fight;fight=function(){try{hxRageBar()}catch(e){}return _f.apply(this,arguments)}}
+/* E: the cards around it */
+{const f0=ETB.blod;ETB.blod=s=>{s.life-=2;log('Blood-Drinker drinks deep: you lose 2 life.')};}
+HX('blod',{t:'When it enters, deal 2 damage to you.'});
+HX('skul',{c:3});HX('bodvar',{c:3});HX('ulfk',{c:3});HX('star',{c:4});HX('rend',{c:3});
+HX('mhall',{c:2,t:'Your army members with Bloodlust or Battle-rage get +1/+1. While you are Wounded, all your army members get +1/+0.',aura:x=>{try{return[G&&G.ch=='odin'&&wnd(G.p)&&!(has(x,'u')||has(x,'i'))?1:0,0]}catch(e){return[0,0]}}});
+const hxBleedBack=(s,why)=>{if(s===G.p&&wnd(s)){s.life+=2;log(why+': you gain 2 life.')}};
+HX('einw',{t:'When it dies, deal 1 damage to each opposing army member. If you are Wounded, you gain 2 life.',die:s=>hxBleedBack(s,'The Einherjar is carried to the hall')});
+HX('stdb',{t:'When it dies, your other army members get +1/+1 permanently. If you are Wounded, you gain 2 life.',die:s=>hxBleedBack(s,'The standard falls')});
+HX('huscl',{t:'When it dies, deal 3 damage to the opponent. If you are Wounded, you gain 2 life.',die:s=>hxBleedBack(s,'The Housecarl falls')});
 
 /* ================= DRAFT: Legendary cards a little more often ================= */
 RW.L=0.35;RW2.L=1.6;RWE.L=2.5;

@@ -324,10 +324,10 @@ xlegc|When it enters, possess your opponent's strongest army member that costs 3
 xcast|Deal damage to target army member equal to 2 + the number of possessed army members you control.
 xlegion|Ward. Possessed army members fight for you. When a possessed army member dies, it goes to its owner's graveyard. The Herd of Swine can free them.
 xwat|Flying. +1/+0 for each card in your hand beyond 2 (at most +2).
-xchrm|At the start of your turn, one of your army members gains Flying.
+xchrm|When it enters, one of your army members gains Flying.
 xkok|Flying. When it enters, draw 2 cards.
 xsemj|Flying. Whenever another of your army members dies, your other army members get +1/+1.
-xcurse|Target army member gets -1/-1 for each card in your hand (at most -4/-4).
+xcurse|Target army member gets -1/-1 for each card in your hand (at most -3/-3).
 xwatch|Ward. Whenever your opponent casts a spell, draw a card (at most 1 a turn).
 xyneph|At the start of your turn, if your opponent holds 3 or more cards, it eats one at random and gets +1/+1.
 xnep|When it enters, it eats your weakest other army member and gains its power and health.
@@ -336,11 +336,11 @@ xog|Resilient. +1/+1 for each Nephilim in your graveyard (at most +4/+4).
 xroar|Tap each opposing army member with power 2 or less. They don't untap next turn.
 xclub|Deal damage to target army member equal to the power of your strongest army member.
 xneph|Ward. Your army members that cost 3 or more cost 1 less.
-xfire|At the start of your turn, it deals 1 damage to itself (never below 2 health) and gets +2/+0 permanently.
-xcult|When it attacks, it deals 1 damage to itself (never below 2 health) and gets +2/+0 this turn.
-xidol|Can only defend. At the start of your turn, each of your other army members takes 1 damage (never below 2 health) and gets +1/+0 permanently.
+xfire|At the start of your turn, it gets +2/+0 permanently.
+xcult|When it attacks, it gets +2/+0 this turn.
+xidol|Can only defend. At the start of your turn, each of your other army members gets +1/+0 permanently, and you lose 1 life.
 xmolp|Ruthless. Whenever another of your army members dies, draw a card and your army gets +1/+0 permanently.
-xflame|Each of your army members takes 1 damage (never below 2 health) and gets +2/+0 this turn.
+xflame|Each of your army members gets +2/+0 this turn, and you lose 2 life.
 xmol|Ward. Whenever one of your army members dies or is offered, your other army members get +1/+0 permanently.
 xbrick|At the start of your turn, the tower rises by 1.
 xmason|When it enters, the tower rises by 2. +1/+1 for every 3 floors of the tower.
